@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://devjaedol.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://devjaedol.github.io/" rel="alternate" type="text/html" /><updated>2021-10-15T05:20:36+00:00</updated><id>https://devjaedol.github.io/feed.xml</id><title type="html">/ 꿰 / 보 / Note</title><subtitle>개발과 생활에 대한 개인 블로그 입니다.</subtitle><author><name>devjaedol</name></author><entry><title type="html">Python 강좌(1) - 태그포함 sidebar</title><link href="https://devjaedol.github.io/javascript/python-basic-copy-2/" rel="alternate" type="text/html" title="Python 강좌(1) - 태그포함 sidebar" /><published>2020-10-11T00:00:00+00:00</published><updated>2020-10-11T00:00:00+00:00</updated><id>https://devjaedol.github.io/javascript/python-basic%20copy%202</id><content type="html" xml:base="https://devjaedol.github.io/javascript/python-basic-copy-2/">&lt;p&gt;파이썬 첫 글
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://devjaedol.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://devjaedol.github.io/" rel="alternate" type="text/html" /><updated>2021-10-15T05:24:25+00:00</updated><id>https://devjaedol.github.io/feed.xml</id><title type="html">/ 꿰 / 보 / Note</title><subtitle>개발과 생활에 대한 개인 블로그 입니다.</subtitle><author><name>devjaedol</name></author><entry><title type="html">TravisCI 추가 완료 적용 테스트 중</title><link href="https://devjaedol.github.io/nodejs/html/TravisCI%EC%B6%94%EA%B0%80/" rel="alternate" type="text/html" title="TravisCI 추가 완료 적용 테스트 중" /><published>2020-10-15T00:00:00+00:00</published><updated>2020-10-15T00:00:00+00:00</updated><id>https://devjaedol.github.io/nodejs/html/TravisCI%EC%B6%94%EA%B0%80</id><content type="html" xml:base="https://devjaedol.github.io/nodejs/html/TravisCI%EC%B6%94%EA%B0%80/">&lt;p class=&quot;notice--warning&quot;&gt;&lt;strong&gt;[공지사항]&lt;/strong&gt;&lt;a href=&quot;https://www.youtube.com&quot;&gt;유튜브링크&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#link&quot; class=&quot;btn btn--danger&quot;&gt;임시버튼&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;이미지-목차&quot;&gt;이미지 목차&lt;/h2&gt;
+
+&lt;p&gt;파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글&lt;/p&gt;
+
+&lt;h3 id=&quot;세부-목차1&quot;&gt;세부 목차1&lt;/h3&gt;
+
+&lt;p&gt;파이썬 첫 글파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글&lt;/p&gt;
+
+&lt;h3 id=&quot;세부-목차2&quot;&gt;세부 목차2&lt;/h3&gt;
+
+&lt;p&gt;파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글&lt;/p&gt;
+
+&lt;h3 id=&quot;세부-목차3&quot;&gt;세부 목차3&lt;/h3&gt;
+
+&lt;p&gt;파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글
+파이썬 첫 글&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="NodeJS" /><category term="html" /><summary type="html">[공지사항]유튜브링크</summary></entry><entry><title type="html">Python 강좌(1) - 태그포함 sidebar</title><link href="https://devjaedol.github.io/javascript/python-basic-copy-2/" rel="alternate" type="text/html" title="Python 강좌(1) - 태그포함 sidebar" /><published>2020-10-11T00:00:00+00:00</published><updated>2020-10-11T00:00:00+00:00</updated><id>https://devjaedol.github.io/javascript/python-basic%20copy%202</id><content type="html" xml:base="https://devjaedol.github.io/javascript/python-basic-copy-2/">&lt;p&gt;파이썬 첫 글
 파이썬 첫 글
 파이썬 첫 글
 파이썬 첫 글
