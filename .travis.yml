@@ -1,14 +1,18 @@
 language: ruby
 cache: bundler
-gemfile: docs/Gemfile
-script:
-  - bundle exec jekyll algolia --source docs --destination docs/_site --config docs/_config.yml
-branches:
-  only:
-    # Change this to gh-pages if you're deploying using the gh-pages branch
-    - sources
+
+# gemfile: docs/Gemfile
+# script:
+#   - bundle exec jekyll algolia --source docs --destination docs/_site --config docs/_config.yml
+
 rvm:
  - 2.4
+
+script: bundle install && bundle exec jekyll build
+
+branches:
+  only:
+    - source
 
 deploy:
   provider: pages
@@ -18,4 +22,4 @@ deploy:
   local-dir: ./_site
   target-branch: master
   on:
-    branch: sources
+    branch: source
