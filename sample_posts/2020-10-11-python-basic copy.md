@@ -2,7 +2,7 @@
 layout: single
 title: Python 강좌(1) - 코드 포함 Billy Rick
 categories: html
-author: Billy Rick
+author: devjaedo
 
 ---
 

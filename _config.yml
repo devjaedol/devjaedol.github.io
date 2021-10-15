@@ -18,12 +18,12 @@ minimal_mistakes_skin    : "default" # "default", "air", "aqua", "contrast", "da
 locale                   : "ko-KR"
 title                    : "/ 꿰 / 보 / Note"
 title_separator          : "|"
-subtitle                 : "꿰지 않으면, 단지 구슬 서 말일 뿐..."# site tagline that appears below site title in masthead
+subtitle                 : "구슬 치기에 왕좌 ✔"# site tagline that appears below site title in masthead
 name                     : "devjaedol"
-description              : "개발과 생활에 대한 개인 블로그 입니다."
+description              : "This is a summary blog about development technology."
 url                      : "https://devjaedol.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "devjaedol/devjaedol.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # "/assets/images/main_teaser.png" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # "/assets/images/main_logo.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title

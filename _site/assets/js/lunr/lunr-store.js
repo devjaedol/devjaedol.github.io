@@ -1,25 +1,7 @@
 var store = [{
-        "title": "Python 강좌(1) - 태그포함 sidebar",
-        "excerpt":"파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫...","categories": ["javascript"],
-        "tags": ["tagA","tagB","tagC"],
-        "url": "/javascript/python-basic-copy-2/",
-        "teaser": null
-      },{
-        "title": "Python 강좌(1) - 코드 포함 Billy Rick",
-        "excerpt":"파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫...","categories": ["html"],
+        "title": "GitBub blog 오픈",
+        "excerpt":"Git Blog를 개설 했습니다.   Tistory에 Blog들이 Kakao로 통합되면서, 관리가 어려운 사황이 되어서, Git Blog로 만들어 보았습니다.   Git Blog가 Custmize 장점이 있는데, 개설까지 꽤 삽질을 하고 오픈 합니다.   꿰보는 (꿰)어야 (보)배에서 아이디어를 얻었고, 개발과 관련된 학습 시행착오를 정리할 예정입니다.   ","categories": ["etc"],
         "tags": [],
-        "url": "/html/python-basic-copy/",
-        "teaser": null
-      },{
-        "title": "Python 강좌(3) -태그포함 teaser",
-        "excerpt":"파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫...","categories": ["python"],
-        "tags": ["tag"],
-        "url": "/python/python-basic-copy-3/",
-        "teaser": "/assets/images/main_teaser.png"
-      },{
-        "title": "Python 강좌(4) - 태그포함 collection",
-        "excerpt":"파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫 글 파이썬 첫...","categories": ["python"],
-        "tags": ["tagA","tagB","tagC"],
-        "url": "/python/python-basic-copy-4/",
+        "url": "/etc/blog_open/",
         "teaser": null
       }]

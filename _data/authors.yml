@@ -1,14 +1,14 @@
-Billy Rick:
-  name        : "Billy Rick"
-  bio         : "What do you want, jewels? I am a very extravagant man."
-  avatar      : "/assets/images/bio-photo-2.jpg"
+devjaedol:
+  name        : "devjaedol"
+  bio         : "Development is always fun."
+  avatar      : "/assets/images/user-photo-devjaedol.jpg" # 73x73
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:billyrick@rick.com"
+    # - label: "Email"
+    #   icon: "fas fa-fw fa-envelope-square"
+    #   url: "mailto:xxxx@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://thewhip.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/extravagantman"
+      url: "http://www.kimjaehyun.co.kr"
+    # - label: "Twitter"
+    #   icon: "fab fa-fw fa-twitter-square"
+    #   url: "https://twitter.com/extravagantman"
