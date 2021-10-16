@@ -13,13 +13,27 @@ main:
 
 
 
-docs:
+sidebar:
+  - title: "일상다반사"
+    children:
+      - title: "blog"
+        url: /categories/blog
   - title: "Programming"
     children:
       - title: "Python"
-        url: /categories/
-      - title: "Tag"
-        url: /tags/
+        url: /categories/python
+      - title: "Java"
+        url: /categories/java
+      - title: "Javascript"
+        url: /categories/javascript
+      - title: "C#"
+        url: /categories/csharp
+      - title: "Nodejs"
+        url: /categories/nodejs
+      - title: "Node-Red"
+        url: /categories/nodered
+
+
 
   # - title: "대목차2"
   #   children:
