@@ -21,7 +21,7 @@ title_separator          : "|"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "devjaedol"
 description              : "This is a summary blog about development technology."
-url                      : "https://devjaedol.github.io"
+url                      : "http://kimjaehyun.co.kr"  # https://devjaedol.github.io
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "devjaedol/devjaedol.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # "/assets/images/main_teaser.png" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
