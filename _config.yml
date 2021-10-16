@@ -20,8 +20,8 @@ title                    : "/ 꿰 / 보 / Note"
 title_separator          : "|"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "devjaedol"
-description              : "This is a summary blog about development technology."
-url                      : "http://kimjaehyun.co.kr"  # https://devjaedol.github.io
+description              : "프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. | This blog is to share information about programming, software information, and cloud development."
+url                      : "https://devjaedol.github.io"  # https://devjaedol.github.io
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "devjaedol/devjaedol.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # "/assets/images/main_teaser.png" # path of fallback teaser image, e.g. "/assets/images/500x300.png"

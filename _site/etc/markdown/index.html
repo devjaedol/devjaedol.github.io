@@ -1,0 +1,688 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>MarkDwon 사용법 | / 꿰 / 보 / Note</title>
+<meta name="description" content="MakrDown에 사용 법에 대해서 간략히 정리하겠습니다.  확장자 *.md 입니다.  대표적 예제 Readmd.md">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="/ 꿰 / 보 / Note">
+<meta property="og:title" content="MarkDwon 사용법">
+<meta property="og:url" content="http://kimjaehyun.co.kr/etc/markdown/">
+
+
+  <meta property="og:description" content="MakrDown에 사용 법에 대해서 간략히 정리하겠습니다.  확장자 *.md 입니다.  대표적 예제 Readmd.md">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-16T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://kimjaehyun.co.kr/etc/markdown/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "http://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="/ 꿰 / 보 / Note Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          / 꿰 / 보 / Note
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">검색</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#etc" itemprop="item"><span itemprop="name">Etc</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">MarkDwon 사용법</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">일상다반사</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/blog">blog</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Programming</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/python">Python</a></li>
+          
+            <li><a href="/categories/java">Java</a></li>
+          
+            <li><a href="/categories/javascript">Javascript</a></li>
+          
+            <li><a href="/categories/csharp">C#</a></li>
+          
+            <li><a href="/categories/nodejs">Nodejs</a></li>
+          
+            <li><a href="/categories/nodered">Node-Red</a></li>
+          
+            <li><a href="/categories/etc">Etc</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="MarkDwon 사용법">
+    <meta itemprop="description" content="MakrDown에 사용 법에 대해서 간략히 정리하겠습니다. 확장자 *.md 입니다. 대표적 예제 Readmd.md">
+    <meta itemprop="datePublished" content="2021-10-16T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://kimjaehyun.co.kr/etc/markdown/" class="u-url" itemprop="url">MarkDwon 사용법
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>MakrDown에 사용 법에 대해서 간략히 정리하겠습니다. <br />
+확장자 *.md 입니다. <br />
+대표적 예제 Readmd.md</p>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>두줄 밑줄을 통해서 헤더 설정
+=============
+</code></pre></div></div>
+
+<h1 id="두줄-밑줄을-통해서-헤더-설정">두줄 밑줄을 통해서 헤더 설정</h1>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>한줄 밑줄을 통해서 헤더 설정
+-------
+</code></pre></div></div>
+
+<h2 id="한줄-밑줄을-통해서-헤더-설정">한줄 밑줄을 통해서 헤더 설정</h2>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 제목 샘플 입니다. H1
+## 제목 샘플 입니다. H2
+### 제목 샘플 입니다. H3
+#### 제목 샘플 입니다. H4
+##### 제목 샘플 입니다. H5
+###### 제목 샘플 입니다. H6
+</code></pre></div></div>
+
+<h1 id="제목-샘플-입니다-h1">제목 샘플 입니다. H1</h1>
+<h2 id="제목-샘플-입니다-h2">제목 샘플 입니다. H2</h2>
+<h3 id="제목-샘플-입니다-h3">제목 샘플 입니다. H3</h3>
+<h4 id="제목-샘플-입니다-h4">제목 샘플 입니다. H4</h4>
+<h5 id="제목-샘플-입니다-h5">제목 샘플 입니다. H5</h5>
+<h6 id="제목-샘플-입니다-h6">제목 샘플 입니다. H6</h6>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; 인용 블록 입니다.
+</code></pre></div></div>
+
+<blockquote>
+  <p>인용 블록 입니다.</p>
+</blockquote>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; 다중 인용 블록 입니다.
+&gt;   &gt; 2단계 블록 입니다.
+&gt;   &gt;   &gt; 3단계 블록 입니다.
+</code></pre></div></div>
+
+<blockquote>
+  <p>다중 인용 블록 입니다.</p>
+  <blockquote>
+    <p>2단계 블록 입니다.</p>
+    <blockquote>
+      <p>3단계 블록 입니다.</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 순서 있는 목록(가)(번호순서와 무관함)
+1. 순서 있는 목록(나)(번호순서와 무관함)
+1. 순서 있는 목록(다)(번호순서와 무관함)
+1. 순서 있는 목록(라)(번호순서와 무관함)
+</code></pre></div></div>
+
+<ol>
+  <li>순서 있는 목록(가)(번호순서와 무관함)</li>
+  <li>순서 있는 목록(나)(번호순서와 무관함)</li>
+  <li>순서 있는 목록(다)(번호순서와 무관함)</li>
+  <li>순서 있는 목록(라)(번호순서와 무관함)</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 순서 없는 목록(가)
+- 순서 없는 목록(나)
+- 순서 없는 목록(다)
+- 순서 없는 목록(라)
+</code></pre></div></div>
+
+<ul>
+  <li>순서 없는 목록(가)</li>
+  <li>순서 없는 목록(나)</li>
+  <li>순서 없는 목록(다)</li>
+  <li>순서 없는 목록(라)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* 순서 없는 목록(가)
+* 순서 없는 목록(나)
+* 순서 없는 목록(다)
+* 순서 없는 목록(라)
+</code></pre></div></div>
+
+<ul>
+  <li>순서 없는 목록(가)</li>
+  <li>순서 없는 목록(나)</li>
+  <li>순서 없는 목록(다)</li>
+  <li>순서 없는 목록(라)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+ 순서 없는 목록(가)
++ 순서 없는 목록(나)
++ 순서 없는 목록(다)
++ 순서 없는 목록(라)
+</code></pre></div></div>
+
+<ul>
+  <li>순서 없는 목록(가)</li>
+  <li>순서 없는 목록(나)</li>
+  <li>순서 없는 목록(다)</li>
+  <li>순서 없는 목록(라)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 복합 목록
+    1. 복합 목록 예
+    1. 복합 목록 예
+    1. 복합 목록 예
+1. 복합 목록
+    - 복합 목록 예
+    - 복합 목록 예
+    - 복합 목록 예
+1. 복합 목록
+    * 복합 목록 예
+    * 복합 목록 예
+    * 복합 목록 예
+</code></pre></div></div>
+
+<ol>
+  <li>복합 목록
+    <ol>
+      <li>복합 목록 예</li>
+      <li>복합 목록 예</li>
+      <li>복합 목록 예</li>
+    </ol>
+  </li>
+  <li>복합 목록
+    <ul>
+      <li>복합 목록 예</li>
+      <li>복합 목록 예</li>
+      <li>복합 목록 예</li>
+    </ul>
+  </li>
+  <li>복합 목록
+    <ul>
+      <li>복합 목록 예
+        <ul>
+          <li>복합 목록 예
+            <ul>
+              <li>복합 목록 예</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>줄바꿈은 글 마지막에서 (빈칸, 스페이스바를 3글자 이상 입력)
+이텔릭 글씨 적용 : 여기는 *샘플 문장* 입니다.
+이텔릭 글씨 적용 : 여기는 _샘플 문장_ 입니다.
+볼드 글씨 적용 : 여기는 **샘플 문장** 입니다.
+취소선 글씨 적용 : 여기는 ~~샘플 문장~~ 입니다.
+</code></pre></div></div>
+
+<p>이텔릭 글씨 적용 : 여기는 <em>샘플 문장</em> 입니다.  <br />
+이텔릭 글씨 적용 : 여기는 <em>샘플 문장</em> 입니다.  <br />
+볼드 글씨 적용 : 여기는 <strong>샘플 문장</strong> 입니다. <br />
+취소선 글씨 적용 : 여기는 <del>샘플 문장</del> 입니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[네이버 링크](http://www.naver.com)
+[네이버 링크](http://www.naver.com "여기는 네이버 링크 입니다. 마우스 오버시 설명이 표시됩니다.")
+[상대 경로 링크](../../)
+
+문서내 아래처럼 링크를 선언하고 [Link1]로 참조하여 연결할 수도 있습니다.   
+[Link1]:http://www.naver.com   
+
+&lt;http://www.naver.com&gt;    
+</code></pre></div></div>
+
+<p><a href="http://www.naver.com">네이버 링크</a>  <br />
+<a href="http://www.naver.com" title="여기는 네이버 링크 입니다. 마우스 오버시 설명이 표시됩니다.">네이버 링크</a>  <br />
+<a href="../../">상대 경로 링크</a></p>
+
+<p>문서내 아래처럼 링크를 선언하고 [Link1]로 참조하여 연결할 수도 있습니다. <br />
+[Link1]: http://www.naver.com</p>
+
+<p><a href="http://www.naver.com">http://www.naver.com</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```html
+&lt;a href="https://www.google.co.kr/" target="_blank"&gt;구글&lt;/a&gt;
+```
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.google.co.kr/"</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;</span>구글<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#etc" class="page__taxonomy-item p-category" rel="tag">etc</a><span class="sep">, </span>
+    
+      <a href="/tags/#markdown" class="page__taxonomy-item p-category" rel="tag">markdown</a><span class="sep">, </span>
+    
+      <a href="/tags/#mk" class="page__taxonomy-item p-category" rel="tag">mk</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#etc" class="page__taxonomy-item p-category" rel="tag">etc</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2021-10-16T00:00:00+09:00">2021-10-16</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=MarkDwon+%EC%82%AC%EC%9A%A9%EB%B2%95%20http%3A%2F%2Fkimjaehyun.co.kr%2Fetc%2Fmarkdown%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fkimjaehyun.co.kr%2Fetc%2Fmarkdown%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fkimjaehyun.co.kr%2Fetc%2Fmarkdown%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">이전</a>
+    
+    
+      <a href="/blog/blog_open/" class="pagination--pager" title="GitHub blog 오픈
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/blog_open/" rel="permalink">GitHub blog 오픈
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub Blog를 개설 했습니다.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://kimjaehyun.co.kr/etc/markdown/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/etc/markdown"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

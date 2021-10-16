@@ -1,5 +1,201 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="http://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-16T15:58:25+09:00</updated><id>http://kimjaehyun.co.kr/feed.xml</id><title type="html">/ 꿰 / 보 / Note</title><subtitle>This is a summary blog about development technology.</subtitle><author><name>devjaedol</name></author><entry><title type="html">GitHub blog 오픈</title><link href="http://kimjaehyun.co.kr/blog/blog_open/" rel="alternate" type="text/html" title="GitHub blog 오픈" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>http://kimjaehyun.co.kr/blog/blog_open</id><content type="html" xml:base="http://kimjaehyun.co.kr/blog/blog_open/">&lt;p&gt;GitHub Blog를 개설 했습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="http://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-16T18:15:21+09:00</updated><id>http://kimjaehyun.co.kr/feed.xml</id><title type="html">/ 꿰 / 보 / Note</title><subtitle>This is a summary blog about development technology.</subtitle><author><name>devjaedol</name></author><entry><title type="html">GitHub blog 오픈</title><link href="http://kimjaehyun.co.kr/blog/blog_open/" rel="alternate" type="text/html" title="GitHub blog 오픈" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>http://kimjaehyun.co.kr/blog/blog_open</id><content type="html" xml:base="http://kimjaehyun.co.kr/blog/blog_open/">&lt;p&gt;GitHub Blog를 개설 했습니다.&lt;/p&gt;
 
 &lt;p&gt;Tistory에 Blog들이 Kakao로 통합되면서, 관리가 어려운 상황이 되어서, Git Blog로 만들어 보았습니다.&lt;/p&gt;
 
-&lt;p&gt;꿰보는 (꿰)어야 (보)배에서 아이디어를 얻었고, 개발과 관련된 학습 시행착오를 정리할 예정입니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="blog" /><category term="blog" /><summary type="html">GitHub Blog를 개설 했습니다.</summary></entry></feed>
+&lt;p&gt;꿰보는 (꿰)어야 (보)배에서 아이디어를 얻었고, 개발과 관련된 학습 시행착오를 정리할 예정입니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="blog" /><category term="blog" /><summary type="html">GitHub Blog를 개설 했습니다.</summary></entry><entry><title type="html">MarkDwon 사용법</title><link href="http://kimjaehyun.co.kr/etc/markdown/" rel="alternate" type="text/html" title="MarkDwon 사용법" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>http://kimjaehyun.co.kr/etc/markdown</id><content type="html" xml:base="http://kimjaehyun.co.kr/etc/markdown/">&lt;p&gt;MakrDown에 사용 법에 대해서 간략히 정리하겠습니다. &lt;br /&gt;
+확장자 *.md 입니다. &lt;br /&gt;
+대표적 예제 Readmd.md&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;두줄 밑줄을 통해서 헤더 설정
+=============
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;두줄-밑줄을-통해서-헤더-설정&quot;&gt;두줄 밑줄을 통해서 헤더 설정&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;한줄 밑줄을 통해서 헤더 설정
+-------
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;한줄-밑줄을-통해서-헤더-설정&quot;&gt;한줄 밑줄을 통해서 헤더 설정&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 제목 샘플 입니다. H1
+## 제목 샘플 입니다. H2
+### 제목 샘플 입니다. H3
+#### 제목 샘플 입니다. H4
+##### 제목 샘플 입니다. H5
+###### 제목 샘플 입니다. H6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;제목-샘플-입니다-h1&quot;&gt;제목 샘플 입니다. H1&lt;/h1&gt;
+&lt;h2 id=&quot;제목-샘플-입니다-h2&quot;&gt;제목 샘플 입니다. H2&lt;/h2&gt;
+&lt;h3 id=&quot;제목-샘플-입니다-h3&quot;&gt;제목 샘플 입니다. H3&lt;/h3&gt;
+&lt;h4 id=&quot;제목-샘플-입니다-h4&quot;&gt;제목 샘플 입니다. H4&lt;/h4&gt;
+&lt;h5 id=&quot;제목-샘플-입니다-h5&quot;&gt;제목 샘플 입니다. H5&lt;/h5&gt;
+&lt;h6 id=&quot;제목-샘플-입니다-h6&quot;&gt;제목 샘플 입니다. H6&lt;/h6&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 인용 블록 입니다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;인용 블록 입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 다중 인용 블록 입니다.
+&amp;gt;   &amp;gt; 2단계 블록 입니다.
+&amp;gt;   &amp;gt;   &amp;gt; 3단계 블록 입니다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;다중 인용 블록 입니다.&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;2단계 블록 입니다.&lt;/p&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;3단계 블록 입니다.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 순서 있는 목록(가)(번호순서와 무관함)
+1. 순서 있는 목록(나)(번호순서와 무관함)
+1. 순서 있는 목록(다)(번호순서와 무관함)
+1. 순서 있는 목록(라)(번호순서와 무관함)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;순서 있는 목록(가)(번호순서와 무관함)&lt;/li&gt;
+  &lt;li&gt;순서 있는 목록(나)(번호순서와 무관함)&lt;/li&gt;
+  &lt;li&gt;순서 있는 목록(다)(번호순서와 무관함)&lt;/li&gt;
+  &lt;li&gt;순서 있는 목록(라)(번호순서와 무관함)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 순서 없는 목록(가)
+- 순서 없는 목록(나)
+- 순서 없는 목록(다)
+- 순서 없는 목록(라)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;순서 없는 목록(가)&lt;/li&gt;
+  &lt;li&gt;순서 없는 목록(나)&lt;/li&gt;
+  &lt;li&gt;순서 없는 목록(다)&lt;/li&gt;
+  &lt;li&gt;순서 없는 목록(라)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* 순서 없는 목록(가)
+* 순서 없는 목록(나)
+* 순서 없는 목록(다)
+* 순서 없는 목록(라)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;순서 없는 목록(가)&lt;/li&gt;
+  &lt;li&gt;순서 없는 목록(나)&lt;/li&gt;
+  &lt;li&gt;순서 없는 목록(다)&lt;/li&gt;
+  &lt;li&gt;순서 없는 목록(라)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;+ 순서 없는 목록(가)
++ 순서 없는 목록(나)
++ 순서 없는 목록(다)
++ 순서 없는 목록(라)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;순서 없는 목록(가)&lt;/li&gt;
+  &lt;li&gt;순서 없는 목록(나)&lt;/li&gt;
+  &lt;li&gt;순서 없는 목록(다)&lt;/li&gt;
+  &lt;li&gt;순서 없는 목록(라)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 복합 목록
+    1. 복합 목록 예
+    1. 복합 목록 예
+    1. 복합 목록 예
+1. 복합 목록
+    - 복합 목록 예
+    - 복합 목록 예
+    - 복합 목록 예
+1. 복합 목록
+    * 복합 목록 예
+    * 복합 목록 예
+    * 복합 목록 예
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;복합 목록
+    &lt;ol&gt;
+      &lt;li&gt;복합 목록 예&lt;/li&gt;
+      &lt;li&gt;복합 목록 예&lt;/li&gt;
+      &lt;li&gt;복합 목록 예&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;복합 목록
+    &lt;ul&gt;
+      &lt;li&gt;복합 목록 예&lt;/li&gt;
+      &lt;li&gt;복합 목록 예&lt;/li&gt;
+      &lt;li&gt;복합 목록 예&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;복합 목록
+    &lt;ul&gt;
+      &lt;li&gt;복합 목록 예
+        &lt;ul&gt;
+          &lt;li&gt;복합 목록 예
+            &lt;ul&gt;
+              &lt;li&gt;복합 목록 예&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;줄바꿈은 글 마지막에서 (빈칸, 스페이스바를 3글자 이상 입력)
+이텔릭 글씨 적용 : 여기는 *샘플 문장* 입니다.
+이텔릭 글씨 적용 : 여기는 _샘플 문장_ 입니다.
+볼드 글씨 적용 : 여기는 **샘플 문장** 입니다.
+취소선 글씨 적용 : 여기는 ~~샘플 문장~~ 입니다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이텔릭 글씨 적용 : 여기는 &lt;em&gt;샘플 문장&lt;/em&gt; 입니다.  &lt;br /&gt;
+이텔릭 글씨 적용 : 여기는 &lt;em&gt;샘플 문장&lt;/em&gt; 입니다.  &lt;br /&gt;
+볼드 글씨 적용 : 여기는 &lt;strong&gt;샘플 문장&lt;/strong&gt; 입니다. &lt;br /&gt;
+취소선 글씨 적용 : 여기는 &lt;del&gt;샘플 문장&lt;/del&gt; 입니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[네이버 링크](http://www.naver.com)
+[네이버 링크](http://www.naver.com &quot;여기는 네이버 링크 입니다. 마우스 오버시 설명이 표시됩니다.&quot;)
+[상대 경로 링크](../../)
+
+문서내 아래처럼 링크를 선언하고 [Link1]로 참조하여 연결할 수도 있습니다.   
+[Link1]:http://www.naver.com   
+
+&amp;lt;http://www.naver.com&amp;gt;    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.naver.com&quot;&gt;네이버 링크&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;http://www.naver.com&quot; title=&quot;여기는 네이버 링크 입니다. 마우스 오버시 설명이 표시됩니다.&quot;&gt;네이버 링크&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;../../&quot;&gt;상대 경로 링크&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;문서내 아래처럼 링크를 선언하고 [Link1]로 참조하여 연결할 수도 있습니다. &lt;br /&gt;
+[Link1]: http://www.naver.com&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.naver.com&quot;&gt;http://www.naver.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```html
+&amp;lt;a href=&quot;https://www.google.co.kr/&quot; target=&quot;_blank&quot;&amp;gt;구글&amp;lt;/a&amp;gt;
+```
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://www.google.co.kr/&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;_blank&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;구글&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="etc" /><category term="mk" /><category term="markdown" /><summary type="html">MakrDown에 사용 법에 대해서 간략히 정리하겠습니다. 확장자 *.md 입니다. 대표적 예제 Readmd.md</summary></entry></feed>
