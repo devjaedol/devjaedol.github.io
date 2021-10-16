@@ -21,5 +21,6 @@ deploy:
   keep_history: true
   local-dir: ./_site
   target-branch: master
+  fqdn: "kimjaehyun.co.kr"    #travis domain reset ban
   on:
     branch: source

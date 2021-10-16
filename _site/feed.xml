@@ -1,10 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="http://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-16T18:15:21+09:00</updated><id>http://kimjaehyun.co.kr/feed.xml</id><title type="html">/ 꿰 / 보 / Note</title><subtitle>This is a summary blog about development technology.</subtitle><author><name>devjaedol</name></author><entry><title type="html">GitHub blog 오픈</title><link href="http://kimjaehyun.co.kr/blog/blog_open/" rel="alternate" type="text/html" title="GitHub blog 오픈" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>http://kimjaehyun.co.kr/blog/blog_open</id><content type="html" xml:base="http://kimjaehyun.co.kr/blog/blog_open/">&lt;p&gt;GitHub Blog를 개설 했습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="http://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-16T21:21:26+09:00</updated><id>http://kimjaehyun.co.kr/feed.xml</id><title type="html">/ 꿰 / 보 / Note</title><subtitle>This is a summary blog about development technology.</subtitle><author><name>devjaedol</name></author><entry><title type="html">GitHub blog 오픈</title><link href="http://kimjaehyun.co.kr/blog/blog_open/" rel="alternate" type="text/html" title="GitHub blog 오픈" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>http://kimjaehyun.co.kr/blog/blog_open</id><content type="html" xml:base="http://kimjaehyun.co.kr/blog/blog_open/">&lt;p&gt;GitHub Blog를 개설 했습니다.&lt;/p&gt;
 
 &lt;p&gt;Tistory에 Blog들이 Kakao로 통합되면서, 관리가 어려운 상황이 되어서, Git Blog로 만들어 보았습니다.&lt;/p&gt;
 
-&lt;p&gt;꿰보는 (꿰)어야 (보)배에서 아이디어를 얻었고, 개발과 관련된 학습 시행착오를 정리할 예정입니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="blog" /><category term="blog" /><summary type="html">GitHub Blog를 개설 했습니다.</summary></entry><entry><title type="html">MarkDwon 사용법</title><link href="http://kimjaehyun.co.kr/etc/markdown/" rel="alternate" type="text/html" title="MarkDwon 사용법" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>http://kimjaehyun.co.kr/etc/markdown</id><content type="html" xml:base="http://kimjaehyun.co.kr/etc/markdown/">&lt;p&gt;MakrDown에 사용 법에 대해서 간략히 정리하겠습니다. &lt;br /&gt;
+&lt;p&gt;꿰보는 (꿰)어야 (보)배에서 아이디어를 얻었고, 개발과 관련된 학습 시행착오를 정리할 예정입니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="blog" /><category term="blog" /><summary type="html">GitHub Blog를 개설 했습니다.</summary></entry><entry><title type="html">MarkDown 사용법</title><link href="http://kimjaehyun.co.kr/etc/markdown/" rel="alternate" type="text/html" title="MarkDown 사용법" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>http://kimjaehyun.co.kr/etc/markdown</id><content type="html" xml:base="http://kimjaehyun.co.kr/etc/markdown/">&lt;p&gt;MakrDown에 사용 법에 대해서 간략히 보시죠. &lt;br /&gt;
 확장자 *.md 입니다. &lt;br /&gt;
-대표적 예제 Readmd.md&lt;/p&gt;
+대표적 예제 Readmd.md.  &lt;br /&gt;
+사용처, 경량 기반 텍스트 마크업 언어&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;정보&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;개발&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;존 그루버, 에런 스워츠&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;발표일&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2004년 3월 19일&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;최신 버전&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1.0.1 (2004년 12월 17일)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;포맷 종류&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;마크업 언어&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;hr /&gt;
 
@@ -50,9 +78,16 @@
 
 &lt;hr /&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 다중 인용 블록 입니다.
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&amp;gt; 다중 인용 블록 입니다.
 &amp;gt;   &amp;gt; 2단계 블록 입니다.
 &amp;gt;   &amp;gt;   &amp;gt; 3단계 블록 입니다.
+
+
+&amp;gt; Type 다중 인용 블록 입니다.
+&amp;gt;&amp;gt; Type 2단계 블록 입니다.
+&amp;gt;&amp;gt;&amp;gt; Type 3단계 블록 입니다.
+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
@@ -61,6 +96,16 @@
     &lt;p&gt;2단계 블록 입니다.&lt;/p&gt;
     &lt;blockquote&gt;
       &lt;p&gt;3단계 블록 입니다.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Type 다중 인용 블록 입니다.&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;Type 2단계 블록 입니다.&lt;/p&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;Type 3단계 블록 입니다.&lt;/p&gt;
     &lt;/blockquote&gt;
   &lt;/blockquote&gt;
 &lt;/blockquote&gt;
@@ -177,8 +222,8 @@
 [네이버 링크](http://www.naver.com &quot;여기는 네이버 링크 입니다. 마우스 오버시 설명이 표시됩니다.&quot;)
 [상대 경로 링크](../../)
 
+[Link1]: http://www.naver.com   
 문서내 아래처럼 링크를 선언하고 [Link1]로 참조하여 연결할 수도 있습니다.   
-[Link1]:http://www.naver.com   
 
 &amp;lt;http://www.naver.com&amp;gt;    
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -187,15 +232,89 @@
 &lt;a href=&quot;http://www.naver.com&quot; title=&quot;여기는 네이버 링크 입니다. 마우스 오버시 설명이 표시됩니다.&quot;&gt;네이버 링크&lt;/a&gt;  &lt;br /&gt;
 &lt;a href=&quot;../../&quot;&gt;상대 경로 링크&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;문서내 아래처럼 링크를 선언하고 [Link1]로 참조하여 연결할 수도 있습니다. &lt;br /&gt;
-[Link1]: http://www.naver.com&lt;/p&gt;
+&lt;p&gt;문서내 아래처럼 링크를 선언하고 &lt;a href=&quot;http://www.naver.com&quot;&gt;Link1&lt;/a&gt;로 참조하여 연결할 수도 있습니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.naver.com&quot;&gt;http://www.naver.com&lt;/a&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```html
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;수평성 방법
+Text1
+* * *
+Text2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Text1&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Text2&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![이미지 대체 텍스트](https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg &quot;구글 로고&quot;)
+![이미지 대체 텍스트](\assets\images_post\mydog_200_300.gif &quot;설명문구&quot;)
+
+이미지에 링크
+[![이미지 대체 텍스트](https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg &quot;구글 로고&quot;)](https://google.com)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;사이즈 조절 기능은 없음.  &lt;br /&gt;
+&lt;img src=&quot;https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg&quot; alt=&quot;이미지 대체 텍스트&quot; title=&quot;구글 로고&quot; /&gt;  &lt;br /&gt;
+&lt;img src=&quot;\assets\images_post\mydog_200_300.gif&quot; alt=&quot;이미지 대체 텍스트&quot; title=&quot;설명문구&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이미지에 링크 걸기  &lt;br /&gt;
+&lt;a href=&quot;https://google.com&quot;&gt;&lt;img src=&quot;https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg&quot; alt=&quot;이미지 대체 텍스트&quot; title=&quot;구글 로고&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;코드 작성 법
+```html
 &amp;lt;a href=&quot;https://www.google.co.kr/&quot; target=&quot;_blank&quot;&amp;gt;구글&amp;lt;/a&amp;gt;
+```
+
+```javascript
+function echo() {
+    alert('test');
+}
 ```
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://www.google.co.kr/&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;_blank&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;구글&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="etc" /><category term="mk" /><category term="markdown" /><summary type="html">MakrDown에 사용 법에 대해서 간략히 정리하겠습니다. 확장자 *.md 입니다. 대표적 예제 Readmd.md</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;컬럼에 : 위치로 정렬됨
+|---|   왼쪽 정렬
+|:---:| 가운데 정렬
+|---:| 오른쪽 정렬
+ 
+| NO | 이름 | 접수 |
+|---|:---:|---:|
+| 1 | 홍길통 | 85 |
+| 2 | 김영희 | 90 |
+| 3 | 철수 | 100 |
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;NO&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;이름&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;접수&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;홍길통&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;85&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;김영희&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;90&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;철수&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;100&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="etc" /><category term="mk" /><category term="markdown" /><summary type="html">MakrDown에 사용 법에 대해서 간략히 보시죠. 확장자 *.md 입니다. 대표적 예제 Readmd.md. 사용처, 경량 기반 텍스트 마크업 언어</summary></entry></feed>
