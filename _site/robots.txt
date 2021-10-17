@@ -1,1 +1,1 @@
-Sitemap: http://kimjaehyun.co.kr/sitemap.xml
+Sitemap: https://devjaedol.github.io/sitemap.xml
