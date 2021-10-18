@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-17T12:55:36+00:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">/ 꿰 / 보 / Note</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">MarkDown 사용법</title><link href="https://kimjaehyun.co.kr/etc/markdown/" rel="alternate" type="text/html" title="MarkDown 사용법" /><published>2021-10-16T00:00:00+00:00</published><updated>2021-10-16T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/etc/markdown</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/markdown/">&lt;p&gt;MakrDown에 사용 법에 대해서 간략히 보시죠. &lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-18T13:56:31+00:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">/ 꿰 / 보 / Note</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">MarkDown 사용법</title><link href="https://kimjaehyun.co.kr/etc/markdown/" rel="alternate" type="text/html" title="MarkDown 사용법" /><published>2021-10-16T00:00:00+00:00</published><updated>2021-10-16T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/etc/markdown</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/markdown/">&lt;p&gt;MakrDown에 사용 법에 대해서 간략히 보시죠. &lt;br /&gt;
 확장자 *.md 입니다. &lt;br /&gt;
 대표적 예제 Readmd.md.  &lt;br /&gt;
 사용처, 경량 기반 텍스트 마크업 언어&lt;/p&gt;
@@ -32,6 +32,8 @@
 
 &lt;hr /&gt;
 
+&lt;h2 id=&quot;헤더-설정하는-방법&quot;&gt;헤더 설정하는 방법&lt;/h2&gt;
+
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;두줄 밑줄을 통해서 헤더 설정
 =============
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -47,6 +49,8 @@
 &lt;h2 id=&quot;한줄-밑줄을-통해서-헤더-설정&quot;&gt;한줄 밑줄을 통해서 헤더 설정&lt;/h2&gt;
 
 &lt;hr /&gt;
+
+&lt;h2 id=&quot;제목-작성-타입&quot;&gt;제목 작성 타입&lt;/h2&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 제목 샘플 입니다. H1
 ## 제목 샘플 입니다. H2
@@ -65,6 +69,8 @@
 
 &lt;hr /&gt;
 
+&lt;h2 id=&quot;인용-블럭-작성-방법&quot;&gt;인용 블럭 작성 방법&lt;/h2&gt;
+
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; 인용 블록 입니다.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -73,6 +79,8 @@
 &lt;/blockquote&gt;
 
 &lt;hr /&gt;
+
+&lt;h2 id=&quot;다단계-인용-블럭-작성-방법&quot;&gt;다단계 인용 블럭 작성 방법&lt;/h2&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &amp;gt; 다중 인용 블록 입니다.
@@ -90,6 +98,7 @@
   &lt;p&gt;다중 인용 블록 입니다.&lt;/p&gt;
   &lt;blockquote&gt;
     &lt;p&gt;2단계 블록 입니다.&lt;/p&gt;
+
     &lt;blockquote&gt;
       &lt;p&gt;3단계 블록 입니다.&lt;/p&gt;
     &lt;/blockquote&gt;
@@ -100,11 +109,14 @@
   &lt;p&gt;Type 다중 인용 블록 입니다.&lt;/p&gt;
   &lt;blockquote&gt;
     &lt;p&gt;Type 2단계 블록 입니다.&lt;/p&gt;
+
     &lt;blockquote&gt;
       &lt;p&gt;Type 3단계 블록 입니다.&lt;/p&gt;
     &lt;/blockquote&gt;
   &lt;/blockquote&gt;
 &lt;/blockquote&gt;
+
+&lt;h2 id=&quot;목록-작성-방법&quot;&gt;목록 작성 방법&lt;/h2&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 순서 있는 목록(가)(번호순서와 무관함)
 1. 순서 있는 목록(나)(번호순서와 무관함)
@@ -202,6 +214,8 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;h2 id=&quot;본문-꾸밈-효과&quot;&gt;본문 꾸밈 효과&lt;/h2&gt;
+
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;줄바꿈은 글 마지막에서 (빈칸, 스페이스바를 3글자 이상 입력)
 이텔릭 글씨 적용 : 여기는 *샘플 문장* 입니다.
 이텔릭 글씨 적용 : 여기는 _샘플 문장_ 입니다.
@@ -213,6 +227,8 @@
 이텔릭 글씨 적용 : 여기는 &lt;em&gt;샘플 문장&lt;/em&gt; 입니다.  &lt;br /&gt;
 볼드 글씨 적용 : 여기는 &lt;strong&gt;샘플 문장&lt;/strong&gt; 입니다. &lt;br /&gt;
 취소선 글씨 적용 : 여기는 &lt;del&gt;샘플 문장&lt;/del&gt; 입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;링크-작성-법&quot;&gt;링크 작성 법&lt;/h2&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[네이버 링크](http://www.naver.com)
 [네이버 링크](http://www.naver.com &quot;여기는 네이버 링크 입니다. 마우스 오버시 설명이 표시됩니다.&quot;)
@@ -232,7 +248,9 @@
 
 &lt;p&gt;&lt;a href=&quot;http://www.naver.com&quot;&gt;http://www.naver.com&lt;/a&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;수평성 방법
+&lt;h2 id=&quot;수평선-작성-방법&quot;&gt;수평선 작성 방법&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;수평선 방법
 Text1
 * * *
 Text2
@@ -241,6 +259,8 @@ Text2
 &lt;p&gt;Text1&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Text2&lt;/p&gt;
+
+&lt;h2 id=&quot;이미지-링크-작성-방법&quot;&gt;이미지 링크 작성 방법&lt;/h2&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![이미지 대체 텍스트](https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg &quot;구글 로고&quot;)
 ![이미지 대체 텍스트](\assets\images_post\mydog_200_300.gif &quot;설명문구&quot;)
@@ -255,6 +275,8 @@ Text2
 
 &lt;p&gt;이미지에 링크 걸기  &lt;br /&gt;
 &lt;a href=&quot;https://google.com&quot;&gt;&lt;img src=&quot;https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg&quot; alt=&quot;이미지 대체 텍스트&quot; title=&quot;구글 로고&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;코드-작성-방법&quot;&gt;코드 작성 방법&lt;/h2&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;코드 작성 법
 ```html
@@ -275,6 +297,8 @@ function echo() {
     &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;표작성-방법&quot;&gt;표작성 방법&lt;/h2&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;컬럼에 : 위치로 정렬됨
 |---|   왼쪽 정렬
@@ -313,7 +337,13 @@ function echo() {
       &lt;td style=&quot;text-align: right&quot;&gt;100&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
-&lt;/table&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="mk" /><category term="markdown" /><summary type="html">MakrDown에 사용 법에 대해서 간략히 보시죠. 확장자 *.md 입니다. 대표적 예제 Readmd.md. 사용처, 경량 기반 텍스트 마크업 언어</summary></entry><entry><title type="html">GitHub blog 오픈</title><link href="https://kimjaehyun.co.kr/blog/blog_open/" rel="alternate" type="text/html" title="GitHub blog 오픈" /><published>2021-10-16T00:00:00+00:00</published><updated>2021-10-16T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/blog/blog_open</id><content type="html" xml:base="https://kimjaehyun.co.kr/blog/blog_open/">&lt;p&gt;GitHub Blog를 개설 했습니다.&lt;/p&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;markdown-editor-추천&quot;&gt;Markdown Editor 추천&lt;/h2&gt;
+
+&lt;p&gt;https://typora.io/&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\2021-20-16-markdown_typora.png&quot; alt=&quot;Typora editor&quot; title=&quot;Typora editor&quot; /&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="mk" /><category term="markdown" /><summary type="html">MakrDown에 사용 법에 대해서 간략히 보시죠. 확장자 *.md 입니다. 대표적 예제 Readmd.md. 사용처, 경량 기반 텍스트 마크업 언어</summary></entry><entry><title type="html">GitHub blog 오픈</title><link href="https://kimjaehyun.co.kr/blog/blog_open/" rel="alternate" type="text/html" title="GitHub blog 오픈" /><published>2021-10-16T00:00:00+00:00</published><updated>2021-10-16T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/blog/blog_open</id><content type="html" xml:base="https://kimjaehyun.co.kr/blog/blog_open/">&lt;p&gt;GitHub Blog를 개설 했습니다.&lt;/p&gt;
 
 &lt;p&gt;Tistory에 Blog들이 Kakao로 통합되면서, 관리가 어려운 상황이 되어서, Git Blog로 만들어 보았습니다.&lt;/p&gt;
 
