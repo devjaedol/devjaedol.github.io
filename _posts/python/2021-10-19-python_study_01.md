@@ -11,7 +11,7 @@ tags:
 파이썬 공부를 시작해봅시다.   
 우선 파이썬 설치를... 시작이 반...
 
-[다운 로드 경로](https://www.python.org/downloads/)
+[다운 로드 경로](https://www.python.org/downloads/){:target="_blank"}
 
 ![python-study-01-_1](\assets/images_post/python/python-study-01-_1.png)
 

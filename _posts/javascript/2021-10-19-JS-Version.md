@@ -8,7 +8,7 @@ tags:
 ---
 
 자바스크립트 버전별 정리
-참조 : [w3school](https://www.w3schools.com/js/js_versions.asp)
+참조 : [w3school](https://www.w3schools.com/js/js_versions.asp){:target="_blank"}
 
 | Ver  | Official Name                                                | 
 | :--- | :----------------------------------------------------------- |
