@@ -11,6 +11,12 @@ var store = [{
         "url": "/blog/blog_open/",
         "teaser": null
       },{
+        "title": "크롬 확장 앱 개발 참조 경로(Chrome Extensions)",
+        "excerpt":"크롬 확장 앱 관련 정보 참조 링크   The 70 Best Chrome Extensions for 2021   https://developer.chrome.com/docs/extensions/mv3/getstarted/   https://github.com/GoogleChrome/chrome-extensions-samples   ","categories": ["etc"],
+        "tags": ["Chrome","extension","크롬앱","link"],
+        "url": "/etc/chrome_extension/",
+        "teaser": null
+      },{
         "title": "javascript version ES5 vs ES6",
         "excerpt":"자바스크립트 버전별 정리 참조 : w3school Ver Official Name ES1 ECMAScript 1 (1997) ES2 ECMAScript 2 (1998) ES3 ECMAScript 3 (1999) ES4 ECMAScript 4 ES5 ECMAScript 5 (2009) ES6 ECMAScript 2015   ECMAScript 2016   ECMAScript 2017   ECMAScript 2018 ES5 Features use strict String[number] access Multiline strings String.trim() Array.isArray()...","categories": ["javascript"],
         "tags": ["ES6","ES5"],
