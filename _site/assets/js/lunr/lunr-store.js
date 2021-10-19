@@ -11,14 +11,14 @@ var store = [{
         "url": "/blog/blog_open/",
         "teaser": null
       },{
-        "title": "Js Version",
-        "excerpt":" ","categories": [],
-        "tags": [],
-        "url": "/JS-Version/",
+        "title": "javascript version ES5 vs ES6",
+        "excerpt":"자바스크립트 버전별 정리 참조 : w3school Ver Official Name ES1 ECMAScript 1 (1997) ES2 ECMAScript 2 (1998) ES3 ECMAScript 3 (1999) ES4 ECMAScript 4 ES5 ECMAScript 5 (2009) ES6 ECMAScript 2015   ECMAScript 2016   ECMAScript 2017   ECMAScript 2018 ES5 Features use strict String[number] access Multiline strings String.trim() Array.isArray()...","categories": ["javascript"],
+        "tags": ["ES6","ES5"],
+        "url": "/javascript/JS-Version/",
         "teaser": null
       },{
         "title": "Python 설치",
-        "excerpt":"파이썬 공부를 시작해봅시다.   우선 파이썬 설치를… 시작이 반…   다운 로드 경로 :  https://www.python.org/downloads/      다운로드 선택      설치 경로를 변경하기 위해서 Customzie 선택      기본값 Next      경로 변경            완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함.      설치 버전이 정상 표기되면, 설치 완료됨.   window path는 필요시 추가해야 합니다.   ","categories": ["python"],
+        "excerpt":"파이썬 공부를 시작해봅시다.   우선 파이썬 설치를… 시작이 반…   다운 로드 경로      다운로드 선택      설치 경로를 변경하기 위해서 Customzie 선택      기본값 Next      경로 변경            완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함.      설치 버전이 정상 표기되면, 설치 완료됨.   window path는 필요시 추가해야 합니다.   ","categories": ["python"],
         "tags": ["python강좌","python","초급"],
         "url": "/python/python_study_01/",
         "teaser": null

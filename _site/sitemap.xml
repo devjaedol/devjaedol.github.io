@@ -9,7 +9,7 @@
 <lastmod>2021-10-16T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>https://kimjaehyun.co.kr/JS-Version/</loc>
+<loc>https://kimjaehyun.co.kr/javascript/JS-Version/</loc>
 <lastmod>2021-10-19T00:00:00+09:00</lastmod>
 </url>
 <url>
@@ -62,6 +62,12 @@
 <loc>https://kimjaehyun.co.kr/tags/blog/</loc>
 </url>
 <url>
+<loc>https://kimjaehyun.co.kr/tags/es6/</loc>
+</url>
+<url>
+<loc>https://kimjaehyun.co.kr/tags/es5/</loc>
+</url>
+<url>
 <loc>https://kimjaehyun.co.kr/tags/python%EA%B0%95%EC%A2%8C/</loc>
 </url>
 <url>
@@ -75,6 +81,9 @@
 </url>
 <url>
 <loc>https://kimjaehyun.co.kr/categories/blog/</loc>
+</url>
+<url>
+<loc>https://kimjaehyun.co.kr/categories/javascript/</loc>
 </url>
 <url>
 <loc>https://kimjaehyun.co.kr/categories/python/</loc>
