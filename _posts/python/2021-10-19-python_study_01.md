@@ -14,7 +14,7 @@ tags:
 다운 로드 경로 : 
 https://www.python.org/downloads/
 
-![python-study-01-_1](assets/images_post/python/python-study-01-_1.png)
+![python-study-01-_1](\assets/images_post/python/python-study-01-_1.png)
 
 다운로드 선택
 
