@@ -1,0 +1,754 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>ES6(ECMAScript6)등 간략 정리 | / 꿰 / 보 / Note</title>
+<meta name="description" content="ES6 문법을 간략히 정리해 보겠습니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="/ 꿰 / 보 / Note">
+<meta property="og:title" content="ES6(ECMAScript6)등 간략 정리">
+<meta property="og:url" content="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/">
+
+
+  <meta property="og:description" content="ES6 문법을 간략히 정리해 보겠습니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-20T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="/ 꿰 / 보 / Note Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          / 꿰 / 보 / Note
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">검색</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#javascript" itemprop="item"><span itemprop="name">Javascript</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">ES6(ECMAScript6)등 간략 정리</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">일상다반사</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/blog">blog</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Programming</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/python">Python</a></li>
+          
+            <li><a href="/categories/java">Java</a></li>
+          
+            <li><a href="/categories/javascript">Javascript</a></li>
+          
+            <li><a href="/categories/csharp">C#</a></li>
+          
+            <li><a href="/categories/nodejs">Nodejs</a></li>
+          
+            <li><a href="/categories/nodered">Node-Red</a></li>
+          
+            <li><a href="/categories/etc">Etc</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ES6(ECMAScript6)등 간략 정리">
+    <meta itemprop="description" content="ES6 문법을 간략히 정리해 보겠습니다.">
+    <meta itemprop="datePublished" content="2021-10-20T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/" class="u-url" itemprop="url">ES6(ECMAScript6)등 간략 정리
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#es6-features2016">ES6 Features(2016)</a></li><li><a href="#es6-features2017">ES6 Features(2017)</a></li><li><a href="#es6-features2018">ES6 Features(2018)</a></li><li><a href="#let--const">let  const</a></li><li><a href="#arrow-function-단축-지원">Arrow Function 단축 지원</a></li><li><a href="#function-기본값-지원">Function 기본값 지원</a></li><li><a href="#string-비교-startswith-endswith-includes">String 비교 startsWith(), endsWith(), includes</a></li><li><a href="#템플릿-리터럴">템플릿 리터럴</a></li><li><a href="#object-destructuring">Object Destructuring</a></li><li><a href="#destructuring">Destructuring</a></li><li><a href="#for-in">for-in</a></li><li><a href="#spread-orperator">Spread orperator</a></li><li><a href="#arrayfrom">Array.from</a></li><li><a href="#arraymap">Array.map()</a></li><li><a href="#arrayfilter">Array.Filter()</a></li><li><a href="#spread-operator">spread operator</a></li><li><a href="#set-has">set has</a></li><li><a href="#weakset">WeakSet</a></li><li><a href="#export-import">export import</a></li><li><a href="#promises">Promises</a></li><li><a href="#class-constructor">Class constructor</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>ES6 문법을 간략히 정리해 보겠습니다.</p>
+
+<p>특별한 설명이 필요없는 보시면 아실듯한…</p>
+
+<h2 id="es6-features2016">ES6 Features(2016)</h2>
+<ul>
+  <li>JavaScript Exponentiation (**)</li>
+  <li>JavaScript Exponentiation assignment (**=)</li>
+  <li>JavaScript Array.prototype.includes</li>
+</ul>
+
+<h2 id="es6-features2017">ES6 Features(2017)</h2>
+<ul>
+  <li>JavaScript String padding</li>
+  <li>JavaScript Object.entries</li>
+  <li>JavaScript Object.values</li>
+  <li>JavaScript async functions</li>
+  <li>JavaScript shared memory</li>
+</ul>
+
+<h2 id="es6-features2018">ES6 Features(2018)</h2>
+<ul>
+  <li>Asynchronous Iteration</li>
+  <li>Promise Finally</li>
+  <li>Object Rest Properties</li>
+  <li>New RegExp Features</li>
+</ul>
+
+<h2 id="let--const">let  const</h2>
+
+<p>let : { } 구역내에서 유효한 변수, 재할당 가능함.</p>
+
+<p>const 수정이 불가능한 변수.</p>
+
+<h2 id="arrow-function-단축-지원">Arrow Function 단축 지원</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//ES5</span>
+<span class="kd">function</span> <span class="nx">echo</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span>
+	<span class="k">return</span> <span class="nx">str</span><span class="o">+</span><span class="dl">"</span><span class="s2"> : </span><span class="dl">"</span><span class="o">+</span> <span class="nx">str</span>
+<span class="p">}</span>
+
+<span class="c1">//ES6</span>
+<span class="kd">const</span> <span class="nx">echo</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="o">=&gt;</span> <span class="nx">str</span><span class="o">+</span><span class="dl">"</span><span class="s2"> : </span><span class="dl">"</span><span class="o">+</span> <span class="nx">str</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<h2 id="function-기본값-지원">Function 기본값 지원</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">echo</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="o">=</span><span class="dl">'</span><span class="s1">야호</span><span class="dl">'</span><span class="p">)</span><span class="o">=&gt;</span> <span class="nx">str</span><span class="o">+</span><span class="dl">"</span><span class="s2"> : </span><span class="dl">"</span><span class="o">+</span> <span class="nx">str</span><span class="p">;</span>
+<span class="nx">echo</span><span class="p">();</span>
+<span class="dl">'</span><span class="s1">야호 : 야호</span><span class="dl">'</span>
+
+<span class="p">()</span><span class="o">=&gt;</span><span class="p">{}</span>
+<span class="nx">v1</span><span class="o">=&gt;</span><span class="p">{}</span>
+<span class="p">(</span><span class="nx">v1</span><span class="p">,</span><span class="nx">v2</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{}</span>
+
+<span class="p">()</span><span class="o">=&gt;</span><span class="nx">reval</span>
+<span class="nx">v1</span><span class="o">=&gt;</span><span class="nx">reval</span>
+<span class="p">(</span><span class="nx">v1</span><span class="p">,</span><span class="nx">v2</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">reval</span>
+
+</code></pre></div></div>
+
+<h2 id="string-비교-startswith-endswith-includes">String 비교 startsWith(), endsWith(), includes</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">ABCDEFGHIJK</span><span class="dl">'</span><span class="p">;;</span>
+<span class="nx">str</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">'</span><span class="s1">CDE</span><span class="dl">'</span><span class="p">);</span>	<span class="c1">//true</span>
+<span class="nx">str</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">ABCD</span><span class="dl">'</span><span class="p">);</span>	<span class="c1">//true</span>
+<span class="nx">str</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">IJK</span><span class="dl">'</span><span class="p">);</span>	<span class="c1">//true</span>
+</code></pre></div></div>
+
+<h2 id="템플릿-리터럴">템플릿 리터럴</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">홍길동</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`안녕하세요 저는 </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2"> 입니다.`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="object-destructuring">Object Destructuring</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">car</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">name</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">sonata</span><span class="dl">'</span><span class="p">,</span>
+	<span class="na">price</span> <span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+	<span class="na">type</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">sedan</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="kd">let</span> <span class="p">{</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">}</span> <span class="o">=</span> <span class="nx">car</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>		<span class="c1">// sedan</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">price</span><span class="p">);</span>		<span class="c1">// 10000</span>
+</code></pre></div></div>
+
+<h2 id="destructuring">Destructuring</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">old_data</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">D</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">E</span><span class="dl">"</span><span class="p">];</span>
+<span class="kd">let</span> <span class="p">[</span><span class="nx">v1</span><span class="p">,,,</span><span class="nx">v2</span><span class="p">]</span> <span class="o">=</span> <span class="nx">old_data</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">v1</span><span class="p">);</span>	<span class="c1">//A</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">v2</span><span class="p">);</span>	<span class="c1">//D</span>
+</code></pre></div></div>
+
+<h2 id="for-in">for-in</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">D</span><span class="dl">'</span><span class="p">];</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">arr</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="spread-orperator">Spread orperator</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">old_val</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">new_val</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,...</span><span class="nx">old_val</span><span class="p">,</span><span class="mi">6</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">new_val</span><span class="p">);</span>	<span class="c1">// [0, 1, 2, 3, 4, 5, 6]</span>
+
+<span class="kd">function</span> <span class="nx">totalSum</span><span class="p">(</span> <span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span><span class="p">,</span> <span class="nx">v3</span><span class="p">,</span> <span class="nx">v4</span><span class="p">,</span> <span class="nx">v5</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">v1</span> <span class="o">+</span> <span class="nx">v2</span> <span class="o">+</span> <span class="nx">v3</span> <span class="o">+</span> <span class="nx">v4</span> <span class="o">+</span> <span class="nx">v5</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">totalSum</span><span class="p">(...</span><span class="nx">old_val</span><span class="p">);</span>	<span class="c1">//15</span>
+
+</code></pre></div></div>
+
+<h2 id="arrayfrom">Array.from</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">prices</span><span class="p">(){</span>
+    <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+	<span class="c1">//console.log(data);</span>
+    <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">prices</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>	<span class="c1">//배열로 변환되어 반환됨 [1, 2, 3, 4, 5]</span>
+</code></pre></div></div>
+
+<h2 id="arraymap">Array.map()</h2>
+
+<h2 id="arrayfilter">Array.Filter()</h2>
+
+<h2 id="spread-operator">spread operator</h2>
+
+<h2 id="set-has">set has</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">set_data</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">();</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">D</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">//ES5 C를 포함 여부를 판단하려면</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span> <span class="c1">//비교 로직을 통해서 판단함.</span>
+<span class="p">});</span>
+
+<span class="c1">//ES6</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>	<span class="c1">//true</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="dl">"</span><span class="s2">F</span><span class="dl">"</span><span class="p">);</span>	<span class="c1">//false</span>
+</code></pre></div></div>
+
+<h2 id="weakset">WeakSet</h2>
+
+<h2 id="export-import">export import</h2>
+
+<p>sub.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">testFn</span><span class="p">(</span><span class="nx">v1</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">v1</span> <span class="o">*</span> <span class="nx">v1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>main.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">testFn</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./sub.js</span><span class="dl">'</span>
+
+<span class="c1">//fn여러개인 경우</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">fnName1</span><span class="p">,</span> <span class="nx">fnName2</span><span class="p">,</span> <span class="nx">fnName3</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./sub.js</span><span class="dl">'</span>
+
+</code></pre></div></div>
+
+<h2 id="promises">Promises</h2>
+
+<h2 id="class-constructor">Class constructor</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Car</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">=</span> <span class="nx">price</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">mycar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">sonata</span><span class="dl">'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>	<span class="c1">// sonata</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">price</span><span class="p">);</span>	<span class="c1">// 10000</span>
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#ecmascript6" class="page__taxonomy-item p-category" rel="tag">ECMAScript6</a><span class="sep">, </span>
+    
+      <a href="/tags/#es5" class="page__taxonomy-item p-category" rel="tag">ES5</a><span class="sep">, </span>
+    
+      <a href="/tags/#es6" class="page__taxonomy-item p-category" rel="tag">ES6</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#javascript" class="page__taxonomy-item p-category" rel="tag">javascript</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2021-10-20T00:00:00+00:00">2021-10-20</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=ES6%28ECMAScript6%29%EB%93%B1+%EA%B0%84%EB%9E%B5+%EC%A0%95%EB%A6%AC%20https%3A%2F%2Fkimjaehyun.co.kr%2Fjavascript%2FJS-ES6_Summary%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fjavascript%2FJS-ES6_Summary%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fjavascript%2FJS-ES6_Summary%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/python/python_study_01/" class="pagination--pager" title="Python 설치
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python/python_study_01/" rel="permalink">Python 설치
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">파이썬 공부를 시작해봅시다. 
+우선 파이썬 설치를… 시작이 반…
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/JS-Version/" rel="permalink">javascript version ES5 vs ES6
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">자바스크립트 버전별 정리
+참조 : w3school
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/etc/chrome_extension/" rel="permalink">크롬 확장 앱 개발 참조 경로(Chrome Extensions)
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">크롬 확장 앱 관련 정보 참조 링크
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog/blog_open/" rel="permalink">GitHub blog 오픈
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub Blog를 개설 했습니다.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/javascript/JS-ES6_Summary"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

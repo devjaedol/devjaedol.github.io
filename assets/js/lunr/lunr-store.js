@@ -28,4 +28,10 @@ var store = [{
         "tags": ["python강좌","python","초급"],
         "url": "/python/python_study_01/",
         "teaser": null
+      },{
+        "title": "ES6(ECMAScript6)등 간략 정리",
+        "excerpt":"ES6 문법을 간략히 정리해 보겠습니다. 특별한 설명이 필요없는 보시면 아실듯한… ES6 Features(2016) JavaScript Exponentiation (**) JavaScript Exponentiation assignment (**=) JavaScript Array.prototype.includes ES6 Features(2017) JavaScript String padding JavaScript Object.entries JavaScript Object.values JavaScript async functions JavaScript shared memory ES6 Features(2018) Asynchronous Iteration Promise Finally Object Rest Properties New RegExp Features let const...","categories": ["javascript"],
+        "tags": ["ES6","ES5","ECMAScript6"],
+        "url": "/javascript/JS-ES6_Summary/",
+        "teaser": null
       }]
