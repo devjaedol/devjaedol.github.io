@@ -187,16 +187,15 @@ d:\jekyll-blog>bundel exec jekyll serve
 ## 첫번째 포트스 작성
 jekyll의 포트스는 markdown을 기본으로 지원 합니다. 
 
-아래 파일을 만듭니다.
-> d:\jekyll-blog\_post\2021-10-24-myfirstpost.md     
+아래 파일을 만듭니다.   
+> d:\jekyll-blog\_posts\2021-10-24-myfirstpost.md     
 
+모든 포스트의 위치는 _posts 폴더 밑 입니다.   
 파일 내용은 아래와 같이 입력 합니다.   
 
 ```
 ---
 title: 첫번째 포스트 입니다.
-categories: 
-    - 카테고리1
 tags: 
     - 첫포스트
 ---
@@ -212,6 +211,29 @@ markdown 작성법은 [마크 다운 문법](https://kimjaehyun.co.kr/etc/markdo
 minimal-mistakes 에는 다양한 샘플 포스트 작성법을 제공 하고 있습니다.    
 [포스트 샘플](https://mmistakes.github.io/minimal-mistakes/year-archive/){:target="_blank"}
 에서 참고 바랍니다.    
-  
+
+
+## 트러블슈팅
+
+bundel 작업중 아래와 같은 에러가 발생 할 경우가 있습니다.    
+```
+    Please add the following to your Gemfile to avoid polling for changes:
+    gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+```
+
+위 메세지가 나오면, 프로젝트 폴더에 Gemfile을 메모장으로 오픈 합니다.
+아래 메세지를 해당 파일 마지막에 추가 합니다.   
+gem 'wdm', '>= 0.1.0'
+
+```
+source "https://rubygems.org"
+gem 'wdm', '>= 0.1.0'
+gemspec
+```
+
+다시 bundle install 을 통해서 변경사항을 재설치 합니다.
+> bundle install
+
+
 
 
