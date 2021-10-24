@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Python 설치 | 꿰보노트</title>
-<meta name="description" content="파이썬 공부를 시작해봅시다.  우선 파이썬 설치를… 시작이 반…">
+<!-- begin _includes/seo.html --><title>Python 기초 | 꿰보노트</title>
+<meta name="description" content="파이썬 IDLE를 실행 합니다.">
 
 
   <meta name="author" content="devjaedol">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="꿰보노트">
-<meta property="og:title" content="Python 설치">
-<meta property="og:url" content="https://kimjaehyun.co.kr/python/python_study_01/">
+<meta property="og:title" content="Python 기초">
+<meta property="og:url" content="https://kimjaehyun.co.kr/python/python_study_02/">
 
 
-  <meta property="og:description" content="파이썬 공부를 시작해봅시다.  우선 파이썬 설치를… 시작이 반…">
+  <meta property="og:description" content="파이썬 IDLE를 실행 합니다.">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://kimjaehyun.co.kr/python/python_study_01/">
+<link rel="canonical" href="https://kimjaehyun.co.kr/python/python_study_02/">
 
 
 
@@ -176,7 +176,7 @@
     
       
       
-        <li class="current">Python 설치</li>
+        <li class="current">Python 기초</li>
       
     
   </ol>
@@ -251,8 +251,8 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Python 설치">
-    <meta itemprop="description" content="파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반…">
+    <meta itemprop="headline" content="Python 기초">
+    <meta itemprop="description" content="파이썬 IDLE를 실행 합니다.">
     <meta itemprop="datePublished" content="2021-10-19T00:00:00+00:00">
     
 
@@ -260,7 +260,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="https://kimjaehyun.co.kr/python/python_study_01/" class="u-url" itemprop="url">Python 설치
+            <a href="https://kimjaehyun.co.kr/python/python_study_02/" class="u-url" itemprop="url">Python 기초
 </a>
           </h1>
           
@@ -271,41 +271,55 @@
 
       <section class="page__content e-content" itemprop="text">
         
-        <p>파이썬 공부를 시작해봅시다. <br />
-우선 파이썬 설치를… 시작이 반…</p>
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#기본-실습-하기">기본 실습 하기</a></li><li><a href="#변수">변수</a></li><li><a href="#연산자">연산자</a></li><li><a href="#조건문">조건문</a></li><li><a href="#반복문">반복문</a></li><li><a href="#함수">함수</a></li><li><a href="#예약어-확인하기">예약어 확인하기</a></li></ul>
 
-<p><a href="https://www.python.org/downloads/" target="_blank">다운 로드 경로</a></p>
+            </nav>
+          </aside>
+        
+        <p>파이썬 IDLE를 실행 합니다.</p>
 
-<p><img src="\assets/images_post/python/python-study-01-_1.png" alt="python-study-01-_1" /></p>
+<h2 id="기본-실습-하기">기본 실습 하기</h2>
+<blockquote>
+  <p>100 + 50  <br />
+print(‘Hello world’)  <br />
+“string”*5</p>
+</blockquote>
 
-<p>다운로드 선택</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Python</span> <span class="mf">3.10</span><span class="p">.</span><span class="mi">0</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="p">.</span><span class="mf">10.0</span><span class="p">:</span><span class="n">b494f59</span><span class="p">,</span> <span class="n">Oct</span>  <span class="mi">4</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">18</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="p">.</span><span class="mi">1929</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
+<span class="n">Type</span> <span class="s">"help"</span><span class="p">,</span> <span class="s">"copyright"</span><span class="p">,</span> <span class="s">"credits"</span> <span class="ow">or</span> <span class="s">"license()"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">100</span><span class="o">+</span><span class="mi">50</span>
+<span class="mi">150</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s">'Hello world'</span><span class="p">)</span>
+<span class="n">Hello</span> <span class="n">world</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">"string"</span><span class="o">*</span><span class="mi">5</span>
+<span class="s">'stringstringstringstringstring'</span>
+</code></pre></div></div>
 
-<p><img src="\assets/images_post/python/python-study-01-_2.png" alt="python-study-01-_2" /></p>
+<h2 id="변수">변수</h2>
 
-<p>설치 경로를 변경하기 위해서 Customzie 선택</p>
+<h2 id="연산자">연산자</h2>
 
-<p><img src="\assets/images_post/python/python-study-01-_3.png" alt="python-study-01-_3" /></p>
+<h2 id="조건문">조건문</h2>
 
-<p>기본값 Next</p>
+<h2 id="반복문">반복문</h2>
 
-<p><img src="\assets/images_post/python/python-study-01-_4.png" alt="python-study-01-_4" /></p>
+<h2 id="함수">함수</h2>
 
-<p>경로 변경</p>
-
-<p><img src="\assets/images_post/python/python-study-01-_5.png" alt="python-study-01-_5" /></p>
-
-<p><img src="\assets/images_post/python/python-study-01-_6.png" alt="python-study-01-_6" /></p>
-
-<p><img src="\assets/images_post/python/python-study-01-_7.png" alt="python-study-01-_7" /></p>
-
-<p>완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함.</p>
-
-<p><img src="\assets/images_post/python/python-study-01-_8.png" alt="python-study-01-_8" /></p>
-
-<p>설치 버전이 정상 표기되면, 설치 완료됨.</p>
-
-<p>window path는 필요시 추가해야 합니다.</p>
-
+<h2 id="예약어-확인하기">예약어 확인하기</h2>
+<p>파이썬에는 다음과 같은 예약어는 사용 할 수 없습니다. <br />
+참고 하시기 바랍니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">keyword</span>
+<span class="k">print</span><span class="p">(</span><span class="n">keyword</span><span class="p">.</span><span class="n">kwlist</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'False'</span><span class="p">,</span> <span class="s">'None'</span><span class="p">,</span> <span class="s">'True'</span><span class="p">,</span> <span class="s">'and'</span><span class="p">,</span> <span class="s">'as'</span><span class="p">,</span> <span class="s">'assert'</span><span class="p">,</span> 
+<span class="s">'async'</span><span class="p">,</span> <span class="s">'await'</span><span class="p">,</span> <span class="s">'break'</span><span class="p">,</span> <span class="s">'class'</span><span class="p">,</span> <span class="s">'continue'</span><span class="p">,</span> <span class="s">'def'</span><span class="p">,</span> 
+<span class="s">'del'</span><span class="p">,</span> <span class="s">'elif'</span><span class="p">,</span> <span class="s">'else'</span><span class="p">,</span> <span class="s">'except'</span><span class="p">,</span> <span class="s">'finally'</span><span class="p">,</span> <span class="s">'for'</span><span class="p">,</span> <span class="s">'from'</span><span class="p">,</span> 
+<span class="s">'global'</span><span class="p">,</span> <span class="s">'if'</span><span class="p">,</span> <span class="s">'import'</span><span class="p">,</span> <span class="s">'in'</span><span class="p">,</span> <span class="s">'is'</span><span class="p">,</span> <span class="s">'lambda'</span><span class="p">,</span> <span class="s">'nonlocal'</span><span class="p">,</span>
+ <span class="s">'not'</span><span class="p">,</span> <span class="s">'or'</span><span class="p">,</span> <span class="s">'pass'</span><span class="p">,</span> <span class="s">'raise'</span><span class="p">,</span> <span class="s">'return'</span><span class="p">,</span> <span class="s">'try'</span><span class="p">,</span> 
+ <span class="s">'while'</span><span class="p">,</span> <span class="s">'with'</span><span class="p">,</span> <span class="s">'yield'</span><span class="p">]</span>
+</code></pre></div></div>
 
         
       </section>
@@ -360,22 +374,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Python+%EC%84%A4%EC%B9%98%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_01%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Python+%EA%B8%B0%EC%B4%88%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_02%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_01%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_02%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_01%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_02%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/javascript/JS-Version/" class="pagination--pager" title="javascript version ES5 vs ES6
+      <a href="/python/python_study_01/" class="pagination--pager" title="Python 설치
 ">이전</a>
     
     
-      <a href="/python/python_study_02/" class="pagination--pager" title="Python 기초
+      <a href="/javascript/JS-ES6_Summary/" class="pagination--pager" title="ES6(ECMAScript6)등 간략 정리
 ">다음</a>
     
   </nav>
@@ -569,8 +583,8 @@
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://kimjaehyun.co.kr/python/python_study_01/";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/python/python_study_01"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://kimjaehyun.co.kr/python/python_study_02/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/python/python_study_02"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
