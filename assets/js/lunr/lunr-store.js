@@ -46,4 +46,10 @@ var store = [{
         "tags": ["jekyll","githug","blog","github blog","minimal-mistakes"],
         "url": "/etc/jekyll-git-blog_(2)/",
         "teaser": null
+      },{
+        "title": "electron 설치 패키지 셋팅",
+        "excerpt":"Build cross-platform desktop apps with JavaScript, HTML, and CSS 최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다. 아래 제품들이 Electron을 통해 개발된 SW Package 입니다. Visual Studio Code Facebook Messenger Microsoft Teams 기본적으로 Nodejs를 설치 합니다. https://nodejs.org/ko/download/ 특정 디렉토리에 노드프로젝트를 설치...","categories": ["nodejs"],
+        "tags": ["nodejs","electron","install package"],
+        "url": "/nodejs/electron_default_setup/",
+        "teaser": null
       }]
