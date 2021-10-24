@@ -35,9 +35,15 @@ var store = [{
         "url": "/javascript/JS-ES6_Summary/",
         "teaser": null
       },{
-        "title": "\\[1강\\] jekyll을 통한 GitHub blog 만들기",
-        "excerpt":"jekyll을 통해서 GitHub blog를 만들어 보겠습니다. 최대한 단순하고 간략하게만 정리하도록 하겠습니다. Jekyll 장단점 소개 jekyll을 통해서 Git blog를 운용시 다른 플랫폼이 제공하는 블로그에 비해서 장단점이 명확히 다릅니다. 장점으로는 Custmize. ( HTML 기반으로 모든 변경이 가능합니다.) 다양한 Template ( 수많은 템플릿 중에 선택적으로 설치하여 사용이 가능합니다.) GitHub의 공간을 사용하므로, 별도의 호스팅...","categories": ["etc"],
+        "title": "\\[1강\\] GitHub blog 만들기(jekyll 기본 설정)",
+        "excerpt":"jekyll을 통해서 GitHub blog를 만들어 보겠습니다. 작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. 최대한 단순하고 간략하게만 정리하도록 하겠습니다. Jekyll 장단점 소개 jekyll을 통해서 Git blog를 운용시 다른 플랫폼이 제공하는 블로그에 비해서 장단점이 명확히 다릅니다. 장점으로는 Custmize. ( HTML 기반으로 모든...","categories": ["etc"],
         "tags": ["jekyll","githug","blog","github blog","minimal-mistakes"],
         "url": "/etc/jekyll-git-blog_(1)/",
+        "teaser": null
+      },{
+        "title": "\\[2강\\] GitHub blog 만들기(GitHub 설정 및 도메인 연결)",
+        "excerpt":"GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다. GitHub 계정 생성 및 저장소 생성 https://github.com/ 에 Account를 생성 합니다. Account 로그인 후에 Create a new Repository 를 선택하여, 다음 이름 규칙으로 저장소를 생성합니다. 계정명.github.io 제 계정명은 devjaedol 입니다. 저장소 이름은 devjaedol.github.io 로 작성 합니다. 저장소는 Public으로 설정하고 생성 합니다. Git...","categories": ["etc"],
+        "tags": ["jekyll","githug","blog","github blog","minimal-mistakes"],
+        "url": "/etc/jekyll-git-blog_(2)/",
         "teaser": null
       }]
