@@ -1,0 +1,879 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>electron 설치 패키지 셋팅 | 꿰보노트</title>
+<meta name="description" content="Build cross-platform desktop apps with JavaScript, HTML, and CSS   최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="electron 설치 패키지 셋팅">
+<meta property="og:url" content="http://localhost:4000/nodejs/electron_default_setup/">
+
+
+  <meta property="og:description" content="Build cross-platform desktop apps with JavaScript, HTML, and CSS   최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-24T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/nodejs/electron_default_setup/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">검색</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#nodejs" itemprop="item"><span itemprop="name">Nodejs</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">electron 설치 패키지 셋팅</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">일상다반사</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/blog">blog</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Programming</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/python">Python</a></li>
+          
+            <li><a href="/categories/java">Java</a></li>
+          
+            <li><a href="/categories/javascript">Javascript</a></li>
+          
+            <li><a href="/categories/csharp">C#</a></li>
+          
+            <li><a href="/categories/nodejs">Nodejs</a></li>
+          
+            <li><a href="/categories/nodered">Node-Red</a></li>
+          
+            <li><a href="/categories/etc">Etc</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="electron 설치 패키지 셋팅">
+    <meta itemprop="description" content="Build cross-platform desktop apps with JavaScript, HTML, and CSS  최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다.">
+    <meta itemprop="datePublished" content="2021-10-24T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/nodejs/electron_default_setup/" class="u-url" itemprop="url">electron 설치 패키지 셋팅
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p><strong>Build cross-platform desktop apps with JavaScript, HTML, and CSS</strong>  <br />
+최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다.</p>
+
+<p>아래 제품들이 Electron을 통해 개발된 SW Package 입니다.</p>
+<ul>
+  <li>Visual Studio Code</li>
+  <li>Facebook Messenger</li>
+  <li>Microsoft Teams</li>
+</ul>
+
+<p>기본적으로 Nodejs를 설치 합니다.
+<a href="https://nodejs.org/ko/download/" target="_blank">https://nodejs.org/ko/download/</a></p>
+
+<p>특정 디렉토리에 노드프로젝트를 설치 합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">init</span> 
+<span class="c1">// index.js -&gt; main.js로 변경한다.</span>
+<span class="c1">// 관련 패키지 설치</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="nx">electron</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="nx">electron</span><span class="o">-</span><span class="nx">builder</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">--</span><span class="nx">dev</span> <span class="nx">electron</span><span class="o">-</span><span class="nx">log</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">--</span><span class="nx">dev</span> <span class="nx">electron</span><span class="o">-</span><span class="nx">updater</span>
+</code></pre></div></div>
+
+<p>package json</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_electron"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main.js"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"electron ."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echo </span><span class="se">\"</span><span class="s2">Error: no test specified</span><span class="se">\"</span><span class="s2"> &amp;&amp; exit 1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"deploy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"electron-builder --win --x64 --ia32"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"electron"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.0.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"electron-builder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.3.2"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"electron-log"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^4.4.1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"electron-updater"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^4.3.9"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"systeminformation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^5.9.7"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"build"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"productName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HelloElectron"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"appId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"com.electron.hello"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"asar"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"npmArgs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"--production"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"protocols"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"helloElectron"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"schemes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"helloelectron"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"win"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"requestedExecutionLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"requireAdministrator"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"target"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"zip"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"nsis"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./resources/installer/default.ico"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"nsis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"oneClick"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"allowToChangeInstallationDirectory"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"directories"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"buildResources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./resources/installer/"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"output"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./dist/"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>main.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app모듈과, BrowserWindow 모듈 할당</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">Menu</span><span class="p">,</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">BrowserWindow</span><span class="p">,</span> <span class="nx">ipcMain</span><span class="p">,</span> <span class="nx">Tray</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">);</span>
+
+
+<span class="c1">//자동 업데이트를 위해서</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">autoUpdater</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">electron-updater</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">log</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron-log</span><span class="dl">'</span><span class="p">);</span>
+
+
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">logger</span> <span class="o">=</span> <span class="nx">log</span><span class="p">;</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">info</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">App starting...</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">process.platform : </span><span class="dl">"</span><span class="o">+</span><span class="nx">process</span><span class="p">.</span><span class="nx">platform</span><span class="p">);</span>        <span class="c1">//process.platform : win32      darwin</span>
+
+<span class="kd">let</span> <span class="nx">win</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">tray</span><span class="p">;</span>
+
+<span class="cm">/** 메인 창 생성 */</span>
+<span class="kd">function</span> <span class="nx">createMainWindow</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BrowserWindow</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="na">width</span> <span class="p">:</span> <span class="mi">800</span>
+            <span class="p">,</span> <span class="na">minWidth</span><span class="p">:</span><span class="mi">330</span>
+            <span class="p">,</span> <span class="na">height</span> <span class="p">:</span><span class="mi">500</span>
+            <span class="p">,</span> <span class="na">minHeight</span><span class="p">:</span> <span class="mi">450</span>
+            <span class="p">,</span> <span class="na">show</span><span class="p">:</span> <span class="kc">false</span>
+            <span class="c1">//, icon: __dirname + '/resources/installer/Icon.ico'</span>
+            <span class="p">,</span> <span class="na">webPreferences</span> <span class="p">:</span>  <span class="p">{</span> 
+                                    <span class="na">defaultFontSize</span> <span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+                                    <span class="na">nodeIntegration</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>  <span class="c1">// true로 설정, Uncaught ReferenceError: require is not defined</span>
+                                    <span class="na">contextIsolation</span> <span class="p">:</span> <span class="kc">false</span>
+                                <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+
+    <span class="c1">// 창이 ready 상태가되면 보여주기</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready-to-show</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">win</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="c1">// 윈도우 창에 로드 할 html 페이지</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nx">loadURL</span><span class="p">(</span><span class="s2">`file://</span><span class="p">${</span><span class="nx">__dirname</span><span class="p">}</span><span class="s2">/index.html`</span><span class="p">);</span> <span class="c1">//작은 따옴표가 아닌  back stick 기호(tab키 위)</span>
+    <span class="c1">//__dirname : node.js 전역변수이며, 현재 실행중인 코드의 파일 경로를 나타냄</span>
+
+    <span class="c1">//tray icon</span>
+    <span class="nx">initTrayIconMenu</span><span class="p">();</span>
+
+    <span class="c1">//Event 처리</span>
+    <span class="c1">//비동기 호출</span>
+    <span class="nx">ipcMain</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKey</span><span class="dl">'</span><span class="p">,(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">argument</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Async &gt; RECV</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">argument</span><span class="p">);</span>
+
+        <span class="nx">win</span><span class="p">.</span><span class="nx">setFullScreen</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+        <span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+            <span class="nx">event</span><span class="p">.</span><span class="nx">sender</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKeyCb</span><span class="dl">'</span><span class="p">,{</span><span class="na">result</span><span class="p">:</span><span class="dl">'</span><span class="s1">success</span><span class="dl">'</span><span class="p">});</span> <span class="c1">// 비동기 메시지를 전송한다.</span>
+        <span class="p">},</span><span class="mi">5000</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="c1">//동기 호출</span>
+    <span class="nx">ipcMain</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">syncEventKey</span><span class="dl">'</span><span class="p">,(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">argument</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Sync &gt; RECV</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">argument</span><span class="p">);</span>
+
+        <span class="nx">win</span><span class="p">.</span><span class="nx">setFullScreen</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+        <span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+            <span class="nx">event</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="p">{</span><span class="na">result</span><span class="p">:</span><span class="dl">'</span><span class="s1">success</span><span class="dl">'</span><span class="p">}</span> <span class="c1">// 동기 메시지를 전송한다.</span>
+        <span class="p">},</span><span class="mi">5000</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="c1">//개발자 도구 오픈</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">openDevTools</span><span class="p">();</span>
+<span class="p">}</span><span class="c1">// end fn</span>
+
+<span class="c1">// Tray생성</span>
+<span class="kd">function</span> <span class="nx">initTrayIconMenu</span><span class="p">(){</span>
+    <span class="nx">tray</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tray</span><span class="p">(</span><span class="dl">'</span><span class="s1">./resources/installer/default.ico</span><span class="dl">'</span><span class="p">);</span> 
+    <span class="kd">const</span> <span class="nx">myMenu</span> <span class="o">=</span> <span class="nx">Menu</span><span class="p">.</span><span class="nx">buildFromTemplate</span><span class="p">([</span>
+      <span class="p">{</span><span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1번</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span> <span class="na">checked</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">click</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1번클릭!</span><span class="dl">'</span><span class="p">)}</span> <span class="p">},</span>  <span class="c1">//checked는 기본선택입니다.</span>
+      <span class="p">{</span><span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2번</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span> <span class="na">click</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">2번클릭!</span><span class="dl">'</span><span class="p">)}},</span>
+      <span class="p">{</span><span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">3번</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span> <span class="na">click</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">3번클릭!</span><span class="dl">'</span><span class="p">)}}</span>
+    <span class="p">])</span>
+    <span class="nx">tray</span><span class="p">.</span><span class="nx">setToolTip</span><span class="p">(</span><span class="dl">'</span><span class="s1">트레이 아이콘!</span><span class="dl">'</span><span class="p">)</span>
+    <span class="nx">tray</span><span class="p">.</span><span class="nx">setContextMenu</span><span class="p">(</span><span class="nx">myMenu</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">createMainWindow</span><span class="p">();</span>
+    <span class="c1">//autoUpdater.checkForUpdates(); //업데이트 체크 필요시 해당 위치에서 진행</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">window-all-closed</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">quit</span><span class="p">();</span>
+    <span class="nx">tray</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="cm">/* autoUpdater 구현시 =====================================*/</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">checking-for-update</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">업데이트 확인 중...</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">update-available</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">업데이트가 가능합니다.</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">update-not-available</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">현재 최신버전입니다.</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">에러가 발생하였습니다. 에러내용 : </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">download-progress</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">progressObj</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">log_message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">다운로드 속도: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">progressObj</span><span class="p">.</span><span class="nx">bytesPerSecond</span><span class="p">;</span>
+    <span class="nx">log_message</span> <span class="o">=</span> <span class="nx">log_message</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> - 현재 </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">progressObj</span><span class="p">.</span><span class="nx">percent</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">%</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">log_message</span> <span class="o">=</span> <span class="nx">log_message</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> (</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">progressObj</span><span class="p">.</span><span class="nx">transferred</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">progressObj</span><span class="p">.</span><span class="nx">total</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">)</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">log_message</span><span class="p">);</span>
+<span class="p">})</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">update-downloaded</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">업데이트가 완료되었습니다.</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">question</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">buttons</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">업데이트</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">취소</span><span class="dl">"</span><span class="p">],</span>
+        <span class="na">defaultId</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">electron-updater</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">업데이트가 있습니다. 프로그램을 업데이트 하시겠습니까?</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="kd">let</span> <span class="nx">btnIndex</span> <span class="o">=</span> <span class="nx">dialog</span><span class="p">.</span><span class="nx">showMessageBoxSync</span><span class="p">(</span><span class="nx">updateWin</span><span class="p">,</span> <span class="nx">option</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nx">btnIndex</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">quitAndInstall</span><span class="p">();</span>
+    <span class="p">}</span>    
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>index.html</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span> Electron<span class="nt">&lt;/title&gt;</span>
+    
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span> Electron!<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">'btnAsync'</span><span class="nt">&gt;</span>Async send<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">'btnSync'</span><span class="nt">&gt;</span>Sync send<span class="nt">&lt;/button&gt;</span>
+
+    <span class="nt">&lt;hr&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">'btnNewWin1'</span><span class="nt">&gt;</span>window 1<span class="nt">&lt;/button&gt;</span>
+
+    <span class="nt">&lt;hr&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">'btnClose'</span><span class="nt">&gt;</span>Close<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"./render.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<p>화면측 기능을 담당하는 Script 파일  <br />
+render.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span><span class="nx">ipcRenderer</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">btnAsync</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnAsync</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">btnSync</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnSync</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">c_data</span> <span class="o">=</span>  <span class="p">{</span><span class="na">customdata1</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="na">customdata2</span><span class="p">:</span><span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">};</span>
+
+<span class="nx">btnAsync</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">비동기 화면에서 보냄&gt;</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKey</span><span class="dl">'</span><span class="p">,</span> <span class="nx">c_data</span><span class="p">);</span>
+
+<span class="p">});</span>
+<span class="nx">btnSync</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">동기 화면에서 보냄&gt;</span><span class="dl">"</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">reVal</span> <span class="o">=</span> <span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">sendSync</span><span class="p">(</span><span class="dl">'</span><span class="s1">syncEventKey</span><span class="dl">'</span><span class="p">,</span> <span class="nx">c_data</span><span class="p">);</span>    
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">동기 결과&gt;</span><span class="dl">"</span><span class="p">);</span>    
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reVal</span><span class="p">);</span>
+<span class="p">});</span>
+
+
+<span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKeyCb</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">비동기 결과&gt;</span><span class="dl">"</span><span class="p">);</span>    
+    <span class="c1">//console.log(JSON.stringify(event, null, 2));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">arg</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">})</span>
+
+
+<span class="c1">///////////////////////////////////////////////////////</span>
+<span class="kd">const</span> <span class="nx">electron</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">btnWin1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnNewWin1</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">btnWin1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">BrowserWindow</span> <span class="o">=</span> <span class="nx">electron</span><span class="p">.</span><span class="nx">remote</span><span class="p">.</span><span class="nx">BrowserWindow</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BrowserWindow</span><span class="p">({</span>
+        <span class="na">height</span><span class="p">:</span> <span class="mi">1080</span><span class="p">,</span>
+        <span class="na">width</span><span class="p">:</span> <span class="mi">1920</span><span class="p">,</span>
+        <span class="na">show</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">y</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+        <span class="na">x</span><span class="p">:</span><span class="o">-</span><span class="mi">959</span><span class="p">,</span>    <span class="c1">//</span>
+        <span class="c1">//alwaysOnTop : true,</span>
+        <span class="na">fullscreen</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">movable</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>  
+        <span class="na">frame</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="c1">//autoHideMenuBar : true</span>
+    <span class="p">});</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nx">loadURL</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www.naver.com</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">win</span> <span class="o">=</span> <span class="kc">null</span> <span class="p">});</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready-to-show</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">win</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>실행하기</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>D:\&gt;npm start
+
+&gt; test_electron@1.0.0 start D:\workspace_VS\test_electron
+&gt; electron .
+
+
+21:43:48.094 &gt; App starting...
+process.platform : win32
+(electron) The default value of app.allowRendererProcessReuse is deprecated, it is currently "false".  It will change to be "true" in Electron 9.  For more information please check https://github.com/electron/electron/issues/18397
+
+</code></pre></div></div>
+
+<p><img src="\assets\images_post\nodejs\2021-10-24-electron_01.png" alt="2021-10-24-electron_01.png" /></p>
+
+<p>패키지 빌드 하기</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>D:\workspace_VS\test_electron&gt;npm run deploy
+
+&gt; test_electron@1.0.0 deploy D:\workspace_VS\test_electron
+&gt; electron-builder --win --x64 --ia32
+
+  • electron-builder  version=22.3.2 os=10.0.18363
+  • loaded configuration  file=package.json ("build" field)
+  • Specified application directory equals to project dir — superfluous or wrong configuration  appDirectory=.
+  • description is missed in the package.json  appPackageFile=D:\workspace_VS\test_electron\package.json
+  • writing effective config  file=dist\builder-effective-config.yaml
+  • packaging       platform=win32 arch=x64 electron=8.0.0 appOutDir=dist\win-unpacked
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.5.0/winCodeSign-2.5.0.7z size=5.6 MB parts=1  
+  • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.5.0/winCodeSign-2.5.0.7z duration=4.44s       
+  • building        target=zip arch=x64 file=dist\HelloElectron-1.0.0-win.zip
+  • packaging       platform=win32 arch=ia32 electron=8.0.0 appOutDir=dist\win-ia32-unpacked
+  • building        target=zip arch=ia32 file=dist\HelloElectron-1.0.0-ia32-win.zip
+  • building        target=nsis file=dist\HelloElectron Setup 1.0.0.exe archs=x64, ia32 oneClick=false perMachine=false
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z size=1.3 MB parts=1
+  • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z duration=3.058s
+  • building block map  blockMapFile=dist\HelloElectron Setup 1.0.0.exe.blockmap
+
+</code></pre></div></div>
+<p>패키지 완료 후 dist 폴더에 해당 설치 파일이 생성 됩니다.</p>
+
+<p><img src="\assets\images_post\nodejs\2021-10-24-electron_02.png" alt="2021-10-24-electron_02.png" /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#electron" class="page__taxonomy-item p-category" rel="tag">electron</a><span class="sep">, </span>
+    
+      <a href="/tags/#install-package" class="page__taxonomy-item p-category" rel="tag">install package</a><span class="sep">, </span>
+    
+      <a href="/tags/#nodejs" class="page__taxonomy-item p-category" rel="tag">nodejs</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#nodejs" class="page__taxonomy-item p-category" rel="tag">nodejs</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2021-10-24T00:00:00+09:00">2021-10-24</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=electron+%EC%84%A4%EC%B9%98+%ED%8C%A8%ED%82%A4%EC%A7%80+%EC%85%8B%ED%8C%85%20http%3A%2F%2Flocalhost%3A4000%2Fnodejs%2Felectron_default_setup%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fnodejs%2Felectron_default_setup%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fnodejs%2Felectron_default_setup%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/etc/jekyll-git-blog_(2)/" class="pagination--pager" title="[2강] GitHub blog 만들기(GitHub 설정 및 도메인 연결)
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/etc/jekyll-git-blog_(2)/" rel="permalink">[2강] GitHub blog 만들기(GitHub 설정 및 도메인 연결)
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/etc/jekyll-git-blog_(1)/" rel="permalink">[1강] GitHub blog 만들기(jekyll 기본 설정)
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   
+작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. 
+최대한 단순하고 간략하게만 정리하도록 하겠습니다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/JS-ES6_Summary/" rel="permalink">ES6(ECMAScript6)등 간략 정리
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">ES6 문법을 간략히 정리해 보겠습니다.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python/python_study_01/" rel="permalink">Python 설치
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">파이썬 공부를 시작해봅시다. 
+우선 파이썬 설치를… 시작이 반…
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/nodejs/electron_default_setup/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/nodejs/electron_default_setup"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
