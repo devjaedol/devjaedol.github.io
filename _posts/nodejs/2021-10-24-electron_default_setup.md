@@ -315,7 +315,7 @@ btnWin1.addEventListener('click',()=>{
 
 실행하기    
 ```
-D:\>npm start
+D:\workspace_VS\test_electron>npm start
 
 > test_electron@1.0.0 start D:\workspace_VS\test_electron
 > electron .
