@@ -22,16 +22,16 @@ sidebar:
     children:
       - title: "Python"
         url: /categories/python
-      - title: "Java"
-        url: /categories/java
+      # - title: "Java"
+      #   url: /categories/java
       - title: "Javascript"
         url: /categories/javascript
-      - title: "C#"
-        url: /categories/csharp
+      # - title: "C#"
+      #   url: /categories/csharp
       - title: "Nodejs"
         url: /categories/nodejs
-      - title: "Node-Red"
-        url: /categories/nodered
+      # - title: "Node-Red"
+      #   url: /categories/nodered
       - title: "Etc"
         url: /categories/etc
 
