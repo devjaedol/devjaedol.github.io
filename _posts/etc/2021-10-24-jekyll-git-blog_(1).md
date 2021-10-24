@@ -50,9 +50,19 @@ Jekyll은 Ruby를 통해서 구동됩니다.
 
 > [Ruby 다운로드](https://rubyinstaller.org/downloads/archives/ "루비 설치"){:target="_blank"}
 
+설치를 진행 합니다    
 
+![jekyll-github-blog-01_1](\assets\images_post\jekyll\jekyll-github-blog-01_1.png)
+
+![jekyll-github-blog-01_2](\assets\images_post\jekyll\jekyll-github-blog-01_2.png)
+
+![jekyll-github-blog-01_3](\assets\images_post\jekyll\jekyll-github-blog-01_3.png)
+
+![jekyll-github-blog-01_4](\assets\images_post\jekyll\jekyll-github-blog-01_4.png)
 
 설치가 완료되면 다음과 같은 콘솔이 출력됩니다.
+
+![jekyll-github-blog-01_5](\assets\images_post\jekyll\jekyll-github-blog-01_5.png)
 
 Which components shall be installed? If unsure press ENTER [1,3]
 
@@ -62,6 +72,7 @@ Which components shall be installed? If unsure press ENTER[]
 
 Enter를 입력 합니다.
 
+![jekyll-github-blog-01_7](\assets\images_post\jekyll\jekyll-github-blog-01_7.png)
 
 
 ##  bundler 를 설치
@@ -79,6 +90,7 @@ C:\>gem install bundler
     Done installing documentation for bundler after 4 seconds
     1 gem installed
 ```
+![jekyll-github-blog-01_8](\assets\images_post\jekyll\jekyll-github-blog-01_8.png)
 
 
 
@@ -129,6 +141,7 @@ Jekyll 의 강력한 장점 중 하나가  다양한 테마 입니다.
 
 다운로드한  Zip파일을 생성한 D:\jekyll-blog 에 풀어 놓습니다.
 
+![jekyll-github-blog-01_9](\assets\images_post\jekyll\jekyll-github-blog-01_9.png)
 
 
 ## bundle 설치
@@ -145,6 +158,9 @@ d:\jekyll-blog>bundle install
 
 유사 기능으로는 npm install, pip install 과 같이 관련 패키지 모두 자동화로 설치해주신다고 보면 됩니다.
 
+![jekyll-github-blog-01_10](\assets\images_post\jekyll\jekyll-github-blog-01_10.png)
+
+![jekyll-github-blog-01_11](\assets\images_post\jekyll\jekyll-github-blog-01_11.png)
 
 
 ## 로컬 서비 시작
@@ -157,6 +173,8 @@ d:\jekyll-blog>bundle install
 d:\jekyll-blog>bundel exec jekyll serve
 ```
 
+![jekyll-github-blog-01_12](\assets\images_post\jekyll\jekyll-github-blog-01_12.png)
+
 테마에 적용된 내용이 html로 생성되며, 잠시 뒤 http://127.0.0.1:4000 메세지와 함께 서비스가 기동된 것을 알수 있습니다.
 
 
@@ -165,7 +183,7 @@ d:\jekyll-blog>bundel exec jekyll serve
 
 서버 기동 후 http://127.0.0.1:4000 에 접속해보면, 아래와 같은 기초 페이지가 생성되어 보여 집니다.
 
-
+![jekyll-github-blog-01_13](\assets\images_post\jekyll\jekyll-github-blog-01_13.png)
 
 
 
