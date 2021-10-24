@@ -1,4 +1,153 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-20T23:19:00+09:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">/ 꿰 / 보 / Note</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">ES6(ECMAScript6)등 간략 정리</title><link href="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/" rel="alternate" type="text/html" title="ES6(ECMAScript6)등 간략 정리" /><published>2021-10-20T00:00:00+09:00</published><updated>2021-10-20T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-ES6_Summary</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/">&lt;p&gt;ES6 문법을 간략히 정리해 보겠습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-24T10:07:21+09:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">\[1강\] jekyll을 통한 GitHub blog 만들기</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/" rel="alternate" type="text/html" title="\[1강\] jekyll을 통한 GitHub blog 만들기" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/">&lt;p&gt;jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   &lt;br /&gt;
+최대한 단순하고 간략하게만 정리하도록 하겠습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;jekyll-장단점-소개&quot;&gt;Jekyll 장단점 소개&lt;/h2&gt;
+
+&lt;p&gt;jekyll을 통해서 Git blog를 운용시 다른 플랫폼이 제공하는 블로그에 비해서 장단점이 명확히 다릅니다.&lt;/p&gt;
+
+&lt;p&gt;장점으로는&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Custmize. ( HTML 기반으로 모든 변경이 가능합니다.)&lt;/li&gt;
+  &lt;li&gt;다양한 Template ( 수많은 템플릿 중에 선택적으로 설치하여 사용이 가능합니다.)&lt;/li&gt;
+  &lt;li&gt;GitHub의 공간을 사용하므로, 별도의 호스팅 비용이 필요하지 않습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;단점으로는&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;플랫폼이 제공하는 블로그에 비하면 강력하게 불편 합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;손이 많이 갑니다.(Tistory처럼 단순히 글만 쓰면 되는 정도의 수준이 넘습니다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTML 등의 기초 홈페이지 관리에 대한 기본 지식이 필요합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;로컬에서 뭔가 서버 개발 작업하듯이 설치와 설정을 꽤 많이 해야됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이제 부터 간단히 블로그 생성 방법을 정리해 보겠습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;ruby-설치&quot;&gt;Ruby 설치.&lt;/h2&gt;
+
+&lt;p&gt;Jekyll은 Ruby를 통해서 구동됩니다.&lt;/p&gt;
+
+&lt;p&gt;설치 버전 Ruby+Devkit 2.6.6-1 (x64)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://rubyinstaller.org/downloads/archives/&quot; title=&quot;루비 설치&quot; target=&quot;_blank&quot;&gt;Ruby 다운로드&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;설치가 완료되면 다음과 같은 콘솔이 출력됩니다.&lt;/p&gt;
+
+&lt;p&gt;Which components shall be installed? If unsure press ENTER [1,3]&lt;/p&gt;
+
+&lt;p&gt;1 - MSYS2 base installation 을 선택 합니다.&lt;/p&gt;
+
+&lt;p&gt;Which components shall be installed? If unsure press ENTER[]&lt;/p&gt;
+
+&lt;p&gt;Enter를 입력 합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;bundler-를-설치&quot;&gt;bundler 를 설치&lt;/h2&gt;
+
+&lt;p&gt;CMD 창에 아래와 같이 명령어를 입력 합니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;gem install bundler&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\&amp;gt;gem install bundler
+    Fetching bundler-2.2.29.gem
+    Successfully installed bundler-2.2.29g
+    Parsing documentation for bundler-2.2.29
+    Installing ri documentation for bundler-2.2.29
+    Done installing documentation for bundler after 4 seconds
+    1 gem installed
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;blog-설치-디렉토리-생성&quot;&gt;Blog 설치 디렉토리 생성&lt;/h2&gt;
+
+&lt;p&gt;블로그 홈 서버를 실행할 작업 임시 경로를 선정하십시요.&lt;/p&gt;
+
+&lt;p&gt;저는 아래 경로에 임시로 작업을 진행 합니다.&lt;/p&gt;
+
+&lt;p&gt;D:\jekyll-blog&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;c:\&amp;gt;d:
+d:\&amp;gt;mkdir jekyll-blog
+d:\&amp;gt;cd jekyll-blog
+d:\jekyll-blog&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;테마-설치&quot;&gt;테마 설치&lt;/h2&gt;
+
+&lt;p&gt;Jekyll 의 강력한 장점 중 하나가  다양한 테마 입니다.&lt;/p&gt;
+
+&lt;p&gt;아래 사이트 들은 Jekyll 테마를 모아놓은 사이트 입니다.&lt;/p&gt;
+
+&lt;p&gt;이곳에서 원하는 테마를 선택 하십시요.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyll-themes.com/free/&quot; target=&quot;_blank&quot;&gt;https://jekyll-themes.com/free/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://themes.jekyllrc.org&quot; target=&quot;_blank&quot;&gt;http://themes.jekyllrc.org&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://jekyllthemes.org&quot; target=&quot;_blank&quot;&gt;http://jekyllthemes.org&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllthemes.io/free&quot; target=&quot;_blank&quot;&gt;https://jekyllthemes.io/free&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllthemes.dev/&quot; target=&quot;_blank&quot;&gt;https://jekyllthemes.dev/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://drjekyllthemes.github.io/new&quot; target=&quot;_blank&quot;&gt;https://drjekyllthemes.github.io/new&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;저는 Minimal Mistakes Jekyll theme 라는 테마를 통해서 홈페이지를 꾸미고 있습니다.&lt;/p&gt;
+
+&lt;p&gt;본 테마는 꽤 인기있는 테마로 심플함이 최대 장점이라서 적용 했습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllthemes.io/theme/minimal-mistakes&quot; target=&quot;_blank&quot;&gt;https://jekyllthemes.io/theme/minimal-mistakes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/&quot; target=&quot;_blank&quot;&gt;데모사이트 -Guick start guide&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;우선 해당 git에서 소스를 zip 형태로 다운 받습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot; target=&quot;_blank&quot;&gt;https://github.com/mmistakes/minimal-mistakes&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;다운로드한  Zip파일을 생성한 D:\jekyll-blog 에 풀어 놓습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;bundle-설치&quot;&gt;bundle 설치&lt;/h2&gt;
+
+&lt;p&gt;임시로 작업 폴더(테마가 다운된 경로)에서 번들 설치를 위한 다음 명령어를 입력 합니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bundle install&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;d:\jekyll-blog&amp;gt;bundle install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;테마와 관련된 bundle이 모두 설치 됩니다.&lt;/p&gt;
+
+&lt;p&gt;유사 기능으로는 npm install, pip install 과 같이 관련 패키지 모두 자동화로 설치해주신다고 보면 됩니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;로컬-서비-시작&quot;&gt;로컬 서비 시작&lt;/h2&gt;
+
+&lt;p&gt;테마가 다운된 경로에서 서비스를 시작 합니다&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bundel exec jekyll serve&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;d:\jekyll-blog&amp;gt;bundel exec jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;테마에 적용된 내용이 html로 생성되며, 잠시 뒤 http://127.0.0.1:4000 메세지와 함께 서비스가 기동된 것을 알수 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;브라우저-접속을-통한-blog-서비스-확인&quot;&gt;브라우저 접속을 통한 Blog 서비스 확인&lt;/h2&gt;
+
+&lt;p&gt;서버 기동 후 http://127.0.0.1:4000 에 접속해보면, 아래와 같은 기초 페이지가 생성되어 보여 집니다.&lt;/p&gt;
+
+&lt;p&gt;GitHub연동은 다음 강에서 보시죠…&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="jekyll" /><category term="githug" /><category term="blog" /><category term="github blog" /><category term="minimal-mistakes" /><summary type="html">jekyll을 통해서 GitHub blog를 만들어 보겠습니다. 최대한 단순하고 간략하게만 정리하도록 하겠습니다.</summary></entry><entry><title type="html">ES6(ECMAScript6)등 간략 정리</title><link href="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/" rel="alternate" type="text/html" title="ES6(ECMAScript6)등 간략 정리" /><published>2021-10-20T00:00:00+09:00</published><updated>2021-10-20T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-ES6_Summary</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/">&lt;p&gt;ES6 문법을 간략히 정리해 보겠습니다.&lt;/p&gt;
 
 &lt;p&gt;특별한 설명이 필요없는 보시면 아실듯한…&lt;/p&gt;
 
@@ -214,7 +363,13 @@
 
 &lt;p&gt;설치 버전이 정상 표기되면, 설치 완료됨.&lt;/p&gt;
 
-&lt;p&gt;window path는 필요시 추가해야 합니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반…</summary></entry><entry><title type="html">javascript version ES5 vs ES6</title><link href="https://kimjaehyun.co.kr/javascript/JS-Version/" rel="alternate" type="text/html" title="javascript version ES5 vs ES6" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Version</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Version/">&lt;p&gt;자바스크립트 버전별 정리
+&lt;p&gt;window path는 필요시 추가해야 합니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반…</summary></entry><entry><title type="html">크롬 확장 앱 개발 참조 경로(Chrome Extensions)</title><link href="https://kimjaehyun.co.kr/etc/chrome_extension/" rel="alternate" type="text/html" title="크롬 확장 앱 개발 참조 경로(Chrome Extensions)" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/chrome_extension</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/chrome_extension/">&lt;p&gt;크롬 확장 앱 관련 정보 참조 링크&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.hubspot.com/marketing/best-chrome-extensions&quot; target=&quot;_blank&quot;&gt;The 70 Best Chrome Extensions for 2021&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.chrome.com/docs/extensions/mv3/getstarted/&quot; target=&quot;_blank&quot;&gt;https://developer.chrome.com/docs/extensions/mv3/getstarted/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/GoogleChrome/chrome-extensions-samples&quot; target=&quot;_blank&quot;&gt;https://github.com/GoogleChrome/chrome-extensions-samples&lt;/a&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="Chrome" /><category term="extension" /><category term="크롬앱" /><category term="link" /><summary type="html">크롬 확장 앱 관련 정보 참조 링크</summary></entry><entry><title type="html">javascript version ES5 vs ES6</title><link href="https://kimjaehyun.co.kr/javascript/JS-Version/" rel="alternate" type="text/html" title="javascript version ES5 vs ES6" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Version</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Version/">&lt;p&gt;자바스크립트 버전별 정리
 참조 : &lt;a href=&quot;https://www.w3schools.com/js/js_versions.asp&quot; target=&quot;_blank&quot;&gt;w3school&lt;/a&gt;&lt;/p&gt;
 
 &lt;table&gt;
@@ -343,13 +498,7 @@
   &lt;li&gt;Promise Finally&lt;/li&gt;
   &lt;li&gt;Object Rest Properties&lt;/li&gt;
   &lt;li&gt;New RegExp Features&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>devjaedol</name></author><category term="javascript" /><category term="ES6" /><category term="ES5" /><summary type="html">자바스크립트 버전별 정리 참조 : w3school</summary></entry><entry><title type="html">크롬 확장 앱 개발 참조 경로(Chrome Extensions)</title><link href="https://kimjaehyun.co.kr/etc/chrome_extension/" rel="alternate" type="text/html" title="크롬 확장 앱 개발 참조 경로(Chrome Extensions)" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/chrome_extension</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/chrome_extension/">&lt;p&gt;크롬 확장 앱 관련 정보 참조 링크&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://blog.hubspot.com/marketing/best-chrome-extensions&quot; target=&quot;_blank&quot;&gt;The 70 Best Chrome Extensions for 2021&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://developer.chrome.com/docs/extensions/mv3/getstarted/&quot; target=&quot;_blank&quot;&gt;https://developer.chrome.com/docs/extensions/mv3/getstarted/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/GoogleChrome/chrome-extensions-samples&quot; target=&quot;_blank&quot;&gt;https://github.com/GoogleChrome/chrome-extensions-samples&lt;/a&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="Chrome" /><category term="extension" /><category term="크롬앱" /><category term="link" /><summary type="html">크롬 확장 앱 관련 정보 참조 링크</summary></entry><entry><title type="html">MarkDown 사용법</title><link href="https://kimjaehyun.co.kr/etc/markdown/" rel="alternate" type="text/html" title="MarkDown 사용법" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/markdown</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/markdown/">&lt;p&gt;MakrDown에 사용 법에 대해서 간략히 보시죠. &lt;br /&gt;
+&lt;/ul&gt;</content><author><name>devjaedol</name></author><category term="javascript" /><category term="ES6" /><category term="ES5" /><summary type="html">자바스크립트 버전별 정리 참조 : w3school</summary></entry><entry><title type="html">MarkDown 사용법</title><link href="https://kimjaehyun.co.kr/etc/markdown/" rel="alternate" type="text/html" title="MarkDown 사용법" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/markdown</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/markdown/">&lt;p&gt;MakrDown에 사용 법에 대해서 간략히 보시죠. &lt;br /&gt;
 확장자 *.md 입니다. &lt;br /&gt;
 대표적 예제 Readmd.md.  &lt;br /&gt;
 사용처, 경량 기반 텍스트 마크업 언어&lt;/p&gt;

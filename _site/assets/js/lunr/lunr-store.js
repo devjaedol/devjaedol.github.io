@@ -34,4 +34,10 @@ var store = [{
         "tags": ["ES6","ES5","ECMAScript6"],
         "url": "/javascript/JS-ES6_Summary/",
         "teaser": null
+      },{
+        "title": "\\[1강\\] jekyll을 통한 GitHub blog 만들기",
+        "excerpt":"jekyll을 통해서 GitHub blog를 만들어 보겠습니다. 최대한 단순하고 간략하게만 정리하도록 하겠습니다. Jekyll 장단점 소개 jekyll을 통해서 Git blog를 운용시 다른 플랫폼이 제공하는 블로그에 비해서 장단점이 명확히 다릅니다. 장점으로는 Custmize. ( HTML 기반으로 모든 변경이 가능합니다.) 다양한 Template ( 수많은 템플릿 중에 선택적으로 설치하여 사용이 가능합니다.) GitHub의 공간을 사용하므로, 별도의 호스팅...","categories": ["etc"],
+        "tags": ["jekyll","githug","blog","github blog","minimal-mistakes"],
+        "url": "/etc/jekyll-git-blog_(1)/",
+        "teaser": null
       }]

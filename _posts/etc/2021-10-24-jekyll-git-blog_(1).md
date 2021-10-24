@@ -1,0 +1,177 @@
+---
+title: \[1강\] jekyll을 통한 GitHub blog 만들기 
+categories: 
+    - etc
+tags: 
+    - jekyll
+    - githug
+    - blog
+    - github blog
+    - minimal-mistakes
+toc : true
+toc_sticky  : true    
+---
+
+jekyll을 통해서 GitHub blog를 만들어 보겠습니다.     
+최대한 단순하고 간략하게만 정리하도록 하겠습니다.
+
+
+## Jekyll 장단점 소개
+
+jekyll을 통해서 Git blog를 운용시 다른 플랫폼이 제공하는 블로그에 비해서 장단점이 명확히 다릅니다.
+
+장점으로는
+
+- Custmize. ( HTML 기반으로 모든 변경이 가능합니다.)
+- 다양한 Template ( 수많은 템플릿 중에 선택적으로 설치하여 사용이 가능합니다.)
+- GitHub의 공간을 사용하므로, 별도의 호스팅 비용이 필요하지 않습니다.
+
+단점으로는
+
+- 플랫폼이 제공하는 블로그에 비하면 강력하게 불편 합니다.
+
+- 손이 많이 갑니다.(Tistory처럼 단순히 글만 쓰면 되는 정도의 수준이 넘습니다.)
+
+- HTML 등의 기초 홈페이지 관리에 대한 기본 지식이 필요합니다.
+
+- 로컬에서 뭔가 서버 개발 작업하듯이 설치와 설정을 꽤 많이 해야됩니다.
+
+  
+
+이제 부터 간단히 블로그 생성 방법을 정리해 보겠습니다.
+
+
+
+## Ruby 설치. 
+
+Jekyll은 Ruby를 통해서 구동됩니다.
+
+설치 버전 Ruby+Devkit 2.6.6-1 (x64) 
+
+> [Ruby 다운로드](https://rubyinstaller.org/downloads/archives/ "루비 설치"){:target="_blank"}
+
+
+
+설치가 완료되면 다음과 같은 콘솔이 출력됩니다.
+
+Which components shall be installed? If unsure press ENTER [1,3]
+
+1 - MSYS2 base installation 을 선택 합니다.
+
+Which components shall be installed? If unsure press ENTER[]
+
+Enter를 입력 합니다.
+
+
+
+##  bundler 를 설치
+
+CMD 창에 아래와 같이 명령어를 입력 합니다.
+
+> gem install bundler
+
+```
+C:\>gem install bundler
+    Fetching bundler-2.2.29.gem
+    Successfully installed bundler-2.2.29g
+    Parsing documentation for bundler-2.2.29
+    Installing ri documentation for bundler-2.2.29
+    Done installing documentation for bundler after 4 seconds
+    1 gem installed
+```
+
+
+
+## Blog 설치 디렉토리 생성
+
+블로그 홈 서버를 실행할 작업 임시 경로를 선정하십시요.
+
+저는 아래 경로에 임시로 작업을 진행 합니다.
+
+D:\jekyll-blog
+
+```
+c:\>d:
+d:\>mkdir jekyll-blog
+d:\>cd jekyll-blog
+d:\jekyll-blog>
+```
+
+
+
+## 테마 설치
+
+Jekyll 의 강력한 장점 중 하나가  다양한 테마 입니다.
+
+아래 사이트 들은 Jekyll 테마를 모아놓은 사이트 입니다.
+
+이곳에서 원하는 테마를 선택 하십시요.
+
+- <https://jekyll-themes.com/free/>{:target="_blank"}
+- <http://themes.jekyllrc.org>{:target="_blank"}
+- <http://jekyllthemes.org>{:target="_blank"}
+- <https://jekyllthemes.io/free>{:target="_blank"}
+- <https://jekyllthemes.dev/>{:target="_blank"}
+- <https://drjekyllthemes.github.io/new>{:target="_blank"}
+
+
+
+저는 Minimal Mistakes Jekyll theme 라는 테마를 통해서 홈페이지를 꾸미고 있습니다.
+
+본 테마는 꽤 인기있는 테마로 심플함이 최대 장점이라서 적용 했습니다.
+
+- <https://jekyllthemes.io/theme/minimal-mistakes>{:target="_blank"}
+- [데모사이트 -Guick start guide](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/){:target="_blank"}
+
+우선 해당 git에서 소스를 zip 형태로 다운 받습니다.
+
+<https://github.com/mmistakes/minimal-mistakes>{:target="_blank"}
+
+다운로드한  Zip파일을 생성한 D:\jekyll-blog 에 풀어 놓습니다.
+
+
+
+## bundle 설치
+
+임시로 작업 폴더(테마가 다운된 경로)에서 번들 설치를 위한 다음 명령어를 입력 합니다.
+
+> bundle install
+
+```
+d:\jekyll-blog>bundle install
+```
+
+테마와 관련된 bundle이 모두 설치 됩니다.
+
+유사 기능으로는 npm install, pip install 과 같이 관련 패키지 모두 자동화로 설치해주신다고 보면 됩니다.
+
+
+
+## 로컬 서비 시작
+
+테마가 다운된 경로에서 서비스를 시작 합니다
+
+> bundel exec jekyll serve
+
+```
+d:\jekyll-blog>bundel exec jekyll serve
+```
+
+테마에 적용된 내용이 html로 생성되며, 잠시 뒤 http://127.0.0.1:4000 메세지와 함께 서비스가 기동된 것을 알수 있습니다.
+
+
+
+## 브라우저 접속을 통한 Blog 서비스 확인
+
+서버 기동 후 http://127.0.0.1:4000 에 접속해보면, 아래와 같은 기초 페이지가 생성되어 보여 집니다.
+
+
+
+
+
+GitHub연동은 다음 강에서 보시죠...
+
+
+
+
+
