@@ -280,7 +280,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#jekyll-장단점-소개">Jekyll 장단점 소개</a></li><li><a href="#ruby-설치">Ruby 설치.</a></li><li><a href="#bundler-를-설치">bundler 를 설치</a></li><li><a href="#blog-설치-디렉토리-생성">Blog 설치 디렉토리 생성</a></li><li><a href="#테마-설치">테마 설치</a></li><li><a href="#bundle-설치">bundle 설치</a></li><li><a href="#로컬-서비-시작">로컬 서비 시작</a></li><li><a href="#브라우저-접속을-통한-blog-서비스-확인">브라우저 접속을 통한 Blog 서비스 확인</a></li><li><a href="#첫번째-포트스-작성">첫번째 포트스 작성</a></li></ul>
+              <ul class="toc__menu"><li><a href="#jekyll-장단점-소개">Jekyll 장단점 소개</a></li><li><a href="#ruby-설치">Ruby 설치.</a></li><li><a href="#bundler-를-설치">bundler 를 설치</a></li><li><a href="#blog-설치-디렉토리-생성">Blog 설치 디렉토리 생성</a></li><li><a href="#테마-설치">테마 설치</a></li><li><a href="#bundle-설치">bundle 설치</a></li><li><a href="#로컬-서비-시작">로컬 서비 시작</a></li><li><a href="#브라우저-접속을-통한-blog-서비스-확인">브라우저 접속을 통한 Blog 서비스 확인</a></li><li><a href="#첫번째-포트스-작성">첫번째 포트스 작성</a></li><li><a href="#트러블슈팅">트러블슈팅</a></li></ul>
 
             </nav>
           </aside>
@@ -456,15 +456,14 @@ d:\jekyll-blog&gt;
 
 <p>아래 파일을 만듭니다.</p>
 <blockquote>
-  <p>d:\jekyll-blog_post\2021-10-24-myfirstpost.md</p>
+  <p>d:\jekyll-blog_posts\2021-10-24-myfirstpost.md</p>
 </blockquote>
 
-<p>파일 내용은 아래와 같이 입력 합니다.</p>
+<p>모든 포스트의 위치는 _posts 폴더 밑 입니다. <br />
+파일 내용은 아래와 같이 입력 합니다.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 title: 첫번째 포스트 입니다.
-categories: 
-    - 카테고리1
 tags: 
     - 첫포스트
 ---
@@ -480,6 +479,27 @@ markdown 작성법은 <a href="https://kimjaehyun.co.kr/etc/markdown/" target="_
 <p>minimal-mistakes 에는 다양한 샘플 포스트 작성법을 제공 하고 있습니다.  <br />
 <a href="https://mmistakes.github.io/minimal-mistakes/year-archive/" target="_blank">포스트 샘플</a>
 에서 참고 바랍니다.</p>
+
+<h2 id="트러블슈팅">트러블슈팅</h2>
+
+<p>bundel 작업중 아래와 같은 에러가 발생 할 경우가 있습니다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Please add the following to your Gemfile to avoid polling for changes:
+    gem 'wdm', '&gt;= 0.1.0' if Gem.win_platform?
+</code></pre></div></div>
+
+<p>위 메세지가 나오면, 프로젝트 폴더에 Gemfile을 메모장으로 오픈 합니다.
+아래 메세지를 해당 파일 마지막에 추가 합니다. <br />
+gem ‘wdm’, ‘&gt;= 0.1.0’</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source "https://rubygems.org"
+gem 'wdm', '&gt;= 0.1.0'
+gemspec
+</code></pre></div></div>
+
+<p>다시 bundle install 을 통해서 변경사항을 재설치 합니다.</p>
+<blockquote>
+  <p>bundle install</p>
+</blockquote>
 
 
         
