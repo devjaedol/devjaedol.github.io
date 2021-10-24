@@ -1,5 +1,5 @@
 ---
-title: \[1강\] GitHub blog 만들기(jekyll 기본 설정)
+title: "[1강] GitHub blog 만들기(jekyll 기본 설정)"
 categories: 
     - etc
 tags: 
@@ -212,10 +212,15 @@ minimal-mistakes 에는 다양한 샘플 포스트 작성법을 제공 하고 �
 [포스트 샘플](https://mmistakes.github.io/minimal-mistakes/year-archive/){:target="_blank"}
 에서 참고 바랍니다.    
 
+![jekyll-github-blog-01_29](\assets\images_post\jekyll\jekyll-github-blog-01_29.png)
+
+![jekyll-github-blog-01_30](\assets\images_post\jekyll\jekyll-github-blog-01_30.png)
 
 ## 트러블슈팅
 
 bundel 작업중 아래와 같은 에러가 발생 할 경우가 있습니다.    
+
+![jekyll-github-blog-01_27](\assets\images_post\jekyll\jekyll-github-blog-01_27.png)
 ```
     Please add the following to your Gemfile to avoid polling for changes:
     gem 'wdm', '>= 0.1.0' if Gem.win_platform?
@@ -224,6 +229,8 @@ bundel 작업중 아래와 같은 에러가 발생 할 경우가 있습니다.
 위 메세지가 나오면, 프로젝트 폴더에 Gemfile을 메모장으로 편집 합니다.
 아래 메세지를 해당 파일 마지막에 추가 합니다.   
 gem 'wdm', '>= 0.1.0'
+
+![jekyll-github-blog-01_28](\assets\images_post\jekyll\jekyll-github-blog-01_28.png)
 
 ```
 source "https://rubygems.org"

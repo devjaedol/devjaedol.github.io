@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-24T13:37:36+09:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">\[2강\] GitHub blog 만들기(GitHub 설정 및 도메인 연결)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)/" rel="alternate" type="text/html" title="\[2강\] GitHub blog 만들기(GitHub 설정 및 도메인 연결)" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)/">&lt;p&gt;GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-10-24T17:40:51+09:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[2강] GitHub blog 만들기(GitHub 설정 및 도메인 연결)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)/" rel="alternate" type="text/html" title="[2강] GitHub blog 만들기(GitHub 설정 및 도메인 연결)" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)/">&lt;p&gt;GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;github-계정-생성-및-저장소-생성&quot;&gt;GitHub 계정 생성 및 저장소 생성&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot;&gt;https://github.com/&lt;/a&gt; 에 Account를 생성 합니다. &lt;br /&gt;
@@ -86,7 +86,7 @@ settings &amp;gt;  Pages  &amp;gt; Cusom domain 에 도메인을 입력 후 저�
 
 &lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-02_2.png&quot; alt=&quot;jekyll-github-blog-02_2&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;DNS 등이 정상적으로 되었다면, 에러 없이 Save가 됩니다만, DNS오류 등이 발생하면 해당 내용이 출력 됩니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="jekyll" /><category term="githug" /><category term="blog" /><category term="github blog" /><category term="minimal-mistakes" /><summary type="html">GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.</summary></entry><entry><title type="html">\[1강\] GitHub blog 만들기(jekyll 기본 설정)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/" rel="alternate" type="text/html" title="\[1강\] GitHub blog 만들기(jekyll 기본 설정)" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/">&lt;p&gt;jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   &lt;br /&gt;
+&lt;p&gt;DNS 등이 정상적으로 되었다면, 에러 없이 Save가 됩니다만, DNS오류 등이 발생하면 해당 내용이 출력 됩니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="jekyll" /><category term="githug" /><category term="blog" /><category term="github blog" /><category term="minimal-mistakes" /><summary type="html">GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.</summary></entry><entry><title type="html">[1강] GitHub blog 만들기(jekyll 기본 설정)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/" rel="alternate" type="text/html" title="[1강] GitHub blog 만들기(jekyll 기본 설정)" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/">&lt;p&gt;jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   &lt;br /&gt;
 작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. &lt;br /&gt;
 최대한 단순하고 간략하게만 정리하도록 하겠습니다.&lt;/p&gt;
 
@@ -281,16 +281,24 @@ markdown 작성법은 &lt;a href=&quot;https://kimjaehyun.co.kr/etc/markdown/&qu
 &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/year-archive/&quot; target=&quot;_blank&quot;&gt;포스트 샘플&lt;/a&gt;
 에서 참고 바랍니다.&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-01_29.png&quot; alt=&quot;jekyll-github-blog-01_29&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-01_30.png&quot; alt=&quot;jekyll-github-blog-01_30&quot; /&gt;&lt;/p&gt;
+
 &lt;h2 id=&quot;트러블슈팅&quot;&gt;트러블슈팅&lt;/h2&gt;
 
 &lt;p&gt;bundel 작업중 아래와 같은 에러가 발생 할 경우가 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-01_27.png&quot; alt=&quot;jekyll-github-blog-01_27&quot; /&gt;&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    Please add the following to your Gemfile to avoid polling for changes:
     gem 'wdm', '&amp;gt;= 0.1.0' if Gem.win_platform?
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;위 메세지가 나오면, 프로젝트 폴더에 Gemfile을 메모장으로 오픈 합니다.
+&lt;p&gt;위 메세지가 나오면, 프로젝트 폴더에 Gemfile을 메모장으로 편집 합니다.
 아래 메세지를 해당 파일 마지막에 추가 합니다. &lt;br /&gt;
 gem ‘wdm’, ‘&amp;gt;= 0.1.0’&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-01_28.png&quot; alt=&quot;jekyll-github-blog-01_28&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source &quot;https://rubygems.org&quot;
 gem 'wdm', '&amp;gt;= 0.1.0'

@@ -1,5 +1,5 @@
 ---
-title: \[2강\] GitHub blog 만들기(GitHub 설정 및 도메인 연결) 
+title: "[2강] GitHub blog 만들기(GitHub 설정 및 도메인 연결)"
 categories: 
     - etc
 tags: 
