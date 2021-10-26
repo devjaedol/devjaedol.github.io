@@ -30,7 +30,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Python 기초",
-        "excerpt":"파이썬 IDLE를 실행 합니다. 기본 실습 하기 100 + 50 print(‘Hello world’) “string”*5 Python 3.10.0 (tags/v3.10.0:b494f59, Oct 4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)] on win32 Type \"help\", \"copyright\", \"credits\" or \"license()\" for more information. &gt;&gt;&gt; 100+50 150 &gt;&gt;&gt; print('Hello world') Hello world &gt;&gt;&gt; \"string\"*5 'stringstringstringstringstring' 변수 연산자 조건문...","categories": ["python"],
+        "excerpt":"파이썬 IDLE를 실행 합니다. 기본 실습 하기 100 + 50 print(‘Hello world’) “string”*5 Python 3.10.0 (tags/v3.10.0:b494f59, Oct 4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)] on win32 Type \"help\", \"copyright\", \"credits\" or \"license()\" for more information. &gt;&gt;&gt; 100+50 150 &gt;&gt;&gt; print('Hello world') Hello world &gt;&gt;&gt; \"string\"*5 'stringstringstringstringstring' 자료형 Python에 주요...","categories": ["python"],
         "tags": ["python강좌","python","초급"],
         "url": "/python/python_study_02/",
         "teaser": null

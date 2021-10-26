@@ -28,7 +28,63 @@ Hello world
 'stringstringstringstringstring'
 ```
 
-## 변수
+## 자료형
+Python에 주요 자료형 입니다.    
+- 수치 자료형  
+    - int  
+    - float  
+    - complex  
+- 불 자료형   
+    - bool   
+- 군집 자료형   
+    - list   
+    - tuple   
+    - dict   
+    - set   
+- 문자 자료형
+    - str    
+
+```python
+# int
+# type( xxx ) 은 자료형을 출력 합니다.
+
+a = 1
+type(a)
+#<class 'int'>
+
+b = 5.7
+type(b)
+#<class 'float'>
+
+c = 5 + 1j
+type(c)
+#<class 'complex'>
+
+d = True
+type(d)
+#<class 'bool'>
+
+e = [1,2,3,4,5]
+type(e)
+#<class 'list'>     #(순서 O, 중복 O, 변경 O)
+
+f = (1,2,3,4,5)
+type(f)
+#<class 'tuple'>    #(순서 O, 중복 O, 변경 X)
+
+g = {"java":10, "python":5, "C":3}
+type(g)
+#<class 'dict'>     #(순서 X, 중복 X, 변경 O)
+
+h = {1, 2, 3}
+type(h)
+#<class 'set'>      #(순서 X, 중복 X, 변경 O)
+
+i = '가나다라마'
+type(i)
+#<class 'str'>
+```
+![파이썬 자료형](\assets/images_post/python/python-study-02_1.png)
 
 ## 연산자
 
