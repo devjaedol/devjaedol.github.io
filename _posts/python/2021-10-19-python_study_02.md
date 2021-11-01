@@ -10,7 +10,10 @@ toc : true
 toc_sticky  : true    
 ---
 
-파이썬 IDLE를 실행 합니다.    
+파이썬 공부를 스피드 있게 해봅시다.    
+파이썬 IDLE를 실행 합니다.       
+설명이 필요 없는 프로그램 공부의 기본을 Start!!!!    
+[Python 공식 자습서](https://docs.python.org/ko/3/tutorial/index.html){:target="_blank"}
 
 ## 기본 실습 하기
 > 100 + 50    
@@ -29,7 +32,9 @@ Hello world
 ```
 
 ## 자료형
-Python에 주요 자료형 입니다.    
+프로그래밍에 기초로 자료형 부터 보시죠.    
+Python에 주요 자료형 입니다.   
+
 - 수치 자료형  
     - int  
     - float  
@@ -87,8 +92,130 @@ type(i)
 ![파이썬 자료형](\assets/images_post/python/python-study-02_1.png)
 
 ## 연산자
+변수에 대한 연산을 처리하는 연산자 시리즈 입니다.      
+- 사칙 연산자 
+    - +, -, *, /
+    - ** 제곱 
+    - % 나머지
+    - // 소수점이하 버림 연산
+- 비교 연산자 
+    - <, >, <=, =>, ==, !=
+- 논리 연산자
+    - and
+    - or
+    - not
+- 비트와이즈 연산자
+    - & (AND)
+    - \| (OR)
+    - <<, >> (비트 이동)
+    - ~ (Completement)
+    - ^ (XOR)
+- 기타 연산자 
+    - +=
+    - -=
+    - *=
+    - in
+    - not in
+    - is    ( A is B A와 B가 동일 주소를 가르칠때 True)
+
 
 ## 조건문 
+프로그램에 기본인 조건에 따라 로직을 분기하는 종류 입니다.   
+
+### if, elif, else
+```python
+#if문
+if tall > 180
+    print("키가 큽니다.")
+
+
+#if, else
+if tall > 180:
+    print("키가 큽니다.")
+else:
+    print("키가 작습니다")
+
+
+#if, elif, else
+if tall > 180:
+    print("키가 큽니다.")
+elif tall < 100:
+    print("키가 작습니다")
+else:
+    print("키가 보통 입니다")
+
+```
+### for
+```python
+
+# range(반복횟수):
+# for 변수 in range(시작값, 끝값+1, 증가값):
+for i in range(10):
+    print(i)
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+a=[5,6,7,8,9]
+for i in a:
+    print(i)
+
+    
+5
+6
+7
+8
+9
+
+
+#range(이상, 미만)
+for i in range(5,10):
+    print(i)
+
+5
+6
+7
+8
+9
+
+# 중첩 For
+for i in range(1,4):
+    for j in range(1,4):
+        print( i*j ,end="   ")
+    print(" ")
+
+1   2   3    
+2   4   6    
+3   6   9    
+
+
+#1~10 의 합    
+sum=0
+for i in range(1,11):
+    sum = sum+i
+print(sum)
+
+55
+
+```
+### while
+```python
+i=1
+sum=0
+while i<=10:
+    sum=sum+i
+print(sum)
+55
+```
 
 ## 반복문
 
