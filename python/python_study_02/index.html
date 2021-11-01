@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Python 기초 | 꿰보노트</title>
-<meta name="description" content="파이썬 IDLE를 실행 합니다.">
+<meta name="description" content="파이썬 공부를 스피드 있게 해봅시다.   파이썬 IDLE를 실행 합니다.      설명이 필요 없는 프로그램 공부의 기본을 Start!!!!   Python 공식 자습서">
 
 
   <meta name="author" content="devjaedol">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="https://kimjaehyun.co.kr/python/python_study_02/">
 
 
-  <meta property="og:description" content="파이썬 IDLE를 실행 합니다.">
+  <meta property="og:description" content="파이썬 공부를 스피드 있게 해봅시다.   파이썬 IDLE를 실행 합니다.      설명이 필요 없는 프로그램 공부의 기본을 Start!!!!   Python 공식 자습서">
 
 
 
@@ -256,7 +256,7 @@
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Python 기초">
-    <meta itemprop="description" content="파이썬 IDLE를 실행 합니다.">
+    <meta itemprop="description" content="파이썬 공부를 스피드 있게 해봅시다.  파이썬 IDLE를 실행 합니다.     설명이 필요 없는 프로그램 공부의 기본을 Start!!!!  Python 공식 자습서">
     <meta itemprop="datePublished" content="2021-10-19T00:00:00+00:00">
     
 
@@ -278,12 +278,15 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#기본-실습-하기">기본 실습 하기</a></li><li><a href="#자료형">자료형</a></li><li><a href="#연산자">연산자</a></li><li><a href="#조건문">조건문</a></li><li><a href="#반복문">반복문</a></li><li><a href="#함수">함수</a></li><li><a href="#예약어-확인하기">예약어 확인하기</a></li></ul>
+              <ul class="toc__menu"><li><a href="#기본-실습-하기">기본 실습 하기</a></li><li><a href="#자료형">자료형</a></li><li><a href="#연산자">연산자</a></li><li><a href="#조건문">조건문</a><ul><li><a href="#if-elif-else">if, elif, else</a></li><li><a href="#for">for</a></li><li><a href="#while">while</a></li></ul></li><li><a href="#반복문">반복문</a></li><li><a href="#함수">함수</a></li><li><a href="#예약어-확인하기">예약어 확인하기</a></li></ul>
 
             </nav>
           </aside>
         
-        <p>파이썬 IDLE를 실행 합니다.</p>
+        <p>파이썬 공부를 스피드 있게 해봅시다.  <br />
+파이썬 IDLE를 실행 합니다.     <br />
+설명이 필요 없는 프로그램 공부의 기본을 Start!!!!  <br />
+<a href="https://docs.python.org/ko/3/tutorial/index.html" target="_blank">Python 공식 자습서</a></p>
 
 <h2 id="기본-실습-하기">기본 실습 하기</h2>
 <blockquote>
@@ -303,7 +306,9 @@ print(‘Hello world’)  <br />
 </code></pre></div></div>
 
 <h2 id="자료형">자료형</h2>
-<p>Python에 주요 자료형 입니다.</p>
+<p>프로그래밍에 기초로 자료형 부터 보시죠.  <br />
+Python에 주요 자료형 입니다.</p>
+
 <ul>
   <li>수치 자료형
     <ul>
@@ -374,8 +379,143 @@ print(‘Hello world’)  <br />
 <p><img src="\assets/images_post/python/python-study-02_1.png" alt="파이썬 자료형" /></p>
 
 <h2 id="연산자">연산자</h2>
+<p>변수에 대한 연산을 처리하는 연산자 시리즈 입니다.</p>
+<ul>
+  <li>사칙 연산자
+    <ul>
+      <li>+, -, *, /</li>
+      <li>** 제곱</li>
+      <li>% 나머지</li>
+      <li>// 소수점이하 버림 연산</li>
+    </ul>
+  </li>
+  <li>비교 연산자
+    <ul>
+      <li>&lt;, &gt;, &lt;=, =&gt;, ==, !=</li>
+    </ul>
+  </li>
+  <li>논리 연산자
+    <ul>
+      <li>and</li>
+      <li>or</li>
+      <li>not</li>
+    </ul>
+  </li>
+  <li>비트와이즈 연산자
+    <ul>
+      <li>&amp; (AND)</li>
+      <li>| (OR)</li>
+      <li>«, » (비트 이동)</li>
+      <li>~ (Completement)</li>
+      <li>^ (XOR)</li>
+    </ul>
+  </li>
+  <li>기타 연산자
+    <ul>
+      <li>+=</li>
+      <li>-=</li>
+      <li>*=</li>
+      <li>in</li>
+      <li>not in</li>
+      <li>is    ( A is B A와 B가 동일 주소를 가르칠때 True)</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="조건문">조건문</h2>
+<p>프로그램에 기본인 조건에 따라 로직을 분기하는 종류 입니다.</p>
+
+<h3 id="if-elif-else">if, elif, else</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#if문
+</span><span class="k">if</span> <span class="n">tall</span> <span class="o">&gt;</span> <span class="mi">180</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
+
+
+<span class="c1">#if, else
+</span><span class="k">if</span> <span class="n">tall</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 작습니다"</span><span class="p">)</span>
+
+
+<span class="c1">#if, elif, else
+</span><span class="k">if</span> <span class="n">tall</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">tall</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 작습니다"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 보통 입니다"</span><span class="p">)</span>
+
+</code></pre></div></div>
+<h3 id="for">for</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># range(반복횟수):
+# for 변수 in range(시작값, 끝값+1, 증가값):
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+
+
+<span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+
+
+<span class="c1">#range(이상, 미만)
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+
+<span class="c1"># 중첩 For
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">"   "</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">" "</span><span class="p">)</span>
+
+<span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>    
+<span class="mi">2</span>   <span class="mi">4</span>   <span class="mi">6</span>    
+<span class="mi">3</span>   <span class="mi">6</span>   <span class="mi">9</span>    
+
+
+<span class="c1">#1~10 의 합    
+</span><span class="nb">sum</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="o">+</span><span class="n">i</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+
+<span class="mi">55</span>
+
+</code></pre></div></div>
+<h3 id="while">while</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+<span class="nb">sum</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">:</span>
+    <span class="nb">sum</span><span class="o">=</span><span class="nb">sum</span><span class="o">+</span><span class="n">i</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="mi">55</span>
+</code></pre></div></div>
 
 <h2 id="반복문">반복문</h2>
 
