@@ -164,10 +164,10 @@ d:\jekyll-blog>bundle install
 
 테마가 다운된 경로에서 서비스를 시작 합니다
 
-> bundel exec jekyll serve
+> bundle exec jekyll serve
 
 ```
-d:\jekyll-blog>bundel exec jekyll serve
+d:\jekyll-blog>bundle exec jekyll serve
 ```
 
 ![jekyll-github-blog-01_12](\assets\images_post\jekyll\jekyll-github-blog-01_12.png)
