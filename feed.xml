@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-11-01T13:11:00+00:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[1강] GitHub blog 만들기(jekyll 기본 설정)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/" rel="alternate" type="text/html" title="[1강] GitHub blog 만들기(jekyll 기본 설정)" /><published>2021-10-24T00:00:00+00:00</published><updated>2021-10-24T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/">&lt;p&gt;jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   &lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-11-22T22:43:30+09:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[1강] GitHub blog 만들기(jekyll 기본 설정)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/" rel="alternate" type="text/html" title="[1강] GitHub blog 만들기(jekyll 기본 설정)" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/">&lt;p&gt;jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   &lt;br /&gt;
 작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. &lt;br /&gt;
 최대한 단순하고 간략하게만 정리하도록 하겠습니다.&lt;/p&gt;
 
@@ -148,10 +148,10 @@ d:\jekyll-blog&amp;gt;
 &lt;p&gt;테마가 다운된 경로에서 서비스를 시작 합니다&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;bundel exec jekyll serve&lt;/p&gt;
+  &lt;p&gt;bundle exec jekyll serve&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;d:\jekyll-blog&amp;gt;bundel exec jekyll serve
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;d:\jekyll-blog&amp;gt;bundle exec jekyll serve
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-01_12.png&quot; alt=&quot;jekyll-github-blog-01_12&quot; /&gt;&lt;/p&gt;
@@ -220,95 +220,7 @@ gemspec
 &lt;p&gt;다시 bundle install 을 통해서 변경사항을 재설치 합니다.&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;bundle install&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="jekyll" /><category term="githug" /><category term="blog" /><category term="github blog" /><category term="minimal-mistakes" /><summary type="html">jekyll을 통해서 GitHub blog를 만들어 보겠습니다. 작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. 최대한 단순하고 간략하게만 정리하도록 하겠습니다.</summary></entry><entry><title type="html">[2강] GitHub blog 만들기(GitHub 설정 및 도메인 연결)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)/" rel="alternate" type="text/html" title="[2강] GitHub blog 만들기(GitHub 설정 및 도메인 연결)" /><published>2021-10-24T00:00:00+00:00</published><updated>2021-10-24T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)/">&lt;p&gt;GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;github-계정-생성-및-저장소-생성&quot;&gt;GitHub 계정 생성 및 저장소 생성&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot;&gt;https://github.com/&lt;/a&gt; 에 Account를 생성 합니다. &lt;br /&gt;
-Account 로그인 후에 Create a new Repository 를 선택하여, 다음 이름 규칙으로 저장소를 생성합니다. &lt;br /&gt;
-&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-02_1.png&quot; alt=&quot;jekyll-github-blog-02_1&quot; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;계정명&lt;/strong&gt;.github.io&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;제 계정명은 devjaedol 입니다. &lt;br /&gt;
-저장소 이름은  devjaedol.github.io 로 작성 합니다. &lt;br /&gt;
-저장소는  Public으로 설정하고 생성 합니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;git-저장소에-소스-commit-및-구조-설명&quot;&gt;Git 저장소에 소스 Commit 및 구조 설명&lt;/h2&gt;
-
-&lt;p&gt;1강에서 작업한 D:\jekyll-blog 에 내용을 생성한 git repository에 다음과 같이 위치 시킵니다.
-bundle exec jekyll serve 명령어를 통해 서버를 실행 시키면, 
-설정된 jekyll 내용대로 html 이 D:\jekyll-blog_site 에 생성됩니다.
-위 두가지 설정을 생성한 repository에 2개의 branch를 생성하여 위치 시킵니다.&lt;/p&gt;
-
-&lt;p&gt;GitHub 저장소 구조&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;계정명.github.io
-    &lt;ul&gt;
-      &lt;li&gt;master   : jekyll를 통해 컴파일된 HTML이 배치됨
-        &lt;ul&gt;
-          &lt;li&gt;( D:\jekyll-blog_site 이하 내용 )&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;source   : jekyll 설정 소스가 배치됨
-        &lt;ul&gt;
-          &lt;li&gt;( D:\jekyll-blog 이하 내용 )&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;source branch의 jekyll 소스를 Travis-CI를 통해 자동 빌드하여 master brach로 자동화 처리를 다음 편에서 진행 합니다. &lt;br /&gt;
-즉, master에 _site의 내용은 자동으로 업데이트 되나, 지금은 구동되는 구조를 이해하기 위해서 다음과 같이 진행 해보겠습니다.&lt;/p&gt;
-
-&lt;p&gt;D:\jekyll-blog_site 에서 cmd 창에 다음 명령어를 입력 합니다. &lt;br /&gt;
-위 작업을 하기 위해서는 git 설치와 git접속 인증 설정 등이 되어 있어야 합니다.&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git init
-git commit -m &quot;first site commit&quot;
-git remote add origin https://github.com/계정명/계정명.github.io.git
-git branch -M master
-git push -u origin master
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;git push가 완료된 후 브라우저를 통해서   &lt;br /&gt;
-https://계정명.github.io 으로 접속 해 봅니다. &lt;br /&gt;
-로컬 기동 화면과 같은 화면이 해당 계정명으로 출력 됩니다. &lt;br /&gt;
-(아래에서 주소가 다름 참고)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-01_13.png&quot; alt=&quot;jekyll-github-blog-01_1&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;doamin-연결&quot;&gt;Doamin 연결&lt;/h2&gt;
-
-&lt;p&gt;연결할 도메인의 DNS를 github로 설정을 변경 합니다.   &lt;br /&gt;
-&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-02_3.png&quot; alt=&quot;jekyll-github-blog-02_3&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;DNS 설정 값
-    &lt;ul&gt;
-      &lt;li&gt;A Type
-        &lt;ul&gt;
-          &lt;li&gt;185.199.108.153&lt;/li&gt;
-          &lt;li&gt;185.199.109.153&lt;/li&gt;
-          &lt;li&gt;185.199.110.153&lt;/li&gt;
-          &lt;li&gt;185.199.111.153&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;CNAME Type
-        &lt;ul&gt;
-          &lt;li&gt;devjaedol.github.io&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;개인 도메인을 GitHub에 연결하려면, 연결할 Repository에 접근 합니다.  &lt;br /&gt;
-settings &amp;gt;  Pages  &amp;gt; Cusom domain 에 도메인을 입력 후 저장 합니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-02_2.png&quot; alt=&quot;jekyll-github-blog-02_2&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;DNS 등이 정상적으로 되었다면, 에러 없이 Save가 됩니다만, DNS오류 등이 발생하면 해당 내용이 출력 됩니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="jekyll" /><category term="githug" /><category term="blog" /><category term="github blog" /><category term="minimal-mistakes" /><summary type="html">GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.</summary></entry><entry><title type="html">electron 설치 패키지 셋팅</title><link href="https://kimjaehyun.co.kr/nodejs/electron_default_setup/" rel="alternate" type="text/html" title="electron 설치 패키지 셋팅" /><published>2021-10-24T00:00:00+00:00</published><updated>2021-10-24T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/nodejs/electron_default_setup</id><content type="html" xml:base="https://kimjaehyun.co.kr/nodejs/electron_default_setup/">&lt;p&gt;&lt;strong&gt;Build cross-platform desktop apps with JavaScript, HTML, and CSS&lt;/strong&gt;  &lt;br /&gt;
+&lt;/blockquote&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="jekyll" /><category term="githug" /><category term="blog" /><category term="github blog" /><category term="minimal-mistakes" /><summary type="html">jekyll을 통해서 GitHub blog를 만들어 보겠습니다. 작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. 최대한 단순하고 간략하게만 정리하도록 하겠습니다.</summary></entry><entry><title type="html">electron 설치 패키지 셋팅</title><link href="https://kimjaehyun.co.kr/nodejs/electron_default_setup/" rel="alternate" type="text/html" title="electron 설치 패키지 셋팅" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/nodejs/electron_default_setup</id><content type="html" xml:base="https://kimjaehyun.co.kr/nodejs/electron_default_setup/">&lt;p&gt;&lt;strong&gt;Build cross-platform desktop apps with JavaScript, HTML, and CSS&lt;/strong&gt;  &lt;br /&gt;
 최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다.&lt;/p&gt;
 
 &lt;p&gt;아래 제품들이 Electron을 통해 개발된 SW Package 입니다.&lt;/p&gt;
@@ -647,7 +559,95 @@ process.platform : win32
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;패키지 완료 후 dist 폴더에 해당 설치 파일이 생성 됩니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;\assets\images_post\nodejs\2021-10-24-electron_02.png&quot; alt=&quot;2021-10-24-electron_02.png&quot; /&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="nodejs" /><category term="nodejs" /><category term="electron" /><category term="install package" /><summary type="html">Build cross-platform desktop apps with JavaScript, HTML, and CSS 최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다.</summary></entry><entry><title type="html">ES6(ECMAScript6)등 간략 정리</title><link href="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/" rel="alternate" type="text/html" title="ES6(ECMAScript6)등 간략 정리" /><published>2021-10-20T00:00:00+00:00</published><updated>2021-10-20T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-ES6_Summary</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/">&lt;p&gt;ES6 문법을 간략히 정리해 보겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\nodejs\2021-10-24-electron_02.png&quot; alt=&quot;2021-10-24-electron_02.png&quot; /&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="nodejs" /><category term="nodejs" /><category term="electron" /><category term="install package" /><summary type="html">Build cross-platform desktop apps with JavaScript, HTML, and CSS 최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다.</summary></entry><entry><title type="html">[2강] GitHub blog 만들기(GitHub 설정 및 도메인 연결)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)/" rel="alternate" type="text/html" title="[2강] GitHub blog 만들기(GitHub 설정 및 도메인 연결)" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(2)/">&lt;p&gt;GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;github-계정-생성-및-저장소-생성&quot;&gt;GitHub 계정 생성 및 저장소 생성&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot;&gt;https://github.com/&lt;/a&gt; 에 Account를 생성 합니다. &lt;br /&gt;
+Account 로그인 후에 Create a new Repository 를 선택하여, 다음 이름 규칙으로 저장소를 생성합니다. &lt;br /&gt;
+&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-02_1.png&quot; alt=&quot;jekyll-github-blog-02_1&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;계정명&lt;/strong&gt;.github.io&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;제 계정명은 devjaedol 입니다. &lt;br /&gt;
+저장소 이름은  devjaedol.github.io 로 작성 합니다. &lt;br /&gt;
+저장소는  Public으로 설정하고 생성 합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;git-저장소에-소스-commit-및-구조-설명&quot;&gt;Git 저장소에 소스 Commit 및 구조 설명&lt;/h2&gt;
+
+&lt;p&gt;1강에서 작업한 D:\jekyll-blog 에 내용을 생성한 git repository에 다음과 같이 위치 시킵니다.
+bundle exec jekyll serve 명령어를 통해 서버를 실행 시키면, 
+설정된 jekyll 내용대로 html 이 D:\jekyll-blog_site 에 생성됩니다.
+위 두가지 설정을 생성한 repository에 2개의 branch를 생성하여 위치 시킵니다.&lt;/p&gt;
+
+&lt;p&gt;GitHub 저장소 구조&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;계정명.github.io
+    &lt;ul&gt;
+      &lt;li&gt;master   : jekyll를 통해 컴파일된 HTML이 배치됨
+        &lt;ul&gt;
+          &lt;li&gt;( D:\jekyll-blog_site 이하 내용 )&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;source   : jekyll 설정 소스가 배치됨
+        &lt;ul&gt;
+          &lt;li&gt;( D:\jekyll-blog 이하 내용 )&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;source branch의 jekyll 소스를 Travis-CI를 통해 자동 빌드하여 master brach로 자동화 처리를 다음 편에서 진행 합니다. &lt;br /&gt;
+즉, master에 _site의 내용은 자동으로 업데이트 되나, 지금은 구동되는 구조를 이해하기 위해서 다음과 같이 진행 해보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;D:\jekyll-blog_site 에서 cmd 창에 다음 명령어를 입력 합니다. &lt;br /&gt;
+위 작업을 하기 위해서는 git 설치와 git접속 인증 설정 등이 되어 있어야 합니다.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git init
+git commit -m &quot;first site commit&quot;
+git remote add origin https://github.com/계정명/계정명.github.io.git
+git branch -M master
+git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;git push가 완료된 후 브라우저를 통해서   &lt;br /&gt;
+https://계정명.github.io 으로 접속 해 봅니다. &lt;br /&gt;
+로컬 기동 화면과 같은 화면이 해당 계정명으로 출력 됩니다. &lt;br /&gt;
+(아래에서 주소가 다름 참고)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-01_13.png&quot; alt=&quot;jekyll-github-blog-01_1&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;doamin-연결&quot;&gt;Doamin 연결&lt;/h2&gt;
+
+&lt;p&gt;연결할 도메인의 DNS를 github로 설정을 변경 합니다.   &lt;br /&gt;
+&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-02_3.png&quot; alt=&quot;jekyll-github-blog-02_3&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;DNS 설정 값
+    &lt;ul&gt;
+      &lt;li&gt;A Type
+        &lt;ul&gt;
+          &lt;li&gt;185.199.108.153&lt;/li&gt;
+          &lt;li&gt;185.199.109.153&lt;/li&gt;
+          &lt;li&gt;185.199.110.153&lt;/li&gt;
+          &lt;li&gt;185.199.111.153&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;CNAME Type
+        &lt;ul&gt;
+          &lt;li&gt;devjaedol.github.io&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;개인 도메인을 GitHub에 연결하려면, 연결할 Repository에 접근 합니다.  &lt;br /&gt;
+settings &amp;gt;  Pages  &amp;gt; Cusom domain 에 도메인을 입력 후 저장 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\jekyll\jekyll-github-blog-02_2.png&quot; alt=&quot;jekyll-github-blog-02_2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;DNS 등이 정상적으로 되었다면, 에러 없이 Save가 됩니다만, DNS오류 등이 발생하면 해당 내용이 출력 됩니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="jekyll" /><category term="githug" /><category term="blog" /><category term="github blog" /><category term="minimal-mistakes" /><summary type="html">GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.</summary></entry><entry><title type="html">ES6(ECMAScript6)등 간략 정리</title><link href="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/" rel="alternate" type="text/html" title="ES6(ECMAScript6)등 간략 정리" /><published>2021-10-20T00:00:00+09:00</published><updated>2021-10-20T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-ES6_Summary</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-ES6_Summary/">&lt;p&gt;ES6 문법을 간략히 정리해 보겠습니다.&lt;/p&gt;
 
 &lt;p&gt;특별한 설명이 필요없는 보시면 아실듯한…&lt;/p&gt;
 
@@ -830,142 +830,7 @@ process.platform : win32
 &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mycar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;sonata&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mycar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;// sonata&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mycar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;// 10000&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="javascript" /><category term="ES6" /><category term="ES5" /><category term="ECMAScript6" /><summary type="html">ES6 문법을 간략히 정리해 보겠습니다.</summary></entry><entry><title type="html">크롬 확장 앱 개발 참조 경로(Chrome Extensions)</title><link href="https://kimjaehyun.co.kr/etc/chrome_extension/" rel="alternate" type="text/html" title="크롬 확장 앱 개발 참조 경로(Chrome Extensions)" /><published>2021-10-19T00:00:00+00:00</published><updated>2021-10-19T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/etc/chrome_extension</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/chrome_extension/">&lt;p&gt;크롬 확장 앱 관련 정보 참조 링크&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://blog.hubspot.com/marketing/best-chrome-extensions&quot; target=&quot;_blank&quot;&gt;The 70 Best Chrome Extensions for 2021&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://developer.chrome.com/docs/extensions/mv3/getstarted/&quot; target=&quot;_blank&quot;&gt;https://developer.chrome.com/docs/extensions/mv3/getstarted/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/GoogleChrome/chrome-extensions-samples&quot; target=&quot;_blank&quot;&gt;https://github.com/GoogleChrome/chrome-extensions-samples&lt;/a&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="Chrome" /><category term="extension" /><category term="크롬앱" /><category term="link" /><summary type="html">크롬 확장 앱 관련 정보 참조 링크</summary></entry><entry><title type="html">javascript version ES5 vs ES6</title><link href="https://kimjaehyun.co.kr/javascript/JS-Version/" rel="alternate" type="text/html" title="javascript version ES5 vs ES6" /><published>2021-10-19T00:00:00+00:00</published><updated>2021-10-19T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Version</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Version/">&lt;p&gt;자바스크립트 버전별 정리
-참조 : &lt;a href=&quot;https://www.w3schools.com/js/js_versions.asp&quot; target=&quot;_blank&quot;&gt;w3school&lt;/a&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Ver&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Official Name&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ES1&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 1 (1997)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ES2&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2 (1998)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ES3&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 3 (1999)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ES4&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 4&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ES5&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 5 (2009)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ES6&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2015&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2016&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2017&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2018&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;es5-features&quot;&gt;ES5 Features&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;use strict&lt;/li&gt;
-  &lt;li&gt;String[number] access&lt;/li&gt;
-  &lt;li&gt;Multiline strings&lt;/li&gt;
-  &lt;li&gt;String.trim()&lt;/li&gt;
-  &lt;li&gt;Array.isArray()&lt;/li&gt;
-  &lt;li&gt;Array.forEach()&lt;/li&gt;
-  &lt;li&gt;Array.map()&lt;/li&gt;
-  &lt;li&gt;Array.filter()&lt;/li&gt;
-  &lt;li&gt;Array.reduce()&lt;/li&gt;
-  &lt;li&gt;Array.reduceRight()&lt;/li&gt;
-  &lt;li&gt;Array.every()&lt;/li&gt;
-  &lt;li&gt;Array.some()&lt;/li&gt;
-  &lt;li&gt;Array.indexOf()&lt;/li&gt;
-  &lt;li&gt;Array.lastIndexOf()&lt;/li&gt;
-  &lt;li&gt;JSON.parse()&lt;/li&gt;
-  &lt;li&gt;JSON.stringify()&lt;/li&gt;
-  &lt;li&gt;Date.now()&lt;/li&gt;
-  &lt;li&gt;Date.toISOString()&lt;/li&gt;
-  &lt;li&gt;Date.toJSON()&lt;/li&gt;
-  &lt;li&gt;Property getters and setters&lt;/li&gt;
-  &lt;li&gt;Reserved words as property names&lt;/li&gt;
-  &lt;li&gt;Object methods&lt;/li&gt;
-  &lt;li&gt;Object defineProperty()&lt;/li&gt;
-  &lt;li&gt;Function.bind()&lt;/li&gt;
-  &lt;li&gt;Trailing commas&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;es6-features2015&quot;&gt;ES6 Features(2015)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;The let keyword&lt;/li&gt;
-  &lt;li&gt;The const keyword&lt;/li&gt;
-  &lt;li&gt;Arrow Functions&lt;/li&gt;
-  &lt;li&gt;For/of&lt;/li&gt;
-  &lt;li&gt;Map Objects&lt;/li&gt;
-  &lt;li&gt;Set Objects&lt;/li&gt;
-  &lt;li&gt;Classes&lt;/li&gt;
-  &lt;li&gt;Promises&lt;/li&gt;
-  &lt;li&gt;Symbol&lt;/li&gt;
-  &lt;li&gt;Default Parameters&lt;/li&gt;
-  &lt;li&gt;Function Rest Parameter&lt;/li&gt;
-  &lt;li&gt;String.includes()&lt;/li&gt;
-  &lt;li&gt;String.startsWith()&lt;/li&gt;
-  &lt;li&gt;String.endsWith()&lt;/li&gt;
-  &lt;li&gt;Array.from()&lt;/li&gt;
-  &lt;li&gt;Array.keys()&lt;/li&gt;
-  &lt;li&gt;Array.find()&lt;/li&gt;
-  &lt;li&gt;Array.findIndex()&lt;/li&gt;
-  &lt;li&gt;New Math Methods&lt;/li&gt;
-  &lt;li&gt;New Number Properties&lt;/li&gt;
-  &lt;li&gt;New Number Methods&lt;/li&gt;
-  &lt;li&gt;New Global Methods&lt;/li&gt;
-  &lt;li&gt;Iterables Object.entries&lt;/li&gt;
-  &lt;li&gt;JavaScript Modules&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;es6-features2016&quot;&gt;ES6 Features(2016)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;JavaScript Exponentiation (**)&lt;/li&gt;
-  &lt;li&gt;JavaScript Exponentiation assignment (**=)&lt;/li&gt;
-  &lt;li&gt;JavaScript Array.prototype.includes&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;es6-features2017&quot;&gt;ES6 Features(2017)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;JavaScript String padding&lt;/li&gt;
-  &lt;li&gt;JavaScript Object.entries&lt;/li&gt;
-  &lt;li&gt;JavaScript Object.values&lt;/li&gt;
-  &lt;li&gt;JavaScript async functions&lt;/li&gt;
-  &lt;li&gt;JavaScript shared memory&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;es6-features2018&quot;&gt;ES6 Features(2018)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Asynchronous Iteration&lt;/li&gt;
-  &lt;li&gt;Promise Finally&lt;/li&gt;
-  &lt;li&gt;Object Rest Properties&lt;/li&gt;
-  &lt;li&gt;New RegExp Features&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>devjaedol</name></author><category term="javascript" /><category term="ES6" /><category term="ES5" /><summary type="html">자바스크립트 버전별 정리 참조 : w3school</summary></entry><entry><title type="html">Python 설치</title><link href="https://kimjaehyun.co.kr/python/python_study_01/" rel="alternate" type="text/html" title="Python 설치" /><published>2021-10-19T00:00:00+00:00</published><updated>2021-10-19T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/python/python_study_01</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_01/">&lt;p&gt;파이썬 공부를 시작해봅시다. &lt;br /&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="javascript" /><category term="ES6" /><category term="ES5" /><category term="ECMAScript6" /><summary type="html">ES6 문법을 간략히 정리해 보겠습니다.</summary></entry><entry><title type="html">Python 설치</title><link href="https://kimjaehyun.co.kr/python/python_study_01/" rel="alternate" type="text/html" title="Python 설치" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/python/python_study_01</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_01/">&lt;p&gt;파이썬 공부를 시작해봅시다. &lt;br /&gt;
 우선 파이썬 설치를… 시작이 반…&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.python.org/downloads/&quot; target=&quot;_blank&quot;&gt;다운 로드 경로&lt;/a&gt;&lt;/p&gt;
@@ -998,7 +863,7 @@ process.platform : win32
 
 &lt;p&gt;설치 버전이 정상 표기되면, 설치 완료됨.&lt;/p&gt;
 
-&lt;p&gt;window path는 필요시 추가해야 합니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반…</summary></entry><entry><title type="html">Python 기초</title><link href="https://kimjaehyun.co.kr/python/python_study_02/" rel="alternate" type="text/html" title="Python 기초" /><published>2021-10-19T00:00:00+00:00</published><updated>2021-10-19T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/python/python_study_02</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_02/">&lt;p&gt;파이썬 공부를 스피드 있게 해봅시다.  &lt;br /&gt;
+&lt;p&gt;window path는 필요시 추가해야 합니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반…</summary></entry><entry><title type="html">Python 기초</title><link href="https://kimjaehyun.co.kr/python/python_study_02/" rel="alternate" type="text/html" title="Python 기초" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/python/python_study_02</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_02/">&lt;p&gt;파이썬 공부를 스피드 있게 해봅시다.  &lt;br /&gt;
 파이썬 IDLE를 실행 합니다.     &lt;br /&gt;
 설명이 필요 없는 프로그램 공부의 기본을 Start!!!!  &lt;br /&gt;
 &lt;a href=&quot;https://docs.python.org/ko/3/tutorial/index.html&quot; target=&quot;_blank&quot;&gt;Python 공식 자습서&lt;/a&gt;&lt;/p&gt;
@@ -1247,7 +1112,142 @@ Python에 주요 자료형 입니다.&lt;/p&gt;
 &lt;span class=&quot;s&quot;&gt;'global'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'if'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'import'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'in'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'is'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'lambda'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'nonlocal'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
  &lt;span class=&quot;s&quot;&gt;'not'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'or'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'pass'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'raise'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'return'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'try'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
  &lt;span class=&quot;s&quot;&gt;'while'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'with'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'yield'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 스피드 있게 해봅시다. 파이썬 IDLE를 실행 합니다. 설명이 필요 없는 프로그램 공부의 기본을 Start!!!! Python 공식 자습서</summary></entry><entry><title type="html">MarkDown 사용법</title><link href="https://kimjaehyun.co.kr/etc/markdown/" rel="alternate" type="text/html" title="MarkDown 사용법" /><published>2021-10-16T00:00:00+00:00</published><updated>2021-10-16T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/etc/markdown</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/markdown/">&lt;p&gt;MakrDown에 사용 법에 대해서 간략히 보시죠. &lt;br /&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 스피드 있게 해봅시다. 파이썬 IDLE를 실행 합니다. 설명이 필요 없는 프로그램 공부의 기본을 Start!!!! Python 공식 자습서</summary></entry><entry><title type="html">javascript version ES5 vs ES6</title><link href="https://kimjaehyun.co.kr/javascript/JS-Version/" rel="alternate" type="text/html" title="javascript version ES5 vs ES6" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Version</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Version/">&lt;p&gt;자바스크립트 버전별 정리
+참조 : &lt;a href=&quot;https://www.w3schools.com/js/js_versions.asp&quot; target=&quot;_blank&quot;&gt;w3school&lt;/a&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Ver&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Official Name&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ES1&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 1 (1997)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ES2&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2 (1998)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ES3&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 3 (1999)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ES4&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ES5&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 5 (2009)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ES6&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2015&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2016&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2017&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ECMAScript 2018&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;es5-features&quot;&gt;ES5 Features&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;use strict&lt;/li&gt;
+  &lt;li&gt;String[number] access&lt;/li&gt;
+  &lt;li&gt;Multiline strings&lt;/li&gt;
+  &lt;li&gt;String.trim()&lt;/li&gt;
+  &lt;li&gt;Array.isArray()&lt;/li&gt;
+  &lt;li&gt;Array.forEach()&lt;/li&gt;
+  &lt;li&gt;Array.map()&lt;/li&gt;
+  &lt;li&gt;Array.filter()&lt;/li&gt;
+  &lt;li&gt;Array.reduce()&lt;/li&gt;
+  &lt;li&gt;Array.reduceRight()&lt;/li&gt;
+  &lt;li&gt;Array.every()&lt;/li&gt;
+  &lt;li&gt;Array.some()&lt;/li&gt;
+  &lt;li&gt;Array.indexOf()&lt;/li&gt;
+  &lt;li&gt;Array.lastIndexOf()&lt;/li&gt;
+  &lt;li&gt;JSON.parse()&lt;/li&gt;
+  &lt;li&gt;JSON.stringify()&lt;/li&gt;
+  &lt;li&gt;Date.now()&lt;/li&gt;
+  &lt;li&gt;Date.toISOString()&lt;/li&gt;
+  &lt;li&gt;Date.toJSON()&lt;/li&gt;
+  &lt;li&gt;Property getters and setters&lt;/li&gt;
+  &lt;li&gt;Reserved words as property names&lt;/li&gt;
+  &lt;li&gt;Object methods&lt;/li&gt;
+  &lt;li&gt;Object defineProperty()&lt;/li&gt;
+  &lt;li&gt;Function.bind()&lt;/li&gt;
+  &lt;li&gt;Trailing commas&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;es6-features2015&quot;&gt;ES6 Features(2015)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;The let keyword&lt;/li&gt;
+  &lt;li&gt;The const keyword&lt;/li&gt;
+  &lt;li&gt;Arrow Functions&lt;/li&gt;
+  &lt;li&gt;For/of&lt;/li&gt;
+  &lt;li&gt;Map Objects&lt;/li&gt;
+  &lt;li&gt;Set Objects&lt;/li&gt;
+  &lt;li&gt;Classes&lt;/li&gt;
+  &lt;li&gt;Promises&lt;/li&gt;
+  &lt;li&gt;Symbol&lt;/li&gt;
+  &lt;li&gt;Default Parameters&lt;/li&gt;
+  &lt;li&gt;Function Rest Parameter&lt;/li&gt;
+  &lt;li&gt;String.includes()&lt;/li&gt;
+  &lt;li&gt;String.startsWith()&lt;/li&gt;
+  &lt;li&gt;String.endsWith()&lt;/li&gt;
+  &lt;li&gt;Array.from()&lt;/li&gt;
+  &lt;li&gt;Array.keys()&lt;/li&gt;
+  &lt;li&gt;Array.find()&lt;/li&gt;
+  &lt;li&gt;Array.findIndex()&lt;/li&gt;
+  &lt;li&gt;New Math Methods&lt;/li&gt;
+  &lt;li&gt;New Number Properties&lt;/li&gt;
+  &lt;li&gt;New Number Methods&lt;/li&gt;
+  &lt;li&gt;New Global Methods&lt;/li&gt;
+  &lt;li&gt;Iterables Object.entries&lt;/li&gt;
+  &lt;li&gt;JavaScript Modules&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;es6-features2016&quot;&gt;ES6 Features(2016)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;JavaScript Exponentiation (**)&lt;/li&gt;
+  &lt;li&gt;JavaScript Exponentiation assignment (**=)&lt;/li&gt;
+  &lt;li&gt;JavaScript Array.prototype.includes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;es6-features2017&quot;&gt;ES6 Features(2017)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;JavaScript String padding&lt;/li&gt;
+  &lt;li&gt;JavaScript Object.entries&lt;/li&gt;
+  &lt;li&gt;JavaScript Object.values&lt;/li&gt;
+  &lt;li&gt;JavaScript async functions&lt;/li&gt;
+  &lt;li&gt;JavaScript shared memory&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;es6-features2018&quot;&gt;ES6 Features(2018)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Asynchronous Iteration&lt;/li&gt;
+  &lt;li&gt;Promise Finally&lt;/li&gt;
+  &lt;li&gt;Object Rest Properties&lt;/li&gt;
+  &lt;li&gt;New RegExp Features&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>devjaedol</name></author><category term="javascript" /><category term="ES6" /><category term="ES5" /><summary type="html">자바스크립트 버전별 정리 참조 : w3school</summary></entry><entry><title type="html">크롬 확장 앱 개발 참조 경로(Chrome Extensions)</title><link href="https://kimjaehyun.co.kr/etc/chrome_extension/" rel="alternate" type="text/html" title="크롬 확장 앱 개발 참조 경로(Chrome Extensions)" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/chrome_extension</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/chrome_extension/">&lt;p&gt;크롬 확장 앱 관련 정보 참조 링크&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.hubspot.com/marketing/best-chrome-extensions&quot; target=&quot;_blank&quot;&gt;The 70 Best Chrome Extensions for 2021&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.chrome.com/docs/extensions/mv3/getstarted/&quot; target=&quot;_blank&quot;&gt;https://developer.chrome.com/docs/extensions/mv3/getstarted/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/GoogleChrome/chrome-extensions-samples&quot; target=&quot;_blank&quot;&gt;https://github.com/GoogleChrome/chrome-extensions-samples&lt;/a&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="Chrome" /><category term="extension" /><category term="크롬앱" /><category term="link" /><summary type="html">크롬 확장 앱 관련 정보 참조 링크</summary></entry><entry><title type="html">MarkDown 사용법</title><link href="https://kimjaehyun.co.kr/etc/markdown/" rel="alternate" type="text/html" title="MarkDown 사용법" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/markdown</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/markdown/">&lt;p&gt;MakrDown에 사용 법에 대해서 간략히 보시죠. &lt;br /&gt;
 확장자 *.md 입니다. &lt;br /&gt;
 대표적 예제 Readmd.md.  &lt;br /&gt;
 사용처, 경량 기반 텍스트 마크업 언어&lt;/p&gt;
@@ -1597,7 +1597,7 @@ function echo() {
 
 &lt;p&gt;https://typora.io/&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;\assets\images_post\2021-20-16-markdown_typora.png&quot; alt=&quot;Typora editor&quot; title=&quot;Typora editor&quot; /&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="mk" /><category term="markdown" /><summary type="html">MakrDown에 사용 법에 대해서 간략히 보시죠. 확장자 *.md 입니다. 대표적 예제 Readmd.md. 사용처, 경량 기반 텍스트 마크업 언어</summary></entry><entry><title type="html">GitHub blog 오픈</title><link href="https://kimjaehyun.co.kr/blog/blog_open/" rel="alternate" type="text/html" title="GitHub blog 오픈" /><published>2021-10-16T00:00:00+00:00</published><updated>2021-10-16T00:00:00+00:00</updated><id>https://kimjaehyun.co.kr/blog/blog_open</id><content type="html" xml:base="https://kimjaehyun.co.kr/blog/blog_open/">&lt;p&gt;GitHub Blog를 개설 했습니다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\2021-20-16-markdown_typora.png&quot; alt=&quot;Typora editor&quot; title=&quot;Typora editor&quot; /&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="mk" /><category term="markdown" /><summary type="html">MakrDown에 사용 법에 대해서 간략히 보시죠. 확장자 *.md 입니다. 대표적 예제 Readmd.md. 사용처, 경량 기반 텍스트 마크업 언어</summary></entry><entry><title type="html">GitHub blog 오픈</title><link href="https://kimjaehyun.co.kr/blog/blog_open/" rel="alternate" type="text/html" title="GitHub blog 오픈" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/blog/blog_open</id><content type="html" xml:base="https://kimjaehyun.co.kr/blog/blog_open/">&lt;p&gt;GitHub Blog를 개설 했습니다.&lt;/p&gt;
 
 &lt;p&gt;Tistory에 Blog들이 Kakao로 통합되면서, 관리가 어려운 상황이 되어서, Git Blog로 만들어 보았습니다.&lt;/p&gt;
 

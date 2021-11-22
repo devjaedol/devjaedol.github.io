@@ -1,1 +1,2 @@
-Sitemap: https://kimjaehyun.co.kr/sitemap.xml
+User-agent: *
+Allow:/
