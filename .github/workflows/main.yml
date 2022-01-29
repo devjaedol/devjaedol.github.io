@@ -76,11 +76,6 @@ jobs:
           git add *
           git commit -m "GitHub Action CI" -a
 
-      - name: Run PWD
-        run: pwd
-      - name: git status
-        run: git status
-          
 
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -88,3 +83,7 @@ jobs:
           directory: ${{ github.workspace }}/master
           branch: 'master'
           github_token: ${{ secrets.REPO_TOKEN }}
+          force: true
+          
+      - name: Run ls -al
+        run: ls -al
