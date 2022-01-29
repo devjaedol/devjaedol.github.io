@@ -74,3 +74,6 @@ var obj = function(){
 
 module.exports = obj; #함수를 할당함
 ```
+
+
+
