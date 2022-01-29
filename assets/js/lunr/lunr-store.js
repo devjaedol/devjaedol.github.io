@@ -60,7 +60,7 @@ var store = [{
         "teaser": null
       },{
         "title": "NodeJS 기초 정리 - 모듈화",
-        "excerpt":"모듈 분리 방법 별도 파일을 분리하여 모듈화 함 함수 분리 exports.함수명 = 함수 # main.js var module = reqire(\"./fn\") module.함수명1(); module.함수명2(); var obj = module.함수명3(); console.log(obj.id); console.log(obj.name); # fn.js exports.함수명1 = function(){ #.... } exports.함수명2 = function(){ #.... } exports.함수명3 = {id:123, name:'홍길동'}; 객체 분리(1) module.exports = 객체 # main.js...","categories": ["nodejs"],
+        "excerpt":"모듈 분리 방법 로직을 기능별로 별도 파일을 분리하여 모듈화 할 수 있습니다. 함수 분리 exports.함수명 = 함수 # main.js var module = reqire(\"./fn\") module.함수명1(); module.함수명2(); var obj = module.함수명3(); console.log(obj.id); console.log(obj.name); # fn.js exports.함수명1 = function(){ #.... } exports.함수명2 = function(){ #.... } exports.함수명3 = {id:123, name:'홍길동'}; 객체 분리(1) module.exports...","categories": ["nodejs"],
         "tags": ["nodejs"],
         "url": "/nodejs/NodeJS_summary_module/",
         "teaser": null
