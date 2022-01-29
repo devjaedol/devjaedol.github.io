@@ -13,13 +13,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+#/home/runner/work/devjaedol.github.io/devjaedol.github.io
       - name: Run PWD
         run: pwd
 
       - name: Run ls -al
         run: ls -al
 
+# Commit id => cea156d3c47dbbd70b84fb7518bdecbba36445ad
       - name: Check COMMIT_ID
         env : 
           COMMIT_ID : ${{github.sha}}
         run: echo "Commit id => $COMMIT_ID"
+
+      - name: Check REPO_TOKEN
+        env : 
+          REPO_TOKEN : ${{secretes.REPO_TOKEN}}
+        run: echo "REPO_TOKEN => $REPO_TOKEN"
