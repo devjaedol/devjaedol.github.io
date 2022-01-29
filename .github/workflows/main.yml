@@ -18,10 +18,10 @@ jobs:
 
       - name: Check COMMIT_ID
         env : 
-          COMMIT_ID : ${{github.sha}}
+          COMMIT_ID: ${{github.sha}}
         run: echo "Commit id => $COMMIT_ID"
         
 #       - name: Check REPO_TOKEN
-#         env : 
-#           REPO_TOKEN : ${{secretes.REPO_TOKEN}}
+#         env: 
+#           REPO_TOKEN: ${{secretes.REPO_TOKEN}}
 #         run: echo "REPO_TOKEN => $REPO_TOKEN"
