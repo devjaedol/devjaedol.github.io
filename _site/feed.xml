@@ -1,4 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2021-11-22T22:43:30+09:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[1강] GitHub blog 만들기(jekyll 기본 설정)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/" rel="alternate" type="text/html" title="[1강] GitHub blog 만들기(jekyll 기본 설정)" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/">&lt;p&gt;jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   &lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-01-29T15:22:50+09:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">NodeJS 기초 정리 - 모듈화</title><link href="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/" rel="alternate" type="text/html" title="NodeJS 기초 정리 - 모듈화" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module</id><content type="html" xml:base="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/">&lt;h2 id=&quot;모듈-분리-방법&quot;&gt;모듈 분리 방법&lt;/h2&gt;
+&lt;p&gt;별도 파일을 분리하여 모듈화 함&lt;/p&gt;
+
+&lt;h3 id=&quot;함수-분리&quot;&gt;함수 분리&lt;/h3&gt;
+&lt;p&gt;exports.함수명 = 함수&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reqire&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;./fn&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;함수명1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;함수명2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;함수명3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;함수명1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;....&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;함수명2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;....&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;함수명3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;홍길동&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;객체-분리1&quot;&gt;객체 분리(1)&lt;/h3&gt;
+&lt;p&gt;module.exports = 객체&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reqire&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;./obj&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fn1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fn2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fn1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;....&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fn2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;....&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;객체를&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;할당함&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;객체-분리2&quot;&gt;객체 분리(2)&lt;/h3&gt;
+&lt;p&gt;module.exports = 함수&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reqire&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;./obj&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;홍길동&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;함수를&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;할당함&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="nodejs" /><category term="nodejs" /><summary type="html">모듈 분리 방법 별도 파일을 분리하여 모듈화 함</summary></entry><entry><title type="html">[1강] GitHub blog 만들기(jekyll 기본 설정)</title><link href="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/" rel="alternate" type="text/html" title="[1강] GitHub blog 만들기(jekyll 기본 설정)" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/jekyll-git-blog_(1)/">&lt;p&gt;jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   &lt;br /&gt;
 작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. &lt;br /&gt;
 최대한 단순하고 간략하게만 정리하도록 하겠습니다.&lt;/p&gt;
 
@@ -830,40 +890,7 @@ settings &amp;gt;  Pages  &amp;gt; Cusom domain 에 도메인을 입력 후 저�
 &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mycar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;sonata&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mycar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;// sonata&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mycar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;// 10000&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="javascript" /><category term="ES6" /><category term="ES5" /><category term="ECMAScript6" /><summary type="html">ES6 문법을 간략히 정리해 보겠습니다.</summary></entry><entry><title type="html">Python 설치</title><link href="https://kimjaehyun.co.kr/python/python_study_01/" rel="alternate" type="text/html" title="Python 설치" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/python/python_study_01</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_01/">&lt;p&gt;파이썬 공부를 시작해봅시다. &lt;br /&gt;
-우선 파이썬 설치를… 시작이 반…&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.python.org/downloads/&quot; target=&quot;_blank&quot;&gt;다운 로드 경로&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_1.png&quot; alt=&quot;python-study-01-_1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;다운로드 선택&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_2.png&quot; alt=&quot;python-study-01-_2&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;설치 경로를 변경하기 위해서 Customzie 선택&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_3.png&quot; alt=&quot;python-study-01-_3&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;기본값 Next&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_4.png&quot; alt=&quot;python-study-01-_4&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;경로 변경&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_5.png&quot; alt=&quot;python-study-01-_5&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_6.png&quot; alt=&quot;python-study-01-_6&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_7.png&quot; alt=&quot;python-study-01-_7&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_8.png&quot; alt=&quot;python-study-01-_8&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;설치 버전이 정상 표기되면, 설치 완료됨.&lt;/p&gt;
-
-&lt;p&gt;window path는 필요시 추가해야 합니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반…</summary></entry><entry><title type="html">Python 기초</title><link href="https://kimjaehyun.co.kr/python/python_study_02/" rel="alternate" type="text/html" title="Python 기초" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/python/python_study_02</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_02/">&lt;p&gt;파이썬 공부를 스피드 있게 해봅시다.  &lt;br /&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="javascript" /><category term="ES6" /><category term="ES5" /><category term="ECMAScript6" /><summary type="html">ES6 문법을 간략히 정리해 보겠습니다.</summary></entry><entry><title type="html">Python 기초</title><link href="https://kimjaehyun.co.kr/python/python_study_02/" rel="alternate" type="text/html" title="Python 기초" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/python/python_study_02</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_02/">&lt;p&gt;파이썬 공부를 스피드 있게 해봅시다.  &lt;br /&gt;
 파이썬 IDLE를 실행 합니다.     &lt;br /&gt;
 설명이 필요 없는 프로그램 공부의 기본을 Start!!!!  &lt;br /&gt;
 &lt;a href=&quot;https://docs.python.org/ko/3/tutorial/index.html&quot; target=&quot;_blank&quot;&gt;Python 공식 자습서&lt;/a&gt;&lt;/p&gt;
@@ -1112,7 +1139,40 @@ Python에 주요 자료형 입니다.&lt;/p&gt;
 &lt;span class=&quot;s&quot;&gt;'global'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'if'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'import'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'in'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'is'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'lambda'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'nonlocal'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
  &lt;span class=&quot;s&quot;&gt;'not'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'or'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'pass'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'raise'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'return'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'try'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
  &lt;span class=&quot;s&quot;&gt;'while'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'with'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'yield'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 스피드 있게 해봅시다. 파이썬 IDLE를 실행 합니다. 설명이 필요 없는 프로그램 공부의 기본을 Start!!!! Python 공식 자습서</summary></entry><entry><title type="html">javascript version ES5 vs ES6</title><link href="https://kimjaehyun.co.kr/javascript/JS-Version/" rel="alternate" type="text/html" title="javascript version ES5 vs ES6" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Version</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Version/">&lt;p&gt;자바스크립트 버전별 정리
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 스피드 있게 해봅시다. 파이썬 IDLE를 실행 합니다. 설명이 필요 없는 프로그램 공부의 기본을 Start!!!! Python 공식 자습서</summary></entry><entry><title type="html">Python 설치</title><link href="https://kimjaehyun.co.kr/python/python_study_01/" rel="alternate" type="text/html" title="Python 설치" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/python/python_study_01</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_01/">&lt;p&gt;파이썬 공부를 시작해봅시다. &lt;br /&gt;
+우선 파이썬 설치를… 시작이 반…&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.python.org/downloads/&quot; target=&quot;_blank&quot;&gt;다운 로드 경로&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_1.png&quot; alt=&quot;python-study-01-_1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;다운로드 선택&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_2.png&quot; alt=&quot;python-study-01-_2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;설치 경로를 변경하기 위해서 Customzie 선택&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_3.png&quot; alt=&quot;python-study-01-_3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;기본값 Next&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_4.png&quot; alt=&quot;python-study-01-_4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;경로 변경&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_5.png&quot; alt=&quot;python-study-01-_5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_6.png&quot; alt=&quot;python-study-01-_6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_7.png&quot; alt=&quot;python-study-01-_7&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets/images_post/python/python-study-01-_8.png&quot; alt=&quot;python-study-01-_8&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;설치 버전이 정상 표기되면, 설치 완료됨.&lt;/p&gt;
+
+&lt;p&gt;window path는 필요시 추가해야 합니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="python" /><category term="python강좌" /><category term="python" /><category term="초급" /><summary type="html">파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반…</summary></entry><entry><title type="html">javascript version ES5 vs ES6</title><link href="https://kimjaehyun.co.kr/javascript/JS-Version/" rel="alternate" type="text/html" title="javascript version ES5 vs ES6" /><published>2021-10-19T00:00:00+09:00</published><updated>2021-10-19T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Version</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Version/">&lt;p&gt;자바스크립트 버전별 정리
 참조 : &lt;a href=&quot;https://www.w3schools.com/js/js_versions.asp&quot; target=&quot;_blank&quot;&gt;w3school&lt;/a&gt;&lt;/p&gt;
 
 &lt;table&gt;
@@ -1597,8 +1657,4 @@ function echo() {
 
 &lt;p&gt;https://typora.io/&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;\assets\images_post\2021-20-16-markdown_typora.png&quot; alt=&quot;Typora editor&quot; title=&quot;Typora editor&quot; /&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="mk" /><category term="markdown" /><summary type="html">MakrDown에 사용 법에 대해서 간략히 보시죠. 확장자 *.md 입니다. 대표적 예제 Readmd.md. 사용처, 경량 기반 텍스트 마크업 언어</summary></entry><entry><title type="html">GitHub blog 오픈</title><link href="https://kimjaehyun.co.kr/blog/blog_open/" rel="alternate" type="text/html" title="GitHub blog 오픈" /><published>2021-10-16T00:00:00+09:00</published><updated>2021-10-16T00:00:00+09:00</updated><id>https://kimjaehyun.co.kr/blog/blog_open</id><content type="html" xml:base="https://kimjaehyun.co.kr/blog/blog_open/">&lt;p&gt;GitHub Blog를 개설 했습니다.&lt;/p&gt;
-
-&lt;p&gt;Tistory에 Blog들이 Kakao로 통합되면서, 관리가 어려운 상황이 되어서, Git Blog로 만들어 보았습니다.&lt;/p&gt;
-
-&lt;p&gt;꿰보는 (꿰)어야 (보)배에서 아이디어를 얻었고, 개발과 관련된 학습 시행착오를 정리할 예정입니다.&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="blog" /><category term="blog" /><summary type="html">GitHub Blog를 개설 했습니다.</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;\assets\images_post\2021-20-16-markdown_typora.png&quot; alt=&quot;Typora editor&quot; title=&quot;Typora editor&quot; /&gt;&lt;/p&gt;</content><author><name>devjaedol</name></author><category term="etc" /><category term="mk" /><category term="markdown" /><summary type="html">MakrDown에 사용 법에 대해서 간략히 보시죠. 확장자 *.md 입니다. 대표적 예제 Readmd.md. 사용처, 경량 기반 텍스트 마크업 언어</summary></entry></feed>
