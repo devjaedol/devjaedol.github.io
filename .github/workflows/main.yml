@@ -74,14 +74,12 @@ jobs:
           git config --local user.email "devjaedol@gmail.com"
           git config --local user.name "JaeHyun Kim"
           git add *
-          git commit -m "New changes" -a
-
-      - name: Run ls -al
-        run: ls -al
+          git commit -m "GitHub Action CI" -a
+          git status
 
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          directory: ${{ github.workspace }}/master
+#          directory: ${{ github.workspace }}/master
           branch: 'master'
           github_token: ${{ secrets.REPO_TOKEN }}
