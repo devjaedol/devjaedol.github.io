@@ -4,7 +4,8 @@ name: GitAction-Jekyll-CI-Master
 
 on:
   push:
-    branches: [ source ]
+    branches:
+      - source
 
 jobs:
   build:
@@ -21,8 +22,8 @@ jobs:
           COMMIT_ID : ${{github.sha}}
         run: echo "Commit id => $COMMIT_ID"
         
-      - name: Check REPO_TOKEN
-        env : 
-          REPO_TOKEN : ${{secretes.REPO_TOKEN}}
-        run: echo "REPO_TOKEN => $REPO_TOKEN"
+#       - name: Check REPO_TOKEN
+#         env : 
+#           REPO_TOKEN : ${{secretes.REPO_TOKEN}}
+#         run: echo "REPO_TOKEN => $REPO_TOKEN"
         
