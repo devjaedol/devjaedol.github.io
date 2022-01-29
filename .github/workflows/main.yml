@@ -67,6 +67,9 @@ jobs:
         run: ls -al ./master
       - name: Run ls -al source
         run: ls -al ./source
+      
+      - name: Run ls -al master/nodejs
+        run: ls -al ./master/nodejs
 
       - name: Commit files
         run: |
