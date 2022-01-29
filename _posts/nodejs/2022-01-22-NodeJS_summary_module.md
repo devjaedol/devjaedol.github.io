@@ -36,6 +36,7 @@ exports.함수명3 = {id:123, name:'홍길동'};
 ### 객체 분리(1)
 module.exports = 객체   
 
+
 ```javascript
 # main.js
 var obj = reqire("./obj")
