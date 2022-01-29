@@ -43,7 +43,7 @@ jobs:
         run: |
           docker run \
           -v ${{ github.workspace }}/source:/srv/jekyll -v ${{ github.workspace }}/source/_site:/srv/jekyll/_site \
-          veerendrav2/my-jekyll:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+          jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
 
       - name: Cloning master branch
         uses: actions/checkout@v2
@@ -57,3 +57,18 @@ jobs:
       - name: Copying _site content to master branch repo
         run: cp -R ${{ github.workspace }}/source/_site/* ${{ github.workspace }}/master
               
+      - name: Commit files
+        run: |
+          cd ${{ github.workspace }}/master
+          git config --local user.email "devjaedol@gmail.com"
+          git config --local user.name "JaeHyun Kim"
+          git add *
+          git commit -m "New changes" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          directory: ${{ github.workspace }}/master
+          branch: 'master'
+          github_token: ${{ secrets.REPO_TOKEN }}
+          
