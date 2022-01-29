@@ -75,11 +75,16 @@ jobs:
           git config --local user.name "JaeHyun Kim"
           git add *
           git commit -m "GitHub Action CI" -a
-          git status
+
+      - name: Run PWD
+        run: pwd
+      - name: git status
+        run: git status
+          
 
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-#          directory: ${{ github.workspace }}/master
+          directory: ${{ github.workspace }}/master
           branch: 'master'
           github_token: ${{ secrets.REPO_TOKEN }}
