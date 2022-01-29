@@ -56,7 +56,10 @@ jobs:
 
       - name: Copying _site content to master branch repo
         run: cp -R ${{ github.workspace }}/source/_site/* ${{ github.workspace }}/master
-              
+
+      - name: Run ls -al
+        run: ls -al
+
       - name: Commit files
         run: |
           cd ${{ github.workspace }}/master
@@ -65,10 +68,12 @@ jobs:
           git add *
           git commit -m "New changes" -a
 
+      - name: Run ls -al
+        run: ls -al
+        
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           directory: ${{ github.workspace }}/master
           branch: 'master'
           github_token: ${{ secrets.REPO_TOKEN }}
-          
