@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: GitAction-Jekyll-CI-Master
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run PWD
+        run: pwd
+
+      - name: Run ls -al
+        run: ls -al
+
+      - name: Check COMMIT_ID
+        env : 
+          COMMIT_ID : ${{github.sha}}
+        run: echo "Commit id => $COMMIT_ID"
+        
+#       - name: Check REPO_TOKEN
+#         env : 
+#           REPO_TOKEN : ${{secretes.REPO_TOKEN}}
+#         run: echo "REPO_TOKEN => $REPO_TOKEN"
