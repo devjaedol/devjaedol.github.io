@@ -32,3 +32,28 @@ jobs:
           REPO_TOKEN : ${{secrets.REPO_TOKEN}}
         run: echo "REPO_TOKEN => $REPO_TOKEN"
 
+
+      - name: Cloning source branch
+        uses: actions/checkout@v2
+        with:
+          ref: 'source'
+          path: 'source'
+
+      - name: Building site in the jekyll/builder container
+        run: |
+          docker run \
+          -v ${{ github.workspace }}/source:/srv/jekyll -v ${{ github.workspace }}/source/_site:/srv/jekyll/_site \
+          veerendrav2/my-jekyll:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+
+      - name: Cloning master branch
+        uses: actions/checkout@v2
+        with:
+          ref: 'master'
+          path: 'master'
+
+      - name: Run ls -al
+        run: ls -al
+
+      - name: Copying _site content to master branch repo
+        run: cp -R ${{ github.workspace }}/source/_site/* ${{ github.workspace }}/master
+              
