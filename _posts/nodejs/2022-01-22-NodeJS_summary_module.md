@@ -59,6 +59,7 @@ module.exports = obj; #객체를 할당함
 ### 객체 분리(2)
 module.exports = 함수   
 
+
 ```javascript
 # main.js
 var obj = reqire("./obj")
