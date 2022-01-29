@@ -51,14 +51,22 @@ jobs:
           ref: 'master'
           path: 'master'
 
-      - name: Run ls -al
-        run: ls -al
+      - name: Run PWD
+        run: pwd
+      - name: Run ls -al master
+        run: ls -al ./master
+      - name: Run ls -al source
+        run: ls -al ./source
 
       - name: Copying _site content to master branch repo
         run: cp -R ${{ github.workspace }}/source/_site/* ${{ github.workspace }}/master
 
-      - name: Run ls -al
-        run: ls -al
+      - name: Run PWD
+        run: pwd
+      - name: Run ls -al master
+        run: ls -al ./master
+      - name: Run ls -al source
+        run: ls -al ./source
 
       - name: Commit files
         run: |
@@ -70,7 +78,7 @@ jobs:
 
       - name: Run ls -al
         run: ls -al
-        
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
