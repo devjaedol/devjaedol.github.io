@@ -29,5 +29,5 @@ jobs:
 
       - name: Check REPO_TOKEN
         env : 
-          REPO_TOKEN : ${{secretes.REPO_TOKEN}}
+          REPO_TOKEN : ${{secrets.REPO_TOKEN}}
         run: echo "REPO_TOKEN => $REPO_TOKEN"
