@@ -4,8 +4,7 @@ name: GitAction-Jekyll-CI-Master
 
 on:
   push:
-    branches:
-      - master
+    branches: [source]
 
 jobs:
   build:
