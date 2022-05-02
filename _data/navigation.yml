@@ -34,7 +34,14 @@ sidebar:
       #   url: /categories/nodered
       - title: "Etc"
         url: /categories/etc
-
+  - title: "Online Judge"
+    children:        
+      - title: "Algorithm"
+        url: /categories/algorithm
+      - title: "Baekjon"
+        url: /categories/oj-bj
+      - title: "Programmers"
+        url: /categories/oj-bj
   # - title: "대목차2"
   #   children:
   #     - title: "Category"
