@@ -1,5 +1,5 @@
 ---
-title: electron 설치 패키지 셋팅
+title: Electron 설치 패키지 셋팅
 categories: 
     - nodejs
 tags: 
