@@ -41,7 +41,7 @@ var store = [{
         "url": "/javascript/JS-ES6_Summary/",
         "teaser": null
       },{
-        "title": "[Step 2] GitHub blog 만들기(jekyll 기본 설정)",
+        "title": "[Step 1] GitHub blog 만들기(jekyll 기본 설정)",
         "excerpt":"jekyll을 통해서 GitHub blog를 만들어 보겠습니다. 작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. 최대한 단순하고 간략하게만 정리하도록 하겠습니다. Jekyll 장단점 소개 jekyll을 통해서 Git blog를 운용시 다른 플랫폼이 제공하는 블로그에 비해서 장단점이 명확히 다릅니다. 장점으로는 Custmize. ( HTML 기반으로 모든...","categories": ["etc"],
         "tags": ["jekyll","githug","blog","github blog","minimal-mistakes"],
         "url": "/etc/jekyll-git-blog_(1)/",
@@ -53,7 +53,7 @@ var store = [{
         "url": "/etc/jekyll-git-blog_(2)/",
         "teaser": null
       },{
-        "title": "electron 설치 패키지 셋팅",
+        "title": "Electron 설치 패키지 셋팅",
         "excerpt":"Build cross-platform desktop apps with JavaScript, HTML, and CSS 최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다. 아래 제품들이 Electron을 통해 개발된 SW Package 입니다. Visual Studio Code Facebook Messenger Microsoft Teams 기본적으로 Nodejs를 설치 합니다. https://nodejs.org/ko/download/ 특정 디렉토리에 노드프로젝트를 설치...","categories": ["nodejs"],
         "tags": ["nodejs","electron","install package"],
         "url": "/nodejs/electron_default_setup/",
