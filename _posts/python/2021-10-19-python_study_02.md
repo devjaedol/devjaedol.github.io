@@ -145,6 +145,9 @@ else:
     print("키가 보통 입니다")
 
 ```
+
+## 반복문
+
 ### for
 ```python
 
@@ -217,10 +220,86 @@ print(sum)
 55
 ```
 
-## 반복문
+
 
 ## 함수
+### 선언
+자주 사용하는 기능을 Function으로 정의할 수 있습니다.   
+```python
+#반환값이 있는 경우
+def 함수명(인자정의)
+    함수 내용부
+    return 반환값
 
+#반환값이 없는 경우
+def 함수명(인자정의)
+    함수 내용부
+
+```
+단일 값 또는 다중 값(튜플)을 반환 할수 있습니다.
+
+```python
+def sum(v1, v2):
+    return v1+v2
+
+total = sum(10,20)
+print(total)
+
+>>> 30
+
+
+#다중값 반환 함수
+def multi(v1, v2):
+    s1 = v1 + v2
+    s2 = v1 - v2
+    return s1, s2
+
+t1, t2 = multi(20, 10)
+print(t1, t2)
+>>> 30 10
+
+t = multi(20, 10)
+print(t[0], t[1])
+
+```
+
+### 파라메터 초기값 설정
+```python
+#빈값 입력시 기본값으로 설정 
+def sum(v1, v2 = 10):
+    return v1+v2
+
+s = sum(5)
+>>> 15
+
+```
+
+### 파라메터 이름 설정
+```python
+#이름으로 설정할 수 있습니다.
+def info(name, age):
+    print(name, age)
+
+info(age=30, name='Hong Gil Dong')
+>>> Hong Gil Dong 30
+
+```
+
+### 가변 길이 파라메터
+```python
+#가변형 파라메터 입력 
+def keyList(*keys):
+    for n in keys:
+        print(n)
+
+keyList(1,2,3,4,5)
+>>> 1
+>>> 2
+>>> 3
+>>> 4
+>>> 5
+
+```
 
 ## 예약어 확인하기
 파이썬에는 다음과 같은 예약어는 사용 할 수 없습니다.   
