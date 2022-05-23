@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-05-03T09:32:54-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">NodeJS 기초 정리 - 모듈화</title><link href="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/" rel="alternate" type="text/html" title="NodeJS 기초 정리 - 모듈화" /><published>2022-01-22T00:00:00-06:00</published><updated>2022-01-22T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module</id><content type="html" xml:base="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/"><![CDATA[<h2 id="모듈-분리-방법">모듈 분리 방법</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-05-23T09:23:14-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">NodeJS 기초 정리 - 모듈화</title><link href="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/" rel="alternate" type="text/html" title="NodeJS 기초 정리 - 모듈화" /><published>2022-01-22T00:00:00-06:00</published><updated>2022-01-22T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module</id><content type="html" xml:base="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/"><![CDATA[<h2 id="모듈-분리-방법">모듈 분리 방법</h2>
 <p>로직을 기능별로 별도 파일을 분리하여 모듈화 할 수 있습니다.</p>
 
 <h3 id="함수-분리">함수 분리</h3>
@@ -1087,6 +1087,9 @@ Python에 주요 자료형 입니다.</p>
     <span class="k">print</span><span class="p">(</span><span class="s">"키가 보통 입니다"</span><span class="p">)</span>
 
 </code></pre></div></div>
+
+<h2 id="반복문">반복문</h2>
+
 <h3 id="for">for</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="c1"># range(반복횟수):
@@ -1157,9 +1160,79 @@ Python에 주요 자료형 입니다.</p>
 <span class="mi">55</span>
 </code></pre></div></div>
 
-<h2 id="반복문">반복문</h2>
-
 <h2 id="함수">함수</h2>
+<h3 id="선언">선언</h3>
+<p>자주 사용하는 기능을 Function으로 정의할 수 있습니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#반환값이 있는 경우
+</span><span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
+    <span class="n">함수</span> <span class="n">내용부</span>
+    <span class="k">return</span> <span class="n">반환값</span>
+
+<span class="c1">#반환값이 없는 경우
+</span><span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
+    <span class="n">함수</span> <span class="n">내용부</span>
+
+</code></pre></div></div>
+<p>단일 값 또는 다중 값(튜플)을 반환 할수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span>
+
+
+<span class="c1">#다중값 반환 함수
+</span><span class="k">def</span> <span class="nf">multi</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">v2</span>
+    <span class="n">s2</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span>
+    <span class="k">return</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span>
+
+<span class="n">t1</span><span class="p">,</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span> <span class="mi">10</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+</code></pre></div></div>
+
+<h3 id="파라메터-초기값-설정">파라메터 초기값 설정</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#빈값 입력시 기본값으로 설정 
+</span><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">15</span>
+
+</code></pre></div></div>
+
+<h3 id="파라메터-이름-설정">파라메터 이름 설정</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#이름으로 설정할 수 있습니다.
+</span><span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+
+<span class="n">info</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'Hong Gil Dong'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Hong</span> <span class="n">Gil</span> <span class="n">Dong</span> <span class="mi">30</span>
+
+</code></pre></div></div>
+
+<h3 id="가변-길이-파라메터">가변 길이 파라메터</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#가변형 파라메터 입력 
+</span><span class="k">def</span> <span class="nf">keyList</span><span class="p">(</span><span class="o">*</span><span class="n">keys</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">keyList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">5</span>
+
+</code></pre></div></div>
 
 <h2 id="예약어-확인하기">예약어 확인하기</h2>
 <p>파이썬에는 다음과 같은 예약어는 사용 할 수 없습니다. <br />
