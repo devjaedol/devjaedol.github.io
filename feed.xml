@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-05-23T09:32:39-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">NodeJS 기초 정리 - 모듈화</title><link href="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/" rel="alternate" type="text/html" title="NodeJS 기초 정리 - 모듈화" /><published>2022-01-22T00:00:00-06:00</published><updated>2022-01-22T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module</id><content type="html" xml:base="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/"><![CDATA[<h2 id="모듈-분리-방법">모듈 분리 방법</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-05-24T09:37:07-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">NodeJS 기초 정리 - 모듈화</title><link href="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/" rel="alternate" type="text/html" title="NodeJS 기초 정리 - 모듈화" /><published>2022-01-22T00:00:00-06:00</published><updated>2022-01-22T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module</id><content type="html" xml:base="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/"><![CDATA[<h2 id="모듈-분리-방법">모듈 분리 방법</h2>
 <p>로직을 기능별로 별도 파일을 분리하여 모듈화 할 수 있습니다.</p>
 
 <h3 id="함수-분리">함수 분리</h3>
@@ -1652,9 +1652,23 @@ Text2
 [![이미지 대체 텍스트](https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg "구글 로고")](https://google.com)
 
 </code></pre></div></div>
-<p>사이즈 조절 기능은 없음.  <br />
-<img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="이미지 대체 텍스트" title="구글 로고" />  <br />
-<img src="\assets\images_post\mydog_200_300.gif" alt="이미지 대체 텍스트" title="설명문구" /></p>
+
+<p>사이즈 조절 및 정렬.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{: .align-center} 가운데 정렬
+{: .align-left}  왼쪽 정렬
+{: .align-right}  오른쪽 정렬
+
+![이미지 대체 텍스트](\assets\images_post\mydog_200_300.gif "설명문구"){: .align-center}
+
+이미지 크기 변경
+{: width="100px", height="100px"}
+{: width="30%", height="30%"}
+
+</code></pre></div></div>
+
+<p><img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="이미지 대체 텍스트" title="구글 로고" /></p>
+
+<p><img src="\assets\images_post\mydog_200_300.gif" alt="이미지 대체 텍스트" title="설명문구" class="align-center" /></p>
 
 <p>이미지에 링크 걸기  <br />
 <a href="https://google.com"><img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="이미지 대체 텍스트" title="구글 로고" /></a></p>
