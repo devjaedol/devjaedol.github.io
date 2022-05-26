@@ -1,0 +1,65 @@
+---
+permalink: /ex01
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Using Jekyll Data</h1>
+    <h2> Post data </h2>
+    {% for post in site.posts %}
+        <p>Post Title : {{post.title}}</p>
+        <p>Post Date : {{post.date}}</p>
+    {% endfor %}
+
+    
+    <h1>Page Data</h1>
+    <h2> Post data </h2>
+    {% for page in site.pages %}
+        {% if page.title %}
+            <p>page Title : {{page.title}}</p>
+        {% endif %}
+    {% endfor %}
+
+    <h1>_config.yml</h1>
+    <p> desc : {{site.title}} </p>
+    <p> desc : {{site.description}} </p>
+
+     
+    <h2> Last Post data </h2>
+    {% for post in site.posts limit:1 %}
+        <p>Post Title : {{post.title}}</p>
+        <p>Post Date : {{post.date}}</p>
+    {% endfor %}
+
+    <h2> Plus one more post</h2>
+    {% for post in site.posts offset:1 limit:1 %}
+        <p>Post Title : {{post.title}}</p>
+        <p>Post Date : {{post.date}}</p>
+    {% endfor %}
+
+    <h2>md 에 region을 작성하고 필터링 하기</h2>
+    {% assign naPosts = site.posts | where : "region", "Seoul" %}    
+    {% for post in naPosts %}
+        <p>Post Title : {{post.title}}</p>
+        <p>Post Date : {{post.date}}</p>
+    {% endfor %}
+
+    
+    <h2> Post Link </h2>
+    {% for post in site.posts %}
+        <p>
+            <a href="{{post.url | relative_url }}">
+                Post Title : {{post.title}}
+            </a>
+        </p>
+    {% endfor %}
+
+</body>
+</html>

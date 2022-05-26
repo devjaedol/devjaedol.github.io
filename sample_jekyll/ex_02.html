@@ -1,0 +1,62 @@
+---
+permalink: /ex02
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Usign Custom Data</h1>
+    
+    <h2>CSV File</h2>
+    {% for row in site.data.ex02A %}
+        <p>Row Title : {{row.title}}</p>
+        <p>Row Url : {{row.url}}</p>
+    {% endfor %}
+
+    <h2>CSV TAB File(-tsv)</h2>
+    {% for row in site.data.ex02B-tsv %}
+        <p>Row Title : {{row.title}}</p>
+        <p>Row Url : {{row.url}}</p>
+    {% endfor %}
+
+    <h2>JSON</h2>
+    {% for row in site.data.ex02C-json.items %}
+        <p>Row Title : {{row.title}}</p>
+        <p>Row Url : {{row.url}}</p>
+    {% endfor %}  
+
+    <h2>YML</h2>
+    {% for row in site.data.ex02D-yml.items %}
+        <p>Row Title : {{row.title}}</p>
+        <p>Row Url : {{row.url}}</p>
+        {% if row.subitems %}
+            {% for row2 in row.subitems %}
+            <p>subitem : {{row2.title}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    
+    <h2>YML Sort</h2>
+    {% assign sortitem = site.data.ex02D-yml.items | sort: "so" %}
+    {% for row sortitem %}
+        <p>Row Title : {{row.title}}</p>
+        <p>Row Url : {{row.url}}</p>
+        {% if row.subitems %}
+            {% assign sortitem2 = row.subitems | sort: "so" %}
+            {% for row2 in sortitem2 %}
+                <p>subitem : {{row2.title}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+
+
+</body>
+</html>

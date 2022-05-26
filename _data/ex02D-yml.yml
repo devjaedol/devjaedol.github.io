@@ -1,0 +1,16 @@
+items:
+    - title: "Email"
+      url: "fas fa-fw fa-envelope-square"
+      so: 5
+    - title: "Website"
+      url: "fas fa-fw fa-link"
+      so: 3
+      subitems: 
+        - title: "Sub1"
+          so: 4
+        - title: "Sub2"
+          so: 2
+        - title: "Sub3"
+          so: 3
+        - title: "Sub4"
+          so: 1
