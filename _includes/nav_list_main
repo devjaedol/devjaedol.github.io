@@ -1,0 +1,98 @@
+{% assign sum = site.posts | size %}
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> {{sum}}</span>개</span> 
+      </li>
+
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                {% for category in site.categories %}
+                    {% if category[0] == "blog" %}
+                        <li><a href="/categories/blog" class="">Blog ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "python" %}
+                      <li><a href="/categories/python" class="">Python ({{category[1].size}})</a></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "javascript" %}
+                      <li><a href="/categories/javascript" class="">Javascript ({{category[1].size}})</a></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>            
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "nodejs" %}
+                      <li><a href="/categories/nodejs" class="">nodejs ({{category[1].size}})</a></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>            
+          <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "etc" %}
+                    <li><a href="/categories/etc" class="">Etc ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>            
+
+
+        <span class="nav__sub-title">Coding Test</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "알고리즘" %}
+                        <li><a href="/categories/algorithm" class="">알고리즘 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "백준" %}
+                      <li><a href="/categories/baekjoon" class="">백준 ({{category[1].size}})</a></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "프로그래머스" %}
+                    <li><a href="/categories/programmers" class="">프로그래머스 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "Online Judge" %}
+                    <li><a href="/categories/onlinejudge" class="">Online Judge ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>

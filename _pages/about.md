@@ -2,10 +2,12 @@
 title: About
 layout: collection
 permalink: /about/
-collection: portfolio
-entries_layout: grid
-classes: wide
-author_profile: true
+# collection: portfolio
+# entries_layout: grid
+# classes: wide
+# author_profile: true
+
+sidebar_main: true    
 ---
 ![image-right](/assets/images/jaedol_100_200.jpg){: .align-right}
 

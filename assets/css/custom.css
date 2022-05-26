@@ -1,0 +1,46 @@
+
+.page__taxonomy{
+    margin-top:-10px
+}
+.page__taxonomy .sep{
+    display:inline
+}
+.page__taxonomy strong{
+    margin-right:10px
+}
+.page__taxonomy-item-tag{
+    display:inside;
+    margin-right:5px;
+    margin-bottom:8px;
+    padding:3px 8px;
+    text-decoration:none;
+    border:1px solid #9dd995;
+    border-radius:4px;
+    background-color:#e4f9e9;
+    
+    color:#767676;
+
+}
+.page__taxonomy-item-tag:hover{
+    text-decoration:none;
+    color:#16393a
+}
+
+
+.page__taxonomy-item-category{
+    display:inside;
+    margin-right:5px;
+    margin-bottom:8px;
+    padding:3px 8px;
+    text-decoration:none;
+    border:1px solid #9ec5d9;
+    border-radius:4px;
+    background-color:#d3d3d3;
+   
+    color:#ff053f
+}
+.page__taxonomy-item-category:hover{
+    text-decoration:none;
+    color:#581b24
+}
+
