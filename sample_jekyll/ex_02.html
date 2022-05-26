@@ -42,21 +42,5 @@ permalink: /ex02
         {% endif %}
     {% endfor %}
 
-    
-    <h2>YML Sort</h2>
-    {% assign sortitem = site.data.ex02D-yml.items | sort: "so" %}
-    {% for row sortitem %}
-        <p>Row Title : {{row.title}}</p>
-        <p>Row Url : {{row.url}}</p>
-        {% if row.subitems %}
-            {% assign sortitem2 = row.subitems | sort: "so" %}
-            {% for row2 in sortitem2 %}
-                <p>subitem : {{row2.title}}</p>
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
-
-
-
 </body>
 </html>
