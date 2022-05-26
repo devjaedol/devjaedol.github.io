@@ -100,6 +100,10 @@
 
 <!-- end custom head snippets -->
 
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
   </head>
 
   <body class="layout--single">
@@ -133,11 +137,11 @@
             </li><li class="masthead__menu-item">
               <a href="/about/">About</a>
             </li><li class="masthead__menu-item">
-              <a href="/search/">검색</a>
+              <a href="/search/">Search</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">토글 메뉴</span>
+          <span class="visually-hidden">카테고리 메뉴</span>
           <div class="navicon"></div>
         </button>
         <ul class="hidden-links hidden"></ul>
@@ -192,6 +196,7 @@
 <div id="main" role="main">
   
   <div class="sidebar sticky">
+  <!--
   
   
     
@@ -206,66 +211,180 @@
 <nav class="nav__list">
   
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
-  <label for="ac-toc">토글 메뉴</label>
+  <label for="ac-toc">카테고리 메뉴</label>
   <ul class="nav__items">
-    
-      <li>
-        
-          <span class="nav__sub-title">일상다반사</span>
-        
-
-        
-        <ul>
-          
-            <li><a href="/categories/blog">blog</a></li>
-          
-        </ul>
-        
-      </li>
-    
-      <li>
-        
-          <span class="nav__sub-title">Programming</span>
-        
-
-        
-        <ul>
-          
-            <li><a href="/categories/python">Python</a></li>
-          
-            <li><a href="/categories/javascript">Javascript</a></li>
-          
-            <li><a href="/categories/nodejs">Nodejs</a></li>
-          
-            <li><a href="/categories/etc">Etc</a></li>
-          
-        </ul>
-        
-      </li>
-    
-      <li>
-        
-          <span class="nav__sub-title">Coding Test</span>
-        
-
-        
-        <ul>
-          
-            <li><a href="/categories/algorithm">알고리즘</a></li>
-          
-            <li><a href="/categories/baekjoon">백준</a></li>
-          
-            <li><a href="/categories/programmers">프로그래머스</a></li>
-          
-        </ul>
-        
-      </li>
     
   </ul>
 </nav>
 
     
   
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 11</span>개</span> 
+      </li>
+
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (2)</a></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>            
+
+
+        <span class="nav__sub-title">Coding Test</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
   </div>
 
 
@@ -494,21 +613,27 @@ settings &gt;  Pages  &gt; Cusom domain 에 도메인을 입력 후 저장 합�
 
 
 <div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/nodejs/NodeJS_summary_module/" rel="permalink">NodeJS 기초 정리 - 모듈화
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">모듈 분리 방법
-로직을 기능별로 별도 파일을 분리하여 모듈화 할 수 있습니다.
-</p>
-  </article>
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/nodejs/NodeJS_summary_module/">NodeJS 기초 정리 - 모듈화</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.01.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#nodejs" class="page__taxonomy-item-category" rel="tag">nodejs</a>
+                    
+                    
+                    <a href="/tags/#nodejs" class="page__taxonomy-item-tag" rel="tag">nodejs</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
 </div>
 
         
@@ -517,21 +642,35 @@ settings &gt;  Pages  &gt; Cusom domain 에 도메인을 입력 후 저장 합�
 
 
 <div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/nodejs/electron_default_setup/" rel="permalink">Electron 설치 패키지 셋팅
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">Build cross-platform desktop apps with JavaScript, HTML, and CSS  
-최근 설치형 Application 개발에 클로스 플랫폼 지원과 Javascript로 개발을 지원하는 electron의 설치형 패키지 기본 구조를 정리 합니다.
-</p>
-  </article>
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/nodejs/electron_default_setup/">Electron 설치 패키지 셋팅</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2021.10.24
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#nodejs" class="page__taxonomy-item-category" rel="tag">nodejs</a>
+                    
+                    
+                    <a href="/tags/#electron" class="page__taxonomy-item-tag" rel="tag">electron</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#install-package" class="page__taxonomy-item-tag" rel="tag">install package</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nodejs" class="page__taxonomy-item-tag" rel="tag">nodejs</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
 </div>
 
         
@@ -540,22 +679,43 @@ settings &gt;  Pages  &gt; Cusom domain 에 도메인을 입력 후 저장 합�
 
 
 <div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/etc/jekyll-git-blog_(1)/" rel="permalink">[Step 1] GitHub blog 만들기(jekyll 기본 설정)
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   
-작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. 
-최대한 단순하고 간략하게만 정리하도록 하겠습니다.
-</p>
-  </article>
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/etc/jekyll-git-blog_(1)/">[Step 1] GitHub blog 만들기(jekyll 기본 설정)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2021.10.24
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#etc" class="page__taxonomy-item-category" rel="tag">etc</a>
+                    
+                    
+                    <a href="/tags/#blog" class="page__taxonomy-item-tag" rel="tag">blog</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#github-blog" class="page__taxonomy-item-tag" rel="tag">github blog</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#githug" class="page__taxonomy-item-tag" rel="tag">githug</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#jekyll" class="page__taxonomy-item-tag" rel="tag">jekyll</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#minimal-mistakes" class="page__taxonomy-item-tag" rel="tag">minimal-mistakes</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
 </div>
 
         
@@ -564,20 +724,35 @@ settings &gt;  Pages  &gt; Cusom domain 에 도메인을 입력 후 저장 합�
 
 
 <div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/javascript/JS-ES6_Summary/" rel="permalink">ES6(ECMAScript6)등 간략 정리
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">ES6 문법을 간략히 정리해 보겠습니다.
-</p>
-  </article>
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/javascript/JS-ES6_Summary/">ES6(ECMAScript6)등 간략 정리</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2021.10.20
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#javascript" class="page__taxonomy-item-category" rel="tag">javascript</a>
+                    
+                    
+                    <a href="/tags/#ecmascript6" class="page__taxonomy-item-tag" rel="tag">ECMAScript6</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#es5" class="page__taxonomy-item-tag" rel="tag">ES5</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#es6" class="page__taxonomy-item-tag" rel="tag">ES6</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
 </div>
 
         

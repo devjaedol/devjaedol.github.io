@@ -96,6 +96,10 @@
 
 <!-- end custom head snippets -->
 
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
   </head>
 
   <body class="layout--archive-taxonomy">
@@ -129,11 +133,11 @@
             </li><li class="masthead__menu-item">
               <a href="/about/">About</a>
             </li><li class="masthead__menu-item">
-              <a href="/search/">검색</a>
+              <a href="/search/">Search</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">토글 메뉴</span>
+          <span class="visually-hidden">카테고리 메뉴</span>
           <div class="navicon"></div>
         </button>
         <ul class="hidden-links hidden"></ul>
@@ -188,6 +192,7 @@
 <div id="main" role="main">
   
   <div class="sidebar sticky">
+  <!--
   
   
     
@@ -202,66 +207,180 @@
 <nav class="nav__list">
   
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
-  <label for="ac-toc">토글 메뉴</label>
+  <label for="ac-toc">카테고리 메뉴</label>
   <ul class="nav__items">
-    
-      <li>
-        
-          <span class="nav__sub-title">일상다반사</span>
-        
-
-        
-        <ul>
-          
-            <li><a href="/categories/blog">blog</a></li>
-          
-        </ul>
-        
-      </li>
-    
-      <li>
-        
-          <span class="nav__sub-title">Programming</span>
-        
-
-        
-        <ul>
-          
-            <li><a href="/categories/python">Python</a></li>
-          
-            <li><a href="/categories/javascript">Javascript</a></li>
-          
-            <li><a href="/categories/nodejs">Nodejs</a></li>
-          
-            <li><a href="/categories/etc">Etc</a></li>
-          
-        </ul>
-        
-      </li>
-    
-      <li>
-        
-          <span class="nav__sub-title">Coding Test</span>
-        
-
-        
-        <ul>
-          
-            <li><a href="/categories/algorithm">알고리즘</a></li>
-          
-            <li><a href="/categories/baekjoon">백준</a></li>
-          
-            <li><a href="/categories/programmers">프로그래머스</a></li>
-          
-        </ul>
-        
-      </li>
     
   </ul>
 </nav>
 
     
   
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 11</span>개</span> 
+      </li>
+
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (2)</a></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>            
+
+
+        <span class="nav__sub-title">Coding Test</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
   </div>
 
 
@@ -278,20 +397,43 @@
 
 
 <div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/etc/jekyll-git-blog_(2)/" rel="permalink">[Step 2] GitHub blog 만들기(GitHub 설정 및 도메인 연결)
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다.
-</p>
-  </article>
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/etc/jekyll-git-blog_(2)/">[Step 2] GitHub blog 만들기(GitHub 설정 및 도메인 연결)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2021.10.24
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#etc" class="page__taxonomy-item-category" rel="tag">etc</a>
+                    
+                    
+                    <a href="/tags/#blog" class="page__taxonomy-item-tag" rel="tag">blog</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#github-blog" class="page__taxonomy-item-tag" rel="tag">github blog</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#githug" class="page__taxonomy-item-tag" rel="tag">githug</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#jekyll" class="page__taxonomy-item-tag" rel="tag">jekyll</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#minimal-mistakes" class="page__taxonomy-item-tag" rel="tag">minimal-mistakes</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
 </div>
 
     
@@ -300,22 +442,43 @@
 
 
 <div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/etc/jekyll-git-blog_(1)/" rel="permalink">[Step 1] GitHub blog 만들기(jekyll 기본 설정)
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">jekyll을 통해서 GitHub blog를 만들어 보겠습니다.   
-작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. 
-최대한 단순하고 간략하게만 정리하도록 하겠습니다.
-</p>
-  </article>
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/etc/jekyll-git-blog_(1)/">[Step 1] GitHub blog 만들기(jekyll 기본 설정)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2021.10.24
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#etc" class="page__taxonomy-item-category" rel="tag">etc</a>
+                    
+                    
+                    <a href="/tags/#blog" class="page__taxonomy-item-tag" rel="tag">blog</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#github-blog" class="page__taxonomy-item-tag" rel="tag">github blog</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#githug" class="page__taxonomy-item-tag" rel="tag">githug</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#jekyll" class="page__taxonomy-item-tag" rel="tag">jekyll</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#minimal-mistakes" class="page__taxonomy-item-tag" rel="tag">minimal-mistakes</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
 </div>
 
     

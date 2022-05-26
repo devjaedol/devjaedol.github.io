@@ -98,6 +98,10 @@
 
 <!-- end custom head snippets -->
 
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
   </head>
 
   <body class="layout--single">
@@ -131,11 +135,11 @@
             </li><li class="masthead__menu-item">
               <a href="/about/">About</a>
             </li><li class="masthead__menu-item">
-              <a href="/search/">검색</a>
+              <a href="/search/">Search</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">토글 메뉴</span>
+          <span class="visually-hidden">카테고리 메뉴</span>
           <div class="navicon"></div>
         </button>
         <ul class="hidden-links hidden"></ul>
@@ -218,6 +222,7 @@
 <div id="main" role="main">
   
   <div class="sidebar sticky">
+  <!--
   
   
     
@@ -232,66 +237,180 @@
 <nav class="nav__list">
   
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
-  <label for="ac-toc">토글 메뉴</label>
+  <label for="ac-toc">카테고리 메뉴</label>
   <ul class="nav__items">
-    
-      <li>
-        
-          <span class="nav__sub-title">일상다반사</span>
-        
-
-        
-        <ul>
-          
-            <li><a href="/categories/blog">blog</a></li>
-          
-        </ul>
-        
-      </li>
-    
-      <li>
-        
-          <span class="nav__sub-title">Programming</span>
-        
-
-        
-        <ul>
-          
-            <li><a href="/categories/python">Python</a></li>
-          
-            <li><a href="/categories/javascript">Javascript</a></li>
-          
-            <li><a href="/categories/nodejs">Nodejs</a></li>
-          
-            <li><a href="/categories/etc">Etc</a></li>
-          
-        </ul>
-        
-      </li>
-    
-      <li>
-        
-          <span class="nav__sub-title">Coding Test</span>
-        
-
-        
-        <ul>
-          
-            <li><a href="/categories/algorithm">알고리즘</a></li>
-          
-            <li><a href="/categories/baekjoon">백준</a></li>
-          
-            <li><a href="/categories/programmers">프로그래머스</a></li>
-          
-        </ul>
-        
-      </li>
     
   </ul>
 </nav>
 
     
   
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 11</span>개</span> 
+      </li>
+
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (2)</a></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>            
+
+
+        <span class="nav__sub-title">Coding Test</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
   </div>
 
 
