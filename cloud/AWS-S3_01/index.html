@@ -1,0 +1,937 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Serverless Concept | 꿰보노트</title>
+<meta name="description" content="라떼는 말이야….  웹서비스 개발을 배울때 서버를 설정하고, HW를 구축하는 것을 배우던 시대가 있었는데…   서버의 일부 공간을 빌려서 인스턴스를 사용하던 방식에서 진일보하여, 이제는 Serverless 방식의 서비스가 대세 이네요. Serverless의 컨셉을 알아보고, 공부를 시작해 봅시다.   AWS 에서 정의된 클라우드 컴퓨팅 내용   클라우드 컴퓨팅은 IT 리소스를 인터넷을 통해서 온디맨드(수요에 반응함)로 제공하고 사용한 만큼만 비용을 지불하는것을 말합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="Serverless Concept">
+<meta property="og:url" content="https://kimjaehyun.co.kr/cloud/AWS-S3_01/">
+
+
+  <meta property="og:description" content="라떼는 말이야….  웹서비스 개발을 배울때 서버를 설정하고, HW를 구축하는 것을 배우던 시대가 있었는데…   서버의 일부 공간을 빌려서 인스턴스를 사용하던 방식에서 진일보하여, 이제는 Serverless 방식의 서비스가 대세 이네요. Serverless의 컨셉을 알아보고, 공부를 시작해 봅시다.   AWS 에서 정의된 클라우드 컴퓨팅 내용   클라우드 컴퓨팅은 IT 리소스를 인터넷을 통해서 온디맨드(수요에 반응함)로 제공하고 사용한 만큼만 비용을 지불하는것을 말합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-05-27T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/cloud/AWS-S3_01/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#cloud" itemprop="item"><span itemprop="name">Cloud</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Serverless Concept</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 15</span>개</span> 
+      </li>
+
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a></li>
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+
+        <span class="nav__sub-title">Coding Test</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Serverless Concept">
+    <meta itemprop="description" content="라떼는 말이야…. 웹서비스 개발을 배울때 서버를 설정하고, HW를 구축하는 것을 배우던 시대가 있었는데…  서버의 일부 공간을 빌려서 인스턴스를 사용하던 방식에서 진일보하여,이제는 Serverless 방식의 서비스가 대세 이네요.Serverless의 컨셉을 알아보고, 공부를 시작해 봅시다.  AWS 에서 정의된 클라우드 컴퓨팅 내용  클라우드 컴퓨팅은 IT 리소스를 인터넷을 통해서 온디맨드(수요에 반응함)로 제공하고 사용한 만큼만 비용을 지불하는것을 말합니다.">
+    <meta itemprop="datePublished" content="2022-05-27T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/cloud/AWS-S3_01/" class="u-url" itemprop="url">Serverless Concept
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#serverless-뭔지요">Serverless 뭔지요?</a><ul><li><a href="#고전-방식">고전 방식</a></li><li><a href="#cloud-서비스-출현aws-zure-google-등">Cloud 서비스 출현(AWS, Zure, Google 등)</a></li><li><a href="#serverless-를-왜-쓰는지">Serverless 를 왜 쓰는지?</a></li></ul></li><li><a href="#serverless-개발-프레임워크">Serverless 개발 프레임워크</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>라떼는 말이야…. <br />
+웹서비스 개발을 배울때 서버를 설정하고, HW를 구축하는 것을 배우던 시대가 있었는데…  <br />
+서버의 일부 공간을 빌려서 인스턴스를 사용하던 방식에서 진일보하여,
+이제는 Serverless 방식의 서비스가 대세 이네요.
+Serverless의 컨셉을 알아보고, 공부를 시작해 봅시다.  <br />
+AWS 에서 정의된 클라우드 컴퓨팅 내용  <br />
+<code class="language-plaintext highlighter-rouge">클라우드 컴퓨팅은 IT 리소스를 인터넷을 통해서 온디맨드(수요에 반응함)로 제공하고 사용한 만큼만 비용을 지불하는것을 말합니다.</code></p>
+
+<h2 id="serverless-뭔지요">Serverless 뭔지요?</h2>
+<p>운영하는 서버 없이, 호출될때 기능을 처리하고 응답하는 서비스 형태 입니다.</p>
+
+<ul>
+  <li>AWS : AWS Lambda</li>
+  <li>MS Azure : Azure Functions</li>
+  <li>Google Cloud Platform : Cloud Functions</li>
+</ul>
+
+<h3 id="고전-방식">고전 방식</h3>
+<p>기존 웹서비스를 진행 할때의 방식은 Apache, Tomcat과 같이 웹서버를 HW웨어에 운영하고, 해당 서버에 맞는 Server Side 언어로 서비스를 개발 했었죠. <br />
+서버 관리자, 운영자 등이 존재 했었고, 서버실도 있는 곳도 있고, 서버를 24시간 운영하기 위해서 IDC란 곳에 서버를 파킹(돈내고 서버를 주차) 했었습니다.</p>
+
+<h3 id="cloud-서비스-출현aws-zure-google-등">Cloud 서비스 출현(AWS, Zure, Google 등)</h3>
+<p>간단한 서비스를 개발하는데, 고전 방식은 너무 많은 범위의 지식이 필요하고, 때에 따라서는 사람도 많이 필요 했었죠.
+Cafe24와 같은 호스팅 업체들은 돈에 따라서 서버를 함께 공유 사용하는 방식이지만,그래도 서버를 설정하고 개발하는데 약간은 전문지식이 필요했습니다. <br />
+AWS, Zure, Google Cloud Platoform 을 사욯해보면, 버튼 몇번에 서버가 만들어지기도, 없어지기도 하며, 특히 서울에 만들수도 있고, 미국, 브라질 등 어디에 구축할지를 Selectbox로 간단히 선택하면 됩니다. <br />
+단지 등록된 신용카드에 비용만 지불하면 되는 방식으로 간단히 운영이 가능합니다. <br />
+이전 서버관리자의 역할을 AWS와 같은 서비스가 대신 해주는 것으로 보시면 됩니다. <br />
+실시간으로 언제 어디서나 간단하게 서버를 만들고, 접속할 수있게 해주는 서비스로 보시면 됩니다.</p>
+
+<h3 id="serverless-를-왜-쓰는지">Serverless 를 왜 쓰는지?</h3>
+<p>직접 서버를 운영하는 것에 대비 Cloud 서비스는 편리하지만, 비용적 부담이 존재합니다. <br />
+만약 제가 제공하는 서비스가 특정 시간에만 사용되는 시스템일 경우, 
+특정 시간 서비스를 위해서 24시간 서버를 빌려서 대기하게 됩니다.
+이런 경우 비용 낭비가 생길수 있습니다.
+물론 Cloud는 미사용시간에 서버의 성능을 최소화(Scale Up/Down, Scale In/Out) 하는 기능이 있지만, 그래도 최소한의 서버가 고객을 대기해야되는 상황 입니다.</p>
+
+<p>Serverless 이런 문제를 해결하고자 하는 방향을 가지고 있습니다.
+내 서비스 기능의 code를 함수처럼 일정 룰에 맞게 작성하여, Cloud 서비스 업체한테 사전에 등록해 놓는 것입니다.
+서비스 요청이 오면, Cloud업체에서 사전에 등록한 기능을 실행해 주는 것 입니다.  <br />
+저는 더 이상 24시간 운영되는 서버가 없어도 되지요.</p>
+
+<p>가격과 사용 참고를 AWS에서는 잘 설명이 되어 있습니다.</p>
+<ul>
+  <li><a href="https://aws.amazon.com/ko/lambda/pricing/" target="_blank">AWS Lambda 비용과 사용 참고 상황</a></li>
+</ul>
+
+<p>언제나 동전에 양면 처럼 장점만 있는 것은 아닙니다. <br />
+단점으로는</p>
+
+<ul>
+  <li>플랫폼에 의존성이 일부 있습니다.  <br />
+AWS를 사용하여 코드를 작성하면, Azure로 이사가려면, 코드를 100%재활용이 안됩니다. 물론 변환해주는 일부 플랫폼이 있긴하자만, 완벽하진 않습니다.)</li>
+  <li>함수가 호출될때, 상황에 따라서는 약간의 기동시간이 필요합니다.
+– 콜드 스타트(Clod Starts) : 함수가 기동하기 위해서 시간이 필요한 상황…
+– 웜 스타트(Warm Start) : 한번 호출후 일정시간은 대기하는데, 대기중에 재호출되는 상황…</li>
+  <li>상태 관리의 어려움 존재 <br />
+Stateless Function으로 A함수, B함수가 동일 사용자가 호출하여도 A와 B는 동일 인인지 확인되지 않습니다. 매번 새로운 컨테이너를 통해 호출하는 컨셉으로 상태 관리를 하는 코드 형태로 작성이 되어야 합니다.</li>
+</ul>
+
+<h2 id="serverless-개발-프레임워크">Serverless 개발 프레임워크</h2>
+
+<p>Serverless는 다양한 언어로 개발이 가능합니다. <br />
+적절한 언어를 선택하셔서 개발하면 됩니다.</p>
+
+<ul>
+  <li>AWS Lambda : Java, Go, PowerShell, Node.js, C#, Python , Ruby 등
+<a href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-runtimes.html" target="_blank">AWS Lambda 지원 언어</a></li>
+  <li>Azure Functions : C#, Java, Javascript, PowerShell, Python, TypeScript, Go, Rust 등
+<a href="https://docs.microsoft.com/ko-kr/azure/azure-functions/supported-languages" target="_blank">Azure Functions 지원 언어</a></li>
+  <li>Google Cloud Functions : Node.js, Python, Go, Java, .Net, Ruby, PHP 등
+<a href="https://cloud.google.com/functions/docs/concepts?hl=ko" target="_blank">Google Cloud Functions 지원 언어</a></li>
+</ul>
+
+<p>개발은 Cloud 서비스 제공가 제공 하는 방식에 따라서 다르지만, 
+일반적으로 기존 방식과 유사하게 개발할 수 있도록 지원해주는 3rd Party Framwork library가 존재합니다.
+예를들면 Node.js로 AWS를 개발할때, <code class="language-plaintext highlighter-rouge">serverless</code>는 매우 편리하고 빠르게 개발 할 수 있게 지원해주는 npm library 입니다.</p>
+
+<pre><code class="language-txt"> _______                             __
+|   _   .-----.----.--.--.-----.----|  .-----.-----.-----.
+|   |___|  -__|   _|  |  |  -__|   _|  |  -__|__ --|__ --|
+|____   |_____|__|  \___/|_____|__| |__|_____|_____|_____|
+|   |   |             The Serverless Application Framework
+|       |                           serverless.com, v2.52.1
+ -------'
+</code></pre>
+
+<p><img src="https://camo.githubusercontent.com/108c301af486eeb9afde6ec9d6c98aaa5b1b2c14becaab3b781c22b851687e9c/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6173736574732e6769746875622e7365727665726c6573732f726561646d652d7365727665726c6573732d6672616d65776f726b2e676966" alt="Serverless" /></p>
+
+<ul>
+  <li><a href="https://www.serverless.com/" target="_blank">https://www.serverless.com/</a></li>
+  <li><a href="https://www.npmjs.com/package/serverless" target="_blank">https://www.npmjs.com/package/serverless</a></li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#aws" class="page__taxonomy-item p-category" rel="tag">AWS</a><span class="sep">, </span>
+    
+      <a href="/tags/#azure" class="page__taxonomy-item p-category" rel="tag">Azure</a><span class="sep">, </span>
+    
+      <a href="/tags/#cloud-functions" class="page__taxonomy-item p-category" rel="tag">Cloud Functions</a><span class="sep">, </span>
+    
+      <a href="/tags/#functinos" class="page__taxonomy-item p-category" rel="tag">Functinos</a><span class="sep">, </span>
+    
+      <a href="/tags/#google" class="page__taxonomy-item p-category" rel="tag">Google</a><span class="sep">, </span>
+    
+      <a href="/tags/#lambda" class="page__taxonomy-item p-category" rel="tag">Lambda</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#cloud" class="page__taxonomy-item p-category" rel="tag">cloud</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-05-27T00:00:00-05:00">2022-05-27</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Serverless+Concept%20https%3A%2F%2Fkimjaehyun.co.kr%2Fcloud%2FAWS-S3_01%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fcloud%2FAWS-S3_01%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fcloud%2FAWS-S3_01%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/cloud/AWS-Basic/" class="pagination--pager" title="[AWS] 기초 개념
+">이전</a>
+    
+    
+      <a href="/cloud/AWS-Service/" class="pagination--pager" title="[AWS] 자주 쓰는 서비스
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/cloud/cloud_what_is_serverless-copy/">[AWS S3] Simple Storage Service 서비스 사용</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#file" class="page__taxonomy-item-tag" rel="tag">File</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#s3-static-hosting" class="page__taxonomy-item-tag" rel="tag">S3 Static Hosting</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#s3" class="page__taxonomy-item-tag" rel="tag">S3</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#simple-storage-service" class="page__taxonomy-item-tag" rel="tag">Simple Storage Service</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/cloud/AWS-Service/">[AWS] 자주 쓰는 서비스</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#arn" class="page__taxonomy-item-tag" rel="tag">ARN</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#az" class="page__taxonomy-item-tag" rel="tag">AZ</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#cloud" class="page__taxonomy-item-tag" rel="tag">Cloud</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#iass" class="page__taxonomy-item-tag" rel="tag">IasS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#paas" class="page__taxonomy-item-tag" rel="tag">PaaS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#region" class="page__taxonomy-item-tag" rel="tag">Region</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#saas" class="page__taxonomy-item-tag" rel="tag">SaaS</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/cloud/AWS-Basic/">[AWS] 기초 개념</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#arn" class="page__taxonomy-item-tag" rel="tag">ARN</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#az" class="page__taxonomy-item-tag" rel="tag">AZ</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#cloud" class="page__taxonomy-item-tag" rel="tag">Cloud</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#iass" class="page__taxonomy-item-tag" rel="tag">IasS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#paas" class="page__taxonomy-item-tag" rel="tag">PaaS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#region" class="page__taxonomy-item-tag" rel="tag">Region</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#saas" class="page__taxonomy-item-tag" rel="tag">SaaS</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/nodejs/NodeJS_summary_module/">NodeJS 기초 정리 - 모듈화</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.01.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#nodejs" class="page__taxonomy-item-category" rel="tag">nodejs</a>
+                    
+                    
+                    <a href="/tags/#nodejs" class="page__taxonomy-item-tag" rel="tag">nodejs</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kimjaehyun.co.kr/cloud/AWS-S3_01/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/cloud/AWS-S3_01"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

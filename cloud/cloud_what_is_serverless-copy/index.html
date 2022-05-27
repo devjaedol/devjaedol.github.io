@@ -1,0 +1,996 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[AWS S3] Simple Storage Service 서비스 사용 | 꿰보노트</title>
+<meta name="description" content="S3란 (Simple Storage Service) Cloud내 File를 저장하기 위해서 사용함.   특징    99.999999999% 내구성   객체 스토리지 서비스            반대 서비스, Block Storage Serivce (EBS, EFS등)           무제한 확장 가능            객체 한개는 (0byte~5TB 이내 조건)           Static web 서비스 기능 제공            서비스 도메인과 Buket명과 같음           암호화 및 보안 적용 지원            SSE S3(S3서비스가 알아서 암호화)       SSE KMS(KMS 서비스를 토해서 암호화)       SSE C (클라이언트가 제공한 암호 방식 사용)           Bucket 단위로 사용            Buket이름은 Unique함">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[AWS S3] Simple Storage Service 서비스 사용">
+<meta property="og:url" content="https://kimjaehyun.co.kr/cloud/cloud_what_is_serverless-copy/">
+
+
+  <meta property="og:description" content="S3란 (Simple Storage Service) Cloud내 File를 저장하기 위해서 사용함.   특징    99.999999999% 내구성   객체 스토리지 서비스            반대 서비스, Block Storage Serivce (EBS, EFS등)           무제한 확장 가능            객체 한개는 (0byte~5TB 이내 조건)           Static web 서비스 기능 제공            서비스 도메인과 Buket명과 같음           암호화 및 보안 적용 지원            SSE S3(S3서비스가 알아서 암호화)       SSE KMS(KMS 서비스를 토해서 암호화)       SSE C (클라이언트가 제공한 암호 방식 사용)           Bucket 단위로 사용            Buket이름은 Unique함">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-05-27T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/cloud/cloud_what_is_serverless-copy/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#cloud" itemprop="item"><span itemprop="name">Cloud</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[AWS S3] Simple Storage Service 서비스 사용</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 15</span>개</span> 
+      </li>
+
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a></li>
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+
+        <span class="nav__sub-title">Coding Test</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[AWS S3] Simple Storage Service 서비스 사용">
+    <meta itemprop="description" content="S3란 (Simple Storage Service)Cloud내 File를 저장하기 위해서 사용함.  특징  99.999999999% 내구성  객체 스토리지 서비스          반대 서비스, Block Storage Serivce (EBS, EFS등)        무제한 확장 가능          객체 한개는 (0byte~5TB 이내 조건)        Static web 서비스 기능 제공          서비스 도메인과 Buket명과 같음        암호화 및 보안 적용 지원          SSE S3(S3서비스가 알아서 암호화)      SSE KMS(KMS 서비스를 토해서 암호화)      SSE C (클라이언트가 제공한 암호 방식 사용)        Bucket 단위로 사용          Buket이름은 Unique함      ">
+    <meta itemprop="datePublished" content="2022-05-27T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/cloud/cloud_what_is_serverless-copy/" class="u-url" itemprop="url">[AWS S3] Simple Storage Service 서비스 사용
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#s3란-simple-storage-service">S3란 (Simple Storage Service)</a></li><li><a href="#s3-구성">S3 구성</a></li><li><a href="#s3의-정적-호스팅-주소-형태">S3의 정적 호스팅 주소 형태</a></li><li><a href="#s3---glacier">S3 - Glacier</a></li><li><a href="#s3-보안">S3 보안</a><ul><li><a href="#bucket-policy">Bucket policy</a></li><li><a href="#aclaccess-control-list">ACL(Access Control List)</a></li></ul></li><li><a href="#s3-static-hosting-실습">S3 Static Hosting 실습</a><ul><li><a href="#버킷-생성">버킷 생성</a><ul><li><a href="#s3--create-bucket-화면">S3 &gt; Create Bucket 화면</a></li></ul></li><li><a href="#버킷-권한-설정">버킷 권한 설정</a></li><li><a href="#정적-웹-사이트-호스팅">정적 웹 사이트 호스팅</a></li><li><a href="#엔드포인트-주소를-도메인으로-연결">엔드포인트 주소를 도메인으로 연결</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="s3란-simple-storage-service">S3란 (Simple Storage Service)</h1>
+<p>Cloud내 File를 저장하기 위해서 사용함.  <br />
+특징</p>
+<ul>
+  <li>99.999999999% 내구성</li>
+  <li>객체 스토리지 서비스
+    <ul>
+      <li>반대 서비스, Block Storage Serivce (EBS, EFS등)</li>
+    </ul>
+  </li>
+  <li>무제한 확장 가능
+    <ul>
+      <li>객체 한개는 (0byte~5TB 이내 조건)</li>
+    </ul>
+  </li>
+  <li>Static web 서비스 기능 제공
+    <ul>
+      <li>서비스 도메인과 Buket명과 같음</li>
+    </ul>
+  </li>
+  <li>암호화 및 보안 적용 지원
+    <ul>
+      <li>SSE S3(S3서비스가 알아서 암호화)</li>
+      <li>SSE KMS(KMS 서비스를 토해서 암호화)</li>
+      <li>SSE C (클라이언트가 제공한 암호 방식 사용)</li>
+    </ul>
+  </li>
+  <li>Bucket 단위로 사용
+    <ul>
+      <li>Buket이름은 Unique함</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="s3-구성">S3 구성</h1>
+<ul>
+  <li>key : 파일이름</li>
+  <li>Value : 파일데이터</li>
+  <li>Version id : 파일 버전</li>
+  <li>ACL :  : 접근 권한</li>
+  <li>Metadata :  파일 메타 정보</li>
+</ul>
+
+<h1 id="s3의-정적-호스팅-주소-형태">S3의 정적 호스팅 주소 형태</h1>
+<p>주소 구조</p>
+<ul>
+  <li>https://Bucket이름.s3.리전명.amazoneaws.com/키이름</li>
+  <li>https://s3.리전명.amazoneaws.com/Bucket이름/키이름</li>
+</ul>
+
+<h1 id="s3---glacier">S3 - Glacier</h1>
+<ul>
+  <li>아카이브용 저장소</li>
+  <li>가격이 저렴함</li>
+  <li>데이터 가져오는데 시간이 소요됨.</li>
+</ul>
+
+<h1 id="s3-보안">S3 보안</h1>
+<p>정책 적용 설정 <br />
+<img src="/assets/images_post/cloud/aws_s3/aws_s3_12.png" alt="bucket 생성" />
+<a href="https://awspolicygen.s3.amazonaws.com/policygen.html" target="_blank">AWS Policy Generator</a>  <br />
+<a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html" target="_blank">AWS Policy Sample</a></p>
+
+<h2 id="bucket-policy">Bucket policy</h2>
+<ul>
+  <li>Bucket 단위로 정책이 적용됨</li>
+  <li>Version 문법의 작성 버전 ( 2008-10-17 or 2012-10-17 )</li>
+  <li>Id : 아이디</li>
+  <li>Statement
+    <ul>
+      <li>Sid : 구별을 위한 아이디</li>
+      <li>Effect : 허가 여부 Allow or Deny</li>
+      <li>Principal : 권한의 이용을 위한 Target을 선택함</li>
+      <li>Action : 사용할 권한에 대한 동작</li>
+      <li>Resource : 동작에 대상이 되는 리소스</li>
+      <li>Condition : 동작에 대한 조건을 설정</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="aclaccess-control-list">ACL(Access Control List)</h2>
+<ul>
+  <li>파일 단위로 정책이 적용됨</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">&lt;Sample&gt;</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"Id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PolicyXXXXXXX"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StmtXXXXXXXXXX"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"s3:GetObject"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::버킷이름/*"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h1 id="s3-static-hosting-실습">S3 Static Hosting 실습</h1>
+<h2 id="버킷-생성">버킷 생성</h2>
+<h3 id="s3--create-bucket-화면">S3 &gt; Create Bucket 화면</h3>
+<ul>
+  <li>버킷 이름을 입력합니다.</li>
+  <li>퍼블릭 엑세스가 가능하도록 보안을 해제 합니다.</li>
+  <li>생성을 실행합니다.
+<img src="/assets/images_post/cloud/aws_s3/aws_s3_1.png" alt="bucket 생성" /></li>
+</ul>
+
+<h2 id="버킷-권한-설정">버킷 권한 설정</h2>
+<ul>
+  <li>Amazon S3 &gt; 버킷 &gt; (버킷이름) 을 선택합니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">권한</code> 탭에서 <code class="language-plaintext highlighter-rouge">버킷정책</code> 편집을 실행 후 위 정책을 적용 합니다.
+<img src="/assets/images_post/cloud/aws_s3/aws_s3_13.png" alt="bucket 생성" />
+<img src="/assets/images_post/cloud/aws_s3/aws_s3_4.png" alt="bucket 생성" />
+<img src="/assets/images_post/cloud/aws_s3/aws_s3_5.png" alt="bucket 생성" /></li>
+  <li>정책 수정시 주의 사항
+    <ul>
+      <li>Actions를 GetObject로 선택합니다.</li>
+      <li>ARN이름은 버킷 초기 화면 속성에서 확인합니다.</li>
+      <li>Principal을 모두 접근이 가능하도록 <code class="language-plaintext highlighter-rouge">*</code> 로 입력합니다.
+<img src="/assets/images_post/cloud/aws_s3/aws_s3_11.png" alt="bucket 생성" />
+<img src="/assets/images_post/cloud/aws_s3/aws_s3_12.png" alt="bucket 생성" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="정적-웹-사이트-호스팅">정적 웹 사이트 호스팅</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">속성</code> 탭으로 이동 후 정적 웹사이트 호스팅으로 진입 합니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">정적 웹 사이트 호스팅</code>을 활성화를 선택합니다.</li>
+  <li>인덱스 문서 항목에 진입시 페이지 <code class="language-plaintext highlighter-rouge">index.html</code>를 입력 합니다.</li>
+  <li>저장 후 <code class="language-plaintext highlighter-rouge">엔드포인트 주소</code>를 선택하면 정적 웹 호스팅이 된 것을 알 수 있습니다.
+<img src="/assets/images_post/cloud/aws_s3/aws_s3_16.png" alt="bucket 생성" /></li>
+</ul>
+
+<h2 id="엔드포인트-주소를-도메인으로-연결">엔드포인트 주소를 도메인으로 연결</h2>
+<p><code class="language-plaintext highlighter-rouge">Roue53 &gt; 호스팅영역 &gt; yourdomain &gt; 레코드 생성</code> 위치에서 하기 입력으로 subdomain 연결함</p>
+<ul>
+  <li>트레픽 라우팅 대상에서 <code class="language-plaintext highlighter-rouge">별칭</code> 사용 선택</li>
+  <li>S3 웹 사이트 엔드포인트에 대한 별칭</li>
+  <li>사용 리전 선택 (예) <code class="language-plaintext highlighter-rouge">아시아 태평양(서울) [ap-northeast-2]</code></li>
+  <li>생성한 S3 엔드포인트 선택  <br />
+<img src="/assets/images_post/cloud/aws_s3/aws_s3_17.png" alt="bucket 생성" /></li>
+</ul>
+
+<p>일정시간 후 연결됨을 확인 할 수 있습니다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#aws" class="page__taxonomy-item p-category" rel="tag">AWS</a><span class="sep">, </span>
+    
+      <a href="/tags/#file" class="page__taxonomy-item p-category" rel="tag">File</a><span class="sep">, </span>
+    
+      <a href="/tags/#s3" class="page__taxonomy-item p-category" rel="tag">S3</a><span class="sep">, </span>
+    
+      <a href="/tags/#s3-static-hosting" class="page__taxonomy-item p-category" rel="tag">S3 Static Hosting</a><span class="sep">, </span>
+    
+      <a href="/tags/#simple-storage-service" class="page__taxonomy-item p-category" rel="tag">Simple Storage Service</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#cloud" class="page__taxonomy-item p-category" rel="tag">cloud</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-05-27T00:00:00-05:00">2022-05-27</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BAWS+S3%5D+Simple+Storage+Service+%EC%84%9C%EB%B9%84%EC%8A%A4+%EC%82%AC%EC%9A%A9%20https%3A%2F%2Fkimjaehyun.co.kr%2Fcloud%2Fcloud_what_is_serverless-copy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fcloud%2Fcloud_what_is_serverless-copy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fcloud%2Fcloud_what_is_serverless-copy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/cloud/AWS-Service/" class="pagination--pager" title="[AWS] 자주 쓰는 서비스
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/cloud/AWS-Service/">[AWS] 자주 쓰는 서비스</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#arn" class="page__taxonomy-item-tag" rel="tag">ARN</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#az" class="page__taxonomy-item-tag" rel="tag">AZ</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#cloud" class="page__taxonomy-item-tag" rel="tag">Cloud</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#iass" class="page__taxonomy-item-tag" rel="tag">IasS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#paas" class="page__taxonomy-item-tag" rel="tag">PaaS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#region" class="page__taxonomy-item-tag" rel="tag">Region</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#saas" class="page__taxonomy-item-tag" rel="tag">SaaS</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/cloud/AWS-S3_01/">Serverless Concept</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#azure" class="page__taxonomy-item-tag" rel="tag">Azure</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#cloud-functions" class="page__taxonomy-item-tag" rel="tag">Cloud Functions</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#functinos" class="page__taxonomy-item-tag" rel="tag">Functinos</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#google" class="page__taxonomy-item-tag" rel="tag">Google</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lambda" class="page__taxonomy-item-tag" rel="tag">Lambda</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/cloud/AWS-Basic/">[AWS] 기초 개념</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#arn" class="page__taxonomy-item-tag" rel="tag">ARN</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#az" class="page__taxonomy-item-tag" rel="tag">AZ</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#cloud" class="page__taxonomy-item-tag" rel="tag">Cloud</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#iass" class="page__taxonomy-item-tag" rel="tag">IasS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#paas" class="page__taxonomy-item-tag" rel="tag">PaaS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#region" class="page__taxonomy-item-tag" rel="tag">Region</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#saas" class="page__taxonomy-item-tag" rel="tag">SaaS</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-check"></i> <a href="/nodejs/NodeJS_summary_module/">NodeJS 기초 정리 - 모듈화</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.01.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#nodejs" class="page__taxonomy-item-category" rel="tag">nodejs</a>
+                    
+                    
+                    <a href="/tags/#nodejs" class="page__taxonomy-item-tag" rel="tag">nodejs</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kimjaehyun.co.kr/cloud/cloud_what_is_serverless-copy/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/cloud/cloud_what_is_serverless copy"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

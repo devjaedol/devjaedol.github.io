@@ -64,4 +64,28 @@ var store = [{
         "tags": ["nodejs"],
         "url": "/nodejs/NodeJS_summary_module/",
         "teaser": null
+      },{
+        "title": "[AWS] 기초 개념",
+        "excerpt":"AWS 에서 정의된 클라우드 컴퓨팅 내용 클라우드 컴퓨팅은 IT 리소스를 인터넷을 통해서 온디맨드(수요에 반응함)로 제공하고 사용한 만큼만 비용을 지불하는것을 말합니다. 쉽게 서버 자원이 필요할때 빌려 쓸수 있는 환경 정도로 이해…. Amazon.com에서 시작해서 2006년 S3/EC2를 출시하며 시작함. 클라우드 컴퓨팅 모델 IaaS : Infrastructure as a Service PaaS : Platform as a...","categories": ["cloud"],
+        "tags": ["AWS","Cloud","IasS","PaaS","SaaS","Region","AZ","ARN"],
+        "url": "/cloud/AWS-Basic/",
+        "teaser": null
+      },{
+        "title": "Serverless Concept",
+        "excerpt":"라떼는 말이야…. 웹서비스 개발을 배울때 서버를 설정하고, HW를 구축하는 것을 배우던 시대가 있었는데… 서버의 일부 공간을 빌려서 인스턴스를 사용하던 방식에서 진일보하여, 이제는 Serverless 방식의 서비스가 대세 이네요. Serverless의 컨셉을 알아보고, 공부를 시작해 봅시다. AWS 에서 정의된 클라우드 컴퓨팅 내용 클라우드 컴퓨팅은 IT 리소스를 인터넷을 통해서 온디맨드(수요에 반응함)로 제공하고 사용한 만큼만...","categories": ["cloud"],
+        "tags": ["AWS","Lambda","Azure","Functinos","Google","Cloud Functions"],
+        "url": "/cloud/AWS-S3_01/",
+        "teaser": null
+      },{
+        "title": "[AWS] 자주 쓰는 서비스",
+        "excerpt":"AWS에서 너무 많은 서비스가 있는데, 자주 쓰이는 것들과 어떤 서비스를 제공하는지 정도를 틈틈이 정리해보려고 합니다. IAM EC2 S3 S3 Glacier DynamoDB RDS API Gateway CloudTrail CloudWatch VPC Amazon MQ Route 53 Cloud Front IoT Core VPC AWS 아키텍처 아이콘 다운로드 간혹 아키텍처 자료를 만들때 있어보이게 만들수 있는 꿀 템플릿 입니다....","categories": ["cloud"],
+        "tags": ["AWS","Cloud","IasS","PaaS","SaaS","Region","AZ","ARN"],
+        "url": "/cloud/AWS-Service/",
+        "teaser": null
+      },{
+        "title": "[AWS S3] Simple Storage Service 서비스 사용",
+        "excerpt":"S3란 (Simple Storage Service) Cloud내 File를 저장하기 위해서 사용함. 특징 99.999999999% 내구성 객체 스토리지 서비스 반대 서비스, Block Storage Serivce (EBS, EFS등) 무제한 확장 가능 객체 한개는 (0byte~5TB 이내 조건) Static web 서비스 기능 제공 서비스 도메인과 Buket명과 같음 암호화 및 보안 적용 지원 SSE S3(S3서비스가 알아서 암호화) SSE KMS(KMS...","categories": ["cloud"],
+        "tags": ["AWS","Simple Storage Service","S3","File","S3 Static Hosting"],
+        "url": "/cloud/cloud_what_is_serverless-copy/",
+        "teaser": null
       }]
