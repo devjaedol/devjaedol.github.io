@@ -450,50 +450,104 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#iam">IAM</a></li><li><a href="#ec2">EC2</a></li><li><a href="#s3">S3</a></li><li><a href="#s3-glacier">S3 Glacier</a></li><li><a href="#dynamodb">DynamoDB</a></li><li><a href="#rds">RDS</a></li><li><a href="#api-gateway">API Gateway</a></li><li><a href="#cloudtrail">CloudTrail</a></li><li><a href="#cloudwatch">CloudWatch</a></li><li><a href="#vpc">VPC</a></li><li><a href="#amazon-mq">Amazon MQ</a></li><li><a href="#route-53">Route 53</a></li><li><a href="#cloud-front">Cloud Front</a></li><li><a href="#iot-core">IoT Core</a></li><li><a href="#vpc-1">VPC</a></li><li><a href="#aws-아키텍처-아이콘-다운로드">AWS 아키텍처 아이콘 다운로드</a></li></ul>
+              <ul class="toc__menu"><li><a href="#iam-identity-and-access-management">IAM (Identity and Access Management)</a></li><li><a href="#ec2-elastic-compute-cloud">EC2 (Elastic Compute Cloud)</a></li><li><a href="#s3-simple-storage-service">S3 (Simple Storage Service)</a></li><li><a href="#s3-glacier">S3 Glacier</a></li><li><a href="#dynamodb">DynamoDB</a></li><li><a href="#rds-relational-database-service">RDS (Relational Database Service)</a></li><li><a href="#aurora">Aurora</a></li><li><a href="#api-gateway">API Gateway</a></li><li><a href="#cloudtrail">CloudTrail</a></li><li><a href="#cloudwatch">CloudWatch</a></li><li><a href="#lambda">Lambda</a></li><li><a href="#ses-simple-email-service">SES (Simple Email Service)</a></li><li><a href="#amazon-mq">Amazon MQ</a></li><li><a href="#route-53">Route 53</a></li><li><a href="#cloud-front">Cloud Front</a></li><li><a href="#iot-core">IoT Core</a></li><li><a href="#vpc-virtual-private-cloud">VPC (Virtual Private Cloud)</a></li><li><a href="#elb-elastic-load-balancing">ELB (Elastic Load Balancing)</a></li><li><a href="#kms-key-management-service">KMS (Key Management Service)</a></li><li><a href="#ebs-elastic-block-store">EBS (Elastic Block Store)</a></li><li><a href="#efs-elastic-file-system">EFS (Elastic File System)</a></li><li><a href="#elastic-transcoder">Elastic-Transcoder</a></li><li><a href="#snowball">Snowball</a></li><li><a href="#aws-아키텍처-아이콘-다운로드">AWS 아키텍처 아이콘 다운로드</a></li></ul>
 
             </nav>
           </aside>
         
         <p>AWS에서 너무 많은 서비스가 있는데, 자주 쓰이는 것들과 어떤 서비스를 제공하는지 정도를 틈틈이 정리해보려고 합니다.</p>
 
-<h2 id="iam">IAM</h2>
+<h2 id="iam-identity-and-access-management">IAM (Identity and Access Management)</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_AWS-Identity-and-Access-Management_64.png" alt="IAM" width="48px&quot;, height=&quot;48px" />
+AWS의 사용자 생성 그룹, 역할 등 서비스 및 리소스 접근 권한을 관리.</p>
 
-<h2 id="ec2">EC2</h2>
-<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-EC2_64.png" alt="EC2" /></p>
+<h2 id="ec2-elastic-compute-cloud">EC2 (Elastic Compute Cloud)</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-EC2_64.png" alt="EC2" width="48px&quot;, height=&quot;48px" />
+클라우드에서 인스턴스로 부르는 가상 컴퓨터(리눅서, window 등 다양한 OS 이미지로 생성이 가능함.)</p>
 
-<h2 id="s3">S3</h2>
-<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-S3-on-Outposts_64.png" alt="S3" /></p>
+<h2 id="s3-simple-storage-service">S3 (Simple Storage Service)</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-S3-on-Outposts_64.png" alt="S3" width="48px&quot;, height=&quot;48px" />
+데이터 저장소로 File, image, movie등 무제한 확장이 가능한 저장소</p>
 
 <h2 id="s3-glacier">S3 Glacier</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-Simple-Storage-Service-Glacier_64.png" alt="S3 Glacier" width="48px&quot;, height=&quot;48px" />
+저비용, 장기 백업 서비스로 S3와 함께 사용하여 백업 등의 최적화 구성</p>
 
 <h2 id="dynamodb">DynamoDB</h2>
-<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-DynamoDB_64.png" alt="DynamoDB" /></p>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-DynamoDB_64.png" alt="DynamoDB" width="48px&quot;, height=&quot;48px" />
+Key, Value 형태의 NOSQL Database 서비스</p>
 
-<h2 id="rds">RDS</h2>
-<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-RDS_64.png" alt="RDS" /></p>
+<h2 id="rds-relational-database-service">RDS (Relational Database Service)</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-RDS_64.png" alt="RDS" width="48px&quot;, height=&quot;48px" />
+R-DBMS 를 Cloud로 서비스하는 것으로 사용 및 오픈소스 대부분의 RDBMS를 선택 가능함.  <br />
+MySQL, Oracle, SQL Server, PostgreSQL, Maria DB</p>
+
+<h2 id="aurora">Aurora</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-Aurora_64.png" alt="RDS" width="48px&quot;, height=&quot;48px" />
+클라우드 전용을  아마존의 관계형 데이터 베이스로 MySQL, PostgreSQL 두개의 오픈소스를 지원</p>
 
 <h2 id="api-gateway">API Gateway</h2>
-<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-API-Gateway_64.png" alt="API Gateway" /></p>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-API-Gateway_64.png" alt="API Gateway" width="48px&quot;, height=&quot;48px" />
+웹어플리케이션 백엔드 구현에 필요한 API개발을 지원하고 ,  Lamdba, EC2기반 앱 개발 등을 지원</p>
 
 <h2 id="cloudtrail">CloudTrail</h2>
-<p><img src="/assets/images_post/cloud/aws/Arch_AWS-CloudTrail_64.png" alt="CloudTrail" /></p>
+<p><img src="/assets/images_post/cloud/aws/Arch_AWS-CloudTrail_64.png" alt="CloudTrail" width="48px&quot;, height=&quot;48px" />
+계정 내 API호출 내역과 사요자 액티비티 기록 서비스로 S3를 통해서 로그 파일을 제공함.</p>
 
 <h2 id="cloudwatch">CloudWatch</h2>
-<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-CloudWatch_64.png" alt="CloudWatch" /></p>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-CloudWatch_64.png" alt="CloudWatch" width="48px&quot;, height=&quot;48px" />
+AWS 리소스와 애플리케이션을 모니터링 서비스, 각종 로그를 수집 분석하고 경고를 설정 가능함.</p>
 
-<h2 id="vpc">VPC</h2>
+<h2 id="lambda">Lambda</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_AWS-Lambda_64.png" alt="Lambda" width="48px&quot;, height=&quot;48px" /></p>
+
+<h2 id="ses-simple-email-service">SES (Simple Email Service)</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-Simple-Email-Service_64.png" alt="SES" width="48px&quot;, height=&quot;48px" />
+이메일 설정 및 운영, 발송 등의 서비스를 제공.</p>
 
 <h2 id="amazon-mq">Amazon MQ</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-MQ_64.png" alt="Amazon MQ" width="48px&quot;, height=&quot;48px" />
+아마존의 메세지 큐 서비스.</p>
 
 <h2 id="route-53">Route 53</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-Route-53_64.png" alt="Route 53" width="48px&quot;, height=&quot;48px" />
+DNS의 역할로 Domain 정보를 AWS 서비스로 전달함.</p>
 
 <h2 id="cloud-front">Cloud Front</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-CloudFront_64.png" alt="Cloud Front" width="48px&quot;, height=&quot;48px" />
+글로벌 서비스를 위한 CDN(Content Delivery Network)서비스 제공.</p>
 
 <h2 id="iot-core">IoT Core</h2>
-<p><img src="/assets/images_post/cloud/aws/Arch_AWS-IoT-Core_64.png" alt="IoT Core" /></p>
+<p><img src="/assets/images_post/cloud/aws/Arch_AWS-IoT-Core_64.png" alt="IoT Core" width="48px&quot;, height=&quot;48px" />
+사물인터넷에 사용되며 디바이스와 클라우드의 연결을 위한 플랫폼(MQTT 등의 방법 제공)</p>
 
-<h2 id="vpc-1">VPC</h2>
+<h2 id="vpc-virtual-private-cloud">VPC (Virtual Private Cloud)</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-Virtual-Private-Cloud_64.png" alt="Virtual Private Cloud" width="48px&quot;, height=&quot;48px" />
+VPC를 통해서만 가상 네트워크에서만 클라으드에 접근 할 수 있게 하는 기술.</p>
+
+<h2 id="elb-elastic-load-balancing">ELB (Elastic Load Balancing)</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Elastic-Load-Balancing_64.png" alt="Elastic Load Balancing" width="48px&quot;, height=&quot;48px" />
+부하를 분산하는 L4 기능을 제공함.</p>
+
+<h2 id="kms-key-management-service">KMS (Key Management Service)</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_AWS-Key-Management-Service_64.png" alt="KMS" width="48px&quot;, height=&quot;48px" />
+암호화 작업에 사용되는 키생성 및 통합 환경에서의 키관리 및 정책 정의.</p>
+
+<h2 id="ebs-elastic-block-store">EBS (Elastic Block Store)</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-Elastic-Block-Store_64.png" alt="EBS" width="48px&quot;, height=&quot;48px" />
+EC2 인스턴스를 위한 스토리리 서비스로 마그네틱 또는 SSD 를 선택 가능함.</p>
+
+<h2 id="efs-elastic-file-system">EFS (Elastic File System)</h2>
+<p><img src="/assets/images_post/cloud/aws/Res_Amazon-Elastic-File-System_Standard_48_Light.png" alt="EFS" width="48px&quot;, height=&quot;48px" />
+EC2 인스턴스를 활용하기 위해서, 확정성이 높은 공유 스토리지 서비스로, 다수의 EC2에서 동시에 접속 할수 있다.</p>
+
+<h2 id="elastic-transcoder">Elastic-Transcoder</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_Amazon-Elastic-Transcoder_64.png" alt="Elastic-Transcoder" width="48px&quot;, height=&quot;48px" />
+비디오 및 오디를 디바이스에 적합한 형태로 파일을 포멧을 변환하기 위한 서비스</p>
+
+<h2 id="snowball">Snowball</h2>
+<p><img src="/assets/images_post/cloud/aws/Arch_AWS-Snowball_64.png" alt="Snowball" width="48px&quot;, height=&quot;48px" />
+클라우드 안팎에서 페타바이트 규모의 데이터를 전송 할수 있는 기능 제공. 클라우드 백업 및 온프레미스 전송 등에 사용.</p>
 
 <h2 id="aws-아키텍처-아이콘-다운로드">AWS 아키텍처 아이콘 다운로드</h2>
 <p>간혹 아키텍처 자료를 만들때 있어보이게 만들수 있는 꿀 템플릿 입니다. <br />

@@ -78,7 +78,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[AWS] 자주 쓰는 서비스",
-        "excerpt":"AWS에서 너무 많은 서비스가 있는데, 자주 쓰이는 것들과 어떤 서비스를 제공하는지 정도를 틈틈이 정리해보려고 합니다. IAM EC2 S3 S3 Glacier DynamoDB RDS API Gateway CloudTrail CloudWatch VPC Amazon MQ Route 53 Cloud Front IoT Core VPC AWS 아키텍처 아이콘 다운로드 간혹 아키텍처 자료를 만들때 있어보이게 만들수 있는 꿀 템플릿 입니다....","categories": ["cloud"],
+        "excerpt":"AWS에서 너무 많은 서비스가 있는데, 자주 쓰이는 것들과 어떤 서비스를 제공하는지 정도를 틈틈이 정리해보려고 합니다. IAM (Identity and Access Management) AWS의 사용자 생성 그룹, 역할 등 서비스 및 리소스 접근 권한을 관리. EC2 (Elastic Compute Cloud) 클라우드에서 인스턴스로 부르는 가상 컴퓨터(리눅서, window 등 다양한 OS 이미지로 생성이 가능함.) S3 (Simple...","categories": ["cloud"],
         "tags": ["AWS","Cloud","IasS","PaaS","SaaS","Region","AZ","ARN"],
         "url": "/cloud/AWS-Service/",
         "teaser": null
