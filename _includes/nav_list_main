@@ -53,11 +53,18 @@
           </ul>            
           <ul>
             {% for category in site.categories %}
+                {% if category[0] == "cloud" %}
+                    <li><a href="/categories/cloud" class="">Cloud ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+          </ul>            
+          <ul>
+            {% for category in site.categories %}
                 {% if category[0] == "etc" %}
                     <li><a href="/categories/etc" class="">Etc ({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
-        </ul>            
+          </ul>            
 
 
         <span class="nav__sub-title">Coding Test</span>
