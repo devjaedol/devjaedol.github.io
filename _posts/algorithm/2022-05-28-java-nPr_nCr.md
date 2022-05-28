@@ -1,7 +1,7 @@
 ---
 title: "[JAVA] 순열과 조합"
 categories: 
-    - codingtest
+    - algorithm
     - java
 tags: 
     [nPr, nCr, 순열, 조합, Permutation. Combination]

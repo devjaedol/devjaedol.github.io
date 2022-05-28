@@ -1,7 +1,7 @@
 ---
 title: "[JAVA] DFS vs BFS"
 categories: 
-    - codingtest
+    - algorithm
     - java
 tags: 
     [dfs, bfs,깊이우선탐색,넓이우선탐색,Breadth-First Search]

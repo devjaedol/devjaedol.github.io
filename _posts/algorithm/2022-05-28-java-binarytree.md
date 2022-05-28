@@ -1,7 +1,7 @@
 ---
 title: "[JAVA] 이진 트리"
 categories: 
-    - codingtest
+    - algorithm
     - java
 tags: 
     [트리, Tree, 이진트리, BinaryTree]
