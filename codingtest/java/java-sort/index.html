@@ -1,0 +1,1637 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[JAVA] Sort 함수 | 꿰보노트</title>
+<meta name="description" content="정렬 함수 테스트">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[JAVA] Sort 함수">
+<meta property="og:url" content="https://kimjaehyun.co.kr/codingtest/java/java-sort/">
+
+
+  <meta property="og:description" content="정렬 함수 테스트">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-05-28T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/codingtest/java/java-sort/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#codingtest" itemprop="item"><span itemprop="name">Codingtest</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#java" itemprop="item"><span itemprop="name">Java</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[JAVA] Sort 함수</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 17</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (1)</a></li>
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+
+
+        <span class="nav__sub-title">Footprints</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (1)</a></li>
+                    
+                
+                    
+                
+            </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[JAVA] Sort 함수">
+    <meta itemprop="description" content="정렬 함수 테스트">
+    <meta itemprop="datePublished" content="2022-05-28T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/codingtest/java/java-sort/" class="u-url" itemprop="url">[JAVA] Sort 함수
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#정렬-방식">정렬 방식</a></li><li><a href="#bubble-sort">Bubble Sort.</a></li><li><a href="#selection-sort">Selection Sort.</a></li><li><a href="#insertion-sort">Insertion Sort.</a></li><li><a href="#quick-sort">Quick Sort.</a></li><li><a href="#merge-sort">Merge Sort.</a></li><li><a href="#heap-sort">Heap Sort.</a></li><li><a href="#counting-sort">Counting Sort.</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>정렬 함수 테스트</p>
+
+<h1 id="정렬-방식">정렬 방식</h1>
+<ul>
+  <li>Bubble Sort.			O(N^2)</li>
+  <li>Selection Sort.		O(N^2)</li>
+  <li>Insertion Sort.		O(N^2)</li>
+  <li>Quick Sort.			avg O(N*logN), max O(N^2) - 이미정렬된 경우</li>
+  <li>Merge Sort.			O(N*logN) 보장, 단점 정렬시 메모리 필요함.</li>
+  <li>Heap Sort.			N/2*logN  (N이 클경우 logN은 값은 작은 값으로 결과적으로) &gt; O(N)</li>
+  <li>Counting Sort.		O(N) 특정 범위 조건</li>
+</ul>
+
+<h1 id="bubble-sort">Bubble Sort.</h1>
+<p>성능 O(N^2)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">package</span> <span class="nn">sort</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BubbleSort</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		<span class="c1">// 버블O(N^2) &lt; 선택O(N^2) &lt; 삽입O(N^2) </span>
+		<span class="c1">// 10 + 9 + .... + 1 =  10*(10+1)/2 = 55 (등차 수열)</span>
+		<span class="c1">// 버블 정렬의 시간 복잡도 O(N*N) = O(N^2)</span>
+		<span class="c1">// 선택 정렬과 시간 복잡도는 같으나, 매번 비교와 자리 바꿈으로 인해서 버블 정렬이 정렬중 제일 성능이 느림.</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"버블 정렬 : 바로 옆값과 비교하여 작은것을 앞으로, 실행시 마다 젤 큰값이 제일 뒤로 보내짐"</span><span class="o">);</span>
+		
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">num</span> <span class="o">=</span>	<span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">9</span><span class="o">};</span>
+		<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Origin-----------------------------------------"</span><span class="o">);</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d"</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sort-------------------------------------------"</span><span class="o">);</span>
+		
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">j</span><span class="o">&lt;(</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="o">)</span> <span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>	
+				
+				<span class="k">if</span><span class="o">(</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span> <span class="o">)</span> <span class="o">{</span>
+					<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+					<span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+					<span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>							
+				<span class="o">}</span>
+				
+				<span class="c1">//System.out.format("%4d",num[j]);				</span>
+			<span class="o">}</span><span class="c1">//end for			</span>
+			<span class="c1">//System.out.println("");</span>
+			
+			
+			<span class="c1">//출력용</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d"</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+			<span class="o">}</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>		
+		<span class="o">}</span><span class="c1">//end for</span>
+		
+	<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// 출력 결과</span>
+<span class="nc">Origin</span><span class="o">-----------------------------------------</span>
+   <span class="mi">1</span>  <span class="mi">10</span>   <span class="mi">5</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+<span class="nc">Sort</span><span class="o">-------------------------------------------</span>
+   <span class="mi">1</span>   <span class="mi">5</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">5</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+
+</code></pre></div></div>
+
+<h1 id="selection-sort">Selection Sort.</h1>
+<p>성능 O(N^2)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">sort</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SelectionSort</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		
+		<span class="c1">// 10 + 9 + .... + 1 =  10*(10+1)/2 = 55 (등차 수열)</span>
+		<span class="c1">// 선택 정렬의 시간 복잡도 O(N*N) = O(N^2)</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"선택 정렬 : 가장 작은 수를 제일 앞으로 이동"</span><span class="o">);</span>
+		
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">num</span> <span class="o">=</span>	<span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">9</span><span class="o">};</span>
+		<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Origin-----------------------------------------"</span><span class="o">);</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d"</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sort-------------------------------------------"</span><span class="o">);</span>
+		
+		
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="c1">//System.out.println("[i]"+num[i]);</span>
+
+			<span class="kt">int</span> <span class="n">midx</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="c1">//Min Value Index</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span><span class="n">i</span> <span class="o">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>			
+				<span class="k">if</span><span class="o">(</span> <span class="n">num</span><span class="o">[</span><span class="n">midx</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">)</span> <span class="o">{</span>
+					<span class="n">midx</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+				<span class="o">}</span>				
+			<span class="o">}</span>
+			
+			<span class="c1">//최소값 교체</span>
+			<span class="k">if</span><span class="o">(</span> <span class="n">midx</span> <span class="o">!=</span> <span class="n">i</span> <span class="o">)</span> <span class="o">{</span>
+				<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+				<span class="n">num</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">midx</span><span class="o">];</span>
+				<span class="n">num</span><span class="o">[</span><span class="n">midx</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+			<span class="o">}</span>
+			
+			<span class="c1">//출력용</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d"</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+			<span class="o">}</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>			
+			
+		<span class="o">}</span><span class="c1">//end for</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// 출력 결과</span>
+<span class="n">선택</span> <span class="n">정렬</span> <span class="o">:</span> <span class="n">가장</span> <span class="n">작은</span> <span class="n">수를</span> <span class="n">제일</span> <span class="n">앞으로</span> <span class="n">이동</span>
+<span class="nc">Origin</span><span class="o">-----------------------------------------</span>
+   <span class="mi">1</span>  <span class="mi">10</span>   <span class="mi">5</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+<span class="nc">Sort</span><span class="o">-------------------------------------------</span>
+   <span class="mi">1</span>  <span class="mi">10</span>   <span class="mi">5</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">5</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>  <span class="mi">10</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">5</span>  <span class="mi">10</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">8</span>   <span class="mi">5</span>  <span class="mi">10</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">8</span>   <span class="mi">7</span>  <span class="mi">10</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">8</span>   <span class="mi">7</span>  <span class="mi">10</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>  <span class="mi">10</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>  <span class="mi">10</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+
+
+</code></pre></div></div>
+
+<h1 id="insertion-sort">Insertion Sort.</h1>
+<p>성능 O(N^2)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">sort</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">InsertionSort</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		<span class="c1">// 삽입 정렬의 시간 복잡도 O(N*N) = O(N^2) 이나, 선택과 버블 정렬 대비, 중간 연산이 멈출수 있어서 시간을 줄일수 있음</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"삽입 정렬 : 바로 옆값과 비교하여 작은것을 앞으로, 실행시 마다 젤 큰값이 제일 뒤로 보내짐"</span><span class="o">);</span>
+		
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">num</span> <span class="o">=</span>	<span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">9</span><span class="o">};</span>
+		<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Origin-----------------------------------------"</span><span class="o">);</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d"</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sort-------------------------------------------"</span><span class="o">);</span>
+		
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>	
+				<span class="c1">// 교체</span>
+				<span class="k">if</span><span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>  <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">){</span>
+					<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+					<span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+					<span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+				<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+					<span class="k">continue</span><span class="o">;</span>
+				<span class="o">}</span>				
+			<span class="o">}</span>
+			
+			<span class="c1">//출력용</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d"</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+			<span class="o">}</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+		<span class="o">}</span>
+		
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+
+
+<span class="c1">// 출력 결과</span>
+<span class="nc">Origin</span><span class="o">-----------------------------------------</span>
+   <span class="mi">1</span>  <span class="mi">10</span>   <span class="mi">5</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+<span class="nc">Sort</span><span class="o">-------------------------------------------</span>
+   <span class="mi">1</span>  <span class="mi">10</span>   <span class="mi">5</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+   <span class="mi">1</span>  <span class="mi">10</span>   <span class="mi">5</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">5</span>  <span class="mi">10</span>   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">5</span>   <span class="mi">8</span>  <span class="mi">10</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">5</span>   <span class="mi">7</span>   <span class="mi">8</span>  <span class="mi">10</span>   <span class="mi">6</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>  <span class="mi">10</span>   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>  <span class="mi">10</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>  <span class="mi">10</span>   <span class="mi">2</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>  <span class="mi">10</span>   <span class="mi">9</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+
+
+</code></pre></div></div>
+
+<h1 id="quick-sort">Quick Sort.</h1>
+<p>avg O(N*logN), max O(N^2) - 이미정렬된 경우</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">sort</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuickSort</span> <span class="o">{</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">//출력용</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d "</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>		
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span><span class="kt">int</span> <span class="n">l</span><span class="o">,</span><span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">//출력용</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			
+			<span class="nc">String</span> <span class="n">s</span> <span class="o">=</span><span class="s">""</span><span class="o">;</span>
+			<span class="nc">String</span> <span class="n">e</span> <span class="o">=</span><span class="s">""</span><span class="o">;</span>
+			
+			<span class="k">if</span><span class="o">(</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">-</span><span class="mi">1</span> <span class="o">){</span> <span class="c1">//대상 범위</span>
+				<span class="n">s</span><span class="o">=</span><span class="s">"("</span><span class="o">;</span>
+				<span class="n">e</span><span class="o">=</span><span class="s">")"</span><span class="o">;</span>
+			<span class="o">}</span>
+			<span class="k">if</span><span class="o">(</span> <span class="n">i</span> <span class="o">==</span> <span class="n">r</span> <span class="o">){</span> <span class="c1">//pivot</span>
+				<span class="n">s</span><span class="o">=</span><span class="s">"["</span><span class="o">;</span>
+				<span class="n">e</span><span class="o">=</span><span class="s">"]"</span><span class="o">;</span>
+			<span class="o">}</span>
+			
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%1s%2s%1s "</span><span class="o">,</span><span class="n">s</span><span class="o">,</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="n">i</span><span class="o">]),</span><span class="n">e</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>		
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>		
+		<span class="k">if</span><span class="o">(</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+			
+			<span class="n">print</span><span class="o">(</span> <span class="n">num</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
+			
+			<span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">partition</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>			
+			<span class="n">quickSort</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span>  <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span> <span class="c1">//p 왼쪽 구간 재정렬</span>
+			<span class="n">quickSort</span><span class="o">(</span><span class="n">num</span><span class="o">,</span>  <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span> <span class="c1">//p 오른쪽 구간 재정렬</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+	
+	<span class="c1">//partition 함수 호출시 pivot의 위치를 확정하는 역할을 함</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">partition</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">pV</span> 	<span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">r</span><span class="o">];</span> <span class="c1">//제일 마지막 값을 pivot으로</span>
+		<span class="kt">int</span> <span class="n">i</span>	<span class="o">=</span> <span class="n">l</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">;</span> <span class="c1">// pivot 보다 작은 수의 갯수 (-1)부터 시작</span>
+		
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">l</span> <span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">-</span><span class="mi">1</span> <span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span><span class="c1">//처음부터 pivot까지 순회</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">pV</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// &lt;= 오름 차순</span>
+			<span class="c1">//if(num[j] &gt; pV) { // &lt;= 내림 차순</span>
+				<span class="n">i</span><span class="o">++;</span>
+				<span class="n">swap</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+			<span class="o">}</span>			
+		<span class="o">}</span><span class="c1">//end</span>
+		<span class="n">swap</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">),</span> <span class="n">r</span> <span class="o">);</span><span class="c1">//pivot보다 작은 수의 다음에 pivot으로 위치시킴</span>
+		<span class="k">return</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span><span class="c1">//pivot에 위치를 반환함.</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">a</span><span class="o">];</span>
+		<span class="n">num</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">b</span><span class="o">];</span>
+		<span class="n">num</span><span class="o">[</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		<span class="c1">// 퀵 정렬의 시간 복잡도 평균 O(N*logN) 이지만, 피봇값 선택에 따라서 최악의 경우 O(N^2) 까지 출력됨.</span>
+		<span class="c1">// 퀵 정렬은 분할 알고리즘(편향된 분할 가능, 이미 정렬된 배열에서는 O(N^2) 발생 가능)</span>
+		<span class="c1">// avg O(N*logN), max O(N^2) </span>
+
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">num</span> <span class="o">=</span>	<span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">9</span><span class="o">};</span>
+		<span class="c1">//int[] num =	{2,1,3,4,5,7};</span>
+		<span class="n">quickSort</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"================================================="</span><span class="o">);</span>
+		<span class="n">print</span><span class="o">(</span><span class="n">num</span><span class="o">);</span>
+
+	<span class="o">}</span>
+
+<span class="o">}</span>
+
+
+<span class="c1">// 출력 결과</span>
+<span class="o">(</span> <span class="mi">1</span><span class="o">)</span> <span class="o">(</span><span class="mi">10</span><span class="o">)</span> <span class="o">(</span> <span class="mi">5</span><span class="o">)</span> <span class="o">(</span> <span class="mi">8</span><span class="o">)</span> <span class="o">(</span> <span class="mi">7</span><span class="o">)</span> <span class="o">(</span> <span class="mi">6</span><span class="o">)</span> <span class="o">(</span> <span class="mi">4</span><span class="o">)</span> <span class="o">(</span> <span class="mi">3</span><span class="o">)</span> <span class="o">(</span> <span class="mi">2</span><span class="o">)</span> <span class="o">[</span> <span class="mi">9</span><span class="o">]</span> 
+<span class="o">(</span> <span class="mi">1</span><span class="o">)</span> <span class="o">(</span> <span class="mi">5</span><span class="o">)</span> <span class="o">(</span> <span class="mi">8</span><span class="o">)</span> <span class="o">(</span> <span class="mi">7</span><span class="o">)</span> <span class="o">(</span> <span class="mi">6</span><span class="o">)</span> <span class="o">(</span> <span class="mi">4</span><span class="o">)</span> <span class="o">(</span> <span class="mi">3</span><span class="o">)</span> <span class="o">[</span> <span class="mi">2</span><span class="o">]</span>   <span class="mi">9</span>   <span class="mi">10</span>  
+  <span class="mi">1</span>    <span class="mi">2</span>  <span class="o">(</span> <span class="mi">8</span><span class="o">)</span> <span class="o">(</span> <span class="mi">7</span><span class="o">)</span> <span class="o">(</span> <span class="mi">6</span><span class="o">)</span> <span class="o">(</span> <span class="mi">4</span><span class="o">)</span> <span class="o">(</span> <span class="mi">3</span><span class="o">)</span> <span class="o">[</span> <span class="mi">5</span><span class="o">]</span>   <span class="mi">9</span>   <span class="mi">10</span>  
+  <span class="mi">1</span>    <span class="mi">2</span>  <span class="o">(</span> <span class="mi">4</span><span class="o">)</span> <span class="o">[</span> <span class="mi">3</span><span class="o">]</span>   <span class="mi">5</span>    <span class="mi">8</span>    <span class="mi">7</span>    <span class="mi">6</span>    <span class="mi">9</span>   <span class="mi">10</span>  
+  <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">5</span>  <span class="o">(</span> <span class="mi">8</span><span class="o">)</span> <span class="o">(</span> <span class="mi">7</span><span class="o">)</span> <span class="o">[</span> <span class="mi">6</span><span class="o">]</span>   <span class="mi">9</span>   <span class="mi">10</span>  
+  <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">5</span>    <span class="mi">6</span>  <span class="o">(</span> <span class="mi">7</span><span class="o">)</span> <span class="o">[</span> <span class="mi">8</span><span class="o">]</span>   <span class="mi">9</span>   <span class="mi">10</span>  
+<span class="o">=================================================</span>
+   <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">5</span>    <span class="mi">6</span>    <span class="mi">7</span>    <span class="mi">8</span>    <span class="mi">9</span>   <span class="mi">10</span> 
+
+
+</code></pre></div></div>
+
+<h1 id="merge-sort">Merge Sort.</h1>
+<p>O(N*logN) 보장, 단점 정렬시 메모리 필요함.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">sort</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MergeSort</span> <span class="o">{</span>
+
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">new_num</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">initTemp</span><span class="o">(</span><span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">new_num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">len</span><span class="o">];</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">//출력용</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d "</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>		
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span><span class="kt">int</span> <span class="n">l</span><span class="o">,</span><span class="kt">int</span> <span class="n">m</span><span class="o">,</span><span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">//출력용</span>
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">" %d - %d - %d \t"</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">m</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			
+			<span class="nc">String</span> <span class="n">s</span> <span class="o">=</span><span class="s">""</span><span class="o">;</span>
+			<span class="nc">String</span> <span class="n">e</span> <span class="o">=</span><span class="s">""</span><span class="o">;</span>
+			
+			<span class="k">if</span><span class="o">(</span> <span class="n">i</span> <span class="o">==</span> <span class="n">l</span> <span class="o">){</span> <span class="c1">//대상 범위 S</span>
+				<span class="n">s</span><span class="o">=</span><span class="s">"("</span><span class="o">;</span>
+				<span class="n">e</span><span class="o">=</span><span class="s">""</span><span class="o">;</span>
+			<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span> <span class="n">i</span> <span class="o">==</span> <span class="n">r</span> <span class="o">){</span> <span class="c1">//대상 범위 EW</span>
+				<span class="n">s</span><span class="o">=</span><span class="s">""</span><span class="o">;</span>
+				<span class="n">e</span><span class="o">=</span><span class="s">")"</span><span class="o">;</span>
+			<span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span> <span class="n">i</span> <span class="o">==</span> <span class="n">m</span> <span class="o">){</span> <span class="c1">//중간값</span>
+				<span class="n">s</span><span class="o">=</span><span class="s">"["</span><span class="o">;</span>
+				<span class="n">e</span><span class="o">=</span><span class="s">"]"</span><span class="o">;</span>
+			<span class="o">}</span>
+			
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%1s%2s%1s "</span><span class="o">,</span><span class="n">s</span><span class="o">,</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="n">i</span><span class="o">]),</span><span class="n">e</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>		
+	<span class="o">}</span>
+	
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>		
+		<span class="k">if</span><span class="o">(</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span> <span class="o">)</span> <span class="o">{</span> <span class="c1">// 1개 이상에서</span>
+			<span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="o">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span> <span class="c1">// 중앙점 m을 발견</span>
+			<span class="c1">//int m = l + (r - 1)/2; // 중앙점 m을 발견 (위 식과 같으나 overflow 방지)</span>
+			<span class="c1">//System.out.format(" %d - %d - %d \n", l, m, r);</span>
+			<span class="n">print</span><span class="o">(</span> <span class="n">num</span><span class="o">,</span><span class="n">l</span><span class="o">,</span> <span class="n">m</span> <span class="o">,</span><span class="n">r</span><span class="o">);</span>
+			
+			<span class="k">if</span><span class="o">(</span><span class="n">l</span><span class="o">==</span><span class="mi">8</span> <span class="o">&amp;&amp;</span> <span class="n">m</span><span class="o">==</span><span class="mi">8</span> <span class="o">&amp;&amp;</span> <span class="n">r</span><span class="o">==</span><span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+			<span class="o">}</span>
+			<span class="n">mergeSort</span><span class="o">(</span> <span class="n">num</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">m</span><span class="o">);</span> <span class="c1">// 오른쪽 파트 정렬</span>
+			<span class="n">mergeSort</span><span class="o">(</span> <span class="n">num</span><span class="o">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span> <span class="c1">//왼쪽 파트 정렬</span>
+			<span class="n">merge</span><span class="o">(</span> <span class="n">num</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">m</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l</span><span class="o">,</span> <span class="kt">int</span> <span class="n">m</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span>  <span class="n">l</span> <span class="o">;</span> <span class="c1">//왼쪽 시작 index지점</span>
+		<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span>  <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 오른쪽 시작 지점</span>
+		<span class="kt">int</span> <span class="n">k</span> <span class="o">=</span>  <span class="n">l</span><span class="o">;</span>
+		
+		<span class="c1">// 적을 값을 저장함.</span>
+		<span class="c1">//  l[i,,,,,,]m[j,,,,,,]r</span>
+		<span class="c1">//  [k,,,,,,,,,,,,]</span>
+		<span class="k">while</span><span class="o">(</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">){</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span> <span class="c1">//오른쪽, 왼쪽 arrary의 첫번째 값을 비교하여 이동함</span>
+				<span class="n">new_num</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+				<span class="n">i</span><span class="o">++;</span> <span class="c1">//다음 값으로 이동함</span>
+			<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+				<span class="n">new_num</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+				<span class="n">j</span><span class="o">++;</span>
+			<span class="o">}</span>
+			<span class="n">k</span><span class="o">++;</span> <span class="c1">//저장 위치 이동</span>
+		<span class="o">}</span><span class="c1">// end while</span>
+		
+		
+		
+		<span class="c1">//남은 데이터 삽입</span>
+		<span class="k">if</span><span class="o">(</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">m</span> <span class="o">)</span> <span class="o">{</span>
+			<span class="c1">//j쪽 배열만 남은 경우</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">j</span> <span class="o">;</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">;</span> <span class="n">t</span><span class="o">++</span> <span class="o">)</span> <span class="o">{</span>
+				<span class="n">new_num</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">t</span><span class="o">];</span>
+				<span class="n">k</span><span class="o">++;</span>
+			<span class="o">}</span>
+		<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+			<span class="c1">//i쪽 배열만 남은 경우</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">i</span> <span class="o">;</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">m</span> <span class="o">;</span> <span class="n">t</span><span class="o">++</span> <span class="o">)</span> <span class="o">{</span>
+				<span class="n">new_num</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">t</span><span class="o">];</span>
+				<span class="n">k</span><span class="o">++;</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		
+		<span class="c1">//정렬된 배열을 모두 입력</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">l</span> <span class="o">;</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">;</span> <span class="n">t</span><span class="o">++</span> <span class="o">)</span> <span class="o">{</span>
+			<span class="n">num</span><span class="o">[</span><span class="n">t</span><span class="o">]</span> <span class="o">=</span> <span class="n">new_num</span><span class="o">[</span><span class="n">t</span><span class="o">];</span>
+		<span class="o">}</span>
+		
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">// 병합 정렬의 시간 복잡도  O(N*logN) 값 보장, </span>
+		<span class="c1">// 병합 정렬은 분할 알고리즘(중간 범위 분할 알고리즘)</span>
+		<span class="c1">// 반씩 나눠서 합치면서 정리함.</span>
+		<span class="c1">// 병합과 재정렬을 위해서 기존 데이터를 저장할 추가적인 메모리가 필요함.(단점 메모리 비효율, 장점 N*logN 속도 보장)</span>
+		
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">num</span> <span class="o">=</span>	<span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">9</span><span class="o">};</span>
+		<span class="c1">//int[] num =	{2,1,3,4,5,7};</span>
+		<span class="n">initTemp</span><span class="o">(</span><span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+		<span class="n">mergeSort</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"========================================="</span><span class="o">);</span>
+		<span class="n">print</span><span class="o">(</span><span class="n">num</span><span class="o">);</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+
+
+<span class="c1">// 출력 결과</span>
+ <span class="mi">0</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">-</span> <span class="mi">9</span> 	<span class="o">(</span> <span class="mi">1</span>   <span class="mi">10</span>    <span class="mi">5</span>    <span class="mi">8</span>  <span class="o">[</span> <span class="mi">7</span><span class="o">]</span>   <span class="mi">6</span>    <span class="mi">4</span>    <span class="mi">3</span>    <span class="mi">2</span>    <span class="mi">9</span><span class="o">)</span> 
+ <span class="mi">0</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> 	<span class="o">(</span> <span class="mi">1</span>   <span class="mi">10</span>  <span class="o">[</span> <span class="mi">5</span><span class="o">]</span>   <span class="mi">8</span>    <span class="mi">7</span><span class="o">)</span>   <span class="mi">6</span>    <span class="mi">4</span>    <span class="mi">3</span>    <span class="mi">2</span>    <span class="mi">9</span>  
+ <span class="mi">0</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> 	<span class="o">(</span> <span class="mi">1</span>  <span class="o">[</span><span class="mi">10</span><span class="o">]</span>   <span class="mi">5</span><span class="o">)</span>   <span class="mi">8</span>    <span class="mi">7</span>    <span class="mi">6</span>    <span class="mi">4</span>    <span class="mi">3</span>    <span class="mi">2</span>    <span class="mi">9</span>  
+ <span class="mi">0</span> <span class="o">-</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">1</span> 	<span class="o">(</span> <span class="mi">1</span>   <span class="mi">10</span><span class="o">)</span>   <span class="mi">5</span>    <span class="mi">8</span>    <span class="mi">7</span>    <span class="mi">6</span>    <span class="mi">4</span>    <span class="mi">3</span>    <span class="mi">2</span>    <span class="mi">9</span>  
+ <span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">4</span> 	  <span class="mi">1</span>    <span class="mi">5</span>   <span class="mi">10</span>  <span class="o">(</span> <span class="mi">8</span>    <span class="mi">7</span><span class="o">)</span>   <span class="mi">6</span>    <span class="mi">4</span>    <span class="mi">3</span>    <span class="mi">2</span>    <span class="mi">9</span>  
+ <span class="mi">5</span> <span class="o">-</span> <span class="mi">7</span> <span class="o">-</span> <span class="mi">9</span> 	  <span class="mi">1</span>    <span class="mi">5</span>    <span class="mi">7</span>    <span class="mi">8</span>   <span class="mi">10</span>  <span class="o">(</span> <span class="mi">6</span>    <span class="mi">4</span>  <span class="o">[</span> <span class="mi">3</span><span class="o">]</span>   <span class="mi">2</span>    <span class="mi">9</span><span class="o">)</span> 
+ <span class="mi">5</span> <span class="o">-</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">7</span> 	  <span class="mi">1</span>    <span class="mi">5</span>    <span class="mi">7</span>    <span class="mi">8</span>   <span class="mi">10</span>  <span class="o">(</span> <span class="mi">6</span>  <span class="o">[</span> <span class="mi">4</span><span class="o">]</span>   <span class="mi">3</span><span class="o">)</span>   <span class="mi">2</span>    <span class="mi">9</span>  
+ <span class="mi">5</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">-</span> <span class="mi">6</span> 	  <span class="mi">1</span>    <span class="mi">5</span>    <span class="mi">7</span>    <span class="mi">8</span>   <span class="mi">10</span>  <span class="o">(</span> <span class="mi">6</span>    <span class="mi">4</span><span class="o">)</span>   <span class="mi">3</span>    <span class="mi">2</span>    <span class="mi">9</span>  
+ <span class="mi">8</span> <span class="o">-</span> <span class="mi">8</span> <span class="o">-</span> <span class="mi">9</span> 	  <span class="mi">1</span>    <span class="mi">5</span>    <span class="mi">7</span>    <span class="mi">8</span>   <span class="mi">10</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">6</span>  <span class="o">(</span> <span class="mi">2</span>    <span class="mi">9</span><span class="o">)</span> 
+<span class="o">=========================================</span>
+   <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">5</span>    <span class="mi">6</span>    <span class="mi">7</span>    <span class="mi">8</span>    <span class="mi">9</span>   <span class="mi">10</span> 
+
+</code></pre></div></div>
+
+<h1 id="heap-sort">Heap Sort.</h1>
+<p>N/2*logN  (N이 클경우 logN은 값은 작은 값으로 결과적으로) &gt; O(N)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">sort</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HeapSort</span> <span class="o">{</span>
+
+	
+	<span class="c1">// Heap 완전 인트리</span>
+	<span class="c1">// Min Heap 가장 작은 값이 위로 오도록</span>
+	<span class="c1">// Max Heap 가장 큰 값이 위로 오도록 </span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">debug</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">a</span><span class="o">];</span>
+		<span class="n">num</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">[</span><span class="n">b</span><span class="o">];</span>
+		<span class="n">num</span><span class="o">[</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+
+		<span class="k">if</span><span class="o">(</span><span class="n">debug</span><span class="o">)</span> <span class="o">{</span>
+			<span class="c1">//출력용</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d"</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+			<span class="o">}</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">//출력용</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">d</span><span class="o">&lt;</span><span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">;</span> <span class="n">d</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%4d "</span><span class="o">,</span><span class="n">num</span><span class="o">[</span><span class="n">d</span><span class="o">]);</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>		
+	<span class="o">}</span>
+	
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		
+		<span class="c1">// N/2*logN  (N이 클경우 logN은 값은 작은 값으로 결과적으로) &gt; O(N)</span>
+		
+		<span class="c1">//int[] num =	{1, 2, 3, 4, 5, 6, 7, 8, 9 , 10};</span>
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">num</span> <span class="o">=</span>	<span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">9</span><span class="o">};</span>
+		<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+		
+		<span class="c1">//자료 구조를 힙 구조로 정렬함.</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">//1부터 시작함.</span>
+
+			<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="c1">//자식 위치</span>
+			<span class="k">do</span> <span class="o">{</span>
+				<span class="kt">int</span> <span class="n">root</span> <span class="o">=</span> <span class="o">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span> <span class="c1">//부모의 위치</span>
+				<span class="c1">//System.out.format("%d(%d) ", i, root);</span>
+				<span class="c1">//1(0) 2(0) 3(1) 4(1) 5(2) 6(2) 7(3) 8(3) 9(4) </span>
+				
+				<span class="k">if</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="n">root</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">[</span><span class="n">c</span><span class="o">]){</span> <span class="c1">//자식이 부모보다 클 경우 swap </span>
+					<span class="n">swap</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">root</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+				<span class="o">}</span>
+				
+				<span class="n">c</span> <span class="o">=</span> <span class="n">root</span><span class="o">;</span> <span class="c1">//자식을 부모로 이동하여, 재귀로 내려감</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d  "</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+			
+			<span class="o">}</span><span class="k">while</span> <span class="o">(</span><span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">);</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>	
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------------------"</span><span class="o">);</span>	
+		<span class="n">print</span><span class="o">(</span><span class="n">num</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------------------"</span><span class="o">);</span>	
+		<span class="c1">//크기 축소를 줄이고 힙을 만듬</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+			<span class="n">swap</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span> <span class="c1">// 0번째 원소가 가장 큰값으로 가장 큰 값과 가장 작은 값을 교체함.		</span>
+			
+			<span class="kt">int</span> <span class="n">root</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+			
+			<span class="k">do</span> <span class="o">{</span>
+				<span class="n">c</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">root</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+				<span class="c1">//자식 좌우 중에 더 큰 값을 찾기</span>
+				<span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">num</span><span class="o">[</span><span class="n">c</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">[</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span> <span class="o">)</span> <span class="o">{</span>
+					<span class="n">c</span><span class="o">++;</span>
+				<span class="o">}</span>
+				<span class="c1">//루트보다 자식이 더 크면 교환함.</span>
+				<span class="k">if</span><span class="o">(</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">i</span>  <span class="o">&amp;&amp;</span> <span class="n">num</span><span class="o">[</span><span class="n">root</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">[</span><span class="n">c</span><span class="o">]</span> <span class="o">)</span> <span class="o">{</span>
+					<span class="n">swap</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">root</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+				<span class="o">}</span>
+				<span class="n">root</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+			<span class="o">}</span><span class="k">while</span><span class="o">(</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">);</span>
+		<span class="o">}</span>
+
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------------------"</span><span class="o">);</span>	
+		<span class="n">print</span><span class="o">(</span><span class="n">num</span><span class="o">);</span>
+		
+	<span class="o">}</span>
+
+<span class="o">}</span>
+
+
+<span class="c1">// 출력 결과</span>
+<span class="mi">0</span>  
+<span class="mi">0</span>  
+<span class="mi">1</span>  <span class="mi">0</span>  
+<span class="mi">1</span>  <span class="mi">0</span>  
+<span class="mi">2</span>  <span class="mi">0</span>  
+<span class="mi">2</span>  <span class="mi">0</span>  
+<span class="mi">3</span>  <span class="mi">1</span>  <span class="mi">0</span>  
+<span class="mi">3</span>  <span class="mi">1</span>  <span class="mi">0</span>  
+<span class="mi">4</span>  <span class="mi">1</span>  <span class="mi">0</span>  
+<span class="o">------------------------------</span>
+  <span class="mi">10</span>    <span class="mi">9</span>    <span class="mi">6</span>    <span class="mi">3</span>    <span class="mi">8</span>    <span class="mi">5</span>    <span class="mi">4</span>    <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">7</span> 
+<span class="o">------------------------------</span>
+   <span class="mi">7</span>   <span class="mi">9</span>   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">8</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">1</span>   <span class="mi">2</span>  <span class="mi">10</span>
+   <span class="mi">9</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">8</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">1</span>   <span class="mi">2</span>  <span class="mi">10</span>
+   <span class="mi">9</span>   <span class="mi">8</span>   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">7</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">1</span>   <span class="mi">2</span>  <span class="mi">10</span>
+   <span class="mi">2</span>   <span class="mi">8</span>   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">7</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">1</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">8</span>   <span class="mi">2</span>   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">7</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">1</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">8</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">1</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">7</span>   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">7</span>   <span class="mi">1</span>   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">7</span>   <span class="mi">3</span>   <span class="mi">6</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">5</span>   <span class="mi">4</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">6</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">5</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">5</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">6</span>   <span class="mi">3</span>   <span class="mi">5</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">4</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">5</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">5</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">1</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">4</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">1</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">3</span>   <span class="mi">2</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">3</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">2</span>   <span class="mi">1</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>
+<span class="o">------------------------------</span>
+   <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">5</span>    <span class="mi">6</span>    <span class="mi">7</span>    <span class="mi">8</span>    <span class="mi">9</span>   <span class="mi">10</span> 
+
+
+</code></pre></div></div>
+
+<h1 id="counting-sort">Counting Sort.</h1>
+<p>O(N) 특정 범위 조건</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">sort</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CountingSort</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">// 특정 범위 조건이 있는 경우 빠름, O(N)</span>
+
+		<span class="kt">int</span> <span class="n">count</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">6</span><span class="o">];</span> <span class="c1">//1~5</span>
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">num</span> <span class="o">=</span>	 <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span>
+				 <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span>
+				 <span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">};</span>
+		<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+		
+		<span class="c1">//count 초기화</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">count</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">count</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> 
+		<span class="o">}</span>
+		
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">count</span><span class="o">[</span><span class="n">num</span><span class="o">[</span><span class="n">i</span><span class="o">]]++;</span> 
+		<span class="o">}</span>
+		
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">count</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">count</span><span class="o">[</span><span class="n">i</span><span class="o">];</span><span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d "</span><span class="o">,</span><span class="n">i</span><span class="o">);</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>	
+	
+	<span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="c1">// 출력 결과</span>
+<span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span> 
+
+
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#bubble" class="page__taxonomy-item p-category" rel="tag">Bubble</a><span class="sep">, </span>
+    
+      <a href="/tags/#counting" class="page__taxonomy-item p-category" rel="tag">Counting</a><span class="sep">, </span>
+    
+      <a href="/tags/#heap" class="page__taxonomy-item p-category" rel="tag">Heap</a><span class="sep">, </span>
+    
+      <a href="/tags/#insertion" class="page__taxonomy-item p-category" rel="tag">Insertion</a><span class="sep">, </span>
+    
+      <a href="/tags/#merge" class="page__taxonomy-item p-category" rel="tag">Merge</a><span class="sep">, </span>
+    
+      <a href="/tags/#quick" class="page__taxonomy-item p-category" rel="tag">Quick</a><span class="sep">, </span>
+    
+      <a href="/tags/#selection" class="page__taxonomy-item p-category" rel="tag">Selection</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#codingtest" class="page__taxonomy-item p-category" rel="tag">codingtest</a><span class="sep">, </span>
+    
+      <a href="/categories/#java" class="page__taxonomy-item p-category" rel="tag">java</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-05-28T00:00:00-05:00">2022-05-28</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BJAVA%5D+Sort+%ED%95%A8%EC%88%98%20https%3A%2F%2Fkimjaehyun.co.kr%2Fcodingtest%2Fjava%2Fjava-sort%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fcodingtest%2Fjava%2Fjava-sort%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fcodingtest%2Fjava%2Fjava-sort%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/algorithm-index/" class="pagination--pager" title="[알고리즘] 어떤 종류들이 있는지?
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/algorithm/algorithm-index/">[알고리즘] 어떤 종류들이 있는지?</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.28
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#algorithm" class="page__taxonomy-item-category" rel="tag">algorithm</a>
+                    
+                    
+                    <a href="/tags/#bfs" class="page__taxonomy-item-tag" rel="tag">BFS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#bubble" class="page__taxonomy-item-tag" rel="tag">Bubble</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#counting" class="page__taxonomy-item-tag" rel="tag">Counting</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#dfs" class="page__taxonomy-item-tag" rel="tag">DFS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#heap" class="page__taxonomy-item-tag" rel="tag">Heap</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#insertion" class="page__taxonomy-item-tag" rel="tag">Insertion</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#kmp" class="page__taxonomy-item-tag" rel="tag">KMP</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#merge" class="page__taxonomy-item-tag" rel="tag">Merge</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#quick" class="page__taxonomy-item-tag" rel="tag">Quick</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#selection" class="page__taxonomy-item-tag" rel="tag">Selection</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC" class="page__taxonomy-item-tag" rel="tag">다익스트라</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%9D%B4%EC%A7%84%ED%8A%B8%EB%A6%AC" class="page__taxonomy-item-tag" rel="tag">이진트리</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%81%AC%EB%A3%A8%EC%8A%A4%EC%B9%BC" class="page__taxonomy-item-tag" rel="tag">크루스칼</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%94%84%EB%A6%BC" class="page__taxonomy-item-tag" rel="tag">프림</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%94%8C%EB%A1%9C%EC%9D%B4%EB%93%9C%EB%A7%88%EC%83%AC" class="page__taxonomy-item-tag" rel="tag">플로이드마샬</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/cloud/cloud_what_is_serverless-copy/">[AWS S3] Simple Storage Service 서비스 사용</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#file" class="page__taxonomy-item-tag" rel="tag">File</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#s3-static-hosting" class="page__taxonomy-item-tag" rel="tag">S3 Static Hosting</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#s3" class="page__taxonomy-item-tag" rel="tag">S3</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#simple-storage-service" class="page__taxonomy-item-tag" rel="tag">Simple Storage Service</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/cloud/AWS-Service/">[AWS] 자주 쓰는 서비스</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#arn" class="page__taxonomy-item-tag" rel="tag">ARN</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#az" class="page__taxonomy-item-tag" rel="tag">AZ</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#cloud" class="page__taxonomy-item-tag" rel="tag">Cloud</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#iass" class="page__taxonomy-item-tag" rel="tag">IasS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#paas" class="page__taxonomy-item-tag" rel="tag">PaaS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#region" class="page__taxonomy-item-tag" rel="tag">Region</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#saas" class="page__taxonomy-item-tag" rel="tag">SaaS</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/cloud/AWS-S3_01/">Serverless Concept</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#azure" class="page__taxonomy-item-tag" rel="tag">Azure</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#cloud-functions" class="page__taxonomy-item-tag" rel="tag">Cloud Functions</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#functinos" class="page__taxonomy-item-tag" rel="tag">Functinos</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#google" class="page__taxonomy-item-tag" rel="tag">Google</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lambda" class="page__taxonomy-item-tag" rel="tag">Lambda</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kimjaehyun.co.kr/codingtest/java/java-sort/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/codingtest/java/java-sort"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

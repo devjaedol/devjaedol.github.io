@@ -88,4 +88,16 @@ var store = [{
         "tags": ["AWS","Simple Storage Service","S3","File","S3 Static Hosting"],
         "url": "/cloud/cloud_what_is_serverless-copy/",
         "teaser": null
+      },{
+        "title": "[알고리즘] 어떤 종류들이 있는지?",
+        "excerpt":"어떤 알고리즘이 있고, 어떨때 쓰는지를 정리해보려는 목적 입니다. 정리하려고 알게된 몇가지 사실은 9세기 페르시아의 수학자인 무하마드 알콰리즈미 의 이름을 라틴어화한 algorismus 에서 유래 되었답니다. 위키백과의 알고리즘 정의를 보면 수학과 컴퓨터 과학, 언어학 또는 관련 분야에서 어떠한 문제를 해결하기 위해 정해진 일련의 절차나 방법을 공식화한 형태로 표현한 것. 정리 시작!!! 정렬...","categories": ["algorithm"],
+        "tags": ["Bubble","Selection","Insertion","Quick","Merge","Heap","Counting","다익스트라","플로이드마샬","크루스칼","프림","KMP","이진트리","BFS","DFS"],
+        "url": "/algorithm/algorithm-index/",
+        "teaser": null
+      },{
+        "title": "[JAVA] Sort 함수",
+        "excerpt":"정렬 함수 테스트 정렬 방식 Bubble Sort. O(N^2) Selection Sort. O(N^2) Insertion Sort. O(N^2) Quick Sort. avg O(N*logN), max O(N^2) - 이미정렬된 경우 Merge Sort. O(N*logN) 보장, 단점 정렬시 메모리 필요함. Heap Sort. N/2*logN (N이 클경우 logN은 값은 작은 값으로 결과적으로) &gt; O(N) Counting Sort. O(N) 특정 범위 조건 Bubble...","categories": ["codingtest","java"],
+        "tags": ["Bubble","Selection","Insertion","Quick","Merge","Heap","Counting"],
+        "url": "/codingtest/java/java-sort/",
+        "teaser": null
       }]

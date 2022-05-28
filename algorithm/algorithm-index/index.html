@@ -1,0 +1,1076 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[알고리즘] 어떤 종류들이 있는지? | 꿰보노트</title>
+<meta name="description" content="어떤 알고리즘이 있고, 어떨때 쓰는지를 정리해보려는 목적 입니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[알고리즘] 어떤 종류들이 있는지?">
+<meta property="og:url" content="https://kimjaehyun.co.kr/algorithm/algorithm-index/">
+
+
+  <meta property="og:description" content="어떤 알고리즘이 있고, 어떨때 쓰는지를 정리해보려는 목적 입니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-05-28T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/algorithm/algorithm-index/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#algorithm" itemprop="item"><span itemprop="name">Algorithm</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[알고리즘] 어떤 종류들이 있는지?</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 17</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (1)</a></li>
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+
+
+        <span class="nav__sub-title">Footprints</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (1)</a></li>
+                    
+                
+                    
+                
+            </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[알고리즘] 어떤 종류들이 있는지?">
+    <meta itemprop="description" content="어떤 알고리즘이 있고, 어떨때 쓰는지를 정리해보려는 목적 입니다.">
+    <meta itemprop="datePublished" content="2022-05-28T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/algorithm/algorithm-index/" class="u-url" itemprop="url">[알고리즘] 어떤 종류들이 있는지?
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#정렬-방식">정렬 방식</a></li><li><a href="#최단경로-문제">최단경로 문제</a></li><li><a href="#최소-신장-트리">최소 신장 트리</a></li><li><a href="#글자-검색">글자 검색</a></li><li><a href="#이진-트리">이진 트리</a></li><li><a href="#그래프-검색">그래프 검색</a></li><li><a href="#동일-부모-검색">동일 부모 검색</a></li><li><a href="#최대-유량-문제네트워크-선로-지연우회-관련">최대 유량 문제(네트워크 선로 지연/우회 관련)</a></li><li><a href="#백트래킹">백트래킹</a></li><li><a href="#floodfill-기법">FloodFill 기법</a></li><li><a href="#bfs-검색시">BFS 검색시</a></li><li><a href="#최소-범위-검색">최소 범위 검색</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>어떤 알고리즘이 있고, 어떨때 쓰는지를 정리해보려는 목적 입니다.</p>
+
+<p>정리하려고  알게된 몇가지 사실은 9세기 페르시아의 수학자인  <br />
+무하마드 알콰리즈미 의 이름을 라틴어화한 algorismus 에서 유래 되었답니다.     <br />
+<img src="/assets/images_post/algorithm/algorithm_muhamad.png" alt="무함마드 이븐 무사 알콰리즈미" width="200px" /></p>
+
+<p>위키백과의 알고리즘 정의를 보면   <br />
+수학과 컴퓨터 과학, 언어학 또는 관련 분야에서  <br />
+어떠한 문제를 해결하기 위해 정해진  <br />
+일련의 절차나 방법을 공식화한 형태로 표현한 것.</p>
+
+<p>정리 시작!!!</p>
+
+<h1 id="정렬-방식">정렬 방식</h1>
+<ul>
+  <li>Bubble Sort.			O(N^2)</li>
+  <li>Selection Sort.		O(N^2)</li>
+  <li>Insertion Sort.		O(N^2)</li>
+  <li>Quick Sort.			avg O(N*logN), max O(N^2) - 이미정렬된 경우</li>
+  <li>Merge Sort.			O(N*logN) 보장, 단점 정렬시 메모리 필요함.</li>
+  <li>Heap Sort.			N/2*logN  (N이 클경우 logN은 값은 작은 값으로 결과적으로) &gt; O(N)</li>
+  <li>
+    <p>Counting Sort.		O(N) 특정 범위 조건</p>
+  </li>
+  <li>조건별 정리 : 위상정리 TopologySort  (임계 경로 찾기, 임계경로란 갈수있는 길의 최대 값)</li>
+</ul>
+
+<h1 id="최단경로-문제">최단경로 문제</h1>
+<ul>
+  <li>다익스트라 알고리즘 (특정 시작점에서 모든 지점에 최소점을 구할때)</li>
+  <li>플로이드 마샬(모든 정점’에서 ‘모든 정점’으로의 최단 경로를 구할때)</li>
+</ul>
+
+<h1 id="최소-신장-트리">최소 신장 트리</h1>
+<p>정의 (Node와 Node-1의 간선으로 이루어짐) - UnionFind</p>
+<ul>
+  <li>프림 알고리즘 (Prim)</li>
+  <li>크루스칼 알고리즘(Kruskal)</li>
+  <li>MST(Minimum Spanning Tree)</li>
+</ul>
+
+<h1 id="글자-검색">글자 검색</h1>
+<ul>
+  <li>KMP</li>
+  <li>라빈카프</li>
+</ul>
+
+<h1 id="이진-트리">이진 트리</h1>
+<ul>
+  <li>전위 순회(Preorder Traversal)		(부) - L - R</li>
+  <li>중위 순회(Inorder Traversal)		L - (부) - R</li>
+  <li>후위 순회(Postorder Traversal)	L - R - (부)</li>
+</ul>
+
+<h1 id="그래프-검색">그래프 검색</h1>
+<ul>
+  <li>DFS (Stack)</li>
+  <li>BFS (Queue)</li>
+</ul>
+
+<h1 id="동일-부모-검색">동일 부모 검색</h1>
+<ul>
+  <li>Union Find</li>
+</ul>
+
+<h1 id="최대-유량-문제네트워크-선로-지연우회-관련">최대 유량 문제(네트워크 선로 지연/우회 관련)</h1>
+<ul>
+  <li>NetworkFlow (BSF)</li>
+</ul>
+
+<h1 id="백트래킹">백트래킹</h1>
+<ul>
+  <li>조합, 순열 관련시</li>
+</ul>
+
+<h1 id="floodfill-기법">FloodFill 기법</h1>
+<ul>
+  <li>좌표중에 덩어리의 묶음을 찾는 방법 (*DFS, BSF)</li>
+</ul>
+
+<h1 id="bfs-검색시">BFS 검색시</h1>
+<ul>
+  <li>가중치가 동일한 경우 중복을 미허용시키고</li>
+  <li>가중치가 다른 경우 중복방문을 허용하여 값을 overide함</li>
+</ul>
+
+<h1 id="최소-범위-검색">최소 범위 검색</h1>
+<ul>
+  <li>슬라이딩 윈도우 기법 (s, e를 이동하여 최소 범위 검색)</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#bfs" class="page__taxonomy-item p-category" rel="tag">BFS</a><span class="sep">, </span>
+    
+      <a href="/tags/#bubble" class="page__taxonomy-item p-category" rel="tag">Bubble</a><span class="sep">, </span>
+    
+      <a href="/tags/#counting" class="page__taxonomy-item p-category" rel="tag">Counting</a><span class="sep">, </span>
+    
+      <a href="/tags/#dfs" class="page__taxonomy-item p-category" rel="tag">DFS</a><span class="sep">, </span>
+    
+      <a href="/tags/#heap" class="page__taxonomy-item p-category" rel="tag">Heap</a><span class="sep">, </span>
+    
+      <a href="/tags/#insertion" class="page__taxonomy-item p-category" rel="tag">Insertion</a><span class="sep">, </span>
+    
+      <a href="/tags/#kmp" class="page__taxonomy-item p-category" rel="tag">KMP</a><span class="sep">, </span>
+    
+      <a href="/tags/#merge" class="page__taxonomy-item p-category" rel="tag">Merge</a><span class="sep">, </span>
+    
+      <a href="/tags/#quick" class="page__taxonomy-item p-category" rel="tag">Quick</a><span class="sep">, </span>
+    
+      <a href="/tags/#selection" class="page__taxonomy-item p-category" rel="tag">Selection</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC" class="page__taxonomy-item p-category" rel="tag">다익스트라</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%9D%B4%EC%A7%84%ED%8A%B8%EB%A6%AC" class="page__taxonomy-item p-category" rel="tag">이진트리</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%81%AC%EB%A3%A8%EC%8A%A4%EC%B9%BC" class="page__taxonomy-item p-category" rel="tag">크루스칼</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%94%84%EB%A6%BC" class="page__taxonomy-item p-category" rel="tag">프림</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%94%8C%EB%A1%9C%EC%9D%B4%EB%93%9C%EB%A7%88%EC%83%AC" class="page__taxonomy-item p-category" rel="tag">플로이드마샬</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#algorithm" class="page__taxonomy-item p-category" rel="tag">algorithm</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-05-28T00:00:00-05:00">2022-05-28</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%5D+%EC%96%B4%EB%96%A4+%EC%A2%85%EB%A5%98%EB%93%A4%EC%9D%B4+%EC%9E%88%EB%8A%94%EC%A7%80%3F%20https%3A%2F%2Fkimjaehyun.co.kr%2Falgorithm%2Falgorithm-index%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Falgorithm%2Falgorithm-index%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Falgorithm%2Falgorithm-index%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/cloud/cloud_what_is_serverless-copy/" class="pagination--pager" title="[AWS S3] Simple Storage Service 서비스 사용
+">이전</a>
+    
+    
+      <a href="/codingtest/java/java-sort/" class="pagination--pager" title="[JAVA] Sort 함수
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/codingtest/java/java-sort/">[JAVA] Sort 함수</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.28
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#codingtest" class="page__taxonomy-item-category" rel="tag">codingtest</a><span class="sep"> </span><a href="/categories/#java" class="page__taxonomy-item-category" rel="tag">java</a>
+                    
+                    
+                    <a href="/tags/#bubble" class="page__taxonomy-item-tag" rel="tag">Bubble</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#counting" class="page__taxonomy-item-tag" rel="tag">Counting</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#heap" class="page__taxonomy-item-tag" rel="tag">Heap</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#insertion" class="page__taxonomy-item-tag" rel="tag">Insertion</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#merge" class="page__taxonomy-item-tag" rel="tag">Merge</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#quick" class="page__taxonomy-item-tag" rel="tag">Quick</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#selection" class="page__taxonomy-item-tag" rel="tag">Selection</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/cloud/cloud_what_is_serverless-copy/">[AWS S3] Simple Storage Service 서비스 사용</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#file" class="page__taxonomy-item-tag" rel="tag">File</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#s3-static-hosting" class="page__taxonomy-item-tag" rel="tag">S3 Static Hosting</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#s3" class="page__taxonomy-item-tag" rel="tag">S3</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#simple-storage-service" class="page__taxonomy-item-tag" rel="tag">Simple Storage Service</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/cloud/AWS-Service/">[AWS] 자주 쓰는 서비스</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#arn" class="page__taxonomy-item-tag" rel="tag">ARN</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#az" class="page__taxonomy-item-tag" rel="tag">AZ</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#cloud" class="page__taxonomy-item-tag" rel="tag">Cloud</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#iass" class="page__taxonomy-item-tag" rel="tag">IasS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#paas" class="page__taxonomy-item-tag" rel="tag">PaaS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#region" class="page__taxonomy-item-tag" rel="tag">Region</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#saas" class="page__taxonomy-item-tag" rel="tag">SaaS</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/cloud/AWS-S3_01/">Serverless Concept</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#cloud" class="page__taxonomy-item-category" rel="tag">cloud</a>
+                    
+                    
+                    <a href="/tags/#aws" class="page__taxonomy-item-tag" rel="tag">AWS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#azure" class="page__taxonomy-item-tag" rel="tag">Azure</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#cloud-functions" class="page__taxonomy-item-tag" rel="tag">Cloud Functions</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#functinos" class="page__taxonomy-item-tag" rel="tag">Functinos</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#google" class="page__taxonomy-item-tag" rel="tag">Google</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lambda" class="page__taxonomy-item-tag" rel="tag">Lambda</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kimjaehyun.co.kr/algorithm/algorithm-index/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/algorithm/algorithm-index"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
