@@ -101,6 +101,12 @@ var store = [{
         "url": "/codingtest/java/java-binarytree/",
         "teaser": null
       },{
+        "title": "[JAVA] DFS vs BFS",
+        "excerpt":"깊이 우선 검색(DFS) 연결된 항목으 끝까지 검색 후 상위 브랜치로 이동하여 검색을 진행 최대한 깊이 내려간뒤, 더이상 없을때 옆으로 이동하는 검색 형태 Stack 넓이 우선 검색(BSF) 연결된 인접노드를 먼저 넓게 검색한 다음 더이상 없을때 하위로 내려감 최대한 넓게 이동 검색 후 하위로 이동. Queue 소스 코드 문제 그래프 연결 조건...","categories": ["codingtest","java"],
+        "tags": ["dfs","bfs","깊이우선탐색","넓이우선탐색","Breadth-First Search"],
+        "url": "/codingtest/java/java-dfs-bsf/",
+        "teaser": null
+      },{
         "title": "[JAVA] 순열과 조합",
         "excerpt":"순열 Permutation ( nPr ) 순열이란 서로 다른 n개중에 r개를 선택하는 경우의 수(순서 상관 있음) = n! / (n-r)! 백준 순열문제 조합 Combination ( nCr ) 조합이란 서로 다른 n개중에 r개를 선택하는 경우의 수(순서 상관 없음) = n! / ((n-r)! * r!) 백준 조합문제 소스 코드 package testcase; import java.util.Arrays;...","categories": ["codingtest","java"],
         "tags": ["nPr","nCr","순열","조합","Permutation. Combination"],
@@ -111,5 +117,11 @@ var store = [{
         "excerpt":"정렬 함수 테스트 정렬 방식 Bubble Sort. O(N^2) Selection Sort. O(N^2) Insertion Sort. O(N^2) Quick Sort. avg O(N*logN), max O(N^2) - 이미정렬된 경우 Merge Sort. O(N*logN) 보장, 단점 정렬시 메모리 필요함. Heap Sort. N/2*logN (N이 클경우 logN은 값은 작은 값으로 결과적으로) &gt; O(N) Counting Sort. O(N) 특정 범위 조건 Bubble...","categories": ["codingtest","java"],
         "tags": ["Bubble","Selection","Insertion","Quick","Merge","Heap","Counting"],
         "url": "/codingtest/java/java-sort/",
+        "teaser": null
+      },{
+        "title": "[자료구조] Stack & Queue",
+        "excerpt":"자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다. Stack LIFO(Last Input Firs Out) 마지막에 넣은 요소가 먼저 나온다는 의미이다. DFS 사용 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 Stack Soruce Code package datatype; import java.util.Stack; public class StackTest { public static void main(String[]...","categories": ["java"],
+        "tags": ["stack","queue","FIFO","LIFO","자료구조"],
+        "url": "/java/java-Stack-Queue/",
         "teaser": null
       }]
