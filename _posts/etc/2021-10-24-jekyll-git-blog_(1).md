@@ -1,5 +1,5 @@
 ---
-title: "[Step 1] GitHub blog 만들기(jekyll 기본 설정)"
+title: "[Jekyll #1] GitHub blog 만들기(기본 설정)"
 categories: 
     - etc
 tags: 
