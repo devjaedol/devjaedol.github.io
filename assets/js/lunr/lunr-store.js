@@ -41,13 +41,13 @@ var store = [{
         "url": "/javascript/JS-ES6_Summary/",
         "teaser": null
       },{
-        "title": "[Step 1] GitHub blog 만들기(jekyll 기본 설정)",
+        "title": "[Jekyll #1] GitHub blog 만들기(기본 설정)",
         "excerpt":"jekyll을 통해서 GitHub blog를 만들어 보겠습니다. 작업을 위한 필요 지식 수준은 GitHub에 저장소를 만들고 소스를 등록 및 업데이트 할수 있는 지식 수준이 필요합니다. 최대한 단순하고 간략하게만 정리하도록 하겠습니다. Jekyll 장단점 소개 jekyll을 통해서 Git blog를 운용시 다른 플랫폼이 제공하는 블로그에 비해서 장단점이 명확히 다릅니다. 장점으로는 Custmize. ( HTML 기반으로 모든...","categories": ["etc"],
         "tags": ["jekyll","githug","blog","github blog","minimal-mistakes"],
         "url": "/etc/jekyll-git-blog_(1)/",
         "teaser": null
       },{
-        "title": "[Step 2] GitHub blog 만들기(GitHub 설정 및 도메인 연결)",
+        "title": "[Jekyll #2] GitHub blog 만들기(GitHub 설정 및 도메인 연결)",
         "excerpt":"GitHub에 Jekyll을 통해서 만들어진 HTML 결과물을 배포해 보겠습니다. GitHub 계정 생성 및 저장소 생성 https://github.com/ 에 Account를 생성 합니다. Account 로그인 후에 Create a new Repository 를 선택하여, 다음 이름 규칙으로 저장소를 생성합니다. 계정명.github.io 제 계정명은 devjaedol 입니다. 저장소 이름은 devjaedol.github.io 로 작성 합니다. 저장소는 Public으로 설정하고 생성 합니다. Git...","categories": ["etc"],
         "tags": ["jekyll","githug","blog","github blog","minimal-mistakes"],
         "url": "/etc/jekyll-git-blog_(2)/",
@@ -93,6 +93,18 @@ var store = [{
         "excerpt":"어떤 알고리즘이 있고, 어떨때 쓰는지를 정리해보려는 목적 입니다. 정리하려고 알게된 몇가지 사실은 9세기 페르시아의 수학자인 무하마드 알콰리즈미 의 이름을 라틴어화한 algorismus 에서 유래 되었답니다. 위키백과의 알고리즘 정의를 보면 수학과 컴퓨터 과학, 언어학 또는 관련 분야에서 어떠한 문제를 해결하기 위해 정해진 일련의 절차나 방법을 공식화한 형태로 표현한 것. 정리 시작!!! 정렬...","categories": ["algorithm"],
         "tags": ["Bubble","Selection","Insertion","Quick","Merge","Heap","Counting","다익스트라","플로이드마샬","크루스칼","프림","KMP","이진트리","BFS","DFS"],
         "url": "/algorithm/algorithm-index/",
+        "teaser": null
+      },{
+        "title": "[JAVA] 이진 트리",
+        "excerpt":"이진트리 접근 순회 방식에 따라서 아래와 같이 나뉨. 전위 순회(Preorder Traversal) (부) - L - R 중위 순회(Inorder Traversal) L - (부) - R 후위 순회(Postorder Traversal) L - R - (부) 소스 코드 package tree; public class BinaryTree { public Node root; public void setRoot(Node n) { this.root =...","categories": ["codingtest","java"],
+        "tags": ["트리","Tree","이진트리","BinaryTree"],
+        "url": "/codingtest/java/java-binarytree/",
+        "teaser": null
+      },{
+        "title": "[JAVA] 순열과 조합",
+        "excerpt":"순열 Permutation ( nPr ) 순열이란 서로 다른 n개중에 r개를 선택하는 경우의 수(순서 상관 있음) = n! / (n-r)! 백준 순열문제 조합 Combination ( nCr ) 조합이란 서로 다른 n개중에 r개를 선택하는 경우의 수(순서 상관 없음) = n! / ((n-r)! * r!) 백준 조합문제 소스 코드 package testcase; import java.util.Arrays;...","categories": ["codingtest","java"],
+        "tags": ["nPr","nCr","순열","조합","Permutation. Combination"],
+        "url": "/codingtest/java/java-nPr_nCr/",
         "teaser": null
       },{
         "title": "[JAVA] Sort 함수",
