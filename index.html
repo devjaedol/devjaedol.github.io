@@ -23,7 +23,7 @@ A rolling stone does not gather moss.<i class="far fa-comment"></i></br>
 {% assign posts = site.posts %}
 {% assign entries_layout = page.entries_layout | default: 'list' %}
 <div class="entries-{{ entries_layout }}">
-  {% for post in posts limit:10 %}
+  {% for post in posts limit:15 %}
     {% include archive-single-origin.html type=entries_layout %}
   {% endfor %}
 </div>
