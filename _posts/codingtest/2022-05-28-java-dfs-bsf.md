@@ -22,7 +22,7 @@ toc_sticky  : true
 
 # 소스 코드
 문제 그래프 연결 조건    
-![그래프 연결](/assets/images_post/codingtest/bfsdfs_graph_001.png)   
+![그래프 연결](/assets/images_post/codingtest/bfsdfs_graph_ex001.png)   
 - DFS(0시작) 결과 : 0 1 2 4 3 5 6 8 7
 - BFS(0시작) 결과 : 0 1 2 3 4 5 6 7 8 
 

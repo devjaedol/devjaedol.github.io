@@ -13,7 +13,7 @@ toc_sticky  : true
 
 정리하려고  알게된 몇가지 사실은 9세기 페르시아의 수학자인    
 무하마드 알콰리즈미 의 이름을 라틴어화한 algorismus 에서 유래 되었답니다.       
-![무함마드 이븐 무사 알콰리즈미](\assets/images_post/algorithm/post_muhamad.png){: width="200px"}
+![무함마드 이븐 무사 알콰리즈미](\assets/images_post/algorithm/algorithm_muhamad.png){: width="200px"}
 
 위키백과의 알고리즘 정의를 보면     
 수학과 컴퓨터 과학, 언어학 또는 관련 분야에서    
