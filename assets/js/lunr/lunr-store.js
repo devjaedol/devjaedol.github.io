@@ -119,6 +119,12 @@ var store = [{
         "url": "/codingtest/java/java-sort/",
         "teaser": null
       },{
+        "title": "[JAVA Class] PriorityQueue",
+        "excerpt":"큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다. 정렬 등의 조건에서 사용이 가능합니다. 일반적인 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 일반 Queue Soruce Code package datatype; import java.util.ArrayList; import java.util.LinkedList; public class QueueTest { public static void main(String[] args) { // TODO...","categories": ["java"],
+        "tags": ["PriorityQueue","queue","FIFO","우선순위큐","자료구조"],
+        "url": "/java/java-Stack-PriorityQueue/",
+        "teaser": null
+      },{
         "title": "[자료구조] Stack & Queue",
         "excerpt":"자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다. Stack LIFO(Last Input Firs Out) 마지막에 넣은 요소가 먼저 나온다는 의미이다. DFS 사용 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 Stack Soruce Code package datatype; import java.util.Stack; public class StackTest { public static void main(String[]...","categories": ["java"],
         "tags": ["stack","queue","FIFO","LIFO","자료구조"],

@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[자료구조] Stack &amp; Queue | 꿰보노트</title>
-<meta name="description" content="자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다.">
+<!-- begin _includes/seo.html --><title>[JAVA Class] PriorityQueue | 꿰보노트</title>
+<meta name="description" content="큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다.   정렬 등의 조건에서 사용이 가능합니다.">
 
 
   <meta name="author" content="devjaedol">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="꿰보노트">
-<meta property="og:title" content="[자료구조] Stack &amp; Queue">
-<meta property="og:url" content="https://kimjaehyun.co.kr/java/java-Stack-Queue/">
+<meta property="og:title" content="[JAVA Class] PriorityQueue">
+<meta property="og:url" content="https://kimjaehyun.co.kr/java/java-Stack-PriorityQueue/">
 
 
-  <meta property="og:description" content="자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다.">
+  <meta property="og:description" content="큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다.   정렬 등의 조건에서 사용이 가능합니다.">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://kimjaehyun.co.kr/java/java-Stack-Queue/">
+<link rel="canonical" href="https://kimjaehyun.co.kr/java/java-Stack-PriorityQueue/">
 
 
 
@@ -184,7 +184,7 @@
     
       
       
-        <li class="current">[자료구조] Stack & Queue</li>
+        <li class="current">[JAVA Class] PriorityQueue</li>
       
     
   </ol>
@@ -535,8 +535,8 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[자료구조] Stack &amp; Queue">
-    <meta itemprop="description" content="자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다.">
+    <meta itemprop="headline" content="[JAVA Class] PriorityQueue">
+    <meta itemprop="description" content="큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다.  정렬 등의 조건에서 사용이 가능합니다.">
     <meta itemprop="datePublished" content="2022-05-28T00:00:00-05:00">
     
 
@@ -544,7 +544,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="https://kimjaehyun.co.kr/java/java-Stack-Queue/" class="u-url" itemprop="url">[자료구조] Stack &amp; Queue
+            <a href="https://kimjaehyun.co.kr/java/java-Stack-PriorityQueue/" class="u-url" itemprop="url">[JAVA Class] PriorityQueue
 </a>
           </h1>
           
@@ -558,91 +558,21 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#stack">Stack</a></li><li><a href="#queue">Queue</a></li><li><a href="#stack-soruce-code">Stack Soruce Code</a></li><li><a href="#queue-soruce-code">Queue Soruce Code</a></li></ul>
+              <ul class="toc__menu"><li><a href="#일반적인-queue">일반적인 Queue</a></li><li><a href="#일반-queue-soruce-code">일반 Queue Soruce Code</a></li><li><a href="#우선순위-queue-soruce-code">우선순위 Queue Soruce Code</a></li></ul>
 
             </nav>
           </aside>
         
-        <p>자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다.</p>
+        <p>큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다.  <br />
+정렬 등의 조건에서 사용이 가능합니다.</p>
 
-<h2 id="stack">Stack</h2>
-<ul>
-  <li>LIFO(Last Input Firs Out) 마지막에 넣은 요소가 먼저 나온다는 의미이다.</li>
-  <li>DFS 사용</li>
-</ul>
-
-<h2 id="queue">Queue</h2>
+<h2 id="일반적인-queue">일반적인 Queue</h2>
 <ul>
   <li>FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다.</li>
   <li>BFS 사용</li>
 </ul>
 
-<h2 id="stack-soruce-code">Stack Soruce Code</h2>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">datatype</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Stack</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StackTest</span> <span class="o">{</span>
-
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		
-		<span class="nc">Stack</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stack</span><span class="o">();</span>
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"=================="</span><span class="o">);</span>
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"stack.size():"</span><span class="o">+</span><span class="n">stack</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
-		
-		<span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
-		<span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="s">"2"</span><span class="o">);</span>
-		<span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="s">"3"</span><span class="o">);</span>
-		<span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="s">"4"</span><span class="o">);</span>
-		<span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="s">"5"</span><span class="o">);</span>
-
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"stack.peek():"</span><span class="o">+</span><span class="n">stack</span><span class="o">.</span><span class="na">peek</span><span class="o">());</span> <span class="c1">// peek 마지막값을 확인하는 것</span>
-		
-		<span class="c1">//stack.remove(0);</span>
-		<span class="n">stack</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="s">"*****"</span><span class="o">);</span><span class="c1">//중간에 넣기</span>
-		
-		
-		<span class="c1">//while(!stack.empty()){</span>
-		<span class="c1">//	System.out.println("get : "+stack.peek());//제거하지 않고 마지막 값을 가져오므로 무한루프에 빠진다.</span>
-		<span class="c1">//}</span>
-
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"=================="</span><span class="o">);</span>
-		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">stack</span><span class="o">.</span><span class="na">size</span><span class="o">();</span><span class="n">i</span><span class="o">++){</span>
-			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="s">" : "</span><span class="o">+</span><span class="n">stack</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span> <span class="c1">// 제거없이 조회만</span>
-		<span class="o">}</span>
-		
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"stack.size():"</span><span class="o">+</span><span class="n">stack</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"=================="</span><span class="o">);</span>
-
-		<span class="k">while</span><span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">empty</span><span class="o">()){</span>
-			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"get : "</span><span class="o">+</span><span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">());</span> <span class="c1">// 입력 역순으로 제거하면 조회됨</span>
-		<span class="o">}</span>
-	<span class="o">}</span>
-
-<span class="o">}</span>
-
-<span class="c1">//출력</span>
-<span class="o">==================</span>
-<span class="n">stack</span><span class="o">.</span><span class="na">size</span><span class="o">():</span><span class="mi">0</span>
-<span class="n">stack</span><span class="o">.</span><span class="na">peek</span><span class="o">():</span><span class="mi">5</span>
-<span class="o">==================</span>
-<span class="mi">0</span> <span class="o">:</span> <span class="o">*****</span>
-<span class="mi">1</span> <span class="o">:</span> <span class="mi">1</span>
-<span class="mi">2</span> <span class="o">:</span> <span class="mi">2</span>
-<span class="mi">3</span> <span class="o">:</span> <span class="mi">3</span>
-<span class="mi">4</span> <span class="o">:</span> <span class="mi">4</span>
-<span class="mi">5</span> <span class="o">:</span> <span class="mi">5</span>
-<span class="n">stack</span><span class="o">.</span><span class="na">size</span><span class="o">():</span><span class="mi">6</span>
-<span class="o">==================</span>
-<span class="n">get</span> <span class="o">:</span> <span class="mi">5</span>
-<span class="n">get</span> <span class="o">:</span> <span class="mi">4</span>
-<span class="n">get</span> <span class="o">:</span> <span class="mi">3</span>
-<span class="n">get</span> <span class="o">:</span> <span class="mi">2</span>
-<span class="n">get</span> <span class="o">:</span> <span class="mi">1</span>
-<span class="n">get</span> <span class="o">:</span> <span class="o">*****</span>
-
-</code></pre></div></div>
-
-<h2 id="queue-soruce-code">Queue Soruce Code</h2>
+<h2 id="일반-queue-soruce-code">일반 Queue Soruce Code</h2>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">datatype</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.LinkedList</span><span class="o">;</span>
@@ -708,6 +638,164 @@
 
 </code></pre></div></div>
 
+<h2 id="우선순위-queue-soruce-code">우선순위 Queue Soruce Code</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">datatype</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.PriorityQueue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PriorityQueueTest</span> <span class="o">{</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">//낮은 숫자가 우선 순위인 int 형 우선순위 큐 선언</span>
+		<span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">pqLowest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;&gt;();</span>
+
+		<span class="c1">//높은 숫자가 우선 순위인 int 형 우선순위 큐 선언</span>
+		<span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">pqHighest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;&gt;(</span><span class="nc">Collections</span><span class="o">.</span><span class="na">reverseOrder</span><span class="o">());</span>
+		
+		<span class="c1">// add(value) 메서드의 경우 만약 삽입에 성공하면 true를 반환, </span>
+		<span class="c1">// 큐에 여유 공간이 없어 삽입에 실패하면 IllegalStateException을 발생</span>
+		<span class="n">pqLowest</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+		<span class="n">pqLowest</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+		<span class="n">pqLowest</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+
+		<span class="n">pqHighest</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+		<span class="n">pqHighest</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+		<span class="n">pqHighest</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"==[pqLowest]==============="</span><span class="o">);</span>
+		<span class="k">while</span><span class="o">(!</span><span class="n">pqLowest</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pqLowest</span><span class="o">.</span><span class="na">poll</span><span class="o">());</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"==[pqHighest]==============="</span><span class="o">);</span>
+		<span class="k">while</span><span class="o">(!</span><span class="n">pqHighest</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pqHighest</span><span class="o">.</span><span class="na">poll</span><span class="o">());</span>
+		<span class="o">}</span>
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"==[Custome]==============="</span><span class="o">);</span>
+		<span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Node</span><span class="o">&gt;</span> <span class="n">pqCustom</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;&gt;();</span>
+		<span class="n">pqCustom</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">100</span><span class="o">));</span>
+		<span class="n">pqCustom</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span> <span class="mi">200</span><span class="o">));</span>
+		<span class="n">pqCustom</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">70</span><span class="o">,</span> <span class="mi">300</span><span class="o">));</span>
+		<span class="n">pqCustom</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">30</span><span class="o">,</span> <span class="mi">400</span><span class="o">));</span>
+		
+		<span class="k">while</span><span class="o">(!</span><span class="n">pqCustom</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pqCustom</span><span class="o">.</span><span class="na">poll</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+		<span class="o">}</span>
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"==[]==============="</span><span class="o">);</span>
+		
+
+		<span class="c1">// 간단한 람다 방식으로 사용하려면 </span>
+		<span class="c1">//높은 숫자가 우선 순위인 int 형 우선순위 큐 선언</span>
+		<span class="c1">//PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;( (a, b) -&gt; a[0] - b[0] );</span>
+		<span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;&gt;(</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;{</span>
+			<span class="c1">//System.out.format(" %d - %d = %d \n", a[1], b[1], a[1] - b[1]);</span>
+			<span class="k">return</span> <span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">b</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+			<span class="c1">//return (a[1] - b[1])* -1 ;</span>
+			<span class="o">}</span> <span class="o">);</span>
+		
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">});</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">7</span><span class="o">});</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">3</span><span class="o">});</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">});</span>
+
+		<span class="k">while</span><span class="o">(!</span><span class="n">pq</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="kt">int</span><span class="o">[]</span> <span class="n">t</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%5d %5d \n"</span><span class="o">,</span> <span class="n">t</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">t</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+		<span class="o">}</span>
+		
+		
+		<span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">q_asc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+		<span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">q_desc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;((</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)-&gt;(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="o">));</span>
+		
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">q_asc</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+			<span class="n">q_desc</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+		<span class="o">}</span>
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"==q_asc================="</span><span class="o">);</span>
+		<span class="k">while</span><span class="o">(!</span><span class="n">q_asc</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d \n"</span><span class="o">,</span><span class="n">q_asc</span><span class="o">.</span><span class="na">poll</span><span class="o">());</span>
+		<span class="o">}</span><span class="c1">//end while</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"==q_desc================="</span><span class="o">);</span>
+		<span class="k">while</span><span class="o">(!</span><span class="n">q_desc</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d \n"</span><span class="o">,</span><span class="n">q_desc</span><span class="o">.</span><span class="na">poll</span><span class="o">());</span>
+		<span class="o">}</span><span class="c1">//end while		</span>
+		
+	<span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="c1">// Comparator 가 아닌 Comparable</span>
+<span class="kd">class</span> <span class="nc">Node</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Node</span><span class="o">&gt;</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="n">data</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="n">distance</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nf">Node</span><span class="o">(</span><span class="kt">int</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span> <span class="n">distance</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">distance</span> <span class="o">=</span> <span class="n">distance</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"data : %-5d, distance : %-5d "</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">data</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">distance</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Node</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">//return ( this.data - o.data ) * 1; // 1 asc, -1 desc</span>
+		<span class="k">return</span> <span class="o">(</span> <span class="k">this</span><span class="o">.</span><span class="na">distance</span> <span class="o">-</span> <span class="n">o</span><span class="o">.</span><span class="na">distance</span> <span class="o">)</span> <span class="o">*</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 1 asc, -1 desc</span>
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+
+
+<span class="c1">//출력</span>
+<span class="o">==[</span><span class="n">pqLowest</span><span class="o">]===============</span>
+<span class="mi">1</span>
+<span class="mi">10</span>
+<span class="mi">100</span>
+<span class="o">==[</span><span class="n">pqHighest</span><span class="o">]===============</span>
+<span class="mi">100</span>
+<span class="mi">10</span>
+<span class="mi">1</span>
+<span class="o">==[</span><span class="nc">Custome</span><span class="o">]===============</span>
+<span class="n">data</span> <span class="o">:</span> <span class="mi">1</span>    <span class="o">,</span> <span class="n">distance</span> <span class="o">:</span> <span class="mi">100</span>   
+<span class="n">data</span> <span class="o">:</span> <span class="mi">100</span>  <span class="o">,</span> <span class="n">distance</span> <span class="o">:</span> <span class="mi">200</span>   
+<span class="n">data</span> <span class="o">:</span> <span class="mi">70</span>   <span class="o">,</span> <span class="n">distance</span> <span class="o">:</span> <span class="mi">300</span>   
+<span class="n">data</span> <span class="o">:</span> <span class="mi">30</span>   <span class="o">,</span> <span class="n">distance</span> <span class="o">:</span> <span class="mi">400</span>   
+<span class="o">==[]===============</span>
+    <span class="mi">1</span>     <span class="mi">1</span> 
+    <span class="mi">0</span>     <span class="mi">1</span> 
+    <span class="mi">0</span>     <span class="mi">3</span> 
+    <span class="mi">0</span>     <span class="mi">7</span> 
+<span class="o">==</span><span class="n">q_asc</span><span class="o">=================</span>
+<span class="mi">0</span> 
+<span class="mi">1</span> 
+<span class="mi">2</span> 
+<span class="mi">3</span> 
+<span class="mi">4</span> 
+<span class="mi">5</span> 
+<span class="mi">6</span> 
+<span class="mi">7</span> 
+<span class="mi">8</span> 
+<span class="mi">9</span> 
+<span class="o">==</span><span class="n">q_desc</span><span class="o">=================</span>
+<span class="mi">9</span> 
+<span class="mi">8</span> 
+<span class="mi">7</span> 
+<span class="mi">6</span> 
+<span class="mi">5</span> 
+<span class="mi">4</span> 
+<span class="mi">3</span> 
+<span class="mi">2</span> 
+<span class="mi">1</span> 
+<span class="mi">0</span> 
+
+</code></pre></div></div>
+
         
       </section>
 
@@ -725,11 +813,11 @@
     
       <a href="/tags/#fifo" class="page__taxonomy-item p-category" rel="tag">FIFO</a><span class="sep">, </span>
     
-      <a href="/tags/#lifo" class="page__taxonomy-item p-category" rel="tag">LIFO</a><span class="sep">, </span>
+      <a href="/tags/#priorityqueue" class="page__taxonomy-item p-category" rel="tag">PriorityQueue</a><span class="sep">, </span>
     
       <a href="/tags/#queue" class="page__taxonomy-item p-category" rel="tag">queue</a><span class="sep">, </span>
     
-      <a href="/tags/#stack" class="page__taxonomy-item p-category" rel="tag">stack</a><span class="sep">, </span>
+      <a href="/tags/#%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84%ED%81%90" class="page__taxonomy-item p-category" rel="tag">우선순위큐</a><span class="sep">, </span>
     
       <a href="/tags/#%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0" class="page__taxonomy-item p-category" rel="tag">자료구조</a>
     
@@ -765,16 +853,18 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5B%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%5D+Stack+%26+Queue%20https%3A%2F%2Fkimjaehyun.co.kr%2Fjava%2Fjava-Stack-Queue%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BJAVA+Class%5D+PriorityQueue%20https%3A%2F%2Fkimjaehyun.co.kr%2Fjava%2Fjava-Stack-PriorityQueue%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fjava%2Fjava-Stack-Queue%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fjava%2Fjava-Stack-PriorityQueue%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fjava%2Fjava-Stack-Queue%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fjava%2Fjava-Stack-PriorityQueue%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
 
+
+  
 
   
   	
@@ -786,10 +876,10 @@
 
   <nav class="pagination_prev_next">
     
-      <a href="/java/java-Stack-PriorityQueue/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[JAVA Class] PriorityQueue</a>
+      <a href="/codingtest/java/java-sort/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[JAVA] Sort 함수</a>
     
     
-      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+      <a href="/java/java-Stack-Queue/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[자료구조] Stack & Queue</a>
     
   </nav>
 
@@ -821,7 +911,7 @@
     <article class="archive-item">
         <div>
             <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/java/java-Stack-PriorityQueue/">[JAVA Class] PriorityQueue</a>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/java/java-Stack-Queue/">[자료구조] Stack & Queue</a>
             </span>
             <small> 
               <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.05.28
@@ -836,7 +926,7 @@
                 
                     
                     
-                    <a href="/tags/#priorityqueue" class="page__taxonomy-item-tag" rel="tag">PriorityQueue</a><span class="sep"> </span>
+                    <a href="/tags/#lifo" class="page__taxonomy-item-tag" rel="tag">LIFO</a><span class="sep"> </span>
                 
                     
                     
@@ -844,7 +934,7 @@
                 
                     
                     
-                    <a href="/tags/#%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84%ED%81%90" class="page__taxonomy-item-tag" rel="tag">우선순위큐</a><span class="sep"> </span>
+                    <a href="/tags/#stack" class="page__taxonomy-item-tag" rel="tag">stack</a><span class="sep"> </span>
                 
                     
                     
@@ -1079,8 +1169,8 @@
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://kimjaehyun.co.kr/java/java-Stack-Queue/";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/java/java-Stack-Queue"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://kimjaehyun.co.kr/java/java-Stack-PriorityQueue/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/java/java-Stack-PriorityQueue"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
