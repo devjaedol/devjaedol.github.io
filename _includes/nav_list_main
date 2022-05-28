@@ -12,7 +12,6 @@
       </li>
 
 
-
       <li>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
         <span class="nav__sub-title">일상다반사</span>
@@ -37,6 +36,13 @@
                   {% endif %}
               {% endfor %}
           </ul>
+          <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "java" %}
+                    <li><a href="/categories/java" class="">Java ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>           
           <ul>
               {% for category in site.categories %}
                   {% if category[0] == "javascript" %}
@@ -66,12 +72,20 @@
             {% endfor %}
           </ul>            
 
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "db" %}
+                      <li><a href="/categories/db" class="">Database ({{category[1].size}})</a></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
 
-        <span class="nav__sub-title">Coding Test</span>
+
+        <span class="nav__sub-title">Footprints</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "알고리즘" %}
-                        <li><a href="/categories/algorithm" class="">알고리즘 ({{category[1].size}})</a></li>
+                    {% if category[0] == "algorithm" %}
+                        <li><a href="/categories/algorithm" class="">알고리즘({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -88,14 +102,14 @@
                     <li><a href="/categories/programmers" class="">프로그래머스 ({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
-        </ul>
-        <ul>
-            {% for category in site.categories %}
-                {% if category[0] == "Online Judge" %}
-                    <li><a href="/categories/onlinejudge" class="">Online Judge ({{category[1].size}})</a></li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "codingtest" %}
+                        <li><a href="/categories/codingtest" class="">Coding Test ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
 
 
 
