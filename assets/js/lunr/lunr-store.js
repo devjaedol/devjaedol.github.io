@@ -95,6 +95,18 @@ var store = [{
         "url": "/algorithm/algorithm-index/",
         "teaser": null
       },{
+        "title": "[Java Class] PriorityQueue",
+        "excerpt":"큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다. 정렬 등의 조건에서 사용이 가능합니다. 일반적인 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 일반 Queue Soruce Code package datatype; import java.util.ArrayList; import java.util.LinkedList; public class QueueTest { public static void main(String[] args) { // TODO...","categories": ["java"],
+        "tags": ["PriorityQueue","queue","FIFO","우선순위큐","자료구조"],
+        "url": "/java/java-Stack-PriorityQueue/",
+        "teaser": null
+      },{
+        "title": "[자료구조] Stack & Queue",
+        "excerpt":"자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다. Stack LIFO(Last Input Firs Out) 마지막에 넣은 요소가 먼저 나온다는 의미이다. DFS 사용 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 Stack Soruce Code package datatype; import java.util.Stack; public class StackTest { public static void main(String[]...","categories": ["java"],
+        "tags": ["stack","queue","FIFO","LIFO","자료구조"],
+        "url": "/java/java-Stack-Queue/",
+        "teaser": null
+      },{
         "title": "[Java] 이진 트리",
         "excerpt":"이진트리 접근 순회 방식에 따라서 아래와 같이 나뉨. 전위 순회(Preorder Traversal) (부) - L - R 중위 순회(Inorder Traversal) L - (부) - R 후위 순회(Postorder Traversal) L - R - (부) 소스 코드 package tree; public class BinaryTree { public Node root; public void setRoot(Node n) { this.root =...","categories": ["algorithm","java"],
         "tags": ["트리","Tree","이진트리","BinaryTree"],
@@ -125,22 +137,16 @@ var store = [{
         "url": "/codingtest/python/python-deque/",
         "teaser": null
       },{
-        "title": "[Java Class] PriorityQueue",
-        "excerpt":"큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다. 정렬 등의 조건에서 사용이 가능합니다. 일반적인 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 일반 Queue Soruce Code package datatype; import java.util.ArrayList; import java.util.LinkedList; public class QueueTest { public static void main(String[] args) { // TODO...","categories": ["java"],
-        "tags": ["PriorityQueue","queue","FIFO","우선순위큐","자료구조"],
-        "url": "/java/java-Stack-PriorityQueue/",
-        "teaser": null
-      },{
-        "title": "[자료구조] Stack & Queue",
-        "excerpt":"자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다. Stack LIFO(Last Input Firs Out) 마지막에 넣은 요소가 먼저 나온다는 의미이다. DFS 사용 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 Stack Soruce Code package datatype; import java.util.Stack; public class StackTest { public static void main(String[]...","categories": ["java"],
-        "tags": ["stack","queue","FIFO","LIFO","자료구조"],
-        "url": "/java/java-Stack-Queue/",
-        "teaser": null
-      },{
         "title": "[Python] input 처리",
         "excerpt":"Python에서 코딩 테스트시에 입력을 처리하는 방법 배열 생성 및 초기화 1차원 배열 초기화 arr = [0]*5 arr #출력 &gt; [0, 0, 0, 0, 0] 2차원 배열 초기화 row = 5 col = 2 arr = [[0]*col]*row arr #출력 &gt; [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0]] arr...","categories": ["codingtest","python","input"],
         "tags": ["python","python","stdin","readline"],
         "url": "/codingtest/python/input/python-input/",
+        "teaser": null
+      },{
+        "title": "Python - PriorityQueue, Heapq",
+        "excerpt":"FIFO에서 우선순위 가중치를 주어 출력시키는 자료 구조 입니다. Java에서도 동일한 형태의 자료 구조가 존재 합니다. PriorityQueue 사용예 from queue import PriorityQueue pq = PriorityQueue() #pq = PriorityQueue(maxsie=10) #초기; 사이즈 정의 가능함. pq.put(9) pq.put(2) pq.put(4) pq.put(7) pq.put(1) pq.put(6) while pq.empty() == False : print(pq.get()) #출력 1 2 4 6 7 9...","categories": ["python"],
+        "tags": ["PriorityQueue","queue","FIFO","우선순위큐","자료구조","Heapq"],
+        "url": "/python/python_PriorityQueue/",
         "teaser": null
       },{
         "title": "Python - for, enumerate",
