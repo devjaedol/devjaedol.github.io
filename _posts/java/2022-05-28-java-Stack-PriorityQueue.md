@@ -1,5 +1,5 @@
 ---
-title: "[JAVA Class] PriorityQueue" 
+title: "[Java Class] PriorityQueue" 
 categories: 
     - java
 tags: 

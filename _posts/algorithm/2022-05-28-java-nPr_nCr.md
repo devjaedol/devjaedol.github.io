@@ -1,5 +1,5 @@
 ---
-title: "[JAVA] 순열과 조합"
+title: "[Java] 순열과 조합"
 categories: 
     - algorithm
     - java

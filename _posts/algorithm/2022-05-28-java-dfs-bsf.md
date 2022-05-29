@@ -1,5 +1,5 @@
 ---
-title: "[JAVA] DFS vs BFS"
+title: "[Java] DFS vs BFS"
 categories: 
     - algorithm
     - java

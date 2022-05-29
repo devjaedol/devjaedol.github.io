@@ -130,6 +130,8 @@ st.append(3)
 st.append(4)
 st.append(5)
 
+## peek
+print('peek :',st[-1])
 print(st.pop())
 print(st.pop())
 print(st.pop())
@@ -137,6 +139,7 @@ print(st.pop())
 print(st.pop())
 
 #출력
+> peek : 5
 > 5
 > 4
 > 3
@@ -156,6 +159,8 @@ q.append(3)
 q.append(4)
 q.append(5)
 
+## peek
+print('peek :',q[0])
 print(q.popleft())
 print(q.popleft())
 print(q.popleft())
@@ -164,6 +169,7 @@ print(q.popleft())
 
 
 #출력
+> peek : 1
 > 1
 > 2
 > 3

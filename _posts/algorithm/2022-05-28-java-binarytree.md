@@ -1,5 +1,5 @@
 ---
-title: "[JAVA] 이진 트리"
+title: "[Java] 이진 트리"
 categories: 
     - algorithm
     - java
