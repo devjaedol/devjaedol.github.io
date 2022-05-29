@@ -95,25 +95,25 @@ var store = [{
         "url": "/algorithm/algorithm-index/",
         "teaser": null
       },{
-        "title": "[JAVA] 이진 트리",
+        "title": "[Java] 이진 트리",
         "excerpt":"이진트리 접근 순회 방식에 따라서 아래와 같이 나뉨. 전위 순회(Preorder Traversal) (부) - L - R 중위 순회(Inorder Traversal) L - (부) - R 후위 순회(Postorder Traversal) L - R - (부) 소스 코드 package tree; public class BinaryTree { public Node root; public void setRoot(Node n) { this.root =...","categories": ["algorithm","java"],
         "tags": ["트리","Tree","이진트리","BinaryTree"],
         "url": "/algorithm/java/java-binarytree/",
         "teaser": null
       },{
-        "title": "[JAVA] DFS vs BFS",
+        "title": "[Java] DFS vs BFS",
         "excerpt":"깊이 우선 검색(DFS) 연결된 항목으 끝까지 검색 후 상위 브랜치로 이동하여 검색을 진행 최대한 깊이 내려간뒤, 더이상 없을때 옆으로 이동하는 검색 형태 Stack 넓이 우선 검색(BSF) 연결된 인접노드를 먼저 넓게 검색한 다음 더이상 없을때 하위로 내려감 최대한 넓게 이동 검색 후 하위로 이동. Queue 소스 코드 문제 그래프 연결 조건...","categories": ["algorithm","java"],
         "tags": ["dfs","bfs","깊이우선탐색","넓이우선탐색","Breadth-First Search"],
         "url": "/algorithm/java/java-dfs-bsf/",
         "teaser": null
       },{
-        "title": "[JAVA] 순열과 조합",
+        "title": "[Java] 순열과 조합",
         "excerpt":"순열 Permutation ( nPr ) 순열이란 서로 다른 n개중에 r개를 선택하는 경우의 수(순서 상관 있음) = n! / (n-r)! 백준 순열문제 조합 Combination ( nCr ) 조합이란 서로 다른 n개중에 r개를 선택하는 경우의 수(순서 상관 없음) = n! / ((n-r)! * r!) 백준 조합문제 소스 코드 package testcase; import java.util.Arrays;...","categories": ["algorithm","java"],
         "tags": ["nPr","nCr","순열","조합","Permutation. Combination"],
         "url": "/algorithm/java/java-nPr_nCr/",
         "teaser": null
       },{
-        "title": "[JAVA] Sort 함수",
+        "title": "[Java] Sort 함수",
         "excerpt":"정렬 함수 테스트 정렬 방식 Bubble Sort. O(N^2) Selection Sort. O(N^2) Insertion Sort. O(N^2) Quick Sort. avg O(N*logN), max O(N^2) - 이미정렬된 경우 Merge Sort. O(N*logN) 보장, 단점 정렬시 메모리 필요함. Heap Sort. N/2*logN (N이 클경우 logN은 값은 작은 값으로 결과적으로) &gt; O(N) Counting Sort. O(N) 특정 범위 조건 Bubble...","categories": ["algorithm","java"],
         "tags": ["Bubble","Selection","Insertion","Quick","Merge","Heap","Counting"],
         "url": "/algorithm/java/java-sort/",
@@ -122,10 +122,10 @@ var store = [{
         "title": "[Python] deque (stack, queue) 구현",
         "excerpt":"Python에서 list형태로 queue를 구현시 성능이슈로 인해서 deque 사용을 권장합니다. list vs deque 성능 문제 index 0번째 추가와 출력시 성능 list 작업 명령어 시간복잡도 출력 pop(0) O(n) 입력 Insert(0,value) O(n) deque 작업 명령어 시간복잡도 출력 popleft() O(1) 입력 appendleft(value) O(1) deque 기본 사용법 입출력이 양방향 모두 지원하는 메소드가 존재하여, Queue, Stack을...","categories": ["codingtest","python"],
         "tags": ["queue","stack"],
-        "url": "/codingtest/python/java-sort/",
+        "url": "/codingtest/python/python-deque/",
         "teaser": null
       },{
-        "title": "[JAVA Class] PriorityQueue",
+        "title": "[Java Class] PriorityQueue",
         "excerpt":"큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다. 정렬 등의 조건에서 사용이 가능합니다. 일반적인 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 일반 Queue Soruce Code package datatype; import java.util.ArrayList; import java.util.LinkedList; public class QueueTest { public static void main(String[] args) { // TODO...","categories": ["java"],
         "tags": ["PriorityQueue","queue","FIFO","우선순위큐","자료구조"],
         "url": "/java/java-Stack-PriorityQueue/",
@@ -135,5 +135,17 @@ var store = [{
         "excerpt":"자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다. Stack LIFO(Last Input Firs Out) 마지막에 넣은 요소가 먼저 나온다는 의미이다. DFS 사용 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 Stack Soruce Code package datatype; import java.util.Stack; public class StackTest { public static void main(String[]...","categories": ["java"],
         "tags": ["stack","queue","FIFO","LIFO","자료구조"],
         "url": "/java/java-Stack-Queue/",
+        "teaser": null
+      },{
+        "title": "[Python] input 처리",
+        "excerpt":"Python에서 코딩 테스트시에 입력을 처리하는 방법 배열 생성 및 초기화 1차원 배열 초기화 arr = [0]*5 arr #출력 &gt; [0, 0, 0, 0, 0] 2차원 배열 초기화 row = 5 col = 2 arr = [[0]*col]*row arr #출력 &gt; [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0]] arr...","categories": ["codingtest","python","input"],
+        "tags": ["python","python","stdin","readline"],
+        "url": "/codingtest/python/input/python-input/",
+        "teaser": null
+      },{
+        "title": "Python - for, enumerate",
+        "excerpt":"반복문의 for와 enumerate 사용 정리 for문을 통한 list 순회 arr = ['a','b','c','d','e'] for c in arr: print(c) #출력 a b c d e 위 조건에서 index를 함께 출력하고 싶을때? arr = ['a','b','c','d','e'] i = 0 for c in arr: print(i, c ) i += 1 #출력 0 a 1 b...","categories": ["python"],
+        "tags": ["enumerate","for"],
+        "url": "/python/python_enumerate/",
         "teaser": null
       }]
