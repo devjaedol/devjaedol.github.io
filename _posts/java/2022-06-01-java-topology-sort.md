@@ -20,7 +20,7 @@ Queue 를 사용하여 정렬하며, 정렬하는 방법
 ![Topology순서](\assets/images_post/java/topology_sort_01.png)
 
 ![topology]
-## Sample Soruce Code
+## Sample Source Code
 ```java
 public class TopologySort {
 

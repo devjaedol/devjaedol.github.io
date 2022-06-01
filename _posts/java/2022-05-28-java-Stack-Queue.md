@@ -22,7 +22,7 @@ toc_sticky  : true
 - FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다.
 - BFS 사용
 
-## Stack Soruce Code
+## Stack Source Code
 ```java
 package datatype;
 import java.util.Stack;
@@ -88,7 +88,7 @@ get : *****
 
 ```
 
-## Queue Soruce Code
+## Queue Source Code
 ```java
 package datatype;
 import java.util.ArrayList;

@@ -21,7 +21,7 @@ toc_sticky  : true
 - BFS 사용
 
 
-## 일반 Queue Soruce Code
+## 일반 Queue Source Code
 ```java
 package datatype;
 import java.util.ArrayList;
@@ -89,7 +89,7 @@ queue.size() : 0
 ```
 
 
-## 우선순위 Queue Soruce Code
+## 우선순위 Queue Source Code
 ```java
 package datatype;
 
