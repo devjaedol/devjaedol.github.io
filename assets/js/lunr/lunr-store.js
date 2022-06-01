@@ -96,13 +96,13 @@ var store = [{
         "teaser": null
       },{
         "title": "[Java Class] PriorityQueue",
-        "excerpt":"큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다. 정렬 등의 조건에서 사용이 가능합니다. 일반적인 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 일반 Queue Soruce Code package datatype; import java.util.ArrayList; import java.util.LinkedList; public class QueueTest { public static void main(String[] args) { // TODO...","categories": ["java"],
+        "excerpt":"큐에서 특정 우선순위를 적용하여, 먼저 출력하도록 하는 클래스 입니다. 정렬 등의 조건에서 사용이 가능합니다. 일반적인 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 일반 Queue Source Code package datatype; import java.util.ArrayList; import java.util.LinkedList; public class QueueTest { public static void main(String[] args) { // TODO...","categories": ["java"],
         "tags": ["PriorityQueue","queue","FIFO","우선순위큐","자료구조"],
         "url": "/java/java-Stack-PriorityQueue/",
         "teaser": null
       },{
         "title": "[자료구조] Stack & Queue",
-        "excerpt":"자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다. Stack LIFO(Last Input Firs Out) 마지막에 넣은 요소가 먼저 나온다는 의미이다. DFS 사용 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 Stack Soruce Code package datatype; import java.util.Stack; public class StackTest { public static void main(String[]...","categories": ["java"],
+        "excerpt":"자료 구조 중에 스택과 큐에 대해서 TestCode를 작성해 봅니다. Stack LIFO(Last Input Firs Out) 마지막에 넣은 요소가 먼저 나온다는 의미이다. DFS 사용 Queue FIFO(Fisrt Input Firs Out) 먼저 들어간 데이터가 먼저 나오는 구조이다. BFS 사용 Stack Source Code package datatype; import java.util.Stack; public class StackTest { public static void main(String[]...","categories": ["java"],
         "tags": ["stack","queue","FIFO","LIFO","자료구조"],
         "url": "/java/java-Stack-Queue/",
         "teaser": null
@@ -167,8 +167,14 @@ var store = [{
         "url": "/algorithm/codingtest/algorithm-binary_range_search/",
         "teaser": null
       },{
+        "title": "[Java] Input값 처리",
+        "excerpt":"백준 사이트와 같은 온라인저지 사이트에서 Input 처리시 Scanner를 사용하는데, BufferedReader를 사용할때와 성능 차이가 나는 것으로 생각됩니다. 특히 대량 데이트 Row 전달시 성능저하 현상이 발생하것으로 판단되네요. Sample Source Code import java.io.BufferedReader; import java.io.InputStreamReader; import java.util.Scanner; import java.util.StringTokenizer; public class InputTest { static void inputType1() throws Exception{ try { Scanner sc =...","categories": ["java","codingtest"],
+        "tags": ["Input값","백준","코딩테스트","Scanner","BufferedReader"],
+        "url": "/java/codingtest/java-input-test/",
+        "teaser": null
+      },{
         "title": "[Java] 위상정렬, 줄세우기, Topology Sort",
-        "excerpt":"데이터의 주어진 조건만으로 특정 순서를 정렬시키는 문제들에서 사용되는 알고리즘. 예를 들면 다음 조건이 제공될때, 주어진 조건을 조합하여 조건을 만들어 보면, 줄을 세워서 정렬이 가능한지? 불가능한지? 가능하면 정렬을 하는 미션 백준 2252 Queue 를 사용하여 정렬하며, 정렬하는 방법 ![topology] Sample Soruce Code public class TopologySort { static int max = 10;...","categories": ["algorithm","java"],
+        "excerpt":"데이터의 주어진 조건만으로 특정 순서를 정렬시키는 문제들에서 사용되는 알고리즘. 예를 들면 다음 조건이 제공될때, 주어진 조건을 조합하여 조건을 만들어 보면, 줄을 세워서 정렬이 가능한지? 불가능한지? 가능하면 정렬을 하는 미션 백준 2252 Queue 를 사용하여 정렬하며, 정렬하는 방법 ![topology] Sample Source Code public class TopologySort { static int max = 10;...","categories": ["algorithm","java"],
         "tags": ["Topology","위상정렬","줄세우기","백준2252","백준1516","백준1948"],
         "url": "/algorithm/java/java-topology-sort/",
         "teaser": null

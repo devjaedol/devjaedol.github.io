@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-01T08:55:48-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[Java] 위상정렬, 줄세우기, Topology Sort</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-topology-sort/" rel="alternate" type="text/html" title="[Java] 위상정렬, 줄세우기, Topology Sort" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-topology-sort</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-topology-sort/"><![CDATA[<p>데이터의 주어진 조건만으로 특정 순서를 정렬시키는 문제들에서 사용되는 알고리즘.  <br />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-01T09:36:33-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[Java][Python] 범위 줄이기</title><link href="https://kimjaehyun.co.kr/algorithm/codingtest/algorithm-binary_range_search/" rel="alternate" type="text/html" title="[Java][Python] 범위 줄이기" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/codingtest/algorithm-binary_range_search</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/codingtest/algorithm-binary_range_search/"><![CDATA[<p>이진 검색 알고리즘 (Binary search algorithm)으로 잘 알려진,  <br />
+중간 값을 비교해서 이상, 이하로 검색 범위를 좁히는 방식에서 착한한 문제 풀이 패턴 입니다.</p>
+
+<h1 id="범위-검색-패턴">범위 검색 패턴</h1>
+<p>시작 범위, 종료 범위 중 조건을 검사하여 좁히는 문제에 사용하는 방식,
+이중 For문 출제 문제에서 O(N^2) 을 O(N) 수준으로 복잡도를 졸이기 위해서 사용됩니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">10000</span><span class="o">;</span> <span class="c1">// 종료 지점</span>
+
+<span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> 
+
+<span class="k">while</span> <span class="o">(</span> <span class="n">s</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="o">){</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="o">(</span><span class="n">s</span><span class="o">+</span><span class="mi">2</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span> <span class="c1">// 중간 값</span>
+    <span class="k">if</span><span class="o">(</span> <span class="n">check_function</span><span class="o">(</span><span class="n">m</span><span class="o">)</span> <span class="o">){</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// check_function </span>
+<span class="c1">//s 값을 조정할지, e 값을 조정할지 판단하는 함수를 구현</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="k">while</span>  <span class="n">s</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="p">:</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">;</span> 
+    <span class="k">if</span> <span class="n">check_function</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">else</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span>
+    
+<span class="c1"># check_function 
+#s 값을 조정할지, e 값을 조정할지 판단하는 함수를 구현
+</span></code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="codingtest" /><category term="Binary" /><summary type="html"><![CDATA[이진 검색 알고리즘 (Binary search algorithm)으로 잘 알려진, 중간 값을 비교해서 이상, 이하로 검색 범위를 좁히는 방식에서 착한한 문제 풀이 패턴 입니다.]]></summary></entry><entry><title type="html">[Java] 위상정렬, 줄세우기, Topology Sort</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-topology-sort/" rel="alternate" type="text/html" title="[Java] 위상정렬, 줄세우기, Topology Sort" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-topology-sort</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-topology-sort/"><![CDATA[<p>데이터의 주어진 조건만으로 특정 순서를 정렬시키는 문제들에서 사용되는 알고리즘.  <br />
 예를 들면 다음 조건이 제공될때, 주어진 조건을 조합하여 조건을 만들어 보면,</p>
 
 <ul>
@@ -12,7 +49,7 @@
 <img src="\assets/images_post/java/topology_sort_01.png" alt="Topology순서" /></p>
 
 <p>![topology]</p>
-<h2 id="sample-soruce-code">Sample Soruce Code</h2>
+<h2 id="sample-source-code">Sample Source Code</h2>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TopologySort</span> <span class="o">{</span>
 
 	<span class="kd">static</span> <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
@@ -95,44 +132,88 @@
 
 </code></pre></div></div>
 
-<p><a href="https://blog.naver.com/ndb796/221236874984" target="_blank">참고 문헌 : 안경잡개발자 블로그</a></p>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Topology" /><category term="위상정렬" /><category term="줄세우기" /><category term="백준2252" /><category term="백준1516" /><category term="백준1948" /><summary type="html"><![CDATA[데이터의 주어진 조건만으로 특정 순서를 정렬시키는 문제들에서 사용되는 알고리즘. 예를 들면 다음 조건이 제공될때, 주어진 조건을 조합하여 조건을 만들어 보면,]]></summary></entry><entry><title type="html">[Java][Python] 범위 줄이기</title><link href="https://kimjaehyun.co.kr/algorithm/codingtest/algorithm-binary_range_search/" rel="alternate" type="text/html" title="[Java][Python] 범위 줄이기" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/codingtest/algorithm-binary_range_search</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/codingtest/algorithm-binary_range_search/"><![CDATA[<p>이진 검색 알고리즘 (Binary search algorithm)으로 잘 알려진,  <br />
-중간 값을 비교해서 이상, 이하로 검색 범위를 좁히는 방식에서 착한한 문제 풀이 패턴 입니다.</p>
+<p><a href="https://blog.naver.com/ndb796/221236874984" target="_blank">참고 문헌 : 안경잡개발자 블로그</a></p>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Topology" /><category term="위상정렬" /><category term="줄세우기" /><category term="백준2252" /><category term="백준1516" /><category term="백준1948" /><summary type="html"><![CDATA[데이터의 주어진 조건만으로 특정 순서를 정렬시키는 문제들에서 사용되는 알고리즘. 예를 들면 다음 조건이 제공될때, 주어진 조건을 조합하여 조건을 만들어 보면,]]></summary></entry><entry><title type="html">[Java] Input값 처리</title><link href="https://kimjaehyun.co.kr/java/codingtest/java-input-test/" rel="alternate" type="text/html" title="[Java] Input값 처리" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/java/codingtest/java-input-test</id><content type="html" xml:base="https://kimjaehyun.co.kr/java/codingtest/java-input-test/"><![CDATA[<p>백준 사이트와 같은 온라인저지 사이트에서 Input 처리시 <code class="language-plaintext highlighter-rouge">Scanner</code>를 사용하는데, <code class="language-plaintext highlighter-rouge">BufferedReader</code>를 사용할때와 성능 차이가 나는 것으로 생각됩니다.  <br />
+특히 대량 데이트 Row 전달시 성능저하 현상이 발생하것으로 판단되네요.</p>
 
-<h1 id="범위-검색-패턴">범위 검색 패턴</h1>
-<p>시작 범위, 종료 범위 중 조건을 검사하여 좁히는 문제에 사용하는 방식,
-이중 For문 출제 문제에서 O(N^2) 을 O(N) 수준으로 복잡도를 졸이기 위해서 사용됩니다.</p>
+<h2 id="sample-source-code">Sample Source Code</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.StringTokenizer</span><span class="o">;</span>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-<span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">10000</span><span class="o">;</span> <span class="c1">// 종료 지점</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">InputTest</span> <span class="o">{</span>
 
-<span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> 
+	<span class="kd">static</span> <span class="kt">void</span> <span class="nf">inputType1</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span><span class="o">{</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+			
+			<span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+			<span class="kt">int</span> <span class="no">M</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"N: %d M: %d \n"</span><span class="o">,</span><span class="no">N</span><span class="o">,</span><span class="no">M</span><span class="o">);</span>
+			
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="no">M</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				
+				<span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+				<span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+				<span class="c1">//System.out.format("%d %d \n",s,e);</span>
+			<span class="o">}</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"End"</span><span class="o">);</span>
+			
+		<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>	
+		
+	<span class="o">}</span>
+	
+	<span class="kd">static</span> <span class="kt">void</span> <span class="nf">inputType2</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span><span class="o">{</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+			<span class="nc">StringTokenizer</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+			
+			<span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+			<span class="kt">int</span> <span class="no">M</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+			
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"N: %d M: %d \n"</span><span class="o">,</span><span class="no">N</span><span class="o">,</span><span class="no">M</span><span class="o">);</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="no">M</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">st</span> 	<span class="o">=</span> <span class="k">new</span> <span class="nc">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+				<span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+				<span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+				<span class="c1">//System.out.format("%d %d \n",s,e);</span>
+			<span class="o">}</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"End"</span><span class="o">);</span>
+			
+		<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>	
+	<span class="o">}</span>
+	
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 
-<span class="k">while</span> <span class="o">(</span> <span class="n">s</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="o">){</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="o">(</span><span class="n">s</span><span class="o">+</span><span class="mi">2</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span> <span class="c1">// 중간 값</span>
-    <span class="k">if</span><span class="o">(</span> <span class="n">check_function</span><span class="o">(</span><span class="n">m</span><span class="o">)</span> <span class="o">){</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-        <span class="n">e</span> <span class="o">=</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="c1">// inputType2();</span>
+			<span class="c1">// inputType2();</span>
+			
+		<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>	
+		
+		
+	<span class="o">}</span>
+
 <span class="o">}</span>
 
-<span class="c1">// check_function </span>
-<span class="c1">//s 값을 조정할지, e 값을 조정할지 판단하는 함수를 구현</span>
-</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">e</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="cm">/*
 
-<span class="k">while</span>  <span class="n">s</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="p">:</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">;</span> 
-    <span class="k">if</span> <span class="n">check_function</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span>
-    <span class="k">else</span>
-        <span class="n">e</span> <span class="o">=</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span>
-    
-<span class="c1"># check_function 
-#s 값을 조정할지, e 값을 조정할지 판단하는 함수를 구현
-</span></code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="codingtest" /><category term="Binary" /><summary type="html"><![CDATA[이진 검색 알고리즘 (Binary search algorithm)으로 잘 알려진, 중간 값을 비교해서 이상, 이하로 검색 범위를 좁히는 방식에서 착한한 문제 풀이 패턴 입니다.]]></summary></entry><entry><title type="html">[알고리즘] 자료 구조의 종류</title><link href="https://kimjaehyun.co.kr/algorithm/algorithm-datastructure/" rel="alternate" type="text/html" title="[알고리즘] 자료 구조의 종류" /><published>2022-05-31T00:00:00-05:00</published><updated>2022-05-31T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/algorithm-datastructure</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/algorithm-datastructure/"><![CDATA[<p>몇몇은 자주 사용하지만, 알고 있으면 편리한 자료구조 목차.  <br />
+4 2
+4 2
+3 1
+
+*/</span>
+
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="java" /><category term="codingtest" /><category term="Input값" /><category term="백준" /><category term="코딩테스트" /><category term="Scanner" /><category term="BufferedReader" /><summary type="html"><![CDATA[백준 사이트와 같은 온라인저지 사이트에서 Input 처리시 Scanner를 사용하는데, BufferedReader를 사용할때와 성능 차이가 나는 것으로 생각됩니다. 특히 대량 데이트 Row 전달시 성능저하 현상이 발생하것으로 판단되네요.]]></summary></entry><entry><title type="html">[알고리즘] 자료 구조의 종류</title><link href="https://kimjaehyun.co.kr/algorithm/algorithm-datastructure/" rel="alternate" type="text/html" title="[알고리즘] 자료 구조의 종류" /><published>2022-05-31T00:00:00-05:00</published><updated>2022-05-31T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/algorithm-datastructure</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/algorithm-datastructure/"><![CDATA[<p>몇몇은 자주 사용하지만, 알고 있으면 편리한 자료구조 목차.  <br />
 자세한 샘플들은 CodingTest 메뉴에서 확인 필수.</p>
 
 <h1 id="단순-구조">단순 구조</h1>
@@ -184,152 +265,7 @@
   <li>순차 파일</li>
   <li>색인 파일</li>
   <li>직접 파일</li>
-</ul>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="정수" /><category term="실수" /><category term="문자" /><category term="문자열" /><category term="리스트" /><category term="배열" /><category term="연결리스트" /><category term="스택" /><category term="큐" /><category term="데크" /><category term="트리" /><category term="그래프" /><category term="순차파일" /><category term="색인파일" /><category term="직접파일" /><summary type="html"><![CDATA[몇몇은 자주 사용하지만, 알고 있으면 편리한 자료구조 목차. 자세한 샘플들은 CodingTest 메뉴에서 확인 필수.]]></summary></entry><entry><title type="html">Python - PriorityQueue, Heapq</title><link href="https://kimjaehyun.co.kr/python/python_PriorityQueue/" rel="alternate" type="text/html" title="Python - PriorityQueue, Heapq" /><published>2022-05-29T00:00:00-05:00</published><updated>2022-05-29T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_PriorityQueue</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_PriorityQueue/"><![CDATA[<p>FIFO에서 우선순위 가중치를 주어 출력시키는 자료 구조 입니다. <br />
-Java에서도 동일한 형태의 자료 구조가 존재 합니다.</p>
-
-<h1 id="priorityqueue-사용예">PriorityQueue 사용예</h1>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
-<span class="n">pq</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>        
-<span class="c1">#pq = PriorityQueue(maxsie=10)   #초기; 사이즈 정의 가능함.
-</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-
-<span class="k">while</span> <span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span> <span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="n">get</span><span class="p">())</span>
-
-<span class="c1">#출력
-</span><span class="mi">1</span>
-<span class="mi">2</span>
-<span class="mi">4</span>
-<span class="mi">6</span>
-<span class="mi">7</span>
-<span class="mi">9</span>
-</code></pre></div></div>
-
-<h1 id="tuble-을-통한-정렬-순서-변경">Tuble 을 통한 정렬 순서 변경</h1>
-<p><code class="language-plaintext highlighter-rouge">(우선순위, 값)</code> 의 튜플 형태로, 우선순위를 튜플의 첫번째로 입력처리하 하면 됩니다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
-<span class="n">pq</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>        
-
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span><span class="s">'이승환'</span><span class="p">))</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="s">'이미자'</span><span class="p">))</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="s">'조용필'</span><span class="p">))</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="s">'아이유'</span><span class="p">))</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="s">'배철수'</span><span class="p">))</span>
-<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span><span class="s">'이승철'</span><span class="p">))</span>
-
-<span class="k">while</span> <span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span> <span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pq</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="c1">#출력
-</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">'배철수'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">'이미자'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">'조용필'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">'이승철'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s">'아이유'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s">'이승환'</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<h1 id="리스트를-통한-정렬-사용예">리스트를 통한 정렬 사용예</h1>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 리스트 을 통한 정렬 순서 변경
-</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s">"배철수"</span><span class="p">))</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="s">"이미자"</span><span class="p">))</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="s">"조용필"</span><span class="p">))</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="s">"아이유"</span><span class="p">))</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="s">"이승환"</span><span class="p">))</span>
-
-<span class="n">arr</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
-
-<span class="k">while</span> <span class="n">arr</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>
-
-<span class="c1">#출력
-</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">'배철수'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">'아이유'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">'조용필'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">'이미자'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s">'이승환'</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 리스트 을 통한 정렬 순서 변경
-</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s">"배철수"</span><span class="p">))</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="s">"이미자"</span><span class="p">))</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="s">"조용필"</span><span class="p">))</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="s">"아이유"</span><span class="p">))</span>
-<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="s">"이승환"</span><span class="p">))</span>
-
-<span class="n">arr</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
-
-<span class="k">while</span> <span class="n">arr</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>
-
-<span class="c1">#출력
-</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s">'이승환'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">'이미자'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">'조용필'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">'아이유'</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">'배철수'</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h1 id="heapq">Heapq</h1>
-<p>힙에 대해서 알아야 알아야 되는데 완전 이진트리로 최상위 부모를 최대값(max heap), 최소값(min heap) 형태로 구성하는 자료 구조 형태를 사용한다.</p>
-
-<p>주요 사용 메소드는</p>
-<ul>
-  <li>heapq.heappush(heap, item): item 추가</li>
-  <li>heapq.heappop(heap): heap에서 최소값 pop return</li>
-  <li>heapq.heapify(x): 리스트 x를 즉각적으로 heap으로 변환</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">heapq</span>
-
-<span class="n">pq</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>
-<span class="c1">#출력
-</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">.)</span>
-</code></pre></div></div>
-
-<p>사전 list를 통해서 정렬하는 방식 <code class="language-plaintext highlighter-rouge">heapify</code></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">heapq</span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
-<span class="n">heapq</span><span class="p">.</span><span class="n">heapify</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="c1">#출력
-</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-
-<span class="k">while</span> <span class="n">pq</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>
-
-<span class="c1">#출력
-</span><span class="mi">9</span>
-<span class="mi">4</span>
-<span class="mi">3</span>
-<span class="mi">2</span>
-<span class="mi">1</span>
-
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="PriorityQueue" /><category term="queue" /><category term="FIFO" /><category term="우선순위큐" /><category term="자료구조" /><category term="Heapq" /><summary type="html"><![CDATA[FIFO에서 우선순위 가중치를 주어 출력시키는 자료 구조 입니다. Java에서도 동일한 형태의 자료 구조가 존재 합니다.]]></summary></entry><entry><title type="html">Python - for, enumerate</title><link href="https://kimjaehyun.co.kr/python/python_enumerate/" rel="alternate" type="text/html" title="Python - for, enumerate" /><published>2022-05-29T00:00:00-05:00</published><updated>2022-05-29T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_enumerate</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_enumerate/"><![CDATA[<p>반복문의 for와 enumerate 사용 정리</p>
+</ul>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="정수" /><category term="실수" /><category term="문자" /><category term="문자열" /><category term="리스트" /><category term="배열" /><category term="연결리스트" /><category term="스택" /><category term="큐" /><category term="데크" /><category term="트리" /><category term="그래프" /><category term="순차파일" /><category term="색인파일" /><category term="직접파일" /><summary type="html"><![CDATA[몇몇은 자주 사용하지만, 알고 있으면 편리한 자료구조 목차. 자세한 샘플들은 CodingTest 메뉴에서 확인 필수.]]></summary></entry><entry><title type="html">Python - for, enumerate</title><link href="https://kimjaehyun.co.kr/python/python_enumerate/" rel="alternate" type="text/html" title="Python - for, enumerate" /><published>2022-05-29T00:00:00-05:00</published><updated>2022-05-29T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_enumerate</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_enumerate/"><![CDATA[<p>반복문의 for와 enumerate 사용 정리</p>
 
 <h1 id="for문을-통한-list-순회">for문을 통한 list 순회</h1>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -495,7 +431,152 @@ index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재�
 <span class="mi">1</span> <span class="mi">1</span> <span class="n">d</span>
 <span class="mi">2</span> <span class="mi">0</span> <span class="n">e</span>
 <span class="mi">2</span> <span class="mi">1</span> <span class="n">f</span>
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="enumerate" /><category term="for" /><summary type="html"><![CDATA[반복문의 for와 enumerate 사용 정리]]></summary></entry><entry><title type="html">[Python] input 처리</title><link href="https://kimjaehyun.co.kr/codingtest/python/input/python-input/" rel="alternate" type="text/html" title="[Python] input 처리" /><published>2022-05-29T00:00:00-05:00</published><updated>2022-05-29T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/python/input/python-input</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/python/input/python-input/"><![CDATA[<p>Python에서 코딩 테스트시에 입력을 처리하는 방법</p>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="enumerate" /><category term="for" /><summary type="html"><![CDATA[반복문의 for와 enumerate 사용 정리]]></summary></entry><entry><title type="html">Python - PriorityQueue, Heapq</title><link href="https://kimjaehyun.co.kr/python/python_PriorityQueue/" rel="alternate" type="text/html" title="Python - PriorityQueue, Heapq" /><published>2022-05-29T00:00:00-05:00</published><updated>2022-05-29T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_PriorityQueue</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_PriorityQueue/"><![CDATA[<p>FIFO에서 우선순위 가중치를 주어 출력시키는 자료 구조 입니다. <br />
+Java에서도 동일한 형태의 자료 구조가 존재 합니다.</p>
+
+<h1 id="priorityqueue-사용예">PriorityQueue 사용예</h1>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
+<span class="n">pq</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>        
+<span class="c1">#pq = PriorityQueue(maxsie=10)   #초기; 사이즈 정의 가능함.
+</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="n">get</span><span class="p">())</span>
+
+<span class="c1">#출력
+</span><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">4</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">9</span>
+</code></pre></div></div>
+
+<h1 id="tuble-을-통한-정렬-순서-변경">Tuble 을 통한 정렬 순서 변경</h1>
+<p><code class="language-plaintext highlighter-rouge">(우선순위, 값)</code> 의 튜플 형태로, 우선순위를 튜플의 첫번째로 입력처리하 하면 됩니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
+<span class="n">pq</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>        
+
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span><span class="s">'이승환'</span><span class="p">))</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="s">'이미자'</span><span class="p">))</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="s">'조용필'</span><span class="p">))</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="s">'아이유'</span><span class="p">))</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="s">'배철수'</span><span class="p">))</span>
+<span class="n">pq</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span><span class="s">'이승철'</span><span class="p">))</span>
+
+<span class="k">while</span> <span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">==</span> <span class="bp">False</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pq</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1">#출력
+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">'배철수'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">'이미자'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">'조용필'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">'이승철'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s">'아이유'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s">'이승환'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h1 id="리스트를-통한-정렬-사용예">리스트를 통한 정렬 사용예</h1>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 리스트 을 통한 정렬 순서 변경
+</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s">"배철수"</span><span class="p">))</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="s">"이미자"</span><span class="p">))</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="s">"조용필"</span><span class="p">))</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="s">"아이유"</span><span class="p">))</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="s">"이승환"</span><span class="p">))</span>
+
+<span class="n">arr</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">arr</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>
+
+<span class="c1">#출력
+</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">'배철수'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">'아이유'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">'조용필'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">'이미자'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s">'이승환'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 리스트 을 통한 정렬 순서 변경
+</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s">"배철수"</span><span class="p">))</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="s">"이미자"</span><span class="p">))</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="s">"조용필"</span><span class="p">))</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="s">"아이유"</span><span class="p">))</span>
+<span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="s">"이승환"</span><span class="p">))</span>
+
+<span class="n">arr</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">arr</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>
+
+<span class="c1">#출력
+</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s">'이승환'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">'이미자'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">'조용필'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">'아이유'</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">'배철수'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="heapq">Heapq</h1>
+<p>힙에 대해서 알아야 알아야 되는데 완전 이진트리로 최상위 부모를 최대값(max heap), 최소값(min heap) 형태로 구성하는 자료 구조 형태를 사용한다.</p>
+
+<p>주요 사용 메소드는</p>
+<ul>
+  <li>heapq.heappush(heap, item): item 추가</li>
+  <li>heapq.heappop(heap): heap에서 최소값 pop return</li>
+  <li>heapq.heapify(x): 리스트 x를 즉각적으로 heap으로 변환</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">heapq</span>
+
+<span class="n">pq</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>
+<span class="c1">#출력
+</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">.)</span>
+</code></pre></div></div>
+
+<p>사전 list를 통해서 정렬하는 방식 <code class="language-plaintext highlighter-rouge">heapify</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">heapq</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">heapq</span><span class="p">.</span><span class="n">heapify</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="c1">#출력
+</span><span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="k">while</span> <span class="n">pq</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>
+
+<span class="c1">#출력
+</span><span class="mi">9</span>
+<span class="mi">4</span>
+<span class="mi">3</span>
+<span class="mi">2</span>
+<span class="mi">1</span>
+
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="PriorityQueue" /><category term="queue" /><category term="FIFO" /><category term="우선순위큐" /><category term="자료구조" /><category term="Heapq" /><summary type="html"><![CDATA[FIFO에서 우선순위 가중치를 주어 출력시키는 자료 구조 입니다. Java에서도 동일한 형태의 자료 구조가 존재 합니다.]]></summary></entry><entry><title type="html">[Python] input 처리</title><link href="https://kimjaehyun.co.kr/codingtest/python/input/python-input/" rel="alternate" type="text/html" title="[Python] input 처리" /><published>2022-05-29T00:00:00-05:00</published><updated>2022-05-29T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/python/input/python-input</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/python/input/python-input/"><![CDATA[<p>Python에서 코딩 테스트시에 입력을 처리하는 방법</p>
 
 <h1 id="배열-생성-및-초기화">배열 생성 및 초기화</h1>
 <h2 id="1차원-배열-초기화">1차원 배열 초기화</h2>
@@ -663,217 +744,96 @@ index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재�
 <span class="c1">#출력
 </span><span class="o">&gt;</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
 
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="python" /><category term="input" /><category term="python" /><category term="python" /><category term="stdin" /><category term="readline" /><summary type="html"><![CDATA[Python에서 코딩 테스트시에 입력을 처리하는 방법]]></summary></entry><entry><title type="html">[Java] 순열과 조합</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-nPr_nCr/" rel="alternate" type="text/html" title="[Java] 순열과 조합" /><published>2022-05-28T00:00:00-05:00</published><updated>2022-05-28T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-nPr_nCr</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-nPr_nCr/"><![CDATA[<h1 id="순열-permutation--npr-">순열 Permutation ( nPr )</h1>
-<p>순열이란 서로 다른 n개중에 r개를 선택하는 경우의 수(순서 상관 있음) = <code class="language-plaintext highlighter-rouge">n! / (n-r)!</code>   <br />
-<a href="https://www.acmicpc.net/problem/15649" target="_blank">백준 순열문제</a></p>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="python" /><category term="input" /><category term="python" /><category term="python" /><category term="stdin" /><category term="readline" /><summary type="html"><![CDATA[Python에서 코딩 테스트시에 입력을 처리하는 방법]]></summary></entry><entry><title type="html">[알고리즘] 어떤 종류들이 있는지?</title><link href="https://kimjaehyun.co.kr/algorithm/algorithm-index/" rel="alternate" type="text/html" title="[알고리즘] 어떤 종류들이 있는지?" /><published>2022-05-28T00:00:00-05:00</published><updated>2022-05-28T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/algorithm-index</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/algorithm-index/"><![CDATA[<p>어떤 알고리즘이 있고, 어떤 때 쓰는지를 정리해보려는 목적 입니다.</p>
 
-<h1 id="조합-combination--ncr-">조합 Combination ( nCr )</h1>
-<p>조합이란 서로 다른 n개중에 r개를 선택하는 경우의 수(순서 상관 없음) = <code class="language-plaintext highlighter-rouge">n! / ((n-r)! * r!)</code>  <br />
-<a href="https://www.acmicpc.net/problem/2407" target="_blank">백준 조합문제</a></p>
+<p>정리하려고  알게된 몇가지 사실은 9세기 페르시아의 수학자인  <br />
+무하마드 알콰리즈미 의 이름을 라틴어화한 algorismus 에서 유래 되었답니다.     <br />
+<img src="\assets/images_post/algorithm/algorithm_muhamad.png" alt="무함마드 이븐 무사 알콰리즈미" width="200px" /></p>
 
-<h1 id="소스-코드">소스 코드</h1>
+<p>위키백과의 알고리즘 정의를 보면   <br />
+수학과 컴퓨터 과학, 언어학 또는 관련 분야에서  <br />
+어떠한 문제를 해결하기 위해 정해진  <br />
+일련의 절차나 방법을 공식화한 형태로 표현한 것.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">testcase</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CP</span> <span class="o">{</span>
-	
-	<span class="c1">//순열</span>
-	<span class="kt">void</span> <span class="nf">p</span> <span class="o">(</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">out</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">ck</span><span class="o">,</span> <span class="kt">int</span> <span class="n">d</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
-		
-		<span class="k">if</span><span class="o">(</span> <span class="n">d</span> <span class="o">==</span> <span class="n">r</span><span class="o">){</span>
-			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">r</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>						<span class="c1">// r 만큼</span>
-				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d "</span><span class="o">,</span><span class="n">out</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>		<span class="c1">//출력 out</span>
-			<span class="o">}</span>
-			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
-			<span class="k">return</span><span class="o">;</span>
-		<span class="o">}</span>
-		
-		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>			
-			<span class="k">if</span><span class="o">(</span> <span class="n">ck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span>
-				<span class="n">ck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-				
-				<span class="n">out</span><span class="o">[</span><span class="n">d</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>						<span class="c1">// 중요</span>
-				<span class="n">p</span> <span class="o">(</span> <span class="n">arr</span><span class="o">,</span> <span class="n">out</span><span class="o">,</span> <span class="n">ck</span><span class="o">,</span> <span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>			<span class="c1">// d+1</span>
-				
-				<span class="n">ck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-			<span class="o">}</span>
-		<span class="o">}</span><span class="c1">// end for</span>
-		
-	<span class="o">}</span>
-	
-	<span class="c1">//조합</span>
-	<span class="kt">void</span> <span class="nf">c</span> <span class="o">(</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span>  <span class="kt">int</span><span class="o">[]</span> <span class="n">ck</span><span class="o">,</span> <span class="kt">int</span> <span class="n">d</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+<p>정리 시작!!!</p>
 
-		<span class="k">if</span><span class="o">(</span><span class="n">r</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>  					<span class="c1">// 시작 i &lt; n</span>
-				<span class="k">if</span><span class="o">(</span><span class="n">ck</span><span class="o">[</span><span class="n">i</span><span class="o">]==</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-					<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d "</span><span class="o">,</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>		<span class="c1">//출력 arr</span>
-				<span class="o">}</span>
-			<span class="o">}</span>
-			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
-			<span class="k">return</span><span class="o">;</span>
-		<span class="o">}</span>
-		
-		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">d</span> <span class="o">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>  				<span class="c1">// 중요 시작점 d</span>
-			<span class="n">ck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-			
-			<span class="n">c</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span>  <span class="n">ck</span><span class="o">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">,</span> <span class="n">n</span> <span class="o">,</span> <span class="n">r</span><span class="o">-</span><span class="mi">1</span> <span class="o">);</span> 					<span class="c1">// i+1 ,  , r-1 </span>
-			
-			<span class="n">ck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-		<span class="o">}</span>
-		
-	<span class="o">}</span>
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> 	<span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">};</span>
-		<span class="kt">int</span> <span class="o">[]</span> <span class="n">ck</span> 	<span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
-		<span class="kt">int</span> <span class="o">[]</span> <span class="n">out</span> 	<span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+<h1 id="정렬-방식">정렬 방식</h1>
+<ul>
+  <li>Bubble Sort.			O(N^2)</li>
+  <li>Selection Sort.		O(N^2)</li>
+  <li>Insertion Sort.		O(N^2)</li>
+  <li>Quick Sort.			avg O(N*logN), max O(N^2) - 이미정렬된 경우</li>
+  <li>Merge Sort.			O(N*logN) 보장, 단점 정렬시 메모리 필요함.</li>
+  <li>Heap Sort.			N/2*logN  (N이 클경우 logN은 값은 작은 값으로 결과적으로) &gt; O(N)</li>
+  <li>
+    <p>Counting Sort.		O(N) 특정 범위 조건</p>
+  </li>
+  <li>조건별 정리 : 위상정리 TopologySort  (임계 경로 찾기, 임계경로란 갈수있는 길의 최대 값)</li>
+</ul>
 
-		<span class="no">CP</span> <span class="n">obj</span>	<span class="o">=</span> <span class="k">new</span> <span class="no">CP</span><span class="o">();</span>
-		<span class="c1">//obj.p(arr, out, ck, 0, arr.length, 5);</span>
-		
-		<span class="n">obj</span><span class="o">.</span><span class="na">c</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span>  <span class="n">ck</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
-	<span class="o">}</span>
+<h1 id="최단경로-문제">최단경로 문제</h1>
+<ul>
+  <li>다익스트라 알고리즘 (특정 시작점에서 모든 지점에 최소점을 구할때)</li>
+  <li>플로이드 마샬(모든 정점’에서 ‘모든 정점’으로의 최단 경로를 구할때)</li>
+</ul>
 
-<span class="o">}</span>
+<h1 id="최소-신장-트리">최소 신장 트리</h1>
+<p>정의 (Node와 Node-1의 간선으로 이루어짐) - UnionFind</p>
+<ul>
+  <li>프림 알고리즘 (Prim)</li>
+  <li>크루스칼 알고리즘(Kruskal)</li>
+  <li>MST(Minimum Spanning Tree)</li>
+</ul>
 
-<span class="c1">// 출력  obj.p(arr, out, ck, 0, arr.length, 5);</span>
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> 
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">4</span> 
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">5</span> 
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">3</span> 
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span> 
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> 
-<span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">5</span> 
-<span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">4</span> 
-<span class="mi">1</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">5</span> 
-<span class="mi">1</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">2</span> 
-<span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">4</span> 
-<span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">2</span> 
-<span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span> 
-<span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">3</span> 
-<span class="mi">1</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">5</span> 
-<span class="mi">1</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">2</span> 
-<span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">3</span> 
-<span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">2</span> 
-<span class="mi">1</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> 
-<span class="mi">1</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">3</span> 
-<span class="mi">1</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">4</span> 
-<span class="mi">1</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> 
-<span class="mi">1</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span> 
-<span class="mi">1</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> 
-<span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> 
-<span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">4</span> 
-<span class="mi">2</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">5</span> 
-<span class="mi">2</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">3</span> 
-<span class="mi">2</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span> 
-<span class="mi">2</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> 
-<span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span> 
-<span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">4</span> 
-<span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">5</span> 
-<span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">1</span> 
-<span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">4</span> 
-<span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">1</span> 
-<span class="mi">2</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> 
-<span class="mi">2</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">3</span> 
-<span class="mi">2</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">5</span> 
-<span class="mi">2</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">1</span> 
-<span class="mi">2</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">3</span> 
-<span class="mi">2</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">1</span> 
-<span class="mi">2</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">4</span> 
-<span class="mi">2</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">3</span> 
-<span class="mi">2</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span> 
-<span class="mi">2</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">1</span> 
-<span class="mi">2</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span> 
-<span class="mi">2</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">1</span> 
-<span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">5</span> 
-<span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">4</span> 
-<span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">5</span> 
-<span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">2</span> 
-<span class="mi">3</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">4</span> 
-<span class="mi">3</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">2</span> 
-<span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span> 
-<span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">4</span> 
-<span class="mi">3</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">5</span> 
-<span class="mi">3</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">1</span> 
-<span class="mi">3</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">4</span> 
-<span class="mi">3</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">1</span> 
-<span class="mi">3</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">5</span> 
-<span class="mi">3</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">2</span> 
-<span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">5</span> 
-<span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">1</span> 
-<span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">2</span> 
-<span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">1</span> 
-<span class="mi">3</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> 
-<span class="mi">3</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span> 
-<span class="mi">3</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">4</span> 
-<span class="mi">3</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">1</span> 
-<span class="mi">3</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span> 
-<span class="mi">3</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span> 
-<span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span> 
-<span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">3</span> 
-<span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">5</span> 
-<span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">2</span> 
-<span class="mi">4</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">3</span> 
-<span class="mi">4</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">2</span> 
-<span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> 
-<span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">3</span> 
-<span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">5</span> 
-<span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">1</span> 
-<span class="mi">4</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">3</span> 
-<span class="mi">4</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">1</span> 
-<span class="mi">4</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">5</span> 
-<span class="mi">4</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">2</span> 
-<span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">5</span> 
-<span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">5</span> <span class="mi">1</span> 
-<span class="mi">4</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">2</span> 
-<span class="mi">4</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">1</span> 
-<span class="mi">4</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> 
-<span class="mi">4</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span> 
-<span class="mi">4</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> 
-<span class="mi">4</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span> 
-<span class="mi">4</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span> 
-<span class="mi">4</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> 
-<span class="mi">5</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> 
-<span class="mi">5</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">3</span> 
-<span class="mi">5</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">4</span> 
-<span class="mi">5</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> 
-<span class="mi">5</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span> 
-<span class="mi">5</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> 
-<span class="mi">5</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">4</span> 
-<span class="mi">5</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">3</span> 
-<span class="mi">5</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span> 
-<span class="mi">5</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">1</span> 
-<span class="mi">5</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span> 
-<span class="mi">5</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">1</span> 
-<span class="mi">5</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> 
-<span class="mi">5</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span> 
-<span class="mi">5</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">4</span> 
-<span class="mi">5</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">1</span> 
-<span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span> 
-<span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span> 
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> 
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span> 
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> 
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span> 
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">2</span> 
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> 
+<h1 id="글자-검색">글자 검색</h1>
+<ul>
+  <li>KMP</li>
+  <li>라빈카프</li>
+</ul>
 
+<h1 id="이진-트리">이진 트리</h1>
+<ul>
+  <li>전위 순회(Preorder Traversal)		(부) - L - R</li>
+  <li>중위 순회(Inorder Traversal)		L - (부) - R</li>
+  <li>후위 순회(Postorder Traversal)	L - R - (부)</li>
+</ul>
 
-<span class="c1">// 출력 obj.c(arr,  ck, 0, arr.length, 3);</span>
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> 
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> 
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">5</span> 
-<span class="mi">1</span> <span class="mi">3</span> <span class="mi">4</span> 
-<span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> 
-<span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span> 
-<span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> 
-<span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span> 
-<span class="mi">2</span> <span class="mi">4</span> <span class="mi">5</span> 
-<span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> 
+<h1 id="그래프-검색">그래프 검색</h1>
+<ul>
+  <li>DFS (Stack)</li>
+  <li>BFS (Queue)</li>
+</ul>
 
+<h1 id="동일-부모-검색">동일 부모 검색</h1>
+<ul>
+  <li>Union Find</li>
+</ul>
 
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="nPr" /><category term="nCr" /><category term="순열" /><category term="조합" /><category term="Permutation. Combination" /><summary type="html"><![CDATA[순열 Permutation ( nPr ) 순열이란 서로 다른 n개중에 r개를 선택하는 경우의 수(순서 상관 있음) = n! / (n-r)! 백준 순열문제]]></summary></entry><entry><title type="html">[Java] Sort 함수</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-sort/" rel="alternate" type="text/html" title="[Java] Sort 함수" /><published>2022-05-28T00:00:00-05:00</published><updated>2022-05-28T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-sort</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-sort/"><![CDATA[<p>정렬 함수 테스트</p>
+<h1 id="최대-유량-문제네트워크-선로-지연우회-관련">최대 유량 문제(네트워크 선로 지연/우회 관련)</h1>
+<ul>
+  <li>NetworkFlow (BSF)</li>
+</ul>
+
+<h1 id="백트래킹">백트래킹</h1>
+<ul>
+  <li>조합, 순열 관련시</li>
+</ul>
+
+<h1 id="floodfill-기법">FloodFill 기법</h1>
+<ul>
+  <li>좌표중에 덩어리의 묶음을 찾는 방법 (*DFS, BSF)</li>
+</ul>
+
+<h1 id="bfs-검색시">BFS 검색시</h1>
+<ul>
+  <li>가중치가 동일한 경우 중복을 미허용시키고</li>
+  <li>가중치가 다른 경우 중복방문을 허용하여 값을 overide함</li>
+</ul>
+
+<h1 id="최소-범위-검색">최소 범위 검색</h1>
+<ul>
+  <li>슬라이딩 윈도우 기법 (s, e를 이동하여 최소 범위 검색)</li>
+</ul>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="Bubble" /><category term="Selection" /><category term="Insertion" /><category term="Quick" /><category term="Merge" /><category term="Heap" /><category term="Counting" /><category term="다익스트라" /><category term="플로이드마샬" /><category term="크루스칼" /><category term="프림" /><category term="KMP" /><category term="이진트리" /><category term="BFS" /><category term="DFS" /><summary type="html"><![CDATA[어떤 알고리즘이 있고, 어떤 때 쓰는지를 정리해보려는 목적 입니다.]]></summary></entry><entry><title type="html">[Java] Sort 함수</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-sort/" rel="alternate" type="text/html" title="[Java] Sort 함수" /><published>2022-05-28T00:00:00-05:00</published><updated>2022-05-28T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-sort</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-sort/"><![CDATA[<p>정렬 함수 테스트</p>
 
 <h1 id="정렬-방식">정렬 방식</h1>
 <ul>
@@ -1696,93 +1656,4 @@ index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재�
 <span class="o">&gt;</span> <span class="mi">3</span>
 <span class="o">&gt;</span> <span class="mi">4</span>
 <span class="o">&gt;</span> <span class="mi">5</span>
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="python" /><category term="queue" /><category term="stack" /><summary type="html"><![CDATA[Python에서 list형태로 queue를 구현시 성능이슈로 인해서 deque 사용을 권장합니다.]]></summary></entry><entry><title type="html">[알고리즘] 어떤 종류들이 있는지?</title><link href="https://kimjaehyun.co.kr/algorithm/algorithm-index/" rel="alternate" type="text/html" title="[알고리즘] 어떤 종류들이 있는지?" /><published>2022-05-28T00:00:00-05:00</published><updated>2022-05-28T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/algorithm-index</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/algorithm-index/"><![CDATA[<p>어떤 알고리즘이 있고, 어떤 때 쓰는지를 정리해보려는 목적 입니다.</p>
-
-<p>정리하려고  알게된 몇가지 사실은 9세기 페르시아의 수학자인  <br />
-무하마드 알콰리즈미 의 이름을 라틴어화한 algorismus 에서 유래 되었답니다.     <br />
-<img src="\assets/images_post/algorithm/algorithm_muhamad.png" alt="무함마드 이븐 무사 알콰리즈미" width="200px" /></p>
-
-<p>위키백과의 알고리즘 정의를 보면   <br />
-수학과 컴퓨터 과학, 언어학 또는 관련 분야에서  <br />
-어떠한 문제를 해결하기 위해 정해진  <br />
-일련의 절차나 방법을 공식화한 형태로 표현한 것.</p>
-
-<p>정리 시작!!!</p>
-
-<h1 id="정렬-방식">정렬 방식</h1>
-<ul>
-  <li>Bubble Sort.			O(N^2)</li>
-  <li>Selection Sort.		O(N^2)</li>
-  <li>Insertion Sort.		O(N^2)</li>
-  <li>Quick Sort.			avg O(N*logN), max O(N^2) - 이미정렬된 경우</li>
-  <li>Merge Sort.			O(N*logN) 보장, 단점 정렬시 메모리 필요함.</li>
-  <li>Heap Sort.			N/2*logN  (N이 클경우 logN은 값은 작은 값으로 결과적으로) &gt; O(N)</li>
-  <li>
-    <p>Counting Sort.		O(N) 특정 범위 조건</p>
-  </li>
-  <li>조건별 정리 : 위상정리 TopologySort  (임계 경로 찾기, 임계경로란 갈수있는 길의 최대 값)</li>
-</ul>
-
-<h1 id="최단경로-문제">최단경로 문제</h1>
-<ul>
-  <li>다익스트라 알고리즘 (특정 시작점에서 모든 지점에 최소점을 구할때)</li>
-  <li>플로이드 마샬(모든 정점’에서 ‘모든 정점’으로의 최단 경로를 구할때)</li>
-</ul>
-
-<h1 id="최소-신장-트리">최소 신장 트리</h1>
-<p>정의 (Node와 Node-1의 간선으로 이루어짐) - UnionFind</p>
-<ul>
-  <li>프림 알고리즘 (Prim)</li>
-  <li>크루스칼 알고리즘(Kruskal)</li>
-  <li>MST(Minimum Spanning Tree)</li>
-</ul>
-
-<h1 id="글자-검색">글자 검색</h1>
-<ul>
-  <li>KMP</li>
-  <li>라빈카프</li>
-</ul>
-
-<h1 id="이진-트리">이진 트리</h1>
-<ul>
-  <li>전위 순회(Preorder Traversal)		(부) - L - R</li>
-  <li>중위 순회(Inorder Traversal)		L - (부) - R</li>
-  <li>후위 순회(Postorder Traversal)	L - R - (부)</li>
-</ul>
-
-<h1 id="그래프-검색">그래프 검색</h1>
-<ul>
-  <li>DFS (Stack)</li>
-  <li>BFS (Queue)</li>
-</ul>
-
-<h1 id="동일-부모-검색">동일 부모 검색</h1>
-<ul>
-  <li>Union Find</li>
-</ul>
-
-<h1 id="최대-유량-문제네트워크-선로-지연우회-관련">최대 유량 문제(네트워크 선로 지연/우회 관련)</h1>
-<ul>
-  <li>NetworkFlow (BSF)</li>
-</ul>
-
-<h1 id="백트래킹">백트래킹</h1>
-<ul>
-  <li>조합, 순열 관련시</li>
-</ul>
-
-<h1 id="floodfill-기법">FloodFill 기법</h1>
-<ul>
-  <li>좌표중에 덩어리의 묶음을 찾는 방법 (*DFS, BSF)</li>
-</ul>
-
-<h1 id="bfs-검색시">BFS 검색시</h1>
-<ul>
-  <li>가중치가 동일한 경우 중복을 미허용시키고</li>
-  <li>가중치가 다른 경우 중복방문을 허용하여 값을 overide함</li>
-</ul>
-
-<h1 id="최소-범위-검색">최소 범위 검색</h1>
-<ul>
-  <li>슬라이딩 윈도우 기법 (s, e를 이동하여 최소 범위 검색)</li>
-</ul>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="Bubble" /><category term="Selection" /><category term="Insertion" /><category term="Quick" /><category term="Merge" /><category term="Heap" /><category term="Counting" /><category term="다익스트라" /><category term="플로이드마샬" /><category term="크루스칼" /><category term="프림" /><category term="KMP" /><category term="이진트리" /><category term="BFS" /><category term="DFS" /><summary type="html"><![CDATA[어떤 알고리즘이 있고, 어떤 때 쓰는지를 정리해보려는 목적 입니다.]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="python" /><category term="queue" /><category term="stack" /><summary type="html"><![CDATA[Python에서 list형태로 queue를 구현시 성능이슈로 인해서 deque 사용을 권장합니다.]]></summary></entry></feed>
