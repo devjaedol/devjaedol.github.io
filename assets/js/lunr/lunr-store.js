@@ -160,4 +160,16 @@ var store = [{
         "tags": ["정수","실수","문자","문자열","리스트","배열","연결리스트","스택","큐","데크","트리","그래프","순차파일","색인파일","직접파일"],
         "url": "/algorithm/algorithm-datastructure/",
         "teaser": null
+      },{
+        "title": "[Java][Python] 범위 줄이기",
+        "excerpt":"이진 검색 알고리즘 (Binary search algorithm)으로 잘 알려진, 중간 값을 비교해서 이상, 이하로 검색 범위를 좁히는 방식에서 착한한 문제 풀이 패턴 입니다. 범위 검색 패턴 시작 범위, 종료 범위 중 조건을 검사하여 좁히는 문제에 사용하는 방식, 이중 For문 출제 문제에서 O(N^2) 을 O(N) 수준으로 복잡도를 졸이기 위해서 사용됩니다. int s...","categories": ["algorithm","codingtest"],
+        "tags": ["Binary"],
+        "url": "/algorithm/codingtest/algorithm-binary_range_search/",
+        "teaser": null
+      },{
+        "title": "[Java] 위상정렬, 줄세우기, Topology Sort",
+        "excerpt":"데이터의 주어진 조건만으로 특정 순서를 정렬시키는 문제들에서 사용되는 알고리즘. 예를 들면 다음 조건이 제공될때, 주어진 조건을 조합하여 조건을 만들어 보면, 줄을 세워서 정렬이 가능한지? 불가능한지? 가능하면 정렬을 하는 미션 백준 2252 Queue 를 사용하여 정렬하며, 정렬하는 방법 ![topology] Sample Soruce Code public class TopologySort { static int max = 10;...","categories": ["algorithm","java"],
+        "tags": ["Topology","위상정렬","줄세우기","백준2252","백준1516","백준1948"],
+        "url": "/algorithm/java/java-topology-sort/",
+        "teaser": null
       }]
