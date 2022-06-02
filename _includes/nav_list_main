@@ -90,8 +90,15 @@
                 {% endfor %}
             </ul>
             <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "codingtest" %}
+                        <li><a href="/categories/codingtest" class="">Coding Test ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
               {% for category in site.categories %}
-                  {% if category[0] == "백준" %}
+                  {% if category[0] == "baekjoon" %}
                       <li><a href="/categories/baekjoon" class="">백준 ({{category[1].size}})</a></li>
                   {% endif %}
               {% endfor %}
@@ -102,13 +109,6 @@
                     <li><a href="/categories/programmers" class="">프로그래머스 ({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
-            </ul>
-            <ul>
-                {% for category in site.categories %}
-                    {% if category[0] == "codingtest" %}
-                        <li><a href="/categories/codingtest" class="">Coding Test ({{category[1].size}})</a></li>
-                    {% endif %}
-                {% endfor %}
             </ul>
 
 
