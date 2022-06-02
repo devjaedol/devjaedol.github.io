@@ -178,4 +178,16 @@ var store = [{
         "tags": ["Topology","위상정렬","줄세우기","백준2252","백준1516","백준1948"],
         "url": "/algorithm/java/java-topology-sort/",
         "teaser": null
+      },{
+        "title": "[백준 1516]게임 개발, Topology Sort",
+        "excerpt":"토플로지 관련 누적 비용 최대값 계산. 원리 알고리즘은 알고리즘 내용 참조. 백준 Q1516 Sample Source Code import java.io.BufferedReader; import java.io.InputStreamReader; import java.util.ArrayList; import java.util.LinkedList; import java.util.Queue; import java.util.StringTokenizer; public class Main { public static void main(String[] args) { try { BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); StringTokenizer st = new...","categories": ["baekjoon","java"],
+        "tags": ["Topology","위상정렬","줄세우기","Q1516","백준1516","백준1516","백준1948"],
+        "url": "/baekjoon/java/baekjoon-Q1516-topology/",
+        "teaser": null
+      },{
+        "title": "[백준 2252]줄세우기, Topology Sort",
+        "excerpt":"토플로지 관련 줄세우기 문제. 원리 알고리즘은 알고리즘 내용 참조. 백준 Q2252 Sample Source Code import java.io.BufferedReader; import java.io.InputStreamReader; import java.util.ArrayList; import java.util.LinkedList; import java.util.Queue; import java.util.StringTokenizer; public class Main { public static void main(String[] args) { try { BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); StringTokenizer st = new StringTokenizer(br.readLine()); int...","categories": ["baekjoon","java"],
+        "tags": ["Topology","위상정렬","줄세우기","Q2252","백준2252","백준1516","백준1948"],
+        "url": "/baekjoon/java/baekjoon-Q2252-topology/",
+        "teaser": null
       }]
