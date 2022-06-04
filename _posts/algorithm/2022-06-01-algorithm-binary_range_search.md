@@ -4,13 +4,13 @@ categories:
     - algorithm
     - codingtest
 tags: 
-    [Binary]
+    [Binary, "슬라이딩 윈도우"]
 toc : true
 toc_sticky  : true    
 ---
 
-이진 검색 알고리즘 (Binary search algorithm)으로 잘 알려진,    
-중간 값을 비교해서 이상, 이하로 검색 범위를 좁히는 방식에서 착한한 문제 풀이 패턴 입니다.     
+이진 검색 알고리즘 (Binary search algorithm)또는 슬라이딩 윈도우 방법을 활용하여, 시작과 끝 범위를 좁히는 알고리즘 입니다.    
+다음은 중간 값을 비교해서 이상, 이하로 검색 범위를 좁히는 방식(이진 검색)에서 착한한 문제 풀이 패턴 입니다.     
 
 
 # 범위 검색 패턴
