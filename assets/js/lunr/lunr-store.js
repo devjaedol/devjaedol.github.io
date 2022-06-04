@@ -162,8 +162,8 @@ var store = [{
         "teaser": null
       },{
         "title": "[Java][Python] 범위 줄이기",
-        "excerpt":"이진 검색 알고리즘 (Binary search algorithm)으로 잘 알려진, 중간 값을 비교해서 이상, 이하로 검색 범위를 좁히는 방식에서 착한한 문제 풀이 패턴 입니다. 범위 검색 패턴 시작 범위, 종료 범위 중 조건을 검사하여 좁히는 문제에 사용하는 방식, 이중 For문 출제 문제에서 O(N^2) 을 O(N) 수준으로 복잡도를 졸이기 위해서 사용됩니다. int s...","categories": ["algorithm","codingtest"],
-        "tags": ["Binary"],
+        "excerpt":"이진 검색 알고리즘 (Binary search algorithm)또는 슬라이딩 윈도우 방법을 활용하여, 시작과 끝 범위를 좁히는 알고리즘 입니다. 다음은 중간 값을 비교해서 이상, 이하로 검색 범위를 좁히는 방식(이진 검색)에서 착한한 문제 풀이 패턴 입니다. 범위 검색 패턴 시작 범위, 종료 범위 중 조건을 검사하여 좁히는 문제에 사용하는 방식, 이중 For문 출제 문제에서...","categories": ["algorithm","codingtest"],
+        "tags": ["Binary","슬라이딩 윈도우"],
         "url": "/algorithm/codingtest/algorithm-binary_range_search/",
         "teaser": null
       },{
@@ -189,5 +189,17 @@ var store = [{
         "excerpt":"토플로지 관련 줄세우기 문제. 원리 알고리즘은 알고리즘 내용 참조. 백준 Q2252 Sample Source Code import java.io.BufferedReader; import java.io.InputStreamReader; import java.util.ArrayList; import java.util.LinkedList; import java.util.Queue; import java.util.StringTokenizer; public class Main { public static void main(String[] args) { try { BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); StringTokenizer st = new StringTokenizer(br.readLine()); int...","categories": ["baekjoon","java"],
         "tags": ["Topology","위상정렬","줄세우기","Q2252","백준2252","백준1516","백준1948"],
         "url": "/baekjoon/java/baekjoon-Q2252-topology/",
+        "teaser": null
+      },{
+        "title": "[백준 1926]그림, BFS",
+        "excerpt":"Map이 주어지고, 탐색을 통해서 넓이나 길을 찾는 문제 유형. 백준 Q1926 Sample Source Code import java.io.BufferedReader; import java.io.InputStreamReader; import java.util.LinkedList; import java.util.Queue; import java.util.StringTokenizer; public class Main { public static void main(String[] args) { try { // 입력 처리 BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); StringTokenizer st = new StringTokenizer(br.readLine());...","categories": ["baekjoon","java"],
+        "tags": ["BFS","넓이탐색","Q1926","백준1926"],
+        "url": "/baekjoon/java/baekjoon-Q1926-bfs/",
+        "teaser": null
+      },{
+        "title": "[백준 1948]임계경로, Topology Sort",
+        "excerpt":"토플로지 관련 줄세우기 문제. 원리 알고리즘은 알고리즘 내용 참조. 임계경로를 구하는 문제로, 임계 경로란 A에서 B지점 까지 가는 최대 소요 시간이 걸리는 경로를 임계경로라고 한다.(최대값이 소모되는 길) 백준 Q1948 Sample Source Code import java.io.BufferedReader; import java.io.InputStreamReader; import java.util.ArrayList; import java.util.LinkedList; import java.util.Queue; import java.util.StringTokenizer; public class Main { public static...","categories": ["baekjoon","java"],
+        "tags": ["Topology","위상정렬","줄세우기","임계 경로","Q1948","백준2252","백준1516","백준1948"],
+        "url": "/baekjoon/java/baekjoon-Q1948-topology/",
         "teaser": null
       }]
