@@ -202,4 +202,10 @@ var store = [{
         "tags": ["Topology","위상정렬","줄세우기","임계 경로","Q1948","백준2252","백준1516","백준1948"],
         "url": "/baekjoon/java/baekjoon-Q1948-topology/",
         "teaser": null
+      },{
+        "title": "[백준 2667]단지번호붙이기, DFS",
+        "excerpt":"Map이 주어지고, 탐색을 통해서 넓이나 지역의 수량을 찾는 문제 유형. 백준 Q2667 Sample Source Code import java.io.BufferedReader; import java.io.InputStreamReader; import java.util.ArrayList; import java.util.Collections; import java.util.StringTokenizer; public class Main { static int N = 0; //static Stack&lt;Integer[]&gt; st; static int count = 0; public static void dfs(int r, int c, int[][]...","categories": ["baekjoon","java"],
+        "tags": ["DFS","깊이탐색","Q2667","백준2667"],
+        "url": "/baekjoon/java/baekjoon-Q2667-dfs/",
+        "teaser": null
       }]
