@@ -9,28 +9,32 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>백준1516 | 꿰보노트</title>
-<meta name="description" content="프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배">
+<!-- begin _includes/seo.html --><title>Git 명령어 | 꿰보노트</title>
+<meta name="description" content="자주 쓰이는 Git을 정리해 봅시다.  Git-SCM 다운로드">
 
 
   <meta name="author" content="devjaedol">
   
+  <meta property="article:author" content="devjaedol">
+  
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="꿰보노트">
-<meta property="og:title" content="백준1516">
-<meta property="og:url" content="https://kimjaehyun.co.kr/tags/%EB%B0%B1%EC%A4%801516/">
+<meta property="og:title" content="Git 명령어">
+<meta property="og:url" content="https://kimjaehyun.co.kr/etc/git-01/">
 
 
-  <meta property="og:description" content="프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배">
-
-
-
+  <meta property="og:description" content="자주 쓰이는 Git을 정리해 봅시다.  Git-SCM 다운로드">
 
 
 
+
+
+
+
+  <meta property="article:published_time" content="2022-06-14T00:00:00-05:00">
 
 
 
@@ -41,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://kimjaehyun.co.kr/tags/%EB%B0%B1%EC%A4%801516/">
+<link rel="canonical" href="https://kimjaehyun.co.kr/etc/git-01/">
 
 
 
@@ -102,7 +106,7 @@
     <link rel="stylesheet" href="/assets/css/custom.css">
   </head>
 
-  <body class="layout--archive-taxonomy">
+  <body class="layout--single">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -172,7 +176,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/tags" itemprop="item"><span itemprop="name">Tags</span></a>
+          <a href="/categories/#etc" itemprop="item"><span itemprop="name">Etc</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -180,7 +184,7 @@
     
       
       
-        <li class="current">백준1516</li>
+        <li class="current">Git 명령어</li>
       
     
   </ol>
@@ -580,16 +584,361 @@
 
 
 
-  <div class="archive">
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Git 명령어">
+    <meta itemprop="description" content="자주 쓰이는 Git을 정리해 봅시다. Git-SCM 다운로드">
+    <meta itemprop="datePublished" content="2022-06-14T00:00:00-05:00">
     
-      <h1 id="page-title" class="page__title">백준1516</h1>
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/etc/git-01/" class="u-url" itemprop="url">Git 명령어
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#git-기본">Git 기본</a><ul><li><a href="#github-clone">Github clone</a></li><li><a href="#git-pullfetch">git pull/fetch</a></li><li><a href="#git-정보-등록">git 정보 등록</a></li><li><a href="#git-상태">git 상태</a></li><li><a href="#git-commit">git commit</a></li><li><a href="#git-branch-생성">git branch 생성</a></li><li><a href="#git-branch-삭제">git branch 삭제</a></li><li><a href="#git-원격-branch-삭제">git 원격 branch 삭제</a></li><li><a href="#git-branch-상태-확인">git branch 상태 확인</a></li><li><a href="#git-checkout">git checkout</a></li><li><a href="#git-상태-원복하기">git 상태 원복하기</a></li><li><a href="#git-상태-잠시이동">git 상태 잠시이동</a></li></ul></li><li><a href="#git-스킬업">Git 스킬업</a><ul><li><a href="#git-병합">git 병합</a></li><li><a href="#git-병합-충돌">git 병합 충돌</a></li><li><a href="#git-rebase">git rebase</a></li><li><a href="#git-remote-수정-삭제">git remote 수정 삭제</a></li><li><a href="#git-tag">git Tag</a></li><li><a href="#git-예외-등록">git 예외 등록</a></li></ul></li><li><a href="#github-활용">Github 활용</a><ul><li><a href="#등록">등록</a></li><li><a href="#github-등록시-2개-이상의--git-ssh--등록-방법">github 등록시 2개 이상의  git ssh  등록 방법</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>자주 쓰이는 Git을 정리해 봅시다. <br />
+<a href="https://git-scm.com/" target="_blank">Git-SCM</a> 다운로드</p>
+
+<h1 id="git-기본">Git 기본</h1>
+<h2 id="github-clone">Github clone</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone 주소
+</code></pre></div></div>
+
+<h2 id="git-pullfetch">git pull/fetch</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># github의 변화를 로컬에 반영
+git fetch
+
+git pull 원격명 브랜치명
+git pull orign master
+
+</code></pre></div></div>
+
+<h2 id="git-정보-등록">git 정보 등록</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init 
+git config --global user.name "Devjaedol"
+git config --global user.email "xxxxx@xxxxxx"
+</code></pre></div></div>
+
+<h2 id="git-상태">git 상태</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
+git status -s (단축해서 보여짐)
+</code></pre></div></div>
+
+<h2 id="git-commit">git commit</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add -A
+git commit -m "first message"
+git status
+</code></pre></div></div>
+
+<h2 id="git-branch-생성">git branch 생성</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch 새브랜치 이름
+git branch      #생성 내용 확인
+git checkout 이동할_브랜치이름 (ex) git checkout master
+
+#생성과 동시에 이동
+git checkout -b 새브랜치이름
+git checkout -b 새브랜치이름 origin/my-branch
+</code></pre></div></div>
+<h2 id="git-branch-삭제">git branch 삭제</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch -D 브랜치이름
+</code></pre></div></div>
+
+<h2 id="git-원격-branch-삭제">git 원격 branch 삭제</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push -d 원격브랜치명
+git push -d origin my-branch
+</code></pre></div></div>
+
+<h2 id="git-branch-상태-확인">git branch 상태 확인</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch
+* master
+
+git branch -a	(로컬과 원격까지 보여줌)
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/master
+</code></pre></div></div>
+
+<h2 id="git-checkout">git checkout</h2>
+<p>원격 저장소 origin에 브랜치명을 새브랜치로 생성함.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout -b 새브랜치명 origin/브랜치명 
+</code></pre></div></div>
+
+<h2 id="git-상태-원복하기">git 상태 원복하기</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset 번호 --hard
+
+sourcetree의 경우 &gt; 오른쪽마우스 &gt; 이 시점까지 초기화 &gt; 옵션 Hard
+</code></pre></div></div>
+
+<h2 id="git-상태-잠시이동">git 상태 잠시이동</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git revert 번호
+
+sourcetree의 경우 &gt; 오른쪽마우스 &gt; 커밋 되돌리기
+</code></pre></div></div>
+
+<h1 id="git-스킬업">Git 스킬업</h1>
+<h2 id="git-병합">git 병합</h2>
+<p>A branch를 B Branch로 병합할 경우, B브랜치로 이동하여 merge 명령어를 실행함.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout master
+git merge 병합할 브랜치 ( 새브랜치를 -&gt; master에 병합한다는 의미)
+</code></pre></div></div>
+<h2 id="git-병합-충돌">git 병합 충돌</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+&lt;&lt;&lt;&lt;&lt; HEAD (현재 변경사항)
+text 내가 작성한 부분
+================	*wirter
+text 상대방이 작성한 부분
+&gt;&gt;&gt;&gt;&gt;&gt; dafqweradsfasdfsafa (수신 변경 사항)
+
+
+최종 병합 충돌이 생긴 파일을 모두 수정후
+git add
+git commit -m "text"
+
+</code></pre></div></div>
+
+<h2 id="git-rebase">git rebase</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 상태 보기
+git log --graph --all --decorate
+
+# 모든 병합이 모두 1개의 history로 병합됨
+git rebase 브랜치명
+
+sourcetree의 경우 &gt; 오른쪽마우스 &gt; 재배치
+
+</code></pre></div></div>
+
+<h2 id="git-remote-수정-삭제">git remote 수정 삭제</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote -v
+origin http://192.168.0.100/저장소이름.git (fetch)
+origin http://192.168.0.100/저장소이름.git (push)
+
+git remote set-url origin http://192.168.0.200/저장소이름.git
+</code></pre></div></div>
+
+<h2 id="git-tag">git Tag</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git tag 생성할Tag명
+
+# 등록한 Tag리스트 
+git tag
+
+# 태그 전체를 리모트 저장소에 Push
+git push origin --tags
+
+#특정 태그 1개만 리모트 저장소에 Push
+git push origin 생성한Tag명
+
+</code></pre></div></div>
+
+<h2 id="git-예외-등록">git 예외 등록</h2>
+<p>몇 가지 작성 규칙이 있습니다.</p>
+<ul>
+  <li>’#’로 시작하는 라인은 무시, 주석 개념.</li>
+  <li><code class="language-plaintext highlighter-rouge">/</code> 는 하위 적용이 아님.</li>
+  <li><code class="language-plaintext highlighter-rouge">!</code> 로 시작하는 패턴은 무시히지 않음</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git 폴더 최상위에
+.gitignore
+
+gitignore sample
+
+*.class
+!sample.class       #위에서 class모두 무시라고했는데, sample.class는 무시하지 않는다는 의미
+
+/test.java
+
+src/*.java
+doc/**/*.txt
+</code></pre></div></div>
+<p>최근에는 이렇게 한번에 생성해주는 사이트도 있습니다.   <br />
+<a href="https://www.toptal.com/developers/gitignore" target="_blank">gitignore.io</a></p>
+
+<h1 id="github-활용">Github 활용</h1>
+<h2 id="등록">등록</h2>
+<p>github에서 Repository 생성시 하기 안내 명력어가 표시됨.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote  (원격 저장소 등록 내용 확인)
+git remote add origin https://github.com/xxxxx.git
+git push -u orign master	(origin 저장소에 master 브랜치명을 생성하여 등록함)
+</code></pre></div></div>
+
+<h2 id="github-등록시-2개-이상의--git-ssh--등록-방법">github 등록시 2개 이상의  git ssh  등록 방법</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+.ssh/config
+# Default account
+Host github.com-account1
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/git-addrss1/id_rsa
+
+# Secondary account
+Host github.com-account2
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/git-addrss2/id_rsa
+
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
     
+      <a href="/tags/#git" class="page__taxonomy-item p-category" rel="tag">git</a><span class="sep">, </span>
     
+      <a href="/tags/#githug" class="page__taxonomy-item p-category" rel="tag">githug</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#etc" class="page__taxonomy-item p-category" rel="tag">etc</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-14T00:00:00-05:00">2022-06-14</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Git+%EB%AA%85%EB%A0%B9%EC%96%B4%20https%3A%2F%2Fkimjaehyun.co.kr%2Fetc%2Fgit-01%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fetc%2Fgit-01%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fetc%2Fgit-01%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
       
 
 
+  
+  	
+  	
+  	
+  	
+  	
 
-<div class="list__item" p="arch1" style="margin-bottom:10px">
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/etc/jekyll-git-blog_(2)/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Jekyll #2] GitHub blog 만들기(GitHub 설정 및 도메인 연결)</a>
+    
+    
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/baekjoon/java/baekjoon-Q2667-dfs/">[백준 2667]단지번호붙이기, DFS</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.09
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#baekjoon" class="page__taxonomy-item-category" rel="tag">baekjoon</a><span class="sep"> </span><a href="/categories/#java" class="page__taxonomy-item-category" rel="tag">java</a>
+                    
+                    
+                    <a href="/tags/#dfs" class="page__taxonomy-item-tag" rel="tag">DFS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#q2667" class="page__taxonomy-item-tag" rel="tag">Q2667</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B9%8A%EC%9D%B4%ED%83%90%EC%83%89" class="page__taxonomy-item-tag" rel="tag">깊이탐색</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%B0%B1%EC%A4%802667" class="page__taxonomy-item-tag" rel="tag">백준2667</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
     <article class="archive-item">
         <div>
             <span>
@@ -641,12 +990,53 @@
       </article>
 </div>
 
-    
-      
+        
+          
 
 
 
-<div class="list__item" p="arch1" style="margin-bottom:10px">
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/baekjoon/java/baekjoon-Q1926-bfs/">[백준 1926]그림, BFS</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#baekjoon" class="page__taxonomy-item-category" rel="tag">baekjoon</a><span class="sep"> </span><a href="/categories/#java" class="page__taxonomy-item-category" rel="tag">java</a>
+                    
+                    
+                    <a href="/tags/#bfs" class="page__taxonomy-item-tag" rel="tag">BFS</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#q1926" class="page__taxonomy-item-tag" rel="tag">Q1926</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%84%93%EC%9D%B4%ED%83%90%EC%83%89" class="page__taxonomy-item-tag" rel="tag">넓이탐색</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%B0%B1%EC%A4%801926" class="page__taxonomy-item-tag" rel="tag">백준1926</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
     <article class="archive-item">
         <div>
             <span>
@@ -694,165 +1084,12 @@
       </article>
 </div>
 
-    
-      
-
-
-
-<div class="list__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/baekjoon/java/baekjoon-Q1516-topology/">[백준 1516]게임 개발, Topology Sort</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.02
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
         
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#baekjoon" class="page__taxonomy-item-category" rel="tag">baekjoon</a><span class="sep"> </span><a href="/categories/#java" class="page__taxonomy-item-category" rel="tag">java</a>
-                    
-                    
-                    <a href="/tags/#q1516" class="page__taxonomy-item-tag" rel="tag">Q1516</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#topology" class="page__taxonomy-item-tag" rel="tag">Topology</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EB%B0%B1%EC%A4%801516" class="page__taxonomy-item-tag" rel="tag">백준1516</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EB%B0%B1%EC%A4%801516" class="page__taxonomy-item-tag" rel="tag">백준1516</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EB%B0%B1%EC%A4%801948" class="page__taxonomy-item-tag" rel="tag">백준1948</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%9C%84%EC%83%81%EC%A0%95%EB%A0%AC" class="page__taxonomy-item-tag" rel="tag">위상정렬</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%A4%84%EC%84%B8%EC%9A%B0%EA%B8%B0" class="page__taxonomy-item-tag" rel="tag">줄세우기</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
+      </div>
+    </div>
+  
+  
 </div>
-
-    
-      
-
-
-
-<div class="list__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/baekjoon/java/baekjoon-Q1516-topology/">[백준 1516]게임 개발, Topology Sort</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.02
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#baekjoon" class="page__taxonomy-item-category" rel="tag">baekjoon</a><span class="sep"> </span><a href="/categories/#java" class="page__taxonomy-item-category" rel="tag">java</a>
-                    
-                    
-                    <a href="/tags/#q1516" class="page__taxonomy-item-tag" rel="tag">Q1516</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#topology" class="page__taxonomy-item-tag" rel="tag">Topology</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EB%B0%B1%EC%A4%801516" class="page__taxonomy-item-tag" rel="tag">백준1516</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EB%B0%B1%EC%A4%801516" class="page__taxonomy-item-tag" rel="tag">백준1516</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EB%B0%B1%EC%A4%801948" class="page__taxonomy-item-tag" rel="tag">백준1948</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%9C%84%EC%83%81%EC%A0%95%EB%A0%AC" class="page__taxonomy-item-tag" rel="tag">위상정렬</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%A4%84%EC%84%B8%EC%9A%B0%EA%B8%B0" class="page__taxonomy-item-tag" rel="tag">줄세우기</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-    
-      
-
-
-
-<div class="list__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/algorithm/java/java-topology-sort/">[Java] 위상정렬, 줄세우기, Topology Sort</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.01
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#algorithm" class="page__taxonomy-item-category" rel="tag">algorithm</a><span class="sep"> </span><a href="/categories/#java" class="page__taxonomy-item-category" rel="tag">java</a>
-                    
-                    
-                    <a href="/tags/#topology" class="page__taxonomy-item-tag" rel="tag">Topology</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EB%B0%B1%EC%A4%801516" class="page__taxonomy-item-tag" rel="tag">백준1516</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EB%B0%B1%EC%A4%801948" class="page__taxonomy-item-tag" rel="tag">백준1948</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EB%B0%B1%EC%A4%802252" class="page__taxonomy-item-tag" rel="tag">백준2252</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%9C%84%EC%83%81%EC%A0%95%EB%A0%AC" class="page__taxonomy-item-tag" rel="tag">위상정렬</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%A4%84%EC%84%B8%EC%9A%B0%EA%B8%B0" class="page__taxonomy-item-tag" rel="tag">줄세우기</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-    
-  </div>
-</div>
-
     </div>
 
     
@@ -921,6 +1158,25 @@
 
 
 
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kimjaehyun.co.kr/etc/git-01/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/etc/git-01"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
 
 
 

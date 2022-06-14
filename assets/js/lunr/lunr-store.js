@@ -208,4 +208,10 @@ var store = [{
         "tags": ["DFS","깊이탐색","Q2667","백준2667"],
         "url": "/baekjoon/java/baekjoon-Q2667-dfs/",
         "teaser": null
+      },{
+        "title": "Git 명령어",
+        "excerpt":"자주 쓰이는 Git을 정리해 봅시다. Git-SCM 다운로드 Git 기본 Github clone git clone 주소 git pull/fetch # github의 변화를 로컬에 반영 git fetch git pull 원격명 브랜치명 git pull orign master git 정보 등록 git init git config --global user.name \"Devjaedol\" git config --global user.email \"xxxxx@xxxxxx\" git 상태 git status...","categories": ["etc"],
+        "tags": ["git","githug"],
+        "url": "/etc/git-01/",
+        "teaser": null
       }]
