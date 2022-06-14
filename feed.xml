@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-14T06:51:54-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Git 명령어</title><link href="https://kimjaehyun.co.kr/etc/git-01/" rel="alternate" type="text/html" title="Git 명령어" /><published>2022-06-14T00:00:00-05:00</published><updated>2022-06-14T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/etc/git-01</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/git-01/"><![CDATA[<p>자주 쓰이는 Git을 정리해 봅시다. <br />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-14T07:04:19-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Git 명령어</title><link href="https://kimjaehyun.co.kr/etc/git-01/" rel="alternate" type="text/html" title="Git 명령어" /><published>2022-06-14T00:00:00-05:00</published><updated>2022-06-14T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/etc/git-01</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/git-01/"><![CDATA[<p>자주 쓰이는 Git을 정리해 봅시다. <br />
 <a href="https://git-scm.com/" target="_blank">Git-SCM</a> 다운로드</p>
 
 <h1 id="git-기본">Git 기본</h1>
@@ -17,7 +17,7 @@ git pull orign master
 
 <h2 id="git-정보-등록">git 정보 등록</h2>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init 
-git config --global user.name "Devjaedol"
+git config --global user.name "gildong.hong"
 git config --global user.email "xxxxx@xxxxxx"
 </code></pre></div></div>
 
@@ -65,13 +65,13 @@ git branch -a	(로컬과 원격까지 보여줌)
 </code></pre></div></div>
 
 <h2 id="git-상태-원복하기">git 상태 원복하기</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset 번호 --hard
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset 커밋아이디번호 --hard
 
 sourcetree의 경우 &gt; 오른쪽마우스 &gt; 이 시점까지 초기화 &gt; 옵션 Hard
 </code></pre></div></div>
 
 <h2 id="git-상태-잠시이동">git 상태 잠시이동</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git revert 번호
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git revert 커밋아이디번호
 
 sourcetree의 경우 &gt; 오른쪽마우스 &gt; 커밋 되돌리기
 </code></pre></div></div>
@@ -97,7 +97,13 @@ git commit -m "text"
 
 </code></pre></div></div>
 
+<h2 id="git-부분-병합">git 부분 병합</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git cheery-pick 커밋아이디번호
+
+</code></pre></div></div>
+
 <h2 id="git-rebase">git rebase</h2>
+<p>병합 내용을 일렬로 만들어 주는 방법.</p>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 상태 보기
 git log --graph --all --decorate
 

@@ -608,7 +608,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#git-기본">Git 기본</a><ul><li><a href="#github-clone">Github clone</a></li><li><a href="#git-pullfetch">git pull/fetch</a></li><li><a href="#git-정보-등록">git 정보 등록</a></li><li><a href="#git-상태">git 상태</a></li><li><a href="#git-commit">git commit</a></li><li><a href="#git-branch-생성">git branch 생성</a></li><li><a href="#git-branch-삭제">git branch 삭제</a></li><li><a href="#git-원격-branch-삭제">git 원격 branch 삭제</a></li><li><a href="#git-branch-상태-확인">git branch 상태 확인</a></li><li><a href="#git-checkout">git checkout</a></li><li><a href="#git-상태-원복하기">git 상태 원복하기</a></li><li><a href="#git-상태-잠시이동">git 상태 잠시이동</a></li></ul></li><li><a href="#git-스킬업">Git 스킬업</a><ul><li><a href="#git-병합">git 병합</a></li><li><a href="#git-병합-충돌">git 병합 충돌</a></li><li><a href="#git-rebase">git rebase</a></li><li><a href="#git-remote-수정-삭제">git remote 수정 삭제</a></li><li><a href="#git-tag">git Tag</a></li><li><a href="#git-예외-등록">git 예외 등록</a></li></ul></li><li><a href="#github-활용">Github 활용</a><ul><li><a href="#등록">등록</a></li><li><a href="#github-등록시-2개-이상의--git-ssh--등록-방법">github 등록시 2개 이상의  git ssh  등록 방법</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#git-기본">Git 기본</a><ul><li><a href="#github-clone">Github clone</a></li><li><a href="#git-pullfetch">git pull/fetch</a></li><li><a href="#git-정보-등록">git 정보 등록</a></li><li><a href="#git-상태">git 상태</a></li><li><a href="#git-commit">git commit</a></li><li><a href="#git-branch-생성">git branch 생성</a></li><li><a href="#git-branch-삭제">git branch 삭제</a></li><li><a href="#git-원격-branch-삭제">git 원격 branch 삭제</a></li><li><a href="#git-branch-상태-확인">git branch 상태 확인</a></li><li><a href="#git-checkout">git checkout</a></li><li><a href="#git-상태-원복하기">git 상태 원복하기</a></li><li><a href="#git-상태-잠시이동">git 상태 잠시이동</a></li></ul></li><li><a href="#git-스킬업">Git 스킬업</a><ul><li><a href="#git-병합">git 병합</a></li><li><a href="#git-병합-충돌">git 병합 충돌</a></li><li><a href="#git-부분-병합">git 부분 병합</a></li><li><a href="#git-rebase">git rebase</a></li><li><a href="#git-remote-수정-삭제">git remote 수정 삭제</a></li><li><a href="#git-tag">git Tag</a></li><li><a href="#git-예외-등록">git 예외 등록</a></li></ul></li><li><a href="#github-활용">Github 활용</a><ul><li><a href="#등록">등록</a></li><li><a href="#github-등록시-2개-이상의--git-ssh--등록-방법">github 등록시 2개 이상의  git ssh  등록 방법</a></li></ul></li></ul>
 
             </nav>
           </aside>
@@ -632,7 +632,7 @@ git pull orign master
 
 <h2 id="git-정보-등록">git 정보 등록</h2>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init 
-git config --global user.name "Devjaedol"
+git config --global user.name "gildong.hong"
 git config --global user.email "xxxxx@xxxxxx"
 </code></pre></div></div>
 
@@ -680,13 +680,13 @@ git branch -a	(로컬과 원격까지 보여줌)
 </code></pre></div></div>
 
 <h2 id="git-상태-원복하기">git 상태 원복하기</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset 번호 --hard
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset 커밋아이디번호 --hard
 
 sourcetree의 경우 &gt; 오른쪽마우스 &gt; 이 시점까지 초기화 &gt; 옵션 Hard
 </code></pre></div></div>
 
 <h2 id="git-상태-잠시이동">git 상태 잠시이동</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git revert 번호
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git revert 커밋아이디번호
 
 sourcetree의 경우 &gt; 오른쪽마우스 &gt; 커밋 되돌리기
 </code></pre></div></div>
@@ -712,7 +712,13 @@ git commit -m "text"
 
 </code></pre></div></div>
 
+<h2 id="git-부분-병합">git 부분 병합</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git cheery-pick 커밋아이디번호
+
+</code></pre></div></div>
+
 <h2 id="git-rebase">git rebase</h2>
+<p>병합 내용을 일렬로 만들어 주는 방법.</p>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 상태 보기
 git log --graph --all --decorate
 
