@@ -17,9 +17,9 @@ toc_sticky  : true
 [백준 2252](https://www.acmicpc.net/problem/2252){:target="_blank"}
 
 Queue 를 사용하여 정렬하며, 정렬하는 방법    
-![Topology순서](\assets/images_post/java/topology_sort_01.png)
+![Topology순서](\assets/images_post/java/topology_sort_01.png)   
 
-![topology]
+
 ## Sample Source Code
 ```java
 public class TopologySort {

@@ -39,9 +39,9 @@ toc_sticky  : true
 - 플로이드 마샬(모든 정점'에서 '모든 정점'으로의 최단 경로를 구할때)
 	
 # 최소 신장 트리 
-정의 (Node와 Node-1의 간선으로 이루어짐) - UnionFind
-- 프림 알고리즘 (Prim)
-- 크루스칼 알고리즘(Kruskal)
+정의 (Node와 Node-1의 간선으로 이루어짐)
+- 프림 알고리즘 (Prim) - Heap
+- 크루스칼 알고리즘(Kruskal) - UnionFind
 - MST(Minimum Spanning Tree)
 
 # 글자 검색
