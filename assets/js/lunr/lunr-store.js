@@ -174,7 +174,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[Java] 위상정렬, 줄세우기, Topology Sort",
-        "excerpt":"데이터의 주어진 조건만으로 특정 순서를 정렬시키는 문제들에서 사용되는 알고리즘. 예를 들면 다음 조건이 제공될때, 주어진 조건을 조합하여 조건을 만들어 보면, 줄을 세워서 정렬이 가능한지? 불가능한지? 가능하면 정렬을 하는 미션 백준 2252 Queue 를 사용하여 정렬하며, 정렬하는 방법 ![topology] Sample Source Code public class TopologySort { static int max = 10;...","categories": ["algorithm","java"],
+        "excerpt":"데이터의 주어진 조건만으로 특정 순서를 정렬시키는 문제들에서 사용되는 알고리즘. 예를 들면 다음 조건이 제공될때, 주어진 조건을 조합하여 조건을 만들어 보면, 줄을 세워서 정렬이 가능한지? 불가능한지? 가능하면 정렬을 하는 미션 백준 2252 Queue 를 사용하여 정렬하며, 정렬하는 방법 Sample Source Code public class TopologySort { static int max = 10; static...","categories": ["algorithm","java"],
         "tags": ["Topology","위상정렬","줄세우기","백준2252","백준1516","백준1948"],
         "url": "/algorithm/java/java-topology-sort/",
         "teaser": null
@@ -213,5 +213,29 @@ var store = [{
         "excerpt":"자주 쓰이는 Git을 정리해 봅시다. Git-SCM 다운로드 Git 기본 Github clone git clone 주소 git pull/fetch # github의 변화를 로컬에 반영 git fetch git pull 원격명 브랜치명 git pull orign master git 정보 등록 git init git config --global user.name \"gildong.hong\" git config --global user.email \"xxxxx@xxxxxx\" git 상태 git status...","categories": ["etc"],
         "tags": ["git","githug"],
         "url": "/etc/git-01/",
+        "teaser": null
+      },{
+        "title": "[백준 11726]2×n 타일링, DP",
+        "excerpt":"패턴을 찾고 점화식을 세우는 문제. 시간 복잡도 : O(N) 점화식 : An = An-1 + An-2 백준 Q11726 Sample Source Code import java.util.Scanner; public class Main { static int[] data = new int[1001]; public static int dp(int x) { if(x == 1 ) return 1; if(x == 2 ) return...","categories": ["baekjoon","java"],
+        "tags": ["DP","다이나믹프로그래밍","Q11726","백준2667"],
+        "url": "/baekjoon/java/baekjoon-Q11726-dp/",
+        "teaser": null
+      },{
+        "title": "[Java] Kruskal, 최소 비용 신장 트리",
+        "excerpt":"최소 비용으로 모든 노드를 연결하기 위해서 사용함.(최소 비용 신장 트리) 두 노드의 거리를 오름차순으로 정렬하여, 노드 리스트를 순회하며, 최소 거리 노드를 연결함. 연결시 사이틀이 발생되지 않는지를 점검함. 연결된 선의 합이 최소 비용인가? MST(Minimum Spanning Tree) MST란 최소의 비용으로 모든 노드가 연결된 트리를 의미함. Spanning Tree 란 모든 노드가 연결된 트리를...","categories": ["algorithm","java"],
+        "tags": ["Kruskal Algorithm","Union-Find","MST","Spannig Tree"],
+        "url": "/algorithm/java/java-Kruskal/",
+        "teaser": null
+      },{
+        "title": "[Java] Union-Find, 두개의 노드 연결 여부 확인",
+        "excerpt":"여러개의 노드에서 임의의 두개의 노드가 연결되어 있는지를 판단할때 사용합니다. 서로 연결되어 있는지? Sample Source Code import java.util.Arrays; public class UnionFind { /** * 재귀 호출로 최종 부모 번호를 반환 */ public static int getParent(int[] parent, int x) { if(parent[x] == x ) return x; parent[x] = getParent(parent, parent[x]); return parent[x];...","categories": ["algorithm","java"],
+        "tags": ["Union-Find","합집합","소로소"],
+        "url": "/algorithm/java/java-Union-Find/",
+        "teaser": null
+      },{
+        "title": "[Java] Fibonacci, DP",
+        "excerpt":"피보나치 수열을 만드는 함수를 만들어보기. 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 이전 2개의 값을 더해서 현재 값이 되는 패턴. 점화식: D[i] = D[i - 1] + D[i - 2] 재귀 호출에서 성능을 개선 할수 있는지? Sample Source Code public class Fibonacci{ static double[] storedValue = new...","categories": ["algorithm","java"],
+        "tags": ["Fibonacci","DP","다이나믹 프로그래밍","Dynamic Programming"],
+        "url": "/algorithm/java/java-dp-fibonacci/",
         "teaser": null
       }]
