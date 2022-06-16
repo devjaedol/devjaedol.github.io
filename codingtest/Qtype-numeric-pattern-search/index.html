@@ -1,0 +1,1029 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색 | 꿰보노트</title>
+<meta name="description" content="문제 유형">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색">
+<meta property="og:url" content="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/">
+
+
+  <meta property="og:description" content="문제 유형">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-06-16T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#codingtest" itemprop="item"><span itemprop="name">Codingtest</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 42</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (5)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+
+
+        <span class="nav__sub-title">Footprints</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색">
+    <meta itemprop="description" content="문제 유형">
+    <meta itemprop="datePublished" content="2022-06-16T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/" class="u-url" itemprop="url">[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#문제-유형">문제 유형</a></li><li><a href="#접근-방법">접근 방법</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="문제-유형">문제 유형</h1>
+
+<p>아래와 같은 랜덤한 숫자 목록 중 특정 조건의 패턴 찾기.  <br />
+<code class="language-plaintext highlighter-rouge">1 2 4 6 4 6 7 8 2 1 2 5 4 7 2 8 9 0 8 2 7 0 6 4 2 3</code></p>
+
+<p>특정 제공된 숫자 <code class="language-plaintext highlighter-rouge">7 8 2</code> 의 변경된 조건을 찾을때</p>
+<ul>
+  <li>원본 <code class="language-plaintext highlighter-rouge">7 8 2</code> 를 찾을때</li>
+  <li>원본의 순서가 변경된 조건을 찾을때 <code class="language-plaintext highlighter-rouge">8 7 2</code> 또는 <code class="language-plaintext highlighter-rouge">8 2 7</code>, <code class="language-plaintext highlighter-rouge">2 7 8</code> 등</li>
+  <li>원본의 값의 위상이 동일한 수준으로 변경될때, 모두 +1한 경우 <code class="language-plaintext highlighter-rouge">8 9 3</code>, -2한 경우 <code class="language-plaintext highlighter-rouge">5 6 0</code>과 같은 경우</li>
+  <li>순서와 위상이 동시에 적용된 경우</li>
+</ul>
+
+<p>위 조건의 패턴이 몇번 있는지를 찾을 때.</p>
+
+<h1 id="접근-방법">접근 방법</h1>
+
+<ol>
+  <li>
+    <p>제공된 값을 배열화 한다.  <br />
+<code class="language-plaintext highlighter-rouge">arr = [1, 7, 4, 6, 4, 6, 7, 8, 2, 1, 2, 5, 4, 7, 2, 8, 9, 0, 8, 2, 7, 0, 6, 4, 2, 3]</code></p>
+  </li>
+  <li>찾을 <code class="language-plaintext highlighter-rouge">7 8 2</code>의 길이를 제외한 만큼 for문으로 순회한다.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="c1">// `7 8 2` 의 길이</span>
+ <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// 패턴수</span>
+ <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">len</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+     <span class="n">count</span> <span class="o">+=</span> <span class="nc">Search</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+ <span class="o">}</span>
+
+ <span class="kt">int</span> <span class="nf">Search</span><span class="o">(</span><span class="kt">int</span> <span class="n">start</span><span class="o">){</span>
+     <span class="c1">// arr의 i 위치에서 len 만큼을 복사</span>
+      <span class="mi">1</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">4</span>
+      	<span class="mi">7</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">6</span>
+            <span class="mi">4</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">4</span>
+
+     <span class="kt">int</span><span class="o">[]</span> <span class="n">asort</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">len</span><span class="o">];</span>
+     <span class="nc">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span><span class="n">start</span><span class="o">,</span><span class="n">asort</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">len</span><span class="o">);</span>
+     <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">asort</span><span class="o">);</span>
+     <span class="c1">// arr 의 갯수를 복사하고, 오름차순 정렬 `1, 7, 4` -&gt; `1, 4, 7`</span>
+     <span class="c1">// 비고 대상도 복사하여, 오름 차순 정렬  `7 8 2` -&gt; `2 7 8`</span>
+
+     <span class="c1">// 위상을 조정함</span>
+     <span class="c1">// `1, 7, 4` -&gt; `1, 4, 7` -&gt; `0, 3, 6` 최소값 1을 0기준의 위상으로 조정, 모두 -1을 진행</span>
+     <span class="c1">// `7 8 2` -&gt; `2 7 8` -&gt; `0 5 6` 최소값 2를 기준으로 0으로 이동, 모두 -2를 진행</span>
+
+     <span class="c1">// 위상 이동까지 완료하여 비교를 진행함.</span>
+ <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>비교할 값을 정렬하고, 비교할 범위의 최소값을 0 기준으로 위상을 조정한다.
+<code class="language-plaintext highlighter-rouge">7 8 2</code> 에 순서는 오름차순 정렬에 의해서 비교 조건으로 변경가능하며, 
+위상차이는 최소값 기준으로 이동시켜 각 값의 Gap을 비교하여 같은 조건의 값인지를 판단 가능함.</li>
+</ol>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%EB%B0%B0%EC%97%B4%EC%A0%95%EB%A0%AC" class="page__taxonomy-item p-category" rel="tag">배열정렬</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%88%AB%EC%9E%90%EC%B0%BE%EA%B8%B0" class="page__taxonomy-item p-category" rel="tag">숫자찾기</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%9C%84%EC%83%81%EC%9D%B4%EB%8F%99" class="page__taxonomy-item p-category" rel="tag">위상이동</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#codingtest" class="page__taxonomy-item p-category" rel="tag">codingtest</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-16T00:00:00-05:00">2022-06-16</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EB%AC%B8%EC%A0%9C+%EC%9C%A0%ED%98%95+%EB%B6%84%EC%84%9D%5D%EC%88%AB%EC%9E%90+%EB%AA%A9%EB%A1%9D+%EC%A4%91+%ED%8A%B9%EC%A0%95+%EC%88%AB%EC%9E%90+%ED%8C%A8%ED%84%B4+%EA%B2%80%EC%83%89%20https%3A%2F%2Fkimjaehyun.co.kr%2Fcodingtest%2FQtype-numeric-pattern-search%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fcodingtest%2FQtype-numeric-pattern-search%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fcodingtest%2FQtype-numeric-pattern-search%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/java/codingtest/java-input-test/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Java] Input값 처리</a>
+    
+    
+      <a href="/codingtest/Qtype-string-loop-cmd/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/codingtest/Qtype-string-loop-cmd/">[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.16
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#codingtest" class="page__taxonomy-item-category" rel="tag">codingtest</a>
+                    
+                    
+                    <a href="/tags/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B5%AC%EB%AC%B8-%EB%B6%84%EC%84%9D" class="page__taxonomy-item-tag" rel="tag">문자열 구문 분석</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%B0%98%EB%B3%B5-%EC%B6%9C%EB%A0%A5" class="page__taxonomy-item-tag" rel="tag">반복 출력</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%9E%AC%EA%B7%80%ED%95%A8%EC%88%98" class="page__taxonomy-item-tag" rel="tag">재귀함수</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/algorithm/java/java-dp-fibonacci/">[Java] Fibonacci, DP</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.15
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#algorithm" class="page__taxonomy-item-category" rel="tag">algorithm</a><span class="sep"> </span><a href="/categories/#java" class="page__taxonomy-item-category" rel="tag">java</a>
+                    
+                    
+                    <a href="/tags/#dp" class="page__taxonomy-item-tag" rel="tag">DP</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#dynamic-programming" class="page__taxonomy-item-tag" rel="tag">Dynamic Programming</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#fibonacci" class="page__taxonomy-item-tag" rel="tag">Fibonacci</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%8B%A4%EC%9D%B4%EB%82%98%EB%AF%B9-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D" class="page__taxonomy-item-tag" rel="tag">다이나믹 프로그래밍</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/algorithm/java/java-Union-Find/">[Java] Union-Find, 두개의 노드 연결 여부 확인</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.15
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#algorithm" class="page__taxonomy-item-category" rel="tag">algorithm</a><span class="sep"> </span><a href="/categories/#java" class="page__taxonomy-item-category" rel="tag">java</a>
+                    
+                    
+                    <a href="/tags/#union-find" class="page__taxonomy-item-tag" rel="tag">Union-Find</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%86%8C%EB%A1%9C%EC%86%8C" class="page__taxonomy-item-tag" rel="tag">소로소</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%95%A9%EC%A7%91%ED%95%A9" class="page__taxonomy-item-tag" rel="tag">합집합</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/algorithm/java/java-Kruskal/">[Java] Kruskal, 최소 비용 신장 트리</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.15
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#algorithm" class="page__taxonomy-item-category" rel="tag">algorithm</a><span class="sep"> </span><a href="/categories/#java" class="page__taxonomy-item-category" rel="tag">java</a>
+                    
+                    
+                    <a href="/tags/#kruskal-algorithm" class="page__taxonomy-item-tag" rel="tag">Kruskal Algorithm</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mst" class="page__taxonomy-item-tag" rel="tag">MST</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#spannig-tree" class="page__taxonomy-item-tag" rel="tag">Spannig Tree</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#union-find" class="page__taxonomy-item-tag" rel="tag">Union-Find</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/codingtest/Qtype-numeric-pattern-search"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

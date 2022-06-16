@@ -238,4 +238,16 @@ var store = [{
         "tags": ["Fibonacci","DP","다이나믹 프로그래밍","Dynamic Programming"],
         "url": "/algorithm/java/java-dp-fibonacci/",
         "teaser": null
+      },{
+        "title": "[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색",
+        "excerpt":"문제 유형 아래와 같은 랜덤한 숫자 목록 중 특정 조건의 패턴 찾기. 1 2 4 6 4 6 7 8 2 1 2 5 4 7 2 8 9 0 8 2 7 0 6 4 2 3 특정 제공된 숫자 7 8 2 의 변경된 조건을 찾을때 원본 7...","categories": ["codingtest"],
+        "tags": ["숫자찾기","배열정렬","위상이동"],
+        "url": "/codingtest/Qtype-numeric-pattern-search/",
+        "teaser": null
+      },{
+        "title": "[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제",
+        "excerpt":"문제 유형 () 묶여진 구문에서 첫번째 숫자 (0~9)까지의 숫자 만큼 ()로 묶여진 글자를 출력해라. () 는 여러 단계로 묶일수 있다. (()()) 가장 밖에는 하나의 ()로 묶여있다. 예) (4k) -&gt; kkkk (3a(2b)c) -&gt; abbcabbcabbc 접근 방법 문제의 입력 조건 문자열을 char 로 분리함. 위치 변수를 _p 초기화 하여, 문자열을 처음부터 순회함...","categories": ["codingtest"],
+        "tags": ["문자열 구문 분석","반복 출력","재귀함수"],
+        "url": "/codingtest/Qtype-string-loop-cmd/",
+        "teaser": null
       }]
