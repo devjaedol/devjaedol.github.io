@@ -250,4 +250,22 @@ var store = [{
         "tags": ["문자열 구문 분석","반복 출력","재귀함수"],
         "url": "/codingtest/Qtype-string-loop-cmd/",
         "teaser": null
+      },{
+        "title": "[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경",
+        "excerpt":"OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다. 1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함 2000년 알파 버전 공개 2005년 베타 버전 공개 2006년 10월 v1.0 정식 버전 공개 2009년 9월 v2.0 공개 2010년 12월 v2.2 공개 2011년 7월 v2.3 공개(안드로이드 지원, cv-&gt;...","categories": ["python"],
+        "tags": ["python","opencv","cv2.imread","cv2.imwrite","cv2.COLOR_BGR2RGB"],
+        "url": "/python/python-opencv-image-rw/",
+        "teaser": null
+      },{
+        "title": "[OpenCV] 비디오/캠 불러오기, 저장하기",
+        "excerpt":"비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다. 비디오 처리 비디오 파일 불러오기 영상을 읽어오기 위해서는 cv2.VideoCapture 메소드를 사용합니다. import cv2 video_file ='sample.avi' cap = cv2.VideoCapture(video_file) if cap.isOpened(): while True: ret, img = cap.read() # ret는 bool값으로 읽기가 성공일때 true를 반환 if ret: cv2.imshow(video_file, img) if cv2.waitKey(25) !=...","categories": ["python"],
+        "tags": ["python","opencv","cv2.VideoCapture","cv2.VideoWriter_fourcc"],
+        "url": "/python/python-opencv-video-rw/",
+        "teaser": null
+      },{
+        "title": "[OpenCV] 윈도우 처리, 키이벤트",
+        "excerpt":"OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다. 윈도우 관리 cv2.namedWindow(‘이름’ [, opt]) 윈도의 이름을 설정합니다. opt 옵션 값 cv2.WINDOW_NORMAL : 사용자 창 크기 조절 가능 cv2.WINDOW_AUTOSIZE : 이미지와 같은 크기, 창 크기 재조정 불 가능 cv2.moveWindow(‘이름’, x , y) x, y의 좌표로 이름에 해당하는 창이 이동합니다. cv2.destoryWindow(‘이름’) 특정...","categories": ["python"],
+        "tags": ["python","opencv","WINDOW_AUTOSIZE","WINDOW_NORMAL","waitKey","key event"],
+        "url": "/python/python-opencv-window-event/",
+        "teaser": null
       }]
