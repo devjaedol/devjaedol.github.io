@@ -251,6 +251,12 @@ var store = [{
         "url": "/codingtest/Qtype-string-loop-cmd/",
         "teaser": null
       },{
+        "title": "[OpenCV] 기본 도형 그리기",
+        "excerpt":"영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기. 하기 표시되는 color는 BGR 입니다. 참고 바랍니다. 도형 그리기 Text 그리기(cv2.putText) cv2.putText(img, text, position, fontFace, fontSize, color [,thickness, linetype]) position 입력될 글자의 좌측 하단 기준의 배치 위치 입니다. fontFace cv2.FONT_HERSHEY_PLAIN cv2.FONT_HERSHEY_SIMPLEX cv2.FONT_HERSHEY_DUPLEX cv2.FONT_HERSHEY_COMPLEX_SMALL cv2.FONT_HERSHEY_COMPLEX cv2.FONT_HERSHEY_TRIPLEX cv2.FONT_ITALIC import cv2 import...","categories": ["python"],
+        "tags": ["python","opencv","cv2.putText","cv2.line","cv2.rectangle","cv2.polylines","cv2.circle"],
+        "url": "/python/python-opencv-basic-draw/",
+        "teaser": null
+      },{
         "title": "[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경",
         "excerpt":"OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다. 1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함 2000년 알파 버전 공개 2005년 베타 버전 공개 2006년 10월 v1.0 정식 버전 공개 2009년 9월 v2.0 공개 2010년 12월 v2.2 공개 2011년 7월 v2.3 공개(안드로이드 지원, cv-&gt;...","categories": ["python"],
         "tags": ["python","opencv","cv2.imread","cv2.imwrite","cv2.COLOR_BGR2RGB"],

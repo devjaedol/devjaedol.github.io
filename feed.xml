@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-20T04:28:49-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</title><link href="https://kimjaehyun.co.kr/python/python-opencv-image-rw/" rel="alternate" type="text/html" title="[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-image-rw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-image-rw/"><![CDATA[<p>OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-20T07:26:18-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</title><link href="https://kimjaehyun.co.kr/python/python-opencv-image-rw/" rel="alternate" type="text/html" title="[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-image-rw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-image-rw/"><![CDATA[<p>OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다.</p>
 <ul>
   <li>1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함</li>
   <li>2000년 알파 버전 공개</li>
@@ -297,7 +297,179 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fps</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FPS</span><span class="p">)</span>
 <span class="n">delay</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">fps</span><span class="p">)</span> 
 <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.VideoCapture" /><category term="cv2.VideoWriter_fourcc" /><summary type="html"><![CDATA[비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다.]]></summary></entry><entry><title type="html">[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/" rel="alternate" type="text/html" title="[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.VideoCapture" /><category term="cv2.VideoWriter_fourcc" /><summary type="html"><![CDATA[비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다.]]></summary></entry><entry><title type="html">[OpenCV] 기본 도형 그리기</title><link href="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/" rel="alternate" type="text/html" title="[OpenCV] 기본 도형 그리기" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-basic-draw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/"><![CDATA[<p>영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기.  <br />
+하기 표시되는 color는 <code class="language-plaintext highlighter-rouge">BGR</code> 입니다. 참고 바랍니다.</p>
+
+<h1 id="도형-그리기">도형 그리기</h1>
+<h2 id="text-그리기cv2puttext">Text 그리기(cv2.putText)</h2>
+<p><code class="language-plaintext highlighter-rouge">cv2.putText(img, text, position, fontFace, fontSize, color [,thickness, linetype])</code></p>
+<ul>
+  <li>position 입력될 글자의 좌측 하단 기준의 배치 위치 입니다.</li>
+  <li>fontFace
+    <ul>
+      <li>cv2.FONT_HERSHEY_PLAIN</li>
+      <li>cv2.FONT_HERSHEY_SIMPLEX</li>
+      <li>cv2.FONT_HERSHEY_DUPLEX</li>
+      <li>cv2.FONT_HERSHEY_COMPLEX_SMALL</li>
+      <li>cv2.FONT_HERSHEY_COMPLEX</li>
+      <li>cv2.FONT_HERSHEY_TRIPLEX</li>
+      <li>cv2.FONT_ITALIC</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">((</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s">'Plain'</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_PLAIN</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s">'Simplex'</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s">'Duplex'</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span> <span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_DUPLEX</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s">'Duplex'</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_PLAIN</span> <span class="o">|</span> <span class="n">cv2</span><span class="p">.</span><span class="n">FONT_ITALIC</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'SAMPLE'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="선-그리기cv2line">선 그리기(cv2.line)</h2>
+<p><code class="language-plaintext highlighter-rouge">cv2.line(img, start, end, color [,thickness, linetype])</code></p>
+<ul>
+  <li>start/end 위치(x, y)</li>
+  <li>linetype
+    <ul>
+      <li>cv2.LINE_4</li>
+      <li>cv2.LINE_8</li>
+      <li>cv2.LINE_AA : 안티알라아싱</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">((</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">150</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">350</span><span class="p">),</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">400</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="mi">10</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">LINE_AA</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'SAMPLE'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="사각형그리기cv2rectangle">사각형그리기(cv2.rectangle)</h2>
+<p><code class="language-plaintext highlighter-rouge">cv2.rectangle(img, start, end, color [,thickness, linetype])</code></p>
+<ul>
+  <li>thickness <code class="language-plaintext highlighter-rouge">-1</code> 인 경우 채우기 상태</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">((</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">500</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">400</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>    <span class="c1">#-1은 채워짐
+</span><span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'SAMPLE'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="다각형그리기cv2polylines">다각형그리기(cv2.polylines)</h2>
+<p><code class="language-plaintext highlighter-rouge">cv2.polylines(img, points, isClosed, color [,thickness, linetype])</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">((</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span><span class="mi">25</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">],</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span><span class="mi">400</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">30</span><span class="p">,</span><span class="mi">60</span><span class="p">],</span> <span class="p">[</span><span class="mi">210</span><span class="p">,</span><span class="mi">170</span><span class="p">],</span> <span class="p">[</span><span class="mi">140</span><span class="p">,</span> <span class="mi">220</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">polylines</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="n">p1</span><span class="p">],</span> <span class="bp">False</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">polylines</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="n">p2</span><span class="p">],</span> <span class="bp">True</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'SAMPLE'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="원-타원-그리기cv2circle">원, 타원 그리기(cv2.circle)</h2>
+<p><code class="language-plaintext highlighter-rouge">cv2.circle(img, center, radius, color [,thickness, linetype])</code></p>
+<ul>
+  <li>center 원 또는 타원의 중심 좌표(x, y)</li>
+  <li>radius 원의 반지름</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">((</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">150</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">150</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'SAMPLE'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="호그리기cv2ellipse">호그리기(cv2.ellipse)</h2>
+<p><code class="language-plaintext highlighter-rouge">cv2.ellipse(img, center, axes, angle, from, to, color [,thickness, linetype])</code></p>
+<ul>
+  <li>center 중심 좌표(x, y)</li>
+  <li>axes 기준축 길이</li>
+  <li>angle 기준축 회전 각도</li>
+  <li>from 호의 시작 각도</li>
+  <li>to 호의 종료 각도</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">((</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">#30도 부터 180도까지 호를 그림
+</span><span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'SAMPLE'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.putText" /><category term="cv2.line" /><category term="cv2.rectangle" /><category term="cv2.polylines" /><category term="cv2.circle" /><summary type="html"><![CDATA[영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기. 하기 표시되는 color는 BGR 입니다. 참고 바랍니다.]]></summary></entry><entry><title type="html">[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd/" rel="alternate" type="text/html" title="[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">()</code> 묶여진 구문에서 첫번째 숫자 (0~9)까지의 숫자 만큼 <code class="language-plaintext highlighter-rouge">()</code>로 묶여진 글자를 출력해라.</li>
+  <li><code class="language-plaintext highlighter-rouge">()</code> 는 여러 단계로 묶일수 있다. <code class="language-plaintext highlighter-rouge">(()())</code></li>
+  <li>가장 밖에는 하나의 <code class="language-plaintext highlighter-rouge">()</code>로 묶여있다.</li>
+</ul>
+
+<p>예)  <br />
+<code class="language-plaintext highlighter-rouge">(4k)</code> -&gt; <code class="language-plaintext highlighter-rouge">kkkk</code>   <br />
+<code class="language-plaintext highlighter-rouge">(3a(2b)c)</code> -&gt; <code class="language-plaintext highlighter-rouge">abbcabbcabbc</code></p>
+
+<h1 id="접근-방법">접근 방법</h1>
+<ol>
+  <li>문제의 입력 조건 문자열을 char 로 분리함.</li>
+  <li>위치 변수를 <code class="language-plaintext highlighter-rouge">_p</code> 초기화 하여, 문자열을 처음부터 순회함</li>
+  <li>순회중 ‘(‘를 만나면 다시 시작의 의미 이므로 재귀호출을 진행</li>
+</ol>
+
+<p>위치값을 재귀 함수에 전달하여 유지하며 검색하는 것이 착안점</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kt">char</span><span class="o">[]</span> <span class="n">loop</span><span class="o">;</span>
+<span class="n">loop</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toCharArray</span><span class="o">();</span>	<span class="c1">// `(3a(2b)c)` </span>
+
+<span class="n">solve</span><span class="o">(</span> <span class="n">loop</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+
+
+<span class="kt">int</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">loop</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="o">){</span>
+
+	<span class="kt">int</span> <span class="n">_p</span> <span class="o">=</span> <span class="n">idx</span><span class="o">;</span> <span class="c1">//</span>
+
+			<span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span> <span class="c1">//반복 횟수 찾기</span>
+			
+			<span class="k">while</span><span class="o">(</span> <span class="n">cnt</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">){</span> 	<span class="c1">// 반복 횟수를 줄여가며, 반복 조건을 찾음</span>
+				<span class="n">_p</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>		<span class="c1">// 검색 포인터를 +2 ( `(` + `숫자` 2자리 의미 ) 자리 만큼 이동</span>
+				<span class="k">while</span><span class="o">(</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]</span> <span class="o">!=</span> <span class="sc">')'</span> <span class="o">){</span> <span class="c1">// 종료 전까지</span>
+					<span class="k">if</span><span class="o">(</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]</span> <span class="o">==</span> <span class="err">'</span><span class="o">(&lt;)</span><span class="err">'</span> <span class="o">){</span>
+						<span class="n">_p</span> <span class="o">=</span> <span class="n">solve</span><span class="o">(</span><span class="n">loop</span><span class="o">,</span><span class="n">_p</span><span class="o">);</span>	<span class="c1">//다시 `(` 시작 조건이 나온다면 재귀 호출</span>
+					<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+						<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]);</span> <span class="c1">//출력</span>
+					<span class="o">}</span>
+					<span class="n">_p</span><span class="o">++;</span> <span class="c1">// 위치를 한칸씩 이동시키며 문자를 출력하는 일을 함</span>
+				<span class="o">}</span>
+				
+			<span class="o">}</span><span class="c1">// while				</span>
+	<span class="k">return</span> <span class="n">_p</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="문자열 구문 분석" /><category term="반복 출력" /><category term="재귀함수" /><summary type="html"><![CDATA[문제 유형]]></summary></entry><entry><title type="html">[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/" rel="alternate" type="text/html" title="[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
 
 <p>아래와 같은 랜덤한 숫자 목록 중 특정 조건의 패턴 찾기.  <br />
 <code class="language-plaintext highlighter-rouge">1 2 4 6 4 6 7 8 2 1 2 5 4 7 2 8 9 0 8 2 7 0 6 4 2 3</code></p>
@@ -349,85 +521,7 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
   <li>비교할 값을 정렬하고, 비교할 범위의 최소값을 0 기준으로 위상을 조정한다.
 <code class="language-plaintext highlighter-rouge">7 8 2</code> 에 순서는 오름차순 정렬에 의해서 비교 조건으로 변경가능하며, 
 위상차이는 최소값 기준으로 이동시켜 각 값의 Gap을 비교하여 같은 조건의 값인지를 판단 가능함.</li>
-</ol>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="숫자찾기" /><category term="배열정렬" /><category term="위상이동" /><summary type="html"><![CDATA[문제 유형]]></summary></entry><entry><title type="html">[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd/" rel="alternate" type="text/html" title="[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">()</code> 묶여진 구문에서 첫번째 숫자 (0~9)까지의 숫자 만큼 <code class="language-plaintext highlighter-rouge">()</code>로 묶여진 글자를 출력해라.</li>
-  <li><code class="language-plaintext highlighter-rouge">()</code> 는 여러 단계로 묶일수 있다. <code class="language-plaintext highlighter-rouge">(()())</code></li>
-  <li>가장 밖에는 하나의 <code class="language-plaintext highlighter-rouge">()</code>로 묶여있다.</li>
-</ul>
-
-<p>예)  <br />
-<code class="language-plaintext highlighter-rouge">(4k)</code> -&gt; <code class="language-plaintext highlighter-rouge">kkkk</code>   <br />
-<code class="language-plaintext highlighter-rouge">(3a(2b)c)</code> -&gt; <code class="language-plaintext highlighter-rouge">abbcabbcabbc</code></p>
-
-<h1 id="접근-방법">접근 방법</h1>
-<ol>
-  <li>문제의 입력 조건 문자열을 char 로 분리함.</li>
-  <li>위치 변수를 <code class="language-plaintext highlighter-rouge">_p</code> 초기화 하여, 문자열을 처음부터 순회함</li>
-  <li>순회중 ‘(‘를 만나면 다시 시작의 의미 이므로 재귀호출을 진행</li>
-</ol>
-
-<p>위치값을 재귀 함수에 전달하여 유지하며 검색하는 것이 착안점</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kt">char</span><span class="o">[]</span> <span class="n">loop</span><span class="o">;</span>
-<span class="n">loop</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toCharArray</span><span class="o">();</span>	<span class="c1">// `(3a(2b)c)` </span>
-
-<span class="n">solve</span><span class="o">(</span> <span class="n">loop</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-
-
-<span class="kt">int</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">loop</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="o">){</span>
-
-	<span class="kt">int</span> <span class="n">_p</span> <span class="o">=</span> <span class="n">idx</span><span class="o">;</span> <span class="c1">//</span>
-
-			<span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span> <span class="c1">//반복 횟수 찾기</span>
-			
-			<span class="k">while</span><span class="o">(</span> <span class="n">cnt</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">){</span> 	<span class="c1">// 반복 횟수를 줄여가며, 반복 조건을 찾음</span>
-				<span class="n">_p</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>		<span class="c1">// 검색 포인터를 +2 ( `(` + `숫자` 2자리 의미 ) 자리 만큼 이동</span>
-				<span class="k">while</span><span class="o">(</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]</span> <span class="o">!=</span> <span class="sc">')'</span> <span class="o">){</span> <span class="c1">// 종료 전까지</span>
-					<span class="k">if</span><span class="o">(</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]</span> <span class="o">==</span> <span class="err">'</span><span class="o">(&lt;)</span><span class="err">'</span> <span class="o">){</span>
-						<span class="n">_p</span> <span class="o">=</span> <span class="n">solve</span><span class="o">(</span><span class="n">loop</span><span class="o">,</span><span class="n">_p</span><span class="o">);</span>	<span class="c1">//다시 `(` 시작 조건이 나온다면 재귀 호출</span>
-					<span class="o">}</span><span class="k">else</span><span class="o">{</span>
-						<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]);</span> <span class="c1">//출력</span>
-					<span class="o">}</span>
-					<span class="n">_p</span><span class="o">++;</span> <span class="c1">// 위치를 한칸씩 이동시키며 문자를 출력하는 일을 함</span>
-				<span class="o">}</span>
-				
-			<span class="o">}</span><span class="c1">// while				</span>
-	<span class="k">return</span> <span class="n">_p</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="문자열 구문 분석" /><category term="반복 출력" /><category term="재귀함수" /><summary type="html"><![CDATA[문제 유형]]></summary></entry><entry><title type="html">[백준 11726]2×n 타일링, DP</title><link href="https://kimjaehyun.co.kr/baekjoon/java/baekjoon-Q11726-dp/" rel="alternate" type="text/html" title="[백준 11726]2×n 타일링, DP" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/baekjoon/java/baekjoon-Q11726-dp</id><content type="html" xml:base="https://kimjaehyun.co.kr/baekjoon/java/baekjoon-Q11726-dp/"><![CDATA[<p>패턴을 찾고 점화식을 세우는 문제.  <br />
-시간 복잡도 : O(N)  <br />
-<code class="language-plaintext highlighter-rouge">점화식 : An = An-1 + An-2</code></p>
-
-<p><a href="https://www.acmicpc.net/problem/11726" target="_blank">백준 Q11726</a></p>
-
-<h2 id="sample-source-code">Sample Source Code</h2>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-
-	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">1001</span><span class="o">];</span>
-
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">dp</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">)</span> <span class="k">return</span> <span class="mi">2</span><span class="o">;</span> <span class="c1">// n이 2일때 2가지 반환 Case 2가지</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
-		
-		<span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
-		<span class="k">return</span> <span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">]%</span><span class="mi">10007</span><span class="o">;</span>
-	<span class="o">}</span>
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		<span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
-		
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dp</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">()));</span>
-		<span class="c1">// 9 입력시 55 응답</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="baekjoon" /><category term="java" /><category term="DP" /><category term="다이나믹프로그래밍" /><category term="Q11726" /><category term="백준2667" /><summary type="html"><![CDATA[패턴을 찾고 점화식을 세우는 문제. 시간 복잡도 : O(N) 점화식 : An = An-1 + An-2]]></summary></entry><entry><title type="html">[Java] Kruskal, 최소 비용 신장 트리</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-Kruskal/" rel="alternate" type="text/html" title="[Java] Kruskal, 최소 비용 신장 트리" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-Kruskal</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-Kruskal/"><![CDATA[<p>최소 비용으로 모든 노드를 연결하기 위해서 사용함.(최소 비용 신장 트리) <br />
+</ol>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="숫자찾기" /><category term="배열정렬" /><category term="위상이동" /><summary type="html"><![CDATA[문제 유형]]></summary></entry><entry><title type="html">[Java] Kruskal, 최소 비용 신장 트리</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-Kruskal/" rel="alternate" type="text/html" title="[Java] Kruskal, 최소 비용 신장 트리" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-Kruskal</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-Kruskal/"><![CDATA[<p>최소 비용으로 모든 노드를 연결하기 위해서 사용함.(최소 비용 신장 트리) <br />
 두 노드의 거리를 오름차순으로 정렬하여, 노드 리스트를 순회하며, 최소 거리 노드를 연결함.  <br />
 연결시 사이틀이 발생되지 않는지를 점검함.</p>
 
@@ -639,38 +733,7 @@ Prim 관련 문제 최소 스패닝 트리 <a href="https://www.acmicpc.net/prob
 
 
 </code></pre></div></div>
-<p><a href="https://blog.naver.com/ndb796/221230994142" target="_blank">참고 문헌 : 안경잡개발자 블로그</a></p>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Kruskal Algorithm" /><category term="Union-Find" /><category term="MST" /><category term="Spannig Tree" /><summary type="html"><![CDATA[최소 비용으로 모든 노드를 연결하기 위해서 사용함.(최소 비용 신장 트리) 두 노드의 거리를 오름차순으로 정렬하여, 노드 리스트를 순회하며, 최소 거리 노드를 연결함. 연결시 사이틀이 발생되지 않는지를 점검함.]]></summary></entry><entry><title type="html">[Java] Fibonacci, DP</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-dp-fibonacci/" rel="alternate" type="text/html" title="[Java] Fibonacci, DP" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-dp-fibonacci</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-dp-fibonacci/"><![CDATA[<p>피보나치 수열을 만드는 함수를 만들어보기. <br />
-<code class="language-plaintext highlighter-rouge">1, 1, 2, 3, 5, 8, 13, 21, 34, 55 </code>  <br />
-이전 2개의 값을 더해서 현재 값이 되는 패턴.  <br />
-<code class="language-plaintext highlighter-rouge">점화식: D[i] = D[i - 1] + D[i - 2]</code></p>
-
-<ul>
-  <li>재귀 호출에서 성능을 개선 할수 있는지?</li>
-</ul>
-
-<h2 id="sample-source-code">Sample Source Code</h2>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Fibonacci</span><span class="o">{</span>
-	<span class="kd">static</span> <span class="kt">double</span><span class="o">[]</span> <span class="n">storedValue</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">dp</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">if</span><span class="o">(</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-
-		<span class="c1">//한번 구한 값을 저장하여 반환함</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">)</span> 
-			<span class="k">return</span> <span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
-		
-		<span class="c1">//새로 구하는 수는 계산 후 재 사용을 위해서 저장해놓음</span>
-		<span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
-		<span class="k">return</span> <span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
-	<span class="o">}</span>
-	
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dp</span><span class="o">(</span><span class="mi">50</span><span class="o">));</span> 
-	<span class="o">}</span>	
-<span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Fibonacci" /><category term="DP" /><category term="다이나믹 프로그래밍" /><category term="Dynamic Programming" /><summary type="html"><![CDATA[피보나치 수열을 만드는 함수를 만들어보기. 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 이전 2개의 값을 더해서 현재 값이 되는 패턴. 점화식: D[i] = D[i - 1] + D[i - 2]]]></summary></entry><entry><title type="html">[Java] Union-Find, 두개의 노드 연결 여부 확인</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-Union-Find/" rel="alternate" type="text/html" title="[Java] Union-Find, 두개의 노드 연결 여부 확인" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-Union-Find</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-Union-Find/"><![CDATA[<p>여러개의 노드에서 임의의 두개의 노드가 연결되어 있는지를 판단할때 사용합니다.</p>
+<p><a href="https://blog.naver.com/ndb796/221230994142" target="_blank">참고 문헌 : 안경잡개발자 블로그</a></p>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Kruskal Algorithm" /><category term="Union-Find" /><category term="MST" /><category term="Spannig Tree" /><summary type="html"><![CDATA[최소 비용으로 모든 노드를 연결하기 위해서 사용함.(최소 비용 신장 트리) 두 노드의 거리를 오름차순으로 정렬하여, 노드 리스트를 순회하며, 최소 거리 노드를 연결함. 연결시 사이틀이 발생되지 않는지를 점검함.]]></summary></entry><entry><title type="html">[Java] Union-Find, 두개의 노드 연결 여부 확인</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-Union-Find/" rel="alternate" type="text/html" title="[Java] Union-Find, 두개의 노드 연결 여부 확인" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-Union-Find</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-Union-Find/"><![CDATA[<p>여러개의 노드에서 임의의 두개의 노드가 연결되어 있는지를 판단할때 사용합니다.</p>
 
 <ul>
   <li>서로 연결되어 있는지?</li>
@@ -756,189 +819,65 @@ Prim 관련 문제 최소 스패닝 트리 <a href="https://www.acmicpc.net/prob
 
 </code></pre></div></div>
 
-<p><a href="https://blog.naver.com/ndb796/221230967614" target="_blank">참고 문헌 : 안경잡개발자 블로그</a></p>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Union-Find" /><category term="합집합" /><category term="소로소" /><summary type="html"><![CDATA[여러개의 노드에서 임의의 두개의 노드가 연결되어 있는지를 판단할때 사용합니다.]]></summary></entry><entry><title type="html">Git 명령어</title><link href="https://kimjaehyun.co.kr/etc/git-01/" rel="alternate" type="text/html" title="Git 명령어" /><published>2022-06-14T00:00:00-05:00</published><updated>2022-06-14T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/etc/git-01</id><content type="html" xml:base="https://kimjaehyun.co.kr/etc/git-01/"><![CDATA[<p>자주 쓰이는 Git을 정리해 봅시다. <br />
-<a href="https://git-scm.com/" target="_blank">Git-SCM</a> 다운로드</p>
+<p><a href="https://blog.naver.com/ndb796/221230967614" target="_blank">참고 문헌 : 안경잡개발자 블로그</a></p>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Union-Find" /><category term="합집합" /><category term="소로소" /><summary type="html"><![CDATA[여러개의 노드에서 임의의 두개의 노드가 연결되어 있는지를 판단할때 사용합니다.]]></summary></entry><entry><title type="html">[Java] Fibonacci, DP</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-dp-fibonacci/" rel="alternate" type="text/html" title="[Java] Fibonacci, DP" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-dp-fibonacci</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-dp-fibonacci/"><![CDATA[<p>피보나치 수열을 만드는 함수를 만들어보기. <br />
+<code class="language-plaintext highlighter-rouge">1, 1, 2, 3, 5, 8, 13, 21, 34, 55 </code>  <br />
+이전 2개의 값을 더해서 현재 값이 되는 패턴.  <br />
+<code class="language-plaintext highlighter-rouge">점화식: D[i] = D[i - 1] + D[i - 2]</code></p>
 
-<h1 id="git-기본">Git 기본</h1>
-<h2 id="github-clone">Github clone</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone 주소
-</code></pre></div></div>
-
-<h2 id="git-pullfetch">git pull/fetch</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># github의 변화를 로컬에 반영
-git fetch
-
-git pull 원격명 브랜치명
-git pull orign master
-
-</code></pre></div></div>
-
-<h2 id="git-정보-등록">git 정보 등록</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init 
-git config --global user.name "gildong.hong"
-git config --global user.email "xxxxx@xxxxxx"
-</code></pre></div></div>
-
-<h2 id="git-상태">git 상태</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
-git status -s (단축해서 보여짐)
-</code></pre></div></div>
-
-<h2 id="git-commit">git commit</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add -A
-git commit -m "first message"
-git status
-</code></pre></div></div>
-
-<h2 id="git-branch-생성">git branch 생성</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch 새브랜치 이름
-git branch      #생성 내용 확인
-git checkout 이동할_브랜치이름 (ex) git checkout master
-
-#생성과 동시에 이동
-git checkout -b 새브랜치이름
-git checkout -b 새브랜치이름 origin/my-branch
-</code></pre></div></div>
-<h2 id="git-branch-삭제">git branch 삭제</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch -D 브랜치이름
-</code></pre></div></div>
-
-<h2 id="git-원격-branch-삭제">git 원격 branch 삭제</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push -d 원격브랜치명
-git push -d origin my-branch
-</code></pre></div></div>
-
-<h2 id="git-branch-상태-확인">git branch 상태 확인</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch
-* master
-
-git branch -a	(로컬과 원격까지 보여줌)
-  remotes/origin/HEAD -&gt; origin/master
-  remotes/origin/master
-</code></pre></div></div>
-
-<h2 id="git-checkout">git checkout</h2>
-<p>원격 저장소 origin에 브랜치명을 새브랜치로 생성함.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout -b 새브랜치명 origin/브랜치명 
-</code></pre></div></div>
-
-<h2 id="git-상태-원복하기">git 상태 원복하기</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset 커밋아이디번호 --hard
-
-sourcetree의 경우 &gt; 오른쪽마우스 &gt; 이 시점까지 초기화 &gt; 옵션 Hard
-</code></pre></div></div>
-
-<h2 id="git-상태-잠시이동">git 상태 잠시이동</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git revert 커밋아이디번호
-
-sourcetree의 경우 &gt; 오른쪽마우스 &gt; 커밋 되돌리기
-</code></pre></div></div>
-
-<h1 id="git-스킬업">Git 스킬업</h1>
-<h2 id="git-병합">git 병합</h2>
-<p>A branch를 B Branch로 병합할 경우, B브랜치로 이동하여 merge 명령어를 실행함.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout master
-git merge 병합할 브랜치 ( 새브랜치를 -&gt; master에 병합한다는 의미)
-</code></pre></div></div>
-<h2 id="git-병합-충돌">git 병합 충돌</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-&lt;&lt;&lt;&lt;&lt; HEAD (현재 변경사항)
-text 내가 작성한 부분
-================	*wirter
-text 상대방이 작성한 부분
-&gt;&gt;&gt;&gt;&gt;&gt; dafqweradsfasdfsafa (수신 변경 사항)
-
-
-최종 병합 충돌이 생긴 파일을 모두 수정후
-git add
-git commit -m "text"
-
-</code></pre></div></div>
-
-<h2 id="git-부분-병합">git 부분 병합</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git cheery-pick 커밋아이디번호
-
-</code></pre></div></div>
-
-<h2 id="git-rebase">git rebase</h2>
-<p>병합 내용을 일렬로 만들어 주는 방법.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 상태 보기
-git log --graph --all --decorate
-
-# 모든 병합이 모두 1개의 history로 병합됨
-git rebase 브랜치명
-
-sourcetree의 경우 &gt; 오른쪽마우스 &gt; 재배치
-
-</code></pre></div></div>
-
-<h2 id="git-remote-수정-삭제">git remote 수정 삭제</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote -v
-origin http://192.168.0.100/저장소이름.git (fetch)
-origin http://192.168.0.100/저장소이름.git (push)
-
-git remote set-url origin http://192.168.0.200/저장소이름.git
-</code></pre></div></div>
-
-<h2 id="git-tag">git Tag</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git tag 생성할Tag명
-
-# 등록한 Tag리스트 
-git tag
-
-# 태그 전체를 리모트 저장소에 Push
-git push origin --tags
-
-#특정 태그 1개만 리모트 저장소에 Push
-git push origin 생성한Tag명
-
-</code></pre></div></div>
-
-<h2 id="git-예외-등록">git 예외 등록</h2>
-<p>몇 가지 작성 규칙이 있습니다.</p>
 <ul>
-  <li>’#’로 시작하는 라인은 무시, 주석 개념.</li>
-  <li><code class="language-plaintext highlighter-rouge">/</code> 는 하위 적용이 아님.</li>
-  <li><code class="language-plaintext highlighter-rouge">!</code> 로 시작하는 패턴은 무시히지 않음</li>
+  <li>재귀 호출에서 성능을 개선 할수 있는지?</li>
 </ul>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git 폴더 최상위에
-.gitignore
+<h2 id="sample-source-code">Sample Source Code</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Fibonacci</span><span class="o">{</span>
+	<span class="kd">static</span> <span class="kt">double</span><span class="o">[]</span> <span class="n">storedValue</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">dp</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
 
-gitignore sample
+		<span class="c1">//한번 구한 값을 저장하여 반환함</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">)</span> 
+			<span class="k">return</span> <span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
+		
+		<span class="c1">//새로 구하는 수는 계산 후 재 사용을 위해서 저장해놓음</span>
+		<span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
+	<span class="o">}</span>
+	
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dp</span><span class="o">(</span><span class="mi">50</span><span class="o">));</span> 
+	<span class="o">}</span>	
+<span class="o">}</span>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Fibonacci" /><category term="DP" /><category term="다이나믹 프로그래밍" /><category term="Dynamic Programming" /><summary type="html"><![CDATA[피보나치 수열을 만드는 함수를 만들어보기. 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 이전 2개의 값을 더해서 현재 값이 되는 패턴. 점화식: D[i] = D[i - 1] + D[i - 2]]]></summary></entry><entry><title type="html">[백준 11726]2×n 타일링, DP</title><link href="https://kimjaehyun.co.kr/baekjoon/java/baekjoon-Q11726-dp/" rel="alternate" type="text/html" title="[백준 11726]2×n 타일링, DP" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/baekjoon/java/baekjoon-Q11726-dp</id><content type="html" xml:base="https://kimjaehyun.co.kr/baekjoon/java/baekjoon-Q11726-dp/"><![CDATA[<p>패턴을 찾고 점화식을 세우는 문제.  <br />
+시간 복잡도 : O(N)  <br />
+<code class="language-plaintext highlighter-rouge">점화식 : An = An-1 + An-2</code></p>
 
-*.class
-!sample.class       #위에서 class모두 무시라고했는데, sample.class는 무시하지 않는다는 의미
+<p><a href="https://www.acmicpc.net/problem/11726" target="_blank">백준 Q11726</a></p>
 
-/test.java
+<h2 id="sample-source-code">Sample Source Code</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
 
-src/*.java
-doc/**/*.txt
-</code></pre></div></div>
-<p>최근에는 이렇게 한번에 생성해주는 사이트도 있습니다.   <br />
-<a href="https://www.toptal.com/developers/gitignore" target="_blank">gitignore.io</a></p>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
 
-<h1 id="github-활용">Github 활용</h1>
-<h2 id="등록">등록</h2>
-<p>github에서 Repository 생성시 하기 안내 명력어가 표시됨.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote  (원격 저장소 등록 내용 확인)
-git remote add origin https://github.com/xxxxx.git
-git push -u orign master	(origin 저장소에 master 브랜치명을 생성하여 등록함)
-</code></pre></div></div>
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">1001</span><span class="o">];</span>
 
-<h2 id="github-등록시-2개-이상의--git-ssh--등록-방법">github 등록시 2개 이상의  git ssh  등록 방법</h2>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-.ssh/config
-# Default account
-Host github.com-account1
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/git-addrss1/id_rsa
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">dp</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">)</span> <span class="k">return</span> <span class="mi">2</span><span class="o">;</span> <span class="c1">// n이 2일때 2가지 반환 Case 2가지</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
+		
+		<span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">]%</span><span class="mi">10007</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dp</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">()));</span>
+		<span class="c1">// 9 입력시 55 응답</span>
+	<span class="o">}</span>
+<span class="o">}</span>
 
-# Secondary account
-Host github.com-account2
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/git-addrss2/id_rsa
-
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="etc" /><category term="git" /><category term="githug" /><summary type="html"><![CDATA[자주 쓰이는 Git을 정리해 봅시다. Git-SCM 다운로드]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="baekjoon" /><category term="java" /><category term="DP" /><category term="다이나믹프로그래밍" /><category term="Q11726" /><category term="백준2667" /><summary type="html"><![CDATA[패턴을 찾고 점화식을 세우는 문제. 시간 복잡도 : O(N) 점화식 : An = An-1 + An-2]]></summary></entry></feed>
