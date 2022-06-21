@@ -609,7 +609,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#도형-그리기">도형 그리기</a><ul><li><a href="#text-그리기cv2puttext">Text 그리기(cv2.putText)</a></li><li><a href="#선-그리기cv2line">선 그리기(cv2.line)</a></li><li><a href="#사각형그리기cv2rectangle">사각형그리기(cv2.rectangle)</a></li><li><a href="#다각형그리기cv2polylines">다각형그리기(cv2.polylines)</a></li><li><a href="#원-타원-그리기cv2circle">원, 타원 그리기(cv2.circle)</a></li><li><a href="#호그리기cv2ellipse">호그리기(cv2.ellipse)</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#도형-그리기">도형 그리기</a><ul><li><a href="#text-그리기cv2puttext">Text 그리기(cv2.putText)</a></li><li><a href="#선-그리기cv2line">선 그리기(cv2.line)</a></li><li><a href="#사각형그리기cv2rectangle">사각형그리기(cv2.rectangle)</a></li><li><a href="#다각형그리기cv2polylines">다각형그리기(cv2.polylines)</a></li><li><a href="#원-타원-그리기cv2circle">원, 타원 그리기(cv2.circle)</a></li><li><a href="#호그리기cv2ellipse">호그리기(cv2.ellipse)</a></li><li><a href="#sample-code">Sample Code</a></li></ul></li></ul>
 
             </nav>
           </aside>
@@ -739,6 +739,248 @@
 <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
 </code></pre></div></div>
+
+<h2 id="sample-code">Sample Code</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">__version__</span><span class="p">)</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">512</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="p">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">99</span><span class="p">),</span> <span class="p">(</span><span class="mi">99</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>     
+    <span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">170</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> 
+    <span class="n">cv2</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">180</span><span class="p">),</span> <span class="mi">50</span> <span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 두께를 -1로 주면 원의 색이 모두 채워짐
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">260</span><span class="p">),(</span><span class="mi">50</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">360</span><span class="p">,</span> <span class="p">(</span><span class="mi">127</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">127</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">260</span><span class="p">,</span><span class="mi">360</span><span class="p">),(</span><span class="mi">70</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span> <span class="p">(</span><span class="mi">127</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">#회전
+</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">80</span><span class="p">,</span><span class="mi">10</span><span class="p">],[</span><span class="mi">125</span><span class="p">,</span><span class="mi">75</span><span class="p">],[</span><span class="mi">179</span><span class="p">,</span><span class="mi">10</span><span class="p">],[</span><span class="mi">230</span><span class="p">,</span><span class="mi">160</span><span class="p">],[</span><span class="mi">80</span><span class="p">,</span><span class="mi">90</span><span class="p">]],</span> <span class="n">np</span><span class="p">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="p">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">polylines</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="n">points</span><span class="p">],</span> <span class="bp">True</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span>
+
+    <span class="n">text1</span> <span class="o">=</span><span class="s">'Test Text'</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">text1</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">),</span> <span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'Lena'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>    
+    <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">(</span><span class="s">'Lena'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>  
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글</span></p>
+<ul>
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>
 
         
       </section>
