@@ -3,7 +3,7 @@ title: "[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경"
 categories: 
     - python
 tags: 
-    [python, opencv, cv2.imread, cv2.imwrite, cv2.COLOR_BGR2RGB]
+    [python, opencv, cv2.imread, cv2.imwrite, cv2.COLOR_BGR2RGB,'lecture-opencv']
 toc : true
 toc_sticky  : true    
 ---
@@ -165,7 +165,7 @@ plt.show()
 
 
 {% assign c-category = 'python' %}
-{% assign c-tag = 'opencv' %}
+{% assign c-tag = 'lecture-opencv' %}
 {% include /custom-ref.html %}
 
 

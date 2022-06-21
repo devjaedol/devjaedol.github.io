@@ -3,7 +3,7 @@ title: "[OpenCV] 윈도우 처리, 키이벤트"
 categories: 
     - python
 tags: 
-    [python, opencv, WINDOW_AUTOSIZE, WINDOW_NORMAL, waitKey, 'key event' ]
+    [python, opencv, WINDOW_AUTOSIZE, WINDOW_NORMAL, waitKey, 'key event','lecture-opencv' ]
 toc : true
 toc_sticky  : true    
 ---
@@ -51,5 +51,5 @@ cv2.moveWindow('win',x ,y)
 
 
 {% assign c-category = 'python' %}
-{% assign c-tag = 'opencv' %}
+{% assign c-tag = 'lecture-opencv' %}
 {% include /custom-ref.html %}

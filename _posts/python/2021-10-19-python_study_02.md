@@ -6,6 +6,7 @@ tags:
     - python강좌
     - python
     - 초급
+    - 'lecture-python-basic'
 toc : true
 toc_sticky  : true    
 ---
@@ -310,3 +311,7 @@ print(keyword.kwlist)
  'not', 'or', 'pass', 'raise', 'return', 'try', 
  'while', 'with', 'yield']
 ```
+
+{% assign c-category = 'python' %}
+{% assign c-tag = 'lecture-python-basic' %}
+{% include /custom-ref.html %}

@@ -3,7 +3,7 @@ title: "[OpenCV] 기본 도형 그리기"
 categories: 
     - python
 tags: 
-    [python, opencv, cv2.putText, cv2.line, cv2.rectangle, cv2.polylines, cv2.circle ]
+    [python, opencv, cv2.putText, cv2.line, cv2.rectangle, cv2.polylines, cv2.circle ,'lecture-opencv']
 toc : true
 toc_sticky  : true    
 ---
@@ -165,5 +165,5 @@ if __name__ == "__main__":
 
 
 {% assign c-category = 'python' %}
-{% assign c-tag = 'opencv' %}
+{% assign c-tag = 'lecture-opencv' %}
 {% include /custom-ref.html %}

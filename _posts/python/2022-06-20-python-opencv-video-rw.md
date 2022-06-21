@@ -3,7 +3,7 @@ title: "[OpenCV] 비디오/캠 불러오기, 저장하기"
 categories: 
     - python
 tags: 
-    [python, opencv, cv2.VideoCapture, cv2.VideoWriter_fourcc]
+    [python, opencv, cv2.VideoCapture, cv2.VideoWriter_fourcc,'lecture-opencv']
 toc : true
 toc_sticky  : true    
 ---
@@ -149,5 +149,5 @@ if __name__ == "__main__":
 
 
 {% assign c-category = 'python' %}
-{% assign c-tag = 'opencv' %}
+{% assign c-tag = 'lecture-opencv' %}
 {% include /custom-ref.html %}

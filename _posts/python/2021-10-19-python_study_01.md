@@ -6,6 +6,7 @@ tags:
     - python강좌
     - python
     - 초급
+    - 'lecture-python-basic'
 ---
 
 파이썬 공부를 시작해봅시다.   
@@ -44,6 +45,8 @@ tags:
 window path는 필요시 추가해야 합니다.
 
 
-
+{% assign c-category = 'python' %}
+{% assign c-tag = 'lecture-python-basic' %}
+{% include /custom-ref.html %}
 
 
