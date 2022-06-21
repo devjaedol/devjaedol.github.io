@@ -274,4 +274,22 @@ var store = [{
         "tags": ["python","opencv","WINDOW_AUTOSIZE","WINDOW_NORMAL","waitKey","key event"],
         "url": "/python/python-opencv-window-event/",
         "teaser": null
+      },{
+        "title": "Python 자료형 list 타입",
+        "excerpt":"순서가 있고, 중복이 허용되는 배열 형태의 자료형 입니다. list vs tuple vs dictionary vs set   list tuple dictionary set 순서 O O X X 중복 O O X X 변경 O X O O 형태 [1,2,3,4,5] (1,2,3,4,5) {“java”:10, “key”:5} {1, 2, 3} type &lt;class ‘list’&gt; &lt;class ‘tuple’&gt; &lt;class ‘dict’&gt;...","categories": ["python"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","list"],
+        "url": "/python/python_study_03_list/",
+        "teaser": null
+      },{
+        "title": "Python 자료형 tuple 타입",
+        "excerpt":"순서가 보장되고, 중복이 허용되나 변경은되지 않는 읽기 전용의 자료형 입니다. list vs tuple vs dictionary vs set   list tuple dictionary set 순서 O O X X 중복 O O X X 변경 O X O O 형태 [1,2,3,4,5] (1,2,3,4,5) {“java”:10, “key”:5} {1, 2, 3} type &lt;class ‘list’&gt; &lt;class ‘tuple’&gt;...","categories": ["python"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","list"],
+        "url": "/python/python_study_04_tuple/",
+        "teaser": null
+      },{
+        "title": "Python 자료형 dictionary 타입",
+        "excerpt":"key, value 형태의 순서와 중복이 보장되지 않는 자료형 입니다. list vs tuple vs dictionary vs set   list tuple dictionary set 순서 O O X X 중복 O O X X 변경 O X O O 형태 [1,2,3,4,5] (1,2,3,4,5) {“java”:10, “key”:5} {1, 2, 3} type &lt;class ‘list’&gt; &lt;class ‘tuple’&gt; &lt;class...","categories": ["python"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","list"],
+        "url": "/python/python_study_05_dictionary/",
+        "teaser": null
       }]

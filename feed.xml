@@ -1,4 +1,1963 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-21T05:11:13-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</title><link href="https://kimjaehyun.co.kr/python/python-opencv-image-rw/" rel="alternate" type="text/html" title="[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-image-rw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-image-rw/"><![CDATA[<p>OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-21T09:28:09-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Python 자료형 list 타입</title><link href="https://kimjaehyun.co.kr/python/python_study_03_list/" rel="alternate" type="text/html" title="Python 자료형 list 타입" /><published>2022-06-21T00:00:00-05:00</published><updated>2022-06-21T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_03_list</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_03_list/"><![CDATA[<p>순서가 있고, 중복이 허용되는 배열 형태의 자료형 입니다.</p>
+
+<h1 id="list-vs-tuple-vs-dictionary-vs-set">list vs tuple vs dictionary vs set</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">list</th>
+      <th style="text-align: center">tuple</th>
+      <th style="text-align: center">dictionary</th>
+      <th style="text-align: center">set</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">순서</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">중복</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">변경</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">형태</td>
+      <td style="text-align: center">[1,2,3,4,5]</td>
+      <td style="text-align: center">(1,2,3,4,5)</td>
+      <td style="text-align: center">{“java”:10, “key”:5}</td>
+      <td style="text-align: center">{1, 2, 3}</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">type</td>
+      <td style="text-align: center">&lt;class ‘list’&gt;</td>
+      <td style="text-align: center">&lt;class ‘tuple’&gt;</td>
+      <td style="text-align: center">&lt;class ‘dict’&gt;</td>
+      <td style="text-align: center">&lt;class ‘set’&gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>형태 <code class="language-plaintext highlighter-rouge">[값, 값, .... 값, 값]</code> 의 배열 형태의 자료형  <br />
+예)
+ <code class="language-plaintext highlighter-rouge">a = [1, 3, 5, 7, 10]</code> <br />
+ <code class="language-plaintext highlighter-rouge">a = ['A', 'B', 'C', 'C', 'D']</code> <br />
+ <code class="language-plaintext highlighter-rouge">a = ['A', 1, 2, True, False, 'D']</code></p>
+
+<h1 id="기본-사용법">기본 사용법</h1>
+<h2 id="연산">연산</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>    <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</span><span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>    <span class="c1"># [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># 1
+</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="c1"># 5
+</span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">))</span><span class="c1"># 15
+</span>
+</code></pre></div></div>
+
+<h2 id="슬라이싱">슬라이싱</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span> <span class="c1">#[이상:미만]
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>     <span class="c1"># [3, 5]
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>      <span class="c1"># [1, 3]
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>      <span class="c1"># [7, 10]
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span>       <span class="c1"># 전체
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    <span class="c1"># [1, 3, 5, 7]
+</span>
+<span class="c1"># [이상:미만:스탭단계]
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># [1, 3, 5]
+</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>     <span class="c1"># [10, 7, 5, 3, 1] Reverse
+</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="추가-삭제">추가, 삭제</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s">"AB"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="bp">False</span><span class="p">]</span>
+<span class="n">b</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mf">50.5</span><span class="p">)</span>  <span class="c1"># 추가  ['AB', 10, False, 50.5]
+</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>       <span class="c1"># 변경  ['AB', 11, False, 50.5]
+</span><span class="k">del</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>        <span class="c1"># 삭제  ['AB', 11, 50.5]
+</span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>        <span class="c1"># ['AB', 11, 50.5]
+</span>
+</code></pre></div></div>
+
+<h2 id="split">split</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mylist</span> <span class="o">=</span> <span class="s">"Today the weather is very clear."</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span> <span class="c1"># ['Today', 'the', 'weather', 'is', 'very', 'clear.']
+</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">mylist</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="s">'weather'</span><span class="p">)</span>  <span class="c1"># i = 2
+</span><span class="n">n</span> <span class="o">=</span> <span class="n">mylist</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">'very'</span><span class="p">)</span>    <span class="c1"># n = 1
+</span><span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># 2 1
+</span></code></pre></div></div>
+
+<h2 id="표현식-for-요소-in-컬렉션-if-조건식">[표현식 for 요소 in 컬렉션 [if 조건식]]</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span>    <span class="c1"># [0, 9, 36, 81]
+</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span>  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span>    <span class="c1"># [0, 3, 6, 9]
+</span>
+</code></pre></div></div>
+
+<h2 id="배열-초기화">배열 초기화</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">len</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span>
+<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1">#[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+</span>
+
+<span class="nb">len</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span>
+<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="c1">#[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+</span></code></pre></div></div>
+
+<h2 id="배열-순회">배열 순회</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="c1"># [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="s">'ABCDE'</span>
+<span class="k">print</span><span class="p">([</span><span class="n">c</span> <span class="o">*</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">])</span> <span class="c1">#['AAA', 'BBB', 'CCC', 'DDD', 'EEE']
+</span>
+</code></pre></div></div>
+
+<h2 id="배열-재선언">배열 재선언</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># 1~10까지 중 2로 나눈 나머지 0인 아이템만 arr로 재선언
+</span><span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [2, 4, 6, 8, 10]
+</span>
+<span class="c1"># 1부터 30 까지 2의 배수 AND 3의 배수 , 조건은 모두 AND로 이어짐.
+</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [6, 12, 18, 24, 30]
+</span>
+<span class="c1"># arr = [n for n in range(1, 31) if n % 2 == 0 and if n % 3 == 0] 
+# SyntaxError: invalid syntax   And를 직접 넣는 것은 허용이 되지 않음
+</span>
+<span class="c1"># 1부터 30 까지 2의 배수 OR 3의 배수 
+</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="c1"># 한 if 문 내에서 or 연산 해결
+</span><span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [2, 3, 4, 6, 8, 9, 10, 12, 14, 15
+</span>
+</code></pre></div></div>
+
+<h2 id="2중-배열">2중 배열</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
+       <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+      <span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>     <span class="c1"># 4     행
+</span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  <span class="c1"># 3     열
+</span>
+<span class="c1"># 1차원 배열로 변환
+</span><span class="n">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">arr</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">arr1</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+</span>
+<span class="n">arr2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+        <span class="n">arr2</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span>  <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+</span>
+</code></pre></div></div>
+
+<h2 id="집계-함수">집계 함수</h2>
+<h3 id="sum-min-max">sum, min, max</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="c1"># 15
+</span><span class="k">print</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="c1"># 1
+</span><span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="c1"># 5
+</span>
+</code></pre></div></div>
+
+<h2 id="정렬">정렬</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [1, 2, 6, 3, 2, 6, 8, 9]
+</span>
+<span class="n">a</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>    
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [1, 2, 2, 3, 6, 6, 8, 9]
+</span>
+<span class="n">a</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [9, 8, 6, 6, 3, 2, 2, 1]
+</span>
+</code></pre></div></div>
+
+<h2 id="list---set-변환중복-제거">list - set 변환(중복 제거)</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#set으로 변경함
+</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>  <span class="c1"># &lt;class 'set'&gt;
+</span><span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>    <span class="c1"># {1, 2, 3, 6, 8, 9}
+</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1"># &lt;class 'list'&gt;
+</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>   <span class="c1"># [1, 2, 3, 6, 8, 9]
+</span></code></pre></div></div>
+
+<h2 id="list-to-string">list to string</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">a</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># 12632689
+</span></code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_05_dictionary/">Python 자료형 dictionary 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_04_tuple/">Python 자료형 tuple 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_03_list/">Python 자료형 list 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="list" /><summary type="html"><![CDATA[순서가 있고, 중복이 허용되는 배열 형태의 자료형 입니다.]]></summary></entry><entry><title type="html">Python 자료형 dictionary 타입</title><link href="https://kimjaehyun.co.kr/python/python_study_05_dictionary/" rel="alternate" type="text/html" title="Python 자료형 dictionary 타입" /><published>2022-06-21T00:00:00-05:00</published><updated>2022-06-21T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_05_dictionary</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_05_dictionary/"><![CDATA[<p>key, value 형태의 순서와 중복이 보장되지 않는 자료형 입니다.</p>
+
+<h1 id="list-vs-tuple-vs-dictionary-vs-set">list vs tuple vs dictionary vs set</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">list</th>
+      <th style="text-align: center">tuple</th>
+      <th style="text-align: center">dictionary</th>
+      <th style="text-align: center">set</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">순서</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">중복</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">변경</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">형태</td>
+      <td style="text-align: center">[1,2,3,4,5]</td>
+      <td style="text-align: center">(1,2,3,4,5)</td>
+      <td style="text-align: center">{“java”:10, “key”:5}</td>
+      <td style="text-align: center">{1, 2, 3}</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">type</td>
+      <td style="text-align: center">&lt;class ‘list’&gt;</td>
+      <td style="text-align: center">&lt;class ‘tuple’&gt;</td>
+      <td style="text-align: center">&lt;class ‘dict’&gt;</td>
+      <td style="text-align: center">&lt;class ‘set’&gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>형태 <code class="language-plaintext highlighter-rouge">{key:value, key:value,....}</code> 의 <code class="language-plaintext highlighter-rouge">json</code> 형태의 자료형  <br />
+예)  <br />
+ <code class="language-plaintext highlighter-rouge">a = {"배철수": 90, "안철수": 85, "인순이": 80}</code></p>
+
+<h1 id="기본-사용법">기본 사용법</h1>
+<h2 id="인덱스">인덱스</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s">"배철수"</span><span class="p">])</span>  <span class="c1"># 90
+</span>
+<span class="c1"># key=value형태로 생성
+</span><span class="n">dic</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>  <span class="c1"># {'a': 80, 'b': 90, 'c': 85}
+</span>
+</code></pre></div></div>
+
+<h2 id="수정-삭제">수정, 삭제</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+
+<span class="n">a</span><span class="p">[</span><span class="s">"배철수"</span><span class="p">]</span><span class="o">=</span> <span class="mi">100</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {'배철수': 100, '안철수': 85, '인순이': 80}
+</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+<span class="n">a</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">})</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># {'배철수': 90, '안철수': 80, '인순이': 80}
+</span>
+<span class="k">del</span><span class="p">[</span><span class="s">"배철수"</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {'안철수': 80, '인순이': 80}
+</span>
+</code></pre></div></div>
+
+<h2 id="수정-삭제-예외-처리">수정 삭제 예외 처리</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">scores</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"배철수"</span><span class="p">)</span>  <span class="c1"># 100
+</span><span class="n">v</span> <span class="o">=</span> <span class="n">scores</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"홍길동"</span><span class="p">)</span>  <span class="c1"># None
+#v = scores["홍길동"]      # 에러 발생
+</span><span class="k">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>        <span class="c1"># None
+</span><span class="k">print</span><span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="bp">None</span> <span class="p">)</span>   <span class="c1"># True
+</span>
+<span class="k">if</span> <span class="s">"인순이"</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"인순이 점수 : %d "</span><span class="o">%</span><span class="n">scores</span><span class="p">[</span><span class="s">"인순이"</span><span class="p">])</span> <span class="c1"># 인순이 점수 : 80 
+</span> 
+<span class="n">scores</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>  <span class="c1"># 모두 삭제
+</span><span class="k">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="c1"># {}
+</span>
+</code></pre></div></div>
+
+<h2 id="포함-판단-in">포함 판단 in</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+<span class="s">"배철수"</span> <span class="ow">in</span> <span class="n">a</span>   <span class="c1"># True
+</span>
+</code></pre></div></div>
+
+<h2 id="순회">순회</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+ 
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"%s : %d"</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
+
+<span class="c1">#출력
+</span><span class="n">배철수</span> <span class="p">:</span> <span class="mi">90</span>
+<span class="n">안철수</span> <span class="p">:</span> <span class="mi">85</span>
+<span class="n">인순이</span> <span class="p">:</span> <span class="mi">80</span>
+</code></pre></div></div>
+
+<h2 id="keys-values">keys, values</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+ 
+<span class="c1"># keys
+</span><span class="n">keys</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+<span class="c1"># 출력
+</span><span class="n">배철수</span>
+<span class="n">안철수</span>
+<span class="n">인순이</span>
+
+
+<span class="c1"># values
+</span><span class="n">values</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">values</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+<span class="c1"># 출력
+</span><span class="mi">90</span>
+<span class="mi">85</span>
+<span class="mi">80</span>
+
+</code></pre></div></div>
+
+<h2 id="keys">keys</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+<span class="n">sort_a</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sort_a</span><span class="p">)</span> <span class="c1"># ['배철수', '안철수', '인순이']
+</span>
+</code></pre></div></div>
+
+<h2 id="values">values</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sort_a</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">values</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sort_a</span><span class="p">)</span> <span class="c1"># [60, 75, 80]
+</span>
+<span class="n">sort_a</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sort_a</span><span class="p">)</span> <span class="c1"># [80, 75, 60]
+</span>
+</code></pre></div></div>
+
+<h2 id="lambda-정렬">(Lambda) 정렬</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">obj</span> <span class="o">=</span><span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">75</span><span class="p">}</span>
+<span class="n">sort_desc_obj</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#x[0] key, x[1] value
+</span><span class="k">print</span><span class="p">(</span><span class="n">sort_desc_obj</span><span class="p">)</span>
+<span class="c1"># [('배철수', 80), ('안철수', 60), ('인순이', 75)]
+</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">75</span><span class="p">}</span>
+<span class="n">sort_desc_obj</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#x[0] key, x[1] value
+</span><span class="k">print</span><span class="p">(</span><span class="n">sort_desc_obj</span><span class="p">)</span>
+<span class="c1"># [('안철수', 60), ('인순이', 75), ('배철수', 80)]
+</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">75</span><span class="p">}</span>
+<span class="n">sort_desc_obj</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1">#x[0] key, x[1] value
+</span><span class="k">print</span><span class="p">(</span><span class="n">sort_desc_obj</span><span class="p">)</span>
+<span class="c1"># [('배철수', 80), ('인순이', 75), ('안철수', 60)]
+</span></code></pre></div></div>
+
+<h2 id="dict-key-value-를--value--key--형태로-변환">dict key, value 를  value : key  형태로 변환</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">id_name</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s">'배철수'</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s">'안철수'</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s">'인순이'</span><span class="p">}</span>
+<span class="n">name_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">:</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">id_name</span><span class="p">.</span><span class="n">items</span><span class="p">()}</span> 
+<span class="k">print</span><span class="p">(</span><span class="n">name_id</span><span class="p">)</span>  <span class="c1"># {'배철수': 1, '안철수': 2, '인순이': 3}
+</span></code></pre></div></div>
+
+<h2 id="두-리스트를-하나의-dict로-변환">두 리스트를 하나의 dict로 변환</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">list_k</span> <span class="o">=</span> <span class="p">[</span><span class="s">'aaa'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">,</span> <span class="s">'ccc'</span><span class="p">,</span> <span class="s">'ddd'</span><span class="p">]</span>
+<span class="n">list_v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">new_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">list_k</span><span class="p">,</span> <span class="n">list_v</span><span class="p">)}</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">new_dict</span><span class="p">))</span>   <span class="c1"># &lt;class 'dict'&gt;
+</span><span class="k">print</span><span class="p">(</span><span class="n">new_dict</span><span class="p">)</span>  <span class="c1"># {'aaa': 10, 'bbb': 20, 'ccc': 30, 'ddd': 40}
+</span>
+</code></pre></div></div>
+
+<h2 id="dict-to-tuple-변환">dict to tuple 변환</h2>
+<p>dict의 items()는 Dictonary의 키-값 쌍 Tuple 들로 구성된 dict_items 객체를 리턴</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">75</span><span class="p">}</span>
+ 
+<span class="n">items</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">items</span><span class="p">()</span>    <span class="c1"># sorted(a.items()) 정렬지원
+</span><span class="k">print</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="c1"># dict_items([('배철수', 80), ('안철수', 60), ('인순이', 75)])
+</span>
+<span class="c1"># dict_items를 리스트로 변환할 때
+</span><span class="n">itemsList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">itemsList</span><span class="p">)</span> <span class="c1"># [('배철수', 80), ('안철수', 60), ('인순이', 75)]
+</span>
+</code></pre></div></div>
+
+<h2 id="tuple-to-dict-변환">tuple to dict 변환</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">persons</span> <span class="o">=</span> <span class="p">[(</span><span class="s">'배철수'</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="s">'안철수'</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="s">'인순이'</span><span class="p">,</span> <span class="mi">75</span><span class="p">)]</span>
+<span class="n">mydict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">persons</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mydict</span><span class="p">)</span>   <span class="c1"># {'배철수': 80, '안철수': 60, '인순이': 75}
+</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_05_dictionary/">Python 자료형 dictionary 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_04_tuple/">Python 자료형 tuple 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_03_list/">Python 자료형 list 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="list" /><summary type="html"><![CDATA[key, value 형태의 순서와 중복이 보장되지 않는 자료형 입니다.]]></summary></entry><entry><title type="html">Python 자료형 tuple 타입</title><link href="https://kimjaehyun.co.kr/python/python_study_04_tuple/" rel="alternate" type="text/html" title="Python 자료형 tuple 타입" /><published>2022-06-21T00:00:00-05:00</published><updated>2022-06-21T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_04_tuple</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_04_tuple/"><![CDATA[<p>순서가 보장되고, 중복이 허용되나 변경은되지 않는 읽기 전용의 자료형 입니다.</p>
+
+<h1 id="list-vs-tuple-vs-dictionary-vs-set">list vs tuple vs dictionary vs set</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">list</th>
+      <th style="text-align: center">tuple</th>
+      <th style="text-align: center">dictionary</th>
+      <th style="text-align: center">set</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">순서</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">중복</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">변경</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">형태</td>
+      <td style="text-align: center">[1,2,3,4,5]</td>
+      <td style="text-align: center">(1,2,3,4,5)</td>
+      <td style="text-align: center">{“java”:10, “key”:5}</td>
+      <td style="text-align: center">{1, 2, 3}</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">type</td>
+      <td style="text-align: center">&lt;class ‘list’&gt;</td>
+      <td style="text-align: center">&lt;class ‘tuple’&gt;</td>
+      <td style="text-align: center">&lt;class ‘dict’&gt;</td>
+      <td style="text-align: center">&lt;class ‘set’&gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>형태 <code class="language-plaintext highlighter-rouge">(값, 값...., 값)</code> 의 형태의 자료형, 읽기 전용  <br />
+예)
+ <code class="language-plaintext highlighter-rouge">a = (1, 2, 3, 4, 5)</code> <br />
+ <code class="language-plaintext highlighter-rouge">a = ("AB", 10, False)</code></p>
+
+<h1 id="기본-사용법">기본 사용법</h1>
+<h2 id="인덱스">인덱스</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="s">"AB"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>    <span class="c1"># ('AB', 10, False)
+</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+ 
+<span class="c1"># 인덱스
+</span><span class="n">second</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>      <span class="c1"># 5
+</span><span class="n">last</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>       <span class="c1"># 10
+</span> 
+<span class="c1"># 슬라이스
+</span><span class="n">s</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>         <span class="c1"># (5)
+</span><span class="n">s</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>          <span class="c1"># (5, 10)
+</span>
+</code></pre></div></div>
+<h2 id="연산-반복">연산, 반복</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>   <span class="c1"># (1, 2, 3, 4, 5)
+</span>
+<span class="c1"># 반복
+</span><span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>   <span class="c1"># (1, 2, 1, 2, 1, 2)
+</span></code></pre></div></div>
+
+<h2 id="변수-할당">변수 할당</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># 1
+</span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>    <span class="c1"># A
+</span><span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>    <span class="c1"># False
+</span></code></pre></div></div>
+
+<h2 id="tuple-to-dict-변환">tuple to dict 변환</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">age_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s">'철수'</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="s">'영희'</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="s">'순희'</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s">'인숙'</span><span class="p">,</span> <span class="mi">14</span><span class="p">)]</span>
+<span class="n">age_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">age_tuples</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">age_dict</span><span class="p">))</span>   <span class="c1"># &lt;class 'dict'&gt;
+</span><span class="k">print</span><span class="p">(</span><span class="n">age_dict</span><span class="p">)</span> <span class="c1">#  {'철수': 18, '영희': 16, '순희': 20, '인숙': 14}
+</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_05_dictionary/">Python 자료형 dictionary 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_04_tuple/">Python 자료형 tuple 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_03_list/">Python 자료형 list 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="list" /><summary type="html"><![CDATA[순서가 보장되고, 중복이 허용되나 변경은되지 않는 읽기 전용의 자료형 입니다.]]></summary></entry><entry><title type="html">[OpenCV] 비디오/캠 불러오기, 저장하기</title><link href="https://kimjaehyun.co.kr/python/python-opencv-video-rw/" rel="alternate" type="text/html" title="[OpenCV] 비디오/캠 불러오기, 저장하기" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-video-rw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-video-rw/"><![CDATA[<p>비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다.</p>
+
+<h1 id="비디오-처리">비디오 처리</h1>
+
+<h2 id="비디오-파일-불러오기">비디오 파일 불러오기</h2>
+<p>영상을 읽어오기 위해서는 <code class="language-plaintext highlighter-rouge">cv2.VideoCapture</code> 메소드를 사용합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="n">video_file</span> <span class="o">=</span><span class="s">'sample.avi'</span>
+
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">video_file</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>       <span class="c1"># ret는 bool값으로 읽기가 성공일때 true를 반환
+</span>        <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
+            <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">video_file</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>   <span class="c1">#25ms 단위로 키 입력을 대기함.
+</span>                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'cant open video.'</span><span class="p">)</span>
+<span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>
+<p>위 소스에서 <code class="language-plaintext highlighter-rouge">cv2.waitKey(25)</code> 에서 25의 경우, 25ms을 의미하며,   <br />
+<code class="language-plaintext highlighter-rouge">25 = 1000 / 40</code> 즉, 40fps 의 값을 의미합니다. <br />
+동영상 파일이 40fps가 많아서 해당 값을 사용합니다.</p>
+
+<h2 id="캠-영상-불러오기">캠 영상 불러오기</h2>
+<p>연결된 장치의 캠에서 영상을 불러옵니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#연결된 장치의 순서에 따라서 번호는 다를수 있음 0,1,2....
+</span><span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
+            <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'CAMERA Window'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'프레임없음'</span><span class="p">)</span>
+            <span class="k">break</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'카메라 열기 실패'</span><span class="p">)</span>
+<span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="캠-영상-저장하기">캠 영상 저장하기</h2>
+<p>카메라 오픈 후 개별 frame정보를 저장하는 방식으로 영상을 저장 합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="s">'path/sample.avi'</span>
+    <span class="n">fps</span> <span class="o">=</span> <span class="mf">25.40</span>
+    <span class="n">fourcc</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s">'DIVX'</span><span class="p">)</span> 
+    <span class="n">width</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">)</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">)</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">fourcc</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>     <span class="c1">#비디오에 대한 영역만 읽어옴, Sound 미포함.
+</span>        <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
+            <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'REC'</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+            <span class="n">out</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">fps</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'frame 정보 없음'</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="n">out</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'카메라 열기 실패'</span><span class="p">)</span>
+<span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">fourcc = cv2.VideoWriter_fourcc(*'DIVX')</code> 부분은 저장 코덱을 선정하는 부분으로 다양한 코덱을 선정 할 수 있습니다.</p>
+<ul>
+  <li>(*‘DIVX’)DivxX mepg-4</li>
+  <li>(*‘FMP4’)  FFMPEG</li>
+  <li>(*‘WMV2’)  Window Media video8 코덱</li>
+  <li>(*‘X264’)  H.264</li>
+</ul>
+
+<p>cap 객체를 통해서 아래 추가가 값을 조회(get)/설정(set) 할수 있습니다.</p>
+<ul>
+  <li>cv2.CAP_PROP_FRAME_WIDTH : 프레임 폭</li>
+  <li>cv2.CAP_PROP_FRAME_HEIGHT : 프레임 높이</li>
+  <li>cv2.CAP_PROP_FPS : 초당 프레임 수</li>
+  <li>cv2/CAP_PROP_FOURCC : 동영상 파일의 코덱문자</li>
+  <li>cv2.CAP_PROP_POS_MSEC : 동영상 파일의 프레임 위치(ms)</li>
+  <li>cv2.CAP_PROP_POS_AVI_RATIO : 동영상 파일의 상대 위치(0:시작, 1:끝)</li>
+  <li>cv2.CAP_PROP_AUTOFOCUS : 카메라 자동 초점 조절</li>
+  <li>cv2.CAP_PROP_ZOOM : 카메라 줌</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fps</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FPS</span><span class="p">)</span>
+<span class="n">delay</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">fps</span><span class="p">)</span> 
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+</code></pre></div></div>
+<h2 id="비디오-정지-화면-저장">비디오 정지 화면 저장</h2>
+<p>비디오 소스에서 정지 화면 저장하기</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
+        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">False</span><span class="p">;</span>
+
+    <span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Color Image RGB'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>  
+
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.VideoCapture" /><category term="cv2.VideoWriter_fourcc" /><summary type="html"><![CDATA[비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다.]]></summary></entry><entry><title type="html">[OpenCV] 윈도우 처리, 키이벤트</title><link href="https://kimjaehyun.co.kr/python/python-opencv-window-event/" rel="alternate" type="text/html" title="[OpenCV] 윈도우 처리, 키이벤트" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-window-event</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-window-event/"><![CDATA[<p>OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다.</p>
+
+<h1 id="윈도우-관리">윈도우 관리</h1>
+<h2 id="cv2namedwindow이름--opt">cv2.namedWindow(‘이름’ [, opt])</h2>
+<p>윈도의 이름을 설정합니다. <br />
+ opt 옵션 값</p>
+<ul>
+  <li>cv2.WINDOW_NORMAL : 사용자 창 크기 조절 가능</li>
+  <li>cv2.WINDOW_AUTOSIZE : 이미지와 같은 크기, 창 크기 재조정 불 가능</li>
+</ul>
+
+<h2 id="cv2movewindow이름-x--y">cv2.moveWindow(‘이름’, x , y)</h2>
+<p>x, y의 좌표로 이름에 해당하는 창이 이동합니다.</p>
+
+<h2 id="cv2destorywindow이름">cv2.destoryWindow(‘이름’)</h2>
+<p>특정 이름의 윈도으를 닫습니다.</p>
+
+<h2 id="cv2destoryallwindows">cv2.destoryAllWindows()</h2>
+<p>모든 윈도의 창을 닫습니다.</p>
+
+<h1 id="이벤트-관리">이벤트 관리</h1>
+<p><code class="language-plaintext highlighter-rouge">waitKey</code>를 통해서 키 이벤트를 처리 할 수 있습니다.
+<code class="language-plaintext highlighter-rouge">if cv2.waitKey(0) == ord('k')</code> 키보드 <code class="language-plaintext highlighter-rouge">k</code> 를 찾을 수 있습니다. <code class="language-plaintext highlighter-rouge">ord</code> 함수를 통해서 ascii 변환 처리를 진행함.  <br />
+64bit 일부 환경에서 ascii 변환시 오류 방지를 위해서 8bit 마스크를 진행함.  <br />
+<code class="language-plaintext highlighter-rouge">if (cv2.waitKey(0) &amp; 0xFF) == ord('k')</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">k</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+<span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">char</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'d'</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=+</span> <span class="mi">100</span>
+<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'w'</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=+</span> <span class="mi">100</span>
+<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=-</span> <span class="mi">100</span>
+<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=-</span> <span class="mi">100</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="s">'win'</span><span class="p">,</span><span class="n">x</span> <span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="WINDOW_AUTOSIZE" /><category term="WINDOW_NORMAL" /><category term="waitKey" /><category term="key event" /><summary type="html"><![CDATA[OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다.]]></summary></entry><entry><title type="html">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</title><link href="https://kimjaehyun.co.kr/python/python-opencv-image-rw/" rel="alternate" type="text/html" title="[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-image-rw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-image-rw/"><![CDATA[<p>OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다.</p>
 <ul>
   <li>1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함</li>
   <li>2000년 알파 버전 공개</li>
@@ -159,40 +2118,6 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
         
              
         
-              
-                <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-              
-                <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-              
-                <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
              
         
              
@@ -204,68 +2129,6 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
       
 
     
-        
-             
-        
-              
-                <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
         
              
         
@@ -289,121 +2152,9 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
         
              
         
-      
-
-    
-        
-             
-        
              
         
       
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.imread" /><category term="cv2.imwrite" /><category term="cv2.COLOR_BGR2RGB" /><summary type="html"><![CDATA[OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다. 1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함 2000년 알파 버전 공개 2005년 베타 버전 공개 2006년 10월 v1.0 정식 버전 공개 2009년 9월 v2.0 공개 2010년 12월 v2.2 공개 2011년 7월 v2.3 공개(안드로이드 지원, cv-&gt; cv2변경) 2015년 6월 v3.0 공개 2019년 1월 v4.0 공개]]></summary></entry><entry><title type="html">[OpenCV] 윈도우 처리, 키이벤트</title><link href="https://kimjaehyun.co.kr/python/python-opencv-window-event/" rel="alternate" type="text/html" title="[OpenCV] 윈도우 처리, 키이벤트" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-window-event</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-window-event/"><![CDATA[<p>OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다.</p>
-
-<h1 id="윈도우-관리">윈도우 관리</h1>
-<h2 id="cv2namedwindow이름--opt">cv2.namedWindow(‘이름’ [, opt])</h2>
-<p>윈도의 이름을 설정합니다. <br />
- opt 옵션 값</p>
-<ul>
-  <li>cv2.WINDOW_NORMAL : 사용자 창 크기 조절 가능</li>
-  <li>cv2.WINDOW_AUTOSIZE : 이미지와 같은 크기, 창 크기 재조정 불 가능</li>
-</ul>
-
-<h2 id="cv2movewindow이름-x--y">cv2.moveWindow(‘이름’, x , y)</h2>
-<p>x, y의 좌표로 이름에 해당하는 창이 이동합니다.</p>
-
-<h2 id="cv2destorywindow이름">cv2.destoryWindow(‘이름’)</h2>
-<p>특정 이름의 윈도으를 닫습니다.</p>
-
-<h2 id="cv2destoryallwindows">cv2.destoryAllWindows()</h2>
-<p>모든 윈도의 창을 닫습니다.</p>
-
-<h1 id="이벤트-관리">이벤트 관리</h1>
-<p><code class="language-plaintext highlighter-rouge">waitKey</code>를 통해서 키 이벤트를 처리 할 수 있습니다.
-<code class="language-plaintext highlighter-rouge">if cv2.waitKey(0) == ord('k')</code> 키보드 <code class="language-plaintext highlighter-rouge">k</code> 를 찾을 수 있습니다. <code class="language-plaintext highlighter-rouge">ord</code> 함수를 통해서 ascii 변환 처리를 진행함.  <br />
-64bit 일부 환경에서 ascii 변환시 오류 방지를 위해서 8bit 마스크를 진행함.  <br />
-<code class="language-plaintext highlighter-rouge">if (cv2.waitKey(0) &amp; 0xFF) == ord('k')</code></p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">k</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
-<span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">char</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'d'</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=+</span> <span class="mi">100</span>
-<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'w'</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=+</span> <span class="mi">100</span>
-<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=-</span> <span class="mi">100</span>
-<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=-</span> <span class="mi">100</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="s">'win'</span><span class="p">,</span><span class="n">x</span> <span class="p">,</span><span class="n">y</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p><span class="nav__sub-title">관련된 글</span></p>
-<ul>
 
     
         
@@ -609,353 +2360,7 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="WINDOW_AUTOSIZE" /><category term="WINDOW_NORMAL" /><category term="waitKey" /><category term="key event" /><summary type="html"><![CDATA[OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다.]]></summary></entry><entry><title type="html">[OpenCV] 비디오/캠 불러오기, 저장하기</title><link href="https://kimjaehyun.co.kr/python/python-opencv-video-rw/" rel="alternate" type="text/html" title="[OpenCV] 비디오/캠 불러오기, 저장하기" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-video-rw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-video-rw/"><![CDATA[<p>비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다.</p>
-
-<h1 id="비디오-처리">비디오 처리</h1>
-
-<h2 id="비디오-파일-불러오기">비디오 파일 불러오기</h2>
-<p>영상을 읽어오기 위해서는 <code class="language-plaintext highlighter-rouge">cv2.VideoCapture</code> 메소드를 사용합니다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
-
-<span class="n">video_file</span> <span class="o">=</span><span class="s">'sample.avi'</span>
-
-<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">video_file</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>       <span class="c1"># ret는 bool값으로 읽기가 성공일때 true를 반환
-</span>        <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
-            <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">video_file</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>   <span class="c1">#25ms 단위로 키 입력을 대기함.
-</span>                <span class="k">break</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">break</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'cant open video.'</span><span class="p">)</span>
-<span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
-</code></pre></div></div>
-<p>위 소스에서 <code class="language-plaintext highlighter-rouge">cv2.waitKey(25)</code> 에서 25의 경우, 25ms을 의미하며,   <br />
-<code class="language-plaintext highlighter-rouge">25 = 1000 / 40</code> 즉, 40fps 의 값을 의미합니다. <br />
-동영상 파일이 40fps가 많아서 해당 값을 사용합니다.</p>
-
-<h2 id="캠-영상-불러오기">캠 영상 불러오기</h2>
-<p>연결된 장치의 캠에서 영상을 불러옵니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
-
-<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#연결된 장치의 순서에 따라서 번호는 다를수 있음 0,1,2....
-</span><span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
-            <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'CAMERA Window'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="k">break</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">'프레임없음'</span><span class="p">)</span>
-            <span class="k">break</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'카메라 열기 실패'</span><span class="p">)</span>
-<span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
-</code></pre></div></div>
-
-<h2 id="캠-영상-저장하기">캠 영상 저장하기</h2>
-<p>카메라 오픈 후 개별 frame정보를 저장하는 방식으로 영상을 저장 합니다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
-
-<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="s">'path/sample.avi'</span>
-    <span class="n">fps</span> <span class="o">=</span> <span class="mf">25.40</span>
-    <span class="n">fourcc</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s">'DIVX'</span><span class="p">)</span> 
-    <span class="n">width</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">)</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">)</span>
-    <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">fourcc</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>     <span class="c1">#비디오에 대한 영역만 읽어옴, Sound 미포함.
-</span>        <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
-            <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'REC'</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
-            <span class="n">out</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">fps</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="k">break</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">'frame 정보 없음'</span><span class="p">)</span>
-            <span class="k">break</span>
-    <span class="n">out</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'카메라 열기 실패'</span><span class="p">)</span>
-<span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
-
-</code></pre></div></div>
-<p><code class="language-plaintext highlighter-rouge">fourcc = cv2.VideoWriter_fourcc(*'DIVX')</code> 부분은 저장 코덱을 선정하는 부분으로 다양한 코덱을 선정 할 수 있습니다.</p>
-<ul>
-  <li>(*‘DIVX’)DivxX mepg-4</li>
-  <li>(*‘FMP4’)  FFMPEG</li>
-  <li>(*‘WMV2’)  Window Media video8 코덱</li>
-  <li>(*‘X264’)  H.264</li>
-</ul>
-
-<p>cap 객체를 통해서 아래 추가가 값을 조회(get)/설정(set) 할수 있습니다.</p>
-<ul>
-  <li>cv2.CAP_PROP_FRAME_WIDTH : 프레임 폭</li>
-  <li>cv2.CAP_PROP_FRAME_HEIGHT : 프레임 높이</li>
-  <li>cv2.CAP_PROP_FPS : 초당 프레임 수</li>
-  <li>cv2/CAP_PROP_FOURCC : 동영상 파일의 코덱문자</li>
-  <li>cv2.CAP_PROP_POS_MSEC : 동영상 파일의 프레임 위치(ms)</li>
-  <li>cv2.CAP_PROP_POS_AVI_RATIO : 동영상 파일의 상대 위치(0:시작, 1:끝)</li>
-  <li>cv2.CAP_PROP_AUTOFOCUS : 카메라 자동 초점 조절</li>
-  <li>cv2.CAP_PROP_ZOOM : 카메라 줌</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fps</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FPS</span><span class="p">)</span>
-<span class="n">delay</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">fps</span><span class="p">)</span> 
-<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
-</code></pre></div></div>
-<h2 id="비디오-정지-화면-저장">비디오 정지 화면 저장</h2>
-<p>비디오 소스에서 정지 화면 저장하기</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="bp">False</span><span class="p">;</span>
-
-    <span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img1</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Color Image RGB'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">([])</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">yticks</span><span class="p">([])</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
-
-    <span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>  
-
-</code></pre></div></div>
-
-<p><span class="nav__sub-title">관련된 글</span></p>
-<ul>
-
-    
-        
-             
-        
-              
-                <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-              
-                <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-              
-                <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-              
-                <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.VideoCapture" /><category term="cv2.VideoWriter_fourcc" /><summary type="html"><![CDATA[비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다.]]></summary></entry><entry><title type="html">[OpenCV] 기본 도형 그리기</title><link href="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/" rel="alternate" type="text/html" title="[OpenCV] 기본 도형 그리기" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-basic-draw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/"><![CDATA[<p>영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기.  <br />
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.imread" /><category term="cv2.imwrite" /><category term="cv2.COLOR_BGR2RGB" /><summary type="html"><![CDATA[OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다. 1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함 2000년 알파 버전 공개 2005년 베타 버전 공개 2006년 10월 v1.0 정식 버전 공개 2009년 9월 v2.0 공개 2010년 12월 v2.2 공개 2011년 7월 v2.3 공개(안드로이드 지원, cv-&gt; cv2변경) 2015년 6월 v3.0 공개 2019년 1월 v4.0 공개]]></summary></entry><entry><title type="html">[OpenCV] 기본 도형 그리기</title><link href="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/" rel="alternate" type="text/html" title="[OpenCV] 기본 도형 그리기" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-basic-draw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/"><![CDATA[<p>영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기.  <br />
 하기 표시되는 color는 <code class="language-plaintext highlighter-rouge">BGR</code> 입니다. 참고 바랍니다.</p>
 
 <h1 id="도형-그리기">도형 그리기</h1>
@@ -1121,6 +2526,48 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
         
              
         
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
               
                 <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
              
@@ -1321,55 +2768,7 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.putText" /><category term="cv2.line" /><category term="cv2.rectangle" /><category term="cv2.polylines" /><category term="cv2.circle" /><summary type="html"><![CDATA[영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기. 하기 표시되는 color는 BGR 입니다. 참고 바랍니다.]]></summary></entry><entry><title type="html">[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd/" rel="alternate" type="text/html" title="[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">()</code> 묶여진 구문에서 첫번째 숫자 (0~9)까지의 숫자 만큼 <code class="language-plaintext highlighter-rouge">()</code>로 묶여진 글자를 출력해라.</li>
-  <li><code class="language-plaintext highlighter-rouge">()</code> 는 여러 단계로 묶일수 있다. <code class="language-plaintext highlighter-rouge">(()())</code></li>
-  <li>가장 밖에는 하나의 <code class="language-plaintext highlighter-rouge">()</code>로 묶여있다.</li>
-</ul>
-
-<p>예)  <br />
-<code class="language-plaintext highlighter-rouge">(4k)</code> -&gt; <code class="language-plaintext highlighter-rouge">kkkk</code>   <br />
-<code class="language-plaintext highlighter-rouge">(3a(2b)c)</code> -&gt; <code class="language-plaintext highlighter-rouge">abbcabbcabbc</code></p>
-
-<h1 id="접근-방법">접근 방법</h1>
-<ol>
-  <li>문제의 입력 조건 문자열을 char 로 분리함.</li>
-  <li>위치 변수를 <code class="language-plaintext highlighter-rouge">_p</code> 초기화 하여, 문자열을 처음부터 순회함</li>
-  <li>순회중 ‘(‘를 만나면 다시 시작의 의미 이므로 재귀호출을 진행</li>
-</ol>
-
-<p>위치값을 재귀 함수에 전달하여 유지하며 검색하는 것이 착안점</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kt">char</span><span class="o">[]</span> <span class="n">loop</span><span class="o">;</span>
-<span class="n">loop</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toCharArray</span><span class="o">();</span>	<span class="c1">// `(3a(2b)c)` </span>
-
-<span class="n">solve</span><span class="o">(</span> <span class="n">loop</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-
-
-<span class="kt">int</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">loop</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="o">){</span>
-
-	<span class="kt">int</span> <span class="n">_p</span> <span class="o">=</span> <span class="n">idx</span><span class="o">;</span> <span class="c1">//</span>
-
-			<span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span> <span class="c1">//반복 횟수 찾기</span>
-			
-			<span class="k">while</span><span class="o">(</span> <span class="n">cnt</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">){</span> 	<span class="c1">// 반복 횟수를 줄여가며, 반복 조건을 찾음</span>
-				<span class="n">_p</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>		<span class="c1">// 검색 포인터를 +2 ( `(` + `숫자` 2자리 의미 ) 자리 만큼 이동</span>
-				<span class="k">while</span><span class="o">(</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]</span> <span class="o">!=</span> <span class="sc">')'</span> <span class="o">){</span> <span class="c1">// 종료 전까지</span>
-					<span class="k">if</span><span class="o">(</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]</span> <span class="o">==</span> <span class="err">'</span><span class="o">(&lt;)</span><span class="err">'</span> <span class="o">){</span>
-						<span class="n">_p</span> <span class="o">=</span> <span class="n">solve</span><span class="o">(</span><span class="n">loop</span><span class="o">,</span><span class="n">_p</span><span class="o">);</span>	<span class="c1">//다시 `(` 시작 조건이 나온다면 재귀 호출</span>
-					<span class="o">}</span><span class="k">else</span><span class="o">{</span>
-						<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]);</span> <span class="c1">//출력</span>
-					<span class="o">}</span>
-					<span class="n">_p</span><span class="o">++;</span> <span class="c1">// 위치를 한칸씩 이동시키며 문자를 출력하는 일을 함</span>
-				<span class="o">}</span>
-				
-			<span class="o">}</span><span class="c1">// while				</span>
-	<span class="k">return</span> <span class="n">_p</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="문자열 구문 분석" /><category term="반복 출력" /><category term="재귀함수" /><summary type="html"><![CDATA[문제 유형]]></summary></entry><entry><title type="html">[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/" rel="alternate" type="text/html" title="[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.putText" /><category term="cv2.line" /><category term="cv2.rectangle" /><category term="cv2.polylines" /><category term="cv2.circle" /><summary type="html"><![CDATA[영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기. 하기 표시되는 color는 BGR 입니다. 참고 바랍니다.]]></summary></entry><entry><title type="html">[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/" rel="alternate" type="text/html" title="[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
 
 <p>아래와 같은 랜덤한 숫자 목록 중 특정 조건의 패턴 찾기.  <br />
 <code class="language-plaintext highlighter-rouge">1 2 4 6 4 6 7 8 2 1 2 5 4 7 2 8 9 0 8 2 7 0 6 4 2 3</code></p>
@@ -1421,7 +2820,55 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
   <li>비교할 값을 정렬하고, 비교할 범위의 최소값을 0 기준으로 위상을 조정한다.
 <code class="language-plaintext highlighter-rouge">7 8 2</code> 에 순서는 오름차순 정렬에 의해서 비교 조건으로 변경가능하며, 
 위상차이는 최소값 기준으로 이동시켜 각 값의 Gap을 비교하여 같은 조건의 값인지를 판단 가능함.</li>
-</ol>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="숫자찾기" /><category term="배열정렬" /><category term="위상이동" /><summary type="html"><![CDATA[문제 유형]]></summary></entry><entry><title type="html">[Java] Kruskal, 최소 비용 신장 트리</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-Kruskal/" rel="alternate" type="text/html" title="[Java] Kruskal, 최소 비용 신장 트리" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-Kruskal</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-Kruskal/"><![CDATA[<p>최소 비용으로 모든 노드를 연결하기 위해서 사용함.(최소 비용 신장 트리) <br />
+</ol>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="숫자찾기" /><category term="배열정렬" /><category term="위상이동" /><summary type="html"><![CDATA[문제 유형]]></summary></entry><entry><title type="html">[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd/" rel="alternate" type="text/html" title="[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-string-loop-cmd/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">()</code> 묶여진 구문에서 첫번째 숫자 (0~9)까지의 숫자 만큼 <code class="language-plaintext highlighter-rouge">()</code>로 묶여진 글자를 출력해라.</li>
+  <li><code class="language-plaintext highlighter-rouge">()</code> 는 여러 단계로 묶일수 있다. <code class="language-plaintext highlighter-rouge">(()())</code></li>
+  <li>가장 밖에는 하나의 <code class="language-plaintext highlighter-rouge">()</code>로 묶여있다.</li>
+</ul>
+
+<p>예)  <br />
+<code class="language-plaintext highlighter-rouge">(4k)</code> -&gt; <code class="language-plaintext highlighter-rouge">kkkk</code>   <br />
+<code class="language-plaintext highlighter-rouge">(3a(2b)c)</code> -&gt; <code class="language-plaintext highlighter-rouge">abbcabbcabbc</code></p>
+
+<h1 id="접근-방법">접근 방법</h1>
+<ol>
+  <li>문제의 입력 조건 문자열을 char 로 분리함.</li>
+  <li>위치 변수를 <code class="language-plaintext highlighter-rouge">_p</code> 초기화 하여, 문자열을 처음부터 순회함</li>
+  <li>순회중 ‘(‘를 만나면 다시 시작의 의미 이므로 재귀호출을 진행</li>
+</ol>
+
+<p>위치값을 재귀 함수에 전달하여 유지하며 검색하는 것이 착안점</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kt">char</span><span class="o">[]</span> <span class="n">loop</span><span class="o">;</span>
+<span class="n">loop</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toCharArray</span><span class="o">();</span>	<span class="c1">// `(3a(2b)c)` </span>
+
+<span class="n">solve</span><span class="o">(</span> <span class="n">loop</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+
+
+<span class="kt">int</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">loop</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="o">){</span>
+
+	<span class="kt">int</span> <span class="n">_p</span> <span class="o">=</span> <span class="n">idx</span><span class="o">;</span> <span class="c1">//</span>
+
+			<span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span> <span class="c1">//반복 횟수 찾기</span>
+			
+			<span class="k">while</span><span class="o">(</span> <span class="n">cnt</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">){</span> 	<span class="c1">// 반복 횟수를 줄여가며, 반복 조건을 찾음</span>
+				<span class="n">_p</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>		<span class="c1">// 검색 포인터를 +2 ( `(` + `숫자` 2자리 의미 ) 자리 만큼 이동</span>
+				<span class="k">while</span><span class="o">(</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]</span> <span class="o">!=</span> <span class="sc">')'</span> <span class="o">){</span> <span class="c1">// 종료 전까지</span>
+					<span class="k">if</span><span class="o">(</span> <span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]</span> <span class="o">==</span> <span class="err">'</span><span class="o">(&lt;)</span><span class="err">'</span> <span class="o">){</span>
+						<span class="n">_p</span> <span class="o">=</span> <span class="n">solve</span><span class="o">(</span><span class="n">loop</span><span class="o">,</span><span class="n">_p</span><span class="o">);</span>	<span class="c1">//다시 `(` 시작 조건이 나온다면 재귀 호출</span>
+					<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+						<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">loop</span><span class="o">[</span><span class="n">_p</span><span class="o">]);</span> <span class="c1">//출력</span>
+					<span class="o">}</span>
+					<span class="n">_p</span><span class="o">++;</span> <span class="c1">// 위치를 한칸씩 이동시키며 문자를 출력하는 일을 함</span>
+				<span class="o">}</span>
+				
+			<span class="o">}</span><span class="c1">// while				</span>
+	<span class="k">return</span> <span class="n">_p</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="codingtest" /><category term="문자열 구문 분석" /><category term="반복 출력" /><category term="재귀함수" /><summary type="html"><![CDATA[문제 유형]]></summary></entry><entry><title type="html">[Java] Kruskal, 최소 비용 신장 트리</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-Kruskal/" rel="alternate" type="text/html" title="[Java] Kruskal, 최소 비용 신장 트리" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-Kruskal</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-Kruskal/"><![CDATA[<p>최소 비용으로 모든 노드를 연결하기 위해서 사용함.(최소 비용 신장 트리) <br />
 두 노드의 거리를 오름차순으로 정렬하여, 노드 리스트를 순회하며, 최소 거리 노드를 연결함.  <br />
 연결시 사이틀이 발생되지 않는지를 점검함.</p>
 
@@ -1633,151 +3080,4 @@ Prim 관련 문제 최소 스패닝 트리 <a href="https://www.acmicpc.net/prob
 
 
 </code></pre></div></div>
-<p><a href="https://blog.naver.com/ndb796/221230994142" target="_blank">참고 문헌 : 안경잡개발자 블로그</a></p>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Kruskal Algorithm" /><category term="Union-Find" /><category term="MST" /><category term="Spannig Tree" /><summary type="html"><![CDATA[최소 비용으로 모든 노드를 연결하기 위해서 사용함.(최소 비용 신장 트리) 두 노드의 거리를 오름차순으로 정렬하여, 노드 리스트를 순회하며, 최소 거리 노드를 연결함. 연결시 사이틀이 발생되지 않는지를 점검함.]]></summary></entry><entry><title type="html">[Java] Union-Find, 두개의 노드 연결 여부 확인</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-Union-Find/" rel="alternate" type="text/html" title="[Java] Union-Find, 두개의 노드 연결 여부 확인" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-Union-Find</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-Union-Find/"><![CDATA[<p>여러개의 노드에서 임의의 두개의 노드가 연결되어 있는지를 판단할때 사용합니다.</p>
-
-<ul>
-  <li>서로 연결되어 있는지?</li>
-</ul>
-
-<h2 id="sample-source-code">Sample Source Code</h2>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UnionFind</span> <span class="o">{</span>
-
-	<span class="cm">/**
-	 * 재귀 호출로 최종 부모 번호를 반환
-	 */</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getParent</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">parent</span><span class="o">,</span> <span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">==</span> <span class="n">x</span> <span class="o">)</span> <span class="k">return</span> <span class="n">x</span><span class="o">;</span>
-		<span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">getParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">]);</span>		
-		<span class="k">return</span> <span class="n">parent</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
-	<span class="o">}</span>
-	
-	
-	<span class="cm">/**
-	 * 두 노드에서서 작은 부모의 값으로 병합함.
-	 */</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">unionParent</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">parent</span><span class="o">,</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-		<span class="n">a</span> <span class="o">=</span> <span class="n">getParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">a</span><span class="o">);</span>
-		<span class="n">b</span> <span class="o">=</span> <span class="n">getParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
-		<span class="c1">//더 작은 값으로 부모를 통일함.</span>
-		<span class="k">if</span><span class="o">(</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">)</span> <span class="n">parent</span><span class="o">[</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-		<span class="k">else</span> <span class="n">parent</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
-		
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d-%d  : %s \n"</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">parent</span><span class="o">));</span>
-	<span class="o">}</span>
-	
-	
-	<span class="cm">/**
-	 * a, b가 같은 부모인지 확인
-	 * 0 다른 부모, 1 같은 부모
-	 */</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">findParent</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">parent</span><span class="o">,</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-		<span class="n">a</span> <span class="o">=</span> <span class="n">getParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">a</span><span class="o">);</span>
-		<span class="n">b</span> <span class="o">=</span> <span class="n">getParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
-		<span class="k">if</span><span class="o">(</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-		<span class="k">else</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-	<span class="o">}</span>
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		<span class="kt">int</span><span class="o">[]</span> <span class="n">parent</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">11</span><span class="o">];</span>
-		
-		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">parent</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-			<span class="n">parent</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-		<span class="o">}</span>
-		
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Init : %s \n"</span><span class="o">,</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">parent</span><span class="o">));</span>
-		
-		<span class="n">unionParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span> <span class="c1">//1-2  연결 의미</span>
-		<span class="n">unionParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
-		<span class="n">unionParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
-		<span class="n">unionParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">);</span>
-		<span class="n">unionParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>
-		<span class="n">unionParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">);</span>
-		
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"1과 5는 연결 여부 확인? %d\n"</span><span class="o">,</span> <span class="n">findParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span>
-		<span class="n">unionParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"1과 5는 연결 여부 확인? %d\n"</span><span class="o">,</span> <span class="n">findParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span>
-		
-	<span class="o">}</span>
-
-<span class="o">}</span>
-<span class="c1">//출력</span>
-<span class="nc">Init</span> <span class="o">:</span> <span class="o">[</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">]</span> 
-<span class="mi">1</span><span class="o">-</span><span class="mi">2</span>  <span class="o">:</span> <span class="o">[</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">]</span> 
-<span class="mi">1</span><span class="o">-</span><span class="mi">3</span>  <span class="o">:</span> <span class="o">[</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">]</span> 
-<span class="mi">1</span><span class="o">-</span><span class="mi">4</span>  <span class="o">:</span> <span class="o">[</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">]</span> 
-<span class="mi">5</span><span class="o">-</span><span class="mi">6</span>  <span class="o">:</span> <span class="o">[</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">]</span> 
-<span class="mi">5</span><span class="o">-</span><span class="mi">7</span>  <span class="o">:</span> <span class="o">[</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">]</span> 
-<span class="mi">5</span><span class="o">-</span><span class="mi">8</span>  <span class="o">:</span> <span class="o">[</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">]</span> 
-
-<span class="mi">1</span><span class="n">과</span> <span class="mi">5</span><span class="n">는</span> <span class="n">연결</span> <span class="n">여부</span> <span class="n">확인</span><span class="o">?</span> <span class="mi">0</span>
-<span class="mi">1</span><span class="o">-</span><span class="mi">5</span>  <span class="o">:</span> <span class="o">[</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">]</span> 
-<span class="mi">1</span><span class="n">과</span> <span class="mi">5</span><span class="n">는</span> <span class="n">연결</span> <span class="n">여부</span> <span class="n">확인</span><span class="o">?</span> <span class="mi">1</span>
-
-
-</code></pre></div></div>
-
-<p><a href="https://blog.naver.com/ndb796/221230967614" target="_blank">참고 문헌 : 안경잡개발자 블로그</a></p>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Union-Find" /><category term="합집합" /><category term="소로소" /><summary type="html"><![CDATA[여러개의 노드에서 임의의 두개의 노드가 연결되어 있는지를 판단할때 사용합니다.]]></summary></entry><entry><title type="html">[Java] Fibonacci, DP</title><link href="https://kimjaehyun.co.kr/algorithm/java/java-dp-fibonacci/" rel="alternate" type="text/html" title="[Java] Fibonacci, DP" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/algorithm/java/java-dp-fibonacci</id><content type="html" xml:base="https://kimjaehyun.co.kr/algorithm/java/java-dp-fibonacci/"><![CDATA[<p>피보나치 수열을 만드는 함수를 만들어보기. <br />
-<code class="language-plaintext highlighter-rouge">1, 1, 2, 3, 5, 8, 13, 21, 34, 55 </code>  <br />
-이전 2개의 값을 더해서 현재 값이 되는 패턴.  <br />
-<code class="language-plaintext highlighter-rouge">점화식: D[i] = D[i - 1] + D[i - 2]</code></p>
-
-<ul>
-  <li>재귀 호출에서 성능을 개선 할수 있는지?</li>
-</ul>
-
-<h2 id="sample-source-code">Sample Source Code</h2>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Fibonacci</span><span class="o">{</span>
-	<span class="kd">static</span> <span class="kt">double</span><span class="o">[]</span> <span class="n">storedValue</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">dp</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">if</span><span class="o">(</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-
-		<span class="c1">//한번 구한 값을 저장하여 반환함</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">)</span> 
-			<span class="k">return</span> <span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
-		
-		<span class="c1">//새로 구하는 수는 계산 후 재 사용을 위해서 저장해놓음</span>
-		<span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
-		<span class="k">return</span> <span class="n">storedValue</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
-	<span class="o">}</span>
-	
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dp</span><span class="o">(</span><span class="mi">50</span><span class="o">));</span> 
-	<span class="o">}</span>	
-<span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Fibonacci" /><category term="DP" /><category term="다이나믹 프로그래밍" /><category term="Dynamic Programming" /><summary type="html"><![CDATA[피보나치 수열을 만드는 함수를 만들어보기. 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 이전 2개의 값을 더해서 현재 값이 되는 패턴. 점화식: D[i] = D[i - 1] + D[i - 2]]]></summary></entry><entry><title type="html">[백준 11726]2×n 타일링, DP</title><link href="https://kimjaehyun.co.kr/baekjoon/java/baekjoon-Q11726-dp/" rel="alternate" type="text/html" title="[백준 11726]2×n 타일링, DP" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/baekjoon/java/baekjoon-Q11726-dp</id><content type="html" xml:base="https://kimjaehyun.co.kr/baekjoon/java/baekjoon-Q11726-dp/"><![CDATA[<p>패턴을 찾고 점화식을 세우는 문제.  <br />
-시간 복잡도 : O(N)  <br />
-<code class="language-plaintext highlighter-rouge">점화식 : An = An-1 + An-2</code></p>
-
-<p><a href="https://www.acmicpc.net/problem/11726" target="_blank">백준 Q11726</a></p>
-
-<h2 id="sample-source-code">Sample Source Code</h2>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-
-	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">1001</span><span class="o">];</span>
-
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">dp</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">)</span> <span class="k">return</span> <span class="mi">2</span><span class="o">;</span> <span class="c1">// n이 2일때 2가지 반환 Case 2가지</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">];</span>
-		
-		<span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">dp</span><span class="o">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
-		<span class="k">return</span> <span class="n">data</span><span class="o">[</span><span class="n">x</span><span class="o">]%</span><span class="mi">10007</span><span class="o">;</span>
-	<span class="o">}</span>
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		<span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
-		
-		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dp</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">()));</span>
-		<span class="c1">// 9 입력시 55 응답</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="baekjoon" /><category term="java" /><category term="DP" /><category term="다이나믹프로그래밍" /><category term="Q11726" /><category term="백준2667" /><summary type="html"><![CDATA[패턴을 찾고 점화식을 세우는 문제. 시간 복잡도 : O(N) 점화식 : An = An-1 + An-2]]></summary></entry></feed>
+<p><a href="https://blog.naver.com/ndb796/221230994142" target="_blank">참고 문헌 : 안경잡개발자 블로그</a></p>]]></content><author><name>devjaedol</name></author><category term="algorithm" /><category term="java" /><category term="Kruskal Algorithm" /><category term="Union-Find" /><category term="MST" /><category term="Spannig Tree" /><summary type="html"><![CDATA[최소 비용으로 모든 노드를 연결하기 위해서 사용함.(최소 비용 신장 트리) 두 노드의 거리를 오름차순으로 정렬하여, 노드 리스트를 순회하며, 최소 거리 노드를 연결함. 연결시 사이틀이 발생되지 않는지를 점검함.]]></summary></entry></feed>
