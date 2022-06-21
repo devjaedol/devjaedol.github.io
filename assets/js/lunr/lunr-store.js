@@ -24,14 +24,14 @@ var store = [{
         "teaser": null
       },{
         "title": "Python 설치",
-        "excerpt":"파이썬 공부를 시작해봅시다.   우선 파이썬 설치를… 시작이 반…   다운 로드 경로      다운로드 선택      설치 경로를 변경하기 위해서 Customzie 선택      기본값 Next      경로 변경            완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함.      설치 버전이 정상 표기되면, 설치 완료됨.   window path는 필요시 추가해야 합니다.   ","categories": ["python"],
-        "tags": ["python강좌","python","초급"],
+        "excerpt":"파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반… 다운 로드 경로 다운로드 선택 설치 경로를 변경하기 위해서 Customzie 선택 기본값 Next 경로 변경 완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함. 설치 버전이 정상 표기되면, 설치 완료됨. window path는 필요시 추가해야 합니다. 관련된 글 (python &gt; lecture-python-basic) Python 자료형...","categories": ["python"],
+        "tags": ["python강좌","python","초급","lecture-python-basic"],
         "url": "/python/python_study_01/",
         "teaser": null
       },{
         "title": "Python 기초",
         "excerpt":"파이썬 공부를 스피드 있게 해봅시다. 파이썬 IDLE를 실행 합니다. 설명이 필요 없는 프로그램 공부의 기본을 Start!!!! Python 공식 자습서 기본 실습 하기 100 + 50 print(‘Hello world’) “string”*5 Python 3.10.0 (tags/v3.10.0:b494f59, Oct 4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)] on win32 Type \"help\", \"copyright\", \"credits\" or \"license()\" for more...","categories": ["python"],
-        "tags": ["python강좌","python","초급"],
+        "tags": ["python강좌","python","초급","lecture-python-basic"],
         "url": "/python/python_study_02/",
         "teaser": null
       },{
@@ -253,25 +253,25 @@ var store = [{
       },{
         "title": "[OpenCV] 기본 도형 그리기",
         "excerpt":"영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기. 하기 표시되는 color는 BGR 입니다. 참고 바랍니다. 도형 그리기 Text 그리기(cv2.putText) cv2.putText(img, text, position, fontFace, fontSize, color [,thickness, linetype]) position 입력될 글자의 좌측 하단 기준의 배치 위치 입니다. fontFace cv2.FONT_HERSHEY_PLAIN cv2.FONT_HERSHEY_SIMPLEX cv2.FONT_HERSHEY_DUPLEX cv2.FONT_HERSHEY_COMPLEX_SMALL cv2.FONT_HERSHEY_COMPLEX cv2.FONT_HERSHEY_TRIPLEX cv2.FONT_ITALIC import cv2 import...","categories": ["python"],
-        "tags": ["python","opencv","cv2.putText","cv2.line","cv2.rectangle","cv2.polylines","cv2.circle"],
+        "tags": ["python","opencv","cv2.putText","cv2.line","cv2.rectangle","cv2.polylines","cv2.circle","lecture-opencv"],
         "url": "/python/python-opencv-basic-draw/",
         "teaser": null
       },{
         "title": "[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경",
         "excerpt":"OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다. 1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함 2000년 알파 버전 공개 2005년 베타 버전 공개 2006년 10월 v1.0 정식 버전 공개 2009년 9월 v2.0 공개 2010년 12월 v2.2 공개 2011년 7월 v2.3 공개(안드로이드 지원, cv-&gt;...","categories": ["python"],
-        "tags": ["python","opencv","cv2.imread","cv2.imwrite","cv2.COLOR_BGR2RGB"],
+        "tags": ["python","opencv","cv2.imread","cv2.imwrite","cv2.COLOR_BGR2RGB","lecture-opencv"],
         "url": "/python/python-opencv-image-rw/",
         "teaser": null
       },{
         "title": "[OpenCV] 비디오/캠 불러오기, 저장하기",
         "excerpt":"비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다. 비디오 처리 비디오 파일 불러오기 영상을 읽어오기 위해서는 cv2.VideoCapture 메소드를 사용합니다. import cv2 video_file ='sample.avi' cap = cv2.VideoCapture(video_file) if cap.isOpened(): while True: ret, img = cap.read() # ret는 bool값으로 읽기가 성공일때 true를 반환 if ret: cv2.imshow(video_file, img) if cv2.waitKey(25) !=...","categories": ["python"],
-        "tags": ["python","opencv","cv2.VideoCapture","cv2.VideoWriter_fourcc"],
+        "tags": ["python","opencv","cv2.VideoCapture","cv2.VideoWriter_fourcc","lecture-opencv"],
         "url": "/python/python-opencv-video-rw/",
         "teaser": null
       },{
         "title": "[OpenCV] 윈도우 처리, 키이벤트",
         "excerpt":"OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다. 윈도우 관리 cv2.namedWindow(‘이름’ [, opt]) 윈도의 이름을 설정합니다. opt 옵션 값 cv2.WINDOW_NORMAL : 사용자 창 크기 조절 가능 cv2.WINDOW_AUTOSIZE : 이미지와 같은 크기, 창 크기 재조정 불 가능 cv2.moveWindow(‘이름’, x , y) x, y의 좌표로 이름에 해당하는 창이 이동합니다. cv2.destoryWindow(‘이름’) 특정...","categories": ["python"],
-        "tags": ["python","opencv","WINDOW_AUTOSIZE","WINDOW_NORMAL","waitKey","key event"],
+        "tags": ["python","opencv","WINDOW_AUTOSIZE","WINDOW_NORMAL","waitKey","key event","lecture-opencv"],
         "url": "/python/python-opencv-window-event/",
         "teaser": null
       },{

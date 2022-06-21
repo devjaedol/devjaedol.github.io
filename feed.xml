@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-21T09:28:09-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Python 자료형 list 타입</title><link href="https://kimjaehyun.co.kr/python/python_study_03_list/" rel="alternate" type="text/html" title="Python 자료형 list 타입" /><published>2022-06-21T00:00:00-05:00</published><updated>2022-06-21T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_03_list</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_03_list/"><![CDATA[<p>순서가 있고, 중복이 허용되는 배열 형태의 자료형 입니다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-21T09:28:47-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Python 자료형 list 타입</title><link href="https://kimjaehyun.co.kr/python/python_study_03_list/" rel="alternate" type="text/html" title="Python 자료형 list 타입" /><published>2022-06-21T00:00:00-05:00</published><updated>2022-06-21T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_03_list</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_03_list/"><![CDATA[<p>순서가 있고, 중복이 허용되는 배열 형태의 자료형 입니다.</p>
 
 <h1 id="list-vs-tuple-vs-dictionary-vs-set">list vs tuple vs dictionary vs set</h1>
 
@@ -223,7 +223,7 @@
 <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># 12632689
 </span></code></pre></div></div>
 
-<p><span class="nav__sub-title">관련된 글</span></p>
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
 
     
@@ -288,16 +288,6 @@
         
              
         
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
              
         
       
@@ -309,64 +299,6 @@
              
         
              
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
         
              
         
@@ -400,9 +332,9 @@
         
              
         
-      
-
-    
+             
+        
+             
         
              
         
@@ -448,6 +380,20 @@
         
              
         
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
              
         
       
@@ -458,6 +404,76 @@
         
              
         
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_02/">Python 기초</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_01/">Python 설치</a></li>
              
         
       
@@ -683,7 +699,7 @@
 </span>
 </code></pre></div></div>
 
-<p><span class="nav__sub-title">관련된 글</span></p>
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
 
     
@@ -748,16 +764,6 @@
         
              
         
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
              
         
       
@@ -769,64 +775,6 @@
              
         
              
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
         
              
         
@@ -860,9 +808,9 @@
         
              
         
-      
-
-    
+             
+        
+             
         
              
         
@@ -908,6 +856,20 @@
         
              
         
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
              
         
       
@@ -918,6 +880,76 @@
         
              
         
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_02/">Python 기초</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_01/">Python 설치</a></li>
              
         
       
@@ -1030,7 +1062,7 @@
 </span>
 </code></pre></div></div>
 
-<p><span class="nav__sub-title">관련된 글</span></p>
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
 
     
@@ -1095,16 +1127,6 @@
         
              
         
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
              
         
       
@@ -1116,64 +1138,6 @@
              
         
              
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
         
              
         
@@ -1207,9 +1171,9 @@
         
              
         
-      
-
-    
+             
+        
+             
         
              
         
@@ -1255,6 +1219,20 @@
         
              
         
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
              
         
       
@@ -1265,6 +1243,76 @@
         
              
         
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_02/">Python 기초</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_01/">Python 설치</a></li>
              
         
       
@@ -1416,7 +1464,7 @@
 
 </code></pre></div></div>
 
-<p><span class="nav__sub-title">관련된 글</span></p>
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-opencv)</span></p>
 <ul>
 
     
@@ -1465,21 +1513,29 @@
         
              
         
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
               
                 <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
-             
-        
-             
-        
-             
-        
-             
-        
              
         
       
 
     
+        
+             
+        
+             
+        
+             
         
              
         
@@ -1487,13 +1543,17 @@
                 <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
              
         
-             
-        
-             
-        
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
         
              
         
@@ -1501,15 +1561,21 @@
                 <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
              
         
-             
-        
-             
-        
-             
-        
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
         
              
         
@@ -1517,16 +1583,6 @@
                 <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
              
         
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
       
 
     
@@ -1645,19 +1701,21 @@
         
              
         
-      
-
-    
-        
-             
-        
-             
-        
              
         
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
 
     
 
@@ -1665,7 +1723,9 @@
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.VideoCapture" /><category term="cv2.VideoWriter_fourcc" /><summary type="html"><![CDATA[비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다.]]></summary></entry><entry><title type="html">[OpenCV] 윈도우 처리, 키이벤트</title><link href="https://kimjaehyun.co.kr/python/python-opencv-window-event/" rel="alternate" type="text/html" title="[OpenCV] 윈도우 처리, 키이벤트" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-window-event</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-window-event/"><![CDATA[<p>OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다.</p>
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.VideoCapture" /><category term="cv2.VideoWriter_fourcc" /><category term="lecture-opencv" /><summary type="html"><![CDATA[비디오 파일 재생하기와, Cam을 통한 영상을 저장하는 것을 진행해 보겠습니다.]]></summary></entry><entry><title type="html">[OpenCV] 윈도우 처리, 키이벤트</title><link href="https://kimjaehyun.co.kr/python/python-opencv-window-event/" rel="alternate" type="text/html" title="[OpenCV] 윈도우 처리, 키이벤트" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-window-event</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-window-event/"><![CDATA[<p>OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다.</p>
 
 <h1 id="윈도우-관리">윈도우 관리</h1>
 <h2 id="cv2namedwindow이름--opt">cv2.namedWindow(‘이름’ [, opt])</h2>
@@ -1708,7 +1768,7 @@
 <span class="n">cv2</span><span class="p">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="s">'win'</span><span class="p">,</span><span class="n">x</span> <span class="p">,</span><span class="n">y</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><span class="nav__sub-title">관련된 글</span></p>
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-opencv)</span></p>
 <ul>
 
     
@@ -1757,21 +1817,29 @@
         
              
         
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
               
                 <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
-             
-        
-             
-        
-             
-        
-             
-        
              
         
       
 
     
+        
+             
+        
+             
+        
+             
         
              
         
@@ -1779,13 +1847,17 @@
                 <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
              
         
-             
-        
-             
-        
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
         
              
         
@@ -1793,15 +1865,21 @@
                 <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
              
         
-             
-        
-             
-        
-             
-        
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
         
              
         
@@ -1809,16 +1887,6 @@
                 <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
              
         
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
       
 
     
@@ -1937,19 +2005,21 @@
         
              
         
-      
-
-    
-        
-             
-        
-             
-        
              
         
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
 
     
 
@@ -1957,7 +2027,9 @@
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="WINDOW_AUTOSIZE" /><category term="WINDOW_NORMAL" /><category term="waitKey" /><category term="key event" /><summary type="html"><![CDATA[OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다.]]></summary></entry><entry><title type="html">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</title><link href="https://kimjaehyun.co.kr/python/python-opencv-image-rw/" rel="alternate" type="text/html" title="[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-image-rw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-image-rw/"><![CDATA[<p>OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다.</p>
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="WINDOW_AUTOSIZE" /><category term="WINDOW_NORMAL" /><category term="waitKey" /><category term="key event" /><category term="lecture-opencv" /><summary type="html"><![CDATA[OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다.]]></summary></entry><entry><title type="html">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</title><link href="https://kimjaehyun.co.kr/python/python-opencv-image-rw/" rel="alternate" type="text/html" title="[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-image-rw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-image-rw/"><![CDATA[<p>OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다.</p>
 <ul>
   <li>1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함</li>
   <li>2000년 알파 버전 공개</li>
@@ -2111,7 +2183,7 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
 <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><span class="nav__sub-title">관련된 글</span></p>
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-opencv)</span></p>
 <ul>
 
     
@@ -2160,21 +2232,29 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
         
              
         
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
               
                 <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
-             
-        
-             
-        
-             
-        
-             
-        
              
         
       
 
     
+        
+             
+        
+             
+        
+             
         
              
         
@@ -2182,13 +2262,17 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
                 <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
              
         
-             
-        
-             
-        
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
         
              
         
@@ -2196,15 +2280,21 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
                 <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
              
         
-             
-        
-             
-        
-             
-        
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
         
              
         
@@ -2212,16 +2302,6 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
                 <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
              
         
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
       
 
     
@@ -2340,19 +2420,21 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
         
              
         
-      
-
-    
-        
-             
-        
-             
-        
              
         
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
 
     
 
@@ -2360,7 +2442,9 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.imread" /><category term="cv2.imwrite" /><category term="cv2.COLOR_BGR2RGB" /><summary type="html"><![CDATA[OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다. 1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함 2000년 알파 버전 공개 2005년 베타 버전 공개 2006년 10월 v1.0 정식 버전 공개 2009년 9월 v2.0 공개 2010년 12월 v2.2 공개 2011년 7월 v2.3 공개(안드로이드 지원, cv-&gt; cv2변경) 2015년 6월 v3.0 공개 2019년 1월 v4.0 공개]]></summary></entry><entry><title type="html">[OpenCV] 기본 도형 그리기</title><link href="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/" rel="alternate" type="text/html" title="[OpenCV] 기본 도형 그리기" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-basic-draw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/"><![CDATA[<p>영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기.  <br />
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.imread" /><category term="cv2.imwrite" /><category term="cv2.COLOR_BGR2RGB" /><category term="lecture-opencv" /><summary type="html"><![CDATA[OpenCV는 오픈소스컴퓨터 비전 라이브러리(Open Source Computer Vision Library)로 영상 처리와 관련된 대표적인 오픈소스라이프로리 입니다. 1999년 1월 IPL(Image Process Library)를 기반 C언어로 시작함 2000년 알파 버전 공개 2005년 베타 버전 공개 2006년 10월 v1.0 정식 버전 공개 2009년 9월 v2.0 공개 2010년 12월 v2.2 공개 2011년 7월 v2.3 공개(안드로이드 지원, cv-&gt; cv2변경) 2015년 6월 v3.0 공개 2019년 1월 v4.0 공개]]></summary></entry><entry><title type="html">[OpenCV] 기본 도형 그리기</title><link href="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/" rel="alternate" type="text/html" title="[OpenCV] 기본 도형 그리기" /><published>2022-06-20T00:00:00-05:00</published><updated>2022-06-20T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python-opencv-basic-draw</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python-opencv-basic-draw/"><![CDATA[<p>영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기.  <br />
 하기 표시되는 color는 <code class="language-plaintext highlighter-rouge">BGR</code> 입니다. 참고 바랍니다.</p>
 
 <h1 id="도형-그리기">도형 그리기</h1>
@@ -2519,7 +2603,7 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
     <span class="n">main</span><span class="p">()</span>  
 </code></pre></div></div>
 
-<p><span class="nav__sub-title">관련된 글</span></p>
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-opencv)</span></p>
 <ul>
 
     
@@ -2568,21 +2652,29 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
         
              
         
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
               
                 <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
-             
-        
-             
-        
-             
-        
-             
-        
              
         
       
 
     
+        
+             
+        
+             
+        
+             
         
              
         
@@ -2590,13 +2682,17 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
                 <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
              
         
-             
-        
-             
-        
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
         
              
         
@@ -2604,15 +2700,21 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
                 <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
              
         
-             
-        
-             
-        
-             
-        
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
         
              
         
@@ -2620,16 +2722,6 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
                 <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
              
         
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
       
 
     
@@ -2748,19 +2840,21 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
         
              
         
-      
-
-    
-        
-             
-        
-             
-        
              
         
       
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
 
     
 
@@ -2768,7 +2862,9 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.putText" /><category term="cv2.line" /><category term="cv2.rectangle" /><category term="cv2.polylines" /><category term="cv2.circle" /><summary type="html"><![CDATA[영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기. 하기 표시되는 color는 BGR 입니다. 참고 바랍니다.]]></summary></entry><entry><title type="html">[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/" rel="alternate" type="text/html" title="[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="opencv" /><category term="cv2.putText" /><category term="cv2.line" /><category term="cv2.rectangle" /><category term="cv2.polylines" /><category term="cv2.circle" /><category term="lecture-opencv" /><summary type="html"><![CDATA[영상 또는 이미지 데이터 위에 Text, 선, 사각형, 다각형 등을 그리기. 하기 표시되는 color는 BGR 입니다. 참고 바랍니다.]]></summary></entry><entry><title type="html">[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/" rel="alternate" type="text/html" title="[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색" /><published>2022-06-16T00:00:00-05:00</published><updated>2022-06-16T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-numeric-pattern-search/"><![CDATA[<h1 id="문제-유형">문제 유형</h1>
 
 <p>아래와 같은 랜덤한 숫자 목록 중 특정 조건의 패턴 찾기.  <br />
 <code class="language-plaintext highlighter-rouge">1 2 4 6 4 6 7 8 2 1 2 5 4 7 2 8 9 0 8 2 7 0 6 4 2 3</code></p>
