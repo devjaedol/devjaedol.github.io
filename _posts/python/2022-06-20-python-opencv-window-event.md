@@ -49,3 +49,7 @@ elif k == ord('a')
 cv2.moveWindow('win',x ,y)
 ```
 
+
+{% assign c-category = 'python' %}
+{% assign c-tag = 'opencv' %}
+{% include /custom-ref.html %}

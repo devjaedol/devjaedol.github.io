@@ -114,3 +114,40 @@ fps = cap.get(cv2.CAP_PROP_FPS)
 delay = int(1000/fps) 
 cv2.waitKey(delay)
 ```
+## 비디오 정지 화면 저장
+비디오 소스에서 정지 화면 저장하기
+
+```python
+import matplotlib.pyplot as plt
+import cv2
+import numpy as np
+
+def main():
+    cap = cv2.VideoCapture(0)
+
+    if cap.isOpened():
+        ret, frame = cap.read()
+        print(ret)
+        print(frame)
+    else:
+        ret = False;
+
+    img1 = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    plt.imshow(img1)
+    plt.title('Color Image RGB')
+    plt.xticks([])
+    plt.yticks([])
+    plt.show()
+
+    cap.release()
+
+if __name__ == "__main__":
+    main()  
+
+```    
+
+
+{% assign c-category = 'python' %}
+{% assign c-tag = 'opencv' %}
+{% include /custom-ref.html %}

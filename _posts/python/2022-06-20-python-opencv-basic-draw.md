@@ -128,3 +128,42 @@ cv2.imshow('SAMPLE', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
+
+## Sample Code
+```python
+import numpy
+import cv2
+import numpy as np
+
+def main():
+    print(cv2.__version__)
+
+    img = np.zeros((512,512,3), np.uint8)
+
+    print(img)
+
+    cv2.line(img, (0,99), (99,0), (255,0,0), 2)     
+    cv2.rectangle(img, (40,60), (200,170), (0,255,0),1) 
+    cv2.circle(img, (150,180), 50 , (0,0,255),-1) # 두께를 -1로 주면 원의 색이 모두 채워짐
+    cv2.ellipse(img, (160,260),(50,20),0,0,360, (127,127,127),-1)
+    cv2.ellipse(img, (260,360),(70,40),0,0,180, (127,127,255),-1)  #회전
+
+    points = np.array([[80,10],[125,75],[179,10],[230,160],[80,90]], np.int32)
+    points = points.reshape((-1, 1, 2))
+    cv2.polylines(img, [points], True,(0,255,255))
+
+    text1 ='Test Text'
+    cv2.putText(img, text1, (200,300), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,0))
+
+    cv2.imshow('Lena', img)    
+    cv2.waitKey(0)
+    cv2.destroyAllWindows('Lena')
+
+if __name__ == "__main__":
+    main()  
+```
+
+
+{% assign c-category = 'python' %}
+{% assign c-tag = 'opencv' %}
+{% include /custom-ref.html %}

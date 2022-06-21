@@ -164,5 +164,8 @@ plt.show()
 ```
 
 
+{% assign c-category = 'python' %}
+{% assign c-tag = 'opencv' %}
+{% include /custom-ref.html %}
 
 

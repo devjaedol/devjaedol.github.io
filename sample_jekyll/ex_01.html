@@ -61,5 +61,27 @@ permalink: /ex01
         </p>
     {% endfor %}
 
+    {% for post in site.posts %}
+      {% if post.categories contains 'python' %}
+         <a href="{{post.url | relative_url }}">{{post.title}}</a>
+      {% endif %}
+    {% endfor %}
+
+
+    
+<span class="nav__sub-title">관련된 글</span>
+<ul>
+{% for post in site.posts %}
+    {% if post.categories contains 'python' %}
+        {% for tag in post.tags %}
+            {% if tag == "opencv" %}  
+                <li><a href="{{post.url | relative_url }}">{{post.title}}</a></li>
+            {% endif %} 
+        {% endfor %}
+      {% endif %}
+{% endfor %}
+</ul>
+
+
 </body>
 </html>
