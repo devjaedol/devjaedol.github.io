@@ -49,6 +49,24 @@ elif k == ord('a')
 cv2.moveWindow('win',x ,y)
 ```
 
+`상하좌우` 키보드를 통해서 하려면...    
+키값을 16진수로 입력 받아야 됩니다.    
+```python
+# key = cv2.waitKey(0) & 0xFF
+key = cv2.waitKeyEx() # 16진수 키캆
+
+if key == ord('j') or key == 0x250000:
+    x -= 10
+elif key == ord('l') or key == 0x270000:
+    x += 10
+elif key == ord('o') or key == 0x260000:
+    y -= 10
+elif key == ord('k') or key == 0x280000:
+    y += 10
+elif key == ord('q') or key == 27:
+    break
+```
+
 
 {% assign c-category = 'python' %}
 {% assign c-tag = 'lecture-opencv' %}

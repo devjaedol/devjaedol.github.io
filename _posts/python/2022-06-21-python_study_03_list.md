@@ -1,5 +1,5 @@
 ---
-title: Python 자료형 list 타입
+title: "[Python Basic] 자료형 list 타입"
 categories: 
     - python
 tags: 
@@ -31,13 +31,16 @@ toc_sticky  : true
 ```python
 a = [1, 2, 3, 4, 5]
 b = [6, 7, 8, 9, 10]
-c = a+b
+c = a+b  # a+b를 더한 후 a, b는 변화 없음
 d = a*3
 print(c)    # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 print(d)    # [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
 print(a[0]) # 1
 print(a[-1])# 5
 print(len(d))# 15
+
+a.extend(b) # extend는 원본에 추가되는 형태
+print(a) # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ```
 
@@ -61,12 +64,32 @@ print(x)
 ```
 
 ## 추가, 삭제
+리스트 추가에는 `append`, `insert` 를 사용 가능합니다.    
+삭제는 `del`, `remove` ,`pop` 등으로 삭제 가능 합니다.    
 ```python
 b = ["AB", 10, False]
+
 b.append(50.5)  # 추가  ['AB', 10, False, 50.5]
 b[1] = 11       # 변경  ['AB', 11, False, 50.5]
+
 del b[2]        # 삭제  ['AB', 11, 50.5]
 print(b)        # ['AB', 11, 50.5]
+
+b.insert(0,'KK')
+print(b)        # ['KK','AB', 11, 50.5]
+
+a.pop()  # pop(인덱스 = -1) 기본값 -1로 마지막 값을 제거함
+a.remove(50.5) # remove(값) , 요소를 값으로 판단하어 제거함
+a.clear() # 모두 초기화
+```
+
+# 전개 연산자 
+`*`를 붙여서 내부에 매개변수 위치에 사용하는 방식.    
+```python
+a = [1, 2, 3, 4, 5]
+b = [6, 7, 8, 9, 10]
+c = [*a, *b]
+print(c) # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ```
 
@@ -117,6 +140,13 @@ print(arr)  # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
 str = 'ABCDE'
 print([c * 3 for c in str]) #['AAA', 'BBB', 'CCC', 'DDD', 'EEE']
 
+arr = ['A','B','C']
+for i, v in enumerate(arr):
+    print("{}번째 {} 값".format(i, v))
+# 출력
+0번째 A 값
+1번째 B 값
+2번째 C 값
 ```
 
 
@@ -184,6 +214,9 @@ a.sort()
 print(a)    # [1, 2, 2, 3, 6, 6, 8, 9]
 
 a.sort(reverse = True)
+print(a)    # [9, 8, 6, 6, 3, 2, 2, 1]
+
+b = reversed(a)
 print(a)    # [9, 8, 6, 6, 3, 2, 2, 1]
 
 ```

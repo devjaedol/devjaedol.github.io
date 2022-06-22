@@ -1,5 +1,5 @@
 ---
-title: Python 설치
+title: "[Python Basic] 설치"
 categories: 
     - python
 tags: 

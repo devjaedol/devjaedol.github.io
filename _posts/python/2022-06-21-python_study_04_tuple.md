@@ -1,9 +1,9 @@
 ---
-title: Python 자료형 tuple 타입
+title: "[Python Basic] 자료형 tuple 타입"
 categories: 
     - python
 tags: 
-    [python, python강좌, 초급, 'lecture-python-basic', list ]
+    [python, python강좌, 초급, 'lecture-python-basic', tuple ]
 toc : true
 toc_sticky  : true    
 ---

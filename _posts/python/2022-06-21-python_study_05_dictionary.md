@@ -1,9 +1,9 @@
 ---
-title: Python 자료형 dictionary 타입
+title: "[Python Basic] 자료형 dictionary 타입"
 categories: 
     - python
 tags: 
-    [python, python강좌, 초급, 'lecture-python-basic', list ]
+    [python, python강좌, 초급, 'lecture-python-basic', dictionary ]
 toc : true
 toc_sticky  : true    
 ---
@@ -91,6 +91,11 @@ for key in a:
 배철수 : 90
 안철수 : 85
 인순이 : 80
+
+#items를 통한 순회
+for k, v in a.items():
+    print(k, v)
+
 ```
 
 

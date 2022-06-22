@@ -1,5 +1,5 @@
 ---
-title: Python 기초
+title: "[Python Basic] 기본 자료 및 조건문"
 categories: 
     - python
 tags: 
