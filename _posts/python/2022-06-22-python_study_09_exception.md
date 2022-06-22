@@ -1,6 +1,6 @@
 ---
 title: "[Python Basic] 예외처리"
-categories: 
+categories:  
     - python
 tags: 
     [python, python강좌, 초급, 'lecture-python-basic', 예외처리 ]
