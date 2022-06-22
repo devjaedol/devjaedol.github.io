@@ -1,0 +1,1439 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[OpenCV] 마우스이벤트 | 꿰보노트</title>
+<meta name="description" content="OpenCV 마우스 이벤트에 대해서 정의 합니다.   마우스 움직임에 대한 콜백 함수를 구현하여, 전달되는 파라메터 인자를 통해서 마우스 관련 정보를 얻을 수 있습니다.   ex) mouseCallbcak(event, x, y, flags, param) 함수의    event 항목의 cv2.EVENT_XXXX 형태로 마우스 이벤트   x, y는 마우스의 자표   flags 키보드 등의 추가 적인 정보 제공">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[OpenCV] 마우스이벤트">
+<meta property="og:url" content="https://kimjaehyun.co.kr/python/python-opencv-mouse-event/">
+
+
+  <meta property="og:description" content="OpenCV 마우스 이벤트에 대해서 정의 합니다.   마우스 움직임에 대한 콜백 함수를 구현하여, 전달되는 파라메터 인자를 통해서 마우스 관련 정보를 얻을 수 있습니다.   ex) mouseCallbcak(event, x, y, flags, param) 함수의    event 항목의 cv2.EVENT_XXXX 형태로 마우스 이벤트   x, y는 마우스의 자표   flags 키보드 등의 추가 적인 정보 제공">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-06-21T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/python/python-opencv-mouse-event/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#python" itemprop="item"><span itemprop="name">Python</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[OpenCV] 마우스이벤트</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 54</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (18)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (5)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+
+
+        <span class="nav__sub-title">Footprints</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[OpenCV] 마우스이벤트">
+    <meta itemprop="description" content="OpenCV 마우스 이벤트에 대해서 정의 합니다.  마우스 움직임에 대한 콜백 함수를 구현하여, 전달되는 파라메터 인자를 통해서 마우스 관련 정보를 얻을 수 있습니다.  ex) mouseCallbcak(event, x, y, flags, param) 함수의  event 항목의 cv2.EVENT_XXXX 형태로 마우스 이벤트  x, y는 마우스의 자표  flags 키보드 등의 추가 적인 정보 제공">
+    <meta itemprop="datePublished" content="2022-06-21T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/python/python-opencv-mouse-event/" class="u-url" itemprop="url">[OpenCV] 마우스이벤트
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#source-code">Source Code</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>OpenCV 마우스 이벤트에 대해서 정의 합니다.  <br />
+마우스 움직임에 대한 콜백 함수를 구현하여, 전달되는 파라메터 인자를 통해서 마우스 관련 정보를 얻을 수 있습니다.  <br />
+ex) <code class="language-plaintext highlighter-rouge">mouseCallbcak(event, x, y, flags, param)</code> 함수의</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">event</code> 항목의 <code class="language-plaintext highlighter-rouge">cv2.EVENT_XXXX</code> 형태로 마우스 이벤트</li>
+  <li><code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>는 마우스의 자표</li>
+  <li><code class="language-plaintext highlighter-rouge">flags</code> 키보드 등의 추가 적인 정보 제공</li>
+</ul>
+
+<p><a href="https://docs.opencv.org/3.4/d0/d90/group__highgui__window__flags.html" target="_blank">마우스 관련 API</a></p>
+
+<p>event 종류</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_MOUSEMOVE</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_LBUTTONDOWN</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_RBUTTONDOWN</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_MBUTTONDOWN</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_LBUTTONUP</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_RBUTTONUP</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_MBUTTONUP</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_LBUTTONDBLCLK</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_RBUTTONDBLCLK</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_MBUTTONDBLCLK</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_MOUSEWHEEL</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_MOUSEHWHEEL</span> <span class="o">=</span> <span class="mi">11</span>
+</code></pre></div></div>
+
+<p>flags 종류</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_FLAG_LBUTTON</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_FLAG_RBUTTON</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_FLAG_MBUTTON</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_FLAG_CTRLKEY</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_FLAG_SHIFTKEY</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="n">cv</span><span class="p">::</span><span class="n">EVENT_FLAG_ALTKEY</span> <span class="o">=</span> <span class="mi">32</span>
+</code></pre></div></div>
+
+<h1 id="source-code">Source Code</h1>
+<p>마우스 누르는 동작과 키보드 <code class="language-plaintext highlighter-rouge">shift</code>에 따라서 그려지는 샘플소스 입니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">512</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="n">windowName</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">draw_circle</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="n">cv2</span><span class="p">.</span><span class="n">EVENT_LBUTTONDOWN</span> <span class="ow">and</span> <span class="n">flags</span> <span class="o">&amp;</span> <span class="n">cv2</span><span class="p">.</span><span class="n">EVENT_FLAG_SHIFTKEY</span> <span class="p">:</span> 
+        <span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="n">cv2</span><span class="p">.</span><span class="n">EVENT_LBUTTONDBLCLK</span><span class="p">:</span>
+        <span class="n">cv2</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="mi">40</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="n">cv2</span><span class="p">.</span><span class="n">EVENT_RBUTTONDOWN</span><span class="p">:</span>
+        <span class="n">cv2</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="n">cv2</span><span class="p">.</span><span class="n">EVENT_MBUTTONDOWN</span><span class="p">:</span>
+        <span class="n">cv2</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="mi">30</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="p">.</span><span class="n">setMouseCallback</span><span class="p">(</span><span class="n">windowName</span><span class="p">,</span> <span class="n">draw_circle</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">__version__</span><span class="p">)</span>
+    <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'sample'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span> <span class="c1">#27키   ESC
+</span>            <span class="k">break</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>  
+
+</code></pre></div></div>
+
+<p>OpenCV의 이벤트 확인 방법</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">events</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">cv2</span><span class="p">)</span> <span class="k">if</span> <span class="s">'EVENT'</span> <span class="ow">in</span> <span class="n">i</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+
+<span class="c1">#출력
+</span><span class="p">[</span><span class="s">'EVENT_FLAG_ALTKEY'</span><span class="p">,</span> <span class="s">'EVENT_FLAG_CTRLKEY'</span><span class="p">,</span>
+ <span class="s">'EVENT_FLAG_LBUTTON'</span><span class="p">,</span> <span class="s">'EVENT_FLAG_MBUTTON'</span><span class="p">,</span> 
+<span class="s">'EVENT_FLAG_RBUTTON'</span><span class="p">,</span> <span class="s">'EVENT_FLAG_SHIFTKEY'</span><span class="p">,</span>
+ <span class="s">'EVENT_LBUTTONDBLCLK'</span><span class="p">,</span> <span class="s">'EVENT_LBUTTONDOWN'</span><span class="p">,</span> 
+ <span class="s">'EVENT_LBUTTONUP'</span><span class="p">,</span> <span class="s">'EVENT_MBUTTONDBLCLK'</span><span class="p">,</span> 
+ <span class="s">'EVENT_MBUTTONDOWN'</span><span class="p">,</span> <span class="s">'EVENT_MBUTTONUP'</span><span class="p">,</span> 
+ <span class="s">'EVENT_MOUSEHWHEEL'</span><span class="p">,</span> <span class="s">'EVENT_MOUSEMOVE'</span><span class="p">,</span> 
+ <span class="s">'EVENT_MOUSEWHEEL'</span><span class="p">,</span> <span class="s">'EVENT_RBUTTONDBLCLK'</span><span class="p">,</span> 
+ <span class="s">'EVENT_RBUTTONDOWN'</span><span class="p">,</span> <span class="s">'EVENT_RBUTTONUP'</span><span class="p">]</span>
+
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-opencv)</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-mouse-event/">[OpenCV] 마우스이벤트</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#event" class="page__taxonomy-item p-category" rel="tag">event</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-opencv" class="page__taxonomy-item p-category" rel="tag">lecture-opencv</a><span class="sep">, </span>
+    
+      <a href="/tags/#mouse" class="page__taxonomy-item p-category" rel="tag">mouse</a><span class="sep">, </span>
+    
+      <a href="/tags/#mouse-event" class="page__taxonomy-item p-category" rel="tag">mouse event</a><span class="sep">, </span>
+    
+      <a href="/tags/#opencv" class="page__taxonomy-item p-category" rel="tag">opencv</a><span class="sep">, </span>
+    
+      <a href="/tags/#python" class="page__taxonomy-item p-category" rel="tag">python</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item p-category" rel="tag">python</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-21T00:00:00-05:00">2022-06-21</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BOpenCV%5D+%EB%A7%88%EC%9A%B0%EC%8A%A4%EC%9D%B4%EB%B2%A4%ED%8A%B8%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython-opencv-mouse-event%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython-opencv-mouse-event%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython-opencv-mouse-event%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/python/python-opencv-window-event/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[OpenCV] 윈도우 처리, 키이벤트</a>
+    
+    
+      <a href="/python/python_study_03_list/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Python Basic] 자료형 list 타입</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC" class="page__taxonomy-item-tag" rel="tag">예외처리</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_08_class/">[Python Basic] Class</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#class" class="page__taxonomy-item-tag" rel="tag">class</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_07_function/">[Python Basic] 함수</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#function" class="page__taxonomy-item-tag" rel="tag">function</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#set" class="page__taxonomy-item-tag" rel="tag">set</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kimjaehyun.co.kr/python/python-opencv-mouse-event/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/python/python-opencv-mouse-event"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

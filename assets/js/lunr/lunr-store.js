@@ -23,16 +23,16 @@ var store = [{
         "url": "/javascript/JS-Version/",
         "teaser": null
       },{
-        "title": "Python 설치",
-        "excerpt":"파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반… 다운 로드 경로 다운로드 선택 설치 경로를 변경하기 위해서 Customzie 선택 기본값 Next 경로 변경 완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함. 설치 버전이 정상 표기되면, 설치 완료됨. window path는 필요시 추가해야 합니다. 관련된 글 (python &gt; lecture-python-basic) Python 자료형...","categories": ["python"],
+        "title": "[Python Basic] 설치",
+        "excerpt":"파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반… 다운 로드 경로 다운로드 선택 설치 경로를 변경하기 위해서 Customzie 선택 기본값 Next 경로 변경 완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함. 설치 버전이 정상 표기되면, 설치 완료됨. window path는 필요시 추가해야 합니다. 관련된 글 (python &gt; lecture-python-basic) [Python Basic]...","categories": ["python"],
         "tags": ["python강좌","python","초급","lecture-python-basic"],
-        "url": "/python/python_study_01/",
+        "url": "/python/python_study_01_install/",
         "teaser": null
       },{
-        "title": "Python 기초",
+        "title": "[Python Basic] 기본 자료 및 조건문",
         "excerpt":"파이썬 공부를 스피드 있게 해봅시다. 파이썬 IDLE를 실행 합니다. 설명이 필요 없는 프로그램 공부의 기본을 Start!!!! Python 공식 자습서 기본 실습 하기 100 + 50 print(‘Hello world’) “string”*5 Python 3.10.0 (tags/v3.10.0:b494f59, Oct 4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)] on win32 Type \"help\", \"copyright\", \"credits\" or \"license()\" for more...","categories": ["python"],
         "tags": ["python강좌","python","초급","lecture-python-basic"],
-        "url": "/python/python_study_02/",
+        "url": "/python/python_study_02_init/",
         "teaser": null
       },{
         "title": "ES6(ECMAScript6)등 간략 정리",
@@ -275,21 +275,51 @@ var store = [{
         "url": "/python/python-opencv-window-event/",
         "teaser": null
       },{
-        "title": "Python 자료형 list 타입",
+        "title": "[OpenCV] 마우스이벤트",
+        "excerpt":"OpenCV 마우스 이벤트에 대해서 정의 합니다. 마우스 움직임에 대한 콜백 함수를 구현하여, 전달되는 파라메터 인자를 통해서 마우스 관련 정보를 얻을 수 있습니다. ex) mouseCallbcak(event, x, y, flags, param) 함수의 event 항목의 cv2.EVENT_XXXX 형태로 마우스 이벤트 x, y는 마우스의 자표 flags 키보드 등의 추가 적인 정보 제공 마우스 관련 API event...","categories": ["python"],
+        "tags": ["python","opencv","mouse","event","mouse event","lecture-opencv"],
+        "url": "/python/python-opencv-mouse-event/",
+        "teaser": null
+      },{
+        "title": "[Python Basic] 자료형 list 타입",
         "excerpt":"순서가 있고, 중복이 허용되는 배열 형태의 자료형 입니다. list vs tuple vs dictionary vs set   list tuple dictionary set 순서 O O X X 중복 O O X X 변경 O X O O 형태 [1,2,3,4,5] (1,2,3,4,5) {“java”:10, “key”:5} {1, 2, 3} type &lt;class ‘list’&gt; &lt;class ‘tuple’&gt; &lt;class ‘dict’&gt;...","categories": ["python"],
         "tags": ["python","python강좌","초급","lecture-python-basic","list"],
         "url": "/python/python_study_03_list/",
         "teaser": null
       },{
-        "title": "Python 자료형 tuple 타입",
+        "title": "[Python Basic] 자료형 tuple 타입",
         "excerpt":"순서가 보장되고, 중복이 허용되나 변경은되지 않는 읽기 전용의 자료형 입니다. list vs tuple vs dictionary vs set   list tuple dictionary set 순서 O O X X 중복 O O X X 변경 O X O O 형태 [1,2,3,4,5] (1,2,3,4,5) {“java”:10, “key”:5} {1, 2, 3} type &lt;class ‘list’&gt; &lt;class ‘tuple’&gt;...","categories": ["python"],
-        "tags": ["python","python강좌","초급","lecture-python-basic","list"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","tuple"],
         "url": "/python/python_study_04_tuple/",
         "teaser": null
       },{
-        "title": "Python 자료형 dictionary 타입",
+        "title": "[Python Basic] 자료형 dictionary 타입",
         "excerpt":"key, value 형태의 순서와 중복이 보장되지 않는 자료형 입니다. list vs tuple vs dictionary vs set   list tuple dictionary set 순서 O O X X 중복 O O X X 변경 O X O O 형태 [1,2,3,4,5] (1,2,3,4,5) {“java”:10, “key”:5} {1, 2, 3} type &lt;class ‘list’&gt; &lt;class ‘tuple’&gt; &lt;class...","categories": ["python"],
-        "tags": ["python","python강좌","초급","lecture-python-basic","list"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","dictionary"],
         "url": "/python/python_study_05_dictionary/",
+        "teaser": null
+      },{
+        "title": "[Python Basic] 자료형 set 타입",
+        "excerpt":"순서와 중복이 보장되지 않는 자료형 입니다. list vs tuple vs dictionary vs set   list tuple dictionary set 순서 O O X X 중복 O O X X 변경 O X O O 형태 [1,2,3,4,5] (1,2,3,4,5) {“java”:10, “key”:5} {1, 2, 3} type &lt;class ‘list’&gt; &lt;class ‘tuple’&gt; &lt;class ‘dict’&gt; &lt;class ‘set’&gt;...","categories": ["python"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","set"],
+        "url": "/python/python_study_06_set/",
+        "teaser": null
+      },{
+        "title": "[Python Basic] 함수",
+        "excerpt":"함수 선언 자주 사용하는 기능을 Function으로 정의할 수 있습니다. #반환값이 있는 경우 def 함수명(인자정의) 함수 내용부 return 반환값 #반환값이 없는 경우 def 함수명(인자정의) 함수 내용부 def 함수명(인자정의) 함수 내용부 return #값이 없는 경우 `None` def sum(a, b): s = a + b return s total = sum(4, 7) print(total) 단일...","categories": ["python"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","function"],
+        "url": "/python/python_study_07_function/",
+        "teaser": null
+      },{
+        "title": "[Python Basic] Class",
+        "excerpt":"객체 지향 프로그램에서 사용하는 클래스를 학습해 보겠습니다. Class 형태 class 클래스이름으로 클래스를 생성 할 수 있습니다. class 클래스이름: 클래스 내용 #내용이 빈 클래스를 만들 경우. class 클래스이름: pass 사용법 인스턴스 형태로 생성하여 사용 합니다. 변수 = 클래스이름(); 생성자, 소멸자, 사용자 함수 생성자의 첫번째 매개 변수는 self 를 꼭 포함해야 한다....","categories": ["python"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","class"],
+        "url": "/python/python_study_08_class/",
+        "teaser": null
+      },{
+        "title": "[Python Basic] 예외처리",
+        "excerpt":"Python에서 예외 처리 방법에 대해서 알아 봅시다. try ~ except 형태 try: # 실행 로직 # 실행 로직 except: # 에러 발생시 진행 로직 else: # 예외가 발생하지 않을떄 실행하는 영역 finally: # 최종 실행이 보장되는 영역 except: 은 except 예외클래스 as 변수: 형태로 예외 객체 별로 분리 할 수...","categories": ["python"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","예외처리"],
+        "url": "/python/python_study_09_exception/",
         "teaser": null
       }]

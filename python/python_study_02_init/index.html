@@ -1,0 +1,1695 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Python Basic] 기본 자료 및 조건문 | 꿰보노트</title>
+<meta name="description" content="파이썬 공부를 스피드 있게 해봅시다.   파이썬 IDLE를 실행 합니다.      설명이 필요 없는 프로그램 공부의 기본을 Start!!!!   Python 공식 자습서">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Python Basic] 기본 자료 및 조건문">
+<meta property="og:url" content="https://kimjaehyun.co.kr/python/python_study_02_init/">
+
+
+  <meta property="og:description" content="파이썬 공부를 스피드 있게 해봅시다.   파이썬 IDLE를 실행 합니다.      설명이 필요 없는 프로그램 공부의 기본을 Start!!!!   Python 공식 자습서">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-19T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/python/python_study_02_init/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#python" itemprop="item"><span itemprop="name">Python</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Python Basic] 기본 자료 및 조건문</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 54</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">Programming</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (18)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (5)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+
+
+        <span class="nav__sub-title">Footprints</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            </ul>
+
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Python Basic] 기본 자료 및 조건문">
+    <meta itemprop="description" content="파이썬 공부를 스피드 있게 해봅시다.  파이썬 IDLE를 실행 합니다.     설명이 필요 없는 프로그램 공부의 기본을 Start!!!!  Python 공식 자습서">
+    <meta itemprop="datePublished" content="2021-10-19T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/python/python_study_02_init/" class="u-url" itemprop="url">[Python Basic] 기본 자료 및 조건문
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#기본-실습-하기">기본 실습 하기</a></li><li><a href="#자료형">자료형</a></li><li><a href="#연산자">연산자</a></li><li><a href="#조건문">조건문</a><ul><li><a href="#if-elif-else">if, elif, else</a></li></ul></li><li><a href="#반복문">반복문</a><ul><li><a href="#for">for</a></li><li><a href="#while">while</a></li></ul></li><li><a href="#함수">함수</a><ul><li><a href="#선언">선언</a></li><li><a href="#파라메터-초기값-설정">파라메터 초기값 설정</a></li><li><a href="#파라메터-이름-설정">파라메터 이름 설정</a></li><li><a href="#가변-길이-파라메터">가변 길이 파라메터</a></li></ul></li><li><a href="#예약어-확인하기">예약어 확인하기</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>파이썬 공부를 스피드 있게 해봅시다.  <br />
+파이썬 IDLE를 실행 합니다.     <br />
+설명이 필요 없는 프로그램 공부의 기본을 Start!!!!  <br />
+<a href="https://docs.python.org/ko/3/tutorial/index.html" target="_blank">Python 공식 자습서</a></p>
+
+<h2 id="기본-실습-하기">기본 실습 하기</h2>
+<blockquote>
+  <p>100 + 50  <br />
+print(‘Hello world’)  <br />
+“string”*5</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Python</span> <span class="mf">3.10</span><span class="p">.</span><span class="mi">0</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="p">.</span><span class="mf">10.0</span><span class="p">:</span><span class="n">b494f59</span><span class="p">,</span> <span class="n">Oct</span>  <span class="mi">4</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">18</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="p">.</span><span class="mi">1929</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
+<span class="n">Type</span> <span class="s">"help"</span><span class="p">,</span> <span class="s">"copyright"</span><span class="p">,</span> <span class="s">"credits"</span> <span class="ow">or</span> <span class="s">"license()"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">100</span><span class="o">+</span><span class="mi">50</span>
+<span class="mi">150</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s">'Hello world'</span><span class="p">)</span>
+<span class="n">Hello</span> <span class="n">world</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">"string"</span><span class="o">*</span><span class="mi">5</span>
+<span class="s">'stringstringstringstringstring'</span>
+</code></pre></div></div>
+
+<h2 id="자료형">자료형</h2>
+<p>프로그래밍에 기초로 자료형 부터 보시죠.  <br />
+Python에 주요 자료형 입니다.</p>
+
+<ul>
+  <li>수치 자료형
+    <ul>
+      <li>int</li>
+      <li>float</li>
+      <li>complex</li>
+    </ul>
+  </li>
+  <li>불 자료형
+    <ul>
+      <li>bool</li>
+    </ul>
+  </li>
+  <li>군집 자료형
+    <ul>
+      <li>list</li>
+      <li>tuple</li>
+      <li>dict</li>
+      <li>set</li>
+    </ul>
+  </li>
+  <li>문자 자료형
+    <ul>
+      <li>str</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># int
+# type( xxx ) 은 자료형을 출력 합니다.
+</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1">#&lt;class 'int'&gt;
+</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">5.7</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="c1">#&lt;class 'float'&gt;
+</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mf">1j</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="c1">#&lt;class 'complex'&gt;
+</span>
+<span class="n">d</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="c1">#&lt;class 'bool'&gt;
+</span>
+<span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="c1">#&lt;class 'list'&gt;     #(순서 O, 중복 O, 변경 O)
+</span>
+<span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="c1">#&lt;class 'tuple'&gt;    #(순서 O, 중복 O, 변경 X)
+</span>
+<span class="n">g</span> <span class="o">=</span> <span class="p">{</span><span class="s">"java"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s">"python"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s">"C"</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="c1">#&lt;class 'dict'&gt;     #(순서 X, 중복 X, 변경 O)
+</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="c1">#&lt;class 'set'&gt;      #(순서 X, 중복 X, 변경 O)
+</span>
+<span class="n">i</span> <span class="o">=</span> <span class="s">'가나다라마'</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="c1">#&lt;class 'str'&gt;
+</span></code></pre></div></div>
+<p><img src="\assets/images_post/python/python-study-02_1.png" alt="파이썬 자료형" /></p>
+
+<h2 id="연산자">연산자</h2>
+<p>변수에 대한 연산을 처리하는 연산자 시리즈 입니다.</p>
+<ul>
+  <li>사칙 연산자
+    <ul>
+      <li>+, -, *, /</li>
+      <li>** 제곱</li>
+      <li>% 나머지</li>
+      <li>// 소수점이하 버림 연산</li>
+    </ul>
+  </li>
+  <li>비교 연산자
+    <ul>
+      <li>&lt;, &gt;, &lt;=, =&gt;, ==, !=</li>
+    </ul>
+  </li>
+  <li>논리 연산자
+    <ul>
+      <li>and</li>
+      <li>or</li>
+      <li>not</li>
+    </ul>
+  </li>
+  <li>비트와이즈 연산자
+    <ul>
+      <li>&amp; (AND)</li>
+      <li>| (OR)</li>
+      <li>«, » (비트 이동)</li>
+      <li>~ (Completement)</li>
+      <li>^ (XOR)</li>
+    </ul>
+  </li>
+  <li>기타 연산자
+    <ul>
+      <li>+=</li>
+      <li>-=</li>
+      <li>*=</li>
+      <li>in</li>
+      <li>not in</li>
+      <li>is    ( A is B A와 B가 동일 주소를 가르칠때 True)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="조건문">조건문</h2>
+<p>프로그램에 기본인 조건에 따라 로직을 분기하는 종류 입니다.</p>
+
+<h3 id="if-elif-else">if, elif, else</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#if문
+</span><span class="k">if</span> <span class="n">tall</span> <span class="o">&gt;</span> <span class="mi">180</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
+
+
+<span class="c1">#if, else
+</span><span class="k">if</span> <span class="n">tall</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 작습니다"</span><span class="p">)</span>
+
+
+<span class="c1">#if, elif, else
+</span><span class="k">if</span> <span class="n">tall</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">tall</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 작습니다"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"키가 보통 입니다"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="반복문">반복문</h2>
+
+<h3 id="for">for</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># range(반복횟수):
+# for 변수 in range(시작값, 끝값+1, 증가값):
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+
+
+<span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+
+
+<span class="c1">#range(이상, 미만)
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+
+<span class="c1"># 중첩 For
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">"   "</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">" "</span><span class="p">)</span>
+
+<span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>    
+<span class="mi">2</span>   <span class="mi">4</span>   <span class="mi">6</span>    
+<span class="mi">3</span>   <span class="mi">6</span>   <span class="mi">9</span>    
+
+
+<span class="c1">#1~10 의 합    
+</span><span class="nb">sum</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="o">+</span><span class="n">i</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+
+<span class="mi">55</span>
+
+</code></pre></div></div>
+<h3 id="while">while</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+<span class="nb">sum</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">:</span>
+    <span class="nb">sum</span><span class="o">=</span><span class="nb">sum</span><span class="o">+</span><span class="n">i</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="mi">55</span>
+</code></pre></div></div>
+
+<h2 id="함수">함수</h2>
+<h3 id="선언">선언</h3>
+<p>자주 사용하는 기능을 Function으로 정의할 수 있습니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#반환값이 있는 경우
+</span><span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
+    <span class="n">함수</span> <span class="n">내용부</span>
+    <span class="k">return</span> <span class="n">반환값</span>
+
+<span class="c1">#반환값이 없는 경우
+</span><span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
+    <span class="n">함수</span> <span class="n">내용부</span>
+
+</code></pre></div></div>
+<p>단일 값 또는 다중 값(튜플)을 반환 할수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span>
+
+
+<span class="c1">#다중값 반환 함수
+</span><span class="k">def</span> <span class="nf">multi</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">v2</span>
+    <span class="n">s2</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span>
+    <span class="k">return</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span>
+
+<span class="n">t1</span><span class="p">,</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span> <span class="mi">10</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="파라메터-초기값-설정">파라메터 초기값 설정</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#빈값 입력시 기본값으로 설정 
+</span><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">15</span>
+</code></pre></div></div>
+
+<h3 id="파라메터-이름-설정">파라메터 이름 설정</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#이름으로 설정할 수 있습니다.
+</span><span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+
+<span class="n">info</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'Hong Gil Dong'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Hong</span> <span class="n">Gil</span> <span class="n">Dong</span> <span class="mi">30</span>
+</code></pre></div></div>
+
+<h3 id="가변-길이-파라메터">가변 길이 파라메터</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#가변형 파라메터 입력 
+</span><span class="k">def</span> <span class="nf">keyList</span><span class="p">(</span><span class="o">*</span><span class="n">keys</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">keyList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">5</span>
+</code></pre></div></div>
+
+<h2 id="예약어-확인하기">예약어 확인하기</h2>
+<p>파이썬에는 다음과 같은 예약어는 사용 할 수 없습니다. <br />
+참고 하시기 바랍니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">keyword</span>
+<span class="k">print</span><span class="p">(</span><span class="n">keyword</span><span class="p">.</span><span class="n">kwlist</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'False'</span><span class="p">,</span> <span class="s">'None'</span><span class="p">,</span> <span class="s">'True'</span><span class="p">,</span> <span class="s">'and'</span><span class="p">,</span> <span class="s">'as'</span><span class="p">,</span> <span class="s">'assert'</span><span class="p">,</span> 
+<span class="s">'async'</span><span class="p">,</span> <span class="s">'await'</span><span class="p">,</span> <span class="s">'break'</span><span class="p">,</span> <span class="s">'class'</span><span class="p">,</span> <span class="s">'continue'</span><span class="p">,</span> <span class="s">'def'</span><span class="p">,</span> 
+<span class="s">'del'</span><span class="p">,</span> <span class="s">'elif'</span><span class="p">,</span> <span class="s">'else'</span><span class="p">,</span> <span class="s">'except'</span><span class="p">,</span> <span class="s">'finally'</span><span class="p">,</span> <span class="s">'for'</span><span class="p">,</span> <span class="s">'from'</span><span class="p">,</span> 
+<span class="s">'global'</span><span class="p">,</span> <span class="s">'if'</span><span class="p">,</span> <span class="s">'import'</span><span class="p">,</span> <span class="s">'in'</span><span class="p">,</span> <span class="s">'is'</span><span class="p">,</span> <span class="s">'lambda'</span><span class="p">,</span> <span class="s">'nonlocal'</span><span class="p">,</span>
+ <span class="s">'not'</span><span class="p">,</span> <span class="s">'or'</span><span class="p">,</span> <span class="s">'pass'</span><span class="p">,</span> <span class="s">'raise'</span><span class="p">,</span> <span class="s">'return'</span><span class="p">,</span> <span class="s">'try'</span><span class="p">,</span> 
+ <span class="s">'while'</span><span class="p">,</span> <span class="s">'with'</span><span class="p">,</span> <span class="s">'yield'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-python-basic" class="page__taxonomy-item p-category" rel="tag">lecture-python-basic</a><span class="sep">, </span>
+    
+      <a href="/tags/#python" class="page__taxonomy-item p-category" rel="tag">python</a><span class="sep">, </span>
+    
+      <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">python강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item p-category" rel="tag">python</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2021-10-19T00:00:00-05:00">2021-10-19</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BPython+Basic%5D+%EA%B8%B0%EB%B3%B8+%EC%9E%90%EB%A3%8C+%EB%B0%8F+%EC%A1%B0%EA%B1%B4%EB%AC%B8%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_02_init%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_02_init%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_02_init%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/python/python_study_01_install/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Python Basic] 설치</a>
+    
+    
+      <a href="/codingtest/python/python-deque/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Python] deque (stack, queue) 구현</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC" class="page__taxonomy-item-tag" rel="tag">예외처리</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_08_class/">[Python Basic] Class</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#class" class="page__taxonomy-item-tag" rel="tag">class</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_07_function/">[Python Basic] 함수</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#function" class="page__taxonomy-item-tag" rel="tag">function</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#set" class="page__taxonomy-item-tag" rel="tag">set</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kimjaehyun.co.kr/python/python_study_02_init/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/python/python_study_02_init"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://devjaedol-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

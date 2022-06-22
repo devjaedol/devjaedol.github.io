@@ -232,7 +232,7 @@
     
     <!--전체 글 수-->
       <li>
-          <span class="nav__sub-title">전체 <span style="color:red"> 49</span>개</span> 
+          <span class="nav__sub-title">전체 <span style="color:red"> 54</span>개</span> 
       </li>
 
 
@@ -282,7 +282,7 @@
                   
               
                   
-                      <li><a href="/categories/python" class="">Python (13)</a></li>
+                      <li><a href="/categories/python" class="">Python (18)</a></li>
                   
               
                   
@@ -609,7 +609,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#도형-그리기">도형 그리기</a><ul><li><a href="#text-그리기cv2puttext">Text 그리기(cv2.putText)</a></li><li><a href="#선-그리기cv2line">선 그리기(cv2.line)</a></li><li><a href="#사각형그리기cv2rectangle">사각형그리기(cv2.rectangle)</a></li><li><a href="#다각형그리기cv2polylines">다각형그리기(cv2.polylines)</a></li><li><a href="#원-타원-그리기cv2circle">원, 타원 그리기(cv2.circle)</a></li><li><a href="#호그리기cv2ellipse">호그리기(cv2.ellipse)</a></li><li><a href="#sample-code">Sample Code</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#도형-그리기">도형 그리기</a><ul><li><a href="#text-그리기cv2puttext">Text 그리기(cv2.putText)</a></li><li><a href="#선-그리기cv2line">선 그리기(cv2.line)</a></li><li><a href="#사각형그리기cv2rectangle">사각형그리기(cv2.rectangle)</a></li><li><a href="#다각형그리기cv2polylines">다각형그리기(cv2.polylines)</a></li><li><a href="#원-타원-그리기cv2circle">원, 타원 그리기(cv2.circle)</a></li><li><a href="#호그리기cv2ellipse">호그리기(cv2.ellipse)</a></li><li><a href="#sample-code">Sample Code</a></li></ul></li><li><a href="#color-색상">Color 색상</a></li></ul>
 
             </nav>
           </aside>
@@ -773,6 +773,372 @@
     <span class="n">main</span><span class="p">()</span>  
 </code></pre></div></div>
 
+<h1 id="color-색상">Color 색상</h1>
+<p>cv2에서 제공하는 색상 관련 상수을 출력 합니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">cv2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'COLOR_'</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'count: '</span><span class="o">+</span><span class="nb">str</span><span class="p">((</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>  
+
+<span class="c1"># 출력 
+</span><span class="n">COLOR_BAYER_BG2BGR</span>
+<span class="n">COLOR_BAYER_BG2BGRA</span>
+<span class="n">COLOR_BAYER_BG2BGR_EA</span>
+<span class="n">COLOR_BAYER_BG2BGR_VNG</span>
+<span class="n">COLOR_BAYER_BG2GRAY</span>
+<span class="n">COLOR_BAYER_BG2RGB</span>
+<span class="n">COLOR_BAYER_BG2RGBA</span>
+<span class="n">COLOR_BAYER_BG2RGB_EA</span>
+<span class="n">COLOR_BAYER_BG2RGB_VNG</span>
+<span class="n">COLOR_BAYER_BGGR2BGR</span>
+<span class="n">COLOR_BAYER_BGGR2BGRA</span>
+<span class="n">COLOR_BAYER_BGGR2BGR_EA</span>
+<span class="n">COLOR_BAYER_BGGR2BGR_VNG</span>
+<span class="n">COLOR_BAYER_BGGR2GRAY</span>
+<span class="n">COLOR_BAYER_BGGR2RGB</span>
+<span class="n">COLOR_BAYER_BGGR2RGBA</span>
+<span class="n">COLOR_BAYER_BGGR2RGB_EA</span>
+<span class="n">COLOR_BAYER_BGGR2RGB_VNG</span>
+<span class="n">COLOR_BAYER_GB2BGR</span>
+<span class="n">COLOR_BAYER_GB2BGRA</span>
+<span class="n">COLOR_BAYER_GB2BGR_EA</span>
+<span class="n">COLOR_BAYER_GB2BGR_VNG</span>
+<span class="n">COLOR_BAYER_GB2GRAY</span>
+<span class="n">COLOR_BAYER_GB2RGB</span>
+<span class="n">COLOR_BAYER_GB2RGBA</span>
+<span class="n">COLOR_BAYER_GB2RGB_EA</span>
+<span class="n">COLOR_BAYER_GB2RGB_VNG</span>
+<span class="n">COLOR_BAYER_GBRG2BGR</span>
+<span class="n">COLOR_BAYER_GBRG2BGRA</span>
+<span class="n">COLOR_BAYER_GBRG2BGR_EA</span>
+<span class="n">COLOR_BAYER_GBRG2BGR_VNG</span>
+<span class="n">COLOR_BAYER_GBRG2GRAY</span>
+<span class="n">COLOR_BAYER_GBRG2RGB</span>
+<span class="n">COLOR_BAYER_GBRG2RGBA</span>
+<span class="n">COLOR_BAYER_GBRG2RGB_EA</span>
+<span class="n">COLOR_BAYER_GBRG2RGB_VNG</span>
+<span class="n">COLOR_BAYER_GR2BGR</span>
+<span class="n">COLOR_BAYER_GR2BGRA</span>
+<span class="n">COLOR_BAYER_GR2BGR_EA</span>
+<span class="n">COLOR_BAYER_GR2BGR_VNG</span>
+<span class="n">COLOR_BAYER_GR2GRAY</span>
+<span class="n">COLOR_BAYER_GR2RGB</span>
+<span class="n">COLOR_BAYER_GR2RGBA</span>
+<span class="n">COLOR_BAYER_GR2RGB_EA</span>
+<span class="n">COLOR_BAYER_GR2RGB_VNG</span>
+<span class="n">COLOR_BAYER_GRBG2BGR</span>
+<span class="n">COLOR_BAYER_GRBG2BGRA</span>
+<span class="n">COLOR_BAYER_GRBG2BGR_EA</span>
+<span class="n">COLOR_BAYER_GRBG2BGR_VNG</span>
+<span class="n">COLOR_BAYER_GRBG2GRAY</span>
+<span class="n">COLOR_BAYER_GRBG2RGB</span>
+<span class="n">COLOR_BAYER_GRBG2RGBA</span>
+<span class="n">COLOR_BAYER_GRBG2RGB_EA</span>
+<span class="n">COLOR_BAYER_GRBG2RGB_VNG</span>
+<span class="n">COLOR_BAYER_RG2BGR</span>
+<span class="n">COLOR_BAYER_RG2BGRA</span>
+<span class="n">COLOR_BAYER_RG2BGR_EA</span>
+<span class="n">COLOR_BAYER_RG2BGR_VNG</span>
+<span class="n">COLOR_BAYER_RG2GRAY</span>
+<span class="n">COLOR_BAYER_RG2RGB</span>
+<span class="n">COLOR_BAYER_RG2RGBA</span>
+<span class="n">COLOR_BAYER_RG2RGB_EA</span>
+<span class="n">COLOR_BAYER_RG2RGB_VNG</span>
+<span class="n">COLOR_BAYER_RGGB2BGR</span>
+<span class="n">COLOR_BAYER_RGGB2BGRA</span>
+<span class="n">COLOR_BAYER_RGGB2BGR_EA</span>
+<span class="n">COLOR_BAYER_RGGB2BGR_VNG</span>
+<span class="n">COLOR_BAYER_RGGB2GRAY</span>
+<span class="n">COLOR_BAYER_RGGB2RGB</span>
+<span class="n">COLOR_BAYER_RGGB2RGBA</span>
+<span class="n">COLOR_BAYER_RGGB2RGB_EA</span>
+<span class="n">COLOR_BAYER_RGGB2RGB_VNG</span>
+<span class="n">COLOR_BGR2BGR555</span>
+<span class="n">COLOR_BGR2BGR565</span>
+<span class="n">COLOR_BGR2BGRA</span>
+<span class="n">COLOR_BGR2GRAY</span>
+<span class="n">COLOR_BGR2HLS</span>
+<span class="n">COLOR_BGR2HLS_FULL</span>
+<span class="n">COLOR_BGR2HSV</span>
+<span class="n">COLOR_BGR2HSV_FULL</span>
+<span class="n">COLOR_BGR2LAB</span>
+<span class="n">COLOR_BGR2LUV</span>
+<span class="n">COLOR_BGR2Lab</span>
+<span class="n">COLOR_BGR2Luv</span>
+<span class="n">COLOR_BGR2RGB</span>
+<span class="n">COLOR_BGR2RGBA</span>
+<span class="n">COLOR_BGR2XYZ</span>
+<span class="n">COLOR_BGR2YCR_CB</span>
+<span class="n">COLOR_BGR2YCrCb</span>
+<span class="n">COLOR_BGR2YUV</span>
+<span class="n">COLOR_BGR2YUV_I420</span>
+<span class="n">COLOR_BGR2YUV_IYUV</span>
+<span class="n">COLOR_BGR2YUV_YV12</span>
+<span class="n">COLOR_BGR5552BGR</span>
+<span class="n">COLOR_BGR5552BGRA</span>
+<span class="n">COLOR_BGR5552GRAY</span>
+<span class="n">COLOR_BGR5552RGB</span>
+<span class="n">COLOR_BGR5552RGBA</span>
+<span class="n">COLOR_BGR5652BGR</span>
+<span class="n">COLOR_BGR5652BGRA</span>
+<span class="n">COLOR_BGR5652GRAY</span>
+<span class="n">COLOR_BGR5652RGB</span>
+<span class="n">COLOR_BGR5652RGBA</span>
+<span class="n">COLOR_BGRA2BGR</span>
+<span class="n">COLOR_BGRA2BGR555</span>
+<span class="n">COLOR_BGRA2BGR565</span>
+<span class="n">COLOR_BGRA2GRAY</span>
+<span class="n">COLOR_BGRA2RGB</span>
+<span class="n">COLOR_BGRA2RGBA</span>
+<span class="n">COLOR_BGRA2YUV_I420</span>
+<span class="n">COLOR_BGRA2YUV_IYUV</span>
+<span class="n">COLOR_BGRA2YUV_YV12</span>
+<span class="n">COLOR_BayerBG2BGR</span>
+<span class="n">COLOR_BayerBG2BGRA</span>
+<span class="n">COLOR_BayerBG2BGR_EA</span>
+<span class="n">COLOR_BayerBG2BGR_VNG</span>
+<span class="n">COLOR_BayerBG2GRAY</span>
+<span class="n">COLOR_BayerBG2RGB</span>
+<span class="n">COLOR_BayerBG2RGBA</span>
+<span class="n">COLOR_BayerBG2RGB_EA</span>
+<span class="n">COLOR_BayerBG2RGB_VNG</span>
+<span class="n">COLOR_BayerBGGR2BGR</span>
+<span class="n">COLOR_BayerBGGR2BGRA</span>
+<span class="n">COLOR_BayerBGGR2BGR_EA</span>
+<span class="n">COLOR_BayerBGGR2BGR_VNG</span>
+<span class="n">COLOR_BayerBGGR2GRAY</span>
+<span class="n">COLOR_BayerBGGR2RGB</span>
+<span class="n">COLOR_BayerBGGR2RGBA</span>
+<span class="n">COLOR_BayerBGGR2RGB_EA</span>
+<span class="n">COLOR_BayerBGGR2RGB_VNG</span>
+<span class="n">COLOR_BayerGB2BGR</span>
+<span class="n">COLOR_BayerGB2BGRA</span>
+<span class="n">COLOR_BayerGB2BGR_EA</span>
+<span class="n">COLOR_BayerGB2BGR_VNG</span>
+<span class="n">COLOR_BayerGB2GRAY</span>
+<span class="n">COLOR_BayerGB2RGB</span>
+<span class="n">COLOR_BayerGB2RGBA</span>
+<span class="n">COLOR_BayerGB2RGB_EA</span>
+<span class="n">COLOR_BayerGB2RGB_VNG</span>
+<span class="n">COLOR_BayerGBRG2BGR</span>
+<span class="n">COLOR_BayerGBRG2BGRA</span>
+<span class="n">COLOR_BayerGBRG2BGR_EA</span>
+<span class="n">COLOR_BayerGBRG2BGR_VNG</span>
+<span class="n">COLOR_BayerGBRG2GRAY</span>
+<span class="n">COLOR_BayerGBRG2RGB</span>
+<span class="n">COLOR_BayerGBRG2RGBA</span>
+<span class="n">COLOR_BayerGBRG2RGB_EA</span>
+<span class="n">COLOR_BayerGBRG2RGB_VNG</span>
+<span class="n">COLOR_BayerGR2BGR</span>
+<span class="n">COLOR_BayerGR2BGRA</span>
+<span class="n">COLOR_BayerGR2BGR_EA</span>
+<span class="n">COLOR_BayerGR2BGR_VNG</span>
+<span class="n">COLOR_BayerGR2GRAY</span>
+<span class="n">COLOR_BayerGR2RGB</span>
+<span class="n">COLOR_BayerGR2RGBA</span>
+<span class="n">COLOR_BayerGR2RGB_EA</span>
+<span class="n">COLOR_BayerGR2RGB_VNG</span>
+<span class="n">COLOR_BayerGRBG2BGR</span>
+<span class="n">COLOR_BayerGRBG2BGRA</span>
+<span class="n">COLOR_BayerGRBG2BGR_EA</span>
+<span class="n">COLOR_BayerGRBG2BGR_VNG</span>
+<span class="n">COLOR_BayerGRBG2GRAY</span>
+<span class="n">COLOR_BayerGRBG2RGB</span>
+<span class="n">COLOR_BayerGRBG2RGBA</span>
+<span class="n">COLOR_BayerGRBG2RGB_EA</span>
+<span class="n">COLOR_BayerGRBG2RGB_VNG</span>
+<span class="n">COLOR_BayerRG2BGR</span>
+<span class="n">COLOR_BayerRG2BGRA</span>
+<span class="n">COLOR_BayerRG2BGR_EA</span>
+<span class="n">COLOR_BayerRG2BGR_VNG</span>
+<span class="n">COLOR_BayerRG2GRAY</span>
+<span class="n">COLOR_BayerRG2RGB</span>
+<span class="n">COLOR_BayerRG2RGBA</span>
+<span class="n">COLOR_BayerRG2RGB_EA</span>
+<span class="n">COLOR_BayerRG2RGB_VNG</span>
+<span class="n">COLOR_BayerRGGB2BGR</span>
+<span class="n">COLOR_BayerRGGB2BGRA</span>
+<span class="n">COLOR_BayerRGGB2BGR_EA</span>
+<span class="n">COLOR_BayerRGGB2BGR_VNG</span>
+<span class="n">COLOR_BayerRGGB2GRAY</span>
+<span class="n">COLOR_BayerRGGB2RGB</span>
+<span class="n">COLOR_BayerRGGB2RGBA</span>
+<span class="n">COLOR_BayerRGGB2RGB_EA</span>
+<span class="n">COLOR_BayerRGGB2RGB_VNG</span>
+<span class="n">COLOR_COLORCVT_MAX</span>
+<span class="n">COLOR_GRAY2BGR</span>
+<span class="n">COLOR_GRAY2BGR555</span>
+<span class="n">COLOR_GRAY2BGR565</span>
+<span class="n">COLOR_GRAY2BGRA</span>
+<span class="n">COLOR_GRAY2RGB</span>
+<span class="n">COLOR_GRAY2RGBA</span>
+<span class="n">COLOR_HLS2BGR</span>
+<span class="n">COLOR_HLS2BGR_FULL</span>
+<span class="n">COLOR_HLS2RGB</span>
+<span class="n">COLOR_HLS2RGB_FULL</span>
+<span class="n">COLOR_HSV2BGR</span>
+<span class="n">COLOR_HSV2BGR_FULL</span>
+<span class="n">COLOR_HSV2RGB</span>
+<span class="n">COLOR_HSV2RGB_FULL</span>
+<span class="n">COLOR_LAB2BGR</span>
+<span class="n">COLOR_LAB2LBGR</span>
+<span class="n">COLOR_LAB2LRGB</span>
+<span class="n">COLOR_LAB2RGB</span>
+<span class="n">COLOR_LBGR2LAB</span>
+<span class="n">COLOR_LBGR2LUV</span>
+<span class="n">COLOR_LBGR2Lab</span>
+<span class="n">COLOR_LBGR2Luv</span>
+<span class="n">COLOR_LRGB2LAB</span>
+<span class="n">COLOR_LRGB2LUV</span>
+<span class="n">COLOR_LRGB2Lab</span>
+<span class="n">COLOR_LRGB2Luv</span>
+<span class="n">COLOR_LUV2BGR</span>
+<span class="n">COLOR_LUV2LBGR</span>
+<span class="n">COLOR_LUV2LRGB</span>
+<span class="n">COLOR_LUV2RGB</span>
+<span class="n">COLOR_Lab2BGR</span>
+<span class="n">COLOR_Lab2LBGR</span>
+<span class="n">COLOR_Lab2LRGB</span>
+<span class="n">COLOR_Lab2RGB</span>
+<span class="n">COLOR_Luv2BGR</span>
+<span class="n">COLOR_Luv2LBGR</span>
+<span class="n">COLOR_Luv2LRGB</span>
+<span class="n">COLOR_Luv2RGB</span>
+<span class="n">COLOR_M_RGBA2RGBA</span>
+<span class="n">COLOR_RGB2BGR</span>
+<span class="n">COLOR_RGB2BGR555</span>
+<span class="n">COLOR_RGB2BGR565</span>
+<span class="n">COLOR_RGB2BGRA</span>
+<span class="n">COLOR_RGB2GRAY</span>
+<span class="n">COLOR_RGB2HLS</span>
+<span class="n">COLOR_RGB2HLS_FULL</span>
+<span class="n">COLOR_RGB2HSV</span>
+<span class="n">COLOR_RGB2HSV_FULL</span>
+<span class="n">COLOR_RGB2LAB</span>
+<span class="n">COLOR_RGB2LUV</span>
+<span class="n">COLOR_RGB2Lab</span>
+<span class="n">COLOR_RGB2Luv</span>
+<span class="n">COLOR_RGB2RGBA</span>
+<span class="n">COLOR_RGB2XYZ</span>
+<span class="n">COLOR_RGB2YCR_CB</span>
+<span class="n">COLOR_RGB2YCrCb</span>
+<span class="n">COLOR_RGB2YUV</span>
+<span class="n">COLOR_RGB2YUV_I420</span>
+<span class="n">COLOR_RGB2YUV_IYUV</span>
+<span class="n">COLOR_RGB2YUV_YV12</span>
+<span class="n">COLOR_RGBA2BGR</span>
+<span class="n">COLOR_RGBA2BGR555</span>
+<span class="n">COLOR_RGBA2BGR565</span>
+<span class="n">COLOR_RGBA2BGRA</span>
+<span class="n">COLOR_RGBA2GRAY</span>
+<span class="n">COLOR_RGBA2M_RGBA</span>
+<span class="n">COLOR_RGBA2RGB</span>
+<span class="n">COLOR_RGBA2YUV_I420</span>
+<span class="n">COLOR_RGBA2YUV_IYUV</span>
+<span class="n">COLOR_RGBA2YUV_YV12</span>
+<span class="n">COLOR_RGBA2mRGBA</span>
+<span class="n">COLOR_XYZ2BGR</span>
+<span class="n">COLOR_XYZ2RGB</span>
+<span class="n">COLOR_YCR_CB2BGR</span>
+<span class="n">COLOR_YCR_CB2RGB</span>
+<span class="n">COLOR_YCrCb2BGR</span>
+<span class="n">COLOR_YCrCb2RGB</span>
+<span class="n">COLOR_YUV2BGR</span>
+<span class="n">COLOR_YUV2BGRA_I420</span>
+<span class="n">COLOR_YUV2BGRA_IYUV</span>
+<span class="n">COLOR_YUV2BGRA_NV12</span>
+<span class="n">COLOR_YUV2BGRA_NV21</span>
+<span class="n">COLOR_YUV2BGRA_UYNV</span>
+<span class="n">COLOR_YUV2BGRA_UYVY</span>
+<span class="n">COLOR_YUV2BGRA_Y422</span>
+<span class="n">COLOR_YUV2BGRA_YUNV</span>
+<span class="n">COLOR_YUV2BGRA_YUY2</span>
+<span class="n">COLOR_YUV2BGRA_YUYV</span>
+<span class="n">COLOR_YUV2BGRA_YV12</span>
+<span class="n">COLOR_YUV2BGRA_YVYU</span>
+<span class="n">COLOR_YUV2BGR_I420</span>
+<span class="n">COLOR_YUV2BGR_IYUV</span>
+<span class="n">COLOR_YUV2BGR_NV12</span>
+<span class="n">COLOR_YUV2BGR_NV21</span>
+<span class="n">COLOR_YUV2BGR_UYNV</span>
+<span class="n">COLOR_YUV2BGR_UYVY</span>
+<span class="n">COLOR_YUV2BGR_Y422</span>
+<span class="n">COLOR_YUV2BGR_YUNV</span>
+<span class="n">COLOR_YUV2BGR_YUY2</span>
+<span class="n">COLOR_YUV2BGR_YUYV</span>
+<span class="n">COLOR_YUV2BGR_YV12</span>
+<span class="n">COLOR_YUV2BGR_YVYU</span>
+<span class="n">COLOR_YUV2GRAY_420</span>
+<span class="n">COLOR_YUV2GRAY_I420</span>
+<span class="n">COLOR_YUV2GRAY_IYUV</span>
+<span class="n">COLOR_YUV2GRAY_NV12</span>
+<span class="n">COLOR_YUV2GRAY_NV21</span>
+<span class="n">COLOR_YUV2GRAY_UYNV</span>
+<span class="n">COLOR_YUV2GRAY_UYVY</span>
+<span class="n">COLOR_YUV2GRAY_Y422</span>
+<span class="n">COLOR_YUV2GRAY_YUNV</span>
+<span class="n">COLOR_YUV2GRAY_YUY2</span>
+<span class="n">COLOR_YUV2GRAY_YUYV</span>
+<span class="n">COLOR_YUV2GRAY_YV12</span>
+<span class="n">COLOR_YUV2GRAY_YVYU</span>
+<span class="n">COLOR_YUV2RGB</span>
+<span class="n">COLOR_YUV2RGBA_I420</span>
+<span class="n">COLOR_YUV2RGBA_IYUV</span>
+<span class="n">COLOR_YUV2RGBA_NV12</span>
+<span class="n">COLOR_YUV2RGBA_NV21</span>
+<span class="n">COLOR_YUV2RGBA_UYNV</span>
+<span class="n">COLOR_YUV2RGBA_UYVY</span>
+<span class="n">COLOR_YUV2RGBA_Y422</span>
+<span class="n">COLOR_YUV2RGBA_YUNV</span>
+<span class="n">COLOR_YUV2RGBA_YUY2</span>
+<span class="n">COLOR_YUV2RGBA_YUYV</span>
+<span class="n">COLOR_YUV2RGBA_YV12</span>
+<span class="n">COLOR_YUV2RGBA_YVYU</span>
+<span class="n">COLOR_YUV2RGB_I420</span>
+<span class="n">COLOR_YUV2RGB_IYUV</span>
+<span class="n">COLOR_YUV2RGB_NV12</span>
+<span class="n">COLOR_YUV2RGB_NV21</span>
+<span class="n">COLOR_YUV2RGB_UYNV</span>
+<span class="n">COLOR_YUV2RGB_UYVY</span>
+<span class="n">COLOR_YUV2RGB_Y422</span>
+<span class="n">COLOR_YUV2RGB_YUNV</span>
+<span class="n">COLOR_YUV2RGB_YUY2</span>
+<span class="n">COLOR_YUV2RGB_YUYV</span>
+<span class="n">COLOR_YUV2RGB_YV12</span>
+<span class="n">COLOR_YUV2RGB_YVYU</span>
+<span class="n">COLOR_YUV420P2BGR</span>
+<span class="n">COLOR_YUV420P2BGRA</span>
+<span class="n">COLOR_YUV420P2GRAY</span>
+<span class="n">COLOR_YUV420P2RGB</span>
+<span class="n">COLOR_YUV420P2RGBA</span>
+<span class="n">COLOR_YUV420SP2BGRA</span>
+<span class="n">COLOR_YUV420SP2GRAY</span>
+<span class="n">COLOR_YUV420SP2RGB</span>
+<span class="n">COLOR_YUV420SP2RGBA</span>
+<span class="n">COLOR_YUV420p2BGR</span>
+<span class="n">COLOR_YUV420p2BGRA</span>
+<span class="n">COLOR_YUV420p2GRAY</span>
+<span class="n">COLOR_YUV420p2RGB</span>
+<span class="n">COLOR_YUV420p2RGBA</span>
+<span class="n">COLOR_YUV420sp2BGR</span>
+<span class="n">COLOR_YUV420sp2BGRA</span>
+<span class="n">COLOR_YUV420sp2GRAY</span>
+<span class="n">COLOR_YUV420sp2RGB</span>
+<span class="n">COLOR_YUV420sp2RGBA</span>
+<span class="n">COLOR_mRGBA2RGBA</span>
+<span class="n">count</span> <span class="p">:</span> <span class="mi">347</span>
+</code></pre></div></div>
+
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-opencv)</span></p>
 <ul>
 
@@ -814,6 +1180,80 @@
         
              
         
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-mouse-event/">[OpenCV] 마우스이벤트</a></li>
              
         
       
@@ -1123,6 +1563,16 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
   	
   	
   	
@@ -1167,10 +1617,10 @@
     <article class="archive-item">
         <div>
             <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_05_dictionary/">Python 자료형 dictionary 타입</a>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a>
             </span>
             <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.21
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
               <!--Archive page 용-: (post -> page)-->
 <!--page__taxonomy.html에서 가져 옴-->
         
@@ -1182,7 +1632,52 @@
                 
                     
                     
-                    <a href="/tags/#list" class="page__taxonomy-item-tag" rel="tag">list</a><span class="sep"> </span>
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC" class="page__taxonomy-item-tag" rel="tag">예외처리</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_08_class/">[Python Basic] Class</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#class" class="page__taxonomy-item-tag" rel="tag">class</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
                 
                     
                     
@@ -1212,10 +1707,10 @@
     <article class="archive-item">
         <div>
             <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_04_tuple/">Python 자료형 tuple 타입</a>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_07_function/">[Python Basic] 함수</a>
             </span>
             <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.21
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
               <!--Archive page 용-: (post -> page)-->
 <!--page__taxonomy.html에서 가져 옴-->
         
@@ -1223,11 +1718,11 @@
             <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
                     
                     
-                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                    <a href="/tags/#function" class="page__taxonomy-item-tag" rel="tag">function</a><span class="sep"> </span>
                 
                     
                     
-                    <a href="/tags/#list" class="page__taxonomy-item-tag" rel="tag">list</a><span class="sep"> </span>
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
                 
                     
                     
@@ -1257,10 +1752,10 @@
     <article class="archive-item">
         <div>
             <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_03_list/">Python 자료형 list 타입</a>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a>
             </span>
             <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.21
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
               <!--Archive page 용-: (post -> page)-->
 <!--page__taxonomy.html에서 가져 옴-->
         
@@ -1272,10 +1767,6 @@
                 
                     
                     
-                    <a href="/tags/#list" class="page__taxonomy-item-tag" rel="tag">list</a><span class="sep"> </span>
-                
-                    
-                    
                     <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
                 
                     
@@ -1284,60 +1775,11 @@
                 
                     
                     
+                    <a href="/tags/#set" class="page__taxonomy-item-tag" rel="tag">set</a><span class="sep"> </span>
+                
+                    
+                    
                     <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.20
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#key-event" class="page__taxonomy-item-tag" rel="tag">key event</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#lecture-opencv" class="page__taxonomy-item-tag" rel="tag">lecture-opencv</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#opencv" class="page__taxonomy-item-tag" rel="tag">opencv</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#waitkey" class="page__taxonomy-item-tag" rel="tag">waitKey</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#window-autosize" class="page__taxonomy-item-tag" rel="tag">WINDOW_AUTOSIZE</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#window-normal" class="page__taxonomy-item-tag" rel="tag">WINDOW_NORMAL</a>
                 
             </span>
         </span>
