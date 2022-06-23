@@ -322,4 +322,10 @@ var store = [{
         "tags": ["python","python강좌","초급","lecture-python-basic","예외처리"],
         "url": "/python/python_study_09_exception/",
         "teaser": null
+      },{
+        "title": "[Python Basic] 모듈 만들기, 패키지 만들기",
+        "excerpt":"Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다. 자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다. 모듈 만들기 함수에서 작성한 아래 함수를 module.py 로 작성합니다. module.py def sum(a, b): s = a + b return s 모듈을 사용할 main.py 를 만듭니다. module.py 와 main.py는...","categories": ["python"],
+        "tags": ["python","python강좌","초급","lecture-python-basic","package"],
+        "url": "/python/python_study_10_package/",
+        "teaser": null
       }]
