@@ -30,7 +30,7 @@ masthead_title           : # overrides the website title displayed in the masthe
 breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", ".", "giscus", "custom"
+  provider               :  # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", ".", "giscus", "custom"
   disqus:
     shortname            : "devjaedol-github-io"
   discourse:
