@@ -82,6 +82,30 @@ permalink: /ex01
 {% endfor %}
 </ul>
 
+<hr>
+정렬 테스트
+<hr>
+
+{% capture posts %}
+  {% for post in site.posts %}
+    |{{ post.title }}#{{ post.url }}
+  {% endfor %}
+{% endcapture %}
+{% assign sortedposts = posts | split: '|' | sort %}
+{% for post in sortedposts %}
+    {% assign postitems = post | split: '#' %}
+    <a href={{ postitems[1] }}">{{ postitems[0] }}</a><br>
+{% endfor %}
+
+<hr>
+reversed 
+<hr>
+
+sorted_for node in site.pages reversed sort_by:title case_sensitive:true
+    node.title
+endsorted_for
+
+
 
 </body>
 </html>
