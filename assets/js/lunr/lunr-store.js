@@ -24,7 +24,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[Python Basic] 설치",
-        "excerpt":"파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반… 다운 로드 경로 다운로드 선택 설치 경로를 변경하기 위해서 Customzie 선택 기본값 Next 경로 변경 완료시 윈도우 시작위치에 위 항목이 추가됨 IDLE를 선택하여 실행함. 설치 버전이 정상 표기되면, 설치 완료됨. window path는 필요시 추가해야 합니다. 관련된 글 (python &gt; lecture-python-basic) [Python Basic]...","categories": ["python"],
+        "excerpt":"파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반… 파이썬을 설치하고 사용할 수 있는 방법에는 몇가지 방법이 있습니다. 아래 소개는 간단한 몇 가지 방법만 설명드리지만, 더 다양한 등이 있으니 참고 하시기 바랍니다. Local에 설치 하기 다운 로드 경로 다운로드 선택 설치 경로를 변경하기 위해서 Customzie 선택 기본값 Next 경로 변경 완료시...","categories": ["python"],
         "tags": ["python강좌","python","초급","lecture-python-basic"],
         "url": "/python/python_study_01_install/",
         "teaser": null
@@ -327,5 +327,23 @@ var store = [{
         "excerpt":"Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다. 자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다. 모듈 만들기 함수에서 작성한 아래 함수를 module.py 로 작성합니다. module.py def sum(a, b): s = a + b return s 모듈을 사용할 main.py 를 만듭니다. module.py 와 main.py는...","categories": ["python"],
         "tags": ["python","python강좌","초급","lecture-python-basic","package"],
         "url": "/python/python_study_10_package/",
+        "teaser": null
+      },{
+        "title": "[Python][Numpy] 배열 생성(Array creation)",
+        "excerpt":"Numpy(Numerical Python) 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. 기본적은 사용법을 배워보겠습니다. Array creation routines : API 참조 Numpy 홈페이지 : numpy.org Numpy를 사용하려면 설치를...","categories": ["python"],
+        "tags": ["python","python강좌","lecture-python-basic","lecture-python-numpy","numpy"],
+        "url": "/python/python_study_numpy_01_ndarray/",
+        "teaser": null
+      },{
+        "title": "[Python][Numpy] 배열 사용(Array manipulation)",
+        "excerpt":"이번에는 Numpy(Numerical Python) 배열을 조작하는 내용을 주로 공부해 보겠습니다. Numpy 홈페이지 : numpy.org Array manipulation routines : API 참조 numpy 조작 배열 정보 배열 정보 확인을 위해서 아래 배열 함수를 작성하겠습니다. 항목 설명 ndim 배열 차원 shape 배열 shape dtype 배열 데이터 타입 size 배열 요소 수 itemsize 배열 각...","categories": ["python"],
+        "tags": ["python","python강좌","lecture-python-basic","lecture-python-numpy","numpy","manipulation"],
+        "url": "/python/python_study_numpy_02_manage/",
+        "teaser": null
+      },{
+        "title": "[Python][Numpy] 배열 연산(Array operations)",
+        "excerpt":"nparray의 연산에 대해서 알아보겠습니다. mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제공 되고 있으니 참고 바랍니다. API 참조 numpy operations 브로드캐스팅 nparray를 연산 하는 과정에서 부족한 배열 부분을 이전 배열의 패턴으로 채워서 연산되는 형태를 말합니다. a1 = np.array([1,2,3]) print(a1) # [1 2 3] print(a1+5) # [6 7 8] a2...","categories": ["python"],
+        "tags": ["python","python강좌","lecture-python-basic","lecture-python-numpy","numpy"],
+        "url": "/python/python_study_numpy_03_operations/",
         "teaser": null
       }]

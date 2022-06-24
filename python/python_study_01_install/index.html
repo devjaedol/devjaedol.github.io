@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>[Python Basic] 설치 | 꿰보노트</title>
-<meta name="description" content="파이썬 공부를 시작해봅시다.  우선 파이썬 설치를… 시작이 반…">
+<meta name="description" content="파이썬 공부를 시작해봅시다.  우선 파이썬 설치를… 시작이 반… 파이썬을 설치하고 사용할 수 있는 방법에는 몇가지 방법이 있습니다.   아래 소개는 간단한 몇 가지 방법만 설명드리지만, 더 다양한 등이 있으니 참고 하시기 바랍니다.">
 
 
   <meta name="author" content="devjaedol">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="https://kimjaehyun.co.kr/python/python_study_01_install/">
 
 
-  <meta property="og:description" content="파이썬 공부를 시작해봅시다.  우선 파이썬 설치를… 시작이 반…">
+  <meta property="og:description" content="파이썬 공부를 시작해봅시다.  우선 파이썬 설치를… 시작이 반… 파이썬을 설치하고 사용할 수 있는 방법에는 몇가지 방법이 있습니다.   아래 소개는 간단한 몇 가지 방법만 설명드리지만, 더 다양한 등이 있으니 참고 하시기 바랍니다.">
 
 
 
@@ -232,7 +232,7 @@
     
     <!--전체 글 수-->
       <li>
-          <span class="nav__sub-title">전체 <span style="color:red"> 55</span>개</span> 
+          <span class="nav__sub-title">전체 <span style="color:red"> 58</span>개</span> 
       </li>
 
 
@@ -282,7 +282,7 @@
                   
               
                   
-                      <li><a href="/categories/python" class="">Python (19)</a></li>
+                      <li><a href="/categories/python" class="">Python (22)</a></li>
                   
               
                   
@@ -587,7 +587,7 @@
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="[Python Basic] 설치">
-    <meta itemprop="description" content="파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반…">
+    <meta itemprop="description" content="파이썬 공부를 시작해봅시다. 우선 파이썬 설치를… 시작이 반…파이썬을 설치하고 사용할 수 있는 방법에는 몇가지 방법이 있습니다.  아래 소개는 간단한 몇 가지 방법만 설명드리지만, 더 다양한 등이 있으니 참고 하시기 바랍니다.">
     <meta itemprop="datePublished" content="2021-10-19T00:00:00-05:00">
     
 
@@ -606,9 +606,20 @@
 
       <section class="page__content e-content" itemprop="text">
         
-        <p>파이썬 공부를 시작해봅시다. <br />
-우선 파이썬 설치를… 시작이 반…</p>
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#local에-설치-하기">Local에 설치 하기</a></li><li><a href="#google-colab-을-통해서-설치-하기">Google Colab 을 통해서 설치 하기</a></li><li><a href="#온라인-웹-사이트-사용하기">온라인 웹 사이트 사용하기</a></li><li><a href="#jupyter-nootbook-사용하기">jupyter nootbook 사용하기</a></li></ul>
 
+            </nav>
+          </aside>
+        
+        <p>파이썬 공부를 시작해봅시다. <br />
+우선 파이썬 설치를… 시작이 반…
+파이썬을 설치하고 사용할 수 있는 방법에는 몇가지 방법이 있습니다.  <br />
+아래 소개는 간단한 몇 가지 방법만 설명드리지만, 더 다양한 등이 있으니 참고 하시기 바랍니다.</p>
+
+<h1 id="local에-설치-하기">Local에 설치 하기</h1>
 <p><a href="https://www.python.org/downloads/" target="_blank">다운 로드 경로</a></p>
 
 <p><img src="\assets/images_post/python/python-study-01-_1.png" alt="python-study-01-_1" /></p>
@@ -641,8 +652,114 @@
 
 <p>window path는 필요시 추가해야 합니다.</p>
 
+<h1 id="google-colab-을-통해서-설치-하기">Google Colab 을 통해서 설치 하기</h1>
+<p>온라인에서 python을 테스트 할수 있도록 하는 구글이 제공하는 개발 환경 입니다.  <br />
+docker기반에 google drive 를 활용하여 제공하는 무료 환경으로 사용하기 편리하고 동시에 여려명이 수정가능하며, 별도의 설치 없이 사용할 수 있는 장점이 있습니다.</p>
+
+<p>몇가지 제약사항이 있는데 참고 하기 바랍니다.</p>
+<ul>
+  <li>세션은 최대 12시간 입니다.</li>
+  <li>세션에 반응 없으면 자동으로 끊깁니다.</li>
+  <li>세션이 종료될떄 데이터는 소멸됩니다.</li>
+</ul>
+
+<p>공짜인 만큼 제약이 있지만, 돈을 내면 또 제약이 풀립니다. <br />
+이부분은 <code class="language-plaintext highlighter-rouge">colab pro</code> 가 있으니 알아보시면 될 것 같습니다. <br />
+뛰어난 개발자분들이 무료에서 세션을 않끊기는 tip 코드를 공유된 곳이 많으니 그것도 찾아보시면 있습니다.(자동 리프레쉬 코드를… 이 부분은 검색 러쉬)</p>
+
+<p>설치는 간단 합니다.</p>
+<ol>
+  <li>구글 계정 로그인(필요시 회원 가입도 하시구요)</li>
+  <li>구글 드라이버 메뉴에서 <code class="language-plaintext highlighter-rouge">내 드라이브(마우스 왼쪽 클릭) &gt; 더보기 &gt; 연결할 앱 더보기</code> 선택 합니다. 
+<img src="\assets/images_post/python/python-study-01-_11.png" alt="python-study-01-_11" /></li>
+  <li>마켓플레이스 창이 나오는데 해당 부분에 <code class="language-plaintext highlighter-rouge">Colaboratory</code> 를 입력합니다.
+<img src="\assets/images_post/python/python-study-01-_12.png" alt="python-study-01-_11" /></li>
+  <li>설치를 진행합니다.</li>
+  <li>하기 메뉴를 통해서 진입이 가능합니다.
+<img src="\assets/images_post/python/python-study-01-_13.png" alt="python-study-01-_11" /></li>
+  <li><code class="language-plaintext highlighter-rouge">hello world</code> 출력은 아래처럼 입력후 Play 버튼 또는 Enter 실행시 RAM과 디스크가 연결되며 출력되는 것을 확인 할 수 있습니다. <br />
+<img src="\assets/images_post/python/python-study-01-_14.png" alt="python-study-01-_11" /></li>
+</ol>
+
+<h1 id="온라인-웹-사이트-사용하기">온라인 웹 사이트 사용하기</h1>
+<p>온라인에서 직접 사용할 수 있는 사이트 들도 존재 합니다. (검색하면 많이 나옵니다.)  <br />
+그중 하나를 소개 합니다.  <br />
+<a href="https://replit.com/languages/python3" target="_blank">replit.com</a>
+python 외에도 다양한 언어를 지원합니다.
+간단한 기초 공부에는 사용이 가능하니 참고 하시기 바랍니다.</p>
+
+<p><img src="\assets/images_post/python/python-study-01-_9.png" alt="python-study-01-_9" /></p>
+
+<h1 id="jupyter-nootbook-사용하기">jupyter nootbook 사용하기</h1>
+<p>jupyter nootbook은 구글 코랩과 비슷한 형태로 로컬에 설치되는 웹기반의 python 환경 입니다.  <br />
+우선 로컬에 python이 설치된 후 사용이 가능합니다.  <br />
+<code class="language-plaintext highlighter-rouge">pip</code> 명령을 통해서 설치 가능 합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 설치 하기
+</span><span class="n">pip</span> <span class="n">install</span> <span class="n">jupyter</span>     
+
+<span class="c1"># 실행하기 (실행 명령어 위치를 Root로 인식함)
+</span><span class="n">jupyter</span> <span class="n">notebook</span>
+
+<span class="c1"># 접속하기
+</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8888</span><span class="o">/</span><span class="n">tree</span>
+
+</code></pre></div></div>
+
+<p><img src="\assets/images_post/python/python-study-01-_10.png" alt="python-study-01-_10" /></p>
+
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
 
     
         
@@ -1106,6 +1223,12 @@
   
 
   
+
+  
+
+  
+
+  
   	
   	
   	
@@ -1141,6 +1264,145 @@
     <article class="archive-item">
         <div>
             <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.24
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.24
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#manipulation" class="page__taxonomy-item-tag" rel="tag">manipulation</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.24
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
               <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a>
             </span>
             <small> 
@@ -1157,141 +1419,6 @@
                     
                     
                     <a href="/tags/#package" class="page__taxonomy-item-tag" rel="tag">package</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC" class="page__taxonomy-item-tag" rel="tag">예외처리</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_08_class/">[Python Basic] Class</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#class" class="page__taxonomy-item-tag" rel="tag">class</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_07_function/">[Python Basic] 함수</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#function" class="page__taxonomy-item-tag" rel="tag">function</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
                 
                     
                     
