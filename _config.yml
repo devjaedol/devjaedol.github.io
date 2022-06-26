@@ -294,6 +294,7 @@ defaults:
       sidebar:
         nav: "sidebar"
       sidebar_main: true
+      mathjax: true
   - scope:
       path: ""
       type: pages

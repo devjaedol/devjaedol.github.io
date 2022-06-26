@@ -1,0 +1,53 @@
+---
+permalink: /lecture/python
+---
+<h4> Python 기본</h4>
+<img src="/assets/images_post/common/logo_python.png">
+{% assign c-category = 'python' %}
+{% assign c-tag = 'lecture-python-basic' %}
+<ul>
+{% for post in site.posts %}
+    {% if post.categories contains c-category %}
+        {% for tag in post.tags %}
+            {% if tag == c-tag %}  
+                <li><a href="{{post.url | relative_url }}">{{post.title}}</a></li>
+            {% endif %} 
+        {% endfor %}
+        {% endif %}
+{% endfor %}
+</ul>
+
+
+<h4> Python Numpy</h4>
+<img src="/assets/images_post/common/logo_numpy.png">
+{% assign c-category = 'python' %}
+{% assign c-tag = 'lecture-python-numpy' %}
+<ul>
+{% for post in site.posts %}
+    {% if post.categories contains c-category %}
+        {% for tag in post.tags %}
+            {% if tag == c-tag %}  
+                <li><a href="{{post.url | relative_url }}">{{post.title}}</a></li>
+            {% endif %} 
+        {% endfor %}
+        {% endif %}
+{% endfor %}
+</ul>
+
+
+
+<h4> Python OpenCV</h4>
+<img src="/assets/images_post/common/logo_opencv.png">
+{% assign c-category = 'python' %}
+{% assign c-tag = 'lecture-opencv' %}
+<ul>
+{% for post in site.posts %}
+    {% if post.categories contains c-category %}
+        {% for tag in post.tags %}
+            {% if tag == c-tag %}  
+                <li><a href="{{post.url | relative_url }}">{{post.title}}</a></li>
+            {% endif %} 
+        {% endfor %}
+        {% endif %}
+{% endfor %}
+</ul>
