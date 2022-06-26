@@ -609,7 +609,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#numpy-조작">numpy 조작</a><ul><li><a href="#배열-정보">배열 정보</a></li><li><a href="#기본-인덱싱">기본 인덱싱</a></li><li><a href="#boolean-indexing">Boolean Indexing</a></li><li><a href="#fancy-indedxing">Fancy Indedxing</a></li><li><a href="#슬라이싱">슬라이싱</a></li><li><a href="#numpyinsert">numpy.insert</a></li><li><a href="#numpydelete">numpy.delete</a></li><li><a href="#numpyndarrayt">numpy.ndarray.T</a></li><li><a href="#numpyreshape">numpy.reshape</a></li><li><a href="#numpyappend">numpy.append</a></li><li><a href="#numpystack">numpy.stack</a></li><li><a href="#numpyvstack">numpy.vstack</a></li><li><a href="#numpyhstack">numpy.hstack</a></li><li><a href="#numpyconcatenate">numpy.concatenate</a></li><li><a href="#numpyvsplit">numpy.vsplit</a></li><li><a href="#numpyhsplit">numpy.hsplit</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#numpy-조작">numpy 조작</a><ul><li><a href="#배열-정보">배열 정보</a></li><li><a href="#기본-인덱싱">기본 인덱싱</a></li><li><a href="#boolean-indexing">Boolean Indexing</a></li><li><a href="#fancy-indedxing">Fancy Indedxing</a></li><li><a href="#슬라이싱">슬라이싱</a></li><li><a href="#numpyinsert">numpy.insert</a></li><li><a href="#numpydelete">numpy.delete</a></li><li><a href="#numpyndarrayt">numpy.ndarray.T</a></li><li><a href="#numpyreshape">numpy.reshape</a></li><li><a href="#numpyappend">numpy.append</a></li><li><a href="#numpystack">numpy.stack</a></li><li><a href="#numpyvstack">numpy.vstack</a></li><li><a href="#numpyhstack">numpy.hstack</a></li><li><a href="#numpyconcatenate">numpy.concatenate</a></li><li><a href="#numpyvsplit">numpy.vsplit</a></li><li><a href="#numpyhsplit">numpy.hsplit</a></li></ul></li><li><a href="#numpyrandom">numpy.random</a><ul><li><a href="#numpyrandomrand">numpy.random.rand</a></li><li><a href="#numpyrandomrandn">numpy.random.randn</a></li><li><a href="#numpyrandomrandint">numpy.random.randint</a></li></ul></li></ul>
 
             </nav>
           </aside>
@@ -1195,6 +1195,58 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 </span>
 </code></pre></div></div>
 
+<h1 id="numpyrandom">numpy.random</h1>
+<p>자료를 임의로 만들어야 할때 자주 사용되는 라이브러리 입니다.</p>
+
+<h2 id="numpyrandomrand">numpy.random.rand</h2>
+<p>0~1의 균일분포 표준정규분포 난수를 생성하여 반환합니다.  <br />
+<code class="language-plaintext highlighter-rouge">random.rand(d0, d1, ..., dn)</code>  <br />
+<a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.rand.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># array([0.42734205, 0.95354301, 0.80731892, 0.6908605 , 0.64658099])
+</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># array([[0.85155709, 0.25876853],
+#        [0.63304735, 0.12171615],
+#        [0.11996824, 0.71999629],
+#        [0.45233059, 0.77861135],
+#        [0.43984419, 0.69105062]])
+</span>
+</code></pre></div></div>
+
+<h2 id="numpyrandomrandn">numpy.random.randn</h2>
+<p>평균<code class="language-plaintext highlighter-rouge">0</code>, 표준편차 <code class="language-plaintext highlighter-rouge">1</code>인 가우시안 표준 정규분포의 난수를 생성하여 반환합니다.  <br />
+<code class="language-plaintext highlighter-rouge">random.randn(d0, d1, ..., dn)</code>  <br />
+<a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.randn.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># array([ 0.74225719, -0.39754649,  0.8966088 ,  0.30346421,  0.71134092])
+</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># array([[-0.76182035, -0.51200261],
+#        [ 0.51620442,  0.77368734],
+#        [-0.23963806,  0.53549214],
+#        [ 1.37556231, -0.87648979],
+#        [ 0.51587644, -0.93696996]])
+</span>
+</code></pre></div></div>
+
+<h2 id="numpyrandomrandint">numpy.random.randint</h2>
+<p>범위내 int 타입의 난수를 생성하여 반환합니다.  <br />
+<code class="language-plaintext highlighter-rouge">random.randint(low, high=None, size=None, dtype=int)</code>  <br />
+<a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.randint.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 0~9 까지의 임의의 수 반환
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># 5이상 ~ 10미만의 임의의 숫자 
+</span>
+
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># array([5, 3, 9, 1, 0])
+</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="c1"># array([[2, 2, 3, 4],
+#        [2, 4, 2, 4]])
+</span>
+</code></pre></div></div>
+
 <p><a href="https://www.youtube.com/watch?v=mirZPrWwvao" target="_blank">학습 내용 참고처</a></p>
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
@@ -1719,7 +1771,7 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
               <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a>
             </span>
             <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.24
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.25
               <!--Archive page 용-: (post -> page)-->
 <!--page__taxonomy.html에서 가져 옴-->
         
