@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Python Basic] 함수 | 꿰보노트</title>
-<meta name="description" content="함수 선언 자주 사용하는 기능을 Function으로 정의할 수 있습니다. ```python #반환값이 있는 경우 def 함수명(인자정의)     함수 내용부     return 반환값">
+<!-- begin _includes/seo.html --><title>[Python][Numpy] file Input and output | 꿰보노트</title>
+<meta name="description" content="numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다.  Input and output API 참조">
 
 
   <meta name="author" content="devjaedol">
@@ -22,30 +22,30 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="꿰보노트">
-<meta property="og:title" content="[Python Basic] 함수">
-<meta property="og:url" content="https://kimjaehyun.co.kr/python/python_study_07_function/">
+<meta property="og:title" content="[Python][Numpy] file Input and output">
+<meta property="og:url" content="https://kimjaehyun.co.kr/python/python_study_numpy_04_file/">
 
 
-  <meta property="og:description" content="함수 선언 자주 사용하는 기능을 Function으로 정의할 수 있습니다. ```python #반환값이 있는 경우 def 함수명(인자정의)     함수 내용부     return 반환값">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2022-06-22T00:00:00-05:00">
+  <meta property="og:description" content="numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다.  Input and output API 참조">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2022-06-26T00:00:00-05:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="https://kimjaehyun.co.kr/python/python_study_07_function/">
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/python/python_study_numpy_04_file/">
 
 
 
@@ -185,7 +185,7 @@
     
       
       
-        <li class="current">[Python Basic] 함수</li>
+        <li class="current">[Python][Numpy] file Input and output</li>
       
     
   </ol>
@@ -586,16 +586,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Python Basic] 함수">
-    <meta itemprop="description" content="함수선언자주 사용하는 기능을 Function으로 정의할 수 있습니다.```python#반환값이 있는 경우def 함수명(인자정의)    함수 내용부    return 반환값">
-    <meta itemprop="datePublished" content="2022-06-22T00:00:00-05:00">
+    <meta itemprop="headline" content="[Python][Numpy] file Input and output">
+    <meta itemprop="description" content="numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다. Input and output API 참조">
+    <meta itemprop="datePublished" content="2022-06-26T00:00:00-05:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="https://kimjaehyun.co.kr/python/python_study_07_function/" class="u-url" itemprop="url">[Python Basic] 함수
+            <a href="https://kimjaehyun.co.kr/python/python_study_numpy_04_file/" class="u-url" itemprop="url">[Python][Numpy] file Input and output
 </a>
           </h1>
           
@@ -609,202 +609,141 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#함수">함수</a><ul><li><a href="#선언">선언</a></li><li><a href="#파라메터-초기값-설정">파라메터 초기값 설정</a></li><li><a href="#파라메터-이름-설정">파라메터 이름 설정</a></li><li><a href="#가변-길이-파라메터">가변 길이 파라메터</a></li><li><a href="#함수내-값의-유지immutable-mutable">함수내 값의 유지(immutable, mutable)</a></li></ul></li><li><a href="#python-함수-호출">python 함수 호출</a><ul><li><a href="#전체-import">전체 import</a></li><li><a href="#일부-함수-import">일부 함수 import</a></li><li><a href="#일부한개-함수-import">일부(한개) 함수 import</a></li><li><a href="#import-alias">import alias</a></li><li><a href="#함수가-가진-목록">함수가 가진 목록</a></li></ul></li><li><a href="#python-내장-함수">python 내장 함수</a></li></ul>
+              <ul class="toc__menu"><li><a href="#텍스트-파일-txt-csv">텍스트 파일 (txt, csv)</a><ul><li><a href="#numpysavetxt">numpy.savetxt</a></li><li><a href="#numpyloadtxt">numpy.loadtxt</a></li></ul></li><li><a href="#numpy-이진-파일-npy-npz">NumPy 이진 파일 (NPY, NPZ)</a><ul><li><a href="#numpysave-npy">numpy.save (npy)</a></li><li><a href="#numpysavez-npz">numpy.savez (npz)</a></li><li><a href="#numpyload">numpy.load</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <h1 id="함수">함수</h1>
-<h2 id="선언">선언</h2>
-<p>자주 사용하는 기능을 Function으로 정의할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#반환값이 있는 경우
-</span><span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
-    <span class="n">함수</span> <span class="n">내용부</span>
-    <span class="k">return</span> <span class="n">반환값</span>
+        <p>numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다. <br />
+<a href="https://numpy.org/doc/stable/reference/routines.io.html" target="_blank">Input and output API 참조</a></p>
 
-<span class="c1">#반환값이 없는 경우
-</span><span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
-    <span class="n">함수</span> <span class="n">내용부</span>
+<h1 id="텍스트-파일-txt-csv">텍스트 파일 (txt, csv)</h1>
+<h2 id="numpysavetxt">numpy.savetxt</h2>
+<p>텍스트 파일을 저장 합니다. <br />
+<code class="language-plaintext highlighter-rouge">numpy.savetxt(fname, X, fmt='%.18e', delimiter=' ', newline='\n', header='', footer='', comments='# ', encoding=None)</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html" target="_blank">API 참조</a></p>
 
-<span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
-    <span class="n">함수</span> <span class="n">내용부</span>
-    <span class="k">return</span>      <span class="c1">#값이 없는 경우 `None`
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="c1"># [[6 5 4 1 1]
+#  [9 8 3 9 8]
+#  [9 7 7 4 9]
+#  [6 4 9 5 7]
+#  [5 7 4 9 9]]
 </span>
-<span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-    <span class="k">return</span> <span class="n">s</span>
- 
-<span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">"t1.csv"</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">"t2.csv"</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">"t3.csv"</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">'%.2e'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">'c1,c2,c3,c4,c5'</span><span class="p">)</span>  <span class="c1">#소수점 포멧
+</span></code></pre></div></div>
 
+<p><code class="language-plaintext highlighter-rouge">[t1.csv File]</code></p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6.000000000000000000e+00 5.000000000000000000e+00 4.000000000000000000e+00 1.000000000000000000e+00 1.000000000000000000e+00
+9.000000000000000000e+00 8.000000000000000000e+00 3.000000000000000000e+00 9.000000000000000000e+00 8.000000000000000000e+00
+9.000000000000000000e+00 7.000000000000000000e+00 7.000000000000000000e+00 4.000000000000000000e+00 9.000000000000000000e+00
+6.000000000000000000e+00 4.000000000000000000e+00 9.000000000000000000e+00 5.000000000000000000e+00 7.000000000000000000e+00
+5.000000000000000000e+00 7.000000000000000000e+00 4.000000000000000000e+00 9.000000000000000000e+00 9.000000000000000000e+00
 </code></pre></div></div>
 
-<p>단일 값 또는 다중 값(튜플)을 반환 할수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
-
-<span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span>
-
-
-<span class="c1">#다중값 반환 함수
-</span><span class="k">def</span> <span class="nf">multi</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
-    <span class="n">s1</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">v2</span>
-    <span class="n">s2</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span>
-    <span class="k">return</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span>
-
-<span class="n">t1</span><span class="p">,</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span> <span class="mi">10</span>
-
-<span class="n">t</span> <span class="o">=</span> <span class="n">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<p><code class="language-plaintext highlighter-rouge">[t2.csv File]</code></p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6.000000000000000000e+00,5.000000000000000000e+00,4.000000000000000000e+00,1.000000000000000000e+00,1.000000000000000000e+00
+9.000000000000000000e+00,8.000000000000000000e+00,3.000000000000000000e+00,9.000000000000000000e+00,8.000000000000000000e+00
+9.000000000000000000e+00,7.000000000000000000e+00,7.000000000000000000e+00,4.000000000000000000e+00,9.000000000000000000e+00
+6.000000000000000000e+00,4.000000000000000000e+00,9.000000000000000000e+00,5.000000000000000000e+00,7.000000000000000000e+00
+5.000000000000000000e+00,7.000000000000000000e+00,4.000000000000000000e+00,9.000000000000000000e+00,9.000000000000000000e+00
 </code></pre></div></div>
 
-<h2 id="파라메터-초기값-설정">파라메터 초기값 설정</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#빈값 입력시 기본값으로 설정 
-</span><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">15</span>
+<p><code class="language-plaintext highlighter-rouge">[t3.csv File]</code></p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># c1,c2,c3,c4,c5
+6.00e+00,5.00e+00,4.00e+00,1.00e+00,1.00e+00
+9.00e+00,8.00e+00,3.00e+00,9.00e+00,8.00e+00
+9.00e+00,7.00e+00,7.00e+00,4.00e+00,9.00e+00
+6.00e+00,4.00e+00,9.00e+00,5.00e+00,7.00e+00
+5.00e+00,7.00e+00,4.00e+00,9.00e+00,9.00e+00
 </code></pre></div></div>
 
-<h2 id="파라메터-이름-설정">파라메터 이름 설정</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#이름으로 설정할 수 있습니다.
-</span><span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+<h2 id="numpyloadtxt">numpy.loadtxt</h2>
+<p>텍스트 파일을 조회 합니다.  <br />
+<code class="language-plaintext highlighter-rouge">numpy.loadtxt(fname, dtype=&lt;class 'float'&gt;, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0, encoding='bytes', max_rows=None, *, quotechar=None, like=None)[source]</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html" target="_blank">API 참조</a></p>
 
-<span class="n">info</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'Hong Gil Dong'</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Hong</span> <span class="n">Gil</span> <span class="n">Dong</span> <span class="mi">30</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">csv1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">"t1.csv"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">csv1</span><span class="p">)</span>
 
-</code></pre></div></div>
+<span class="n">csv2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">"t2.csv"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">csv2</span><span class="p">)</span>
 
-<h2 id="가변-길이-파라메터">가변 길이 파라메터</h2>
-<p>가변 파라메터의 제약사항</p>
-<ul>
-  <li>가변 매개변수 뒤에는 일반 매개변수 올수 없음.</li>
-  <li>가변 매개변수는 한개만 사용가능함.</li>
-  <li>가변 매개변수 압 일반 매개변수의 기본값은 무시된다.</li>
-</ul>
+<span class="n">csv3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">"t3.csv"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">csv3</span><span class="p">)</span>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#가변형 파라메터 입력 
-</span><span class="k">def</span> <span class="nf">keyList</span><span class="p">(</span><span class="o">*</span><span class="n">keys</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
-<span class="n">keyList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">5</span>
-
-<span class="c1">#일반 파라메터 , 가변형 파라메터 입력 
-</span><span class="k">def</span> <span class="nf">keyList</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">keys</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
-<span class="n">keyList</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="s">'a'</span> <span class="s">'b'</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">5</span>
-
-<span class="c1"># 가변형 파라메터 + 키워드 일반 파라메터
-</span><span class="k">def</span> <span class="nf">keyList</span><span class="p">(</span><span class="o">*</span><span class="n">keys</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">'abc'</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
-
-<span class="n">keyList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">5</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">abc</span>
-
-</code></pre></div></div>
-
-<h2 id="함수내-값의-유지immutable-mutable">함수내 값의 유지(immutable, mutable)</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="nb">list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
- 
-<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>       <span class="c1"># k는 int (immutable)
-</span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># l은 리스트 (mutable)
-</span> 
-<span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>      <span class="c1"># 함수 호출
-</span><span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>  <span class="c1"># 호출자 값 체크
-# 출력: 10 [1, 2, 3, 0]
+<span class="c1"># 조회 결과
+# [[6. 5. 4. 1. 1.]
+#  [9. 8. 3. 9. 8.]
+#  [9. 7. 7. 4. 9.]
+#  [6. 4. 9. 5. 7.]
+#  [5. 7. 4. 9. 9.]]
 </span>
 </code></pre></div></div>
 
-<h1 id="python-함수-호출">python 함수 호출</h1>
-<p><code class="language-plaintext highlighter-rouge">math</code> 함수를 예로 들어서 설명 합니다.</p>
+<h1 id="numpy-이진-파일-npy-npz">NumPy 이진 파일 (NPY, NPZ)</h1>
+<p><code class="language-plaintext highlighter-rouge">NPY</code>, <code class="language-plaintext highlighter-rouge">NPZ</code> 는 NumPy의 데이터를 저장하는 Binary 형태의 데이터 입니다.  <br />
+ 1개의 ndarray를, . npz 는 여러개의 ndarray를 저장하는 데 사용 됩니다.</p>
 
-<h2 id="전체-import">전체 import</h2>
-<p><code class="language-plaintext highlighter-rouge">math</code> 전체를 import 후 호출 시 <code class="language-plaintext highlighter-rouge">math.xxx()</code>의 형태로 사용함.</p>
+<h2 id="numpysave-npy">numpy.save (npy)</h2>
+<p>한개의 데이터를 Binary 파일로 저장 합니다. <br />
+<code class="language-plaintext highlighter-rouge">numpy.save(file, arr, allow_pickle=True, fix_imports=True)[source]</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.save.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">fabs</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="c1"># [[4 1 8 3 5]
+#  [2 7 2 8 6]
+#  [9 9 1 8 7]
+#  [8 2 4 5 1]
+#  [4 9 7 1 2]]
+</span>
+<span class="n">np</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">"sample"</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>    <span class="c1"># sample.npy 이 생성됨. binary 형태
+</span></code></pre></div></div>
+
+<h2 id="numpysavez-npz">numpy.savez (npz)</h2>
+<p>여러 데이터를 Binary 파일로 저장 합니다. <br />
+<code class="language-plaintext highlighter-rouge">numpy.savez(file, *args, **kwds)[source]</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.savez.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">np</span><span class="p">.</span><span class="n">savez</span><span class="p">(</span><span class="s">"sample2"</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>  <span class="c1"># sample2.npz 이 생성됨. binary 형태
+</span>
+<span class="c1"># 데이터의 이름을 부여하고 저장하기
+</span><span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">np</span><span class="p">.</span><span class="n">savez</span><span class="p">(</span><span class="s">"sample2"</span><span class="p">,</span> <span class="n">c1</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">c2</span><span class="o">=</span><span class="n">t2</span><span class="p">)</span>    <span class="c1">#c1, c2로 이름을 부여함
+</span>
 </code></pre></div></div>
 
-<h2 id="일부-함수-import">일부 함수 import</h2>
-<p><code class="language-plaintext highlighter-rouge">math</code> 전체가 아닌 일부 함수 import</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="p">(</span><span class="n">acos</span><span class="p">,</span><span class="n">fabs</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">fabs</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>    <span class="c1"># math. 을 사용하지 않음
-</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<h2 id="numpyload">numpy.load</h2>
+<p>저장된 데이터를 조회 합니다.   <br />
+<code class="language-plaintext highlighter-rouge">numpy.load(file, mmap_mode=None, allow_pickle=False, fix_imports=True, encoding='ASCII')</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.load.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># npy 조회
+</span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">"sample.npy"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 
-</code></pre></div></div>
+<span class="c1"># npz 조회
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">"sample2.npz"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">files</span><span class="p">)</span>
+<span class="c1"># ['arr_0', 'arr_1']
+</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'arr_0'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'arr_1'</span><span class="p">])</span>
 
-<h2 id="일부한개-함수-import">일부(한개) 함수 import</h2>
-<p><code class="language-plaintext highlighter-rouge">math</code> 전체가 아닌 일부 함수 import</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">fabs</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">fabs</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>    <span class="c1"># math. 을 사용하지 않음
-</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">load</span><span class="p">(</span><span class="s">'sample2.npz'</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'arr_0'</span><span class="p">]</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'arr_1'</span><span class="p">]</span>
 
-</code></pre></div></div>
+<span class="c1"># np.savez("sample2", c1=t1, c2=t2) 와 같이 이름을 부여하면, arr_0..N  이 이름으로 조회 가능합니다. 
+</span></code></pre></div></div>
 
-<h2 id="import-alias">import alias</h2>
-<p><code class="language-plaintext highlighter-rouge">math</code> 전체가 아닌 일부 함수 import</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">fabs</span> <span class="k">as</span> <span class="n">f</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>    <span class="c1"># f로 사용함
-</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<h2 id="함수가-가진-목록">함수가 가진 목록</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">dir</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h1 id="python-내장-함수">python 내장 함수</h1>
-<p>다음은 별도의 import없이 사용이 가능한 자주 사용하는 내장 함수 입니다.</p>
-<ul>
-  <li>len()</li>
-  <li>type()</li>
-  <li>int()</li>
-  <li>str()</li>
-  <li>round()</li>
-  <li>abs()</li>
-  <li>max()</li>
-  <li>min()</li>
-  <li>sum()</li>
-  <li>sorted() , sort()  -&gt;   list.sort(), sorted(list)</li>
-  <li>range()</li>
-  <li>chr()</li>
-  <li>ord()</li>
-  <li>isalpha() -&gt; ‘a’.isalpha() True</li>
-  <li>isalnum() -&gt; ‘123’.isalnum() True</li>
-  <li>eval()  -&gt; eval(‘1+2’) , eval(‘round(1.2)’)</li>
-</ul>
+<p><a href="https://www.youtube.com/watch?v=mirZPrWwvao" target="_blank">학습 내용 참고처</a></p>
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
@@ -1248,15 +1187,15 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#function" class="page__taxonomy-item p-category" rel="tag">function</a><span class="sep">, </span>
-    
       <a href="/tags/#lecture-python-basic" class="page__taxonomy-item p-category" rel="tag">lecture-python-basic</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item p-category" rel="tag">lecture-python-numpy</a><span class="sep">, </span>
+    
+      <a href="/tags/#numpy" class="page__taxonomy-item p-category" rel="tag">numpy</a><span class="sep">, </span>
     
       <a href="/tags/#python" class="page__taxonomy-item p-category" rel="tag">python</a><span class="sep">, </span>
     
-      <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">python강좌</a><span class="sep">, </span>
-    
-      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+      <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">python강좌</a>
     
     </span>
   </p>
@@ -1281,7 +1220,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-22T00:00:00-05:00">2022-06-22</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-26T00:00:00-05:00">2022-06-26</time></p>
 
       </footer>
 
@@ -1290,30 +1229,16 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BPython+Basic%5D+%ED%95%A8%EC%88%98%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_07_function%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BPython%5D%5BNumpy%5D+file+Input+and+output%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_numpy_04_file%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_07_function%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_numpy_04_file%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_07_function%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_numpy_04_file%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
 
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
   	
@@ -1325,10 +1250,10 @@
 
   <nav class="pagination_prev_next">
     
-      <a href="/python/python_study_06_set/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Python Basic] 자료형 set 타입</a>
+      <a href="/python/python_study_numpy_03_operations/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Python][Numpy] 배열 연산(Array operations)</a>
     
     
-      <a href="/python/python_study_08_class/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Python Basic] Class</a>
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
     
   </nav>
 
@@ -1342,51 +1267,6 @@
     <div class="page__related">
       <h2 class="page__related-title">참고</h2>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.26
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
         
           
 
@@ -1518,6 +1398,51 @@
                     
                     
                     <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.22
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-basic" class="page__taxonomy-item-tag" rel="tag">lecture-python-basic</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#package" class="page__taxonomy-item-tag" rel="tag">package</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
                 
             </span>
         </span>

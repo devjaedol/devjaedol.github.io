@@ -346,4 +346,10 @@ var store = [{
         "tags": ["python","python강좌","lecture-python-basic","lecture-python-numpy","numpy"],
         "url": "/python/python_study_numpy_03_operations/",
         "teaser": null
+      },{
+        "title": "[Python][Numpy] file Input and output",
+        "excerpt":"numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다. Input and output API 참조 텍스트 파일 (txt, csv) numpy.savetxt 텍스트 파일을 저장 합니다. numpy.savetxt(fname, X, fmt='%.18e', delimiter=' ', newline='\\n', header='', footer='', comments='# ', encoding=None) API 참조 t = np.random.randint(1, 10, size=(5,5)) print(t) # [[6 5 4 1 1] # [9 8 3...","categories": ["python"],
+        "tags": ["python","python강좌","lecture-python-basic","lecture-python-numpy","numpy"],
+        "url": "/python/python_study_numpy_04_file/",
+        "teaser": null
       }]
