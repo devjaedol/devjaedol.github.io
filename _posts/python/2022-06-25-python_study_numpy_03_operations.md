@@ -221,6 +221,241 @@ print(np.sqrt(a2))
 # [2.         3.         5.         6.         3.16227766]
 ```
 
+## numpy.exp
+`numpy.exp(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])`   
+밑이 자연상수 e인 지수함수(e^x)의 그래프 값을 제공 합니다.
+[API 참조](https://numpy.org/doc/stable/reference/generated/numpy.exp.html){:target="_blank"} 
+
+```python
+print(np.exp(0))    # e^0 와 동일
+# 1.0
+
+print(np.exp(1))    # e^1 와 동일
+# 2.718281828459045
+
+print(np.exp(10))   # e^10 와 동일
+# 22026.465794806718
+
+x = np.array([-1, -0.5, 0, 1 , 1.5, 5, 10])
+print(np.exp(x))
+#[3.67879441e-01 6.06530660e-01 1.00000000e+00 2.71828183e+00 4.48168907e+00 1.48413159e+02 2.20264658e+04]
+
+```
+
+
+
+## numpy.sum
+`numpy.sum(a, axis=None, dtype=None, out=None, keepdims=<no value>, initial=<no value>, where=<no value>)`   
+nparray의 합산된 값을 제공 합니다.    
+[API 참조](https://numpy.org/doc/stable/reference/generated/numpy.sum.html){:target="_blank"} 
+
+```python
+a2 = np.random.randint(1,10, size=(3,3))
+print(a2)
+# [[7 9 7]
+#  [5 6 2]
+#  [3 3 8]]
+
+print(a2.sum(), np.sum(a2)) #전체 item을 합
+# 50 50
+
+print(a2.sum(axis=0), np.sum(a2, axis=0))
+#[15 18 17] [15 18 17]
+
+print(a2.sum(axis=1), np.sum(a2, axis=1))
+#[23 13 14] [23 13 14]
+
+```
+
+
+
+## numpy.cumsum
+`numpy.cumsum(a, axis=None, dtype=None, out=None)`   
+nparray의 `누적` 합산된 값을 제공 합니다.    
+[API 참조](https://numpy.org/doc/stable/reference/generated/numpy.cumsum.html){:target="_blank"} 
+
+```python
+print(a2)
+# [[7 9 7]
+#  [5 6 2]
+#  [3 3 8]]
+print(np.cumsum(a2)) #누적합을 제공함
+# [ 7 16 23 28 34 36 39 42 50]
+
+print(np.cumsum(a2, axis=0))  # 행방향의 누적된 합으로 naddray변경됨
+# [[ 7  9  7]
+#  [12 15  9]
+#  [15 18 17]]
+ 
+print(np.cumsum(a2, axis=1)) # 열 방향의 누적된 합으로 naddray변경됨
+# [[ 7 16 23]
+#  [ 5 11 13]
+#  [ 3  6 14]]
+
+```
+
+
+
+## numpy.diff
+`numpy.diff(a, n=1, axis=-1, prepend=<no value>, append=<no value>)`   
+naddray의 정해진 축의 방향으로 이전 값과의 차이 값을 제공 합니다.
+[API 참조](https://numpy.org/doc/stable/reference/generated/numpy.diff.html){:target="_blank"} 
+
+```python
+print(a2)
+# [[7 9 7]
+#  [5 6 2]
+#  [3 3 8]]
+
+print(np.diff(a2))  # 기본 axis=1 값과 동일
+# [[ 2 -2]
+#  [ 1 -4]
+#  [ 0  5]]
+
+print(np.diff(a2, axis=0))
+# [[-2 -3 -5]
+#  [-2 -3  6]]
+
+print(np.diff(a2, axis=1))
+# [[ 2 -2]
+#  [ 1 -4]
+#  [ 0  5]]
+
+```
+
+
+
+## numpy.any
+`numpy.any(a, axis=None, out=None, keepdims=<no value>, *, where=<no value>)`   
+ndarray 항목중 `True` 값이 1개 이상 존재한다면 `True` (or조건) 제공 합니다.
+[API 참조](https://numpy.org/doc/stable/reference/generated/numpy.any.html){:target="_blank"} 
+
+```python
+a2 = np.array([
+    [False,False,False],
+    [False,True,True],
+    [False,False,False]
+])
+
+print(a2)
+# [[False False False]
+#  [False  True  True]
+#  [False False False]]
+
+print(np.any(a2)) # 항목중에 하나라도 True 면 True 임 OR
+# True   (전체중에 True가 한개 이상 있으므로 True반환)
+print(np.any(a2, axis=0)) #열단위
+# [False  True  True]   
+print(np.any(a2, axis=1)) #행단위
+# [False  True False]
+```
+
+
+
+## numpy.all
+`numpy.all(a, axis=None, out=None, keepdims=<no value>, *, where=<no value>)`   
+ndarray 항목 모두 `True` 값이이라면 `True` (and조건) 제공 합니다.
+[API 참조](https://numpy.org/doc/stable/reference/generated/numpy.all.html){:target="_blank"} 
+
+```python
+print(a2)
+# [[False False False]
+#  [False  True  True]
+#  [False False False]]
+
+print(np.all(a2)) # 전체가 True여야 True임 AND
+# False
+
+print(np.all(a2, axis=0))
+# [False False False]
+
+print(np.all(a2, axis=1))
+# [False False False]
+```
+   
+
+## numpy.sort
+`numpy.sort(a, axis=- 1, kind=None, order=None)`    
+ndarray의 정렬을 제공 합니다.    
+[API 참조](https://numpy.org/doc/stable/reference/generated/numpy.sort.html){:target="_blank"} 
+
+```python
+a1 = np.random.randint(1, 10, size=10)
+print(a1)
+# [2 2 2 9 2 6 5 7 5 9]
+
+print(np.sort(a1))
+# [2 2 2 2 5 5 6 7 9 9]
+
+a = np.array([[1,4],[3,1]])
+np.sort(a)                # sort along the last axis
+# array([[1, 4],
+#        [1, 3]])
+np.sort(a, axis=None)     # sort the flattened array
+# array([1, 1, 3, 4])
+
+np.sort(a, axis=0)        # sort along the first axis
+# array([[1, 1],
+#        [3, 4]])
+
+```
+
+
+## numpy.argosrt
+`numpy.argsort(a, axis=- 1, kind=None, order=None)`    
+ndarray의 정렬 `index` 값을 제공 합니다.    
+[API 참조](https://numpy.org/doc/stable/reference/generated/numpy.argsort.html){:target="_blank"} 
+
+```python
+print(a1)
+# [2 2 2 9 2 6 5 7 5 9]
+
+print(np.argsort(a1))#정렬의 index순서
+# [0 1 2 4 6 8 5 7 3 9]
+```
+
+
+## 그밖에 배열 연산 팁
+조건을 통한 배열의 필터링하여 재생성할 수도 있습니다.
+```python
+a1 = np.arange(1,10)
+print(a1)
+print(a1 == 5)
+print(a1 != 5)
+print(a1 > 5)
+print(a1 <= 5)
+
+# [1 2 3 4 5 6 7 8 9]
+# [False False False False  True False False False False]
+# [ True  True  True  True False  True  True  True  True]
+# [False False False False False  True  True  True  True]
+# [ True  True  True  True  True False False False False]
+
+
+a2 = np.arange(1,10).reshape(3,3)
+print(a2)
+# [[1 2 3]
+#  [4 5 6]
+#  [7 8 9]]
+print(np.sum(a2))
+# 45
+print(np.count_nonzero(a2>5)) # 5초과 인 수량을 카운트함
+# 4
+print(np.sum(a2>5))
+# 4
+print(np.sum(a2>5, axis=0)) # 축에 해당하는 5초과 카운트가 출력됨
+# [1 1 2]
+print(np.sum(a2>5, axis=1)) # 축에 해당하는 5초과 카운트가 출력됨
+# [0 1 3]
+
+```
+
+
+
+
+그 밖에 표준편차 `numpy.std`, 분산 `numpy.var`, 로그 `numpy.log` 등 다양한 함수가 있습니다.    
+세부 내용은 공식 API를 참고 바랍니다.    
+필요할 때 찾아쓸 정도만 알고 있으면 될 것 같네요.    
 
 [학습 내용 참고처](https://www.youtube.com/watch?v=mirZPrWwvao){:target="_blank"} 
 

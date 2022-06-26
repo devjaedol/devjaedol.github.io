@@ -593,6 +593,62 @@ print(b3)
 ```
 
 
+# numpy.random
+자료를 임의로 만들어야 할때 자주 사용되는 라이브러리 입니다.      
+
+## numpy.random.rand
+0~1의 균일분포 표준정규분포 난수를 생성하여 반환합니다.    
+`random.rand(d0, d1, ..., dn)`    
+[API 참조](https://numpy.org/doc/stable/reference/random/generated/numpy.random.rand.html){:target="_blank"}  
+```python
+np.random.rand(5)
+# array([0.42734205, 0.95354301, 0.80731892, 0.6908605 , 0.64658099])
+
+np.random.rand(5,2)
+# array([[0.85155709, 0.25876853],
+#        [0.63304735, 0.12171615],
+#        [0.11996824, 0.71999629],
+#        [0.45233059, 0.77861135],
+#        [0.43984419, 0.69105062]])
+
+```
+
+## numpy.random.randn
+평균`0`, 표준편차 `1`인 가우시안 표준 정규분포의 난수를 생성하여 반환합니다.    
+`random.randn(d0, d1, ..., dn)`    
+[API 참조](https://numpy.org/doc/stable/reference/random/generated/numpy.random.randn.html){:target="_blank"}  
+```python
+np.random.randn(5)
+# array([ 0.74225719, -0.39754649,  0.8966088 ,  0.30346421,  0.71134092])
+
+np.random.randn(5,2)
+# array([[-0.76182035, -0.51200261],
+#        [ 0.51620442,  0.77368734],
+#        [-0.23963806,  0.53549214],
+#        [ 1.37556231, -0.87648979],
+#        [ 0.51587644, -0.93696996]])
+
+```
+
+
+## numpy.random.randint
+범위내 int 타입의 난수를 생성하여 반환합니다.    
+`random.randint(low, high=None, size=None, dtype=int)`    
+[API 참조](https://numpy.org/doc/stable/reference/random/generated/numpy.random.randint.html){:target="_blank"}  
+```python
+np.random.randint(10) # 0~9 까지의 임의의 수 반환
+np.random.randint(5, 10) # 5이상 ~ 10미만의 임의의 숫자 
+
+
+np.random.randint(10, size=5)
+# array([5, 3, 9, 1, 0])
+
+np.random.randint(5, size=(2, 4))
+# array([[2, 2, 3, 4],
+#        [2, 4, 2, 4]])
+
+```
+
 [학습 내용 참고처](https://www.youtube.com/watch?v=mirZPrWwvao){:target="_blank"} 
 
 {% assign c-category = 'python' %}
