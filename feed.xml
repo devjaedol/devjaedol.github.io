@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-26T08:40:32-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[Python][Numpy] file Input and output</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_04_file/" rel="alternate" type="text/html" title="[Python][Numpy] file Input and output" /><published>2022-06-26T00:00:00-05:00</published><updated>2022-06-26T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_04_file</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_04_file/"><![CDATA[<p>numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다. <br />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2022-06-27T08:57:00-05:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[Python][Numpy] file Input and output</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_04_file/" rel="alternate" type="text/html" title="[Python][Numpy] file Input and output" /><published>2022-06-26T00:00:00-05:00</published><updated>2022-06-26T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_04_file</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_04_file/"><![CDATA[<p>numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다. <br />
 <a href="https://numpy.org/doc/stable/reference/routines.io.html" target="_blank">Input and output API 참조</a></p>
 
 <h1 id="텍스트-파일-txt-csv">텍스트 파일 (txt, csv)</h1>
@@ -138,26 +138,6 @@
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -166,12 +146,6 @@
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -188,8 +162,18 @@
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              
@@ -554,7 +538,7 @@
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-basic" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다. Input and output API 참조]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 연산(Array operations)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_03_operations/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 연산(Array operations)" /><published>2022-06-25T00:00:00-05:00</published><updated>2022-06-25T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_03_operations</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_03_operations/"><![CDATA[<p>nparray의 연산에 대해서 알아보겠습니다. <br />
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다. Input and output API 참조]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 연산(Array operations)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_03_operations/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 연산(Array operations)" /><published>2022-06-25T00:00:00-05:00</published><updated>2022-06-25T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_03_operations</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_03_operations/"><![CDATA[<p>nparray의 연산에 대해서 알아보겠습니다. <br />
 mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제공 되고 있으니 참고 바랍니다. <br />
 <a href="https://numpy.org/doc/stable/reference/routines.math.html" target="_blank">API 참조</a></p>
 
@@ -964,26 +948,6 @@ ndarray의 정렬 <code class="language-plaintext highlighter-rouge">index</code
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -992,12 +956,6 @@ ndarray의 정렬 <code class="language-plaintext highlighter-rouge">index</code
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -1014,8 +972,18 @@ ndarray의 정렬 <code class="language-plaintext highlighter-rouge">index</code
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              
@@ -1380,7 +1348,7 @@ ndarray의 정렬 <code class="language-plaintext highlighter-rouge">index</code
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-basic" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[nparray의 연산에 대해서 알아보겠습니다. mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제공 되고 있으니 참고 바랍니다. API 참조]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 사용(Array manipulation)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_02_manage/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 사용(Array manipulation)" /><published>2022-06-24T00:00:00-05:00</published><updated>2022-06-24T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_02_manage</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_02_manage/"><![CDATA[<p>이번에는 <code class="language-plaintext highlighter-rouge">Numpy(Numerical Python)</code> 배열을 조작하는 내용을 주로 공부해 보겠습니다.</p>
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[nparray의 연산에 대해서 알아보겠습니다. mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제공 되고 있으니 참고 바랍니다. API 참조]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 사용(Array manipulation)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_02_manage/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 사용(Array manipulation)" /><published>2022-06-24T00:00:00-05:00</published><updated>2022-06-24T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_02_manage</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_02_manage/"><![CDATA[<p>이번에는 <code class="language-plaintext highlighter-rouge">Numpy(Numerical Python)</code> 배열을 조작하는 내용을 주로 공부해 보겠습니다.</p>
 
 <p>Numpy 홈페이지 : <a href="https://numpy.org/doc" target="_blank">numpy.org</a>     <br />
 Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/routines.array-manipulation.html" target="_blank">API 참조</a></p>
@@ -2024,26 +1992,6 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -2052,12 +2000,6 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -2074,8 +2016,18 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              
@@ -2440,7 +2392,7 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-basic" /><category term="lecture-python-numpy" /><category term="numpy" /><category term="manipulation" /><summary type="html"><![CDATA[이번에는 Numpy(Numerical Python) 배열을 조작하는 내용을 주로 공부해 보겠습니다.]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 생성(Array creation)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 생성(Array creation)" /><published>2022-06-24T00:00:00-05:00</published><updated>2022-06-24T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray/"><![CDATA[<p><code class="language-plaintext highlighter-rouge">Numpy(Numerical Python)</code> 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. <br />
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><category term="manipulation" /><summary type="html"><![CDATA[이번에는 Numpy(Numerical Python) 배열을 조작하는 내용을 주로 공부해 보겠습니다.]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 생성(Array creation)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 생성(Array creation)" /><published>2022-06-24T00:00:00-05:00</published><updated>2022-06-24T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray/"><![CDATA[<p><code class="language-plaintext highlighter-rouge">Numpy(Numerical Python)</code> 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. <br />
 python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. <br />
 기본적은 사용법을 배워보겠습니다.<br />
 Array creation routines :  <a href="https://numpy.org/doc/stable/reference/routines.array-creation.html" target="_blank">API 참조</a></p>
@@ -2775,26 +2727,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -2803,12 +2735,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -2825,8 +2751,18 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              
@@ -3191,7 +3127,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-basic" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[Numpy(Numerical Python) 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. 기본적은 사용법을 배워보겠습니다. Array creation routines : API 참조]]></summary></entry><entry><title type="html">[Python Basic] 자료형 set 타입</title><link href="https://kimjaehyun.co.kr/python/python_study_06_set/" rel="alternate" type="text/html" title="[Python Basic] 자료형 set 타입" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_06_set</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_06_set/"><![CDATA[<p>순서와 중복이 보장되지 않는 자료형 입니다.</p>
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[Numpy(Numerical Python) 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. 기본적은 사용법을 배워보겠습니다. Array creation routines : API 참조]]></summary></entry><entry><title type="html">[Python Basic] 자료형 set 타입</title><link href="https://kimjaehyun.co.kr/python/python_study_06_set/" rel="alternate" type="text/html" title="[Python Basic] 자료형 set 타입" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_06_set</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_06_set/"><![CDATA[<p>순서와 중복이 보장되지 않는 자료형 입니다.</p>
 
 <h1 id="list-vs-tuple-vs-dictionary-vs-set">list vs tuple vs dictionary vs set</h1>
 
@@ -3337,26 +3273,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -3365,12 +3281,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -3387,8 +3297,18 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              
@@ -3819,26 +3739,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -3847,12 +3747,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -3869,8 +3763,18 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              
@@ -4436,26 +4340,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -4464,12 +4348,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -4486,8 +4364,18 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              
@@ -4923,26 +4811,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -4951,12 +4819,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -4973,8 +4835,18 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              
@@ -5436,26 +5308,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -5464,12 +5316,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -5486,8 +5332,18 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              
@@ -6118,26 +5974,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
-             
-        
              
         
              
@@ -6146,12 +5982,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
         
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
              
         
              
@@ -6168,8 +5998,18 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
         
              
         
-              
-                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
              
         
              

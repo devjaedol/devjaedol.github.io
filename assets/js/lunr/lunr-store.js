@@ -331,25 +331,25 @@ var store = [{
       },{
         "title": "[Python][Numpy] 배열 생성(Array creation)",
         "excerpt":"Numpy(Numerical Python) 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. 기본적은 사용법을 배워보겠습니다. Array creation routines : API 참조 Numpy 홈페이지 : numpy.org Numpy를 사용하려면 설치를...","categories": ["python"],
-        "tags": ["python","python강좌","lecture-python-basic","lecture-python-numpy","numpy"],
+        "tags": ["python","python강좌","lecture-python-numpy","numpy"],
         "url": "/python/python_study_numpy_01_ndarray/",
         "teaser": null
       },{
         "title": "[Python][Numpy] 배열 사용(Array manipulation)",
         "excerpt":"이번에는 Numpy(Numerical Python) 배열을 조작하는 내용을 주로 공부해 보겠습니다. Numpy 홈페이지 : numpy.org Array manipulation routines : API 참조 numpy 조작 배열 정보 배열 정보 확인을 위해서 아래 배열 함수를 작성하겠습니다. 항목 설명 ndim 배열 차원 shape 배열 shape dtype 배열 데이터 타입 size 배열 요소 수 itemsize 배열 각...","categories": ["python"],
-        "tags": ["python","python강좌","lecture-python-basic","lecture-python-numpy","numpy","manipulation"],
+        "tags": ["python","python강좌","lecture-python-numpy","numpy","manipulation"],
         "url": "/python/python_study_numpy_02_manage/",
         "teaser": null
       },{
         "title": "[Python][Numpy] 배열 연산(Array operations)",
         "excerpt":"nparray의 연산에 대해서 알아보겠습니다. mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제공 되고 있으니 참고 바랍니다. API 참조 numpy operations 브로드캐스팅 nparray를 연산 하는 과정에서 부족한 배열 부분을 이전 배열의 패턴으로 채워서 연산되는 형태를 말합니다. a1 = np.array([1,2,3]) print(a1) # [1 2 3] print(a1+5) # [6 7 8] a2...","categories": ["python"],
-        "tags": ["python","python강좌","lecture-python-basic","lecture-python-numpy","numpy"],
+        "tags": ["python","python강좌","lecture-python-numpy","numpy"],
         "url": "/python/python_study_numpy_03_operations/",
         "teaser": null
       },{
         "title": "[Python][Numpy] file Input and output",
         "excerpt":"numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다. Input and output API 참조 텍스트 파일 (txt, csv) numpy.savetxt 텍스트 파일을 저장 합니다. numpy.savetxt(fname, X, fmt='%.18e', delimiter=' ', newline='\\n', header='', footer='', comments='# ', encoding=None) API 참조 t = np.random.randint(1, 10, size=(5,5)) print(t) # [[6 5 4 1 1] # [9 8 3...","categories": ["python"],
-        "tags": ["python","python강좌","lecture-python-basic","lecture-python-numpy","numpy"],
+        "tags": ["python","python강좌","lecture-python-numpy","numpy"],
         "url": "/python/python_study_numpy_04_file/",
         "teaser": null
       }]

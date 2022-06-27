@@ -9,32 +9,28 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Python Basic] 모듈 만들기, 패키지 만들기 | 꿰보노트</title>
-<meta name="description" content="Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다.   자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.">
+<!-- begin _includes/seo.html --><title>꿰보노트</title>
+<meta name="description" content="프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배">
 
 
   <meta name="author" content="devjaedol">
   
-  <meta property="article:author" content="devjaedol">
-  
 
 
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="꿰보노트">
-<meta property="og:title" content="[Python Basic] 모듈 만들기, 패키지 만들기">
-<meta property="og:url" content="https://kimjaehyun.co.kr/python/python_study_10_package/">
+<meta property="og:title" content="꿰보노트">
+<meta property="og:url" content="https://kimjaehyun.co.kr/lecture">
 
 
-  <meta property="og:description" content="Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다.   자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.">
-
-
-
+  <meta property="og:description" content="프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배">
 
 
 
 
-  <meta property="article:published_time" content="2022-06-22T00:00:00-05:00">
+
+
 
 
 
@@ -45,7 +41,7 @@
   
 
 
-<link rel="canonical" href="https://kimjaehyun.co.kr/python/python_study_10_package/">
+<link rel="canonical" href="https://kimjaehyun.co.kr/lecture">
 
 
 
@@ -94,11 +90,6 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
      crossorigin="anonymous"></script>
 
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" defer
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
      
     <!-- start custom head snippets -->
 
@@ -181,17 +172,7 @@
         <span class="sep">/</span>
       
       
-        
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#python" itemprop="item"><span itemprop="name">Python</span></a>
-          <meta itemprop="position" content="2" />
-        </li>
-        <span class="sep">/</span>
-      
-    
-      
-      
-        <li class="current">[Python Basic] 모듈 만들기, 패키지 만들기</li>
+        <li class="current"></li>
       
     
   </ol>
@@ -595,18 +576,15 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Python Basic] 모듈 만들기, 패키지 만들기">
-    <meta itemprop="description" content="Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다.  자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.">
-    <meta itemprop="datePublished" content="2022-06-22T00:00:00-05:00">
+    
+    
+    
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="https://kimjaehyun.co.kr/python/python_study_10_package/" class="u-url" itemprop="url">[Python Basic] 모듈 만들기, 패키지 만들기
-</a>
-          </h1>
+          
           
 
 
@@ -615,72 +593,10 @@
 
       <section class="page__content e-content" itemprop="text">
         
-          <aside class="sidebar__right sticky">
-            <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#모듈-만들기">모듈 만들기</a><ul><li><a href="#modulepy">module.py</a></li><li><a href="#mainpy">main.py</a></li></ul></li><li><a href="#패키지-만들기">패키지 만들기</a><ul><li><a href="#구성-형태">구성 형태</a></li><li><a href="#mainpy-1">main.py</a></li><li><a href="#main-실행-구성">main 실행 구성</a></li></ul></li></ul>
+        <h4> Python 기본</h4>
+<img src="/assets/images_post/common/logo_python.png">
 
-            </nav>
-          </aside>
-        
-        <p>Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다.  <br />
-자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.</p>
 
-<h1 id="모듈-만들기">모듈 만들기</h1>
-<p>함수에서 작성한 아래 함수를 <code class="language-plaintext highlighter-rouge">module.py</code> 로 작성합니다.</p>
-<h2 id="modulepy">module.py</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-    <span class="k">return</span> <span class="n">s</span>
-
-</code></pre></div></div>
-
-<p>모듈을 사용할 <code class="language-plaintext highlighter-rouge">main.py</code> 를 만듭니다. <br />
-<code class="language-plaintext highlighter-rouge">module.py</code> 와 <code class="language-plaintext highlighter-rouge">main.py</code>는 동일 경로에 위치 합니다.</p>
-
-<h2 id="mainpy">main.py</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">module</span> <span class="k">as</span> <span class="n">m</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
-</span></code></pre></div></div>
-
-<h1 id="패키지-만들기">패키지 만들기</h1>
-<h2 id="구성-형태">구성 형태</h2>
-<p>위 모듈 만들기에서 만들어지는 모듈파일이 여러개로 구성될때, 여러 모듈을 기능에 맞게 패키지로 만들수 있습니다.    <br />
-예를 들어 다음 모듈을 만들었다고 할때, 하나의 특정 폴더 <code class="language-plaintext highlighter-rouge">custom</code> 밑에 위치 시킵니다.</p>
-<ul>
-  <li>\main.py</li>
-  <li>\custom\module_sum.py</li>
-  <li>\custom\module_min.py</li>
-  <li>\custom\module_max.py</li>
-  <li>\custom\module_avg.py</li>
-</ul>
-
-<p>위와 같은 경우 아래와 같이 사용할 수 있습니다.</p>
-<h2 id="mainpy-1">main.py</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
-</span></code></pre></div></div>
-<h2 id="main-실행-구성">main 실행 구성</h2>
-<p>실행 메인이 되는 함수를 파악하기 위해서 <code class="language-plaintext highlighter-rouge">__name__</code> 속성을 통해서 실행 주체를 확인 할 수 있습니다. <br />
-<code class="language-plaintext highlighter-rouge">main()</code> 함수를 <code class="language-plaintext highlighter-rouge">__name__ == "__main__"</code> 조건에 맞을 경우에만 실행하도록 할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
-</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>  
-    
-</code></pre></div></div>
-
-<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
 
     
@@ -693,7 +609,7 @@
         
              
         
-      
+        
 
     
         
@@ -705,7 +621,7 @@
         
              
         
-      
+        
 
     
         
@@ -719,7 +635,7 @@
         
              
         
-      
+        
 
     
         
@@ -731,7 +647,7 @@
         
              
         
-      
+        
 
     
         
@@ -747,7 +663,7 @@
         
              
         
-      
+        
 
     
         
@@ -763,7 +679,7 @@
         
              
         
-      
+        
 
     
         
@@ -779,7 +695,7 @@
         
              
         
-      
+        
 
     
         
@@ -795,7 +711,7 @@
         
              
         
-      
+        
 
     
         
@@ -811,7 +727,7 @@
         
              
         
-      
+        
 
     
         
@@ -827,7 +743,7 @@
         
              
         
-      
+        
 
     
         
@@ -843,7 +759,7 @@
         
              
         
-      
+        
 
     
         
@@ -859,7 +775,7 @@
         
              
         
-      
+        
 
     
         
@@ -875,55 +791,7 @@
         
              
         
-      
-
-    
         
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
 
     
         
@@ -941,13 +809,57 @@
         
              
         
+        
+
+    
+        
              
         
-      
+             
+        
+             
+        
+             
+        
+             
+        
+        
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
 
     
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
 
     
 
@@ -978,12 +890,16 @@
     
 
     
+
+    
+
+    
         
              
         
              
         
-      
+        
 
     
         
@@ -999,7 +915,7 @@
         
              
         
-      
+        
 
     
         
@@ -1011,7 +927,7 @@
         
              
         
-      
+        
 
     
         
@@ -1019,7 +935,7 @@
         
              
         
-      
+        
 
     
 
@@ -1065,7 +981,7 @@
                 <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
              
         
-      
+        
 
     
         
@@ -1079,7 +995,816 @@
                 <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
              
         
-      
+        
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+
+<h4> Python Numpy</h4>
+<img src="/assets/images_post/common/logo_numpy.png">
+
+
+<ul>
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a></li>
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a></li>
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a></li>
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a></li>
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+
+
+<h4> Python OpenCV</h4>
+<img src="/assets/images_post/common/logo_opencv.png">
+
+
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-mouse-event/">[OpenCV] 마우스이벤트</a></li>
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-window-event/">[OpenCV] 윈도우 처리, 키이벤트</a></li>
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-video-rw/">[OpenCV] 비디오/캠 불러오기, 저장하기</a></li>
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-image-rw/">[OpenCV] 이미지 불러오기, 저장하기, 사이즈 변경</a></li>
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python-opencv-basic-draw/">[OpenCV] 기본 도형 그리기</a></li>
+             
+        
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+        
 
     
 
@@ -1097,275 +1822,24 @@
       <footer class="page__meta">
         
         
-  
-
-
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
-    <span itemprop="keywords">
-    
-      <a href="/tags/#lecture-python-basic" class="page__taxonomy-item p-category" rel="tag">lecture-python-basic</a><span class="sep">, </span>
-    
-      <a href="/tags/#package" class="page__taxonomy-item p-category" rel="tag">package</a><span class="sep">, </span>
-    
-      <a href="/tags/#python" class="page__taxonomy-item p-category" rel="tag">python</a><span class="sep">, </span>
-    
-      <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">python강좌</a><span class="sep">, </span>
-    
-      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
-    
-    </span>
-  </p>
-
-
-
-
-  
-
-
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
-    <span itemprop="keywords">
-    
-      <a href="/categories/#python" class="page__taxonomy-item p-category" rel="tag">python</a>
-    
-    </span>
-  </p>
-
 
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-22T00:00:00-05:00">2022-06-22</time></p>
-
       </footer>
 
-      <section class="page__share">
-  
-    <h4 class="page__share-title">공유하기</h4>
-  
-
-  <a href="https://twitter.com/intent/tweet?text=%5BPython+Basic%5D+%EB%AA%A8%EB%93%88+%EB%A7%8C%EB%93%A4%EA%B8%B0%2C+%ED%8C%A8%ED%82%A4%EC%A7%80+%EB%A7%8C%EB%93%A4%EA%B8%B0%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_10_package%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_10_package%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython_study_10_package%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-</section>
-
+      
 
       
 
 
-  
 
-  
-
-  
-
-  
-
-  
-  	
-  	
-  	
-  	
-  	
-
-
-  <nav class="pagination_prev_next">
-    
-      <a href="/python/python_study_09_exception/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Python Basic] 예외처리</a>
-    
-    
-      <a href="/python/python_study_numpy_01_ndarray/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Python][Numpy] 배열 생성(Array creation)</a>
-    
-  </nav>
 
     </div>
 
     
   </article>
 
-  
-  
-    <div class="page__related">
-      <h2 class="page__related-title">참고</h2>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.26
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.25
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_02_manage/">[Python][Numpy] 배열 사용(Array manipulation)</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.24
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#manipulation" class="page__taxonomy-item-tag" rel="tag">manipulation</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.24
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-        
-      </div>
-    </div>
   
   
 </div>
