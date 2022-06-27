@@ -3,7 +3,7 @@ title: "[Python][Numpy] 배열 사용(Array manipulation)"
 categories:  
     - python
 tags: 
-    [python, python강좌, 'lecture-python-basic','lecture-python-numpy', numpy, manipulation ]
+    [python, python강좌, 'lecture-python-numpy', numpy, manipulation ]
 toc : true
 toc_sticky  : true    
 ---

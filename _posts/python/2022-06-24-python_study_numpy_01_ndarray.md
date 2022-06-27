@@ -3,7 +3,7 @@ title: "[Python][Numpy] 배열 생성(Array creation)"
 categories:  
     - python
 tags: 
-    [python, python강좌, 'lecture-python-basic','lecture-python-numpy', numpy ]
+    [python, python강좌,'lecture-python-numpy', numpy ]
 toc : true
 toc_sticky  : true    
 ---

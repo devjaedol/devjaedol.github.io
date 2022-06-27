@@ -3,7 +3,7 @@ title: "[Python][Numpy] 배열 연산(Array operations)"
 categories:  
     - python
 tags: 
-    [python, python강좌, 'lecture-python-basic','lecture-python-numpy', numpy ]
+    [python, python강좌, 'lecture-python-numpy', numpy ]
 toc : true
 toc_sticky  : true    
 ---
