@@ -43,7 +43,48 @@ let : { } 구역내에서 유효한 변수, 재할당 가능함.
 
 const 수정이 불가능한 변수.
 
+### var vs let vs const
+`const` 의 특징
+- 블록의 범위내에서만 사용가능.
+- 할당후 재할당 불가
+    - const에 object을 할당했다면, 할당된 object를 변경 불가하지만 object내의 속성값은 변경가능함.     
 
+```javascript
+if(true){
+    const b = 2;
+}
+console.log(b); //에러 발생함
+```
+
+
+
+`var` 의 특징
+- 블록의 범위밖은 사용가능.
+- 함부 범위 내에서만 사용가능.    
+
+```javascript
+if(true){
+    var c = 2;
+}
+console.log(c); //출력됨
+
+function f(){
+    var d = 2;
+}
+console.log(d); //에러 출력 Uncaught ReferenceError: d is not defined
+```
+
+
+`let` 의 특징
+- 블록의 범위내에서만 사용가능.
+- 재할당 가능함.    
+
+```javascript
+if(true){
+    let e = 2;
+}
+console.log(e); //에러 발생함
+```
 
 ## Arrow Function 단축 지원
 ```javascript
@@ -110,6 +151,11 @@ const car = {
 let {name, price} = car;
 console.log(name);		// sedan
 console.log(price);		// 10000
+
+const obj = { a: 1, b:{name:'aaa', value:1}
+let {a, b:{name}} = obj;
+console.log(a);         //1
+console.log(b);         //aaa
 ```
 
 

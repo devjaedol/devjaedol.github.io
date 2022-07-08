@@ -7,8 +7,7 @@ toc : true
 toc_sticky  : true        
 ---
 
-# 문제 유형
-
+# 문제 조건
 - `()` 묶여진 구문에서 첫번째 숫자 (0~9)까지의 숫자 만큼 `()`로 묶여진 글자를 출력해라.    
 - `()` 는 여러 단계로 묶일수 있다. `(()())`
 - 가장 밖에는 하나의 `()`로 묶여있다.
@@ -29,10 +28,10 @@ toc_sticky  : true
 char[] loop;
 loop = sc.next().toCharArray();	// `(3a(2b)c)` 
 
-solve( loop, 0);
+exec( loop, 0);
 
 
-int solve(char[] loop, int idx){
+int exec(char[] loop, int idx){
 
 	int _p = idx; //
 
