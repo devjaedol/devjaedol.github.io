@@ -240,13 +240,13 @@ var store = [{
         "teaser": null
       },{
         "title": "[문제 유형 분석]숫자 목록 중 특정 숫자 패턴 검색",
-        "excerpt":"문제 유형 아래와 같은 랜덤한 숫자 목록 중 특정 조건의 패턴 찾기. 1 2 4 6 4 6 7 8 2 1 2 5 4 7 2 8 9 0 8 2 7 0 6 4 2 3 특정 제공된 숫자 7 8 2 의 변경된 조건을 찾을때 원본 7...","categories": ["codingtest"],
+        "excerpt":"문제 조건 아래와 같은 랜덤한 숫자 목록 중 특정 조건의 패턴 찾기. 1 2 4 6 4 6 7 8 2 1 2 5 4 7 2 8 9 0 8 2 7 0 6 4 2 3 특정 제공된 숫자 7 8 2 의 변경된 조건을 찾을때 원본 7...","categories": ["codingtest"],
         "tags": ["숫자찾기","배열정렬","위상이동"],
         "url": "/codingtest/Qtype-numeric-pattern-search/",
         "teaser": null
       },{
         "title": "[문제 유형 분석]문자열 구문 분석을 통한 반복 출력 문제",
-        "excerpt":"문제 유형 () 묶여진 구문에서 첫번째 숫자 (0~9)까지의 숫자 만큼 ()로 묶여진 글자를 출력해라. () 는 여러 단계로 묶일수 있다. (()()) 가장 밖에는 하나의 ()로 묶여있다. 예) (4k) -&gt; kkkk (3a(2b)c) -&gt; abbcabbcabbc 접근 방법 문제의 입력 조건 문자열을 char 로 분리함. 위치 변수를 _p 초기화 하여, 문자열을 처음부터 순회함...","categories": ["codingtest"],
+        "excerpt":"문제 조건 () 묶여진 구문에서 첫번째 숫자 (0~9)까지의 숫자 만큼 ()로 묶여진 글자를 출력해라. () 는 여러 단계로 묶일수 있다. (()()) 가장 밖에는 하나의 ()로 묶여있다. 예) (4k) -&gt; kkkk (3a(2b)c) -&gt; abbcabbcabbc 접근 방법 문제의 입력 조건 문자열을 char 로 분리함. 위치 변수를 _p 초기화 하여, 문자열을 처음부터 순회함...","categories": ["codingtest"],
         "tags": ["문자열 구문 분석","반복 출력","재귀함수"],
         "url": "/codingtest/Qtype-string-loop-cmd/",
         "teaser": null
@@ -351,5 +351,11 @@ var store = [{
         "excerpt":"numpy를 통해서 파일에 데이터를 읽고/쓰기를 진행 합니다. Input and output API 참조 텍스트 파일 (txt, csv) numpy.savetxt 텍스트 파일을 저장 합니다. numpy.savetxt(fname, X, fmt='%.18e', delimiter=' ', newline='\\n', header='', footer='', comments='# ', encoding=None) API 참조 t = np.random.randint(1, 10, size=(5,5)) print(t) # [[6 5 4 1 1] # [9 8 3...","categories": ["python"],
         "tags": ["python","python강좌","lecture-python-numpy","numpy"],
         "url": "/python/python_study_numpy_04_file/",
+        "teaser": null
+      },{
+        "title": "[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기",
+        "excerpt":"문제 조건 N 명의 사람이 다른 키를 가지로 일렬로 배치 합니다. 키가 높은 사람은 앞사람이 본인 보다 작은 경우 내려 볼수 있습니다. 랜덤으로 배치된 사람이 내려다 볼수 있는 사람의 총합을 구하시요. 조건 : 내려다 보는 방향은 순서대로 (오른쪽-&gt; 왼쪽) 한방향만 가능합니다. 예를 들어 아래 키의 순서로 N개의 배열이 제공될 때....","categories": ["codingtest"],
+        "tags": ["문자열 구문 분석","stack","FILO"],
+        "url": "/codingtest/Qtype-stack-sort-count/",
         "teaser": null
       }]

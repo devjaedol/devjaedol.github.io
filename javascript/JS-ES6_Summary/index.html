@@ -238,7 +238,7 @@
     
     <!--전체 글 수-->
       <li>
-          <span class="nav__sub-title">전체 <span style="color:red"> 59</span>개</span> 
+          <span class="nav__sub-title">전체 <span style="color:red"> 60</span>개</span> 
       </li>
 
 
@@ -516,7 +516,7 @@
                     
                 
                     
-                        <li><a href="/categories/codingtest" class="">Coding Test (6)</a></li>
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
                     
                 
                     
@@ -618,7 +618,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#es6-features2016">ES6 Features(2016)</a></li><li><a href="#es6-features2017">ES6 Features(2017)</a></li><li><a href="#es6-features2018">ES6 Features(2018)</a></li><li><a href="#let--const">let  const</a></li><li><a href="#arrow-function-단축-지원">Arrow Function 단축 지원</a></li><li><a href="#function-기본값-지원">Function 기본값 지원</a></li><li><a href="#string-비교-startswith-endswith-includes">String 비교 startsWith(), endsWith(), includes</a></li><li><a href="#템플릿-리터럴">템플릿 리터럴</a></li><li><a href="#object-destructuring">Object Destructuring</a></li><li><a href="#destructuring">Destructuring</a></li><li><a href="#for-in">for-in</a></li><li><a href="#spread-orperator">Spread orperator</a></li><li><a href="#arrayfrom">Array.from</a></li><li><a href="#arraymap">Array.map()</a></li><li><a href="#arrayfilter">Array.Filter()</a></li><li><a href="#spread-operator">spread operator</a></li><li><a href="#set-has">set has</a></li><li><a href="#weakset">WeakSet</a></li><li><a href="#export-import">export import</a></li><li><a href="#promises">Promises</a></li><li><a href="#class-constructor">Class constructor</a></li></ul>
+              <ul class="toc__menu"><li><a href="#es6-features2016">ES6 Features(2016)</a></li><li><a href="#es6-features2017">ES6 Features(2017)</a></li><li><a href="#es6-features2018">ES6 Features(2018)</a></li><li><a href="#let--const">let  const</a><ul><li><a href="#var-vs-let-vs-const">var vs let vs const</a></li></ul></li><li><a href="#arrow-function-단축-지원">Arrow Function 단축 지원</a></li><li><a href="#function-기본값-지원">Function 기본값 지원</a></li><li><a href="#string-비교-startswith-endswith-includes">String 비교 startsWith(), endsWith(), includes</a></li><li><a href="#템플릿-리터럴">템플릿 리터럴</a></li><li><a href="#object-destructuring">Object Destructuring</a></li><li><a href="#destructuring">Destructuring</a></li><li><a href="#for-in">for-in</a></li><li><a href="#spread-orperator">Spread orperator</a></li><li><a href="#arrayfrom">Array.from</a></li><li><a href="#arraymap">Array.map()</a></li><li><a href="#arrayfilter">Array.Filter()</a></li><li><a href="#spread-operator">spread operator</a></li><li><a href="#set-has">set has</a></li><li><a href="#weakset">WeakSet</a></li><li><a href="#export-import">export import</a></li><li><a href="#promises">Promises</a></li><li><a href="#class-constructor">Class constructor</a></li></ul>
 
             </nav>
           </aside>
@@ -656,6 +656,52 @@
 <p>let : { } 구역내에서 유효한 변수, 재할당 가능함.</p>
 
 <p>const 수정이 불가능한 변수.</p>
+
+<h3 id="var-vs-let-vs-const">var vs let vs const</h3>
+<p><code class="language-plaintext highlighter-rouge">const</code> 의 특징</p>
+<ul>
+  <li>블록의 범위내에서만 사용가능.</li>
+  <li>할당후 재할당 불가
+    <ul>
+      <li>const에 object을 할당했다면, 할당된 object를 변경 불가하지만 object내의 속성값은 변경가능함.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+    <span class="kd">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="c1">//에러 발생함</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">var</code> 의 특징</p>
+<ul>
+  <li>블록의 범위밖은 사용가능.</li>
+  <li>함부 범위 내에서만 사용가능.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span> <span class="c1">//출력됨</span>
+
+<span class="kd">function</span> <span class="nx">f</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span> <span class="c1">//에러 출력 Uncaught ReferenceError: d is not defined</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">let</code> 의 특징</p>
+<ul>
+  <li>블록의 범위내에서만 사용가능.</li>
+  <li>재할당 가능함.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span> <span class="c1">//에러 발생함</span>
+</code></pre></div></div>
 
 <h2 id="arrow-function-단축-지원">Arrow Function 단축 지원</h2>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//ES5</span>
@@ -709,6 +755,11 @@
 <span class="kd">let</span> <span class="p">{</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">}</span> <span class="o">=</span> <span class="nx">car</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>		<span class="c1">// sedan</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">price</span><span class="p">);</span>		<span class="c1">// 10000</span>
+
+<span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">b</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="dl">'</span><span class="s1">aaa</span><span class="dl">'</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="kd">let</span> <span class="p">{</span><span class="nx">a</span><span class="p">,</span> <span class="na">b</span><span class="p">:{</span><span class="nx">name</span><span class="p">}}</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>         <span class="c1">//1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>         <span class="c1">//aaa</span>
 </code></pre></div></div>
 
 <h2 id="destructuring">Destructuring</h2>
@@ -910,6 +961,43 @@
     <article class="archive-item">
         <div>
             <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/codingtest/Qtype-stack-sort-count/">[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.07.08
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#codingtest" class="page__taxonomy-item-category" rel="tag">codingtest</a>
+                    
+                    
+                    <a href="/tags/#filo" class="page__taxonomy-item-tag" rel="tag">FILO</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#stack" class="page__taxonomy-item-tag" rel="tag">stack</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B5%AC%EB%AC%B8-%EB%B6%84%EC%84%9D" class="page__taxonomy-item-tag" rel="tag">문자열 구문 분석</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
               <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a>
             </span>
             <small> 
@@ -1008,47 +1096,6 @@
                     
                     
                     <a href="/tags/#manipulation" class="page__taxonomy-item-tag" rel="tag">manipulation</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
-                
-                    
-                    
-                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
-                
-            </span>
-        </span>
-            </small>
-        </div>
-      </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item" p="arch1" style="margin-bottom:10px">
-    <article class="archive-item">
-        <div>
-            <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_01_ndarray/">[Python][Numpy] 배열 생성(Array creation)</a>
-            </span>
-            <small> 
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.24
-              <!--Archive page 용-: (post -> page)-->
-<!--page__taxonomy.html에서 가져 옴-->
-        
-        <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
-                    
-                    
-                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
                 
                     
                     
