@@ -214,11 +214,19 @@ prices(1,2,3,4,5);	//배열로 변환되어 반환됨 [1, 2, 3, 4, 5]
 
 
 ## Array.map()
-
+```javascript
+let num = [1,2,3,4,5];
+let new_num = num.map((v)=>{ return v*v ; });
+console.log(new_num); // [1, 4, 9, 16, 25]
+```
 
 
 ## Array.Filter()
-
+```javascript
+let num = [1,2,3,4,5];
+let new_num = num.filter((v)=>{ return v >=3 ; });
+console.log(new_num); //[3, 4, 5]
+```
 
 
 ## spread operator
