@@ -641,20 +641,20 @@
 
 <h2 id="sample-code">Sample Code</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'f.txt'</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span>
-    <span class="n">f</span><span class="p">.</span><span class="n">test</span><span class="p">()</span> <span class="c1">#없는 함수 호출
+    <span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="s">'f.txt'</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">test</span><span class="p">()</span> <span class="c1">#없는 함수 호출
 </span><span class="k">except</span> <span class="nb">FileExistsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="k">pass</span>        <span class="c1"># pass 아무 일도 하지 않음 처리
 </span><span class="k">except</span> <span class="nb">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>    
-    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"정상 실행"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"정상 실행"</span><span class="p">)</span>
 <span class="k">finally</span><span class="p">:</span>
-    <span class="n">f</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h1 id="raise-예외-발생">raise 예외 발생</h1>
@@ -662,7 +662,7 @@
 <code class="language-plaintext highlighter-rouge">raise 예외 객체</code> 형태로 발생시킵니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
     <span class="c1"># 실행 로직
-</span>    <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">'사용자 Error'</span><span class="p">)</span>
+</span>    <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="s">'사용자 Error'</span><span class="p">)</span>
     <span class="c1"># 실행 로직
 </span><span class="k">except</span><span class="p">:</span>                     
     <span class="c1"># 에러 발생시 진행 로직
@@ -674,15 +674,15 @@
 
 <h1 id="사용자-정의-예외-클래스">사용자 정의 예외 클래스</h1>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CustomException</span><span class="p">(</span><span class="nb">Exception</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-        <span class="nb">Exception</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="nb">Exception</span><span class="p">.</span><span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
     
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">code</span><span class="p">)</span><span class="o">+</span><span class="bp">self</span><span class="p">.</span><span class="n">msg</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nf">str</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">code</span><span class="p">)</span><span class="o">+</span><span class="n">self</span><span class="p">.</span><span class="n">msg</span>
 
-<span class="k">raise</span> <span class="n">CustomException</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="s">'InternalError'</span><span class="p">)</span>
+<span class="k">raise</span> <span class="nc">CustomException</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="s">'InternalError'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
@@ -1415,7 +1415,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

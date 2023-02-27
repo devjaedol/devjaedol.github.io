@@ -683,11 +683,11 @@
 <h1 id="기본-사용법">기본 사용법</h1>
 <h2 id="인덱스">인덱스</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s">"배철수"</span><span class="p">])</span>  <span class="c1"># 90
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s">"배철수"</span><span class="p">])</span>  <span class="c1"># 90
 </span>
 <span class="c1"># key=value형태로 생성
-</span><span class="n">dic</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>  <span class="c1"># {'a': 80, 'b': 90, 'c': 85}
+</span><span class="n">dic</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>  <span class="c1"># {'a': 80, 'b': 90, 'c': 85}
 </span>
 </code></pre></div></div>
 
@@ -695,31 +695,31 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
 
 <span class="n">a</span><span class="p">[</span><span class="s">"배철수"</span><span class="p">]</span><span class="o">=</span> <span class="mi">100</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {'배철수': 100, '안철수': 85, '인순이': 80}
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {'배철수': 100, '안철수': 85, '인순이': 80}
 </span>
 <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
-<span class="n">a</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">})</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># {'배철수': 90, '안철수': 80, '인순이': 80}
+<span class="n">a</span><span class="p">.</span><span class="nf">update</span><span class="p">({</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">})</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># {'배철수': 90, '안철수': 80, '인순이': 80}
 </span>
 <span class="k">del</span><span class="p">[</span><span class="s">"배철수"</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {'안철수': 80, '인순이': 80}
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {'안철수': 80, '인순이': 80}
 </span>
 </code></pre></div></div>
 
 <h2 id="수정-삭제-예외-처리">수정 삭제 예외 처리</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">scores</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"배철수"</span><span class="p">)</span>  <span class="c1"># 100
-</span><span class="n">v</span> <span class="o">=</span> <span class="n">scores</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"홍길동"</span><span class="p">)</span>  <span class="c1"># None
+<span class="n">v</span> <span class="o">=</span> <span class="n">scores</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"배철수"</span><span class="p">)</span>  <span class="c1"># 100
+</span><span class="n">v</span> <span class="o">=</span> <span class="n">scores</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"홍길동"</span><span class="p">)</span>  <span class="c1"># None
 #v = scores["홍길동"]      # 에러 발생
-</span><span class="k">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>        <span class="c1"># None
-</span><span class="k">print</span><span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="bp">None</span> <span class="p">)</span>   <span class="c1"># True
+</span><span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>        <span class="c1"># None
+</span><span class="nf">print</span><span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="bp">None</span> <span class="p">)</span>   <span class="c1"># True
 </span>
 <span class="k">if</span> <span class="s">"인순이"</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"인순이 점수 : %d "</span><span class="o">%</span><span class="n">scores</span><span class="p">[</span><span class="s">"인순이"</span><span class="p">])</span> <span class="c1"># 인순이 점수 : 80 
+    <span class="nf">print</span><span class="p">(</span><span class="s">"인순이 점수 : %d "</span><span class="o">%</span><span class="n">scores</span><span class="p">[</span><span class="s">"인순이"</span><span class="p">])</span> <span class="c1"># 인순이 점수 : 80 
 </span> 
-<span class="n">scores</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>  <span class="c1"># 모두 삭제
-</span><span class="k">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="c1"># {}
+<span class="n">scores</span><span class="p">.</span><span class="nf">clear</span><span class="p">()</span>  <span class="c1"># 모두 삭제
+</span><span class="nf">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="c1"># {}
 </span>
 </code></pre></div></div>
 
@@ -734,7 +734,7 @@
  
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
     <span class="n">val</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"%s : %d"</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"%s : %d"</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
 
 <span class="c1">#출력
 </span><span class="n">배철수</span> <span class="p">:</span> <span class="mi">90</span>
@@ -742,8 +742,8 @@
 <span class="n">인순이</span> <span class="p">:</span> <span class="mi">80</span>
 
 <span class="c1">#items를 통한 순회
-</span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">a</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">a</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
 </code></pre></div></div>
 
@@ -751,9 +751,9 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
  
 <span class="c1"># keys
-</span><span class="n">keys</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">keys</span><span class="p">()</span>
+</span><span class="n">keys</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">keys</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 
 <span class="c1"># 출력
 </span><span class="n">배철수</span>
@@ -762,9 +762,9 @@
 
 
 <span class="c1"># values
-</span><span class="n">values</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">values</span><span class="p">()</span>
+</span><span class="n">values</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">values</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
 <span class="c1"># 출력
 </span><span class="mi">90</span>
@@ -775,49 +775,49 @@
 
 <h2 id="keys">keys</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">"배철수"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"안철수"</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span> <span class="s">"인순이"</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
-<span class="n">sort_a</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">keys</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">sort_a</span><span class="p">)</span> <span class="c1"># ['배철수', '안철수', '인순이']
+<span class="n">sort_a</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="nf">keys</span><span class="p">())</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sort_a</span><span class="p">)</span> <span class="c1"># ['배철수', '안철수', '인순이']
 </span>
 </code></pre></div></div>
 
 <h2 id="values">values</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sort_a</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">values</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">sort_a</span><span class="p">)</span> <span class="c1"># [60, 75, 80]
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sort_a</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="nf">values</span><span class="p">())</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sort_a</span><span class="p">)</span> <span class="c1"># [60, 75, 80]
 </span>
-<span class="n">sort_a</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">sort_a</span><span class="p">)</span> <span class="c1"># [80, 75, 60]
+<span class="n">sort_a</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="nf">values</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sort_a</span><span class="p">)</span> <span class="c1"># [80, 75, 60]
 </span>
 </code></pre></div></div>
 
 <h2 id="lambda-정렬">(Lambda) 정렬</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">obj</span> <span class="o">=</span><span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">75</span><span class="p">}</span>
-<span class="n">sort_desc_obj</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#x[0] key, x[1] value
-</span><span class="k">print</span><span class="p">(</span><span class="n">sort_desc_obj</span><span class="p">)</span>
+<span class="n">sort_desc_obj</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="nf">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#x[0] key, x[1] value
+</span><span class="nf">print</span><span class="p">(</span><span class="n">sort_desc_obj</span><span class="p">)</span>
 <span class="c1"># [('배철수', 80), ('안철수', 60), ('인순이', 75)]
 </span>
 <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">75</span><span class="p">}</span>
-<span class="n">sort_desc_obj</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#x[0] key, x[1] value
-</span><span class="k">print</span><span class="p">(</span><span class="n">sort_desc_obj</span><span class="p">)</span>
+<span class="n">sort_desc_obj</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="nf">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#x[0] key, x[1] value
+</span><span class="nf">print</span><span class="p">(</span><span class="n">sort_desc_obj</span><span class="p">)</span>
 <span class="c1"># [('안철수', 60), ('인순이', 75), ('배철수', 80)]
 </span>
 <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">75</span><span class="p">}</span>
-<span class="n">sort_desc_obj</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1">#x[0] key, x[1] value
-</span><span class="k">print</span><span class="p">(</span><span class="n">sort_desc_obj</span><span class="p">)</span>
+<span class="n">sort_desc_obj</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="nf">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1">#x[0] key, x[1] value
+</span><span class="nf">print</span><span class="p">(</span><span class="n">sort_desc_obj</span><span class="p">)</span>
 <span class="c1"># [('배철수', 80), ('인순이', 75), ('안철수', 60)]
 </span></code></pre></div></div>
 
 <h2 id="dict-key-value-를--value--key--형태로-변환">dict key, value 를  value : key  형태로 변환</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">id_name</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s">'배철수'</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s">'안철수'</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s">'인순이'</span><span class="p">}</span>
-<span class="n">name_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">:</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">id_name</span><span class="p">.</span><span class="n">items</span><span class="p">()}</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">name_id</span><span class="p">)</span>  <span class="c1"># {'배철수': 1, '안철수': 2, '인순이': 3}
+<span class="n">name_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">:</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">id_name</span><span class="p">.</span><span class="nf">items</span><span class="p">()}</span> 
+<span class="nf">print</span><span class="p">(</span><span class="n">name_id</span><span class="p">)</span>  <span class="c1"># {'배철수': 1, '안철수': 2, '인순이': 3}
 </span></code></pre></div></div>
 
 <h2 id="두-리스트를-하나의-dict로-변환">두 리스트를 하나의 dict로 변환</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">list_k</span> <span class="o">=</span> <span class="p">[</span><span class="s">'aaa'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">,</span> <span class="s">'ccc'</span><span class="p">,</span> <span class="s">'ddd'</span><span class="p">]</span>
 <span class="n">list_v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
-<span class="n">new_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">list_k</span><span class="p">,</span> <span class="n">list_v</span><span class="p">)}</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">new_dict</span><span class="p">))</span>   <span class="c1"># &lt;class 'dict'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="n">new_dict</span><span class="p">)</span>  <span class="c1"># {'aaa': 10, 'bbb': 20, 'ccc': 30, 'ddd': 40}
+<span class="n">new_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">list_k</span><span class="p">,</span> <span class="n">list_v</span><span class="p">)}</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">new_dict</span><span class="p">))</span>   <span class="c1"># &lt;class 'dict'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="n">new_dict</span><span class="p">)</span>  <span class="c1"># {'aaa': 10, 'bbb': 20, 'ccc': 30, 'ddd': 40}
 </span>
 </code></pre></div></div>
 
@@ -825,19 +825,19 @@
 <p>dict의 items()는 Dictonary의 키-값 쌍 Tuple 들로 구성된 dict_items 객체를 리턴</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s">'배철수'</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s">'안철수'</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s">'인순이'</span><span class="p">:</span> <span class="mi">75</span><span class="p">}</span>
  
-<span class="n">items</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">items</span><span class="p">()</span>    <span class="c1"># sorted(a.items()) 정렬지원
-</span><span class="k">print</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="c1"># dict_items([('배철수', 80), ('안철수', 60), ('인순이', 75)])
+<span class="n">items</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">items</span><span class="p">()</span>    <span class="c1"># sorted(a.items()) 정렬지원
+</span><span class="nf">print</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="c1"># dict_items([('배철수', 80), ('안철수', 60), ('인순이', 75)])
 </span>
 <span class="c1"># dict_items를 리스트로 변환할 때
-</span><span class="n">itemsList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">itemsList</span><span class="p">)</span> <span class="c1"># [('배철수', 80), ('안철수', 60), ('인순이', 75)]
+</span><span class="n">itemsList</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">itemsList</span><span class="p">)</span> <span class="c1"># [('배철수', 80), ('안철수', 60), ('인순이', 75)]
 </span>
 </code></pre></div></div>
 
 <h2 id="tuple-to-dict-변환">tuple to dict 변환</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">persons</span> <span class="o">=</span> <span class="p">[(</span><span class="s">'배철수'</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="s">'안철수'</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="s">'인순이'</span><span class="p">,</span> <span class="mi">75</span><span class="p">)]</span>
-<span class="n">mydict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">persons</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">mydict</span><span class="p">)</span>   <span class="c1"># {'배철수': 80, '안철수': 60, '인순이': 75}
+<span class="n">mydict</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">(</span><span class="n">persons</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mydict</span><span class="p">)</span>   <span class="c1"># {'배철수': 80, '안철수': 60, '인순이': 75}
 </span>
 </code></pre></div></div>
 
@@ -1579,7 +1579,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

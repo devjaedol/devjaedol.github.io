@@ -698,26 +698,26 @@
 
 <p>main.js</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app모듈과, BrowserWindow 모듈 할당</span>
-<span class="kd">const</span> <span class="p">{</span><span class="nx">Menu</span><span class="p">,</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">BrowserWindow</span><span class="p">,</span> <span class="nx">ipcMain</span><span class="p">,</span> <span class="nx">Tray</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">Menu</span><span class="p">,</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">BrowserWindow</span><span class="p">,</span> <span class="nx">ipcMain</span><span class="p">,</span> <span class="nx">Tray</span><span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">);</span>
 
 
 <span class="c1">//자동 업데이트를 위해서</span>
-<span class="kd">const</span> <span class="p">{</span> <span class="nx">autoUpdater</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">electron-updater</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">log</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron-log</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">autoUpdater</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">electron-updater</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">log</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron-log</span><span class="dl">'</span><span class="p">);</span>
 
 
 <span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">logger</span> <span class="o">=</span> <span class="nx">log</span><span class="p">;</span>
 <span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">info</span><span class="dl">'</span><span class="p">;</span>
-<span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">App starting...</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">App starting...</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">process.platform : </span><span class="dl">"</span><span class="o">+</span><span class="nx">process</span><span class="p">.</span><span class="nx">platform</span><span class="p">);</span>        <span class="c1">//process.platform : win32      darwin</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">process.platform : </span><span class="dl">"</span><span class="o">+</span><span class="nx">process</span><span class="p">.</span><span class="nx">platform</span><span class="p">);</span>        <span class="c1">//process.platform : win32      darwin</span>
 
 <span class="kd">let</span> <span class="nx">win</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">tray</span><span class="p">;</span>
 
 <span class="cm">/** 메인 창 생성 */</span>
-<span class="kd">function</span> <span class="nx">createMainWindow</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BrowserWindow</span><span class="p">(</span>
+<span class="kd">function</span> <span class="nf">createMainWindow</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BrowserWindow</span><span class="p">(</span>
         <span class="p">{</span>
             <span class="na">width</span> <span class="p">:</span> <span class="mi">800</span>
             <span class="p">,</span> <span class="na">minWidth</span><span class="p">:</span><span class="mi">330</span>
@@ -734,90 +734,90 @@
     <span class="p">);</span>
 
     <span class="c1">// 창이 ready 상태가되면 보여주기</span>
-    <span class="nx">win</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready-to-show</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">win</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nf">once</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready-to-show</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">win</span><span class="p">.</span><span class="nf">show</span><span class="p">();</span>
     <span class="p">});</span>
 
     <span class="c1">// 윈도우 창에 로드 할 html 페이지</span>
-    <span class="nx">win</span><span class="p">.</span><span class="nx">loadURL</span><span class="p">(</span><span class="s2">`file://</span><span class="p">${</span><span class="nx">__dirname</span><span class="p">}</span><span class="s2">/index.html`</span><span class="p">);</span> <span class="c1">//작은 따옴표가 아닌  back stick 기호(tab키 위)</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nf">loadURL</span><span class="p">(</span><span class="s2">`file://</span><span class="p">${</span><span class="nx">__dirname</span><span class="p">}</span><span class="s2">/index.html`</span><span class="p">);</span> <span class="c1">//작은 따옴표가 아닌  back stick 기호(tab키 위)</span>
     <span class="c1">//__dirname : node.js 전역변수이며, 현재 실행중인 코드의 파일 경로를 나타냄</span>
 
     <span class="c1">//tray icon</span>
-    <span class="nx">initTrayIconMenu</span><span class="p">();</span>
+    <span class="nf">initTrayIconMenu</span><span class="p">();</span>
 
     <span class="c1">//Event 처리</span>
     <span class="c1">//비동기 호출</span>
-    <span class="nx">ipcMain</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKey</span><span class="dl">'</span><span class="p">,(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">argument</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Async &gt; RECV</span><span class="dl">"</span><span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">argument</span><span class="p">);</span>
+    <span class="nx">ipcMain</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKey</span><span class="dl">'</span><span class="p">,(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">argument</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Async &gt; RECV</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">argument</span><span class="p">);</span>
 
-        <span class="nx">win</span><span class="p">.</span><span class="nx">setFullScreen</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="nx">win</span><span class="p">.</span><span class="nf">setFullScreen</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 
-        <span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
-            <span class="nx">event</span><span class="p">.</span><span class="nx">sender</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKeyCb</span><span class="dl">'</span><span class="p">,{</span><span class="na">result</span><span class="p">:</span><span class="dl">'</span><span class="s1">success</span><span class="dl">'</span><span class="p">});</span> <span class="c1">// 비동기 메시지를 전송한다.</span>
+        <span class="nf">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+            <span class="nx">event</span><span class="p">.</span><span class="nx">sender</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKeyCb</span><span class="dl">'</span><span class="p">,{</span><span class="na">result</span><span class="p">:</span><span class="dl">'</span><span class="s1">success</span><span class="dl">'</span><span class="p">});</span> <span class="c1">// 비동기 메시지를 전송한다.</span>
         <span class="p">},</span><span class="mi">5000</span><span class="p">);</span>
     <span class="p">});</span>
 
     <span class="c1">//동기 호출</span>
-    <span class="nx">ipcMain</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">syncEventKey</span><span class="dl">'</span><span class="p">,(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">argument</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Sync &gt; RECV</span><span class="dl">"</span><span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">argument</span><span class="p">);</span>
+    <span class="nx">ipcMain</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">syncEventKey</span><span class="dl">'</span><span class="p">,(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">argument</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Sync &gt; RECV</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">argument</span><span class="p">);</span>
 
-        <span class="nx">win</span><span class="p">.</span><span class="nx">setFullScreen</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+        <span class="nx">win</span><span class="p">.</span><span class="nf">setFullScreen</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 
-        <span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="nf">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
             <span class="nx">event</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="p">{</span><span class="na">result</span><span class="p">:</span><span class="dl">'</span><span class="s1">success</span><span class="dl">'</span><span class="p">}</span> <span class="c1">// 동기 메시지를 전송한다.</span>
         <span class="p">},</span><span class="mi">5000</span><span class="p">);</span>
     <span class="p">});</span>
 
     <span class="c1">//개발자 도구 오픈</span>
-    <span class="nx">win</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">openDevTools</span><span class="p">();</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nf">openDevTools</span><span class="p">();</span>
 <span class="p">}</span><span class="c1">// end fn</span>
 
 <span class="c1">// Tray생성</span>
-<span class="kd">function</span> <span class="nx">initTrayIconMenu</span><span class="p">(){</span>
-    <span class="nx">tray</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tray</span><span class="p">(</span><span class="dl">'</span><span class="s1">./resources/installer/default.ico</span><span class="dl">'</span><span class="p">);</span> 
-    <span class="kd">const</span> <span class="nx">myMenu</span> <span class="o">=</span> <span class="nx">Menu</span><span class="p">.</span><span class="nx">buildFromTemplate</span><span class="p">([</span>
-      <span class="p">{</span><span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1번</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span> <span class="na">checked</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">click</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1번클릭!</span><span class="dl">'</span><span class="p">)}</span> <span class="p">},</span>  <span class="c1">//checked는 기본선택입니다.</span>
-      <span class="p">{</span><span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2번</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span> <span class="na">click</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">2번클릭!</span><span class="dl">'</span><span class="p">)}},</span>
-      <span class="p">{</span><span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">3번</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span> <span class="na">click</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">3번클릭!</span><span class="dl">'</span><span class="p">)}}</span>
+<span class="kd">function</span> <span class="nf">initTrayIconMenu</span><span class="p">(){</span>
+    <span class="nx">tray</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tray</span><span class="p">(</span><span class="dl">'</span><span class="s1">./resources/installer/default.ico</span><span class="dl">'</span><span class="p">);</span> 
+    <span class="kd">const</span> <span class="nx">myMenu</span> <span class="o">=</span> <span class="nx">Menu</span><span class="p">.</span><span class="nf">buildFromTemplate</span><span class="p">([</span>
+      <span class="p">{</span><span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1번</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span> <span class="na">checked</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">click</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1번클릭!</span><span class="dl">'</span><span class="p">)}</span> <span class="p">},</span>  <span class="c1">//checked는 기본선택입니다.</span>
+      <span class="p">{</span><span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2번</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span> <span class="na">click</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">2번클릭!</span><span class="dl">'</span><span class="p">)}},</span>
+      <span class="p">{</span><span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">3번</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">normal</span><span class="dl">'</span><span class="p">,</span> <span class="na">click</span><span class="p">:</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">3번클릭!</span><span class="dl">'</span><span class="p">)}}</span>
     <span class="p">])</span>
-    <span class="nx">tray</span><span class="p">.</span><span class="nx">setToolTip</span><span class="p">(</span><span class="dl">'</span><span class="s1">트레이 아이콘!</span><span class="dl">'</span><span class="p">)</span>
-    <span class="nx">tray</span><span class="p">.</span><span class="nx">setContextMenu</span><span class="p">(</span><span class="nx">myMenu</span><span class="p">)</span>
+    <span class="nx">tray</span><span class="p">.</span><span class="nf">setToolTip</span><span class="p">(</span><span class="dl">'</span><span class="s1">트레이 아이콘!</span><span class="dl">'</span><span class="p">)</span>
+    <span class="nx">tray</span><span class="p">.</span><span class="nf">setContextMenu</span><span class="p">(</span><span class="nx">myMenu</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span><span class="p">{</span>
-    <span class="nx">createMainWindow</span><span class="p">();</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nf">createMainWindow</span><span class="p">();</span>
     <span class="c1">//autoUpdater.checkForUpdates(); //업데이트 체크 필요시 해당 위치에서 진행</span>
 <span class="p">});</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">window-all-closed</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">app</span><span class="p">.</span><span class="nx">quit</span><span class="p">();</span>
-    <span class="nx">tray</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">window-all-closed</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nf">quit</span><span class="p">();</span>
+    <span class="nx">tray</span><span class="p">.</span><span class="nf">destroy</span><span class="p">();</span>
 <span class="p">});</span>
 
 <span class="cm">/* autoUpdater 구현시 =====================================*/</span>
-<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">checking-for-update</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">업데이트 확인 중...</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">checking-for-update</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">업데이트 확인 중...</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">});</span>
-<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">update-available</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">업데이트가 가능합니다.</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">update-available</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">업데이트가 가능합니다.</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">});</span>
-<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">update-not-available</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">현재 최신버전입니다.</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">update-not-available</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">현재 최신버전입니다.</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">});</span>
-<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">에러가 발생하였습니다. 에러내용 : </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">에러가 발생하였습니다. 에러내용 : </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">download-progress</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">progressObj</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">download-progress</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">progressObj</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">log_message</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">다운로드 속도: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">progressObj</span><span class="p">.</span><span class="nx">bytesPerSecond</span><span class="p">;</span>
     <span class="nx">log_message</span> <span class="o">=</span> <span class="nx">log_message</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> - 현재 </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">progressObj</span><span class="p">.</span><span class="nx">percent</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">%</span><span class="dl">'</span><span class="p">;</span>
     <span class="nx">log_message</span> <span class="o">=</span> <span class="nx">log_message</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> (</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">progressObj</span><span class="p">.</span><span class="nx">transferred</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">progressObj</span><span class="p">.</span><span class="nx">total</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">)</span><span class="dl">'</span><span class="p">;</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">log_message</span><span class="p">);</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="nx">log_message</span><span class="p">);</span>
 <span class="p">})</span>
-<span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">update-downloaded</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">업데이트가 완료되었습니다.</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">autoUpdater</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">update-downloaded</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="dl">'</span><span class="s1">업데이트가 완료되었습니다.</span><span class="dl">'</span><span class="p">);</span>
     <span class="kd">const</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
         <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">question</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">buttons</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">업데이트</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">취소</span><span class="dl">"</span><span class="p">],</span>
@@ -825,10 +825,10 @@
         <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">electron-updater</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">업데이트가 있습니다. 프로그램을 업데이트 하시겠습니까?</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">};</span>
-    <span class="kd">let</span> <span class="nx">btnIndex</span> <span class="o">=</span> <span class="nx">dialog</span><span class="p">.</span><span class="nx">showMessageBoxSync</span><span class="p">(</span><span class="nx">updateWin</span><span class="p">,</span> <span class="nx">option</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">btnIndex</span> <span class="o">=</span> <span class="nx">dialog</span><span class="p">.</span><span class="nf">showMessageBoxSync</span><span class="p">(</span><span class="nx">updateWin</span><span class="p">,</span> <span class="nx">option</span><span class="p">);</span>
 
-    <span class="k">if</span><span class="p">(</span><span class="nx">btnIndex</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">autoUpdater</span><span class="p">.</span><span class="nx">quitAndInstall</span><span class="p">();</span>
+    <span class="nf">if</span><span class="p">(</span><span class="nx">btnIndex</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">autoUpdater</span><span class="p">.</span><span class="nf">quitAndInstall</span><span class="p">();</span>
     <span class="p">}</span>    
 <span class="p">});</span>
 </code></pre></div></div>
@@ -861,40 +861,40 @@
 
 <p>화면측 기능을 담당하는 Script 파일  <br />
 render.js</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span><span class="nx">ipcRenderer</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span><span class="nx">ipcRenderer</span><span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">const</span> <span class="nx">btnAsync</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnAsync</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">btnSync</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnSync</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">btnAsync</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnAsync</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">btnSync</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnSync</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="kd">const</span> <span class="nx">c_data</span> <span class="o">=</span>  <span class="p">{</span><span class="na">customdata1</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="na">customdata2</span><span class="p">:</span><span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">};</span>
 
-<span class="nx">btnAsync</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">비동기 화면에서 보냄&gt;</span><span class="dl">"</span><span class="p">);</span>
-    <span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKey</span><span class="dl">'</span><span class="p">,</span> <span class="nx">c_data</span><span class="p">);</span>
+<span class="nx">btnAsync</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">비동기 화면에서 보냄&gt;</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">ipcRenderer</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKey</span><span class="dl">'</span><span class="p">,</span> <span class="nx">c_data</span><span class="p">);</span>
 
 <span class="p">});</span>
-<span class="nx">btnSync</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">동기 화면에서 보냄&gt;</span><span class="dl">"</span><span class="p">);</span>
-    <span class="kd">let</span> <span class="nx">reVal</span> <span class="o">=</span> <span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">sendSync</span><span class="p">(</span><span class="dl">'</span><span class="s1">syncEventKey</span><span class="dl">'</span><span class="p">,</span> <span class="nx">c_data</span><span class="p">);</span>    
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">동기 결과&gt;</span><span class="dl">"</span><span class="p">);</span>    
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reVal</span><span class="p">);</span>
+<span class="nx">btnSync</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">동기 화면에서 보냄&gt;</span><span class="dl">"</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">reVal</span> <span class="o">=</span> <span class="nx">ipcRenderer</span><span class="p">.</span><span class="nf">sendSync</span><span class="p">(</span><span class="dl">'</span><span class="s1">syncEventKey</span><span class="dl">'</span><span class="p">,</span> <span class="nx">c_data</span><span class="p">);</span>    
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">동기 결과&gt;</span><span class="dl">"</span><span class="p">);</span>    
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">reVal</span><span class="p">);</span>
 <span class="p">});</span>
 
 
-<span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKeyCb</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">비동기 결과&gt;</span><span class="dl">"</span><span class="p">);</span>    
+<span class="nx">ipcRenderer</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">asyncEventKeyCb</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">비동기 결과&gt;</span><span class="dl">"</span><span class="p">);</span>    
     <span class="c1">//console.log(JSON.stringify(event, null, 2));</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">arg</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">arg</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
 <span class="p">})</span>
 
 
 <span class="c1">///////////////////////////////////////////////////////</span>
-<span class="kd">const</span> <span class="nx">electron</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">btnWin1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnNewWin1</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">electron</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">electron</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">btnWin1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">btnNewWin1</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">btnWin1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
+<span class="nx">btnWin1</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,()</span><span class="o">=&gt;</span><span class="p">{</span>
     <span class="kd">const</span> <span class="nx">BrowserWindow</span> <span class="o">=</span> <span class="nx">electron</span><span class="p">.</span><span class="nx">remote</span><span class="p">.</span><span class="nx">BrowserWindow</span><span class="p">;</span>
-    <span class="kd">const</span> <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BrowserWindow</span><span class="p">({</span>
+    <span class="kd">const</span> <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BrowserWindow</span><span class="p">({</span>
         <span class="na">height</span><span class="p">:</span> <span class="mi">1080</span><span class="p">,</span>
         <span class="na">width</span><span class="p">:</span> <span class="mi">1920</span><span class="p">,</span>
         <span class="na">show</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
@@ -906,10 +906,10 @@ render.js</p>
         <span class="na">frame</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
         <span class="c1">//autoHideMenuBar : true</span>
     <span class="p">});</span>
-    <span class="nx">win</span><span class="p">.</span><span class="nx">loadURL</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www.naver.com</span><span class="dl">'</span><span class="p">);</span>
-    <span class="nx">win</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">win</span> <span class="o">=</span> <span class="kc">null</span> <span class="p">});</span>
-    <span class="nx">win</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready-to-show</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">win</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nf">loadURL</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www.naver.com</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span> <span class="nx">win</span> <span class="o">=</span> <span class="kc">null</span> <span class="p">});</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nf">once</span><span class="p">(</span><span class="dl">'</span><span class="s1">ready-to-show</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">win</span><span class="p">.</span><span class="nf">show</span><span class="p">();</span>
     <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div></div>
@@ -1262,7 +1262,7 @@ process.platform : win32
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

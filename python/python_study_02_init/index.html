@@ -635,11 +635,11 @@ print(‘Hello world’)  <br />
 “string”*5</p>
 </blockquote>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Python</span> <span class="mf">3.10</span><span class="p">.</span><span class="mi">0</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="p">.</span><span class="mf">10.0</span><span class="p">:</span><span class="n">b494f59</span><span class="p">,</span> <span class="n">Oct</span>  <span class="mi">4</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">18</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="p">.</span><span class="mi">1929</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Python</span> <span class="mf">3.10</span><span class="p">.</span><span class="mi">0</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="p">.</span><span class="mf">10.0</span><span class="p">:</span><span class="n">b494f59</span><span class="p">,</span> <span class="n">Oct</span>  <span class="mi">4</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">18</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="p">.</span><span class="mi">1929</span> <span class="mi">64</span> <span class="nf">bit </span><span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
 <span class="n">Type</span> <span class="s">"help"</span><span class="p">,</span> <span class="s">"copyright"</span><span class="p">,</span> <span class="s">"credits"</span> <span class="ow">or</span> <span class="s">"license()"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="mi">100</span><span class="o">+</span><span class="mi">50</span>
 <span class="mi">150</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s">'Hello world'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nf">print</span><span class="p">(</span><span class="s">'Hello world'</span><span class="p">)</span>
 <span class="n">Hello</span> <span class="n">world</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="s">"string"</span><span class="o">*</span><span class="mi">5</span>
 <span class="s">'stringstringstringstringstring'</span>
@@ -681,39 +681,39 @@ Python에 주요 자료형 입니다.</p>
 # type( xxx ) 은 자료형을 출력 합니다.
 </span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nf">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="c1">#&lt;class 'int'&gt;
 </span>
 <span class="n">b</span> <span class="o">=</span> <span class="mf">5.7</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nf">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="c1">#&lt;class 'float'&gt;
 </span>
 <span class="n">c</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mf">1j</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="nf">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="c1">#&lt;class 'complex'&gt;
 </span>
 <span class="n">d</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="nf">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="c1">#&lt;class 'bool'&gt;
 </span>
 <span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="nf">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 <span class="c1">#&lt;class 'list'&gt;     #(순서 O, 중복 O, 변경 O)
 </span>
 <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="nf">type</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="c1">#&lt;class 'tuple'&gt;    #(순서 O, 중복 O, 변경 X)
 </span>
 <span class="n">g</span> <span class="o">=</span> <span class="p">{</span><span class="s">"java"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s">"python"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s">"C"</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="nf">type</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="c1">#&lt;class 'dict'&gt;     #(순서 X, 중복 X, 변경 O)
 </span>
 <span class="n">h</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="nf">type</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
 <span class="c1">#&lt;class 'set'&gt;      #(순서 X, 중복 X, 변경 O)
 </span>
 <span class="n">i</span> <span class="o">=</span> <span class="s">'가나다라마'</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nf">type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="c1">#&lt;class 'str'&gt;
 </span></code></pre></div></div>
 <p><img src="\assets/images_post/python/python-study-02_1.png" alt="파이썬 자료형" /></p>
@@ -768,23 +768,23 @@ Python에 주요 자료형 입니다.</p>
 <h3 id="if-elif-else">if, elif, else</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#if문
 </span><span class="k">if</span> <span class="n">tall</span> <span class="o">&gt;</span> <span class="mi">180</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
 
 
 <span class="c1">#if, else
 </span><span class="k">if</span> <span class="n">tall</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"키가 작습니다"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"키가 작습니다"</span><span class="p">)</span>
 
 
 <span class="c1">#if, elif, else
 </span><span class="k">if</span> <span class="n">tall</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"키가 큽니다."</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">tall</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"키가 작습니다"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"키가 작습니다"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"키가 보통 입니다"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"키가 보통 입니다"</span><span class="p">)</span>
 
 </code></pre></div></div>
 
@@ -794,8 +794,8 @@ Python에 주요 자료형 입니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="c1"># range(반복횟수):
 # for 변수 in range(시작값, 끝값+1, 증가값):
-</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
 <span class="mi">0</span>
 <span class="mi">1</span>
@@ -811,7 +811,7 @@ Python에 주요 자료형 입니다.</p>
 
 <span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
     
 <span class="mi">5</span>
@@ -822,8 +822,8 @@ Python에 주요 자료형 입니다.</p>
 
 
 <span class="c1">#range(이상, 미만)
-</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
 <span class="mi">5</span>
 <span class="mi">6</span>
@@ -832,10 +832,10 @@ Python에 주요 자료형 입니다.</p>
 <span class="mi">9</span>
 
 <span class="c1"># 중첩 For
-</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">"   "</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">" "</span><span class="p">)</span>
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">"   "</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">" "</span><span class="p">)</span>
 
 <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>    
 <span class="mi">2</span>   <span class="mi">4</span>   <span class="mi">6</span>    
@@ -844,9 +844,9 @@ Python에 주요 자료형 입니다.</p>
 
 <span class="c1">#1~10 의 합    
 </span><span class="nb">sum</span><span class="o">=</span><span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
     <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="o">+</span><span class="n">i</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
 
 <span class="mi">55</span>
 
@@ -856,7 +856,7 @@ Python에 주요 자료형 입니다.</p>
 <span class="nb">sum</span><span class="o">=</span><span class="mi">0</span>
 <span class="k">while</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">:</span>
     <span class="nb">sum</span><span class="o">=</span><span class="nb">sum</span><span class="o">+</span><span class="n">i</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
 <span class="mi">55</span>
 </code></pre></div></div>
 
@@ -878,8 +878,8 @@ Python에 주요 자료형 입니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
 
-<span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span>
 
@@ -890,12 +890,12 @@ Python에 주요 자료형 입니다.</p>
     <span class="n">s2</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span>
     <span class="k">return</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span>
 
-<span class="n">t1</span><span class="p">,</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
+<span class="n">t1</span><span class="p">,</span> <span class="n">t2</span> <span class="o">=</span> <span class="nf">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span> <span class="mi">10</span>
 
-<span class="n">t</span> <span class="o">=</span> <span class="n">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nf">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></div></div>
 
 <h3 id="파라메터-초기값-설정">파라메터 초기값 설정</h3>
@@ -903,16 +903,16 @@ Python에 주요 자료형 입니다.</p>
 </span><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="mi">15</span>
 </code></pre></div></div>
 
 <h3 id="파라메터-이름-설정">파라메터 이름 설정</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#이름으로 설정할 수 있습니다.
 </span><span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
 
-<span class="n">info</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'Hong Gil Dong'</span><span class="p">)</span>
+<span class="nf">info</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'Hong Gil Dong'</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">Hong</span> <span class="n">Gil</span> <span class="n">Dong</span> <span class="mi">30</span>
 </code></pre></div></div>
 
@@ -920,9 +920,9 @@ Python에 주요 자료형 입니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#가변형 파라메터 입력 
 </span><span class="k">def</span> <span class="nf">keyList</span><span class="p">(</span><span class="o">*</span><span class="n">keys</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
-<span class="n">keyList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nf">keyList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
@@ -933,8 +933,8 @@ Python에 주요 자료형 입니다.</p>
 <h2 id="예약어-확인하기">예약어 확인하기</h2>
 <p>파이썬에는 다음과 같은 예약어는 사용 할 수 없습니다. <br />
 참고 하시기 바랍니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">keyword</span>
-<span class="k">print</span><span class="p">(</span><span class="n">keyword</span><span class="p">.</span><span class="n">kwlist</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">keyword</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">keyword</span><span class="p">.</span><span class="n">kwlist</span><span class="p">)</span>
 <span class="p">[</span><span class="s">'False'</span><span class="p">,</span> <span class="s">'None'</span><span class="p">,</span> <span class="s">'True'</span><span class="p">,</span> <span class="s">'and'</span><span class="p">,</span> <span class="s">'as'</span><span class="p">,</span> <span class="s">'assert'</span><span class="p">,</span> 
 <span class="s">'async'</span><span class="p">,</span> <span class="s">'await'</span><span class="p">,</span> <span class="s">'break'</span><span class="p">,</span> <span class="s">'class'</span><span class="p">,</span> <span class="s">'continue'</span><span class="p">,</span> <span class="s">'def'</span><span class="p">,</span> 
 <span class="s">'del'</span><span class="p">,</span> <span class="s">'elif'</span><span class="p">,</span> <span class="s">'else'</span><span class="p">,</span> <span class="s">'except'</span><span class="p">,</span> <span class="s">'finally'</span><span class="p">,</span> <span class="s">'for'</span><span class="p">,</span> <span class="s">'from'</span><span class="p">,</span> 
@@ -1703,7 +1703,7 @@ Python에 주요 자료형 입니다.</p>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

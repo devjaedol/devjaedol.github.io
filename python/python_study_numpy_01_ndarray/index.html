@@ -643,45 +643,45 @@ Array creation routines :  <a href="https://numpy.org/doc/stable/reference/routi
 <a href="https://numpy.org/doc/stable/reference/routines.array-creation.html" target="_blank">Array creation routines</a>  <br />
 type을 확인해보면, <code class="language-plaintext highlighter-rouge">list</code> 타입과 다른 <code class="language-plaintext highlighter-rouge">ndarray</code> 가 출력 됩니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="c1"># 1차원 생성
-</span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 2 3 4 5]
+</span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 2 3 4 5]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>    <span class="c1">#&lt;class 'list'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>             <span class="c1">#&lt;class 'numpy.ndarray'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(5,)     
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#1     
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>    <span class="c1">#&lt;class 'list'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>             <span class="c1">#&lt;class 'numpy.ndarray'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(5,)     
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#1     
 </span>
 <span class="c1"># 2차원 생성
-</span><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(3,3)
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#2     
+</span><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(3,3)
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#2     
 </span>
 <span class="c1"># 3차원 생성
-</span><span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+</span><span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span> <span class="p">[</span>
     <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
     <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
     <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
 <span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(3, 3, 3)
-</span><span class="k">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#3     
+<span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(3, 3, 3)
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#3     
 </span>
 <span class="c1"># 배열의 타입 선택
-</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span> <span class="c1"># array([ True,  True, False,  True,  True])  0만 False
+</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span> <span class="c1"># array([ True,  True, False,  True,  True])  0만 False
 </span></code></pre></div></div>
 <p>생성한 배열의 크기와 형태를 확인하는 방법은 <code class="language-plaintext highlighter-rouge">shape</code>은 tuple형태로 반환하고, 
 <code class="language-plaintext highlighter-rouge">ndim</code>은 차원수를 반환한다.</p>
 
 <h2 id="date-배열-생성">Date 배열 생성</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 데이터 타입 생성
-</span><span class="n">date</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="s">'2022-07-01'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">datetime64</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> <span class="c1"># 2022-07-01
+</span><span class="n">date</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="s">'2022-07-01'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">datetime64</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> <span class="c1"># 2022-07-01
 </span>
 <span class="n">date</span>        <span class="c1"># array('2022-07-01', dtype='datetime64[D]')
-</span><span class="n">date</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+</span><span class="n">date</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
 
 <span class="c1"># array(['2022-07-01', '2022-07-02', '2022-07-03', '2022-07-04',
 #        '2022-07-05', '2022-07-06', '2022-07-07', '2022-07-08',
@@ -695,7 +695,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 #        '2022-08-06', '2022-08-07', '2022-08-08', '2022-08-09'],
 #       dtype='datetime64[D]')
 </span>
-<span class="n">datetime</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s">'2022-07-01 13:20'</span><span class="p">)</span>
+<span class="n">datetime</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">datetime64</span><span class="p">(</span><span class="s">'2022-07-01 13:20'</span><span class="p">)</span>
 <span class="n">datetime</span>
 <span class="c1"># numpy.datetime64('2022-07-01T13:20')
 </span>
@@ -707,15 +707,15 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 <p>기존 생성된 ndarray를  복사하여 생성 할수 있습니다. <br />
 아래 <code class="language-plaintext highlighter-rouge">new_1 = a1</code> 로 인해서 두 변수는 같이 변경되는 것을 알 수 있습니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
 <span class="n">new_1</span> <span class="o">=</span> <span class="n">a1</span>
-<span class="n">new_2</span> <span class="o">=</span> <span class="n">a1</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">new_2</span> <span class="o">=</span> <span class="n">a1</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
 
 <span class="n">new_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">new_1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">new_2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">new_1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">new_2</span><span class="p">)</span>
 
 <span class="c1"># 결과
 # [200   2   3   4   5]
@@ -767,28 +767,28 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 </table>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ainfo</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"ndim : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"shape : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"dytpe : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"size : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"itemsize : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">itemsize</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"nbytes : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">nbytes</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"strides : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">strides</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"ndim : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"shape : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"dytpe : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"size : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"itemsize : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">itemsize</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"nbytes : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">nbytes</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"strides : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">strides</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="배열-접근">배열 접근</h2>
 <p><code class="language-plaintext highlighter-rouge">list</code> 배열과 같이 접근 할 수 있습니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원 접근
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 2 3
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># 5
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># [1 2]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 2 3
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># 5
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># [1 2]
 </span>
 <span class="c1"># 2차원 접근
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 5 9
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 5 9
 </span>
 <span class="c1"># 3차원 접근
-</span><span class="k">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">a3</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">a3</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 5 9 
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">a3</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">a3</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 5 9 
 </span>
 <span class="c1">#값 변경
 </span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">15</span>
@@ -801,15 +801,15 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 <code class="language-plaintext highlighter-rouge">numpy.zeros(shape, dtype=float, order='C', *, like=None)</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html" target="_blank">API 참조</a></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원
-</span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>      <span class="c1"># &lt;class 'numpy.ndarray'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>            <span class="c1"># [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+</span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>      <span class="c1"># &lt;class 'numpy.ndarray'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>            <span class="c1"># [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>        <span class="c1"># array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+<span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>        <span class="c1"># array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
 </span>
 
 <span class="c1"># 2차원
-</span><span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="c1"># 형태
 # array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
@@ -830,11 +830,11 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 <code class="language-plaintext highlighter-rouge">numpy.ones(shape, dtype=None, order='C', *, like=None)</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ones.html" target="_blank">API 참조</a></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원
-</span><span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="c1"># array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
 </span>
 <span class="c1"># 2차원
-</span><span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+</span><span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="c1"># 형태
 # array([[1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
 #        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
@@ -849,7 +849,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 </span>
 <span class="c1"># bool 타입 선언
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 <span class="c1"># 형태
 # array([[ True,  True,  True],
 </span>    <span class="c1">#    [ True,  True,  True],
@@ -860,7 +860,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 <p><code class="language-plaintext highlighter-rouge">특정</code> 값으로 채우기 위해서 사용합니다.  <br />
 <code class="language-plaintext highlighter-rouge">numpy.full(shape, fill_value, dtype=None, order='C', *, like=None)</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.full.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mf">3.14</span> <span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mf">3.14</span> <span class="p">)</span>
 
 <span class="c1"># 형태
 # array([[3.14, 3.14, 3.14],
@@ -872,7 +872,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 <p>단위행렬 형태로 대각선의 <code class="language-plaintext highlighter-rouge">1</code>로 만들어진 정사각형 행열을 반환 합니다.  <br />
 <code class="language-plaintext highlighter-rouge">numpy.eye(N, M=None, k=0, dtype=&lt;class 'float'&gt;, order='C', *, like=None)</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.eye.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">eye</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># 형태
 # array([[1., 0., 0., 0., 0.],
@@ -886,7 +886,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 <p>정사각형 행렬에서 3각 행렬 형태의 값을 <code class="language-plaintext highlighter-rouge">1</code>로 채운 행열을 반환 합니다. <br />
 <code class="language-plaintext highlighter-rouge">numpy.tri(N, M=None, k=0, dtype=&lt;class 'float'&gt;, *, like=None)</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.tri.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">tri</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">tri</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># 형태
 # array([[1., 0., 0., 0., 0.],
@@ -900,11 +900,11 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 <p>초기화 하지 않은 배열을 반환하는데, 값은 기존 메모리에 값들이 출력되는 현상이 발생한다.   <br />
 <code class="language-plaintext highlighter-rouge">numpy.empty(shape, dtype=float, order='C', *, like=None)</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.empty.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="c1"># 형태 (임의의 값)
 # array([1., 1., 1., 1., 1.])
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="c1"># 형태 (임의의 값)
 # array([[3.14, 3.14, 3.14],
 #        [3.14, 3.14, 3.14],
@@ -916,8 +916,8 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 <p><code class="language-plaintext highlighter-rouge">*_like</code>는 인자로 제공된 데이터 형태와 같은 <code class="language-plaintext highlighter-rouge">shape</code>을 가지고 있는 배열을 반환합니다.  <br />
 예 를 들어 <code class="language-plaintext highlighter-rouge">sample1</code>은 <code class="language-plaintext highlighter-rouge">(5,5)</code>의 sahpe을 가진 ndarray이고 <code class="language-plaintext highlighter-rouge">sample2</code>는 <code class="language-plaintext highlighter-rouge">sample1</code>의 형태(shape)을 동일하게 만들고 값은 <code class="language-plaintext highlighter-rouge">full_like</code>로 특정값을 선택하는 의미 입니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">sample1</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>        <span class="c1"># (5, 5) 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sample1</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>        <span class="c1"># (5, 5) 
 # print(sample1)
 # [[1. 1. 1. 1. 1.]
 #  [1. 1. 1. 1. 1.]
@@ -925,8 +925,8 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 #  [1. 1. 1. 1. 1.]
 #  [1. 1. 1. 1. 1.]]
 </span>
-<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">sample2</span><span class="p">)</span>              <span class="c1"># (5, 5)
+<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">full_like</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sample2</span><span class="p">)</span>              <span class="c1"># (5, 5)
 # print(sample2.shape)
 # [[7. 7. 7. 7. 7.]
 #  [7. 7. 7. 7. 7.]
@@ -939,10 +939,10 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 <p><code class="language-plaintext highlighter-rouge">range</code> 함수와 동일한 형태로 ndarray를 생성하는 방법 입니다.
 <code class="language-plaintext highlighter-rouge">numpy.arange([start, ]stop, [step, ]dtype=None, *, like=None)</code>  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="c1"># array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="c1"># array([0, 2, 4, 6, 8])
 </span>
 </code></pre></div></div>
@@ -1673,7 +1673,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

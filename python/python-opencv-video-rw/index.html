@@ -630,24 +630,24 @@
 <h2 id="비디오-파일-불러오기">비디오 파일 불러오기</h2>
 <p>영상을 읽어오기 위해서는 <code class="language-plaintext highlighter-rouge">cv2.VideoCapture</code> 메소드를 사용합니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cv2</span>
 
 <span class="n">video_file</span> <span class="o">=</span><span class="s">'sample.avi'</span>
 
-<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">video_file</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoCapture</span><span class="p">(</span><span class="n">video_file</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="nf">isOpened</span><span class="p">():</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>       <span class="c1"># ret는 bool값으로 읽기가 성공일때 true를 반환
+        <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>       <span class="c1"># ret는 bool값으로 읽기가 성공일때 true를 반환
 </span>        <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
-            <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">video_file</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>   <span class="c1">#25ms 단위로 키 입력을 대기함.
+            <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">video_file</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>   <span class="c1">#25ms 단위로 키 입력을 대기함.
 </span>                <span class="k">break</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">break</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'cant open video.'</span><span class="p">)</span>
-<span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'cant open video.'</span><span class="p">)</span>
+<span class="n">cap</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
 </code></pre></div></div>
 <p>위 소스에서 <code class="language-plaintext highlighter-rouge">cv2.waitKey(25)</code> 에서 25의 경우, 25ms을 의미하며,   <br />
 <code class="language-plaintext highlighter-rouge">25 = 1000 / 40</code> 즉, 40fps 의 값을 의미합니다. <br />
@@ -656,55 +656,55 @@
 
 <h2 id="캠-영상-불러오기">캠 영상 불러오기</h2>
 <p>연결된 장치의 캠에서 영상을 불러옵니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cv2</span>
 
-<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#연결된 장치의 순서에 따라서 번호는 다를수 있음 0,1,2....
-</span><span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#연결된 장치의 순서에 따라서 번호는 다를수 있음 0,1,2....
+</span><span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="nf">isOpened</span><span class="p">():</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
-            <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'CAMERA Window'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="s">'CAMERA Window'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                 <span class="k">break</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">'프레임없음'</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">'프레임없음'</span><span class="p">)</span>
             <span class="k">break</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'카메라 열기 실패'</span><span class="p">)</span>
-<span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'카메라 열기 실패'</span><span class="p">)</span>
+<span class="n">cap</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h2 id="캠-영상-저장하기">캠 영상 저장하기</h2>
 <p>카메라 오픈 후 개별 frame정보를 저장하는 방식으로 영상을 저장 합니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cv2</span>
 
-<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
+<span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="nf">isOpened</span><span class="p">():</span>
     <span class="n">file_path</span> <span class="o">=</span> <span class="s">'path/sample.avi'</span>
     <span class="n">fps</span> <span class="o">=</span> <span class="mf">25.40</span>
-    <span class="n">fourcc</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s">'DIVX'</span><span class="p">)</span> 
-    <span class="n">width</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">)</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">)</span>
-    <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">fourcc</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">fourcc</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s">'DIVX'</span><span class="p">)</span> 
+    <span class="n">width</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">)</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">)</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nf">int</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoWriter</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">fourcc</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>     <span class="c1">#비디오에 대한 영역만 읽어옴, Sound 미포함.
+        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>     <span class="c1">#비디오에 대한 영역만 읽어옴, Sound 미포함.
 </span>        <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
-            <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'REC'</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
-            <span class="n">out</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">fps</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="s">'REC'</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+            <span class="n">out</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">/</span> <span class="n">fps</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                 <span class="k">break</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">'frame 정보 없음'</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">'frame 정보 없음'</span><span class="p">)</span>
             <span class="k">break</span>
-    <span class="n">out</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+    <span class="n">out</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'카메라 열기 실패'</span><span class="p">)</span>
-<span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'카메라 열기 실패'</span><span class="p">)</span>
+<span class="n">cap</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
 
 </code></pre></div></div>
 <p><code class="language-plaintext highlighter-rouge">fourcc = cv2.VideoWriter_fourcc(*'DIVX')</code> 부분은 저장 코덱을 선정하는 부분으로 다양한 코덱을 선정 할 수 있습니다.</p>
@@ -727,39 +727,39 @@
   <li>cv2.CAP_PROP_ZOOM : 카메라 줌</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fps</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FPS</span><span class="p">)</span>
-<span class="n">delay</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">fps</span><span class="p">)</span> 
-<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fps</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FPS</span><span class="p">)</span>
+<span class="n">delay</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">fps</span><span class="p">)</span> 
+<span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div></div>
 <h2 id="비디오-정지-화면-저장">비디오 정지 화면 저장</h2>
 <p>비디오 소스에서 정지 화면 저장하기</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">cv2</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">():</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cap</span><span class="p">.</span><span class="nf">isOpened</span><span class="p">():</span>
+        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">False</span><span class="p">;</span>
 
-    <span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+    <span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img1</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Color Image RGB'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">([])</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">yticks</span><span class="p">([])</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">img1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="s">'Color Image RGB'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 
-    <span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+    <span class="n">cap</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>  
+    <span class="nf">main</span><span class="p">()</span>  
 
 </code></pre></div></div>
 
@@ -1501,7 +1501,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

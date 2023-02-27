@@ -649,37 +649,37 @@
 64bit 일부 환경에서 ascii 변환시 오류 방지를 위해서 8bit 마스크를 진행함.  <br />
 <code class="language-plaintext highlighter-rouge">if (cv2.waitKey(0) &amp; 0xFF) == ord('k')</code></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">k</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
-<span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">char</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">k</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">char</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'d'</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'d'</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=+</span> <span class="mi">100</span>
-<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'w'</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'w'</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=+</span> <span class="mi">100</span>
-<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=-</span> <span class="mi">100</span>
-<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=-</span> <span class="mi">100</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="s">'win'</span><span class="p">,</span><span class="n">x</span> <span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">moveWindow</span><span class="p">(</span><span class="s">'win'</span><span class="p">,</span><span class="n">x</span> <span class="p">,</span><span class="n">y</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">상하좌우</code> 키보드를 통해서 하려면…  <br />
 키값을 16진수로 입력 받아야 됩니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># key = cv2.waitKey(0) &amp; 0xFF
-</span><span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">waitKeyEx</span><span class="p">()</span> <span class="c1"># 16진수 키캆
+</span><span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKeyEx</span><span class="p">()</span> <span class="c1"># 16진수 키캆
 </span>
-<span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'j'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x250000</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'j'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x250000</span><span class="p">:</span>
     <span class="n">x</span> <span class="o">-=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'l'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x270000</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'l'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x270000</span><span class="p">:</span>
     <span class="n">x</span> <span class="o">+=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'o'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x260000</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'o'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x260000</span><span class="p">:</span>
     <span class="n">y</span> <span class="o">-=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'k'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x280000</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'k'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x280000</span><span class="p">:</span>
     <span class="n">y</span> <span class="o">+=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'q'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'q'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
     <span class="k">break</span>
 </code></pre></div></div>
 
@@ -1423,7 +1423,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

@@ -630,32 +630,32 @@ mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제�
 <h1 id="numpy-operations">numpy operations</h1>
 <h2 id="브로드캐스팅">브로드캐스팅</h2>
 <p>nparray를 연산 하는 과정에서 부족한 배열 부분을 이전 배열의 패턴으로 채워서 연산되는 형태를 말합니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>       <span class="c1"># [1 2 3]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>     <span class="c1"># [6 7 8]
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>       <span class="c1"># [1 2 3]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>     <span class="c1"># [6 7 8]
 </span>
-<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
 </span>
 
 <span class="c1"># 빈값은 브로드캐스팅 되어 채워진 채로 더해짐
-</span><span class="k">print</span><span class="p">(</span> <span class="n">a2</span> <span class="o">+</span> <span class="n">a1</span> <span class="p">)</span> 
+</span><span class="nf">print</span><span class="p">(</span> <span class="n">a2</span> <span class="o">+</span> <span class="n">a1</span> <span class="p">)</span> 
 <span class="c1"># [[ 2  4  6]
 #  [ 5  7  9]
 #  [ 8 10 12]]
 </span>
-<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
 <span class="c1"># [1 2 3]
-</span><span class="k">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
+</span><span class="nf">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
 <span class="c1"># [[1]
 #  [2]
 #  [3]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="o">+</span><span class="n">b2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="o">+</span><span class="n">b2</span><span class="p">)</span>
 <span class="c1"># [[2 3 4]
 #  [3 4 5]
 #  [4 5 6]]
@@ -663,23 +663,23 @@ mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제�
 </code></pre></div></div>
 
 <h2 id="사칙연산">사칙연산</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   
-<span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   
+<span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
 
 <span class="c1"># [1 2 3 4 5 6 7 8 9]  al
 # [3 9 6 5 6 9 2 9 6]  b1 램덤값
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">+</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [ 4 11  9  9 11 15  9 17 15]
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">+</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [ 4 11  9  9 11 15  9 17 15]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">-</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [-2 -7 -3 -1 -1 -3  5 -1  3]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">*</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [ 3 18 18 20 30 54 14 72 54]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">/</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [0.33333333 0.22222222 0.5        0.8        0.83333333 0.66666667  3.5        0.88888889 1.5       ]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">//</span> <span class="n">b1</span><span class="p">)</span> <span class="c1"># [0 0 0 0 0 0 3 0 1]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">**</span> <span class="n">b1</span><span class="p">)</span> <span class="c1"># [        1       512       729      1024     15625  10077696        49   134217728    531441]
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">-</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [-2 -7 -3 -1 -1 -3  5 -1  3]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">*</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [ 3 18 18 20 30 54 14 72 54]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">/</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [0.33333333 0.22222222 0.5        0.8        0.83333333 0.66666667  3.5        0.88888889 1.5       ]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">//</span> <span class="n">b1</span><span class="p">)</span> <span class="c1"># [0 0 0 0 0 0 3 0 1]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">**</span> <span class="n">b1</span><span class="p">)</span> <span class="c1"># [        1       512       729      1024     15625  10077696        49   134217728    531441]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">%</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [1 2 3 4 5 6 1 8 3]
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">%</span> <span class="n">b1</span><span class="p">)</span>  <span class="c1"># [1 2 3 4 5 6 1 8 3]
 </span>
 
 </code></pre></div></div>
@@ -688,10 +688,10 @@ mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제�
 <p><code class="language-plaintext highlighter-rouge">numpy.add(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])</code>  <br />
 nparray를 더하는 기능을 제공합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.add.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
 <span class="c1"># [1 2 3 4 5 6 7 8 9]
 # [11 12 13 14 15 16 17 18 19]
@@ -703,9 +703,9 @@ nparray를 더하는 기능을 제공합니다.  <br />
 <p><code class="language-plaintext highlighter-rouge">numpy.subtract(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])</code>  <br />
 nparray를 빼는 기능을 제공합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.subtract.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">subtract</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 
 <span class="c1"># [1 2 3 4 5 6 7 8 9]
 # [-1  0  1  2  3  4  5  6  7]
@@ -716,9 +716,9 @@ nparray를 빼는 기능을 제공합니다.  <br />
 <p><code class="language-plaintext highlighter-rouge">numpy.negative(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])</code>  <br />
 nparray를 부호를 반전 기능을 제공합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.negative.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">negative</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">negative</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>
 
 <span class="c1"># [1 2 3 4 5 6 7 8 9]
 # [-1 -2 -3 -4 -5 -6 -7 -8 -9]
@@ -729,9 +729,9 @@ nparray를 부호를 반전 기능을 제공합니다.  <br />
 <p><code class="language-plaintext highlighter-rouge">numpy.multiply(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])</code>  <br />
 nparray를 곱하는 기능을 제공합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.multiply.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">multiply</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 
 <span class="c1"># [1 2 3 4 5 6 7 8 9]
 # [ 2  4  6  8 10 12 14 16 18]
@@ -743,9 +743,9 @@ nparray를 곱하는 기능을 제공합니다.  <br />
 <p><code class="language-plaintext highlighter-rouge">numpy.divide(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])</code>  <br />
 nparray를 나누는 기능을 제공합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.divide.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">divide</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">divide</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 
 <span class="c1"># [1 2 3 4 5 6 7 8 9]
 # [0.5 1.  1.5 2.  2.5 3.  3.5 4.  4.5]
@@ -756,8 +756,8 @@ nparray를 나누는 기능을 제공합니다.  <br />
 <p><code class="language-plaintext highlighter-rouge">numpy.floor_divide(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])</code>  <br />
 nparray를 나누기 값의 소수부만 제공하는 기능을 제공합니다.(버림)  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.floor_divide.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">floor_divide</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">floor_divide</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 
 <span class="c1"># [0 1 1 2 2 3 3 4 4]
 # [0 1 1 2 2 3 3 4 4]
@@ -767,9 +767,9 @@ nparray를 나누기 값의 소수부만 제공하는 기능을 제공합니다.
 <p><code class="language-plaintext highlighter-rouge">numpy.mod(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])</code>  <br />
 nparray를 나머지 값을 제공합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.mod.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mod</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">mod</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 
 <span class="c1"># [1 2 3 4 5 6 7 8 9]
 # [1 0 1 0 1 0 1 0 1]
@@ -781,8 +781,8 @@ nparray를 나머지 값을 제공합니다.  <br />
 np.abs is a shorthand for this function.
 nparray를 절대값을 제공합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.absolute.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">])</span>
-<span class="n">np</span><span class="p">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">])</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">absolute</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># array([ 1.2,  1.2])
 </span></code></pre></div></div>
@@ -791,8 +791,8 @@ nparray를 절대값을 제공합니다.  <br />
 <p><code class="language-plaintext highlighter-rouge">numpy.square(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])</code>  <br />
 nparray를 제곱값을 제공합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.square.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">square</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">square</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>
 
 <span class="c1"># [1 2 3 4 5 6 7 8 9]
 # [ 1  4  9 16 25 36 49 64 81]
@@ -803,9 +803,9 @@ nparray를 제곱값을 제공합니다.  <br />
 루트 값을 제공 합니다.
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.sqrt.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span>
 
 <span class="c1"># [ 4  9 25 36 10]
 # [2.         3.         5.         6.         3.16227766]
@@ -816,17 +816,17 @@ nparray를 제곱값을 제공합니다.  <br />
 밑이 자연상수 e인 지수함수(e^x)의 그래프 값을 제공 합니다.
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.exp.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>    <span class="c1"># e^0 와 동일
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>    <span class="c1"># e^0 와 동일
 # 1.0
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>    <span class="c1"># e^1 와 동일
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>    <span class="c1"># e^1 와 동일
 # 2.718281828459045
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>   <span class="c1"># e^10 와 동일
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>   <span class="c1"># e^10 와 동일
 # 22026.465794806718
 </span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="c1">#[3.67879441e-01 6.06530660e-01 1.00000000e+00 2.71828183e+00 4.48168907e+00 1.48413159e+02 2.20264658e+04]
 </span>
 </code></pre></div></div>
@@ -836,19 +836,19 @@ nparray를 제곱값을 제공합니다.  <br />
 nparray의 합산된 값을 제공 합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[7 9 7]
 #  [5 6 2]
 #  [3 3 8]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="nb">sum</span><span class="p">(),</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1">#전체 item을 합
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="nf">sum</span><span class="p">(),</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1">#전체 item을 합
 # 50 50
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 <span class="c1">#[15 18 17] [15 18 17]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="c1">#[23 13 14] [23 13 14]
 </span>
 </code></pre></div></div>
@@ -858,19 +858,19 @@ nparray의 합산된 값을 제공 합니다.  <br />
 nparray의 <code class="language-plaintext highlighter-rouge">누적</code> 합산된 값을 제공 합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.cumsum.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[7 9 7]
 #  [5 6 2]
 #  [3 3 8]]
-</span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1">#누적합을 제공함
+</span><span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">cumsum</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1">#누적합을 제공함
 # [ 7 16 23 28 34 36 39 42 50]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>  <span class="c1"># 행방향의 누적된 합으로 naddray변경됨
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">cumsum</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>  <span class="c1"># 행방향의 누적된 합으로 naddray변경됨
 # [[ 7  9  7]
 #  [12 15  9]
 #  [15 18 17]]
 </span> 
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># 열 방향의 누적된 합으로 naddray변경됨
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">cumsum</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># 열 방향의 누적된 합으로 naddray변경됨
 # [[ 7 16 23]
 #  [ 5 11 13]
 #  [ 3  6 14]]
@@ -882,21 +882,21 @@ nparray의 <code class="language-plaintext highlighter-rouge">누적</code> 합�
 naddray의 정해진 축의 방향으로 이전 값과의 차이 값을 제공 합니다.
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.diff.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[7 9 7]
 #  [5 6 2]
 #  [3 3 8]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span>  <span class="c1"># 기본 axis=1 값과 동일
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">diff</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span>  <span class="c1"># 기본 axis=1 값과 동일
 # [[ 2 -2]
 #  [ 1 -4]
 #  [ 0  5]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">diff</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 <span class="c1"># [[-2 -3 -5]
 #  [-2 -3  6]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">diff</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="c1"># [[ 2 -2]
 #  [ 1 -4]
 #  [ 0  5]]
@@ -908,22 +908,22 @@ naddray의 정해진 축의 방향으로 이전 값과의 차이 값을 제공 �
 ndarray 항목중 <code class="language-plaintext highlighter-rouge">True</code> 값이 1개 이상 존재한다면 <code class="language-plaintext highlighter-rouge">True</code> (or조건) 제공 합니다.
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.any.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span>
     <span class="p">[</span><span class="bp">False</span><span class="p">,</span><span class="bp">False</span><span class="p">,</span><span class="bp">False</span><span class="p">],</span>
     <span class="p">[</span><span class="bp">False</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">],</span>
     <span class="p">[</span><span class="bp">False</span><span class="p">,</span><span class="bp">False</span><span class="p">,</span><span class="bp">False</span><span class="p">]</span>
 <span class="p">])</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[False False False]
 #  [False  True  True]
 #  [False False False]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">any</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1"># 항목중에 하나라도 True 면 True 임 OR
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">any</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1"># 항목중에 하나라도 True 면 True 임 OR
 # True   (전체중에 True가 한개 이상 있으므로 True반환)
-</span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">any</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1">#열단위
+</span><span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">any</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1">#열단위
 # [False  True  True]   
-</span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">any</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1">#행단위
+</span><span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">any</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1">#행단위
 # [False  True False]
 </span></code></pre></div></div>
 
@@ -932,18 +932,18 @@ ndarray 항목중 <code class="language-plaintext highlighter-rouge">True</code>
 ndarray 항목 모두 <code class="language-plaintext highlighter-rouge">True</code> 값이이라면 <code class="language-plaintext highlighter-rouge">True</code> (and조건) 제공 합니다.
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.all.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[False False False]
 #  [False  True  True]
 #  [False False False]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1"># 전체가 True여야 True임 AND
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">all</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1"># 전체가 True여야 True임 AND
 # False
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">all</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 <span class="c1"># [False False False]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">all</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="c1"># [False False False]
 </span></code></pre></div></div>
 
@@ -952,21 +952,21 @@ ndarray 항목 모두 <code class="language-plaintext highlighter-rouge">True</c
 ndarray의 정렬을 제공 합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.sort.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
 <span class="c1"># [2 2 2 9 2 6 5 7 5 9]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>
 <span class="c1"># [2 2 2 2 5 5 6 7 9 9]
 </span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
-<span class="n">np</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>                <span class="c1"># sort along the last axis
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>                <span class="c1"># sort along the last axis
 # array([[1, 4],
 #        [1, 3]])
-</span><span class="n">np</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>     <span class="c1"># sort the flattened array
+</span><span class="n">np</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>     <span class="c1"># sort the flattened array
 # array([1, 1, 3, 4])
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        <span class="c1"># sort along the first axis
+<span class="n">np</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        <span class="c1"># sort along the first axis
 # array([[1, 1],
 #        [3, 4]])
 </span>
@@ -977,21 +977,21 @@ ndarray의 정렬을 제공 합니다.  <br />
 ndarray의 정렬 <code class="language-plaintext highlighter-rouge">index</code> 값을 제공 합니다.  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.argsort.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
 <span class="c1"># [2 2 2 9 2 6 5 7 5 9]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span><span class="c1">#정렬의 index순서
+<span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">argsort</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span><span class="c1">#정렬의 index순서
 # [0 1 2 4 6 8 5 7 3 9]
 </span></code></pre></div></div>
 
 <h2 id="그밖에-배열-연산-팁">그밖에 배열 연산 팁</h2>
 <p>조건을 통한 배열의 필터링하여 재생성할 수도 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">!=</span> <span class="mi">5</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">!=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># [1 2 3 4 5 6 7 8 9]
 # [False False False False  True False False False False]
@@ -1000,20 +1000,20 @@ ndarray의 정렬 <code class="language-plaintext highlighter-rouge">index</code
 # [ True  True  True  True  True False False False False]
 </span>
 
-<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
-</span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span>
+</span><span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span>
 <span class="c1"># 45
-</span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">a2</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># 5초과 인 수량을 카운트함
+</span><span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">count_nonzero</span><span class="p">(</span><span class="n">a2</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># 5초과 인 수량을 카운트함
 # 4
-</span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a2</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">))</span>
+</span><span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">a2</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">))</span>
 <span class="c1"># 4
-</span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a2</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 축에 해당하는 5초과 카운트가 출력됨
+</span><span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">a2</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 축에 해당하는 5초과 카운트가 출력됨
 # [1 1 2]
-</span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a2</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># 축에 해당하는 5초과 카운트가 출력됨
+</span><span class="nf">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">a2</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># 축에 해당하는 5초과 카운트가 출력됨
 # [0 1 3]
 </span>
 </code></pre></div></div>
@@ -1744,7 +1744,7 @@ ndarray의 정렬 <code class="language-plaintext highlighter-rouge">index</code
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

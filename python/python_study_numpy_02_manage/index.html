@@ -673,16 +673,16 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 </table>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ainfo</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"ndim : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"shape : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"dytpe : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"size : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"itemsize : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">itemsize</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"nbytes : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">nbytes</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"strides : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">strides</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"ndim : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"shape : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"dytpe : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"size : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"itemsize : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">itemsize</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"nbytes : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">nbytes</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"strides : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">strides</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
 
-<span class="n">ainfo</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nf">ainfo</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>
 <span class="c1"># ndim :  1
 # shape :  (5,)
 # dytpe :  int32
@@ -696,50 +696,50 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 </code></pre></div></div>
 
 <h2 id="기본-인덱싱">기본 인덱싱</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
-<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
-<span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span> <span class="p">[</span>
     <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
     <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
     <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
 <span class="p">])</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>           <span class="c1"># [1 2 3 4 5]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>        <span class="c1"># 1
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>        <span class="c1"># 2
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>        <span class="c1"># 3
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>       <span class="c1"># 4
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>       <span class="c1"># 5
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>           <span class="c1"># [1 2 3 4 5]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>        <span class="c1"># 1
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>        <span class="c1"># 2
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>        <span class="c1"># 3
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>       <span class="c1"># 4
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>       <span class="c1"># 5
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>      <span class="c1"># 1
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>      <span class="c1"># 3
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>      <span class="c1"># 5
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>     <span class="c1"># 9
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>      <span class="c1"># 1
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>      <span class="c1"># 3
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>      <span class="c1"># 5
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>     <span class="c1"># 9
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>    <span class="c1"># 1
-</span><span class="k">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># 5
-</span><span class="k">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># 9
+<span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>    <span class="c1"># 1
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># 5
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># 9
 </span>
 </code></pre></div></div>
 
 <h2 id="boolean-indexing">Boolean Indexing</h2>
 <p><code class="language-plaintext highlighter-rouge">True</code> 값인 인덱스의 배열을 생성 합니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
 <span class="n">bi</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">bi</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">bi</span><span class="p">])</span>
 
 <span class="c1">#[1 2 3 4 5]
 #[False, True, True, False, True]
 #[2 3 5]
 </span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
-<span class="n">bi</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">bi</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">bi</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">bi</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">bi</span><span class="p">])</span>
 
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
@@ -754,113 +754,113 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 
 <h2 id="fancy-indedxing">Fancy Indedxing</h2>
 <p><code class="language-plaintext highlighter-rouge">index 번호</code>에 해당하는 데이터로 배열을 생성 합니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>                   <span class="c1"># [1 2 3 4 5]
-</span><span class="k">print</span><span class="p">([</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>        <span class="c1"># [1, 3]
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>                   <span class="c1"># [1 2 3 4 5]
+</span><span class="nf">print</span><span class="p">([</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>        <span class="c1"># [1, 3]
 </span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>            <span class="c1"># [1 3]  
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>            <span class="c1"># [1 3]  
 </span>
 
 
 <span class="c1">#2차원으로 전달할 경우, 출력도 2차원으로 반환됨
-</span><span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+</span><span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 <span class="c1"># [[0 1]
 #  [2 0]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>  
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>  
 <span class="c1"># [[1 2]
 #  [3 1]]
 </span>
 <span class="c1"># 복합으로 인덱스를 만들어서 제공할 경우에도 출력됨
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
-</span><span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">])</span>         <span class="c1"># [2 9]
+</span><span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">])</span>         <span class="c1"># [2 9]
 #위 (0,1) (2,2) 에 해당하는 값이 [2 9] 출력됨
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:])</span>  
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="p">:])</span>  
 <span class="c1"># [[1 2 3]
 #  [7 8 9]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[:,</span> <span class="n">col</span><span class="p">])</span> 
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[:,</span> <span class="n">col</span><span class="p">])</span> 
 <span class="c1"># [[2 3]
 #  [5 6]
 #  [8 9]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="c1"># [2 8]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">col</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">col</span><span class="p">])</span>
 <span class="c1"># [8 9]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="mi">1</span><span class="p">:])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="mi">1</span><span class="p">:])</span>
 <span class="c1"># [[2 3]
 #  [8 9]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="n">col</span><span class="p">])</span>  
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="n">col</span><span class="p">])</span>  
 <span class="c1"># [[5 6]
 #  [8 9]]
 </span>
 </code></pre></div></div>
 <p>Fancy Indedxing 은 배열의 재정의 뿐 아니라, 배열의 연산에도 사용될 수 있습니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
 <span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 0 3 0 0]   i의 index 번호의 값이 0으로 초기화됨 
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 0 3 0 0]   i의 index 번호의 값이 0으로 초기화됨 
 </span>
 <span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span><span class="mi">4</span> <span class="c1"># i가 있는 index에 +4 가 된것을 확인함.
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 4 3 4 4]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 4 3 4 4]
 </span></code></pre></div></div>
 
 <h2 id="슬라이싱">슬라이싱</h2>
 <p><code class="language-plaintext highlighter-rouge">list</code> 형의 슬라이싱과 동일한 비슷한 형태로 제공합니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>       <span class="c1">#[1 2 3 4 5]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>  <span class="c1">#[1 2]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>   <span class="c1">#[1 2 3 4 5]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[:</span><span class="mi">1</span><span class="p">])</span>   <span class="c1">#[1]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>  <span class="c1">#[1 3 5]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#[5 4 3 2 1]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[:])</span>    <span class="c1">#[1 2 3 4 5]
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>       <span class="c1">#[1 2 3 4 5]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>  <span class="c1">#[1 2]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>   <span class="c1">#[1 2 3 4 5]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[:</span><span class="mi">1</span><span class="p">])</span>   <span class="c1">#[1]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>  <span class="c1">#[1 3 5]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#[5 4 3 2 1]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[:])</span>    <span class="c1">#[1 2 3 4 5]
 </span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>            <span class="c1"># [4 5 6]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>         <span class="c1"># [4 5 6]
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>            <span class="c1"># [4 5 6]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>         <span class="c1"># [4 5 6]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:</span><span class="mi">2</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:</span><span class="mi">2</span><span class="p">])</span>
 <span class="c1"># [[1 2]
 #  [4 5]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="c1"># [[6 5 4]
 #  [9 8 7]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="c1"># [[9 8 7]
 #  [6 5 4]
 #  [3 2 1]]
 </span>
 
 <span class="n">a2_sub</span> <span class="o">=</span> <span class="n">a2</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:</span><span class="mi">2</span><span class="p">];</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2_sub</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2_sub</span><span class="p">)</span>
 <span class="c1"># [[1 2]
 #  [4 5]]
 </span>
 <span class="n">a2_sub</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># 값을 변경함.
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2_sub</span><span class="p">)</span>
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2_sub</span><span class="p">)</span>
 <span class="c1"># [[1 0]
 #  [4 0]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span> <span class="c1">#numpy의 slicing 했을떄 원본도 값이 변경됨
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span> <span class="c1">#numpy의 slicing 했을떄 원본도 값이 변경됨
 # [[1 0 3]
 #  [4 0 6]
 #  [7 8 9]]
@@ -874,27 +874,27 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.insert.html" target="_blank">API 참조</a>   <br />
 데이터를 추가할때 <code class="language-plaintext highlighter-rouge">axis</code>을 추가할 수 있는데, <code class="language-plaintext highlighter-rouge">axis=0</code>는 <code class="language-plaintext highlighter-rouge">행</code>, <code class="language-plaintext highlighter-rouge">axis=1</code>은 <code class="language-plaintext highlighter-rouge">열</code>으로 인식합니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 2 3 4 5]
-</span><span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1">#0번째 10값을 추가해서 b1 새로운 array를 반환함
-</span><span class="k">print</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>   <span class="c1"># [10  1  2  3  4  5]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 2 3 4 5]
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 2 3 4 5]
+</span><span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1">#0번째 10값을 추가해서 b1 새로운 array를 반환함
+</span><span class="nf">print</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>   <span class="c1"># [10  1  2  3  4  5]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 2 3 4 5]
 </span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
 </span>
-<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
 
 <span class="c1"># [[ 1  2  3]
 #  [10 10 10]           &lt;- 1번 째 10 값을 axis=0(행) 단위로 추가함
 #  [ 4  5  6]
 #  [ 7  8  9]]
 </span> 
-<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
 
 <span class="c1"># &lt;- 1번 째 10 값을 axis=1(열) 단위로 추가함
 # [[ 1 10  2  3]    
@@ -909,26 +909,26 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 데이터를 삭제할때 <code class="language-plaintext highlighter-rouge">axis</code>을 추가할 수 있는데, <code class="language-plaintext highlighter-rouge">axis=0</code>는 <code class="language-plaintext highlighter-rouge">행</code>, <code class="language-plaintext highlighter-rouge">axis=1</code>은 <code class="language-plaintext highlighter-rouge">열</code>으로 인식합니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="c1"># 1차원에서 배열 삭제
-</span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>               <span class="c1"># [1 2 3 4 5]
-</span><span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   
-<span class="k">print</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>               <span class="c1"># [1 3 4 5]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>               <span class="c1"># [1 2 3 4 5] 원본 배열은 값을 유지함
+</span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>               <span class="c1"># [1 2 3 4 5]
+</span><span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   
+<span class="nf">print</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>               <span class="c1"># [1 3 4 5]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>               <span class="c1"># [1 2 3 4 5] 원본 배열은 값을 유지함
 </span>
 <span class="c1"># 2 차원에서 배열 삭제
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
 </span>
-<span class="n">b3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># axis = 0
-</span><span class="k">print</span><span class="p">(</span><span class="n">b3</span><span class="p">)</span>
+<span class="n">b3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># axis = 0
+</span><span class="nf">print</span><span class="p">(</span><span class="n">b3</span><span class="p">)</span>
 <span class="c1"># 1번 행이 없어짐
 # [[1 2 3]
 #  [7 8 9]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
-<span class="n">b4</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># axis = 1
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">b4</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># axis = 1
 # [[1 3]
 #  [4 6]
 #  [7 9]]
@@ -938,30 +938,30 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <p><code class="language-plaintext highlighter-rouge">ndarray.T</code>로 데이터 형태를 피벗을 합니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="c1"># 1차원은 변화 없음
-</span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
+</span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
 <span class="c1"># [1 2 3 4 5]  
 </span>
 
 <span class="c1"># 2차원
-</span><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+</span><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">T</span><span class="p">)</span> <span class="c1">#행열이 전환,
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">T</span><span class="p">)</span> <span class="c1">#행열이 전환,
 #  [[1 4 7]
 #  [2 5 8]
 #  [3 6 9]]
 </span>
 <span class="c1"># 3차원
-</span><span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+</span><span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span> <span class="p">[</span>
     <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
     <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
     <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
 <span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">T</span><span class="p">)</span> 
+<span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">T</span><span class="p">)</span> 
 <span class="c1"># [[[1 1 1]
 #   [4 4 4]
 #   [7 7 7]]
@@ -976,8 +976,8 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 #  [[2 2 2][5 5 5][8 8 8]]
 #  [[3 3 3][6 6 6][9 9 9]]]
 </span>
-<span class="n">a4</span> <span class="o">=</span> <span class="n">a3</span><span class="p">.</span><span class="n">T</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a4</span><span class="p">.</span><span class="n">T</span><span class="p">)</span> 
+<span class="n">a4</span> <span class="o">=</span> <span class="n">a3</span><span class="p">.</span><span class="n">T</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a4</span><span class="p">.</span><span class="n">T</span><span class="p">)</span> 
 <span class="c1"># [[[1 2 3]
 #   [4 5 6]
 #   [7 8 9]]
@@ -996,25 +996,25 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <code class="language-plaintext highlighter-rouge">numpy.reshape(a, newshape, order='C')[source]</code>  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span>  <span class="c1"># [1 2 3 4 5 6 7 8 9]
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">n1</span><span class="p">)</span>  <span class="c1"># [1 2 3 4 5 6 7 8 9]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">n1</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">n1</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
 </span>
 <span class="c1"># 사이즈가 맞지 않는 경우, 다음 에러를 발생 시킵니다.
-</span><span class="n">n2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">n2</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</span><span class="n">n2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">n2</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
 <span class="o">------------------------------------------------</span>
-<span class="nb">ValueError</span>     <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="nb">ValueError</span>     <span class="nc">Traceback </span><span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
 <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">119</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">cell</span> <span class="n">line</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span><span class="p">()</span>
-      <span class="mi">1</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="o">----&gt;</span> <span class="mi">2</span> <span class="k">print</span><span class="p">(</span><span class="n">n2</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+      <span class="mi">1</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="o">----&gt;</span> <span class="mi">2</span> <span class="nf">print</span><span class="p">(</span><span class="n">n2</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="nb">ValueError</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">reshape</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">9</span> <span class="n">into</span> <span class="n">shape</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">ValueError</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">reshape</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">9</span> <span class="n">into</span> <span class="nf">shape </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 
 </code></pre></div></div>
 
@@ -1022,25 +1022,25 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <p>배열의 병합하는 역할을 진행 합니다.  <br />
 <code class="language-plaintext highlighter-rouge">numpy.append(arr, values, axis=None)</code> <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.append.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="c1"># print(a2)
 # [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
 </span>
-<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">19</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">19</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
 <span class="c1"># [[10 11 12]
 #  [13 14 15]
 #  [16 17 18]]
 </span>
-<span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span> <span class="c1">#1차원으로 결과 반환
+<span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span> <span class="c1">#1차원으로 결과 반환
 #[ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18]
 </span>
 <span class="c1"># 축을 지정하여 추가함.
-</span><span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 행단위
-</span><span class="k">print</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+</span><span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 행단위
+</span><span class="nf">print</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
 
 <span class="c1"># [[ 1  2  3]
 #  [ 4  5  6]
@@ -1049,8 +1049,8 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 #  [13 14 15]
 #  [16 17 18]]
 </span>
-<span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
 
 <span class="c1"># [[ 1  2  3 10 11 12]
 #  [ 4  5  6 13 14 15]
@@ -1060,15 +1060,15 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <p>nparray의 축을 선택 하여 누적 시킵니다. 
 <code class="language-plaintext highlighter-rouge">numpy.stack(arrays, axis=0, out=None)</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.stack.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
-<span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>       <span class="c1"># np.stack((a, b), axis=0) 과 동일
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>       <span class="c1"># np.stack((a, b), axis=0) 과 동일
 # array([[1, 2, 3],
 #        [4, 5, 6]])
 </span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
-<span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># array([[1, 4],
 #        [2, 5],
 #        [3, 6]])
@@ -1078,7 +1078,7 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <p>nparray의 vertical 축의 병합 입니다. 
 <code class="language-plaintext highlighter-rouge">np.append(a2, b2, axis=0)</code> 동일 결과를 나타납니다. 
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.vstack.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">vstack</span><span class="p">((</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">))</span>
 <span class="c1"># array([[ 1,  2,  3],
 #        [ 4,  5,  6],
 #        [ 7,  8,  9],
@@ -1091,7 +1091,7 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <p>nparray의 horizontal 축의 병합 입니다. 
 <code class="language-plaintext highlighter-rouge">np.append(a2, b2, axis=1)</code> 동일 결과를 나타납니다. 
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.hstack.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">hstack</span><span class="p">((</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">))</span>
 <span class="c1"># array([[ 1,  2,  3, 10, 11, 12],
 #        [ 4,  5,  6, 13, 14, 15],
 #        [ 7,  8,  9, 16, 17, 18]])
@@ -1101,17 +1101,17 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <p>nparray를 연결 합니다. 
 <code class="language-plaintext highlighter-rouge">numpy.concatenate((a1, a2, ...), axis=0, out=None, dtype=None, casting="same_kind")</code>
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.concatenate.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
-<span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># array([[1, 2],
 #        [3, 4],
 #        [5, 6]])
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="c1"># array([1, 2, 3, 4, 5, 6])
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">T</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">T</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># array([[1, 2, 5],
 #        [3, 4, 6]])
 </span>
@@ -1120,26 +1120,26 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 # [3, 4]]     [6]]
 </span>
 
-<span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
-<span class="n">c1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
-<span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">c1</span><span class="p">])</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">([</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">c1</span><span class="p">])</span>
 <span class="c1"># array([1, 3, 5, 2, 4, 6, 7, 8, 9])
 </span>
 
-<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
-<span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">a2</span><span class="p">,</span><span class="n">a2</span><span class="p">])</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">([</span><span class="n">a2</span><span class="p">,</span><span class="n">a2</span><span class="p">])</span>
 <span class="c1"># array([[1, 2, 3],
 #        [4, 5, 6],
 #        [1, 2, 3],
 #        [4, 5, 6]])
 </span>
 
-<span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">a2</span><span class="p">,</span><span class="n">a2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">([</span><span class="n">a2</span><span class="p">,</span><span class="n">a2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># array([[1, 2, 3, 1, 2, 3],
 #        [4, 5, 6, 4, 5, 6]])
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">a2</span><span class="p">,</span><span class="n">a2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">([</span><span class="n">a2</span><span class="p">,</span><span class="n">a2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># array([[1, 2, 3],
 #        [4, 5, 6],
 #        [1, 2, 3],
@@ -1152,27 +1152,27 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <code class="language-plaintext highlighter-rouge">numpy.vsplit(ary, indices_or_sections)</code>  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.vsplit.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
 </span>
-<span class="n">b2</span><span class="p">,</span> <span class="n">b3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">vsplit</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
+<span class="n">b2</span><span class="p">,</span> <span class="n">b3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">vsplit</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">b3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">b3</span><span class="p">)</span>
 <span class="c1"># [[7 8 9]]
 </span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">16.0</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mf">16.0</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="c1"># array([[ 0.,   1.,   2.,   3.],
 #        [ 4.,   5.,   6.,   7.],
 #        [ 8.,   9.,  10.,  11.],
 #        [12.,  13.,  14.,  15.]])
-</span><span class="n">np</span><span class="p">.</span><span class="n">vsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class="n">np</span><span class="p">.</span><span class="nf">vsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="c1"># [array([[0., 1., 2., 3.],
 #        [4., 5., 6., 7.]]), 
 #  array([[ 8.,  9., 10., 11.],
@@ -1185,19 +1185,19 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <code class="language-plaintext highlighter-rouge">numpy.hsplit(ary, indices_or_sections)</code>  <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.hsplit.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
 <span class="c1"># [[1 2 3]
 #  [4 5 6]
 #  [7 8 9]]
 </span>
-<span class="n">b2</span><span class="p">,</span> <span class="n">b3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">hvsplit</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
+<span class="n">b2</span><span class="p">,</span> <span class="n">b3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">hvsplit</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
 <span class="c1"># [[1 2]
 #  [4 5]
 #  [7 8]]
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">b3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">b3</span><span class="p">)</span>
 <span class="c1"># [[3]
 #  [6]
 #  [9]]
@@ -1211,10 +1211,10 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <p>0~1의 균일분포 표준정규분포 난수를 생성하여 반환합니다.  <br />
 <code class="language-plaintext highlighter-rouge">random.rand(d0, d1, ..., dn)</code>  <br />
 <a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.rand.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="c1"># array([0.42734205, 0.95354301, 0.80731892, 0.6908605 , 0.64658099])
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="c1"># array([[0.85155709, 0.25876853],
 #        [0.63304735, 0.12171615],
 #        [0.11996824, 0.71999629],
@@ -1227,10 +1227,10 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <p>평균<code class="language-plaintext highlighter-rouge">0</code>, 표준편차 <code class="language-plaintext highlighter-rouge">1</code>인 가우시안 표준 정규분포의 난수를 생성하여 반환합니다.  <br />
 <code class="language-plaintext highlighter-rouge">random.randn(d0, d1, ..., dn)</code>  <br />
 <a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.randn.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="c1"># array([ 0.74225719, -0.39754649,  0.8966088 ,  0.30346421,  0.71134092])
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="c1"># array([[-0.76182035, -0.51200261],
 #        [ 0.51620442,  0.77368734],
 #        [-0.23963806,  0.53549214],
@@ -1243,14 +1243,14 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 <p>범위내 int 타입의 난수를 생성하여 반환합니다.  <br />
 <code class="language-plaintext highlighter-rouge">random.randint(low, high=None, size=None, dtype=int)</code>  <br />
 <a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.randint.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 0~9 까지의 임의의 수 반환
-</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># 5이상 ~ 10미만의 임의의 숫자 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 0~9 까지의 임의의 수 반환
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># 5이상 ~ 10미만의 임의의 숫자 
 </span>
 
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="c1"># array([5, 3, 9, 1, 0])
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="c1"># array([[2, 2, 3, 4],
 #        [2, 4, 2, 4]])
 </span>
@@ -1978,7 +1978,7 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

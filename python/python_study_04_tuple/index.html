@@ -684,7 +684,7 @@
 <h1 id="기본-사용법">기본 사용법</h1>
 <h2 id="인덱스">인덱스</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="s">"AB"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>    <span class="c1"># ('AB', 10, False)
+<span class="nf">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>    <span class="c1"># ('AB', 10, False)
 </span>
 <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
  
@@ -701,25 +701,25 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>   <span class="c1"># (1, 2, 3, 4, 5)
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>   <span class="c1"># (1, 2, 3, 4, 5)
 </span>
 <span class="c1"># 반복
 </span><span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">3</span>
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>   <span class="c1"># (1, 2, 1, 2, 1, 2)
+<span class="nf">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>   <span class="c1"># (1, 2, 1, 2, 1, 2)
 </span></code></pre></div></div>
 
 <h2 id="변수-할당">변수 할당</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># 1
-</span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>    <span class="c1"># A
-</span><span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>    <span class="c1"># False
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># 1
+</span><span class="nf">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>    <span class="c1"># A
+</span><span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>    <span class="c1"># False
 </span></code></pre></div></div>
 
 <h2 id="tuple-to-dict-변환">tuple to dict 변환</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">age_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s">'철수'</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="s">'영희'</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="s">'순희'</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s">'인숙'</span><span class="p">,</span> <span class="mi">14</span><span class="p">)]</span>
 <span class="n">age_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">age_tuples</span><span class="p">}</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">age_dict</span><span class="p">))</span>   <span class="c1"># &lt;class 'dict'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="n">age_dict</span><span class="p">)</span> <span class="c1">#  {'철수': 18, '영희': 16, '순희': 20, '인숙': 14}
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">age_dict</span><span class="p">))</span>   <span class="c1"># &lt;class 'dict'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="n">age_dict</span><span class="p">)</span> <span class="c1">#  {'철수': 18, '영희': 16, '순희': 20, '인숙': 14}
 </span>
 </code></pre></div></div>
 
@@ -1463,7 +1463,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

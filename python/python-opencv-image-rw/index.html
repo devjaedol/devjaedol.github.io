@@ -647,7 +647,7 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pip</span> <span class="n">install</span> <span class="n">opencv</span><span class="o">-</span><span class="n">python</span>
 <span class="n">Collecting</span> <span class="n">opencv</span><span class="o">-</span><span class="n">python</span>
-  <span class="n">Downloading</span> <span class="n">opencv_python</span><span class="o">-</span><span class="mf">4.6</span><span class="p">.</span><span class="mf">0.66</span><span class="o">-</span><span class="n">cp36</span><span class="o">-</span><span class="n">abi3</span><span class="o">-</span><span class="n">win_amd64</span><span class="p">.</span><span class="n">whl</span> <span class="p">(</span><span class="mf">35.6</span> <span class="n">MB</span><span class="p">)</span>
+  <span class="n">Downloading</span> <span class="n">opencv_python</span><span class="o">-</span><span class="mf">4.6</span><span class="p">.</span><span class="mf">0.66</span><span class="o">-</span><span class="n">cp36</span><span class="o">-</span><span class="n">abi3</span><span class="o">-</span><span class="n">win_amd64</span><span class="p">.</span><span class="nf">whl </span><span class="p">(</span><span class="mf">35.6</span> <span class="n">MB</span><span class="p">)</span>
      <span class="o">|</span><span class="err">████████████████████████████████</span><span class="o">|</span> <span class="mf">35.6</span> <span class="n">MB</span> <span class="mi">43</span> <span class="n">kB</span><span class="o">/</span><span class="n">s</span>
 <span class="n">Requirement</span> <span class="n">already</span> <span class="n">satisfied</span><span class="p">:</span> <span class="n">numpy</span><span class="o">&gt;=</span><span class="mf">1.14</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span> <span class="n">python_version</span> <span class="o">&gt;=</span> <span class="s">"3.7"</span> <span class="ow">in</span> 
 
@@ -663,24 +663,24 @@
 <h2 id="이미지-불러오기">이미지 불러오기</h2>
 <p>이미지를 읽어오기 위해서는 <code class="language-plaintext highlighter-rouge">cv2.imread</code> 메소드를 사용합니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cv2</span>
 
 <span class="n">img_file</span> <span class="o">=</span> <span class="s">'path/lena.jpg'</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_file</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="n">img_file</span><span class="p">)</span>
 <span class="c1"># img = cv2.imread(img_file, cv2.IMREAD_GRAYSCALE)  #cv2.IMREAD_GRAYSCALE을 통해서 Gray모드로 읽기 가능
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>              <span class="c1">#이미지 배열 출력
-</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>        <span class="c1">#&lt;class 'numpy.ndarray'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>        <span class="c1">#(512, 512, 3)  resolution  512x512 3ch(R,G,B)
-</span><span class="k">print</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>         <span class="c1"># 3 ch      (gray인 경우 2ch로 출력됨)
-</span><span class="k">print</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>         <span class="c1"># 786432    = 512x512x3
+<span class="nf">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>              <span class="c1">#이미지 배열 출력
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>        <span class="c1">#&lt;class 'numpy.ndarray'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>        <span class="c1">#(512, 512, 3)  resolution  512x512 3ch(R,G,B)
+</span><span class="nf">print</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>         <span class="c1"># 3 ch      (gray인 경우 2ch로 출력됨)
+</span><span class="nf">print</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>         <span class="c1"># 786432    = 512x512x3
 </span>
 <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'IMG'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">()</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="n">destoryAllWindow</span><span class="p">()</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="s">'IMG'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">()</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">destoryAllWindow</span><span class="p">()</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'No Image'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'No Image'</span><span class="p">)</span>
 
 </code></pre></div></div>
 
@@ -700,40 +700,40 @@
 <code class="language-plaintext highlighter-rouge">v = cv2.waitKey([delay])</code> 반환값은 키 코드 또는 아무 값도 입력되지 않은 경우 <code class="language-plaintext highlighter-rouge">-1</code>을 반환 합니다.</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span>
+<span class="kn">import</span> <span class="n">cv2</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">__version__</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">__version__</span><span class="p">)</span>
 
     <span class="n">imgpath</span> <span class="o">=</span><span class="s">"path\lena_color_512.tif"</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span>
 
-    <span class="n">cv2</span><span class="p">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">'Lena'</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">)</span>    <span class="c1">#창에 이름을 할당
-</span>    <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'Lena'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">(</span><span class="s">'Lena'</span><span class="p">)</span>      <span class="c1">#창 이름으로 닫기
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">namedWindow</span><span class="p">(</span><span class="s">'Lena'</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">)</span>    <span class="c1">#창에 이름을 할당
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="s">'Lena'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">(</span><span class="s">'Lena'</span><span class="p">)</span>      <span class="c1">#창 이름으로 닫기
 </span>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
+    <span class="nf">main</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h2 id="웹-이미지-불러오기">웹 이미지 불러오기</h2>
 <p><code class="language-plaintext highlighter-rouge">req.urlretrieve</code> 를 통해서 이미지를 웹에서 읽어옵니다. 
 웹에 이미지를  test.png로 저장후 로드하는 예제 입니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span> <span class="k">as</span> <span class="n">req</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cv2</span>
+<span class="kn">import</span> <span class="n">urllib.request</span> <span class="k">as</span> <span class="n">req</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">'http://xxxxx.png'</span>
-<span class="n">req</span><span class="p">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s">'path/test.png'</span><span class="p">)</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="s">'path/test.png'</span><span class="p">)</span>
+<span class="n">req</span><span class="p">.</span><span class="nf">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s">'path/test.png'</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="s">'path/test.png'</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'IMG'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">()</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="n">destoryAllWindow</span><span class="p">()</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="s">'IMG'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">()</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">destoryAllWindow</span><span class="p">()</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'not found Image'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'not found Image'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="이미지-저장하기">이미지 저장하기</h2>
@@ -741,24 +741,24 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">img_file</span> <span class="o">=</span> <span class="s">'path/lena.jpg'</span>
 <span class="n">new_file</span> <span class="o">=</span> <span class="s">'path/lena_gray.jpg'</span>
 
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_file</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_file</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">new_file</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">()</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="n">img_file</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">img_file</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">imwrite</span><span class="p">(</span><span class="n">new_file</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h2 id="이미지-사이즈-변경-하기">이미지 사이즈 변경 하기</h2>
 <p><code class="language-plaintext highlighter-rouge">cv2.resize</code> 를 통해서 이미지의 사이즈를 변경 할수 있읍니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cv2</span>
 
-<span class="n">originImg</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="s">'origin.jpg'</span><span class="p">)</span>
-<span class="n">newImg</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">originImg</span><span class="p">,</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+<span class="n">originImg</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="s">'origin.jpg'</span><span class="p">)</span>
+<span class="n">newImg</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">resize</span><span class="p">(</span><span class="n">originImg</span><span class="p">,</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
 
-<span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s">'path/resize.jpg'</span><span class="p">,</span> <span class="n">newImg</span><span class="p">)</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'IMG'</span><span class="p">,</span> <span class="n">newImg</span><span class="p">)</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">()</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">imwrite</span><span class="p">(</span><span class="s">'path/resize.jpg'</span><span class="p">,</span> <span class="n">newImg</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="s">'IMG'</span><span class="p">,</span> <span class="n">newImg</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h2 id="이미지-특정-영역-크롭하기">이미지 특정 영역 크롭하기</h2>
@@ -766,15 +766,15 @@
 OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계의 값을 사용하지 않고 <code class="language-plaintext highlighter-rouge">BGR</code> 값 체계를 사용하여, <code class="language-plaintext highlighter-rouge">RGB</code> 정상적인 사용을 위해서 변환을 처리해야 합니다.
 <code class="language-plaintext highlighter-rouge">cv2.COLOR_BGR2RGB</code>를 통해서 변환을 진행 합니다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">cv2</span>
 
-<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="s">'sample.jpg'</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="s">'sample.jpg'</span><span class="p">)</span>
 <span class="n">im2</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span> <span class="mi">100</span><span class="p">:</span><span class="mi">500</span><span class="p">]</span>     <span class="c1">#이미지를 Crop영역을 선택합니다.
-</span><span class="n">im2</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
-<span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s">'resize.png'</span><span class="p">,</span> <span class="n">im2</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">))</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</span><span class="n">im2</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">resize</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">imwrite</span><span class="p">(</span><span class="s">'resize.png'</span><span class="p">,</span> <span class="n">im2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="nf">cvtColor</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-opencv)</span></p>
@@ -1520,7 +1520,7 @@ OpenCV는 <code class="language-plaintext highlighter-rouge">RGB</code> 체계�
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

@@ -688,14 +688,14 @@
 <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>  <span class="c1"># a+b를 더한 후 a, b는 변화 없음
 </span><span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="mi">3</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>    <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-</span><span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>    <span class="c1"># [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
-</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># 1
-</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="c1"># 5
-</span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">))</span><span class="c1"># 15
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>    <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>    <span class="c1"># [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># 1
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="c1"># 5
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">d</span><span class="p">))</span><span class="c1"># 15
 </span>
-<span class="n">a</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># extend는 원본에 추가되는 형태
-</span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+<span class="n">a</span><span class="p">.</span><span class="nf">extend</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># extend는 원본에 추가되는 형태
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 </span>
 </code></pre></div></div>
 
@@ -706,14 +706,14 @@
 </span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>      <span class="c1"># [7, 10]
 </span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span>       <span class="c1"># 전체
 </span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    <span class="c1"># [1, 3, 5, 7]
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    <span class="c1"># [1, 3, 5, 7]
 </span>
 <span class="c1"># [이상:미만:스탭단계]
 </span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># [1, 3, 5]
-</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>     <span class="c1"># [10, 7, 5, 3, 1] Reverse
-</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 </code></pre></div></div>
 
@@ -722,18 +722,18 @@
 삭제는 <code class="language-plaintext highlighter-rouge">del</code>, <code class="language-plaintext highlighter-rouge">remove</code> ,<code class="language-plaintext highlighter-rouge">pop</code> 등으로 삭제 가능 합니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s">"AB"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="bp">False</span><span class="p">]</span>
 
-<span class="n">b</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mf">50.5</span><span class="p">)</span>  <span class="c1"># 추가  ['AB', 10, False, 50.5]
+<span class="n">b</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="mf">50.5</span><span class="p">)</span>  <span class="c1"># 추가  ['AB', 10, False, 50.5]
 </span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>       <span class="c1"># 변경  ['AB', 11, False, 50.5]
 </span>
 <span class="k">del</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>        <span class="c1"># 삭제  ['AB', 11, 50.5]
-</span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>        <span class="c1"># ['AB', 11, 50.5]
+</span><span class="nf">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>        <span class="c1"># ['AB', 11, 50.5]
 </span>
-<span class="n">b</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s">'KK'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>        <span class="c1"># ['KK','AB', 11, 50.5]
+<span class="n">b</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s">'KK'</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>        <span class="c1"># ['KK','AB', 11, 50.5]
 </span>
-<span class="n">a</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># pop(인덱스 = -1) 기본값 -1로 마지막 값을 제거함
-</span><span class="n">a</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="mf">50.5</span><span class="p">)</span> <span class="c1"># remove(값) , 요소를 값으로 판단하어 제거함
-</span><span class="n">a</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span> <span class="c1"># 모두 초기화
+<span class="n">a</span><span class="p">.</span><span class="nf">pop</span><span class="p">()</span>  <span class="c1"># pop(인덱스 = -1) 기본값 -1로 마지막 값을 제거함
+</span><span class="n">a</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="mf">50.5</span><span class="p">)</span> <span class="c1"># remove(값) , 요소를 값으로 판단하어 제거함
+</span><span class="n">a</span><span class="p">.</span><span class="nf">clear</span><span class="p">()</span> <span class="c1"># 모두 초기화
 </span></code></pre></div></div>
 
 <h1 id="전개-연산자">전개 연산자</h1>
@@ -741,55 +741,55 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">b</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 </span>
 </code></pre></div></div>
 
 <h2 id="split">split</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mylist</span> <span class="o">=</span> <span class="s">"Today the weather is very clear."</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span> <span class="c1"># ['Today', 'the', 'weather', 'is', 'very', 'clear.']
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mylist</span> <span class="o">=</span> <span class="s">"Today the weather is very clear."</span><span class="p">.</span><span class="nf">split</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span> <span class="c1"># ['Today', 'the', 'weather', 'is', 'very', 'clear.']
 </span>
-<span class="n">i</span> <span class="o">=</span> <span class="n">mylist</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="s">'weather'</span><span class="p">)</span>  <span class="c1"># i = 2
-</span><span class="n">n</span> <span class="o">=</span> <span class="n">mylist</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">'very'</span><span class="p">)</span>    <span class="c1"># n = 1
-</span><span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># 2 1
+<span class="n">i</span> <span class="o">=</span> <span class="n">mylist</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="s">'weather'</span><span class="p">)</span>  <span class="c1"># i = 2
+</span><span class="n">n</span> <span class="o">=</span> <span class="n">mylist</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s">'very'</span><span class="p">)</span>    <span class="c1"># n = 1
+</span><span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># 2 1
 </span></code></pre></div></div>
 
 <h2 id="표현식-for-요소-in-컬렉션-if-조건식">[표현식 for 요소 in 컬렉션 [if 조건식]]</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span>    <span class="c1"># [0, 9, 36, 81]
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span>    <span class="c1"># [0, 9, 36, 81]
 </span>
-<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span>  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span>    <span class="c1"># [0, 3, 6, 9]
+<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span>  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span>    <span class="c1"># [0, 3, 6, 9]
 </span>
 </code></pre></div></div>
 
 <h2 id="배열-초기화">배열 초기화</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">len</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1">#[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+<span class="nf">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1">#[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 </span>
 
 <span class="nb">len</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="c1">#[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+<span class="nf">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="c1">#[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 </span></code></pre></div></div>
 
 <h2 id="배열-순회">배열 순회</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
     <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="c1"># [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+<span class="nf">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="c1"># [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
 </span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
 </span>
 <span class="nb">str</span> <span class="o">=</span> <span class="s">'ABCDE'</span>
-<span class="k">print</span><span class="p">([</span><span class="n">c</span> <span class="o">*</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">])</span> <span class="c1">#['AAA', 'BBB', 'CCC', 'DDD', 'EEE']
+<span class="nf">print</span><span class="p">([</span><span class="n">c</span> <span class="o">*</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">])</span> <span class="c1">#['AAA', 'BBB', 'CCC', 'DDD', 'EEE']
 </span>
 <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'A'</span><span class="p">,</span><span class="s">'B'</span><span class="p">,</span><span class="s">'C'</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"{}번째 {} 값"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"{}번째 {} 값"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 <span class="c1"># 출력
 </span><span class="mi">0</span><span class="n">번째</span> <span class="n">A</span> <span class="n">값</span>
 <span class="mi">1</span><span class="n">번째</span> <span class="n">B</span> <span class="n">값</span>
@@ -800,20 +800,20 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="c1"># 1~10까지 중 2로 나눈 나머지 0인 아이템만 arr로 재선언
 </span><span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [2, 4, 6, 8, 10]
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [2, 4, 6, 8, 10]
 </span>
 <span class="c1"># 1부터 30 까지 2의 배수 AND 3의 배수 , 조건은 모두 AND로 이어짐.
-</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [6, 12, 18, 24, 30]
+</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [6, 12, 18, 24, 30]
 </span>
 <span class="c1"># arr = [n for n in range(1, 31) if n % 2 == 0 and if n % 3 == 0] 
 # SyntaxError: invalid syntax   And를 직접 넣는 것은 허용이 되지 않음
 </span>
 <span class="c1"># 1부터 30 까지 2의 배수 OR 3의 배수 
-</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
 <span class="c1"># 한 if 문 내에서 or 연산 해결
-</span><span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [2, 3, 4, 6, 8, 9, 10, 12, 14, 15
+</span><span class="nf">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># [2, 3, 4, 6, 8, 9, 10, 12, 14, 15
 </span>
 </code></pre></div></div>
 
@@ -824,60 +824,60 @@
        <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
       <span class="p">]</span>
 
-<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>     <span class="c1"># 4     행
-</span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  <span class="c1"># 3     열
+<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>     <span class="c1"># 4     행
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  <span class="c1"># 3     열
 </span>
 <span class="c1"># 1차원 배열로 변환
 </span><span class="n">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">arr</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr1</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+<span class="nf">print</span><span class="p">(</span><span class="n">arr1</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 </span>
 <span class="n">arr2</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
-        <span class="n">arr2</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span>  <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        <span class="n">arr2</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span>  <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 </span>
 </code></pre></div></div>
 
 <h2 id="집계-함수">집계 함수</h2>
 <h3 id="sum-min-max">sum, min, max</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="c1"># 15
-</span><span class="k">print</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="c1"># 1
-</span><span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="c1"># 5
+<span class="nf">print</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="c1"># 15
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="c1"># 1
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="c1"># 5
 </span>
 </code></pre></div></div>
 
 <h2 id="정렬">정렬</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [1, 2, 6, 3, 2, 6, 8, 9]
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [1, 2, 6, 3, 2, 6, 8, 9]
 </span>
-<span class="n">a</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>    
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [1, 2, 2, 3, 6, 6, 8, 9]
+<span class="n">a</span><span class="p">.</span><span class="nf">sort</span><span class="p">()</span>    
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [1, 2, 2, 3, 6, 6, 8, 9]
 </span>
-<span class="n">a</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [9, 8, 6, 6, 3, 2, 2, 1]
+<span class="n">a</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [9, 8, 6, 6, 3, 2, 2, 1]
 </span>
-<span class="n">b</span> <span class="o">=</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [9, 8, 6, 6, 3, 2, 2, 1]
+<span class="n">b</span> <span class="o">=</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># [9, 8, 6, 6, 3, 2, 2, 1]
 </span>
 </code></pre></div></div>
 
 <h2 id="list---set-변환중복-제거">list - set 변환(중복 제거)</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
-<span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#set으로 변경함
-</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>  <span class="c1"># &lt;class 'set'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>    <span class="c1"># {1, 2, 3, 6, 8, 9}
+<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#set으로 변경함
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>  <span class="c1"># &lt;class 'set'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>    <span class="c1"># {1, 2, 3, 6, 8, 9}
 </span>
-<span class="n">a2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1"># &lt;class 'list'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>   <span class="c1"># [1, 2, 3, 6, 8, 9]
+<span class="n">a2</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="c1"># &lt;class 'list'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>   <span class="c1"># [1, 2, 3, 6, 8, 9]
 </span></code></pre></div></div>
 
 <h2 id="list-to-string">list to string</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
-<span class="nb">str</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">a</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># 12632689
+<span class="nb">str</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">a</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># 12632689
 </span></code></pre></div></div>
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
@@ -1622,7 +1622,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

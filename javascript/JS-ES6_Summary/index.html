@@ -668,10 +668,10 @@
   </li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
     <span class="kd">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="c1">//에러 발생함</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="c1">//에러 발생함</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">var</code> 의 특징</p>
@@ -680,15 +680,15 @@
   <li>함부 범위 내에서만 사용가능.</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span> <span class="c1">//출력됨</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span> <span class="c1">//출력됨</span>
 
-<span class="kd">function</span> <span class="nx">f</span><span class="p">(){</span>
+<span class="kd">function</span> <span class="nf">f</span><span class="p">(){</span>
     <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span> <span class="c1">//에러 출력 Uncaught ReferenceError: d is not defined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span> <span class="c1">//에러 출력 Uncaught ReferenceError: d is not defined</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">let</code> 의 특징</p>
@@ -697,15 +697,15 @@
   <li>재할당 가능함.</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">if</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
     <span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span> <span class="c1">//에러 발생함</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span> <span class="c1">//에러 발생함</span>
 </code></pre></div></div>
 
 <h2 id="arrow-function-단축-지원">Arrow Function 단축 지원</h2>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//ES5</span>
-<span class="kd">function</span> <span class="nx">echo</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span>
+<span class="kd">function</span> <span class="nf">echo</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span>
 	<span class="k">return</span> <span class="nx">str</span><span class="o">+</span><span class="dl">"</span><span class="s2"> : </span><span class="dl">"</span><span class="o">+</span> <span class="nx">str</span>
 <span class="p">}</span>
 
@@ -717,7 +717,7 @@
 <h2 id="function-기본값-지원">Function 기본값 지원</h2>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">echo</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="o">=</span><span class="dl">'</span><span class="s1">야호</span><span class="dl">'</span><span class="p">)</span><span class="o">=&gt;</span> <span class="nx">str</span><span class="o">+</span><span class="dl">"</span><span class="s2"> : </span><span class="dl">"</span><span class="o">+</span> <span class="nx">str</span><span class="p">;</span>
-<span class="nx">echo</span><span class="p">();</span>
+<span class="nf">echo</span><span class="p">();</span>
 <span class="dl">'</span><span class="s1">야호 : 야호</span><span class="dl">'</span>
 
 <span class="p">()</span><span class="o">=&gt;</span><span class="p">{}</span>
@@ -733,15 +733,15 @@
 <h2 id="string-비교-startswith-endswith-includes">String 비교 startsWith(), endsWith(), includes</h2>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">ABCDEFGHIJK</span><span class="dl">'</span><span class="p">;;</span>
-<span class="nx">str</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">'</span><span class="s1">CDE</span><span class="dl">'</span><span class="p">);</span>	<span class="c1">//true</span>
-<span class="nx">str</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">ABCD</span><span class="dl">'</span><span class="p">);</span>	<span class="c1">//true</span>
-<span class="nx">str</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">IJK</span><span class="dl">'</span><span class="p">);</span>	<span class="c1">//true</span>
+<span class="nx">str</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="dl">'</span><span class="s1">CDE</span><span class="dl">'</span><span class="p">);</span>	<span class="c1">//true</span>
+<span class="nx">str</span><span class="p">.</span><span class="nf">startsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">ABCD</span><span class="dl">'</span><span class="p">);</span>	<span class="c1">//true</span>
+<span class="nx">str</span><span class="p">.</span><span class="nf">endsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">IJK</span><span class="dl">'</span><span class="p">);</span>	<span class="c1">//true</span>
 </code></pre></div></div>
 
 <h2 id="템플릿-리터럴">템플릿 리터럴</h2>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">홍길동</span><span class="dl">'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`안녕하세요 저는 </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2"> 입니다.`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`안녕하세요 저는 </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2"> 입니다.`</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h2 id="object-destructuring">Object Destructuring</h2>
@@ -753,28 +753,28 @@
 <span class="p">};</span>
 
 <span class="kd">let</span> <span class="p">{</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">}</span> <span class="o">=</span> <span class="nx">car</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>		<span class="c1">// sedan</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">price</span><span class="p">);</span>		<span class="c1">// 10000</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>		<span class="c1">// sedan</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">price</span><span class="p">);</span>		<span class="c1">// 10000</span>
 
 <span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">b</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="dl">'</span><span class="s1">aaa</span><span class="dl">'</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
 <span class="kd">let</span> <span class="p">{</span><span class="nx">a</span><span class="p">,</span> <span class="na">b</span><span class="p">:{</span><span class="nx">name</span><span class="p">}}</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>         <span class="c1">//1</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>         <span class="c1">//aaa</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>         <span class="c1">//1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>         <span class="c1">//aaa</span>
 </code></pre></div></div>
 
 <h2 id="destructuring">Destructuring</h2>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">old_data</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">D</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">E</span><span class="dl">"</span><span class="p">];</span>
 <span class="kd">let</span> <span class="p">[</span><span class="nx">v1</span><span class="p">,,,</span><span class="nx">v2</span><span class="p">]</span> <span class="o">=</span> <span class="nx">old_data</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">v1</span><span class="p">);</span>	<span class="c1">//A</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">v2</span><span class="p">);</span>	<span class="c1">//D</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">v1</span><span class="p">);</span>	<span class="c1">//A</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">v2</span><span class="p">);</span>	<span class="c1">//D</span>
 </code></pre></div></div>
 
 <h2 id="for-in">for-in</h2>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">D</span><span class="dl">'</span><span class="p">];</span>
-<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">arr</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+<span class="nf">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">arr</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -782,47 +782,55 @@
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">old_val</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
 <span class="kd">let</span> <span class="nx">new_val</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,...</span><span class="nx">old_val</span><span class="p">,</span><span class="mi">6</span><span class="p">];</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">new_val</span><span class="p">);</span>	<span class="c1">// [0, 1, 2, 3, 4, 5, 6]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">new_val</span><span class="p">);</span>	<span class="c1">// [0, 1, 2, 3, 4, 5, 6]</span>
 
-<span class="kd">function</span> <span class="nx">totalSum</span><span class="p">(</span> <span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span><span class="p">,</span> <span class="nx">v3</span><span class="p">,</span> <span class="nx">v4</span><span class="p">,</span> <span class="nx">v5</span><span class="p">){</span>
+<span class="kd">function</span> <span class="nf">totalSum</span><span class="p">(</span> <span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span><span class="p">,</span> <span class="nx">v3</span><span class="p">,</span> <span class="nx">v4</span><span class="p">,</span> <span class="nx">v5</span><span class="p">){</span>
     <span class="k">return</span> <span class="nx">v1</span> <span class="o">+</span> <span class="nx">v2</span> <span class="o">+</span> <span class="nx">v3</span> <span class="o">+</span> <span class="nx">v4</span> <span class="o">+</span> <span class="nx">v5</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">totalSum</span><span class="p">(...</span><span class="nx">old_val</span><span class="p">);</span>	<span class="c1">//15</span>
+<span class="nf">totalSum</span><span class="p">(...</span><span class="nx">old_val</span><span class="p">);</span>	<span class="c1">//15</span>
 
 </code></pre></div></div>
 
 <h2 id="arrayfrom">Array.from</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">prices</span><span class="p">(){</span>
-    <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">prices</span><span class="p">(){</span>
+    <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
 	<span class="c1">//console.log(data);</span>
     <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">prices</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>	<span class="c1">//배열로 변환되어 반환됨 [1, 2, 3, 4, 5]</span>
+<span class="nf">prices</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>	<span class="c1">//배열로 변환되어 반환됨 [1, 2, 3, 4, 5]</span>
 </code></pre></div></div>
 
 <h2 id="arraymap">Array.map()</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">new_num</span> <span class="o">=</span> <span class="nx">num</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">v</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span> <span class="k">return</span> <span class="nx">v</span><span class="o">*</span><span class="nx">v</span> <span class="p">;</span> <span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">new_num</span><span class="p">);</span> <span class="c1">// [1, 4, 9, 16, 25]</span>
+</code></pre></div></div>
 
 <h2 id="arrayfilter">Array.Filter()</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">new_num</span> <span class="o">=</span> <span class="nx">num</span><span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">v</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span> <span class="k">return</span> <span class="nx">v</span> <span class="o">&gt;=</span><span class="mi">3</span> <span class="p">;</span> <span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">new_num</span><span class="p">);</span> <span class="c1">//[3, 4, 5]</span>
+</code></pre></div></div>
 
 <h2 id="spread-operator">spread operator</h2>
 
 <h2 id="set-has">set has</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">set_data</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">();</span>
-<span class="nx">set_data</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">set_data</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">set_data</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">set_data</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">D</span><span class="dl">"</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">set_data</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Set</span><span class="p">();</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">D</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="c1">//ES5 C를 포함 여부를 판단하려면</span>
-<span class="nx">set_data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span> <span class="c1">//비교 로직을 통해서 판단함.</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span> <span class="c1">//비교 로직을 통해서 판단함.</span>
 <span class="p">});</span>
 
 <span class="c1">//ES6</span>
-<span class="nx">set_data</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>	<span class="c1">//true</span>
-<span class="nx">set_data</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="dl">"</span><span class="s2">F</span><span class="dl">"</span><span class="p">);</span>	<span class="c1">//false</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nf">has</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>	<span class="c1">//true</span>
+<span class="nx">set_data</span><span class="p">.</span><span class="nf">has</span><span class="p">(</span><span class="dl">"</span><span class="s2">F</span><span class="dl">"</span><span class="p">);</span>	<span class="c1">//false</span>
 </code></pre></div></div>
 
 <h2 id="weakset">WeakSet</h2>
@@ -830,7 +838,7 @@
 <h2 id="export-import">export import</h2>
 
 <p>sub.js</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">testFn</span><span class="p">(</span><span class="nx">v1</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">testFn</span><span class="p">(</span><span class="nx">v1</span><span class="p">){</span>
     <span class="k">return</span> <span class="nx">v1</span> <span class="o">*</span> <span class="nx">v1</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -847,16 +855,16 @@
 
 <h2 id="class-constructor">Class constructor</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Car</span> <span class="p">{</span>
-    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">){</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">=</span> <span class="nx">price</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">const</span> <span class="nx">mycar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">sonata</span><span class="dl">'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>	<span class="c1">// sonata</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">price</span><span class="p">);</span>	<span class="c1">// 10000</span>
+<span class="kd">const</span> <span class="nx">mycar</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">sonata</span><span class="dl">'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>	<span class="c1">// sonata</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">price</span><span class="p">);</span>	<span class="c1">// 10000</span>
 </code></pre></div></div>
 
 
@@ -1163,7 +1171,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

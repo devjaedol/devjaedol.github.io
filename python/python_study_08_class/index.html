@@ -646,15 +646,15 @@
 클래스 내부에 <code class="language-plaintext highlighter-rouge">__xxx__</code> 로 구성된 메소드는 특수 기능으로 존재하는 메소드 입니다.
 <code class="language-plaintext highlighter-rouge">__str__</code>, <code class="language-plaintext highlighter-rouge">__eq__</code>,<code class="language-plaintext highlighter-rouge">__dir__</code> 등등</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span>
         <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">사용자함수명</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">사용자함수명</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
         <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">'객체가 소멸됩니다.'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">'객체가 소멸됩니다.'</span><span class="p">)</span>
 
 </code></pre></div></div>
 
@@ -663,47 +663,47 @@
 <code class="language-plaintext highlighter-rouge">type(인스턴스) == 클래스</code> 로도 확인 할 수 있습니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
-<span class="n">truck</span> <span class="o">=</span> <span class="n">Car</span><span class="p">()</span>  <span class="c1">#객체 생성
+<span class="n">truck</span> <span class="o">=</span> <span class="nc">Car</span><span class="p">()</span>  <span class="c1">#객체 생성
 </span>
-<span class="k">print</span><span class="p">(</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">truck</span><span class="p">,</span> <span class="n">Car</span><span class="p">))</span> <span class="c1"># True
-</span><span class="k">print</span><span class="p">(</span> <span class="nb">type</span><span class="p">(</span><span class="n">truck</span><span class="p">)</span> <span class="o">==</span> <span class="n">Car</span><span class="p">)</span> <span class="c1"># True
+<span class="nf">print</span><span class="p">(</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">truck</span><span class="p">,</span> <span class="n">Car</span><span class="p">))</span> <span class="c1"># True
+</span><span class="nf">print</span><span class="p">(</span> <span class="nf">type</span><span class="p">(</span><span class="n">truck</span><span class="p">)</span> <span class="o">==</span> <span class="n">Car</span><span class="p">)</span> <span class="c1"># True
 </span></code></pre></div></div>
 
 <h2 id="sample-code">Sample Code</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-    <span class="k">def</span> <span class="nf">setDoor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">door</span> <span class="o">=</span> <span class="n">door</span>
-    <span class="k">def</span> <span class="nf">getDoor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">door</span>
-    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">def</span> <span class="nf">setDoor</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">door</span> <span class="o">=</span> <span class="n">door</span>
+    <span class="k">def</span> <span class="nf">getDoor</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">door</span>
+    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
-<span class="n">c</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s">'NewCar'</span><span class="p">)</span>
-<span class="n">c</span><span class="p">.</span><span class="n">setDoor</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">getDoor</span><span class="p">())</span> <span class="c1"># 4
+<span class="n">c</span> <span class="o">=</span> <span class="nc">Car</span><span class="p">(</span><span class="s">'NewCar'</span><span class="p">)</span>
+<span class="n">c</span><span class="p">.</span><span class="nf">setDoor</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="nf">getDoor</span><span class="p">())</span> <span class="c1"># 4
 </span></code></pre></div></div>
 
 <h1 id="상속">상속</h1>
 <p>부모 클래스를 상속 합니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Bus</span> <span class="p">(</span><span class="n">Car</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"this is a bus:"</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"this is a bus:"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
  
 <span class="k">class</span> <span class="nc">Truck</span> <span class="p">(</span><span class="n">Car</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"this is a Truck:"</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"this is a Truck:"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
 
-<span class="n">b</span> <span class="o">=</span> <span class="n">Bus</span><span class="p">(</span><span class="s">'시내버스'</span><span class="p">)</span> 
-<span class="n">t</span> <span class="o">=</span> <span class="n">Truck</span><span class="p">(</span><span class="s">'화물트럭'</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nc">Bus</span><span class="p">(</span><span class="s">'시내버스'</span><span class="p">)</span> 
+<span class="n">t</span> <span class="o">=</span> <span class="nc">Truck</span><span class="p">(</span><span class="s">'화물트럭'</span><span class="p">)</span>
 
 <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="n">i</span><span class="p">.</span><span class="n">getFeatures</span><span class="p">()</span>
+    <span class="n">i</span><span class="p">.</span><span class="nf">getFeatures</span><span class="p">()</span>
 
 <span class="c1">#출력
 </span><span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">bus</span><span class="p">:</span> <span class="n">시내버스</span>
@@ -1443,7 +1443,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

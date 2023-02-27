@@ -684,30 +684,30 @@
 <h1 id="기본-사용법">기본 사용법</h1>
 <h2 id="선언">선언</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5}
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5}
 </span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
-<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+<span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 </span>
 </code></pre></div></div>
 
 <h2 id="추가-삭제">추가, 삭제</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
-<span class="n">a</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5, 6}
+<span class="n">a</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5, 6}
 </span>
 <span class="c1">#여러개 추가
-</span><span class="n">a</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">})</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5, 6, 7, 8, 9}
+</span><span class="n">a</span><span class="p">.</span><span class="nf">update</span><span class="p">({</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">})</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5, 6, 7, 8, 9}
 </span>
 <span class="c1">#한개 삭제
-</span><span class="n">a</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 4, 5, 6, 7, 8, 9}
+</span><span class="n">a</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 4, 5, 6, 7, 8, 9}
 </span>
 <span class="c1">#모두 삭제
-</span><span class="n">a</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {}
+</span><span class="n">a</span><span class="p">.</span><span class="nf">clear</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {}
 </span></code></pre></div></div>
 
 <h2 id="연산">연산</h2>
@@ -717,46 +717,46 @@
 <span class="c1"># 합집합
 </span><span class="n">u</span> <span class="o">=</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span>
 <span class="c1"># u = a.union(b)
-</span><span class="k">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="c1"># {1, 2, 3, 4, 5, 6, 7}
+</span><span class="nf">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="c1"># {1, 2, 3, 4, 5, 6, 7}
 </span>
 <span class="c1"># 교집합
 </span><span class="n">i</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span>
 <span class="c1"># i = a.intersection(b)
-</span><span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1">#  {3, 4, 5}
+</span><span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1">#  {3, 4, 5}
 </span>  
 <span class="c1"># 차집합
 </span><span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
 <span class="c1"># d = a.difference(b)
-</span><span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1"># {1, 2}
+</span><span class="nf">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1"># {1, 2}
 </span>
 </code></pre></div></div>
 
 <h2 id="set-의-길이-len">set 의 길이 len</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="c1"># len
+<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="c1"># len
 </span>
 </code></pre></div></div>
 
 <h2 id="list-to-set-변환">list to set 변환</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {1, 2, 3, 4, 5}
+<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {1, 2, 3, 4, 5}
 </span>
 </code></pre></div></div>
 
 <h2 id="string-to-set">string to set</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">str</span> <span class="o">=</span> <span class="s">'ABCDE'</span>
-<span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="c1"># {'C', 'E', 'B', 'D', 'A'}
+<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="c1"># {'C', 'E', 'B', 'D', 'A'}
 </span>
 
 </code></pre></div></div>
 
 <h2 id="list-to-set">list to set</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># ['a','b','c','d']
+<span class="nf">print</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># ['a','b','c','d']
 </span>
-<span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># {'a','b','c','d'}
-</span><span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># {'a','b','c','d'}
+</span><span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 
 </code></pre></div></div>
 
@@ -1496,7 +1496,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

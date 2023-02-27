@@ -640,10 +640,10 @@
 <code class="language-plaintext highlighter-rouge">module.py</code> 와 <code class="language-plaintext highlighter-rouge">main.py</code>는 동일 경로에 위치 합니다.</p>
 
 <h2 id="mainpy">main.py</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">module</span> <span class="k">as</span> <span class="n">m</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">module</span> <span class="k">as</span> <span class="n">m</span>
 
-<span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
+<span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
 </span></code></pre></div></div>
 
 <h1 id="패키지-만들기">패키지 만들기</h1>
@@ -660,23 +660,23 @@
 
 <p>위와 같은 경우 아래와 같이 사용할 수 있습니다.</p>
 <h2 id="mainpy-1">main.py</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
 
-<span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
+<span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
 </span></code></pre></div></div>
 <h2 id="main-실행-구성">main 실행 구성</h2>
 <p>실행 메인이 되는 함수를 파악하기 위해서 <code class="language-plaintext highlighter-rouge">__name__</code> 속성을 통해서 실행 주체를 확인 할 수 있습니다. <br />
 <code class="language-plaintext highlighter-rouge">main()</code> 함수를 <code class="language-plaintext highlighter-rouge">__name__ == "__main__"</code> 조건에 맞을 경우에만 실행하도록 할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
+    <span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
 </span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>  
+    <span class="nf">main</span><span class="p">()</span>  
     
 </code></pre></div></div>
 
@@ -1408,7 +1408,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

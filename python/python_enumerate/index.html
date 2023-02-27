@@ -629,7 +629,7 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
 <span class="c1">#출력
 </span><span class="n">a</span>
@@ -644,7 +644,7 @@
 <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="c1">#출력
@@ -659,8 +659,8 @@
 index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재합니다</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
 
 <span class="c1">#출력
 </span><span class="mi">0</span> <span class="n">a</span>
@@ -674,8 +674,8 @@ index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재�
 <p>enumerate(순회데이터[,시작 인덱스])</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="p">)</span>
 
 <span class="c1">#출력
 </span><span class="mi">0</span> <span class="n">a</span>
@@ -686,8 +686,8 @@ index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재�
 </code></pre></div></div>
 <p>시작 인자를 변경한다면, 다음과 같이 출력됩니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="mi">50</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="mi">50</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="p">)</span>
 
 <span class="c1">#출력
 </span><span class="mi">50</span> <span class="n">a</span>
@@ -702,52 +702,52 @@ index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재�
 그러나 다른점은 index 를 반환 하는 여부가 차이가 존재합니다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
-<span class="n">iter_data</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
+<span class="n">iter_data</span> <span class="o">=</span> <span class="nf">iter</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="s">'a'</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="s">'b'</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="s">'c'</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="s">'d'</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="s">'e'</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
 <span class="o">----------------------------</span>
-<span class="n">StopIterationTraceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="nc">StopIterationTraceback </span><span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
 <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">49</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">cell</span> <span class="n">line</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">()</span>
-<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nf">next</span><span class="p">(</span><span class="n">iter_data</span><span class="p">)</span>
 </code></pre></div></div>
 <p>동일 기능을 enumerate를 사용할 경우</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
-<span class="n">enum_data</span> <span class="o">=</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
+<span class="n">enum_data</span> <span class="o">=</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">'b'</span><span class="p">)</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">'c'</span><span class="p">)</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">'d'</span><span class="p">)</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
 <span class="o">&gt;</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">'e'</span><span class="p">)</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
+<span class="nf">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
 <span class="o">----------------------------</span>
-<span class="n">StopIterationTraceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="nc">StopIterationTraceback </span><span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
 <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">56</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">cell</span> <span class="n">line</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">()</span>
-<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nf">next</span><span class="p">(</span><span class="n">enum_data</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h1 id="enumerate을-사용-예">enumerate을 사용 예</h1>
 
 <h2 id="2중-탐색-예제-on2">2중 탐색 예제 O(n^2)</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">data2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">:],</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data1</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">data2</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">:],</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
 
 <span class="c1">#출력
 </span><span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="n">d</span> <span class="n">e</span> 
@@ -759,16 +759,16 @@ index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재�
 
 <h2 id="리스트-형-변환">리스트 형 변환</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
-<span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
+<span class="nf">list</span><span class="p">(</span><span class="nf">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
 <span class="c1">#출력
 </span><span class="o">&gt;</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="s">'a'</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">'b'</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">'c'</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">'d'</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">'e'</span><span class="p">)]</span>
 </code></pre></div></div>
 
 <h2 id="2차원-배열-쉽게-접근">2차원 배열 쉽게 접근</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">],[</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">],[</span><span class="s">'e'</span><span class="p">,</span><span class="s">'f'</span><span class="p">]]</span>
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">r</span><span class="p">])):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">r</span><span class="p">])):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">])</span>
 <span class="c1">#출력
 </span><span class="mi">0</span> <span class="mi">0</span> <span class="n">a</span>
 <span class="mi">0</span> <span class="mi">1</span> <span class="n">b</span>
@@ -779,9 +779,9 @@ index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재�
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">],[</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">],[</span><span class="s">'e'</span><span class="p">,</span><span class="s">'f'</span><span class="p">]]</span>
-<span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 <span class="c1">#출력
 </span><span class="mi">0</span> <span class="mi">0</span> <span class="n">a</span>
 <span class="mi">0</span> <span class="mi">1</span> <span class="n">b</span>
@@ -1127,7 +1127,7 @@ index를 순회하면 되지만, 전체 len을 구해야되는 문제가 존재�
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

@@ -632,17 +632,17 @@
 <code class="language-plaintext highlighter-rouge">numpy.savetxt(fname, X, fmt='%.18e', delimiter=' ', newline='\n', header='', footer='', comments='# ', encoding=None)</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 <span class="c1"># [[6 5 4 1 1]
 #  [9 8 3 9 8]
 #  [9 7 7 4 9]
 #  [6 4 9 5 7]
 #  [5 7 4 9 9]]
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">"t1.csv"</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-<span class="n">np</span><span class="p">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">"t2.csv"</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
-<span class="n">np</span><span class="p">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s">"t3.csv"</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">'%.2e'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">'c1,c2,c3,c4,c5'</span><span class="p">)</span>  <span class="c1">#소수점 포멧
+<span class="n">np</span><span class="p">.</span><span class="nf">savetxt</span><span class="p">(</span><span class="s">"t1.csv"</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">savetxt</span><span class="p">(</span><span class="s">"t2.csv"</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">savetxt</span><span class="p">(</span><span class="s">"t3.csv"</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">'%.2e'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s">'c1,c2,c3,c4,c5'</span><span class="p">)</span>  <span class="c1">#소수점 포멧
 </span></code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">[t1.csv File]</code></p>
@@ -675,14 +675,14 @@
 <code class="language-plaintext highlighter-rouge">numpy.loadtxt(fname, dtype=&lt;class 'float'&gt;, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0, encoding='bytes', max_rows=None, *, quotechar=None, like=None)[source]</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">csv1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">"t1.csv"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">csv1</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">csv1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">loadtxt</span><span class="p">(</span><span class="s">"t1.csv"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">csv1</span><span class="p">)</span>
 
-<span class="n">csv2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">"t2.csv"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">csv2</span><span class="p">)</span>
+<span class="n">csv2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">loadtxt</span><span class="p">(</span><span class="s">"t2.csv"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">csv2</span><span class="p">)</span>
 
-<span class="n">csv3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">"t3.csv"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">csv3</span><span class="p">)</span>
+<span class="n">csv3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">loadtxt</span><span class="p">(</span><span class="s">"t3.csv"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">csv3</span><span class="p">)</span>
 
 <span class="c1"># 조회 결과
 # [[6. 5. 4. 1. 1.]
@@ -702,15 +702,15 @@
 <code class="language-plaintext highlighter-rouge">numpy.save(file, arr, allow_pickle=True, fix_imports=True)[source]</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.save.html" target="_blank">API 참조</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 <span class="c1"># [[4 1 8 3 5]
 #  [2 7 2 8 6]
 #  [9 9 1 8 7]
 #  [8 2 4 5 1]
 #  [4 9 7 1 2]]
 </span>
-<span class="n">np</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">"sample"</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>    <span class="c1"># sample.npy 이 생성됨. binary 형태
+<span class="n">np</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="s">"sample"</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>    <span class="c1"># sample.npy 이 생성됨. binary 형태
 </span></code></pre></div></div>
 
 <h2 id="numpysavez-npz">numpy.savez (npz)</h2>
@@ -718,14 +718,14 @@
 <code class="language-plaintext highlighter-rouge">numpy.savez(file, *args, **kwds)[source]</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.savez.html" target="_blank">API 참조</a></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">np</span><span class="p">.</span><span class="n">savez</span><span class="p">(</span><span class="s">"sample2"</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>  <span class="c1"># sample2.npz 이 생성됨. binary 형태
+<span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">savez</span><span class="p">(</span><span class="s">"sample2"</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>  <span class="c1"># sample2.npz 이 생성됨. binary 형태
 </span>
 <span class="c1"># 데이터의 이름을 부여하고 저장하기
-</span><span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">np</span><span class="p">.</span><span class="n">savez</span><span class="p">(</span><span class="s">"sample2"</span><span class="p">,</span> <span class="n">c1</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">c2</span><span class="o">=</span><span class="n">t2</span><span class="p">)</span>    <span class="c1">#c1, c2로 이름을 부여함
+</span><span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">savez</span><span class="p">(</span><span class="s">"sample2"</span><span class="p">,</span> <span class="n">c1</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">c2</span><span class="o">=</span><span class="n">t2</span><span class="p">)</span>    <span class="c1">#c1, c2로 이름을 부여함
 </span>
 </code></pre></div></div>
 
@@ -734,18 +734,18 @@
 <code class="language-plaintext highlighter-rouge">numpy.load(file, mmap_mode=None, allow_pickle=False, fix_imports=True, encoding='ASCII')</code>   <br />
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.load.html" target="_blank">API 참조</a></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># npy 조회
-</span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">"sample.npy"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="s">"sample.npy"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 
 <span class="c1"># npz 조회
-</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">"sample2.npz"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">files</span><span class="p">)</span>
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="s">"sample2.npz"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">files</span><span class="p">)</span>
 <span class="c1"># ['arr_0', 'arr_1']
 </span>
-<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'arr_0'</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'arr_1'</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'arr_0'</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'arr_1'</span><span class="p">])</span>
 
-<span class="k">with</span> <span class="n">load</span><span class="p">(</span><span class="s">'sample2.npz'</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+<span class="k">with</span> <span class="nf">load</span><span class="p">(</span><span class="s">'sample2.npz'</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'arr_0'</span><span class="p">]</span>
     <span class="n">t2</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'arr_1'</span><span class="p">]</span>
 
@@ -1472,7 +1472,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
