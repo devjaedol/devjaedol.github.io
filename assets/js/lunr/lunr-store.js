@@ -358,4 +358,10 @@ var store = [{
         "tags": ["문자열 구문 분석","stack","FILO"],
         "url": "/codingtest/Qtype-stack-sort-count/",
         "teaser": null
+      },{
+        "title": "Javascript Class",
+        "excerpt":"Javascript Class 구문 정리 시작. Basic Syntax 기본 생성 방법 class CarClass { constructor() { ... } //생성자 method1() { ... } // 메소드 method2() { ... } // 메소드 } Sample Code class Car { constructor(name, speed) { this.name = name; this.speed = speed; } getName() { return this.name;...","categories": ["javascript"],
+        "tags": ["Class","constructor"],
+        "url": "/javascript/JS-Class/",
+        "teaser": null
       }]

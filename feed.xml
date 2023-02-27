@@ -1,4 +1,126 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2023-02-27T04:32:43-06:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count/" rel="alternate" type="text/html" title="[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기" /><published>2022-07-08T00:00:00-05:00</published><updated>2022-07-08T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count/"><![CDATA[<h1 id="문제-조건">문제 조건</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2023-02-27T05:07:10-06:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Javascript Class</title><link href="https://kimjaehyun.co.kr/javascript/JS-Class/" rel="alternate" type="text/html" title="Javascript Class" /><published>2023-02-27T00:00:00-06:00</published><updated>2023-02-27T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Class</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Class/"><![CDATA[<p>Javascript Class 구문 정리 시작.</p>
+
+<h1 id="basic-syntax">Basic Syntax</h1>
+<p>기본 생성 방법</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CarClass</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> <span class="c1">//생성자</span>
+    <span class="nf">method1</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> <span class="c1">// 메소드</span>
+    <span class="nf">method2</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> <span class="c1">// 메소드</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="sample-code">Sample Code</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+
+    <span class="nf">getMaxSpeed</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="c1">// 클래스 생성 및 호출</span>
+
+<span class="kd">let</span> <span class="nx">mycar</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">sonata</span><span class="dl">'</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nf">getName</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nf">getMaxSpeed</span><span class="p">());</span>
+
+</code></pre></div></div>
+
+<h1 id="class의-타입과-instance의-타입-비교">Class의 타입과 Instance의 타입 비교</h1>
+<p>위에서 생성한 Class와 Instance의 Type의 차이를 참고 하기 바랍니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">Car</span><span class="p">);</span>  <span class="c1">// 'function'  </span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">mycar</span><span class="p">);</span>  <span class="c1">// 'object'</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">Car</span> <span class="o">==</span> <span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span><span class="p">);</span>  <span class="c1">// true   </span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nf">getOwnPropertyNames</span><span class="p">(</span><span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">));</span> <span class="c1">//전체 메소드 출력</span>
+<span class="o">&gt;&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="err"> </span><span class="p">[</span><span class="dl">'</span><span class="s1">constructor</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">getName</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">getMaxSpeed</span><span class="dl">'</span><span class="p">]</span>
+
+</code></pre></div></div>
+
+<h1 id="function-형태로-class생성">Function 형태로 Class생성</h1>
+<p>Class는 다음과 같은 Function, prototype 형태로도 생성 할 수 있습니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">Car</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getMaxSpeed</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span> 
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h1 id="class-field">Class Field</h1>
+<p>클래스의 필드 변수를 선언할 수 있습니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nx">engine</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">gasoline</span><span class="dl">"</span><span class="p">;</span>
+
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+
+    <span class="nf">getMaxSpeed</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span> 
+    <span class="nf">getEngineType</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">engine</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">mycar</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">sonata</span><span class="dl">'</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nf">getEngineType</span><span class="p">());</span>  <span class="c1">// gasoline</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">engine</span><span class="p">);</span>  <span class="c1">// gasoline</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">engine</span><span class="p">);</span> <span class="c1">// undefined</span>
+
+</code></pre></div></div>
+
+<h1 id="getter-and-setter">Getter and Setter</h1>
+<p>getter와 setter는 User.prototype에 정의됨.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nx">engine</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">gasoline</span><span class="dl">"</span><span class="p">;</span>
+
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>        
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span> <span class="c1">//speed 항목의 get/set을 적용</span>
+    <span class="p">}</span>
+
+    <span class="kd">get</span> <span class="nf">speed</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_speed</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">set</span> <span class="nf">speed</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+        <span class="nf">if</span><span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">){</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_speed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_speed</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">mycar</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">sonata</span><span class="dl">'</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">speed</span><span class="p">);</span> <span class="c1">// 0 응답</span>
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="javascript" /><category term="Class" /><category term="constructor" /><summary type="html"><![CDATA[Javascript Class 구문 정리 시작.]]></summary></entry><entry><title type="html">[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count/" rel="alternate" type="text/html" title="[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기" /><published>2022-07-08T00:00:00-05:00</published><updated>2022-07-08T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count/"><![CDATA[<h1 id="문제-조건">문제 조건</h1>
 <p>N 명의 사람이 다른 키를 가지로 일렬로 배치 합니다.  <br />
 키가 높은 사람은 앞사람이 본인 보다 작은 경우 내려 볼수 있습니다.  <br />
 랜덤으로 배치된 사람이 내려다 볼수 있는 사람의 총합을 구하시요.  <br />
@@ -225,6 +347,8 @@ O(N) 의 시간 복잡도로 해결하는 방법을 찾는 것을 묻는 문제 
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
+
+    
 
     
 
@@ -1041,741 +1165,6 @@ ndarray의 정렬 <code class="language-plaintext highlighter-rouge">index</code
     
 
     
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[nparray의 연산에 대해서 알아보겠습니다. mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제공 되고 있으니 참고 바랍니다. API 참조]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 생성(Array creation)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 생성(Array creation)" /><published>2022-06-24T00:00:00-05:00</published><updated>2022-06-24T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray/"><![CDATA[<p><code class="language-plaintext highlighter-rouge">Numpy(Numerical Python)</code> 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. <br />
-python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. <br />
-기본적은 사용법을 배워보겠습니다.<br />
-Array creation routines :  <a href="https://numpy.org/doc/stable/reference/routines.array-creation.html" target="_blank">API 참조</a></p>
-
-<p>Numpy 홈페이지 : <a href="https://numpy.org/doc" target="_blank">numpy.org</a></p>
-
-<p>Numpy를 사용하려면 설치를 진행 해야됩니다.</p>
-<h1 id="설치하기">설치하기</h1>
-<p><code class="language-plaintext highlighter-rouge">pip install numpy</code> 로 설치를 진행 합니다. <br />
-설치 후 <code class="language-plaintext highlighter-rouge">import numpy as np</code> 를 통해서 사용 합니다.</p>
-
-<h1 id="numpy-배열">numpy 배열</h1>
-
-<h2 id="배열-생성">배열 생성</h2>
-<p>기본적인 배열을 만들어 봅니다.<br />
-다양한 생성 방법이 있는데, 공식 문서에서 확인 바랍니다.  <br />
-<a href="https://numpy.org/doc/stable/reference/routines.array-creation.html" target="_blank">Array creation routines</a>  <br />
-type을 확인해보면, <code class="language-plaintext highlighter-rouge">list</code> 타입과 다른 <code class="language-plaintext highlighter-rouge">ndarray</code> 가 출력 됩니다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="c1"># 1차원 생성
-</span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 2 3 4 5]
-</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>    <span class="c1">#&lt;class 'list'&gt;
-</span><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>             <span class="c1">#&lt;class 'numpy.ndarray'&gt;
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(5,)     
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#1     
-</span>
-<span class="c1"># 2차원 생성
-</span><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(3,3)
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#2     
-</span>
-<span class="c1"># 3차원 생성
-</span><span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span> <span class="p">[</span>
-    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
-    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
-    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
-<span class="p">])</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(3, 3, 3)
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#3     
-</span>
-<span class="c1"># 배열의 타입 선택
-</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span> <span class="c1"># array([ True,  True, False,  True,  True])  0만 False
-</span></code></pre></div></div>
-<p>생성한 배열의 크기와 형태를 확인하는 방법은 <code class="language-plaintext highlighter-rouge">shape</code>은 tuple형태로 반환하고, 
-<code class="language-plaintext highlighter-rouge">ndim</code>은 차원수를 반환한다.</p>
-
-<h2 id="date-배열-생성">Date 배열 생성</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 데이터 타입 생성
-</span><span class="n">date</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="s">'2022-07-01'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">datetime64</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> <span class="c1"># 2022-07-01
-</span>
-<span class="n">date</span>        <span class="c1"># array('2022-07-01', dtype='datetime64[D]')
-</span><span class="n">date</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
-
-<span class="c1"># array(['2022-07-01', '2022-07-02', '2022-07-03', '2022-07-04',
-#        '2022-07-05', '2022-07-06', '2022-07-07', '2022-07-08',
-#        '2022-07-09', '2022-07-10', '2022-07-11', '2022-07-12',
-#        '2022-07-13', '2022-07-14', '2022-07-15', '2022-07-16',
-#        '2022-07-17', '2022-07-18', '2022-07-19', '2022-07-20',
-#        '2022-07-21', '2022-07-22', '2022-07-23', '2022-07-24',
-#        '2022-07-25', '2022-07-26', '2022-07-27', '2022-07-28',
-#        '2022-07-29', '2022-07-30', '2022-07-31', '2022-08-01',
-#        '2022-08-02', '2022-08-03', '2022-08-04', '2022-08-05',
-#        '2022-08-06', '2022-08-07', '2022-08-08', '2022-08-09'],
-#       dtype='datetime64[D]')
-</span>
-<span class="n">datetime</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">datetime64</span><span class="p">(</span><span class="s">'2022-07-01 13:20'</span><span class="p">)</span>
-<span class="n">datetime</span>
-<span class="c1"># numpy.datetime64('2022-07-01T13:20')
-</span>
-</code></pre></div></div>
-<p>생성한 배열의 크기와 형태를 확인하는 방법은 <code class="language-plaintext highlighter-rouge">shape</code>은 tuple형태로 반환하고, 
-<code class="language-plaintext highlighter-rouge">ndim</code>은 차원수를 반환한다.</p>
-
-<h2 id="배열-복사">배열 복사</h2>
-<p>기존 생성된 ndarray를  복사하여 생성 할수 있습니다. <br />
-아래 <code class="language-plaintext highlighter-rouge">new_1 = a1</code> 로 인해서 두 변수는 같이 변경되는 것을 알 수 있습니다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
-<span class="n">new_1</span> <span class="o">=</span> <span class="n">a1</span>
-<span class="n">new_2</span> <span class="o">=</span> <span class="n">a1</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
-
-<span class="n">new_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">new_1</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">new_2</span><span class="p">)</span>
-
-<span class="c1"># 결과
-# [200   2   3   4   5]
-# [200   2   3   4   5]
-# [1 2 3 4 5]
-</span>
-</code></pre></div></div>
-
-<h2 id="배열-정보-확인">배열 정보 확인</h2>
-<p>다음 함수를 통해서 배열의 정보를 확인할 수 있습니다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">항목</th>
-      <th style="text-align: center">설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">ndim</td>
-      <td style="text-align: center">배열 차원</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">shape</td>
-      <td style="text-align: center">배열 shape</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">dtype</td>
-      <td style="text-align: center">배열 데이터 타입</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">size</td>
-      <td style="text-align: center">배열 요소 수</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">itemsize</td>
-      <td style="text-align: center">배열 각 맴버의 바이트 크기</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">nbytes</td>
-      <td style="text-align: center">배열의 요소가 소비 한 총 바이트</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">strides</td>
-      <td style="text-align: center">배열을 탐색 할 때 각 차원에서 단계별로 이동할 바이트 수</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ainfo</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"ndim : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"shape : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"dytpe : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"size : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"itemsize : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">itemsize</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"nbytes : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">nbytes</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"strides : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">strides</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h2 id="배열-접근">배열 접근</h2>
-<p><code class="language-plaintext highlighter-rouge">list</code> 배열과 같이 접근 할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원 접근
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 2 3
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># 5
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># [1 2]
-</span>
-<span class="c1"># 2차원 접근
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 5 9
-</span>
-<span class="c1"># 3차원 접근
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">a3</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">a3</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 5 9 
-</span>
-<span class="c1">#값 변경
-</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">15</span>
-
-
-</code></pre></div></div>
-
-<h2 id="numpyzeros">numpy.zeros</h2>
-<p><code class="language-plaintext highlighter-rouge">0</code> 값으로 채우기 위해서 사용합니다.  <br />
-<code class="language-plaintext highlighter-rouge">numpy.zeros(shape, dtype=float, order='C', *, like=None)</code>   <br />
-<a href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원
-</span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>      <span class="c1"># &lt;class 'numpy.ndarray'&gt;
-</span><span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>            <span class="c1"># [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
-</span>
-<span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>        <span class="c1"># array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
-</span>
-
-<span class="c1"># 2차원
-</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-
-<span class="c1"># 형태
-# array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
-#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
-</span>
-</code></pre></div></div>
-
-<h2 id="numpyones">numpy.ones</h2>
-<p><code class="language-plaintext highlighter-rouge">1</code> 값으로 채우기 위해서 사용합니다.  <br />
-<code class="language-plaintext highlighter-rouge">numpy.ones(shape, dtype=None, order='C', *, like=None)</code>   <br />
-<a href="https://numpy.org/doc/stable/reference/generated/numpy.ones.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원
-</span><span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="c1"># array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
-</span>
-<span class="c1"># 2차원
-</span><span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="c1"># 형태
-# array([[1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
-#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
-#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
-#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
-#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
-#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
-#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
-#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
-#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
-#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]])
-</span>
-<span class="c1"># bool 타입 선언
-</span>
-<span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-<span class="c1"># 형태
-# array([[ True,  True,  True],
-</span>    <span class="c1">#    [ True,  True,  True],
-</span>    <span class="c1">#    [ True,  True,  True]])
-</span></code></pre></div></div>
-
-<h2 id="numpyfull">numpy.full</h2>
-<p><code class="language-plaintext highlighter-rouge">특정</code> 값으로 채우기 위해서 사용합니다.  <br />
-<code class="language-plaintext highlighter-rouge">numpy.full(shape, fill_value, dtype=None, order='C', *, like=None)</code>   <br />
-<a href="https://numpy.org/doc/stable/reference/generated/numpy.full.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mf">3.14</span> <span class="p">)</span>
-
-<span class="c1"># 형태
-# array([[3.14, 3.14, 3.14],
-#        [3.14, 3.14, 3.14],
-#        [3.14, 3.14, 3.14]])
-</span></code></pre></div></div>
-
-<h2 id="numpyeye">numpy.eye</h2>
-<p>단위행렬 형태로 대각선의 <code class="language-plaintext highlighter-rouge">1</code>로 만들어진 정사각형 행열을 반환 합니다.  <br />
-<code class="language-plaintext highlighter-rouge">numpy.eye(N, M=None, k=0, dtype=&lt;class 'float'&gt;, order='C', *, like=None)</code>   <br />
-<a href="https://numpy.org/doc/stable/reference/generated/numpy.eye.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">eye</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-
-<span class="c1"># 형태
-# array([[1., 0., 0., 0., 0.],
-#        [0., 1., 0., 0., 0.],
-#        [0., 0., 1., 0., 0.],
-#        [0., 0., 0., 1., 0.],
-#        [0., 0., 0., 0., 1.]])
-</span></code></pre></div></div>
-
-<h2 id="numpytri">numpy.tri</h2>
-<p>정사각형 행렬에서 3각 행렬 형태의 값을 <code class="language-plaintext highlighter-rouge">1</code>로 채운 행열을 반환 합니다. <br />
-<code class="language-plaintext highlighter-rouge">numpy.tri(N, M=None, k=0, dtype=&lt;class 'float'&gt;, *, like=None)</code>   <br />
-<a href="https://numpy.org/doc/stable/reference/generated/numpy.tri.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">tri</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-
-<span class="c1"># 형태
-# array([[1., 0., 0., 0., 0.],
-#        [1., 1., 0., 0., 0.],
-#        [1., 1., 1., 0., 0.],
-#        [1., 1., 1., 1., 0.],
-#        [1., 1., 1., 1., 1.]])
-</span></code></pre></div></div>
-
-<h2 id="numpyempty">numpy.empty</h2>
-<p>초기화 하지 않은 배열을 반환하는데, 값은 기존 메모리에 값들이 출력되는 현상이 발생한다.   <br />
-<code class="language-plaintext highlighter-rouge">numpy.empty(shape, dtype=float, order='C', *, like=None)</code>   <br />
-<a href="https://numpy.org/doc/stable/reference/generated/numpy.empty.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="c1"># 형태 (임의의 값)
-# array([1., 1., 1., 1., 1.])
-</span>
-<span class="n">np</span><span class="p">.</span><span class="nf">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-<span class="c1"># 형태 (임의의 값)
-# array([[3.14, 3.14, 3.14],
-#        [3.14, 3.14, 3.14],
-#        [3.14, 3.14, 3.14]])
-</span>       
-</code></pre></div></div>
-
-<h2 id="_like-ones_like--zeros_like-full_like-empty_like">*_like, ones_like,  zeros_like, full_like, empty_like</h2>
-<p><code class="language-plaintext highlighter-rouge">*_like</code>는 인자로 제공된 데이터 형태와 같은 <code class="language-plaintext highlighter-rouge">shape</code>을 가지고 있는 배열을 반환합니다.  <br />
-예 를 들어 <code class="language-plaintext highlighter-rouge">sample1</code>은 <code class="language-plaintext highlighter-rouge">(5,5)</code>의 sahpe을 가진 ndarray이고 <code class="language-plaintext highlighter-rouge">sample2</code>는 <code class="language-plaintext highlighter-rouge">sample1</code>의 형태(shape)을 동일하게 만들고 값은 <code class="language-plaintext highlighter-rouge">full_like</code>로 특정값을 선택하는 의미 입니다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">sample1</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>        <span class="c1"># (5, 5) 
-# print(sample1)
-# [[1. 1. 1. 1. 1.]
-#  [1. 1. 1. 1. 1.]
-#  [1. 1. 1. 1. 1.]
-#  [1. 1. 1. 1. 1.]
-#  [1. 1. 1. 1. 1.]]
-</span>
-<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">full_like</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">sample2</span><span class="p">)</span>              <span class="c1"># (5, 5)
-# print(sample2.shape)
-# [[7. 7. 7. 7. 7.]
-#  [7. 7. 7. 7. 7.]
-#  [7. 7. 7. 7. 7.]
-#  [7. 7. 7. 7. 7.]
-#  [7. 7. 7. 7. 7.]]
-</span></code></pre></div></div>
-
-<h2 id="numpyarange">numpy.arange</h2>
-<p><code class="language-plaintext highlighter-rouge">range</code> 함수와 동일한 형태로 ndarray를 생성하는 방법 입니다.
-<code class="language-plaintext highlighter-rouge">numpy.arange([start, ]stop, [step, ]dtype=None, *, like=None)</code>  <br />
-<a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html" target="_blank">API 참조</a></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="c1"># array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-</span>
-<span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="c1"># array([0, 2, 4, 6, 8])
-</span>
-</code></pre></div></div>
-
-<p><a href="https://www.youtube.com/watch?v=mirZPrWwvao" target="_blank">학습 내용 참고처</a></p>
-
-<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
-<ul>
-
-    
 
     
         
@@ -2183,7 +1572,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[Numpy(Numerical Python) 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. 기본적은 사용법을 배워보겠습니다. Array creation routines : API 참조]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 사용(Array manipulation)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_02_manage/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 사용(Array manipulation)" /><published>2022-06-24T00:00:00-05:00</published><updated>2022-06-24T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_02_manage</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_02_manage/"><![CDATA[<p>이번에는 <code class="language-plaintext highlighter-rouge">Numpy(Numerical Python)</code> 배열을 조작하는 내용을 주로 공부해 보겠습니다.</p>
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[nparray의 연산에 대해서 알아보겠습니다. mathematical function 메뉴에는 다양한 수학 관련 numpy 함수가 제공 되고 있으니 참고 바랍니다. API 참조]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 사용(Array manipulation)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_02_manage/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 사용(Array manipulation)" /><published>2022-06-24T00:00:00-05:00</published><updated>2022-06-24T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_02_manage</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_02_manage/"><![CDATA[<p>이번에는 <code class="language-plaintext highlighter-rouge">Numpy(Numerical Python)</code> 배열을 조작하는 내용을 주로 공부해 보겠습니다.</p>
 
 <p>Numpy 홈페이지 : <a href="https://numpy.org/doc" target="_blank">numpy.org</a>     <br />
 Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/routines.array-manipulation.html" target="_blank">API 참조</a></p>
@@ -2824,6 +2213,8 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
     
 
     
+
+    
         
              
         
@@ -3229,7 +2620,2192 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><category term="manipulation" /><summary type="html"><![CDATA[이번에는 Numpy(Numerical Python) 배열을 조작하는 내용을 주로 공부해 보겠습니다.]]></summary></entry><entry><title type="html">[Python Basic] 함수</title><link href="https://kimjaehyun.co.kr/python/python_study_07_function/" rel="alternate" type="text/html" title="[Python Basic] 함수" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_07_function</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_07_function/"><![CDATA[<h1 id="함수">함수</h1>
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><category term="manipulation" /><summary type="html"><![CDATA[이번에는 Numpy(Numerical Python) 배열을 조작하는 내용을 주로 공부해 보겠습니다.]]></summary></entry><entry><title type="html">[Python][Numpy] 배열 생성(Array creation)</title><link href="https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray/" rel="alternate" type="text/html" title="[Python][Numpy] 배열 생성(Array creation)" /><published>2022-06-24T00:00:00-05:00</published><updated>2022-06-24T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_numpy_01_ndarray/"><![CDATA[<p><code class="language-plaintext highlighter-rouge">Numpy(Numerical Python)</code> 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. <br />
+python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. <br />
+기본적은 사용법을 배워보겠습니다.<br />
+Array creation routines :  <a href="https://numpy.org/doc/stable/reference/routines.array-creation.html" target="_blank">API 참조</a></p>
+
+<p>Numpy 홈페이지 : <a href="https://numpy.org/doc" target="_blank">numpy.org</a></p>
+
+<p>Numpy를 사용하려면 설치를 진행 해야됩니다.</p>
+<h1 id="설치하기">설치하기</h1>
+<p><code class="language-plaintext highlighter-rouge">pip install numpy</code> 로 설치를 진행 합니다. <br />
+설치 후 <code class="language-plaintext highlighter-rouge">import numpy as np</code> 를 통해서 사용 합니다.</p>
+
+<h1 id="numpy-배열">numpy 배열</h1>
+
+<h2 id="배열-생성">배열 생성</h2>
+<p>기본적인 배열을 만들어 봅니다.<br />
+다양한 생성 방법이 있는데, 공식 문서에서 확인 바랍니다.  <br />
+<a href="https://numpy.org/doc/stable/reference/routines.array-creation.html" target="_blank">Array creation routines</a>  <br />
+type을 확인해보면, <code class="language-plaintext highlighter-rouge">list</code> 타입과 다른 <code class="language-plaintext highlighter-rouge">ndarray</code> 가 출력 됩니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="c1"># 1차원 생성
+</span><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>   <span class="c1"># [1 2 3 4 5]
+</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span>    <span class="c1">#&lt;class 'list'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">a1</span><span class="p">))</span>             <span class="c1">#&lt;class 'numpy.ndarray'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(5,)     
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#1     
+</span>
+<span class="c1"># 2차원 생성
+</span><span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(3,3)
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#2     
+</span>
+<span class="c1"># 3차원 생성
+</span><span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span> <span class="p">[</span>
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]],</span>
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
+<span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>             <span class="c1">#(3, 3, 3)
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>              <span class="c1">#3     
+</span>
+<span class="c1"># 배열의 타입 선택
+</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span> <span class="c1"># array([ True,  True, False,  True,  True])  0만 False
+</span></code></pre></div></div>
+<p>생성한 배열의 크기와 형태를 확인하는 방법은 <code class="language-plaintext highlighter-rouge">shape</code>은 tuple형태로 반환하고, 
+<code class="language-plaintext highlighter-rouge">ndim</code>은 차원수를 반환한다.</p>
+
+<h2 id="date-배열-생성">Date 배열 생성</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 데이터 타입 생성
+</span><span class="n">date</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="s">'2022-07-01'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">datetime64</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> <span class="c1"># 2022-07-01
+</span>
+<span class="n">date</span>        <span class="c1"># array('2022-07-01', dtype='datetime64[D]')
+</span><span class="n">date</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># array(['2022-07-01', '2022-07-02', '2022-07-03', '2022-07-04',
+#        '2022-07-05', '2022-07-06', '2022-07-07', '2022-07-08',
+#        '2022-07-09', '2022-07-10', '2022-07-11', '2022-07-12',
+#        '2022-07-13', '2022-07-14', '2022-07-15', '2022-07-16',
+#        '2022-07-17', '2022-07-18', '2022-07-19', '2022-07-20',
+#        '2022-07-21', '2022-07-22', '2022-07-23', '2022-07-24',
+#        '2022-07-25', '2022-07-26', '2022-07-27', '2022-07-28',
+#        '2022-07-29', '2022-07-30', '2022-07-31', '2022-08-01',
+#        '2022-08-02', '2022-08-03', '2022-08-04', '2022-08-05',
+#        '2022-08-06', '2022-08-07', '2022-08-08', '2022-08-09'],
+#       dtype='datetime64[D]')
+</span>
+<span class="n">datetime</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">datetime64</span><span class="p">(</span><span class="s">'2022-07-01 13:20'</span><span class="p">)</span>
+<span class="n">datetime</span>
+<span class="c1"># numpy.datetime64('2022-07-01T13:20')
+</span>
+</code></pre></div></div>
+<p>생성한 배열의 크기와 형태를 확인하는 방법은 <code class="language-plaintext highlighter-rouge">shape</code>은 tuple형태로 반환하고, 
+<code class="language-plaintext highlighter-rouge">ndim</code>은 차원수를 반환한다.</p>
+
+<h2 id="배열-복사">배열 복사</h2>
+<p>기존 생성된 ndarray를  복사하여 생성 할수 있습니다. <br />
+아래 <code class="language-plaintext highlighter-rouge">new_1 = a1</code> 로 인해서 두 변수는 같이 변경되는 것을 알 수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]);</span>
+<span class="n">new_1</span> <span class="o">=</span> <span class="n">a1</span>
+<span class="n">new_2</span> <span class="o">=</span> <span class="n">a1</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+
+<span class="n">new_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">new_1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">new_2</span><span class="p">)</span>
+
+<span class="c1"># 결과
+# [200   2   3   4   5]
+# [200   2   3   4   5]
+# [1 2 3 4 5]
+</span>
+</code></pre></div></div>
+
+<h2 id="배열-정보-확인">배열 정보 확인</h2>
+<p>다음 함수를 통해서 배열의 정보를 확인할 수 있습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">항목</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">ndim</td>
+      <td style="text-align: center">배열 차원</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">shape</td>
+      <td style="text-align: center">배열 shape</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">dtype</td>
+      <td style="text-align: center">배열 데이터 타입</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">size</td>
+      <td style="text-align: center">배열 요소 수</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">itemsize</td>
+      <td style="text-align: center">배열 각 맴버의 바이트 크기</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">nbytes</td>
+      <td style="text-align: center">배열의 요소가 소비 한 총 바이트</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">strides</td>
+      <td style="text-align: center">배열을 탐색 할 때 각 차원에서 단계별로 이동할 바이트 수</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ainfo</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"ndim : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"shape : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"dytpe : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"size : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"itemsize : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">itemsize</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"nbytes : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">nbytes</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"strides : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">strides</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="배열-접근">배열 접근</h2>
+<p><code class="language-plaintext highlighter-rouge">list</code> 배열과 같이 접근 할 수 있습니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원 접근
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 2 3
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># 5
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># [1 2]
+</span>
+<span class="c1"># 2차원 접근
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 5 9
+</span>
+<span class="c1"># 3차원 접근
+</span><span class="nf">print</span><span class="p">(</span><span class="n">a3</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">a3</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">a3</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># 1 5 9 
+</span>
+<span class="c1">#값 변경
+</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">15</span>
+
+
+</code></pre></div></div>
+
+<h2 id="numpyzeros">numpy.zeros</h2>
+<p><code class="language-plaintext highlighter-rouge">0</code> 값으로 채우기 위해서 사용합니다.  <br />
+<code class="language-plaintext highlighter-rouge">numpy.zeros(shape, dtype=float, order='C', *, like=None)</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원
+</span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>      <span class="c1"># &lt;class 'numpy.ndarray'&gt;
+</span><span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>            <span class="c1"># [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>        <span class="c1"># array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+</span>
+
+<span class="c1"># 2차원
+</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># 형태
+# array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+#        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
+</span>
+</code></pre></div></div>
+
+<h2 id="numpyones">numpy.ones</h2>
+<p><code class="language-plaintext highlighter-rouge">1</code> 값으로 채우기 위해서 사용합니다.  <br />
+<code class="language-plaintext highlighter-rouge">numpy.ones(shape, dtype=None, order='C', *, like=None)</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ones.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1차원
+</span><span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
+</span>
+<span class="c1"># 2차원
+</span><span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># 형태
+# array([[1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+#        [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]])
+</span>
+<span class="c1"># bool 타입 선언
+</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="c1"># 형태
+# array([[ True,  True,  True],
+</span>    <span class="c1">#    [ True,  True,  True],
+</span>    <span class="c1">#    [ True,  True,  True]])
+</span></code></pre></div></div>
+
+<h2 id="numpyfull">numpy.full</h2>
+<p><code class="language-plaintext highlighter-rouge">특정</code> 값으로 채우기 위해서 사용합니다.  <br />
+<code class="language-plaintext highlighter-rouge">numpy.full(shape, fill_value, dtype=None, order='C', *, like=None)</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.full.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mf">3.14</span> <span class="p">)</span>
+
+<span class="c1"># 형태
+# array([[3.14, 3.14, 3.14],
+#        [3.14, 3.14, 3.14],
+#        [3.14, 3.14, 3.14]])
+</span></code></pre></div></div>
+
+<h2 id="numpyeye">numpy.eye</h2>
+<p>단위행렬 형태로 대각선의 <code class="language-plaintext highlighter-rouge">1</code>로 만들어진 정사각형 행열을 반환 합니다.  <br />
+<code class="language-plaintext highlighter-rouge">numpy.eye(N, M=None, k=0, dtype=&lt;class 'float'&gt;, order='C', *, like=None)</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.eye.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">eye</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># 형태
+# array([[1., 0., 0., 0., 0.],
+#        [0., 1., 0., 0., 0.],
+#        [0., 0., 1., 0., 0.],
+#        [0., 0., 0., 1., 0.],
+#        [0., 0., 0., 0., 1.]])
+</span></code></pre></div></div>
+
+<h2 id="numpytri">numpy.tri</h2>
+<p>정사각형 행렬에서 3각 행렬 형태의 값을 <code class="language-plaintext highlighter-rouge">1</code>로 채운 행열을 반환 합니다. <br />
+<code class="language-plaintext highlighter-rouge">numpy.tri(N, M=None, k=0, dtype=&lt;class 'float'&gt;, *, like=None)</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.tri.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">tri</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># 형태
+# array([[1., 0., 0., 0., 0.],
+#        [1., 1., 0., 0., 0.],
+#        [1., 1., 1., 0., 0.],
+#        [1., 1., 1., 1., 0.],
+#        [1., 1., 1., 1., 1.]])
+</span></code></pre></div></div>
+
+<h2 id="numpyempty">numpy.empty</h2>
+<p>초기화 하지 않은 배열을 반환하는데, 값은 기존 메모리에 값들이 출력되는 현상이 발생한다.   <br />
+<code class="language-plaintext highlighter-rouge">numpy.empty(shape, dtype=float, order='C', *, like=None)</code>   <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.empty.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1"># 형태 (임의의 값)
+# array([1., 1., 1., 1., 1.])
+</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1"># 형태 (임의의 값)
+# array([[3.14, 3.14, 3.14],
+#        [3.14, 3.14, 3.14],
+#        [3.14, 3.14, 3.14]])
+</span>       
+</code></pre></div></div>
+
+<h2 id="_like-ones_like--zeros_like-full_like-empty_like">*_like, ones_like,  zeros_like, full_like, empty_like</h2>
+<p><code class="language-plaintext highlighter-rouge">*_like</code>는 인자로 제공된 데이터 형태와 같은 <code class="language-plaintext highlighter-rouge">shape</code>을 가지고 있는 배열을 반환합니다.  <br />
+예 를 들어 <code class="language-plaintext highlighter-rouge">sample1</code>은 <code class="language-plaintext highlighter-rouge">(5,5)</code>의 sahpe을 가진 ndarray이고 <code class="language-plaintext highlighter-rouge">sample2</code>는 <code class="language-plaintext highlighter-rouge">sample1</code>의 형태(shape)을 동일하게 만들고 값은 <code class="language-plaintext highlighter-rouge">full_like</code>로 특정값을 선택하는 의미 입니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sample1</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>        <span class="c1"># (5, 5) 
+# print(sample1)
+# [[1. 1. 1. 1. 1.]
+#  [1. 1. 1. 1. 1.]
+#  [1. 1. 1. 1. 1.]
+#  [1. 1. 1. 1. 1.]
+#  [1. 1. 1. 1. 1.]]
+</span>
+<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">full_like</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sample2</span><span class="p">)</span>              <span class="c1"># (5, 5)
+# print(sample2.shape)
+# [[7. 7. 7. 7. 7.]
+#  [7. 7. 7. 7. 7.]
+#  [7. 7. 7. 7. 7.]
+#  [7. 7. 7. 7. 7.]
+#  [7. 7. 7. 7. 7.]]
+</span></code></pre></div></div>
+
+<h2 id="numpyarange">numpy.arange</h2>
+<p><code class="language-plaintext highlighter-rouge">range</code> 함수와 동일한 형태로 ndarray를 생성하는 방법 입니다.
+<code class="language-plaintext highlighter-rouge">numpy.arange([start, ]stop, [step, ]dtype=None, *, like=None)</code>  <br />
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html" target="_blank">API 참조</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="c1"># array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># array([0, 2, 4, 6, 8])
+</span>
+</code></pre></div></div>
+
+<p><a href="https://www.youtube.com/watch?v=mirZPrWwvao" target="_blank">학습 내용 참고처</a></p>
+
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
+<ul>
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[Numpy(Numerical Python) 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. 기본적은 사용법을 배워보겠습니다. Array creation routines : API 참조]]></summary></entry><entry><title type="html">[Python Basic] Class</title><link href="https://kimjaehyun.co.kr/python/python_study_08_class/" rel="alternate" type="text/html" title="[Python Basic] Class" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_08_class</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_08_class/"><![CDATA[<p>객체 지향 프로그램에서 사용하는 클래스를 학습해 보겠습니다.</p>
+
+<h1 id="class">Class</h1>
+<h2 id="형태">형태</h2>
+<p><code class="language-plaintext highlighter-rouge">class 클래스이름</code>으로 클래스를 생성 할 수 있습니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
+    <span class="n">클래스</span> <span class="n">내용</span>        
+
+<span class="c1">#내용이 빈 클래스를 만들 경우.
+</span><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
+    <span class="k">pass</span>        
+</code></pre></div></div>
+
+<h2 id="사용법">사용법</h2>
+<p>인스턴스 형태로 생성하여 사용 합니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">변수</span>  <span class="o">=</span> <span class="n">클래스이름</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h2 id="생성자-소멸자-사용자-함수">생성자, 소멸자, 사용자 함수</h2>
+<p>생성자의 첫번째 매개 변수는 <code class="language-plaintext highlighter-rouge">self</code> 를 꼭 포함해야 한다.  <br />
+클래스 내부에 <code class="language-plaintext highlighter-rouge">__xxx__</code> 로 구성된 메소드는 특수 기능으로 존재하는 메소드 입니다.
+<code class="language-plaintext highlighter-rouge">__str__</code>, <code class="language-plaintext highlighter-rouge">__eq__</code>,<code class="language-plaintext highlighter-rouge">__dir__</code> 등등</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">사용자함수명</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">'객체가 소멸됩니다.'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="생성-예-및-소속-확인방법">생성 예 및 소속 확인방법</h2>
+<p><code class="language-plaintext highlighter-rouge">isinstance(인스턴스, 클래스)</code> 를 사용해서 소속을 확인 할 수 있습니다. <br />
+<code class="language-plaintext highlighter-rouge">type(인스턴스) == 클래스</code> 로도 확인 할 수 있습니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="n">truck</span> <span class="o">=</span> <span class="nc">Car</span><span class="p">()</span>  <span class="c1">#객체 생성
+</span>
+<span class="nf">print</span><span class="p">(</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">truck</span><span class="p">,</span> <span class="n">Car</span><span class="p">))</span> <span class="c1"># True
+</span><span class="nf">print</span><span class="p">(</span> <span class="nf">type</span><span class="p">(</span><span class="n">truck</span><span class="p">)</span> <span class="o">==</span> <span class="n">Car</span><span class="p">)</span> <span class="c1"># True
+</span></code></pre></div></div>
+
+<h2 id="sample-code">Sample Code</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">def</span> <span class="nf">setDoor</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">door</span> <span class="o">=</span> <span class="n">door</span>
+    <span class="k">def</span> <span class="nf">getDoor</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">door</span>
+    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="nc">Car</span><span class="p">(</span><span class="s">'NewCar'</span><span class="p">)</span>
+<span class="n">c</span><span class="p">.</span><span class="nf">setDoor</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="nf">getDoor</span><span class="p">())</span> <span class="c1"># 4
+</span></code></pre></div></div>
+
+<h1 id="상속">상속</h1>
+<p>부모 클래스를 상속 합니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Bus</span> <span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"this is a bus:"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+ 
+<span class="k">class</span> <span class="nc">Truck</span> <span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"this is a Truck:"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="nc">Bus</span><span class="p">(</span><span class="s">'시내버스'</span><span class="p">)</span> 
+<span class="n">t</span> <span class="o">=</span> <span class="nc">Truck</span><span class="p">(</span><span class="s">'화물트럭'</span><span class="p">)</span>
+
+<span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="n">i</span><span class="p">.</span><span class="nf">getFeatures</span><span class="p">()</span>
+
+<span class="c1">#출력
+</span><span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">bus</span><span class="p">:</span> <span class="n">시내버스</span>
+<span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">Truck</span><span class="p">:</span> <span class="n">화물트럭</span>
+
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
+<ul>
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="class" /><summary type="html"><![CDATA[객체 지향 프로그램에서 사용하는 클래스를 학습해 보겠습니다.]]></summary></entry><entry><title type="html">[Python Basic] 예외처리</title><link href="https://kimjaehyun.co.kr/python/python_study_09_exception/" rel="alternate" type="text/html" title="[Python Basic] 예외처리" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_09_exception</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_09_exception/"><![CDATA[<p>Python에서 예외 처리 방법에 대해서 알아 봅시다.</p>
+
+<h1 id="try--except">try ~ except</h1>
+<h2 id="형태">형태</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 실행 로직
+</span>    <span class="c1"># 실행 로직
+</span><span class="k">except</span><span class="p">:</span>                     
+    <span class="c1"># 에러 발생시 진행 로직
+</span><span class="k">else</span><span class="p">:</span>
+    <span class="c1"># 예외가 발생하지 않을떄 실행하는 영역
+</span><span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># 최종 실행이 보장되는 영역
+</span></code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">except:</code> 은 <code class="language-plaintext highlighter-rouge">except 예외클래스 as 변수:</code> 형태로 예외 객체 별로 분리 할 수 있습니다.</p>
+
+<h2 id="sample-code">Sample Code</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="s">'f.txt'</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">test</span><span class="p">()</span> <span class="c1">#없는 함수 호출
+</span><span class="k">except</span> <span class="nb">FileExistsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">pass</span>        <span class="c1"># pass 아무 일도 하지 않음 처리
+</span><span class="k">except</span> <span class="nb">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>    
+    <span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"정상 실행"</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h1 id="raise-예외-발생">raise 예외 발생</h1>
+<p>임의로 예외를 발생 시킬 수 있습니다.  <br />
+<code class="language-plaintext highlighter-rouge">raise 예외 객체</code> 형태로 발생시킵니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 실행 로직
+</span>    <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="s">'사용자 Error'</span><span class="p">)</span>
+    <span class="c1"># 실행 로직
+</span><span class="k">except</span><span class="p">:</span>                     
+    <span class="c1"># 에러 발생시 진행 로직
+</span><span class="k">else</span><span class="p">:</span>
+    <span class="c1"># 예외가 발생하지 않을떄 실행하는 영역
+</span><span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># 최종 실행이 보장되는 영역
+</span></code></pre></div></div>
+
+<h1 id="사용자-정의-예외-클래스">사용자 정의 예외 클래스</h1>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CustomException</span><span class="p">(</span><span class="nb">Exception</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="nb">Exception</span><span class="p">.</span><span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nf">str</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">code</span><span class="p">)</span><span class="o">+</span><span class="n">self</span><span class="p">.</span><span class="n">msg</span>
+
+<span class="k">raise</span> <span class="nc">CustomException</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="s">'InternalError'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
+<ul>
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="예외처리" /><summary type="html"><![CDATA[Python에서 예외 처리 방법에 대해서 알아 봅시다.]]></summary></entry><entry><title type="html">[Python Basic] 모듈 만들기, 패키지 만들기</title><link href="https://kimjaehyun.co.kr/python/python_study_10_package/" rel="alternate" type="text/html" title="[Python Basic] 모듈 만들기, 패키지 만들기" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_10_package</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_10_package/"><![CDATA[<p>Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다.  <br />
+자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.</p>
+
+<h1 id="모듈-만들기">모듈 만들기</h1>
+<p>함수에서 작성한 아래 함수를 <code class="language-plaintext highlighter-rouge">module.py</code> 로 작성합니다.</p>
+<h2 id="modulepy">module.py</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+</code></pre></div></div>
+
+<p>모듈을 사용할 <code class="language-plaintext highlighter-rouge">main.py</code> 를 만듭니다. <br />
+<code class="language-plaintext highlighter-rouge">module.py</code> 와 <code class="language-plaintext highlighter-rouge">main.py</code>는 동일 경로에 위치 합니다.</p>
+
+<h2 id="mainpy">main.py</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">module</span> <span class="k">as</span> <span class="n">m</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
+</span></code></pre></div></div>
+
+<h1 id="패키지-만들기">패키지 만들기</h1>
+<h2 id="구성-형태">구성 형태</h2>
+<p>위 모듈 만들기에서 만들어지는 모듈파일이 여러개로 구성될때, 여러 모듈을 기능에 맞게 패키지로 만들수 있습니다.    <br />
+예를 들어 다음 모듈을 만들었다고 할때, 하나의 특정 폴더 <code class="language-plaintext highlighter-rouge">custom</code> 밑에 위치 시킵니다.</p>
+<ul>
+  <li>\main.py</li>
+  <li>\custom\module_sum.py</li>
+  <li>\custom\module_min.py</li>
+  <li>\custom\module_max.py</li>
+  <li>\custom\module_avg.py</li>
+</ul>
+
+<p>위와 같은 경우 아래와 같이 사용할 수 있습니다.</p>
+<h2 id="mainpy-1">main.py</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
+</span></code></pre></div></div>
+<h2 id="main-실행-구성">main 실행 구성</h2>
+<p>실행 메인이 되는 함수를 파악하기 위해서 <code class="language-plaintext highlighter-rouge">__name__</code> 속성을 통해서 실행 주체를 확인 할 수 있습니다. <br />
+<code class="language-plaintext highlighter-rouge">main()</code> 함수를 <code class="language-plaintext highlighter-rouge">__name__ == "__main__"</code> 조건에 맞을 경우에만 실행하도록 할 수 있습니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
+</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>  
+    
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
+<ul>
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="package" /><summary type="html"><![CDATA[Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다. 자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.]]></summary></entry><entry><title type="html">[Python Basic] 함수</title><link href="https://kimjaehyun.co.kr/python/python_study_07_function/" rel="alternate" type="text/html" title="[Python Basic] 함수" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_07_function</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_07_function/"><![CDATA[<h1 id="함수">함수</h1>
 <h2 id="선언">선언</h2>
 <p>자주 사용하는 기능을 Function으로 정의할 수 있습니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#반환값이 있는 경우
@@ -3427,503 +5003,6 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
     
 
     
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="function" /><summary type="html"><![CDATA[함수 선언 자주 사용하는 기능을 Function으로 정의할 수 있습니다. ```python #반환값이 있는 경우 def 함수명(인자정의) 함수 내용부 return 반환값]]></summary></entry><entry><title type="html">[Python Basic] Class</title><link href="https://kimjaehyun.co.kr/python/python_study_08_class/" rel="alternate" type="text/html" title="[Python Basic] Class" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_08_class</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_08_class/"><![CDATA[<p>객체 지향 프로그램에서 사용하는 클래스를 학습해 보겠습니다.</p>
-
-<h1 id="class">Class</h1>
-<h2 id="형태">형태</h2>
-<p><code class="language-plaintext highlighter-rouge">class 클래스이름</code>으로 클래스를 생성 할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
-    <span class="n">클래스</span> <span class="n">내용</span>        
-
-<span class="c1">#내용이 빈 클래스를 만들 경우.
-</span><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
-    <span class="k">pass</span>        
-</code></pre></div></div>
-
-<h2 id="사용법">사용법</h2>
-<p>인스턴스 형태로 생성하여 사용 합니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">변수</span>  <span class="o">=</span> <span class="n">클래스이름</span><span class="p">();</span>
-</code></pre></div></div>
-
-<h2 id="생성자-소멸자-사용자-함수">생성자, 소멸자, 사용자 함수</h2>
-<p>생성자의 첫번째 매개 변수는 <code class="language-plaintext highlighter-rouge">self</code> 를 꼭 포함해야 한다.  <br />
-클래스 내부에 <code class="language-plaintext highlighter-rouge">__xxx__</code> 로 구성된 메소드는 특수 기능으로 존재하는 메소드 입니다.
-<code class="language-plaintext highlighter-rouge">__str__</code>, <code class="language-plaintext highlighter-rouge">__eq__</code>,<code class="language-plaintext highlighter-rouge">__dir__</code> 등등</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">사용자함수명</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">'객체가 소멸됩니다.'</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<h2 id="생성-예-및-소속-확인방법">생성 예 및 소속 확인방법</h2>
-<p><code class="language-plaintext highlighter-rouge">isinstance(인스턴스, 클래스)</code> 를 사용해서 소속을 확인 할 수 있습니다. <br />
-<code class="language-plaintext highlighter-rouge">type(인스턴스) == 클래스</code> 로도 확인 할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-<span class="n">truck</span> <span class="o">=</span> <span class="nc">Car</span><span class="p">()</span>  <span class="c1">#객체 생성
-</span>
-<span class="nf">print</span><span class="p">(</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">truck</span><span class="p">,</span> <span class="n">Car</span><span class="p">))</span> <span class="c1"># True
-</span><span class="nf">print</span><span class="p">(</span> <span class="nf">type</span><span class="p">(</span><span class="n">truck</span><span class="p">)</span> <span class="o">==</span> <span class="n">Car</span><span class="p">)</span> <span class="c1"># True
-</span></code></pre></div></div>
-
-<h2 id="sample-code">Sample Code</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-    <span class="k">def</span> <span class="nf">setDoor</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">door</span> <span class="o">=</span> <span class="n">door</span>
-    <span class="k">def</span> <span class="nf">getDoor</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">door</span>
-    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="nc">Car</span><span class="p">(</span><span class="s">'NewCar'</span><span class="p">)</span>
-<span class="n">c</span><span class="p">.</span><span class="nf">setDoor</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="nf">getDoor</span><span class="p">())</span> <span class="c1"># 4
-</span></code></pre></div></div>
-
-<h1 id="상속">상속</h1>
-<p>부모 클래스를 상속 합니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Bus</span> <span class="p">(</span><span class="n">Car</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"this is a bus:"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
- 
-<span class="k">class</span> <span class="nc">Truck</span> <span class="p">(</span><span class="n">Car</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"this is a Truck:"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
-
-<span class="n">b</span> <span class="o">=</span> <span class="nc">Bus</span><span class="p">(</span><span class="s">'시내버스'</span><span class="p">)</span> 
-<span class="n">t</span> <span class="o">=</span> <span class="nc">Truck</span><span class="p">(</span><span class="s">'화물트럭'</span><span class="p">)</span>
-
-<span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="n">i</span><span class="p">.</span><span class="nf">getFeatures</span><span class="p">()</span>
-
-<span class="c1">#출력
-</span><span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">bus</span><span class="p">:</span> <span class="n">시내버스</span>
-<span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">Truck</span><span class="p">:</span> <span class="n">화물트럭</span>
-
-</code></pre></div></div>
-
-<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
-<ul>
-
-    
 
     
         
@@ -4331,1493 +5410,4 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="class" /><summary type="html"><![CDATA[객체 지향 프로그램에서 사용하는 클래스를 학습해 보겠습니다.]]></summary></entry><entry><title type="html">[Python Basic] 모듈 만들기, 패키지 만들기</title><link href="https://kimjaehyun.co.kr/python/python_study_10_package/" rel="alternate" type="text/html" title="[Python Basic] 모듈 만들기, 패키지 만들기" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_10_package</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_10_package/"><![CDATA[<p>Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다.  <br />
-자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.</p>
-
-<h1 id="모듈-만들기">모듈 만들기</h1>
-<p>함수에서 작성한 아래 함수를 <code class="language-plaintext highlighter-rouge">module.py</code> 로 작성합니다.</p>
-<h2 id="modulepy">module.py</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-    <span class="k">return</span> <span class="n">s</span>
-
-</code></pre></div></div>
-
-<p>모듈을 사용할 <code class="language-plaintext highlighter-rouge">main.py</code> 를 만듭니다. <br />
-<code class="language-plaintext highlighter-rouge">module.py</code> 와 <code class="language-plaintext highlighter-rouge">main.py</code>는 동일 경로에 위치 합니다.</p>
-
-<h2 id="mainpy">main.py</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">module</span> <span class="k">as</span> <span class="n">m</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
-</span></code></pre></div></div>
-
-<h1 id="패키지-만들기">패키지 만들기</h1>
-<h2 id="구성-형태">구성 형태</h2>
-<p>위 모듈 만들기에서 만들어지는 모듈파일이 여러개로 구성될때, 여러 모듈을 기능에 맞게 패키지로 만들수 있습니다.    <br />
-예를 들어 다음 모듈을 만들었다고 할때, 하나의 특정 폴더 <code class="language-plaintext highlighter-rouge">custom</code> 밑에 위치 시킵니다.</p>
-<ul>
-  <li>\main.py</li>
-  <li>\custom\module_sum.py</li>
-  <li>\custom\module_min.py</li>
-  <li>\custom\module_max.py</li>
-  <li>\custom\module_avg.py</li>
-</ul>
-
-<p>위와 같은 경우 아래와 같이 사용할 수 있습니다.</p>
-<h2 id="mainpy-1">main.py</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
-</span></code></pre></div></div>
-<h2 id="main-실행-구성">main 실행 구성</h2>
-<p>실행 메인이 되는 함수를 파악하기 위해서 <code class="language-plaintext highlighter-rouge">__name__</code> 속성을 통해서 실행 주체를 확인 할 수 있습니다. <br />
-<code class="language-plaintext highlighter-rouge">main()</code> 함수를 <code class="language-plaintext highlighter-rouge">__name__ == "__main__"</code> 조건에 맞을 경우에만 실행하도록 할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">custom.module_sum</span> <span class="k">as</span> <span class="n">p</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1"># 3
-</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span>  
-    
-</code></pre></div></div>
-
-<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
-<ul>
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="package" /><summary type="html"><![CDATA[Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다. 자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.]]></summary></entry><entry><title type="html">[Python Basic] 예외처리</title><link href="https://kimjaehyun.co.kr/python/python_study_09_exception/" rel="alternate" type="text/html" title="[Python Basic] 예외처리" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_09_exception</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_09_exception/"><![CDATA[<p>Python에서 예외 처리 방법에 대해서 알아 봅시다.</p>
-
-<h1 id="try--except">try ~ except</h1>
-<h2 id="형태">형태</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
-    <span class="c1"># 실행 로직
-</span>    <span class="c1"># 실행 로직
-</span><span class="k">except</span><span class="p">:</span>                     
-    <span class="c1"># 에러 발생시 진행 로직
-</span><span class="k">else</span><span class="p">:</span>
-    <span class="c1"># 예외가 발생하지 않을떄 실행하는 영역
-</span><span class="k">finally</span><span class="p">:</span>
-    <span class="c1"># 최종 실행이 보장되는 영역
-</span></code></pre></div></div>
-<p><code class="language-plaintext highlighter-rouge">except:</code> 은 <code class="language-plaintext highlighter-rouge">except 예외클래스 as 변수:</code> 형태로 예외 객체 별로 분리 할 수 있습니다.</p>
-
-<h2 id="sample-code">Sample Code</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="s">'f.txt'</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span>
-    <span class="n">f</span><span class="p">.</span><span class="nf">test</span><span class="p">()</span> <span class="c1">#없는 함수 호출
-</span><span class="k">except</span> <span class="nb">FileExistsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="k">pass</span>        <span class="c1"># pass 아무 일도 하지 않음 처리
-</span><span class="k">except</span> <span class="nb">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>    
-    <span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-<span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"정상 실행"</span><span class="p">)</span>
-<span class="k">finally</span><span class="p">:</span>
-    <span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
-</code></pre></div></div>
-
-<h1 id="raise-예외-발생">raise 예외 발생</h1>
-<p>임의로 예외를 발생 시킬 수 있습니다.  <br />
-<code class="language-plaintext highlighter-rouge">raise 예외 객체</code> 형태로 발생시킵니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
-    <span class="c1"># 실행 로직
-</span>    <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="s">'사용자 Error'</span><span class="p">)</span>
-    <span class="c1"># 실행 로직
-</span><span class="k">except</span><span class="p">:</span>                     
-    <span class="c1"># 에러 발생시 진행 로직
-</span><span class="k">else</span><span class="p">:</span>
-    <span class="c1"># 예외가 발생하지 않을떄 실행하는 영역
-</span><span class="k">finally</span><span class="p">:</span>
-    <span class="c1"># 최종 실행이 보장되는 영역
-</span></code></pre></div></div>
-
-<h1 id="사용자-정의-예외-클래스">사용자 정의 예외 클래스</h1>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CustomException</span><span class="p">(</span><span class="nb">Exception</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-        <span class="nb">Exception</span><span class="p">.</span><span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
-    
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nf">str</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">code</span><span class="p">)</span><span class="o">+</span><span class="n">self</span><span class="p">.</span><span class="n">msg</span>
-
-<span class="k">raise</span> <span class="nc">CustomException</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="s">'InternalError'</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
-<ul>
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="예외처리" /><summary type="html"><![CDATA[Python에서 예외 처리 방법에 대해서 알아 봅시다.]]></summary></entry><entry><title type="html">[Python Basic] 자료형 set 타입</title><link href="https://kimjaehyun.co.kr/python/python_study_06_set/" rel="alternate" type="text/html" title="[Python Basic] 자료형 set 타입" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_06_set</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_06_set/"><![CDATA[<p>순서와 중복이 보장되지 않는 자료형 입니다.</p>
-
-<h1 id="list-vs-tuple-vs-dictionary-vs-set">list vs tuple vs dictionary vs set</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center"> </th>
-      <th style="text-align: center">list</th>
-      <th style="text-align: center">tuple</th>
-      <th style="text-align: center">dictionary</th>
-      <th style="text-align: center">set</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">순서</td>
-      <td style="text-align: center">O</td>
-      <td style="text-align: center">O</td>
-      <td style="text-align: center">X</td>
-      <td style="text-align: center">X</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">중복</td>
-      <td style="text-align: center">O</td>
-      <td style="text-align: center">O</td>
-      <td style="text-align: center">X</td>
-      <td style="text-align: center">X</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">변경</td>
-      <td style="text-align: center">O</td>
-      <td style="text-align: center">X</td>
-      <td style="text-align: center">O</td>
-      <td style="text-align: center">O</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">형태</td>
-      <td style="text-align: center">[1,2,3,4,5]</td>
-      <td style="text-align: center">(1,2,3,4,5)</td>
-      <td style="text-align: center">{“java”:10, “key”:5}</td>
-      <td style="text-align: center">{1, 2, 3}</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">type</td>
-      <td style="text-align: center">&lt;class ‘list’&gt;</td>
-      <td style="text-align: center">&lt;class ‘tuple’&gt;</td>
-      <td style="text-align: center">&lt;class ‘dict’&gt;</td>
-      <td style="text-align: center">&lt;class ‘set’&gt;</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>형태 <code class="language-plaintext highlighter-rouge">{값, 값,...., 값}</code> 의 형태의 자료형  <br />
-예)  <br />
- <code class="language-plaintext highlighter-rouge">a = {1, 2, 3, 4, 5}</code> <br />
- <code class="language-plaintext highlighter-rouge">a = {1, 2, 3, 3, 4, 5}</code> - 중복 <code class="language-plaintext highlighter-rouge">3</code> 값 포함 불가능</p>
-
-<h1 id="기본-사용법">기본 사용법</h1>
-<h2 id="선언">선언</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5}
-</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-</span>
-</code></pre></div></div>
-
-<h2 id="추가-삭제">추가, 삭제</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
-<span class="n">a</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5, 6}
-</span>
-<span class="c1">#여러개 추가
-</span><span class="n">a</span><span class="p">.</span><span class="nf">update</span><span class="p">({</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">})</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5, 6, 7, 8, 9}
-</span>
-<span class="c1">#한개 삭제
-</span><span class="n">a</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 4, 5, 6, 7, 8, 9}
-</span>
-<span class="c1">#모두 삭제
-</span><span class="n">a</span><span class="p">.</span><span class="nf">clear</span><span class="p">()</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {}
-</span></code></pre></div></div>
-
-<h2 id="연산">연산</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">}</span>
-
-<span class="c1"># 합집합
-</span><span class="n">u</span> <span class="o">=</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span>
-<span class="c1"># u = a.union(b)
-</span><span class="nf">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="c1"># {1, 2, 3, 4, 5, 6, 7}
-</span>
-<span class="c1"># 교집합
-</span><span class="n">i</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span>
-<span class="c1"># i = a.intersection(b)
-</span><span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1">#  {3, 4, 5}
-</span>  
-<span class="c1"># 차집합
-</span><span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
-<span class="c1"># d = a.difference(b)
-</span><span class="nf">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1"># {1, 2}
-</span>
-</code></pre></div></div>
-
-<h2 id="set-의-길이-len">set 의 길이 len</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="c1"># len
-</span>
-</code></pre></div></div>
-
-<h2 id="list-to-set-변환">list to set 변환</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {1, 2, 3, 4, 5}
-</span>
-</code></pre></div></div>
-
-<h2 id="string-to-set">string to set</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">str</span> <span class="o">=</span> <span class="s">'ABCDE'</span>
-<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="c1"># {'C', 'E', 'B', 'D', 'A'}
-</span>
-
-</code></pre></div></div>
-
-<h2 id="list-to-set">list to set</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">]</span>
-<span class="nf">print</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># ['a','b','c','d']
-</span>
-<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># {'a','b','c','d'}
-</span><span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
-<ul>
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="set" /><summary type="html"><![CDATA[순서와 중복이 보장되지 않는 자료형 입니다.]]></summary></entry></feed>
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="function" /><summary type="html"><![CDATA[함수 선언 자주 사용하는 기능을 Function으로 정의할 수 있습니다. ```python #반환값이 있는 경우 def 함수명(인자정의) 함수 내용부 return 반환값]]></summary></entry></feed>
