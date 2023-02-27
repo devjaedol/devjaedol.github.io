@@ -360,8 +360,8 @@ var store = [{
         "teaser": null
       },{
         "title": "Javascript Class",
-        "excerpt":"Javascript Class 구문 정리 시작. Basic Syntax 기본 생성 방법 class CarClass { constructor() { ... } //생성자 method1() { ... } // 메소드 method2() { ... } // 메소드 } Sample Code class Car { constructor(name, speed) { this.name = name; this.speed = speed; } getName() { return this.name;...","categories": ["javascript"],
-        "tags": ["Class","constructor"],
+        "excerpt":"Javascript Class 사용과 상속에 대해서 정리해 봅시다. Class Basic Syntax 클래스의 기본 생성 방법 class CarClass { constructor() { ... } //생성자 method1() { ... } // 메소드 method2() { ... } // 메소드 } Sample Code class Car { constructor(name, speed) { this.name = name; this.speed = speed; }...","categories": ["javascript"],
+        "tags": ["Class","constructor","extends","super"],
         "url": "/javascript/JS-Class/",
         "teaser": null
       }]

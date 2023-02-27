@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Javascript Class | 꿰보노트</title>
-<meta name="description" content="Javascript Class 구문 정리 시작.">
+<meta name="description" content="Javascript Class 사용과 상속에 대해서 정리해 봅시다.">
 
 
   <meta name="author" content="devjaedol">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="https://kimjaehyun.co.kr/javascript/JS-Class/">
 
 
-  <meta property="og:description" content="Javascript Class 구문 정리 시작.">
+  <meta property="og:description" content="Javascript Class 사용과 상속에 대해서 정리해 봅시다.">
 
 
 
@@ -596,7 +596,7 @@
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Javascript Class">
-    <meta itemprop="description" content="Javascript Class 구문 정리 시작.">
+    <meta itemprop="description" content="Javascript Class 사용과 상속에 대해서 정리해 봅시다.">
     <meta itemprop="datePublished" content="2023-02-27T00:00:00-06:00">
     
 
@@ -618,15 +618,15 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#basic-syntax">Basic Syntax</a><ul><li><a href="#sample-code">Sample Code</a></li></ul></li><li><a href="#class의-타입과-instance의-타입-비교">Class의 타입과 Instance의 타입 비교</a></li><li><a href="#function-형태로-class생성">Function 형태로 Class생성</a></li><li><a href="#class-field">Class Field</a></li><li><a href="#getter-and-setter">Getter and Setter</a></li></ul>
+              <ul class="toc__menu"><li><a href="#class-basic-syntax">Class Basic Syntax</a><ul><li><a href="#sample-code">Sample Code</a></li></ul></li><li><a href="#class의-타입과-instance의-타입-비교">Class의 타입과 Instance의 타입 비교</a></li><li><a href="#function-형태로-class생성">Function 형태로 Class생성</a></li><li><a href="#class-field">Class Field</a></li><li><a href="#getter-and-setter">Getter and Setter</a></li><li><a href="#class-상속-extends">Class 상속 (extends)</a></li><li><a href="#메소드-오버라이딩">메소드 오버라이딩</a></li><li><a href="#super">super</a></li></ul>
 
             </nav>
           </aside>
         
-        <p>Javascript Class 구문 정리 시작.</p>
+        <p>Javascript Class 사용과 상속에 대해서 정리해 봅시다.</p>
 
-<h1 id="basic-syntax">Basic Syntax</h1>
-<p>기본 생성 방법</p>
+<h1 id="class-basic-syntax">Class Basic Syntax</h1>
+<p>클래스의 기본 생성 방법</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CarClass</span> <span class="p">{</span>
     <span class="nf">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> <span class="c1">//생성자</span>
@@ -747,6 +747,95 @@
 <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">speed</span><span class="p">);</span> <span class="c1">// 0 응답</span>
 </code></pre></div></div>
 
+<h1 id="class-상속-extends">Class 상속 (extends)</h1>
+<p>Javascript 클래스도 상속을 지원 합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+
+    <span class="nf">getMaxSpeed</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Truck</span> <span class="kd">extends</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">getLoad</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1톤 적재 가능</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 클래스 생성 및 호출</span>
+
+<span class="kd">let</span> <span class="nx">mytruck</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Truck</span><span class="p">(</span><span class="dl">'</span><span class="s1">bonggo</span><span class="dl">'</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getName</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getMaxSpeed</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getLoad</span><span class="p">());</span>  <span class="c1">// 1톤 적재 가능</span>
+
+</code></pre></div></div>
+
+<h1 id="메소드-오버라이딩">메소드 오버라이딩</h1>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+
+    <span class="nf">getMaxSpeed</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Truck</span> <span class="kd">extends</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="dl">"</span><span class="s2">the new </span><span class="dl">"</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">mytruck</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Truck</span><span class="p">(</span><span class="dl">'</span><span class="s1">bonggo</span><span class="dl">'</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getName</span><span class="p">());</span>         <span class="c1">// the new bonggo</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getMaxSpeed</span><span class="p">());</span>
+
+</code></pre></div></div>
+
+<h1 id="super">super</h1>
+<p>상속 받은 하위 클래스에서 상위 부모의 메소드/생성자 접근시 super사용.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+
+    <span class="nf">getMaxSpeed</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Truck</span> <span class="kd">extends</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="nf">super</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="nf">getName</span><span class="p">();</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+</code></pre></div></div>
 
         
       </section>
@@ -765,7 +854,11 @@
     
       <a href="/tags/#class" class="page__taxonomy-item p-category" rel="tag">Class</a><span class="sep">, </span>
     
-      <a href="/tags/#constructor" class="page__taxonomy-item p-category" rel="tag">constructor</a>
+      <a href="/tags/#constructor" class="page__taxonomy-item p-category" rel="tag">constructor</a><span class="sep">, </span>
+    
+      <a href="/tags/#extends" class="page__taxonomy-item p-category" rel="tag">extends</a><span class="sep">, </span>
+    
+      <a href="/tags/#super" class="page__taxonomy-item p-category" rel="tag">super</a>
     
     </span>
   </p>

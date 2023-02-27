@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2023-02-27T05:07:10-06:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Javascript Class</title><link href="https://kimjaehyun.co.kr/javascript/JS-Class/" rel="alternate" type="text/html" title="Javascript Class" /><published>2023-02-27T00:00:00-06:00</published><updated>2023-02-27T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Class</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Class/"><![CDATA[<p>Javascript Class 구문 정리 시작.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2023-02-27T05:21:47-06:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Javascript Class</title><link href="https://kimjaehyun.co.kr/javascript/JS-Class/" rel="alternate" type="text/html" title="Javascript Class" /><published>2023-02-27T00:00:00-06:00</published><updated>2023-02-27T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Class</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Class/"><![CDATA[<p>Javascript Class 사용과 상속에 대해서 정리해 봅시다.</p>
 
-<h1 id="basic-syntax">Basic Syntax</h1>
-<p>기본 생성 방법</p>
+<h1 id="class-basic-syntax">Class Basic Syntax</h1>
+<p>클래스의 기본 생성 방법</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CarClass</span> <span class="p">{</span>
     <span class="nf">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> <span class="c1">//생성자</span>
@@ -120,7 +120,97 @@
 
 <span class="kd">let</span> <span class="nx">mycar</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">sonata</span><span class="dl">'</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mycar</span><span class="p">.</span><span class="nx">speed</span><span class="p">);</span> <span class="c1">// 0 응답</span>
-</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="javascript" /><category term="Class" /><category term="constructor" /><summary type="html"><![CDATA[Javascript Class 구문 정리 시작.]]></summary></entry><entry><title type="html">[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count/" rel="alternate" type="text/html" title="[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기" /><published>2022-07-08T00:00:00-05:00</published><updated>2022-07-08T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count/"><![CDATA[<h1 id="문제-조건">문제 조건</h1>
+</code></pre></div></div>
+
+<h1 id="class-상속-extends">Class 상속 (extends)</h1>
+<p>Javascript 클래스도 상속을 지원 합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+
+    <span class="nf">getMaxSpeed</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Truck</span> <span class="kd">extends</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">getLoad</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">1톤 적재 가능</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 클래스 생성 및 호출</span>
+
+<span class="kd">let</span> <span class="nx">mytruck</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Truck</span><span class="p">(</span><span class="dl">'</span><span class="s1">bonggo</span><span class="dl">'</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getName</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getMaxSpeed</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getLoad</span><span class="p">());</span>  <span class="c1">// 1톤 적재 가능</span>
+
+</code></pre></div></div>
+
+<h1 id="메소드-오버라이딩">메소드 오버라이딩</h1>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+
+    <span class="nf">getMaxSpeed</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Truck</span> <span class="kd">extends</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="dl">"</span><span class="s2">the new </span><span class="dl">"</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">mytruck</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Truck</span><span class="p">(</span><span class="dl">'</span><span class="s1">bonggo</span><span class="dl">'</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getName</span><span class="p">());</span>         <span class="c1">// the new bonggo</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mytruck</span><span class="p">.</span><span class="nf">getMaxSpeed</span><span class="p">());</span>
+
+</code></pre></div></div>
+
+<h1 id="super">super</h1>
+<p>상속 받은 하위 클래스에서 상위 부모의 메소드/생성자 접근시 super사용.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span> 
+
+    <span class="nf">getMaxSpeed</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Truck</span> <span class="kd">extends</span> <span class="nc">Car</span> <span class="p">{</span>
+    <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="nf">super</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">speed</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="nf">getName</span><span class="p">();</span>
+    <span class="p">}</span> 
+<span class="p">}</span>
+
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="javascript" /><category term="Class" /><category term="constructor" /><category term="extends" /><category term="super" /><summary type="html"><![CDATA[Javascript Class 사용과 상속에 대해서 정리해 봅시다.]]></summary></entry><entry><title type="html">[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기</title><link href="https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count/" rel="alternate" type="text/html" title="[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기" /><published>2022-07-08T00:00:00-05:00</published><updated>2022-07-08T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count</id><content type="html" xml:base="https://kimjaehyun.co.kr/codingtest/Qtype-stack-sort-count/"><![CDATA[<h1 id="문제-조건">문제 조건</h1>
 <p>N 명의 사람이 다른 키를 가지로 일렬로 배치 합니다.  <br />
 키가 높은 사람은 앞사람이 본인 보다 작은 경우 내려 볼수 있습니다.  <br />
 랜덤으로 배치된 사람이 내려다 볼수 있는 사람의 총합을 구하시요.  <br />
