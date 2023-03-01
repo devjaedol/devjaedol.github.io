@@ -360,7 +360,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Javascript Class",
-        "excerpt":"Javascript Class 사용과 상속에 대해서 정리해 봅시다. Class Basic Syntax 클래스의 기본 생성 방법 class CarClass { constructor() { ... } //생성자 method1() { ... } // 메소드 method2() { ... } // 메소드 } Sample Code class Car { constructor(name, speed) { this.name = name; this.speed = speed; }...","categories": ["javascript"],
+        "excerpt":"Javascript Class 사용과 상속에 대해서 정리해 봅시다. JavaScript에서 클래스는 유사한 특성과 동작을 공유하는 개체를 만들기 위한 청사진입니다. 고유한 속성과 메서드를 가질 수 있는 새로운 개체 유형을 정의하는 방법을 제공합니다. 클래스 선언 구문은 ES6에서 도입되어 개체 지향 프로그래밍 언어에서 오는 개발자에게 더 친숙한 구문을 허용합니다. . 클래스에는 인스턴스 메서드 및 정적...","categories": ["javascript"],
         "tags": ["Class","constructor","extends","super"],
         "url": "/javascript/JS-Class/",
         "teaser": null
