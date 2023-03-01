@@ -364,4 +364,10 @@ var store = [{
         "tags": ["Class","constructor","extends","super"],
         "url": "/javascript/JS-Class/",
         "teaser": null
+      },{
+        "title": "Javascript Promise await async",
+        "excerpt":"Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다. 적절한 사용을 위해서 각 방법간 사용법을 정리해 봅니다. Promise Promise는 비동기 처리에 사용되는 Javascript 객체 입니다. Promise를 관리하는 Status 상태값 Promise는 3가지 상태를 가지고 있고, 각각의 개별 상태 값은 직접 접근 할 수 없습니다. Status value desc 초기 pending(대기) 초기...","categories": ["javascript"],
+        "tags": ["Promise","await","async","Promise.all","Promise.allSettled","Promise.race","콜백지옥","동기화"],
+        "url": "/javascript/JS-Promise1/",
+        "teaser": null
       }]

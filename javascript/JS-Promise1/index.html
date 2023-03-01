@@ -1,0 +1,1335 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Javascript Promise await async | 꿰보노트</title>
+<meta name="description" content="Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다.   적절한 사용을 위해서 각 방법간 사용법을 정리해 봅니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="Javascript Promise await async">
+<meta property="og:url" content="https://kimjaehyun.co.kr/javascript/JS-Promise1/">
+
+
+  <meta property="og:description" content="Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다.   적절한 사용을 위해서 각 방법간 사용법을 정리해 봅니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-03-01T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/javascript/JS-Promise1/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#javascript" itemprop="item"><span itemprop="name">Javascript</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Javascript Promise await async</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 62</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (23)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (2)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (5)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Javascript Promise await async">
+    <meta itemprop="description" content="Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다.  적절한 사용을 위해서 각 방법간 사용법을 정리해 봅니다.">
+    <meta itemprop="datePublished" content="2023-03-01T00:00:00-06:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/javascript/JS-Promise1/" class="u-url" itemprop="url">Javascript Promise await async
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#promise">Promise</a><ul><li><a href="#promise를-관리하는-status-상태값">Promise를 관리하는 Status 상태값</a></li><li><a href="#then">then</a></li><li><a href="#catch">catch</a></li><li><a href="#finally">finally</a></li></ul></li><li><a href="#promisethenff-vs-promisethenfcatchf">promise.then(f,f) vs promise.then(f).catch(f)</a></li><li><a href="#promise-api">Promise API</a><ul><li><a href="#promiseresolve">Promise.resolve()</a></li><li><a href="#promisereject">Promise.reject()</a></li><li><a href="#promiseall">Promise.all()</a></li><li><a href="#promiseallsettled">Promise.allSettled()</a></li><li><a href="#promiserace">Promise.race()</a></li></ul></li><li><a href="#async--await">async / await</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다.  <br />
+적절한 사용을 위해서 각 방법간 사용법을 정리해 봅니다.</p>
+
+<h1 id="promise">Promise</h1>
+<p>Promise는 비동기 처리에 사용되는 Javascript 객체 입니다.</p>
+
+<h2 id="promise를-관리하는-status-상태값">Promise를 관리하는 Status 상태값</h2>
+<p>Promise는 3가지 상태를 가지고 있고, 각각의 개별 상태 값은 직접 접근 할 수 없습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th style="text-align: center">value</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>초기</td>
+      <td style="text-align: center">pending(대기)</td>
+      <td>초기 상태, 비동기 처리를 진행중인 상태</td>
+    </tr>
+    <tr>
+      <td>resolve</td>
+      <td style="text-align: center">fulfilled(이행)</td>
+      <td>resolve 호출시, 처리가 완료된 의미</td>
+    </tr>
+    <tr>
+      <td>reject</td>
+      <td style="text-align: center">rejected(실패)</td>
+      <td>reject 호출시, 실패 또는 오류가 발생한 상태</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>기본 사용 형태</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 실행코드</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="c1">// 성공 완료시 value와 함께 호출</span>
+    <span class="nf">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="c1">//실행 실패시 error와 함께 호출</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Syntax</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Promise는 성공 또는 실패에 대한 응답을 진행해야함.</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="then">then</h2>
+<p>then 2개의 콜백 인수를 가지고 있고, Promise의 최종 처리 결과를 수신 합니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="c1">// resolve 호출시</span>
+    <span class="p">},</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="c1">// reject 호출시</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="c1">// 축약</span>
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+  <span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">),</span>
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+<span class="p">);</span>
+
+</code></pre></div></div>
+
+<p>하기 코드는 3초뒤 성공을 Return하는 코드 입니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//setTimeout(() =&gt; resolve("Success"), 3000);</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">))</span> <span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// reject 함수는 .then의 두 번째 함수를 실행합니다.</span>
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+  <span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">),</span>
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+</code></pre></div></div>
+
+<h2 id="catch">catch</h2>
+<p><code class="language-plaintext highlighter-rouge">then(null, error)</code> 과 같이 에러를 처리하기 위한 구문으로, cathc(error) 로 축약된 기능.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">))</span> <span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">catch</span><span class="p">(</span>
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`catch : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>     <span class="c1">//catch : Error: Fail 출력</span>
+<span class="p">);</span>
+
+</code></pre></div></div>
+
+<h2 id="finally">finally</h2>
+<p>promise에서 실행의 성공, 실패와 무관하게 마지막에 실행됨을 보장하는 함수 입니다.<br />
+데이터 조회시 로딩 바를 보이고, 숨기는 동작에 자주 활용 합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then value : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span> <span class="p">)</span>
+<span class="p">.</span><span class="nf">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`finally`</span><span class="p">)</span> <span class="p">);</span>
+
+</code></pre></div></div>
+
+<h1 id="promisethenff-vs-promisethenfcatchf">promise.then(f,f) vs promise.then(f).catch(f)</h1>
+<p>promise.then(successFn, failFn) vs promise.then(successFn).catch(failFn)   <br />
+<code class="language-plaintext highlighter-rouge">promise.then(성공,실패)</code>과 <code class="language-plaintext highlighter-rouge">promise.then(성공).catch(실패)</code>에 동작성을 하기 코드로 확인해보자.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Case 1</span>
+<span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+  <span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">),</span> 
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 출력값</span>
+<span class="c1">// SUCCESS : Success</span>
+
+
+<span class="c1">// Case 2</span>
+<span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+    <span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">).</span><span class="nf">catch</span><span class="p">(</span>
+    <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 출력값</span>
+<span class="c1">// SUCCESS : Success</span>
+
+</code></pre></div></div>
+<p>Case 1, 2 모두 동일한 <code class="language-plaintext highlighter-rouge">SUCCESS : Success</code> 를 출력한다.
+Case 3, 4 의 변형된 소스를 파악해보면, 성공 응답과정 내에 내부적 이슈가 발생했을때를 가정한 소스 입니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Case 3</span>
+<span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+  <span class="nx">result</span> <span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">),</span> 
+    <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">));</span>   <span class="c1">//처리 중간 실패를 전달    </span>
+  <span class="p">},</span>
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 출력값</span>
+<span class="c1">// SUCCESS : Success</span>
+<span class="c1">// Uncaught (in promise) ReferenceError: reject is not defined &lt;- 소스 핸들링 범위 밖으로 에러가 발생함</span>
+   
+
+<span class="c1">// Case 4</span>
+<span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+    <span class="nx">result</span> <span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">),</span> 
+    <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">));</span>   <span class="c1">//처리 중간 실패를 전달    </span>
+   <span class="p">}</span> 
+<span class="p">).</span><span class="nf">catch</span><span class="p">(</span>
+    <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 출력값</span>
+<span class="c1">// SUCCESS : Success</span>
+<span class="c1">// ERROR : ReferenceError: reject is not defined  &lt;- 함수를 통해서 출력됨</span>
+</code></pre></div></div>
+
+<p>Case 3, 4 의 응답은 다른 결과를 나타 냅니다.  <br />
+<code class="language-plaintext highlighter-rouge">promise.then(successFn, failFn)</code> 형태의 응답은 중간 처리과정에서의 에러 처리가 <code class="language-plaintext highlighter-rouge">Uncaught</code> 처리될 수 있습니다.  <br />
+완벽하게 Case를 모두 처리가 가능하면 문제가 되지 않으나, 예상하지 못하는 에러가 발생시 최악의 경우 에러발생시 소스 실행이 멈출수 있습니다.  <br />
+반면 <code class="language-plaintext highlighter-rouge">promise.then(successFn).catch(failFn)</code> 방식의 실행은 에러 처리를 <code class="language-plaintext highlighter-rouge">catch(failFn)</code>에서 전담하여, 일괄 관리 할 수 있는 차이점 있습니다.</p>
+
+<h1 id="promise-api">Promise API</h1>
+<h2 id="promiseresolve">Promise.resolve()</h2>
+<p>성공한 경우 호출하는 함수… 위의 예제 참조.</p>
+<h2 id="promisereject">Promise.reject()</h2>
+<p>실패한 경우 호출하는 함수… 위의 예제 참조.</p>
+
+<h2 id="promiseall">Promise.all()</h2>
+<p>다수의 Promise를 일괄 처리를 모두 완료하였을때 then의 핸들러 함수를 실행 할 수 있습니다.   <br />
+syntax</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">([...</span><span class="nx">promise</span> <span class="nx">array</span><span class="p">...]);</span>
+
+<span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">([</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">),</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">),</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">)</span>
+<span class="p">]).</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">);</span> 
+
+</code></pre></div></div>
+
+<p>사용 예제</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p3 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="c1">//setTimeout(() =&gt; reject(new Error("p3 실패")) , 3000);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span>
+  <span class="p">.</span><span class="nf">all</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then(</span><span class="p">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">) : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span> <span class="p">)</span> <span class="p">)</span>
+  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+
+<span class="c1">// 모두 성공 반환시</span>
+<span class="c1">// param 은 p1,p2,p3의 resolve 인수를 모두 배열로 반환 ['p1 성공', 'p2 성공', 'p3 성공']</span>
+
+<span class="c1">// 한건 이상의 Fail 반환시 catch 호출</span>
+<span class="c1">// catch 로직으로 진입함 ERROR : Error: p3 실패 </span>
+</code></pre></div></div>
+
+<h2 id="promiseallsettled">Promise.allSettled()</h2>
+<p><code class="language-plaintext highlighter-rouge">Promise.all</code>과 달리 개별 건의 실행 결과를 받을 수 있습니다.  <br />
+개별 Promise의 값, 상태 를 받아서 처리해야 될 경우 사용할 수 있습니다.</p>
+
+<p>모두 성공한 경우 사용 예제</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p3 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="c1">//setTimeout(() =&gt; reject(new Error("p3 실패")) , 3000);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span>
+  <span class="p">.</span><span class="nf">allSettled</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then(</span><span class="p">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">) : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span> <span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">param</span><span class="p">);}</span> <span class="p">)</span>
+  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+
+<span class="c1">// 응답값</span>
+<span class="nf">then</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span> <span class="p">[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">[{</span><span class="err">…</span><span class="p">},</span> <span class="p">{</span><span class="err">…</span><span class="p">},</span> <span class="p">{</span><span class="err">…</span><span class="p">}]</span>
+<span class="mi">0</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p1 성공</span><span class="dl">'</span><span class="p">}</span>
+<span class="mi">1</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p2 성공</span><span class="dl">'</span><span class="p">}</span>
+<span class="mi">2</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p3 성공</span><span class="dl">'</span><span class="p">}</span>
+
+
+</code></pre></div></div>
+
+<p>일부 실패가 존재하는 경우 사용 예제, 
+일부 실패 <code class="language-plaintext highlighter-rouge">reject</code>호출에도 catch로 진입하지 않고 <code class="language-plaintext highlighter-rouge">then</code>의 개별 Object 결과를 반환합니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//setTimeout(() =&gt; resolve("p3 성공"), 3000);</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">p3 실패</span><span class="dl">"</span><span class="p">))</span> <span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span>
+  <span class="p">.</span><span class="nf">allSettled</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then(</span><span class="p">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">) : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span> <span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">param</span><span class="p">);}</span> <span class="p">)</span>
+  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+
+<span class="c1">// 응답값</span>
+<span class="nf">then</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span> <span class="p">[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">[{</span><span class="err">…</span><span class="p">},</span> <span class="p">{</span><span class="err">…</span><span class="p">},</span> <span class="p">{</span><span class="err">…</span><span class="p">}]</span>
+<span class="mi">0</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p1 성공</span><span class="dl">'</span><span class="p">}</span>
+<span class="mi">1</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p2 성공</span><span class="dl">'</span><span class="p">}</span>
+<span class="mi">2</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rejected</span><span class="dl">'</span><span class="p">,</span> <span class="nx">reason</span><span class="p">:</span> <span class="nb">Error</span><span class="p">:</span> <span class="nx">p3</span> <span class="nx">실패</span> <span class="nx">at</span> <span class="o">&lt;</span><span class="nx">anonymous</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">27</span><span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="promiserace">Promise.race()</h2>
+<p>resolve, reject와 관계 없이 처음 한번은 then()이 실행 된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p3 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="c1">//setTimeout(() =&gt; reject(new Error("p3 실패")) , 3000);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span>
+  <span class="p">.</span><span class="nf">race</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span><span class="p">))</span>
+  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+
+<span class="c1">// 모두 성공 반환시</span>
+<span class="c1">// param 은 p1,p2,p3의 resolve 인수를 모두 배열로 반환 ['p1 성공', 'p2 성공', 'p3 성공']</span>
+
+<span class="c1">// 한건 이상의 Fail판환시</span>
+<span class="c1">// catch 로직으로 진입함 ERROR : Error: p3 실패 </span>
+</code></pre></div></div>
+
+<h1 id="async--await">async / await</h1>
+<p>최근 나온 문법으로 <code class="language-plaintext highlighter-rouge">Promise</code> 사용시 발생하는 <code class="language-plaintext highlighter-rouge">Promise 지옥</code> 또는 <code class="language-plaintext highlighter-rouge">Callback 지옥</code> 을 해결할 수 있는 비동기 처리 문법 입니다.  <br />
+async, await 는 함수 안에서만 동작하는 제약 사항이 있으며, await를 통해서 Promise 반환 값을 전달 받을 수 있습니다.</p>
+
+<p>코드 가독성을 개선한 방법이 async/await이지만 동작의 큰 흐름적 방향성은 유사 합니다.
+Promise는 <code class="language-plaintext highlighter-rouge">catch()</code>를 통해서 에러 처리를 지원하며, async/await 별도의 에러 처리 메소드를 제공하지 않고 일반 에러 처리 로직인 <code class="language-plaintext highlighter-rouge">try{ ... }cathc(e){ ... }</code>를 통해 지원 합니다.</p>
+
+<p>사용 예</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//익명 함수 형태</span>
+<span class="p">(</span><span class="nf">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+        <span class="c1">//setTimeout(() =&gt; reject(new Error("p 실패")) , 1000);</span>
+    <span class="p">});</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">promise</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">}</span> <span class="nf">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">})();</span>
+
+
+<span class="c1">//명시적 함수 생성</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">ex</span><span class="p">(){</span>
+    <span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+        <span class="c1">//setTimeout(() =&gt; reject(new Error("p 실패")) , 1000);</span>
+    <span class="p">});</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">promise</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">}</span> <span class="nf">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nf">ex</span><span class="p">();</span>
+
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#async" class="page__taxonomy-item p-category" rel="tag">async</a><span class="sep">, </span>
+    
+      <a href="/tags/#await" class="page__taxonomy-item p-category" rel="tag">await</a><span class="sep">, </span>
+    
+      <a href="/tags/#promise" class="page__taxonomy-item p-category" rel="tag">Promise</a><span class="sep">, </span>
+    
+      <a href="/tags/#promise-all" class="page__taxonomy-item p-category" rel="tag">Promise.all</a><span class="sep">, </span>
+    
+      <a href="/tags/#promise-allsettled" class="page__taxonomy-item p-category" rel="tag">Promise.allSettled</a><span class="sep">, </span>
+    
+      <a href="/tags/#promise-race" class="page__taxonomy-item p-category" rel="tag">Promise.race</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EB%8F%99%EA%B8%B0%ED%99%94" class="page__taxonomy-item p-category" rel="tag">동기화</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%BD%9C%EB%B0%B1%EC%A7%80%EC%98%A5" class="page__taxonomy-item p-category" rel="tag">콜백지옥</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#javascript" class="page__taxonomy-item p-category" rel="tag">javascript</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-03-01T00:00:00-06:00">2023-03-01</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Javascript+Promise+await+async%20https%3A%2F%2Fkimjaehyun.co.kr%2Fjavascript%2FJS-Promise1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fjavascript%2FJS-Promise1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fjavascript%2FJS-Promise1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/javascript/JS-Class/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>Javascript Class</a>
+    
+    
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/javascript/JS-Class/">Javascript Class</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2023.02.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#javascript" class="page__taxonomy-item-category" rel="tag">javascript</a>
+                    
+                    
+                    <a href="/tags/#class" class="page__taxonomy-item-tag" rel="tag">Class</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#constructor" class="page__taxonomy-item-tag" rel="tag">constructor</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#extends" class="page__taxonomy-item-tag" rel="tag">extends</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#super" class="page__taxonomy-item-tag" rel="tag">super</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/codingtest/Qtype-stack-sort-count/">[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.07.08
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#codingtest" class="page__taxonomy-item-category" rel="tag">codingtest</a>
+                    
+                    
+                    <a href="/tags/#filo" class="page__taxonomy-item-tag" rel="tag">FILO</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#stack" class="page__taxonomy-item-tag" rel="tag">stack</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B5%AC%EB%AC%B8-%EB%B6%84%EC%84%9D" class="page__taxonomy-item-tag" rel="tag">문자열 구문 분석</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.26
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_03_operations/">[Python][Numpy] 배열 연산(Array operations)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.25
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,4 +1,368 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2023-02-27T05:21:47-06:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Javascript Class</title><link href="https://kimjaehyun.co.kr/javascript/JS-Class/" rel="alternate" type="text/html" title="Javascript Class" /><published>2023-02-27T00:00:00-06:00</published><updated>2023-02-27T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Class</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Class/"><![CDATA[<p>Javascript Class 사용과 상속에 대해서 정리해 봅시다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://kimjaehyun.co.kr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimjaehyun.co.kr/" rel="alternate" type="text/html" /><updated>2023-03-01T02:28:44-06:00</updated><id>https://kimjaehyun.co.kr/feed.xml</id><title type="html">꿰보노트</title><subtitle>프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배</subtitle><author><name>devjaedol</name></author><entry><title type="html">Javascript Promise await async</title><link href="https://kimjaehyun.co.kr/javascript/JS-Promise1/" rel="alternate" type="text/html" title="Javascript Promise await async" /><published>2023-03-01T00:00:00-06:00</published><updated>2023-03-01T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Promise1</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Promise1/"><![CDATA[<p>Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다.  <br />
+적절한 사용을 위해서 각 방법간 사용법을 정리해 봅니다.</p>
+
+<h1 id="promise">Promise</h1>
+<p>Promise는 비동기 처리에 사용되는 Javascript 객체 입니다.</p>
+
+<h2 id="promise를-관리하는-status-상태값">Promise를 관리하는 Status 상태값</h2>
+<p>Promise는 3가지 상태를 가지고 있고, 각각의 개별 상태 값은 직접 접근 할 수 없습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th style="text-align: center">value</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>초기</td>
+      <td style="text-align: center">pending(대기)</td>
+      <td>초기 상태, 비동기 처리를 진행중인 상태</td>
+    </tr>
+    <tr>
+      <td>resolve</td>
+      <td style="text-align: center">fulfilled(이행)</td>
+      <td>resolve 호출시, 처리가 완료된 의미</td>
+    </tr>
+    <tr>
+      <td>reject</td>
+      <td style="text-align: center">rejected(실패)</td>
+      <td>reject 호출시, 실패 또는 오류가 발생한 상태</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>기본 사용 형태</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 실행코드</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="c1">// 성공 완료시 value와 함께 호출</span>
+    <span class="nf">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="c1">//실행 실패시 error와 함께 호출</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Syntax</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Promise는 성공 또는 실패에 대한 응답을 진행해야함.</span>
+    <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="then">then</h2>
+<p>then 2개의 콜백 인수를 가지고 있고, Promise의 최종 처리 결과를 수신 합니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="c1">// resolve 호출시</span>
+    <span class="p">},</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="c1">// reject 호출시</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="c1">// 축약</span>
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+  <span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">),</span>
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+<span class="p">);</span>
+
+</code></pre></div></div>
+
+<p>하기 코드는 3초뒤 성공을 Return하는 코드 입니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//setTimeout(() =&gt; resolve("Success"), 3000);</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">))</span> <span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// reject 함수는 .then의 두 번째 함수를 실행합니다.</span>
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+  <span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">),</span>
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+</code></pre></div></div>
+
+<h2 id="catch">catch</h2>
+<p><code class="language-plaintext highlighter-rouge">then(null, error)</code> 과 같이 에러를 처리하기 위한 구문으로, cathc(error) 로 축약된 기능.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">))</span> <span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">catch</span><span class="p">(</span>
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`catch : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>     <span class="c1">//catch : Error: Fail 출력</span>
+<span class="p">);</span>
+
+</code></pre></div></div>
+
+<h2 id="finally">finally</h2>
+<p>promise에서 실행의 성공, 실패와 무관하게 마지막에 실행됨을 보장하는 함수 입니다.<br />
+데이터 조회시 로딩 바를 보이고, 숨기는 동작에 자주 활용 합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then value : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span> <span class="p">)</span>
+<span class="p">.</span><span class="nf">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`finally`</span><span class="p">)</span> <span class="p">);</span>
+
+</code></pre></div></div>
+
+<h1 id="promisethenff-vs-promisethenfcatchf">promise.then(f,f) vs promise.then(f).catch(f)</h1>
+<p>promise.then(successFn, failFn) vs promise.then(successFn).catch(failFn)   <br />
+<code class="language-plaintext highlighter-rouge">promise.then(성공,실패)</code>과 <code class="language-plaintext highlighter-rouge">promise.then(성공).catch(실패)</code>에 동작성을 하기 코드로 확인해보자.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Case 1</span>
+<span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+  <span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">),</span> 
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 출력값</span>
+<span class="c1">// SUCCESS : Success</span>
+
+
+<span class="c1">// Case 2</span>
+<span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+    <span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">).</span><span class="nf">catch</span><span class="p">(</span>
+    <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 출력값</span>
+<span class="c1">// SUCCESS : Success</span>
+
+</code></pre></div></div>
+<p>Case 1, 2 모두 동일한 <code class="language-plaintext highlighter-rouge">SUCCESS : Success</code> 를 출력한다.
+Case 3, 4 의 변형된 소스를 파악해보면, 성공 응답과정 내에 내부적 이슈가 발생했을때를 가정한 소스 입니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Case 3</span>
+<span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+  <span class="nx">result</span> <span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">),</span> 
+    <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">));</span>   <span class="c1">//처리 중간 실패를 전달    </span>
+  <span class="p">},</span>
+  <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 출력값</span>
+<span class="c1">// SUCCESS : Success</span>
+<span class="c1">// Uncaught (in promise) ReferenceError: reject is not defined &lt;- 소스 핸들링 범위 밖으로 에러가 발생함</span>
+   
+
+<span class="c1">// Case 4</span>
+<span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">Success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
+    <span class="nx">result</span> <span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">),</span> 
+    <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">));</span>   <span class="c1">//처리 중간 실패를 전달    </span>
+   <span class="p">}</span> 
+<span class="p">).</span><span class="nf">catch</span><span class="p">(</span>
+    <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 출력값</span>
+<span class="c1">// SUCCESS : Success</span>
+<span class="c1">// ERROR : ReferenceError: reject is not defined  &lt;- 함수를 통해서 출력됨</span>
+</code></pre></div></div>
+
+<p>Case 3, 4 의 응답은 다른 결과를 나타 냅니다.  <br />
+<code class="language-plaintext highlighter-rouge">promise.then(successFn, failFn)</code> 형태의 응답은 중간 처리과정에서의 에러 처리가 <code class="language-plaintext highlighter-rouge">Uncaught</code> 처리될 수 있습니다.  <br />
+완벽하게 Case를 모두 처리가 가능하면 문제가 되지 않으나, 예상하지 못하는 에러가 발생시 최악의 경우 에러발생시 소스 실행이 멈출수 있습니다.  <br />
+반면 <code class="language-plaintext highlighter-rouge">promise.then(successFn).catch(failFn)</code> 방식의 실행은 에러 처리를 <code class="language-plaintext highlighter-rouge">catch(failFn)</code>에서 전담하여, 일괄 관리 할 수 있는 차이점 있습니다.</p>
+
+<h1 id="promise-api">Promise API</h1>
+<h2 id="promiseresolve">Promise.resolve()</h2>
+<p>성공한 경우 호출하는 함수… 위의 예제 참조.</p>
+<h2 id="promisereject">Promise.reject()</h2>
+<p>실패한 경우 호출하는 함수… 위의 예제 참조.</p>
+
+<h2 id="promiseall">Promise.all()</h2>
+<p>다수의 Promise를 일괄 처리를 모두 완료하였을때 then의 핸들러 함수를 실행 할 수 있습니다.   <br />
+syntax</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">([...</span><span class="nx">promise</span> <span class="nx">array</span><span class="p">...]);</span>
+
+<span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">([</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">),</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">),</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">)</span>
+<span class="p">]).</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">);</span> 
+
+</code></pre></div></div>
+
+<p>사용 예제</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p3 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="c1">//setTimeout(() =&gt; reject(new Error("p3 실패")) , 3000);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span>
+  <span class="p">.</span><span class="nf">all</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then(</span><span class="p">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">) : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span> <span class="p">)</span> <span class="p">)</span>
+  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+
+<span class="c1">// 모두 성공 반환시</span>
+<span class="c1">// param 은 p1,p2,p3의 resolve 인수를 모두 배열로 반환 ['p1 성공', 'p2 성공', 'p3 성공']</span>
+
+<span class="c1">// 한건 이상의 Fail 반환시 catch 호출</span>
+<span class="c1">// catch 로직으로 진입함 ERROR : Error: p3 실패 </span>
+</code></pre></div></div>
+
+<h2 id="promiseallsettled">Promise.allSettled()</h2>
+<p><code class="language-plaintext highlighter-rouge">Promise.all</code>과 달리 개별 건의 실행 결과를 받을 수 있습니다.  <br />
+개별 Promise의 값, 상태 를 받아서 처리해야 될 경우 사용할 수 있습니다.</p>
+
+<p>모두 성공한 경우 사용 예제</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p3 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="c1">//setTimeout(() =&gt; reject(new Error("p3 실패")) , 3000);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span>
+  <span class="p">.</span><span class="nf">allSettled</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then(</span><span class="p">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">) : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span> <span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">param</span><span class="p">);}</span> <span class="p">)</span>
+  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+
+<span class="c1">// 응답값</span>
+<span class="nf">then</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span> <span class="p">[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">[{</span><span class="err">…</span><span class="p">},</span> <span class="p">{</span><span class="err">…</span><span class="p">},</span> <span class="p">{</span><span class="err">…</span><span class="p">}]</span>
+<span class="mi">0</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p1 성공</span><span class="dl">'</span><span class="p">}</span>
+<span class="mi">1</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p2 성공</span><span class="dl">'</span><span class="p">}</span>
+<span class="mi">2</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p3 성공</span><span class="dl">'</span><span class="p">}</span>
+
+
+</code></pre></div></div>
+
+<p>일부 실패가 존재하는 경우 사용 예제, 
+일부 실패 <code class="language-plaintext highlighter-rouge">reject</code>호출에도 catch로 진입하지 않고 <code class="language-plaintext highlighter-rouge">then</code>의 개별 Object 결과를 반환합니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//setTimeout(() =&gt; resolve("p3 성공"), 3000);</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">p3 실패</span><span class="dl">"</span><span class="p">))</span> <span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span>
+  <span class="p">.</span><span class="nf">allSettled</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then(</span><span class="p">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">) : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span> <span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">param</span><span class="p">);}</span> <span class="p">)</span>
+  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+
+<span class="c1">// 응답값</span>
+<span class="nf">then</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span> <span class="p">[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">[{</span><span class="err">…</span><span class="p">},</span> <span class="p">{</span><span class="err">…</span><span class="p">},</span> <span class="p">{</span><span class="err">…</span><span class="p">}]</span>
+<span class="mi">0</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p1 성공</span><span class="dl">'</span><span class="p">}</span>
+<span class="mi">1</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fulfilled</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">p2 성공</span><span class="dl">'</span><span class="p">}</span>
+<span class="mi">2</span> <span class="p">:</span> <span class="p">{</span><span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rejected</span><span class="dl">'</span><span class="p">,</span> <span class="nx">reason</span><span class="p">:</span> <span class="nb">Error</span><span class="p">:</span> <span class="nx">p3</span> <span class="nx">실패</span> <span class="nx">at</span> <span class="o">&lt;</span><span class="nx">anonymous</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">27</span><span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="promiserace">Promise.race()</h2>
+<p>resolve, reject와 관계 없이 처음 한번은 then()이 실행 된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p1 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p2 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p3 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="c1">//setTimeout(() =&gt; reject(new Error("p3 실패")) , 3000);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span>
+  <span class="p">.</span><span class="nf">race</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span><span class="p">))</span>
+  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+
+<span class="c1">// 모두 성공 반환시</span>
+<span class="c1">// param 은 p1,p2,p3의 resolve 인수를 모두 배열로 반환 ['p1 성공', 'p2 성공', 'p3 성공']</span>
+
+<span class="c1">// 한건 이상의 Fail판환시</span>
+<span class="c1">// catch 로직으로 진입함 ERROR : Error: p3 실패 </span>
+</code></pre></div></div>
+
+<h1 id="async--await">async / await</h1>
+<p>최근 나온 문법으로 <code class="language-plaintext highlighter-rouge">Promise</code> 사용시 발생하는 <code class="language-plaintext highlighter-rouge">Promise 지옥</code> 또는 <code class="language-plaintext highlighter-rouge">Callback 지옥</code> 을 해결할 수 있는 비동기 처리 문법 입니다.  <br />
+async, await 는 함수 안에서만 동작하는 제약 사항이 있으며, await를 통해서 Promise 반환 값을 전달 받을 수 있습니다.</p>
+
+<p>코드 가독성을 개선한 방법이 async/await이지만 동작의 큰 흐름적 방향성은 유사 합니다.
+Promise는 <code class="language-plaintext highlighter-rouge">catch()</code>를 통해서 에러 처리를 지원하며, async/await 별도의 에러 처리 메소드를 제공하지 않고 일반 에러 처리 로직인 <code class="language-plaintext highlighter-rouge">try{ ... }cathc(e){ ... }</code>를 통해 지원 합니다.</p>
+
+<p>사용 예</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//익명 함수 형태</span>
+<span class="p">(</span><span class="nf">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+        <span class="c1">//setTimeout(() =&gt; reject(new Error("p 실패")) , 1000);</span>
+    <span class="p">});</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">promise</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">}</span> <span class="nf">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">})();</span>
+
+
+<span class="c1">//명시적 함수 생성</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">ex</span><span class="p">(){</span>
+    <span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+        <span class="c1">//setTimeout(() =&gt; reject(new Error("p 실패")) , 1000);</span>
+    <span class="p">});</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">promise</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">}</span> <span class="nf">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nf">ex</span><span class="p">();</span>
+
+</code></pre></div></div>]]></content><author><name>devjaedol</name></author><category term="javascript" /><category term="Promise" /><category term="await" /><category term="async" /><category term="Promise.all" /><category term="Promise.allSettled" /><category term="Promise.race" /><category term="콜백지옥" /><category term="동기화" /><summary type="html"><![CDATA[Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다. 적절한 사용을 위해서 각 방법간 사용법을 정리해 봅니다.]]></summary></entry><entry><title type="html">Javascript Class</title><link href="https://kimjaehyun.co.kr/javascript/JS-Class/" rel="alternate" type="text/html" title="Javascript Class" /><published>2023-02-27T00:00:00-06:00</published><updated>2023-02-27T00:00:00-06:00</updated><id>https://kimjaehyun.co.kr/javascript/JS-Class</id><content type="html" xml:base="https://kimjaehyun.co.kr/javascript/JS-Class/"><![CDATA[<p>Javascript Class 사용과 상속에 대해서 정리해 봅시다.</p>
 
 <h1 id="class-basic-syntax">Class Basic Syntax</h1>
 <p>클래스의 기본 생성 방법</p>
@@ -437,6 +801,8 @@ O(N) 의 시간 복잡도로 해결하는 방법을 찾는 것을 묻는 문제 
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
+
+    
 
     
 
@@ -1251,6 +1617,8 @@ ndarray의 정렬 <code class="language-plaintext highlighter-rouge">index</code
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
+
+    
 
     
 
@@ -2305,6 +2673,8 @@ Array manipulation routines :  <a href="https://numpy.org/doc/stable/reference/r
     
 
     
+
+    
         
              
         
@@ -3044,505 +3414,6 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
     
 
     
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_10_package/">[Python Basic] 모듈 만들기, 패키지 만들기</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_09_exception/">[Python Basic] 예외처리</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_08_class/">[Python Basic] Class</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_07_function/">[Python Basic] 함수</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_06_set/">[Python Basic] 자료형 set 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_05_dictionary/">[Python Basic] 자료형 dictionary 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_04_tuple/">[Python Basic] 자료형 tuple 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_03_list/">[Python Basic] 자료형 list 타입</a></li>
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_02_init/">[Python Basic] 기본 자료 및 조건문</a></li>
-             
-        
-      
-
-    
-        
-             
-        
-             
-        
-             
-        
-              
-                <li><a href="/python/python_study_01_install/">[Python Basic] 설치</a></li>
-             
-        
-      
-
-    
-
-    
-
-    
-
-    
-
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[Numpy(Numerical Python) 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. 기본적은 사용법을 배워보겠습니다. Array creation routines : API 참조]]></summary></entry><entry><title type="html">[Python Basic] Class</title><link href="https://kimjaehyun.co.kr/python/python_study_08_class/" rel="alternate" type="text/html" title="[Python Basic] Class" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_08_class</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_08_class/"><![CDATA[<p>객체 지향 프로그램에서 사용하는 클래스를 학습해 보겠습니다.</p>
-
-<h1 id="class">Class</h1>
-<h2 id="형태">형태</h2>
-<p><code class="language-plaintext highlighter-rouge">class 클래스이름</code>으로 클래스를 생성 할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
-    <span class="n">클래스</span> <span class="n">내용</span>        
-
-<span class="c1">#내용이 빈 클래스를 만들 경우.
-</span><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
-    <span class="k">pass</span>        
-</code></pre></div></div>
-
-<h2 id="사용법">사용법</h2>
-<p>인스턴스 형태로 생성하여 사용 합니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">변수</span>  <span class="o">=</span> <span class="n">클래스이름</span><span class="p">();</span>
-</code></pre></div></div>
-
-<h2 id="생성자-소멸자-사용자-함수">생성자, 소멸자, 사용자 함수</h2>
-<p>생성자의 첫번째 매개 변수는 <code class="language-plaintext highlighter-rouge">self</code> 를 꼭 포함해야 한다.  <br />
-클래스 내부에 <code class="language-plaintext highlighter-rouge">__xxx__</code> 로 구성된 메소드는 특수 기능으로 존재하는 메소드 입니다.
-<code class="language-plaintext highlighter-rouge">__str__</code>, <code class="language-plaintext highlighter-rouge">__eq__</code>,<code class="language-plaintext highlighter-rouge">__dir__</code> 등등</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">사용자함수명</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">사용자</span> <span class="n">정의</span> <span class="n">매개변수</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">'객체가 소멸됩니다.'</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<h2 id="생성-예-및-소속-확인방법">생성 예 및 소속 확인방법</h2>
-<p><code class="language-plaintext highlighter-rouge">isinstance(인스턴스, 클래스)</code> 를 사용해서 소속을 확인 할 수 있습니다. <br />
-<code class="language-plaintext highlighter-rouge">type(인스턴스) == 클래스</code> 로도 확인 할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-<span class="n">truck</span> <span class="o">=</span> <span class="nc">Car</span><span class="p">()</span>  <span class="c1">#객체 생성
-</span>
-<span class="nf">print</span><span class="p">(</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">truck</span><span class="p">,</span> <span class="n">Car</span><span class="p">))</span> <span class="c1"># True
-</span><span class="nf">print</span><span class="p">(</span> <span class="nf">type</span><span class="p">(</span><span class="n">truck</span><span class="p">)</span> <span class="o">==</span> <span class="n">Car</span><span class="p">)</span> <span class="c1"># True
-</span></code></pre></div></div>
-
-<h2 id="sample-code">Sample Code</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-    <span class="k">def</span> <span class="nf">setDoor</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">door</span> <span class="o">=</span> <span class="n">door</span>
-    <span class="k">def</span> <span class="nf">getDoor</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">door</span>
-    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="nc">Car</span><span class="p">(</span><span class="s">'NewCar'</span><span class="p">)</span>
-<span class="n">c</span><span class="p">.</span><span class="nf">setDoor</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="nf">getDoor</span><span class="p">())</span> <span class="c1"># 4
-</span></code></pre></div></div>
-
-<h1 id="상속">상속</h1>
-<p>부모 클래스를 상속 합니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Bus</span> <span class="p">(</span><span class="n">Car</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"this is a bus:"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
- 
-<span class="k">class</span> <span class="nc">Truck</span> <span class="p">(</span><span class="n">Car</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"this is a Truck:"</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
-
-<span class="n">b</span> <span class="o">=</span> <span class="nc">Bus</span><span class="p">(</span><span class="s">'시내버스'</span><span class="p">)</span> 
-<span class="n">t</span> <span class="o">=</span> <span class="nc">Truck</span><span class="p">(</span><span class="s">'화물트럭'</span><span class="p">)</span>
-
-<span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="n">i</span><span class="p">.</span><span class="nf">getFeatures</span><span class="p">()</span>
-
-<span class="c1">#출력
-</span><span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">bus</span><span class="p">:</span> <span class="n">시내버스</span>
-<span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">Truck</span><span class="p">:</span> <span class="n">화물트럭</span>
-
-</code></pre></div></div>
-
-<p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
-<ul>
-
-    
-
-    
 
     
         
@@ -3950,7 +3821,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="class" /><summary type="html"><![CDATA[객체 지향 프로그램에서 사용하는 클래스를 학습해 보겠습니다.]]></summary></entry><entry><title type="html">[Python Basic] 예외처리</title><link href="https://kimjaehyun.co.kr/python/python_study_09_exception/" rel="alternate" type="text/html" title="[Python Basic] 예외처리" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_09_exception</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_09_exception/"><![CDATA[<p>Python에서 예외 처리 방법에 대해서 알아 봅시다.</p>
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="lecture-python-numpy" /><category term="numpy" /><summary type="html"><![CDATA[Numpy(Numerical Python) 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. 기본적은 사용법을 배워보겠습니다. Array creation routines : API 참조]]></summary></entry><entry><title type="html">[Python Basic] 예외처리</title><link href="https://kimjaehyun.co.kr/python/python_study_09_exception/" rel="alternate" type="text/html" title="[Python Basic] 예외처리" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_09_exception</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_09_exception/"><![CDATA[<p>Python에서 예외 처리 방법에 대해서 알아 봅시다.</p>
 
 <h1 id="try--except">try ~ except</h1>
 <h2 id="형태">형태</h2>
@@ -4014,6 +3885,8 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
+
+    
 
     
 
@@ -4490,6 +4363,8 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
     
 
     
+
+    
         
              
         
@@ -4895,197 +4770,142 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="package" /><summary type="html"><![CDATA[Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다. 자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.]]></summary></entry><entry><title type="html">[Python Basic] 함수</title><link href="https://kimjaehyun.co.kr/python/python_study_07_function/" rel="alternate" type="text/html" title="[Python Basic] 함수" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_07_function</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_07_function/"><![CDATA[<h1 id="함수">함수</h1>
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="package" /><summary type="html"><![CDATA[Python 만든 함수를 모듈화 또는 패키지화를 만들어 봅시다. 자주 사용하는 함수, 변수 또는 클래스 등을 재사용성을 높이기 위해서 모듈화를 진행할 수 있습니다.]]></summary></entry><entry><title type="html">[Python Basic] 자료형 set 타입</title><link href="https://kimjaehyun.co.kr/python/python_study_06_set/" rel="alternate" type="text/html" title="[Python Basic] 자료형 set 타입" /><published>2022-06-22T00:00:00-05:00</published><updated>2022-06-22T00:00:00-05:00</updated><id>https://kimjaehyun.co.kr/python/python_study_06_set</id><content type="html" xml:base="https://kimjaehyun.co.kr/python/python_study_06_set/"><![CDATA[<p>순서와 중복이 보장되지 않는 자료형 입니다.</p>
+
+<h1 id="list-vs-tuple-vs-dictionary-vs-set">list vs tuple vs dictionary vs set</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">list</th>
+      <th style="text-align: center">tuple</th>
+      <th style="text-align: center">dictionary</th>
+      <th style="text-align: center">set</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">순서</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">중복</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">변경</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">형태</td>
+      <td style="text-align: center">[1,2,3,4,5]</td>
+      <td style="text-align: center">(1,2,3,4,5)</td>
+      <td style="text-align: center">{“java”:10, “key”:5}</td>
+      <td style="text-align: center">{1, 2, 3}</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">type</td>
+      <td style="text-align: center">&lt;class ‘list’&gt;</td>
+      <td style="text-align: center">&lt;class ‘tuple’&gt;</td>
+      <td style="text-align: center">&lt;class ‘dict’&gt;</td>
+      <td style="text-align: center">&lt;class ‘set’&gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>형태 <code class="language-plaintext highlighter-rouge">{값, 값,...., 값}</code> 의 형태의 자료형  <br />
+예)  <br />
+ <code class="language-plaintext highlighter-rouge">a = {1, 2, 3, 4, 5}</code> <br />
+ <code class="language-plaintext highlighter-rouge">a = {1, 2, 3, 3, 4, 5}</code> - 중복 <code class="language-plaintext highlighter-rouge">3</code> 값 포함 불가능</p>
+
+<h1 id="기본-사용법">기본 사용법</h1>
 <h2 id="선언">선언</h2>
-<p>자주 사용하는 기능을 Function으로 정의할 수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#반환값이 있는 경우
-</span><span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
-    <span class="n">함수</span> <span class="n">내용부</span>
-    <span class="k">return</span> <span class="n">반환값</span>
-
-<span class="c1">#반환값이 없는 경우
-</span><span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
-    <span class="n">함수</span> <span class="n">내용부</span>
-
-<span class="k">def</span> <span class="nf">함수명</span><span class="p">(</span><span class="n">인자정의</span><span class="p">)</span>
-    <span class="n">함수</span> <span class="n">내용부</span>
-    <span class="k">return</span>      <span class="c1">#값이 없는 경우 `None`
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5}
 </span>
-<span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-    <span class="k">return</span> <span class="n">s</span>
- 
-<span class="n">total</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
 
-</code></pre></div></div>
-
-<p>단일 값 또는 다중 값(튜플)을 반환 할수 있습니다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
-
-<span class="n">total</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span>
-
-
-<span class="c1">#다중값 반환 함수
-</span><span class="k">def</span> <span class="nf">multi</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">):</span>
-    <span class="n">s1</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">v2</span>
-    <span class="n">s2</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span>
-    <span class="k">return</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span>
-
-<span class="n">t1</span><span class="p">,</span> <span class="n">t2</span> <span class="o">=</span> <span class="nf">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">30</span> <span class="mi">10</span>
-
-<span class="n">t</span> <span class="o">=</span> <span class="nf">multi</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</code></pre></div></div>
-
-<h2 id="파라메터-초기값-설정">파라메터 초기값 설정</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#빈값 입력시 기본값으로 설정 
-</span><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">15</span>
-</code></pre></div></div>
-
-<h2 id="파라메터-이름-설정">파라메터 이름 설정</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#이름으로 설정할 수 있습니다.
-</span><span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
-
-<span class="nf">info</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'Hong Gil Dong'</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Hong</span> <span class="n">Gil</span> <span class="n">Dong</span> <span class="mi">30</span>
-
-</code></pre></div></div>
-
-<h2 id="가변-길이-파라메터">가변 길이 파라메터</h2>
-<p>가변 파라메터의 제약사항</p>
-<ul>
-  <li>가변 매개변수 뒤에는 일반 매개변수 올수 없음.</li>
-  <li>가변 매개변수는 한개만 사용가능함.</li>
-  <li>가변 매개변수 압 일반 매개변수의 기본값은 무시된다.</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#가변형 파라메터 입력 
-</span><span class="k">def</span> <span class="nf">keyList</span><span class="p">(</span><span class="o">*</span><span class="n">keys</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
-<span class="nf">keyList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">5</span>
-
-<span class="c1">#일반 파라메터 , 가변형 파라메터 입력 
-</span><span class="k">def</span> <span class="nf">keyList</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">keys</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
-<span class="nf">keyList</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="s">'a'</span> <span class="s">'b'</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">5</span>
-
-<span class="c1"># 가변형 파라메터 + 키워드 일반 파라메터
-</span><span class="k">def</span> <span class="nf">keyList</span><span class="p">(</span><span class="o">*</span><span class="n">keys</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">'abc'</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
-
-<span class="nf">keyList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">5</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">abc</span>
-
-</code></pre></div></div>
-
-<h2 id="함수내-값의-유지immutable-mutable">함수내 값의 유지(immutable, mutable)</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="nb">list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
- 
-<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>       <span class="c1"># k는 int (immutable)
-</span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># l은 리스트 (mutable)
-</span> 
-<span class="nf">f</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>      <span class="c1"># 함수 호출
-</span><span class="nf">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>  <span class="c1"># 호출자 값 체크
-# 출력: 10 [1, 2, 3, 0]
+<span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 </span>
 </code></pre></div></div>
 
-<h1 id="python-함수-호출">python 함수 호출</h1>
-<p><code class="language-plaintext highlighter-rouge">math</code> 함수를 예로 들어서 설명 합니다.</p>
+<h2 id="추가-삭제">추가, 삭제</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+<span class="n">a</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5, 6}
+</span>
+<span class="c1">#여러개 추가
+</span><span class="n">a</span><span class="p">.</span><span class="nf">update</span><span class="p">({</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">})</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 3, 4, 5, 6, 7, 8, 9}
+</span>
+<span class="c1">#한개 삭제
+</span><span class="n">a</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {1, 2, 4, 5, 6, 7, 8, 9}
+</span>
+<span class="c1">#모두 삭제
+</span><span class="n">a</span><span class="p">.</span><span class="nf">clear</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># {}
+</span></code></pre></div></div>
 
-<h2 id="전체-import">전체 import</h2>
-<p><code class="language-plaintext highlighter-rouge">math</code> 전체를 import 후 호출 시 <code class="language-plaintext highlighter-rouge">math.xxx()</code>의 형태로 사용함.</p>
+<h2 id="연산">연산</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">}</span>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">math</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="nf">fabs</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1"># 합집합
+</span><span class="n">u</span> <span class="o">=</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span>
+<span class="c1"># u = a.union(b)
+</span><span class="nf">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="c1"># {1, 2, 3, 4, 5, 6, 7}
+</span>
+<span class="c1"># 교집합
+</span><span class="n">i</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span>
+<span class="c1"># i = a.intersection(b)
+</span><span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1">#  {3, 4, 5}
+</span>  
+<span class="c1"># 차집합
+</span><span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<span class="c1"># d = a.difference(b)
+</span><span class="nf">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1"># {1, 2}
+</span>
 </code></pre></div></div>
 
-<h2 id="일부-함수-import">일부 함수 import</h2>
-<p><code class="language-plaintext highlighter-rouge">math</code> 전체가 아닌 일부 함수 import</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">math</span> <span class="kn">import</span> <span class="p">(</span><span class="n">acos</span><span class="p">,</span><span class="n">fabs</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="nf">fabs</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>    <span class="c1"># math. 을 사용하지 않음
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<h2 id="set-의-길이-len">set 의 길이 len</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="c1"># len
+</span>
+</code></pre></div></div>
+
+<h2 id="list-to-set-변환">list to set 변환</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># {1, 2, 3, 4, 5}
+</span>
+</code></pre></div></div>
+
+<h2 id="string-to-set">string to set</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">str</span> <span class="o">=</span> <span class="s">'ABCDE'</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="c1"># {'C', 'E', 'B', 'D', 'A'}
+</span>
 
 </code></pre></div></div>
 
-<h2 id="일부한개-함수-import">일부(한개) 함수 import</h2>
-<p><code class="language-plaintext highlighter-rouge">math</code> 전체가 아닌 일부 함수 import</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">math</span> <span class="kn">import</span> <span class="n">fabs</span>
-<span class="n">a</span> <span class="o">=</span> <span class="nf">fabs</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>    <span class="c1"># math. 을 사용하지 않음
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<h2 id="list-to-set">list to set</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># ['a','b','c','d']
+</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nf">set</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># {'a','b','c','d'}
+</span><span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 
 </code></pre></div></div>
-
-<h2 id="import-alias">import alias</h2>
-<p><code class="language-plaintext highlighter-rouge">math</code> 전체가 아닌 일부 함수 import</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">math</span> <span class="kn">import</span> <span class="n">fabs</span> <span class="k">as</span> <span class="n">f</span>
-<span class="n">a</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>    <span class="c1"># f로 사용함
-</span><span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<h2 id="함수가-가진-목록">함수가 가진 목록</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">dir</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h1 id="python-내장-함수">python 내장 함수</h1>
-<p>다음은 별도의 import없이 사용이 가능한 자주 사용하는 내장 함수 입니다.</p>
-<ul>
-  <li>len()</li>
-  <li>type()</li>
-  <li>int()</li>
-  <li>str()</li>
-  <li>round()</li>
-  <li>abs()</li>
-  <li>max()</li>
-  <li>min()</li>
-  <li>sum()</li>
-  <li>sorted() , sort()  -&gt;   list.sort(), sorted(list)</li>
-  <li>range()</li>
-  <li>chr()</li>
-  <li>ord()</li>
-  <li>isalpha() -&gt; ‘a’.isalpha() True</li>
-  <li>isalnum() -&gt; ‘123’.isalnum() True</li>
-  <li>eval()  -&gt; eval(‘1+2’) , eval(‘round(1.2)’)</li>
-</ul>
 
 <p><span class="nav__sub-title">관련된 글 (python &gt; lecture-python-basic)</span></p>
 <ul>
@@ -5095,6 +4915,8 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
     
 
     
+
+    
         
              
         
@@ -5500,4 +5322,4 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
     
 
-</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="function" /><summary type="html"><![CDATA[함수 선언 자주 사용하는 기능을 Function으로 정의할 수 있습니다. ```python #반환값이 있는 경우 def 함수명(인자정의) 함수 내용부 return 반환값]]></summary></entry></feed>
+</ul>]]></content><author><name>devjaedol</name></author><category term="python" /><category term="python" /><category term="python강좌" /><category term="초급" /><category term="lecture-python-basic" /><category term="set" /><summary type="html"><![CDATA[순서와 중복이 보장되지 않는 자료형 입니다.]]></summary></entry></feed>
