@@ -21,7 +21,7 @@
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
                 {% for category in site.categories %}
                     {% if category[0] == "blog" %}
-                        <li><a href="/categories/blog" class="">Blog ({{category[1].size}})</a></li>
+                        <li><a href="/categories/blog" class="">Blog ({{category[1].size}})</a> <i class="fab fa-blogger"></i></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -32,35 +32,35 @@
           <ul>
               {% for category in site.categories %}
                   {% if category[0] == "python" %}
-                      <li><a href="/categories/python" class="">Python ({{category[1].size}})</a></li>
+                      <li><a href="/categories/python" class="">Python ({{category[1].size}})</a> <i class="fab fa-python"></i></li>
                   {% endif %}
               {% endfor %}
           </ul>
           <ul>
             {% for category in site.categories %}
                 {% if category[0] == "java" %}
-                    <li><a href="/categories/java" class="">Java ({{category[1].size}})</a></li>
+                    <li><a href="/categories/java" class="">Java ({{category[1].size}})</a> <i class="fab fa-java"></i></li>
                 {% endif %}
             {% endfor %}
         </ul>           
           <ul>
               {% for category in site.categories %}
                   {% if category[0] == "javascript" %}
-                      <li><a href="/categories/javascript" class="">Javascript ({{category[1].size}})</a></li>
+                      <li><a href="/categories/javascript" class="">Javascript ({{category[1].size}})</a> <i class="fab fa-js-square"></i></li>
                   {% endif %}
               {% endfor %}
           </ul>            
           <ul>
               {% for category in site.categories %}
                   {% if category[0] == "nodejs" %}
-                      <li><a href="/categories/nodejs" class="">nodejs ({{category[1].size}})</a></li>
+                      <li><a href="/categories/nodejs" class="">nodejs ({{category[1].size}})</a> <i class="fab fa-node"></i></li>
                   {% endif %}
               {% endfor %}
           </ul>            
           <ul>
             {% for category in site.categories %}
                 {% if category[0] == "cloud" %}
-                    <li><a href="/categories/cloud" class="">Cloud ({{category[1].size}})</a></li>
+                    <li><a href="/categories/cloud" class="">Cloud ({{category[1].size}})</a> <i class="fas fa-cloud"></i></li>
                 {% endif %}
             {% endfor %}
           </ul>            
@@ -75,7 +75,7 @@
           <ul>
               {% for category in site.categories %}
                   {% if category[0] == "db" %}
-                      <li><a href="/categories/db" class="">Database ({{category[1].size}})</a></li>
+                      <li><a href="/categories/db" class="">Database ({{category[1].size}})</a> <i class="fas fa-database"></i></li>
                   {% endif %}
               {% endfor %}
           </ul>
@@ -85,7 +85,7 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "algorithm" %}
-                        <li><a href="/categories/algorithm" class="">알고리즘({{category[1].size}})</a></li>
+                        <li><a href="/categories/algorithm" class="">알고리즘({{category[1].size}})</a> <i class="fas fa-function"></i></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -112,7 +112,7 @@
           </ul>
           
           <ul>           
-              <li><a href="/lecture/python" class="">Python Study</a></li>
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
           </ul>
 
 
