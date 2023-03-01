@@ -1,0 +1,1314 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>NPM (node package manager) | 꿰보노트</title>
+<meta name="description" content="Node.js는 JavaScript로 서버측 애플리케이션을 작성하는 데 사용되는 JavaScript 런타임입니다. Node.js는 다양한 패키지와 모듈을 제공하며 이러한 패키지와 모듈을 관리하기 위해 npm(Node Package Manager)이 제공됩니다.  npm은 Node.js의 공식 패키지 관리자입니다. 개발자는 npm을 사용하여 Node.js 패키지 및 모듈을 설치, 업데이트, 삭제 및 관리할 수 있습니다. 이러한 패키지와 모듈을 사용하면 프로젝트를 더 쉽고 빠르게 빌드할 수 있습니다.  개발자는 npm을 사용하여 다른 사람이 작성한 패키지와 모듈도 쉽게 사용할 수 있습니다. npm 레지스트리에서 원하는 패키지나 모듈을 검색하고 설치한 다음 프로젝트에 포함하기만 하면 됩니다. 또한 npm은 코드 공유를 위한 플랫폼으로 사용됩니다. 개발자는 코드를 npm에 업로드하여 다른 사람이 사용할 수 있도록 할 수 있습니다.  npm은 Node.js와 함께 설치되며 명령줄 인터페이스를 통해 액세스할 수 있습니다. npm이 제공하는 사용 편의성 덕분에 Node.js 개발자는 거의 보편적으로 npm을 사용하여 패키지와 모듈을 관리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="NPM (node package manager)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/nodejs/npm/">
+
+
+  <meta property="og:description" content="Node.js는 JavaScript로 서버측 애플리케이션을 작성하는 데 사용되는 JavaScript 런타임입니다. Node.js는 다양한 패키지와 모듈을 제공하며 이러한 패키지와 모듈을 관리하기 위해 npm(Node Package Manager)이 제공됩니다.  npm은 Node.js의 공식 패키지 관리자입니다. 개발자는 npm을 사용하여 Node.js 패키지 및 모듈을 설치, 업데이트, 삭제 및 관리할 수 있습니다. 이러한 패키지와 모듈을 사용하면 프로젝트를 더 쉽고 빠르게 빌드할 수 있습니다.  개발자는 npm을 사용하여 다른 사람이 작성한 패키지와 모듈도 쉽게 사용할 수 있습니다. npm 레지스트리에서 원하는 패키지나 모듈을 검색하고 설치한 다음 프로젝트에 포함하기만 하면 됩니다. 또한 npm은 코드 공유를 위한 플랫폼으로 사용됩니다. 개발자는 코드를 npm에 업로드하여 다른 사람이 사용할 수 있도록 할 수 있습니다.  npm은 Node.js와 함께 설치되며 명령줄 인터페이스를 통해 액세스할 수 있습니다. npm이 제공하는 사용 편의성 덕분에 Node.js 개발자는 거의 보편적으로 npm을 사용하여 패키지와 모듈을 관리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-03-01T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/nodejs/npm/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#nodejs" itemprop="item"><span itemprop="name">Nodejs</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">NPM (node package manager)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 63</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (23)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (5)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="NPM (node package manager)">
+    <meta itemprop="description" content="Node.js는 JavaScript로 서버측 애플리케이션을 작성하는 데 사용되는 JavaScript 런타임입니다. Node.js는 다양한 패키지와 모듈을 제공하며 이러한 패키지와 모듈을 관리하기 위해 npm(Node Package Manager)이 제공됩니다.npm은 Node.js의 공식 패키지 관리자입니다. 개발자는 npm을 사용하여 Node.js 패키지 및 모듈을 설치, 업데이트, 삭제 및 관리할 수 있습니다. 이러한 패키지와 모듈을 사용하면 프로젝트를 더 쉽고 빠르게 빌드할 수 있습니다.개발자는 npm을 사용하여 다른 사람이 작성한 패키지와 모듈도 쉽게 사용할 수 있습니다. npm 레지스트리에서 원하는 패키지나 모듈을 검색하고 설치한 다음 프로젝트에 포함하기만 하면 됩니다. 또한 npm은 코드 공유를 위한 플랫폼으로 사용됩니다. 개발자는 코드를 npm에 업로드하여 다른 사람이 사용할 수 있도록 할 수 있습니다.npm은 Node.js와 함께 설치되며 명령줄 인터페이스를 통해 액세스할 수 있습니다. npm이 제공하는 사용 편의성 덕분에 Node.js 개발자는 거의 보편적으로 npm을 사용하여 패키지와 모듈을 관리합니다.">
+    <meta itemprop="datePublished" content="2023-03-01T00:00:00-06:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/nodejs/npm/" class="u-url" itemprop="url">NPM (node package manager)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#npm-명령어">NPM 명령어</a><ul><li><a href="#초기화패키지-설치-관련">초기화/패키지 설치 관련</a><ul><li><a href="#npm--v">npm -v</a></li><li><a href="#npm-config">npm config</a></li><li><a href="#npm-init">npm init</a></li><li><a href="#npm-install">npm install</a></li><li><a href="#npm-uninstall">npm uninstall</a></li><li><a href="#npm-update">npm update</a></li></ul></li><li><a href="#관련-정보-조회">관련 정보 조회</a><ul><li><a href="#npm-root">npm root</a></li><li><a href="#npm-outdated">npm outdated</a></li><li><a href="#npm-ls-npm-list">npm ls, npm list</a></li></ul></li><li><a href="#프로젝트-실행">프로젝트 실행</a><ul><li><a href="#npm-start-stop-test">npm start, stop, test</a></li><li><a href="#npm-restart">npm restart</a></li><li><a href="#npm-run-run-script">npm run, run-script</a></li></ul></li><li><a href="#기타">기타</a><ul><li><a href="#npm-cache-clean">npm cache clean</a></li><li><a href="#npm-rebuild">npm rebuild</a></li></ul></li></ul></li><li><a href="#package-버전-명시---등">package 버전 명시 ^, ~ 등</a><ul><li><a href="#틸드">틸드(~)</a></li><li><a href="#캐럿">캐럿(^)</a></li><li><a href="#기타-버전-설정">기타 버전 설정</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Node.js는 JavaScript로 서버측 애플리케이션을 작성하는 데 사용되는 JavaScript 런타임입니다. Node.js는 다양한 패키지와 모듈을 제공하며 이러한 패키지와 모듈을 관리하기 위해 npm(Node Package Manager)이 제공됩니다.</p>
+
+<p>npm은 Node.js의 공식 패키지 관리자입니다. 개발자는 npm을 사용하여 Node.js 패키지 및 모듈을 설치, 업데이트, 삭제 및 관리할 수 있습니다. 이러한 패키지와 모듈을 사용하면 프로젝트를 더 쉽고 빠르게 빌드할 수 있습니다.</p>
+
+<p>개발자는 npm을 사용하여 다른 사람이 작성한 패키지와 모듈도 쉽게 사용할 수 있습니다. npm 레지스트리에서 원하는 패키지나 모듈을 검색하고 설치한 다음 프로젝트에 포함하기만 하면 됩니다. 또한 npm은 코드 공유를 위한 플랫폼으로 사용됩니다. 개발자는 코드를 npm에 업로드하여 다른 사람이 사용할 수 있도록 할 수 있습니다.</p>
+
+<p>npm은 Node.js와 함께 설치되며 명령줄 인터페이스를 통해 액세스할 수 있습니다. npm이 제공하는 사용 편의성 덕분에 Node.js 개발자는 거의 보편적으로 npm을 사용하여 패키지와 모듈을 관리합니다.</p>
+
+<h1 id="npm-명령어">NPM 명령어</h1>
+<p>npm 에는 다양한 명령어가 존재 합니다. 자주 사용되는 명령어를 정리해 봅시다.  <br />
+<a href="https://docs.npmjs.com/cli/v9/commands" target="_blank">NPM CLI Commands</a></p>
+
+<h2 id="초기화패키지-설치-관련">초기화/패키지 설치 관련</h2>
+
+<h3 id="npm--v">npm -v</h3>
+<p>npm 의 버전을 표시합니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">packageName</span><span class="o">&gt;</span><span class="nx">npm</span> <span class="o">-</span><span class="nx">v</span>
+<span class="mf">6.14</span><span class="p">.</span><span class="mi">6</span>
+</code></pre></div></div>
+<h3 id="npm-config">npm config</h3>
+<p>npm의 설정을 표시 또는 설정 할 수 있습니다.  <br />
+<code class="language-plaintext highlighter-rouge">npm set</code>, <code class="language-plaintext highlighter-rouge">npm get</code> 을 통해서 설정 및 조회가 가능합니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">config</span> <span class="nx">list</span>
+
+<span class="nx">metrics</span><span class="o">-</span><span class="nx">registry</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://registry.npmjs.org/</span><span class="dl">"</span>
+<span class="nx">scope</span> <span class="o">=</span> <span class="dl">""</span>
+<span class="nx">user</span><span class="o">-</span><span class="nx">agent</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">npm/6.14.6 node/v12.18.2 win32 x64</span><span class="dl">"</span>
+
+<span class="p">;</span> <span class="nx">builtin</span> <span class="nx">config</span> <span class="kc">undefined</span>
+<span class="nx">prefix</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">Admin</span><span class="se">\\</span><span class="s2">AppData</span><span class="se">\\</span><span class="s2">Roaming</span><span class="se">\\</span><span class="s2">npm</span><span class="dl">"</span>
+
+<span class="p">;</span> <span class="nx">node</span> <span class="nx">bin</span> <span class="nx">location</span> <span class="o">=</span> <span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">nodejs</span><span class="err">\</span><span class="nx">node</span><span class="p">.</span><span class="nx">exe</span>
+<span class="p">;</span> <span class="nx">cwd</span> <span class="o">=</span> <span class="nx">D</span><span class="p">:</span><span class="err">\</span><span class="nx">패키지</span> <span class="nx">위치</span>
+<span class="p">;</span> <span class="nx">HOME</span> <span class="o">=</span> <span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">Users</span><span class="err">\</span><span class="nx">Admin</span>
+<span class="p">;</span> <span class="dl">"</span><span class="s2">npm config ls -l</span><span class="dl">"</span> <span class="nx">to</span> <span class="nx">show</span> <span class="nx">all</span> <span class="nx">defaults</span><span class="p">.</span>
+
+
+<span class="nx">D</span><span class="p">:</span><span class="err">\</span><span class="o">&gt;</span><span class="nx">npm</span> <span class="kd">get</span> <span class="nx">prefix</span>
+<span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">Users</span><span class="err">\</span><span class="nx">Admin</span><span class="err">\</span><span class="nx">AppData</span><span class="err">\</span><span class="nx">Roaming</span><span class="err">\</span><span class="nx">npm</span>
+
+</code></pre></div></div>
+
+<h3 id="npm-init">npm init</h3>
+<p><code class="language-plaintext highlighter-rouge">package.json</code> 생성 합니다.  <br />
+프로젝트 패키지를 생성 합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">init</span> <span class="o">&lt;</span><span class="kr">package</span><span class="o">-</span><span class="nx">spec</span><span class="o">&gt;</span> <span class="p">(</span><span class="nx">same</span> <span class="k">as</span> <span class="s2">`npx &lt;package-spec&gt;`</span><span class="p">)</span>
+<span class="nx">npm</span> <span class="nx">init</span> <span class="o">&lt;</span><span class="p">@</span><span class="nd">scope</span><span class="o">&gt;</span> <span class="p">(</span><span class="nx">same</span> <span class="k">as</span> <span class="s2">`npx &lt;@scope&gt;/create`</span><span class="p">)</span>
+
+<span class="nx">aliases</span><span class="p">:</span> <span class="nx">create</span><span class="p">,</span> <span class="nx">innit</span>
+
+
+<span class="o">&gt;</span> <span class="nx">npm</span> <span class="nx">init</span>
+<span class="nx">This</span> <span class="nx">utility</span> <span class="nx">will</span> <span class="nx">walk</span> <span class="nx">you</span> <span class="nx">through</span> <span class="nx">creating</span> <span class="nx">a</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span> <span class="nx">file</span><span class="p">.</span>        
+<span class="nx">It</span> <span class="nx">only</span> <span class="nx">covers</span> <span class="nx">the</span> <span class="nx">most</span> <span class="nx">common</span> <span class="nx">items</span><span class="p">,</span> <span class="nx">and</span> <span class="nx">tries</span> <span class="nx">to</span> <span class="nx">guess</span> <span class="nx">sensible</span> <span class="nx">defaults</span><span class="p">.</span>
+
+<span class="nx">See</span> <span class="s2">`npm help init`</span> <span class="k">for</span> <span class="nx">definitive</span> <span class="nx">documentation</span> <span class="nx">on</span> <span class="nx">these</span> <span class="nx">fields</span>        
+<span class="nx">and</span> <span class="nx">exactly</span> <span class="nx">what</span> <span class="nx">they</span> <span class="k">do</span><span class="p">.</span>
+
+<span class="nx">Use</span> <span class="s2">`npm install &lt;pkg&gt;`</span> <span class="nx">afterwards</span> <span class="nx">to</span> <span class="nx">install</span> <span class="nx">a</span> <span class="kr">package</span> <span class="nx">and</span>
+<span class="nx">save</span> <span class="nx">it</span> <span class="k">as</span> <span class="nx">a</span> <span class="nx">dependency</span> <span class="k">in</span> <span class="nx">the</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span> <span class="nx">file</span><span class="p">.</span>
+
+<span class="nx">Press</span> <span class="o">^</span><span class="nx">C</span> <span class="nx">at</span> <span class="nx">any</span> <span class="nx">time</span> <span class="nx">to</span> <span class="nx">quit</span><span class="p">.</span>
+<span class="kr">package</span> <span class="nx">name</span><span class="p">:</span> <span class="p">(</span><span class="nx">폴더명</span><span class="p">)</span>
+<span class="nx">version</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span>
+<span class="nx">description</span><span class="p">:</span>
+<span class="nx">entry</span> <span class="nx">point</span><span class="p">:</span> <span class="p">(</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span><span class="p">)</span>
+<span class="nx">test</span> <span class="nx">command</span><span class="p">:</span>
+<span class="nx">git</span> <span class="nx">repository</span><span class="p">:</span>
+<span class="nx">keywords</span><span class="p">:</span>
+<span class="nx">author</span><span class="p">:</span>
+<span class="nx">license</span><span class="p">:</span> <span class="p">(</span><span class="nx">ISC</span><span class="p">)</span>
+<span class="nx">About</span> <span class="nx">to</span> <span class="nx">write</span> <span class="nx">to</span> <span class="nx">D</span><span class="p">:</span><span class="err">\</span><span class="nx">DEV</span><span class="o">-</span><span class="nx">Source</span><span class="err">\</span><span class="nx">tech_npm</span><span class="err">\</span><span class="kr">package</span><span class="p">.</span><span class="nx">json</span><span class="p">:</span>
+
+<span class="p">{</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">폴더명</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">version</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1.0.0</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">main</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">index.js</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">scripts</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">echo </span><span class="se">\"</span><span class="s2">Error: no test specified</span><span class="se">\"</span><span class="s2"> &amp;&amp; exit 1</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">author</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">license</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ISC</span><span class="dl">"</span>
+<span class="p">}</span>
+<span class="nx">Is</span> <span class="k">this</span> <span class="nx">OK</span><span class="p">?</span> <span class="p">(</span><span class="nx">yes</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h3 id="npm-install">npm install</h3>
+<p><code class="language-plaintext highlighter-rouge">npm install 패키지명</code> 으로 패키지를 설치 합니다.  <br />
+<code class="language-plaintext highlighter-rouge">--save or -S : dependencies</code>에 추가  <br />
+<code class="language-plaintext highlighter-rouge">--save-dev or -D : devDependencies</code>에 추가  <br />
+<code class="language-plaintext highlighter-rouge">-g : global</code> 패키지에 추가</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="p">[</span><span class="o">&lt;</span><span class="kr">package</span><span class="o">-</span><span class="nx">spec</span><span class="o">&gt;</span> <span class="p">...]</span>
+
+<span class="nx">aliases</span><span class="p">:</span> <span class="nx">add</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="k">in</span><span class="p">,</span> <span class="nx">ins</span><span class="p">,</span> <span class="nx">inst</span><span class="p">,</span> <span class="nx">insta</span><span class="p">,</span> <span class="nx">instal</span><span class="p">,</span> <span class="nx">isnt</span><span class="p">,</span> <span class="nx">isnta</span><span class="p">,</span> <span class="nx">isntal</span><span class="p">,</span> <span class="nx">isntall</span>
+
+
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">sax</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">githubname</span><span class="o">/</span><span class="nx">reponame</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="p">@</span><span class="nd">myorg</span><span class="sr">/privatepackag</span><span class="err">e
+</span><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">node</span><span class="o">-</span><span class="nx">tap</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">dtrace</span><span class="o">-</span><span class="nx">provider</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">optional</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">readable</span><span class="o">-</span><span class="nx">stream</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">exact</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">ansi</span><span class="o">-</span><span class="nx">regex</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">bundle</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="dl">"</span><span class="s2">패키지명</span><span class="dl">"</span><span class="p">@</span><span class="nd">0</span><span class="p">.</span><span class="mf">0.1</span>       <span class="c1">//패키지 특정 @버전 설치      </span>
+
+</code></pre></div></div>
+
+<h3 id="npm-uninstall">npm uninstall</h3>
+<p><code class="language-plaintext highlighter-rouge">npm uninstall 패키지명</code> 으로 패키지를 제거/삭제 합니다.  <br />
+<code class="language-plaintext highlighter-rouge">--save or -S : dependencies</code>에 추가  <br />
+<code class="language-plaintext highlighter-rouge">--save-dev or -D : devDependencies</code>에 추가  <br />
+<code class="language-plaintext highlighter-rouge">-g : global</code> 패키지에 추가</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">uninstall</span> <span class="p">[</span><span class="o">&lt;</span><span class="p">@</span><span class="nd">scope</span><span class="o">&gt;</span><span class="sr">/]&lt;pkg&gt;..</span><span class="err">.
+</span>
+<span class="nx">aliases</span><span class="p">:</span> <span class="nx">unlink</span><span class="p">,</span> <span class="nx">remove</span><span class="p">,</span> <span class="nx">rm</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">un</span>
+
+
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">sax</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">githubname</span><span class="o">/</span><span class="nx">reponame</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="p">@</span><span class="nd">myorg</span><span class="sr">/privatepackag</span><span class="err">e
+</span><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">node</span><span class="o">-</span><span class="nx">tap</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">dtrace</span><span class="o">-</span><span class="nx">provider</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">optional</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">readable</span><span class="o">-</span><span class="nx">stream</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">exact</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">ansi</span><span class="o">-</span><span class="nx">regex</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">bundle</span>
+
+</code></pre></div></div>
+
+<h3 id="npm-update">npm update</h3>
+<p>설치한 패키지를 업데이트하는 명령어입니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">update</span> <span class="p">[</span><span class="o">&lt;</span><span class="nx">pkg</span><span class="o">&gt;</span><span class="p">...]</span>
+
+<span class="nx">aliases</span><span class="p">:</span> <span class="nx">up</span><span class="p">,</span> <span class="nx">upgrade</span><span class="p">,</span> <span class="nx">udpate</span>
+</code></pre></div></div>
+
+<h2 id="관련-정보-조회">관련 정보 조회</h2>
+
+<h3 id="npm-root">npm root</h3>
+<p>패키지 설치 경로인 <code class="language-plaintext highlighter-rouge">node_modules</code> 의 위치를 출력 합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">test_npm</span><span class="o">&gt;</span><span class="nx">npm</span> <span class="nx">root</span>
+<span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">test_npm</span><span class="err">\</span><span class="nx">node_modules</span>
+</code></pre></div></div>
+
+<h3 id="npm-outdated">npm outdated</h3>
+<p>설치된 패키지의 현재 버전과 패키지의 최신 버전 등 패키지 버전에 대한 정보를 확인 할 수 있습니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">outdated</span> <span class="p">[</span><span class="o">&lt;</span><span class="kr">package</span><span class="o">-</span><span class="nx">spec</span><span class="o">&gt;</span> <span class="p">...]</span>
+
+<span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">packageName</span><span class="o">&gt;</span><span class="nx">npm</span> <span class="nx">outdated</span>
+<span class="nx">Package</span>                        <span class="nx">Current</span>       <span class="nx">Wanted</span>          <span class="nx">Latest</span>  <span class="nx">Location</span>
+<span class="nx">axios</span>                           <span class="mf">0.19</span><span class="p">.</span><span class="mi">2</span>       <span class="mf">0.19</span><span class="p">.</span><span class="mi">2</span>           <span class="mf">1.3</span><span class="p">.</span><span class="mi">4</span>  <span class="nx">packageName</span>
+<span class="nx">body</span><span class="o">-</span><span class="nx">parser</span>                     <span class="mf">1.19</span><span class="p">.</span><span class="mi">0</span>       <span class="mf">1.20</span><span class="p">.</span><span class="mi">2</span>          <span class="mf">1.20</span><span class="p">.</span><span class="mi">2</span>  <span class="nx">packageName</span>
+<span class="nx">cheerio</span>                     <span class="mf">1.0</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="nx">rc</span><span class="p">.</span><span class="mi">3</span>  <span class="mf">1.0</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="nx">rc</span><span class="p">.</span><span class="mi">12</span>     <span class="mf">1.0</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="nx">rc</span><span class="p">.</span><span class="mi">12</span>  <span class="nx">packageName</span>
+<span class="nx">cookie</span><span class="o">-</span><span class="nx">parser</span>                    <span class="mf">1.4</span><span class="p">.</span><span class="mi">5</span>        <span class="mf">1.4</span><span class="p">.</span><span class="mi">6</span>           <span class="mf">1.4</span><span class="p">.</span><span class="mi">6</span>  <span class="nx">packageName</span>
+<span class="nx">ejs</span>                              <span class="mf">3.0</span><span class="p">.</span><span class="mi">2</span>        <span class="mf">3.1</span><span class="p">.</span><span class="mi">8</span>           <span class="mf">3.1</span><span class="p">.</span><span class="mi">8</span>  <span class="nx">packageName</span>
+<span class="nx">express</span>                         <span class="mf">4.17</span><span class="p">.</span><span class="mi">1</span>       <span class="mf">4.18</span><span class="p">.</span><span class="mi">2</span>          <span class="mf">4.18</span><span class="p">.</span><span class="mi">2</span>  <span class="nx">packageName</span>
+<span class="nx">express</span><span class="o">-</span><span class="nx">mysql</span><span class="o">-</span><span class="nx">session</span>            <span class="mf">2.1</span><span class="p">.</span><span class="mi">4</span>        <span class="mf">2.1</span><span class="p">.</span><span class="mi">8</span>           <span class="mf">2.1</span><span class="p">.</span><span class="mi">8</span>  <span class="nx">packageName</span>
+<span class="nx">express</span><span class="o">-</span><span class="nx">session</span>                 <span class="mf">1.17</span><span class="p">.</span><span class="mi">1</span>       <span class="mf">1.17</span><span class="p">.</span><span class="mi">3</span>          <span class="mf">1.17</span><span class="p">.</span><span class="mi">3</span>  <span class="nx">packageName</span>
+<span class="nx">http</span>                             <span class="mf">0.0</span><span class="p">.</span><span class="mi">0</span>        <span class="mf">0.0</span><span class="p">.</span><span class="mi">0</span>  <span class="mf">0.0</span><span class="p">.</span><span class="mi">1</span><span class="o">-</span><span class="nx">security</span>  <span class="nx">packageName</span>
+<span class="nx">lodash</span>                         <span class="mf">4.17</span><span class="p">.</span><span class="mi">15</span>      <span class="mf">4.17</span><span class="p">.</span><span class="mi">21</span>         <span class="mf">4.17</span><span class="p">.</span><span class="mi">21</span>  <span class="nx">packageName</span>
+<span class="nx">moment</span>                          <span class="mf">2.24</span><span class="p">.</span><span class="mi">0</span>       <span class="mf">2.29</span><span class="p">.</span><span class="mi">4</span>          <span class="mf">2.29</span><span class="p">.</span><span class="mi">4</span>  <span class="nx">packageName</span>
+<span class="nx">express</span><span class="o">-</span><span class="nx">mysql</span><span class="o">-</span><span class="nx">session</span>            <span class="mf">2.1</span><span class="p">.</span><span class="mi">4</span>        <span class="mf">2.1</span><span class="p">.</span><span class="mi">8</span>           <span class="mf">2.1</span><span class="p">.</span><span class="mi">8</span>  <span class="nx">packageName</span>
+<span class="nx">express</span><span class="o">-</span><span class="nx">session</span>                 <span class="mf">1.17</span><span class="p">.</span><span class="mi">1</span>       <span class="mf">1.17</span><span class="p">.</span><span class="mi">3</span>          <span class="mf">1.17</span><span class="p">.</span><span class="mi">3</span>  <span class="nx">packageName</span>
+<span class="nx">http</span>                             <span class="mf">0.0</span><span class="p">.</span><span class="mi">0</span>        <span class="mf">0.0</span><span class="p">.</span><span class="mi">0</span>  <span class="mf">0.0</span><span class="p">.</span><span class="mi">1</span><span class="o">-</span><span class="nx">security</span>  <span class="nx">packageName</span>
+<span class="nx">lodash</span>                         <span class="mf">4.17</span><span class="p">.</span><span class="mi">15</span>      <span class="mf">4.17</span><span class="p">.</span><span class="mi">21</span>         <span class="mf">4.17</span><span class="p">.</span><span class="mi">21</span>  <span class="nx">packageName</span>
+<span class="nx">moment</span>                          <span class="mf">2.24</span><span class="p">.</span><span class="mi">0</span>       <span class="mf">2.29</span><span class="p">.</span><span class="mi">4</span>          <span class="mf">2.29</span><span class="p">.</span><span class="mi">4</span>  <span class="nx">packageName</span>
+<span class="nx">node</span><span class="o">-</span><span class="nx">cron</span>                        <span class="mf">2.0</span><span class="p">.</span><span class="mi">3</span>        <span class="mf">2.0</span><span class="p">.</span><span class="mi">3</span>           <span class="mf">3.0</span><span class="p">.</span><span class="mi">2</span>  <span class="nx">packageName</span>
+<span class="nx">node</span><span class="o">-</span><span class="nx">html</span><span class="o">-</span><span class="nx">to</span><span class="o">-</span><span class="nx">image</span>               <span class="mf">2.1</span><span class="p">.</span><span class="mi">1</span>        <span class="mf">2.1</span><span class="p">.</span><span class="mi">1</span>           <span class="mf">3.3</span><span class="p">.</span><span class="mi">0</span>  <span class="nx">packageName</span>
+<span class="nx">nodemailer</span>                       <span class="mf">6.4</span><span class="p">.</span><span class="mi">6</span>        <span class="mf">6.9</span><span class="p">.</span><span class="mi">1</span>           <span class="mf">6.9</span><span class="p">.</span><span class="mi">1</span>  <span class="nx">packageName</span>
+<span class="nx">passport</span>                         <span class="mf">0.4</span><span class="p">.</span><span class="mi">1</span>        <span class="mf">0.4</span><span class="p">.</span><span class="mi">1</span>           <span class="mf">0.6</span><span class="p">.</span><span class="mi">0</span>  <span class="nx">packageName</span>
+<span class="nx">puppeteer</span>                        <span class="mf">3.0</span><span class="p">.</span><span class="mi">2</span>        <span class="mf">3.3</span><span class="p">.</span><span class="mi">0</span>          <span class="mf">19.7</span><span class="p">.</span><span class="mi">2</span>  <span class="nx">packageName</span>
+<span class="nx">querystring</span>                      <span class="mf">0.2</span><span class="p">.</span><span class="mi">0</span>        <span class="mf">0.2</span><span class="p">.</span><span class="mi">1</span>           <span class="mf">0.2</span><span class="p">.</span><span class="mi">1</span>  <span class="nx">packageName</span>
+<span class="nx">randomstring</span>                     <span class="mf">1.1</span><span class="p">.</span><span class="mi">5</span>        <span class="mf">1.2</span><span class="p">.</span><span class="mi">3</span>           <span class="mf">1.2</span><span class="p">.</span><span class="mi">3</span>  <span class="nx">packageName</span>
+<span class="nx">serve</span><span class="o">-</span><span class="kd">static</span>                    <span class="mf">1.14</span><span class="p">.</span><span class="mi">1</span>       <span class="mf">1.15</span><span class="p">.</span><span class="mi">0</span>          <span class="mf">1.15</span><span class="p">.</span><span class="mi">0</span>  <span class="nx">packageName</span>
+<span class="nx">sharp</span>                           <span class="mf">0.25</span><span class="p">.</span><span class="mi">2</span>       <span class="mf">0.25</span><span class="p">.</span><span class="mi">4</span>          <span class="mf">0.31</span><span class="p">.</span><span class="mi">3</span>  <span class="nx">packageName</span>
+<span class="nx">url</span><span class="o">-</span><span class="nx">search</span><span class="o">-</span><span class="nx">params</span><span class="o">-</span><span class="nx">polyfill</span>       <span class="mf">8.1</span><span class="p">.</span><span class="mi">0</span>        <span class="mf">8.1</span><span class="p">.</span><span class="mi">1</span>           <span class="mf">8.1</span><span class="p">.</span><span class="mi">1</span>  <span class="nx">packageName</span>
+
+</code></pre></div></div>
+
+<h3 id="npm-ls-npm-list">npm ls, npm list</h3>
+<p>패키지 정보를 조회 합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">ls</span> <span class="o">&lt;</span><span class="kr">package</span><span class="o">-</span><span class="nx">spec</span><span class="o">&gt;</span>
+
+<span class="nx">alias</span><span class="p">:</span> <span class="nx">list</span>
+
+<span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">packageName</span><span class="o">&gt;</span><span class="nx">npm</span> <span class="nx">ls</span> <span class="nx">express</span>
+<span class="nx">packageName</span><span class="p">@</span><span class="nd">1</span><span class="p">.</span><span class="mf">0.0</span> <span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">packageName</span>
+<span class="s2">`-- express@4.17.1
+</span></code></pre></div></div>
+<p>패키지명 없이 조회시 설치된 전체 리스트가 조회 됩니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">packageName</span><span class="o">&gt;</span><span class="nx">npm</span> <span class="nx">ls</span>
+<span class="nx">packageName</span><span class="p">@</span><span class="nd">1</span><span class="p">.</span><span class="mf">0.0</span> <span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">packageName</span><span class="o">&gt;</span>
+<span class="o">+--</span> <span class="nx">axios</span><span class="p">@</span><span class="nd">0</span><span class="p">.</span><span class="mf">19.2</span>
+<span class="o">|</span> <span class="s2">`-- follow-redirects@1.5.10
+|   `</span><span class="o">--</span> <span class="nx">debug</span><span class="p">@</span><span class="nd">3</span><span class="p">.</span><span class="mf">1.0</span>
+<span class="o">|</span>     <span class="s2">`-- ms@2.0.0 deduped
++-- body-parser@1.19.0
+| +-- bytes@3.1.0
+| +-- content-type@1.0.4
+| +-- debug@2.6.9
+| | `</span><span class="o">--</span> <span class="nx">ms</span><span class="p">@</span><span class="nd">2</span><span class="p">.</span><span class="mf">0.0</span>
+<span class="o">|</span> <span class="o">+--</span> <span class="nx">depd</span><span class="p">@</span><span class="nd">1</span><span class="p">.</span><span class="mf">1.2</span>
+<span class="o">|</span> <span class="o">+--</span> <span class="nx">http</span><span class="o">-</span><span class="nx">errors</span><span class="p">@</span><span class="nd">1</span><span class="p">.</span><span class="mf">7.2</span>
+<span class="o">|</span> <span class="o">|</span> <span class="o">+--</span> <span class="nx">depd</span><span class="p">@</span><span class="nd">1</span><span class="p">.</span><span class="mf">1.2</span> <span class="nx">deduped</span>
+<span class="o">|</span> <span class="o">|</span> <span class="o">+--</span> <span class="nx">inherits</span><span class="p">@</span><span class="nd">2</span><span class="p">.</span><span class="mf">0.3</span>
+<span class="o">|</span> <span class="o">|</span> <span class="o">+--</span> <span class="nx">setprototypeof</span><span class="p">@</span><span class="nd">1</span><span class="p">.</span><span class="mf">1.1</span> <span class="nx">deduped</span>
+<span class="o">|</span> <span class="o">|</span> <span class="o">+--</span> <span class="nx">statuses</span><span class="p">@</span><span class="nd">1</span><span class="p">.</span><span class="mf">5.0</span> <span class="nx">deduped</span>
+<span class="o">|</span> <span class="o">|</span> <span class="s2">`-- toidentifier@1.0.0
+| +-- iconv-lite@0.4.24
+| | `</span><span class="o">--</span> <span class="nx">safer</span><span class="o">-</span><span class="nx">buffer</span><span class="p">@</span><span class="nd">2</span><span class="p">.</span><span class="mf">1.2</span>
+<span class="o">|</span> <span class="o">+--</span> <span class="nx">on</span><span class="o">-</span><span class="nx">finished</span><span class="p">@</span><span class="nd">2</span><span class="p">.</span><span class="mf">3.0</span>
+<span class="o">|</span> <span class="o">|</span> <span class="s2">`-- ee-first@1.1.1
+| +-- qs@6.7.0
+| +-- raw-body@2.4.0
+| | +-- bytes@3.1.0 deduped
+| | +-- http-errors@1.7.2 deduped
+| | +-- iconv-lite@0.4.24 deduped
+| | `</span><span class="o">--</span> <span class="nx">unpipe</span><span class="p">@</span><span class="nd">1</span><span class="p">.</span><span class="mf">0.0</span>
+<span class="o">|</span> <span class="s2">`-- type-is@1.6.18
+|   +-- media-typer@0.3.0
+|   `</span><span class="o">--</span> <span class="nx">mime</span><span class="o">-</span><span class="nx">types</span><span class="p">@</span><span class="nd">2</span><span class="p">.</span><span class="mf">1.26</span> <span class="nx">deduped</span>
+</code></pre></div></div>
+
+<p>` npm list -g –depth=0` 옵션을 추가해서 출력 표시 depth 선택 및 전역 범위 등을 선택 할 수 있습니다.</p>
+
+<h2 id="프로젝트-실행">프로젝트 실행</h2>
+
+<h3 id="npm-start-stop-test">npm start, stop, test</h3>
+<p><code class="language-plaintext highlighter-rouge">package.json</code> 내의 scripts 영역의 명령을 실행 합니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">start</span> <span class="p">[</span><span class="o">--</span> <span class="o">&lt;</span><span class="nx">args</span><span class="o">&gt;</span><span class="p">]</span>
+
+<span class="p">{</span>
+  <span class="dl">"</span><span class="s2">scripts</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">start</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">node foo.js</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">stop</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">node bar.js</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">node test.js</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div>
+
+<h3 id="npm-restart">npm restart</h3>
+<p><code class="language-plaintext highlighter-rouge">package.json</code> 내의 scripts 에 <code class="language-plaintext highlighter-rouge">restart</code> 항목이 있을 경우 실행하며, 
+<code class="language-plaintext highlighter-rouge">restart</code>가 없는 경우, <code class="language-plaintext highlighter-rouge">stop</code>,<code class="language-plaintext highlighter-rouge">start</code>를 실행 합니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">restart</span> <span class="p">[</span><span class="o">--</span> <span class="o">&lt;</span><span class="nx">args</span><span class="o">&gt;</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="npm-run-run-script">npm run, run-script</h3>
+<p><code class="language-plaintext highlighter-rouge">package.json</code> 내의 scripts 항목을 실행하는 명령어 입니다. <br />
+패키징을 위한 <code class="language-plaintext highlighter-rouge">build</code> 항목을 등록 해놓고 <code class="language-plaintext highlighter-rouge">npm run build</code> 등으로 특정 script 항목을 실행 할 수 있습니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">run</span><span class="o">-</span><span class="nx">script</span> <span class="o">&lt;</span><span class="nx">command</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">--</span> <span class="o">&lt;</span><span class="nx">args</span><span class="o">&gt;</span><span class="p">]</span>
+
+<span class="nx">aliases</span><span class="p">:</span> <span class="nx">run</span><span class="p">,</span> <span class="nx">rum</span><span class="p">,</span> <span class="nx">urn</span>
+</code></pre></div></div>
+
+<h2 id="기타">기타</h2>
+<h3 id="npm-cache-clean">npm cache clean</h3>
+<p>npm에 설치 등에 오류가 발생될때 재설치를 위해 cache clean 등을 진행 합니다.  <br />
+<code class="language-plaintext highlighter-rouge">cache</code>의 설치 위치는  <code class="language-plaintext highlighter-rouge">Windows: %LocalAppData%\npm-cache, Posix: ~/.npm</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">cache</span> <span class="nx">add</span> <span class="o">&lt;</span><span class="kr">package</span><span class="o">-</span><span class="nx">spec</span><span class="o">&gt;</span>
+<span class="nx">npm</span> <span class="nx">cache</span> <span class="nx">clean</span> <span class="p">[</span><span class="o">&lt;</span><span class="nx">key</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="nx">npm</span> <span class="nx">cache</span> <span class="nx">ls</span> <span class="p">[</span><span class="o">&lt;</span><span class="nx">name</span><span class="o">&gt;</span><span class="p">@</span><span class="o">&lt;</span><span class="nx">version</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="nx">npm</span> <span class="nx">cache</span> <span class="nx">verify</span>
+</code></pre></div></div>
+
+<h3 id="npm-rebuild">npm rebuild</h3>
+<p><code class="language-plaintext highlighter-rouge">cache clean</code>으로 오류를 제거 후 재설치 등에 사용 합니다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">rebuild</span> <span class="p">[</span><span class="o">&lt;</span><span class="kr">package</span><span class="o">-</span><span class="nx">spec</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">...]</span>
+
+<span class="nx">alias</span><span class="p">:</span> <span class="nx">rb</span>
+</code></pre></div></div>
+
+<h1 id="package-버전-명시---등">package 버전 명시 ^, ~ 등</h1>
+<p><code class="language-plaintext highlighter-rouge">package.json</code>에는 설치 패키지 버전을 관리하기 위한 틸드(~) 또는 캐럿(^) 등의 표시가 있습니다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">1.0.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;1.1.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;=1.1.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;2.0.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;=2.1.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">~2.1.0</code></li>
+</ul>
+
+<h2 id="틸드">틸드(~)</h2>
+<p>버그 패치 등에 대한 업데이트 등, 사소한 변화에 대한 버전 업데이트를 허용하는 정책 입니다. <br />
+마지막 자리 내의 범위에서만 자동으로 업데이트한다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">~0.0.1 : 0.0.1 &lt;= 허용 &lt; 0.1.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">~0.1.1 : 0.1.1 &lt;= 허용 &lt; 0.2.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">~0.1 : 0.1.0 &lt;= 허용  &lt; 0.2.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">~0 : 0.0 &lt;= 허용  &lt; 1.0</code></li>
+</ul>
+
+<h2 id="캐럿">캐럿(^)</h2>
+<p>Major 버전의 마지막 수준까지 업데이트를 허용한다.  <br />
+동작의 하위호환성 부분에 이슈가 발생할 수 있으므로 주의가 필요합니다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">^1.0.2 : 1.0.2 &lt;= 허용 &lt;2.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">^1.0 : 1.0.0 &lt;= 허용 &lt;2.0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">^1 : 1.0.0 &lt;= 허용 &lt;2.0</code></li>
+</ul>
+
+<h2 id="기타-버전-설정">기타 버전 설정</h2>
+<p>하기와 같이 명시적으로 버전을 명기 할 수 있습니다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">1.0.0</code>
+특정 버전 이상으로 하위 버전 선을 명기 할 수 있습니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;1.0.0</code></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">package.json 예제</code></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="dl">"</span><span class="s2">dependencies</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^0.19.2</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">body-parser</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^1.19.0</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">cheerio</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^1.0.0-rc.3</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">cookie-parser</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^1.4.4</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">cors</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^2.8.5</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">crypto</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^1.0.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">ejs</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^3.0.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">errorhandler</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^1.5.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">express</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^4.17.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">express-error-handler</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^1.1.0</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">express-mysql-session</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^2.1.3</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">express-session</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^1.17.0</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">fs</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0.0.1-security</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^0.11.0</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">url-search-params-polyfill</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^8.1.0</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">xml-escape</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^1.1.0</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">xml2js</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">^0.4.23</span><span class="dl">"</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#node-package-manager" class="page__taxonomy-item p-category" rel="tag">node package manager</a><span class="sep">, </span>
+    
+      <a href="/tags/#npm" class="page__taxonomy-item p-category" rel="tag">NPM</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#nodejs" class="page__taxonomy-item p-category" rel="tag">nodejs</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-03-01T00:00:00-06:00">2023-03-01</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=NPM+%28node+package+manager%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Fnodejs%2Fnpm%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fnodejs%2Fnpm%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fnodejs%2Fnpm%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/nodejs/NodeJS_summary_module/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>NodeJS 기초 정리 - 모듈화</a>
+    
+    
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/javascript/JS-Promise1/">Javascript Promise await async</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2023.03.01
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#javascript" class="page__taxonomy-item-category" rel="tag">javascript</a>
+                    
+                    
+                    <a href="/tags/#async" class="page__taxonomy-item-tag" rel="tag">async</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#await" class="page__taxonomy-item-tag" rel="tag">await</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#promise-allsettled" class="page__taxonomy-item-tag" rel="tag">Promise.allSettled</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#promise-all" class="page__taxonomy-item-tag" rel="tag">Promise.all</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#promise-race" class="page__taxonomy-item-tag" rel="tag">Promise.race</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#promise" class="page__taxonomy-item-tag" rel="tag">Promise</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%8F%99%EA%B8%B0%ED%99%94" class="page__taxonomy-item-tag" rel="tag">동기화</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%BD%9C%EB%B0%B1%EC%A7%80%EC%98%A5" class="page__taxonomy-item-tag" rel="tag">콜백지옥</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/javascript/JS-Class/">Javascript Class</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2023.02.27
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#javascript" class="page__taxonomy-item-category" rel="tag">javascript</a>
+                    
+                    
+                    <a href="/tags/#class" class="page__taxonomy-item-tag" rel="tag">Class</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#constructor" class="page__taxonomy-item-tag" rel="tag">constructor</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#extends" class="page__taxonomy-item-tag" rel="tag">extends</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#super" class="page__taxonomy-item-tag" rel="tag">super</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/codingtest/Qtype-stack-sort-count/">[문제 유형 분석]키순서 랜덤 배열에 앞사람 보기 찾기</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.07.08
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#codingtest" class="page__taxonomy-item-category" rel="tag">codingtest</a>
+                    
+                    
+                    <a href="/tags/#filo" class="page__taxonomy-item-tag" rel="tag">FILO</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#stack" class="page__taxonomy-item-tag" rel="tag">stack</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EB%AC%B8%EC%9E%90%EC%97%B4-%EA%B5%AC%EB%AC%B8-%EB%B6%84%EC%84%9D" class="page__taxonomy-item-tag" rel="tag">문자열 구문 분석</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python_study_numpy_04_file/">[Python][Numpy] file Input and output</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2022.06.26
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#lecture-python-numpy" class="page__taxonomy-item-tag" rel="tag">lecture-python-numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#numpy" class="page__taxonomy-item-tag" rel="tag">numpy</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#python%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">python강좌</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+<!--
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fkimjaehyun.co.kr&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+-->
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

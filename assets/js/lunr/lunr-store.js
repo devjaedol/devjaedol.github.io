@@ -366,8 +366,14 @@ var store = [{
         "teaser": null
       },{
         "title": "Javascript Promise await async",
-        "excerpt":"Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다. 적절한 사용을 위해서 각 방법간 사용법을 정리해 봅니다. Promise Promise는 비동기 처리에 사용되는 Javascript 객체 입니다. Promise를 관리하는 Status 상태값 Promise는 3가지 상태를 가지고 있고, 각각의 개별 상태 값은 직접 접근 할 수 없습니다. Status value desc 초기 pending(대기) 초기...","categories": ["javascript"],
+        "excerpt":"Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다. JavaScript의 비동기 처리 방식은 비차단 코드 실행을 허용하여 서로가 완료될 때까지 기다리지 않고 여러 작업을 동시에 수행할 수 있도록 합니다. 이는 callbacks, promises, async/await, and event-driven 및 이벤트 기반 프로그래밍을 사용하여 달성됩니다. Promise Promise는 비동기 처리에 사용되는 Javascript 객체 입니다....","categories": ["javascript"],
         "tags": ["Promise","await","async","Promise.all","Promise.allSettled","Promise.race","콜백지옥","동기화"],
         "url": "/javascript/JS-Promise1/",
+        "teaser": null
+      },{
+        "title": "NPM (node package manager)",
+        "excerpt":"Node.js는 JavaScript로 서버측 애플리케이션을 작성하는 데 사용되는 JavaScript 런타임입니다. Node.js는 다양한 패키지와 모듈을 제공하며 이러한 패키지와 모듈을 관리하기 위해 npm(Node Package Manager)이 제공됩니다. npm은 Node.js의 공식 패키지 관리자입니다. 개발자는 npm을 사용하여 Node.js 패키지 및 모듈을 설치, 업데이트, 삭제 및 관리할 수 있습니다. 이러한 패키지와 모듈을 사용하면 프로젝트를 더 쉽고 빠르게...","categories": ["nodejs"],
+        "tags": ["NPM","node package manager"],
+        "url": "/nodejs/npm/",
         "teaser": null
       }]
