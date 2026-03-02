@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>NodeJS 기초 정리 - 모듈화 | 꿰보노트</title>
-<meta name="description" content="모듈 분리 방법 로직을 기능별로 별도 파일을 분리하여 모듈화 할 수 있습니다.">
+<meta name="description" content="JavaScript 모듈 시스템 비교: CommonJS vs ES Module JavaScript의 모듈 시스템은 코드를 독립적인 단위로 나누어 관리하고 재사용하기 위해 사용됩니다.    가장 대표적인 두 가지 방식인 CommonJS(CJS)와 ES Module(ESM)을 사칙연산 예제를 통해 비교합니다.">
 
 
   <meta name="author" content="devjaedol">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="https://kimjaehyun.co.kr/nodejs/NodeJS_summary_module/">
 
 
-  <meta property="og:description" content="모듈 분리 방법 로직을 기능별로 별도 파일을 분리하여 모듈화 할 수 있습니다.">
+  <meta property="og:description" content="JavaScript 모듈 시스템 비교: CommonJS vs ES Module JavaScript의 모듈 시스템은 코드를 독립적인 단위로 나누어 관리하고 재사용하기 위해 사용됩니다.    가장 대표적인 두 가지 방식인 CommonJS(CJS)와 ES Module(ESM)을 사칙연산 예제를 통해 비교합니다.">
 
 
 
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-01-22T00:00:00-06:00">
+  <meta property="article:published_time" content="2022-01-22T00:00:00+00:00">
 
 
 
@@ -596,8 +596,8 @@
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="NodeJS 기초 정리 - 모듈화">
-    <meta itemprop="description" content="모듈 분리 방법로직을 기능별로 별도 파일을 분리하여 모듈화 할 수 있습니다.">
-    <meta itemprop="datePublished" content="2022-01-22T00:00:00-06:00">
+    <meta itemprop="description" content="JavaScript 모듈 시스템 비교: CommonJS vs ES ModuleJavaScript의 모듈 시스템은 코드를 독립적인 단위로 나누어 관리하고 재사용하기 위해 사용됩니다.   가장 대표적인 두 가지 방식인 CommonJS(CJS)와 ES Module(ESM)을 사칙연산 예제를 통해 비교합니다.">
+    <meta itemprop="datePublished" content="2022-01-22T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
@@ -618,26 +618,98 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#모듈-분리-방법">모듈 분리 방법</a><ul><li><a href="#함수-분리">함수 분리</a></li><li><a href="#객체-분리1">객체 분리(1)</a></li><li><a href="#객체-분리2">객체 분리(2)</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#javascript-모듈-시스템-비교-commonjs-vs-es-module">JavaScript 모듈 시스템 비교: CommonJS vs ES Module</a></li><li><a href="#1-commonjs-cjs">1. CommonJS (CJS)</a><ul><li><a href="#특징">특징</a></li><li><a href="#-사칙연산-예시">➕ 사칙연산 예시</a></li><li><a href="#함수-분리">함수 분리</a></li><li><a href="#객체-분리1">객체 분리(1)</a></li><li><a href="#객체-분리2">객체 분리(2)</a></li></ul></li><li><a href="#2-es-module-esm">2. ES Module (ESM)</a></li></ul>
 
             </nav>
           </aside>
         
-        <h2 id="모듈-분리-방법">모듈 분리 방법</h2>
-<p>로직을 기능별로 별도 파일을 분리하여 모듈화 할 수 있습니다.</p>
+        <h2 id="javascript-모듈-시스템-비교-commonjs-vs-es-module">JavaScript 모듈 시스템 비교: CommonJS vs ES Module</h2>
+<p>JavaScript의 모듈 시스템은 코드를 독립적인 단위로 나누어 관리하고 재사용하기 위해 사용됩니다.   <br />
+가장 대표적인 두 가지 방식인 <strong>CommonJS(CJS)</strong>와 <strong>ES Module(ESM)</strong>을 사칙연산 예제를 통해 비교합니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">구분</th>
+      <th style="text-align: left">CommonJS (CJS)</th>
+      <th style="text-align: left">ES Module (ESM)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>표준 여부</strong></td>
+      <td style="text-align: left">Node.js 독자 표준 (Legacy)</td>
+      <td style="text-align: left">JavaScript 공식 표준 (Modern)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>키워드</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">require()</code> / <code class="language-plaintext highlighter-rouge">module.exports</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">import</code> / <code class="language-plaintext highlighter-rouge">export</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>로딩 방식</strong></td>
+      <td style="text-align: left"><strong>동기(Synchronous)</strong> 로딩</td>
+      <td style="text-align: left"><strong>비동기(Asynchronous)</strong> 로딩</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>분석 시점</strong></td>
+      <td style="text-align: left">실행 시점 (Runtime)</td>
+      <td style="text-align: left">빌드 및 해석 시점 (Static)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>트리 쉐이킹</strong></td>
+      <td style="text-align: left">지원이 어려움 (정적 분석 불가)</td>
+      <td style="text-align: left"><strong>강력 지원</strong> (최적화 성능 우수)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>파일 확장자</strong></td>
+      <td style="text-align: left">기본적으로 <code class="language-plaintext highlighter-rouge">.js</code> 사용</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">.mjs</code> 또는 <code class="language-plaintext highlighter-rouge">package.json</code> 내 <code class="language-plaintext highlighter-rouge">"type": "module"</code> 설정</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>주요 환경</strong></td>
+      <td style="text-align: left">서버 사이드 (Node.js)</td>
+      <td style="text-align: left">브라우저 및 현대적 JS 프로젝트</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>결론:</strong> 현대적인 웹 개발이나 성능 최적화가 중요한 대규모 프로젝트에서는 정적 분석이 가능하고 표준을 따르는 <strong>ES Module</strong> 사용이 권장됩니다.</p>
+
+<h2 id="1-commonjs-cjs">1. CommonJS (CJS)</h2>
+<p>Node.js의 기본 모듈 시스템으로 오랫동안 사용되어 왔습니다.</p>
+
+<h3 id="특징">특징</h3>
+<ul>
+  <li><strong>키워드:</strong> <code class="language-plaintext highlighter-rouge">require</code>, <code class="language-plaintext highlighter-rouge">module.exports</code></li>
+  <li><strong>로딩 방식:</strong> 동기적(Synchronous) 로딩</li>
+  <li><strong>실행 시점:</strong> 런타임에 모듈을 평가하고 로드합니다.</li>
+</ul>
+
+<h3 id="-사칙연산-예시">➕ 사칙연산 예시</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// math.js (모듈 생성)</span>
+<span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">subtract</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span>
+
+<span class="c1">// 객체 형태로 내보내기</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">add</span><span class="p">,</span>
+  <span class="nx">subtract</span>
+<span class="p">};</span>
+
+<span class="c1">// main .js</span>
+<span class="kd">const</span> <span class="nx">math</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./math.js</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">더하기:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>      <span class="c1">// 15</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">빼기:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nf">subtract</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>  <span class="c1">// 5</span>
+
+</code></pre></div></div>
 
 <h3 id="함수-분리">함수 분리</h3>
 <p>exports.함수명 = 함수</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">main</span><span class="p">.</span><span class="nx">js</span>
-<span class="kd">var</span> <span class="nx">module</span> <span class="o">=</span> <span class="nf">reqire</span><span class="p">(</span><span class="dl">"</span><span class="s2">./fn</span><span class="dl">"</span><span class="p">)</span>
-<span class="nx">module</span><span class="p">.</span><span class="nf">함수명1</span><span class="p">();</span>
-<span class="nx">module</span><span class="p">.</span><span class="nf">함수명2</span><span class="p">();</span>
-<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nf">함수명3</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-
-<span class="err">#</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">js</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">js</span>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">함수명1</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
 <span class="err">#</span><span class="p">....</span>
 <span class="p">}</span>
@@ -645,17 +717,20 @@
 <span class="err">#</span><span class="p">....</span>
 <span class="p">}</span>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">함수명3</span> <span class="o">=</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span><span class="dl">'</span><span class="s1">홍길동</span><span class="dl">'</span><span class="p">};</span>
+
+<span class="err">#</span> <span class="nx">main</span><span class="p">.</span><span class="nx">js</span>
+<span class="kd">var</span> <span class="nx">module</span> <span class="o">=</span> <span class="nf">reqire</span><span class="p">(</span><span class="dl">"</span><span class="s2">./fn</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">module</span><span class="p">.</span><span class="nf">함수명1</span><span class="p">();</span>
+<span class="nx">module</span><span class="p">.</span><span class="nf">함수명2</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nf">함수명3</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+
 </code></pre></div></div>
 
 <h3 id="객체-분리1">객체 분리(1)</h3>
 <p>module.exports = 객체</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">main</span><span class="p">.</span><span class="nx">js</span>
-<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nf">reqire</span><span class="p">(</span><span class="dl">"</span><span class="s2">./obj</span><span class="dl">"</span><span class="p">)</span>
-<span class="nx">obj</span><span class="p">.</span><span class="nf">fn1</span><span class="p">();</span>
-<span class="nx">obj</span><span class="p">.</span><span class="nf">fn2</span><span class="p">();</span>
-
-
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="err">#</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">js</span>
 <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">fn1</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
@@ -665,24 +740,74 @@
 <span class="nx">obj</span><span class="p">.</span><span class="nx">fn2</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
 <span class="err">#</span><span class="p">....</span>
 <span class="p">};</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span> <span class="err">#</span><span class="nx">객체를</span> <span class="nx">할당함</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span> <span class="nx">#객체를</span> <span class="nx">할당함</span>
+
+<span class="err">#</span> <span class="nx">main</span><span class="p">.</span><span class="nx">js</span>
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nf">reqire</span><span class="p">(</span><span class="dl">"</span><span class="s2">./obj</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nf">fn1</span><span class="p">();</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nf">fn2</span><span class="p">();</span>
+
 </code></pre></div></div>
 
 <h3 id="객체-분리2">객체 분리(2)</h3>
 <p>module.exports = 함수</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">main</span><span class="p">.</span><span class="nx">js</span>
-<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nf">reqire</span><span class="p">(</span><span class="dl">"</span><span class="s2">./obj</span><span class="dl">"</span><span class="p">)</span>
-<span class="nf">obj</span><span class="p">().</span><span class="nx">id</span><span class="p">;</span>
-<span class="nf">obj</span><span class="p">().</span><span class="nx">name</span><span class="p">;</span>
-
-
-<span class="err">#</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">js</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">js</span>
 <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="k">return</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span><span class="dl">'</span><span class="s1">홍길동</span><span class="dl">'</span><span class="p">};</span>
 <span class="p">};</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span> <span class="err">#</span><span class="nx">함수를</span> <span class="nx">할당함</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span> <span class="nx">#함수를</span> <span class="nx">할당함</span>
+
+<span class="err">#</span> <span class="nx">main</span><span class="p">.</span><span class="nx">js</span>
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nf">reqire</span><span class="p">(</span><span class="dl">"</span><span class="s2">./obj</span><span class="dl">"</span><span class="p">)</span>
+<span class="nf">obj</span><span class="p">().</span><span class="nx">id</span><span class="p">;</span>
+<span class="nf">obj</span><span class="p">().</span><span class="nx">name</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="2-es-module-esm">2. ES Module (ESM)</h2>
+<p>ECMAScript(JS 표준)에서 정의한 공식 표준 모듈 시스템입니다.</p>
+<ul>
+  <li>키워드: import, export</li>
+  <li>로딩 방식: 비동기적(Asynchronous) 로딩</li>
+  <li>실행 시점: 빌드 및 해석 시점에 정적으로 의존성을 분석합니다 (Tree Shaking에 유리).</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//math.js (모듈 생성)</span>
+<span class="c1">// 개별 함수 내보내기 (Named Export)</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">multiply</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">;</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">divide</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">/</span> <span class="nx">b</span><span class="p">;</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+
+<span class="c1">// 기본값으로 내보내기 (Default Export - 선택 사항)</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span> <span class="nx">multiply</span><span class="p">,</span> <span class="nx">divide</span> <span class="p">};</span>
+
+
+<span class="c1">// main.js (모듈 호출)</span>
+<span class="c1">// Named Export를 구조 분해 할당으로 호출</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">multiply</span><span class="p">,</span> <span class="nx">divide</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./math.js</span><span class="dl">'</span><span class="p">;</span> <span class="c1">//주의 .js 까지 모두 붙여야함.</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">곱하기:</span><span class="dl">'</span><span class="p">,</span> <span class="nf">multiply</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span> <span class="c1">// 50</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">나누기:</span><span class="dl">'</span><span class="p">,</span> <span class="nf">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>   <span class="c1">// 2</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//math.js (모듈 생성)</span>
+<span class="c1">// 개별 함수 내보내기 (Named Export)</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">multiply</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">;</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">divide</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">/</span> <span class="nx">b</span><span class="p">;</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+
+<span class="c1">// 기본값으로 내보내기 (Default Export - 선택 사항)</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">multiply</span><span class="p">;</span>
+
+
+<span class="c1">// main.js (모듈 호출)</span>
+<span class="c1">// Named Export를 구조 분해 할당으로 호출</span>
+<span class="k">import</span> <span class="nx">mp</span><span class="p">,{</span> <span class="nx">divide</span><span class="p">,</span> <span class="nx">add</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./math.js</span><span class="dl">'</span><span class="p">;</span> <span class="c1">//주의 .js 까지 모두 붙여야함.</span>
+<span class="c1">//export default 로 출력한 모듈은 사용시 이름 변경이 가능함</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">곱하기:</span><span class="dl">'</span><span class="p">,</span> <span class="nf">multiply</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span> <span class="c1">// 50</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">나누기:</span><span class="dl">'</span><span class="p">,</span> <span class="nf">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>   <span class="c1">// 2</span>
 </code></pre></div></div>
 
 
@@ -700,6 +825,10 @@
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
+    
+      <a href="/tags/#commonjs-cjs" class="page__taxonomy-item p-category" rel="tag">CommonJS (CJS)</a><span class="sep">, </span>
+    
+      <a href="/tags/#es-module-esm" class="page__taxonomy-item p-category" rel="tag">ES Module (ESM)</a><span class="sep">, </span>
     
       <a href="/tags/#nodejs" class="page__taxonomy-item p-category" rel="tag">nodejs</a>
     
@@ -727,7 +856,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-01-22T00:00:00-06:00">2022-01-22</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-01-22T00:00:00+00:00">2022-01-22</time></p>
 
       </footer>
 
@@ -991,7 +1120,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

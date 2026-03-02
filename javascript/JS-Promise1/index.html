@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-03-01T00:00:00-06:00">
+  <meta property="article:published_time" content="2023-03-01T00:00:00+00:00">
 
 
 
@@ -597,7 +597,7 @@
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Javascript Promise await async">
     <meta itemprop="description" content="Javascript 비동기 처리 방법에는 Promise, async/await, callback 등의 방법이 있습니다.   JavaScript의 비동기 처리 방식은 비차단 코드 실행을 허용하여 서로가 완료될 때까지 기다리지 않고 여러 작업을 동시에 수행할 수 있도록 합니다.   이는 callbacks, promises, async/await, and event-driven 및 이벤트 기반 프로그래밍을 사용하여 달성됩니다.">
-    <meta itemprop="datePublished" content="2023-03-01T00:00:00-06:00">
+    <meta itemprop="datePublished" content="2023-03-01T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
@@ -716,7 +716,7 @@ JavaScript의 비동기 처리 방식은 비차단 코드 실행을 허용하여
   <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">))</span> <span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="nx">promise</span><span class="p">.</span><span class="nf">catch</span><span class="p">(</span>
+<span class="nx">promise</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span>
   <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`catch : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>     <span class="c1">//catch : Error: Fail 출력</span>
 <span class="p">);</span>
 
@@ -730,7 +730,7 @@ JavaScript의 비동기 처리 방식은 비차단 코드 실행을 허용하여
   <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">),</span> <span class="mi">2000</span><span class="p">)</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then value : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span> <span class="p">)</span>
-<span class="p">.</span><span class="nf">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`finally`</span><span class="p">)</span> <span class="p">);</span>
+<span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`finally`</span><span class="p">)</span> <span class="p">);</span>
 
 </code></pre></div></div>
 
@@ -759,7 +759,7 @@ JavaScript의 비동기 처리 방식은 비차단 코드 실행을 허용하여
 
 <span class="nx">promise</span><span class="p">.</span><span class="nf">then</span><span class="p">(</span>
     <span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
-<span class="p">).</span><span class="nf">catch</span><span class="p">(</span>
+<span class="p">).</span><span class="k">catch</span><span class="p">(</span>
     <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
 <span class="p">);</span>
 
@@ -798,7 +798,7 @@ Case 3, 4 의 변형된 소스를 파악해보면, 성공 응답과정 내에 �
     <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SUCCESS : </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">),</span> 
     <span class="nf">reject</span><span class="p">(</span><span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Fail</span><span class="dl">"</span><span class="p">));</span>   <span class="c1">//처리 중간 실패를 전달    </span>
    <span class="p">}</span> 
-<span class="p">).</span><span class="nf">catch</span><span class="p">(</span>
+<span class="p">).</span><span class="k">catch</span><span class="p">(</span>
     <span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
 <span class="p">);</span>
 
@@ -828,7 +828,7 @@ syntax</p>
   <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">),</span>
   <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">),</span>
   <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">)</span>
-<span class="p">]).</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">);</span> 
+<span class="p">]).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">...</span> <span class="p">);</span> 
 
 </code></pre></div></div>
 
@@ -849,7 +849,7 @@ syntax</p>
 <span class="nb">Promise</span>
   <span class="p">.</span><span class="nf">all</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
   <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then(</span><span class="p">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">) : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span> <span class="p">)</span> <span class="p">)</span>
-  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
 
 <span class="c1">// 모두 성공 반환시</span>
 <span class="c1">// param 은 p1,p2,p3의 resolve 인수를 모두 배열로 반환 ['p1 성공', 'p2 성공', 'p3 성공']</span>
@@ -879,7 +879,7 @@ syntax</p>
 <span class="nb">Promise</span>
   <span class="p">.</span><span class="nf">allSettled</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
   <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then(</span><span class="p">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">) : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span> <span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">param</span><span class="p">);}</span> <span class="p">)</span>
-  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
 
 <span class="c1">// 응답값</span>
 <span class="nf">then</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span> <span class="p">[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">]</span>
@@ -909,7 +909,7 @@ syntax</p>
 <span class="nb">Promise</span>
   <span class="p">.</span><span class="nf">allSettled</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
   <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then(</span><span class="p">${</span><span class="nx">param</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">) : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span> <span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">param</span><span class="p">);}</span> <span class="p">)</span>
-  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
 
 <span class="c1">// 응답값</span>
 <span class="nf">then</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span> <span class="p">[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">],[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">]</span>
@@ -939,7 +939,7 @@ syntax</p>
 <span class="nb">Promise</span>
   <span class="p">.</span><span class="nf">race</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
   <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">param</span><span class="p">)</span><span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`then : </span><span class="p">${</span><span class="nx">param</span><span class="p">}</span><span class="s2">`</span><span class="p">))</span>
-  <span class="p">.</span><span class="nf">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`ERROR : </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span> 
 
 <span class="c1">// 모두 성공 반환시</span>
 <span class="c1">// param 은 p1,p2,p3의 resolve 인수를 모두 배열로 반환 ['p1 성공', 'p2 성공', 'p3 성공']</span>
@@ -957,7 +957,7 @@ Promise는 <code class="language-plaintext highlighter-rouge">catch()</code>를 
 
 <p>사용 예</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//익명 함수 형태</span>
-<span class="p">(</span><span class="nf">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="p">(</span><span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">p 성공</span><span class="dl">"</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
         <span class="c1">//setTimeout(() =&gt; reject(new Error("p 실패")) , 1000);</span>
@@ -966,7 +966,7 @@ Promise는 <code class="language-plaintext highlighter-rouge">catch()</code>를 
     <span class="k">try</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">promise</span><span class="p">;</span>
         <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-    <span class="p">}</span> <span class="nf">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">})();</span>
@@ -982,7 +982,7 @@ Promise는 <code class="language-plaintext highlighter-rouge">catch()</code>를 
     <span class="k">try</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">promise</span><span class="p">;</span>
         <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-    <span class="p">}</span> <span class="nf">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">};</span>
@@ -1046,7 +1046,7 @@ Promise는 <code class="language-plaintext highlighter-rouge">catch()</code>를 
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-03-01T00:00:00-06:00">2023-03-01</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-03-01T00:00:00+00:00">2023-03-01</time></p>
 
       </footer>
 
@@ -1292,7 +1292,7 @@ Promise는 <code class="language-plaintext highlighter-rouge">catch()</code>를 
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

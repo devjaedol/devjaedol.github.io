@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-06-21T00:00:00-05:00">
+  <meta property="article:published_time" content="2022-06-21T00:00:00+00:00">
 
 
 
@@ -597,7 +597,7 @@
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="[OpenCV] 마우스이벤트">
     <meta itemprop="description" content="OpenCV 마우스 이벤트에 대해서 정의 합니다.  마우스 움직임에 대한 콜백 함수를 구현하여, 전달되는 파라메터 인자를 통해서 마우스 관련 정보를 얻을 수 있습니다.  ex) mouseCallbcak(event, x, y, flags, param) 함수의  event 항목의 cv2.EVENT_XXXX 형태로 마우스 이벤트  x, y는 마우스의 자표  flags 키보드 등의 추가 적인 정보 제공">
-    <meta itemprop="datePublished" content="2022-06-21T00:00:00-05:00">
+    <meta itemprop="datePublished" content="2022-06-21T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
@@ -683,29 +683,29 @@ ex) <code class="language-plaintext highlighter-rouge">mouseCallbcak(event, x, y
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">__version__</span><span class="p">)</span>
     <span class="nf">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
-        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="s">'sample'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">'</span><span class="s">sample</span><span class="sh">'</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span> <span class="c1">#27키   ESC
 </span>            <span class="k">break</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
     <span class="nf">main</span><span class="p">()</span>  
 
 </code></pre></div></div>
 
 <p>OpenCV의 이벤트 확인 방법</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">events</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">dir</span><span class="p">(</span><span class="n">cv2</span><span class="p">)</span> <span class="k">if</span> <span class="s">'EVENT'</span> <span class="ow">in</span> <span class="n">i</span><span class="p">]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">events</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">dir</span><span class="p">(</span><span class="n">cv2</span><span class="p">)</span> <span class="k">if</span> <span class="sh">'</span><span class="s">EVENT</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">i</span><span class="p">]</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
 
 <span class="c1">#출력
-</span><span class="p">[</span><span class="s">'EVENT_FLAG_ALTKEY'</span><span class="p">,</span> <span class="s">'EVENT_FLAG_CTRLKEY'</span><span class="p">,</span>
- <span class="s">'EVENT_FLAG_LBUTTON'</span><span class="p">,</span> <span class="s">'EVENT_FLAG_MBUTTON'</span><span class="p">,</span> 
-<span class="s">'EVENT_FLAG_RBUTTON'</span><span class="p">,</span> <span class="s">'EVENT_FLAG_SHIFTKEY'</span><span class="p">,</span>
- <span class="s">'EVENT_LBUTTONDBLCLK'</span><span class="p">,</span> <span class="s">'EVENT_LBUTTONDOWN'</span><span class="p">,</span> 
- <span class="s">'EVENT_LBUTTONUP'</span><span class="p">,</span> <span class="s">'EVENT_MBUTTONDBLCLK'</span><span class="p">,</span> 
- <span class="s">'EVENT_MBUTTONDOWN'</span><span class="p">,</span> <span class="s">'EVENT_MBUTTONUP'</span><span class="p">,</span> 
- <span class="s">'EVENT_MOUSEHWHEEL'</span><span class="p">,</span> <span class="s">'EVENT_MOUSEMOVE'</span><span class="p">,</span> 
- <span class="s">'EVENT_MOUSEWHEEL'</span><span class="p">,</span> <span class="s">'EVENT_RBUTTONDBLCLK'</span><span class="p">,</span> 
- <span class="s">'EVENT_RBUTTONDOWN'</span><span class="p">,</span> <span class="s">'EVENT_RBUTTONUP'</span><span class="p">]</span>
+</span><span class="p">[</span><span class="sh">'</span><span class="s">EVENT_FLAG_ALTKEY</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">EVENT_FLAG_CTRLKEY</span><span class="sh">'</span><span class="p">,</span>
+ <span class="sh">'</span><span class="s">EVENT_FLAG_LBUTTON</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">EVENT_FLAG_MBUTTON</span><span class="sh">'</span><span class="p">,</span> 
+<span class="sh">'</span><span class="s">EVENT_FLAG_RBUTTON</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">EVENT_FLAG_SHIFTKEY</span><span class="sh">'</span><span class="p">,</span>
+ <span class="sh">'</span><span class="s">EVENT_LBUTTONDBLCLK</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">EVENT_LBUTTONDOWN</span><span class="sh">'</span><span class="p">,</span> 
+ <span class="sh">'</span><span class="s">EVENT_LBUTTONUP</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">EVENT_MBUTTONDBLCLK</span><span class="sh">'</span><span class="p">,</span> 
+ <span class="sh">'</span><span class="s">EVENT_MBUTTONDOWN</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">EVENT_MBUTTONUP</span><span class="sh">'</span><span class="p">,</span> 
+ <span class="sh">'</span><span class="s">EVENT_MOUSEHWHEEL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">EVENT_MOUSEMOVE</span><span class="sh">'</span><span class="p">,</span> 
+ <span class="sh">'</span><span class="s">EVENT_MOUSEWHEEL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">EVENT_RBUTTONDBLCLK</span><span class="sh">'</span><span class="p">,</span> 
+ <span class="sh">'</span><span class="s">EVENT_RBUTTONDOWN</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">EVENT_RBUTTONUP</span><span class="sh">'</span><span class="p">]</span>
 
 </code></pre></div></div>
 
@@ -1169,7 +1169,7 @@ ex) <code class="language-plaintext highlighter-rouge">mouseCallbcak(event, x, y
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-21T00:00:00-05:00">2022-06-21</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-21T00:00:00+00:00">2022-06-21</time></p>
 
       </footer>
 
@@ -1455,7 +1455,7 @@ ex) <code class="language-plaintext highlighter-rouge">mouseCallbcak(event, x, y
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

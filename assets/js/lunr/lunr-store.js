@@ -60,8 +60,8 @@ var store = [{
         "teaser": null
       },{
         "title": "NodeJS 기초 정리 - 모듈화",
-        "excerpt":"모듈 분리 방법 로직을 기능별로 별도 파일을 분리하여 모듈화 할 수 있습니다. 함수 분리 exports.함수명 = 함수 # main.js var module = reqire(\"./fn\") module.함수명1(); module.함수명2(); var obj = module.함수명3(); console.log(obj.id); console.log(obj.name); # fn.js exports.함수명1 = function(){ #.... } exports.함수명2 = function(){ #.... } exports.함수명3 = {id:123, name:'홍길동'}; 객체 분리(1) module.exports...","categories": ["nodejs"],
-        "tags": ["nodejs"],
+        "excerpt":"JavaScript 모듈 시스템 비교: CommonJS vs ES Module JavaScript의 모듈 시스템은 코드를 독립적인 단위로 나누어 관리하고 재사용하기 위해 사용됩니다. 가장 대표적인 두 가지 방식인 CommonJS(CJS)와 ES Module(ESM)을 사칙연산 예제를 통해 비교합니다. 구분 CommonJS (CJS) ES Module (ESM) 표준 여부 Node.js 독자 표준 (Legacy) JavaScript 공식 표준 (Modern) 키워드 require() /...","categories": ["nodejs"],
+        "tags": ["nodejs","CommonJS (CJS)","ES Module (ESM)"],
         "url": "/nodejs/NodeJS_summary_module/",
         "teaser": null
       },{

@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-06-20T00:00:00-05:00">
+  <meta property="article:published_time" content="2022-06-20T00:00:00+00:00">
 
 
 
@@ -597,7 +597,7 @@
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="[OpenCV] 윈도우 처리, 키이벤트">
     <meta itemprop="description" content="OpenCV 기본적인 window 관련 자주 쓰이는 함수들을 정리 합니다.">
-    <meta itemprop="datePublished" content="2022-06-20T00:00:00-05:00">
+    <meta itemprop="datePublished" content="2022-06-20T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
@@ -655,15 +655,15 @@
 <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'d'</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="sh">'</span><span class="s">d</span><span class="sh">'</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=+</span> <span class="mi">100</span>
-<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'w'</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=+</span> <span class="mi">100</span>
-<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="sh">'</span><span class="s">x</span><span class="sh">'</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=-</span> <span class="mi">100</span>
-<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=-</span> <span class="mi">100</span>
-<span class="n">cv2</span><span class="p">.</span><span class="nf">moveWindow</span><span class="p">(</span><span class="s">'win'</span><span class="p">,</span><span class="n">x</span> <span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">moveWindow</span><span class="p">(</span><span class="sh">'</span><span class="s">win</span><span class="sh">'</span><span class="p">,</span><span class="n">x</span> <span class="p">,</span><span class="n">y</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">상하좌우</code> 키보드를 통해서 하려면…  <br />
@@ -671,15 +671,15 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># key = cv2.waitKey(0) &amp; 0xFF
 </span><span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKeyEx</span><span class="p">()</span> <span class="c1"># 16진수 키캆
 </span>
-<span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'j'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x250000</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="sh">'</span><span class="s">j</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x250000</span><span class="p">:</span>
     <span class="n">x</span> <span class="o">-=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'l'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x270000</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="sh">'</span><span class="s">l</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x270000</span><span class="p">:</span>
     <span class="n">x</span> <span class="o">+=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'o'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x260000</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="sh">'</span><span class="s">o</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x260000</span><span class="p">:</span>
     <span class="n">y</span> <span class="o">-=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'k'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x280000</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="sh">'</span><span class="s">k</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mh">0x280000</span><span class="p">:</span>
     <span class="n">y</span> <span class="o">+=</span> <span class="mi">10</span>
-<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="s">'q'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="nf">ord</span><span class="p">(</span><span class="sh">'</span><span class="s">q</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
     <span class="k">break</span>
 </code></pre></div></div>
 
@@ -1145,7 +1145,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-20T00:00:00-05:00">2022-06-20</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-20T00:00:00+00:00">2022-06-20</time></p>
 
       </footer>
 
@@ -1433,7 +1433,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

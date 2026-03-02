@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-06-24T00:00:00-05:00">
+  <meta property="article:published_time" content="2022-06-24T00:00:00+00:00">
 
 
 
@@ -597,7 +597,7 @@
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="[Python][Numpy] 배열 생성(Array creation)">
     <meta itemprop="description" content="Numpy(Numerical Python) 는 python으로 행열 연산 등 대규모 다타원 배열과 행열 연산 등에 사용할 수 있는 라이브러 입니다. python이 데이터 분석 머신너링에 이용되기 위해서 데이터 전처리 등의 과정을 거치는데 numpy는 이런 전처리 과정에 사용됩니다. 기본적은 사용법을 배워보겠습니다.Array creation routines :  API 참조">
-    <meta itemprop="datePublished" content="2022-06-24T00:00:00-05:00">
+    <meta itemprop="datePublished" content="2022-06-24T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
@@ -677,7 +677,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
 <h2 id="date-배열-생성">Date 배열 생성</h2>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 데이터 타입 생성
-</span><span class="n">date</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="s">'2022-07-01'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">datetime64</span><span class="p">)</span>
+</span><span class="n">date</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="sh">'</span><span class="s">2022-07-01</span><span class="sh">'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">datetime64</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> <span class="c1"># 2022-07-01
 </span>
 <span class="n">date</span>        <span class="c1"># array('2022-07-01', dtype='datetime64[D]')
@@ -695,7 +695,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 #        '2022-08-06', '2022-08-07', '2022-08-08', '2022-08-09'],
 #       dtype='datetime64[D]')
 </span>
-<span class="n">datetime</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">datetime64</span><span class="p">(</span><span class="s">'2022-07-01 13:20'</span><span class="p">)</span>
+<span class="n">datetime</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">datetime64</span><span class="p">(</span><span class="sh">'</span><span class="s">2022-07-01 13:20</span><span class="sh">'</span><span class="p">)</span>
 <span class="n">datetime</span>
 <span class="c1"># numpy.datetime64('2022-07-01T13:20')
 </span>
@@ -767,13 +767,13 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 </table>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ainfo</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"ndim : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"shape : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"dytpe : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"size : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"itemsize : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">itemsize</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"nbytes : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">nbytes</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"strides : "</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">strides</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">ndim : </span><span class="sh">"</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">ndim</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">shape : </span><span class="sh">"</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">dytpe : </span><span class="sh">"</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">size : </span><span class="sh">"</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">itemsize : </span><span class="sh">"</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">itemsize</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">nbytes : </span><span class="sh">"</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">nbytes</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">strides : </span><span class="sh">"</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="n">strides</span><span class="p">)</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -1415,7 +1415,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-24T00:00:00-05:00">2022-06-24</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-24T00:00:00+00:00">2022-06-24</time></p>
 
       </footer>
 
@@ -1683,7 +1683,7 @@ type을 확인해보면, <code class="language-plaintext highlighter-rouge">list
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
