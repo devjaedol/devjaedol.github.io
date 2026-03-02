@@ -8,6 +8,9 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,14 +30,8 @@ jobs:
           COMMIT_ID : ${{github.sha}}
         run: echo "Commit id => $COMMIT_ID"
 
-      - name: Check REPO_TOKEN
-        env : 
-          REPO_TOKEN : ${{secrets.REPO_TOKEN}}
-        run: echo "REPO_TOKEN => $REPO_TOKEN"
-
-
       - name: Cloning source branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           ref: 'source'
           path: 'source'
@@ -43,10 +40,10 @@ jobs:
         run: |
           docker run \
           -v ${{ github.workspace }}/source:/srv/jekyll -v ${{ github.workspace }}/source/_site:/srv/jekyll/_site \
-          jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+          jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
 
       - name: Cloning master branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           ref: 'master'
           path: 'master'
@@ -76,8 +73,8 @@ jobs:
           cd ${{ github.workspace }}/master
           git config --local user.email "devjaedol@gmail.com"
           git config --local user.name "JaeHyun Kim"
-          git add *
-          git commit -m "GitHub Action CI" -a
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "GitHub Action CI - Build from ${{ github.sha }}"
 
 
       - name: Push changes
@@ -85,7 +82,7 @@ jobs:
         with:
           directory: ${{ github.workspace }}/master
           branch: 'master'
-          github_token: ${{ secrets.REPO_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
           
       - name: Run ls -al
