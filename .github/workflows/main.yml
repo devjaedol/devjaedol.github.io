@@ -36,11 +36,20 @@ jobs:
           ref: 'source'
           path: 'source'
 
-      - name: Building site in the jekyll/builder container
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+          working-directory: ./source
+
+      - name: Build Jekyll site
         run: |
-          docker run \
-          -v ${{ github.workspace }}/source:/srv/jekyll -v ${{ github.workspace }}/source/_site:/srv/jekyll/_site \
-          jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+          cd source
+          bundle install
+          JEKYLL_ENV=production bundle exec jekyll build --future
+        env:
+          JEKYLL_ENV: production
 
       - name: Cloning master branch
         uses: actions/checkout@v4
