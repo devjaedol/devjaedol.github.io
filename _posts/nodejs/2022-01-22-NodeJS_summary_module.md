@@ -167,3 +167,5 @@ import mp,{ divide, add } from './math.js'; //주의 .js 까지 모두 붙여야
 console.log('곱하기:', multiply(10, 5)); // 50
 console.log('나누기:', divide(10, 5));   // 2
 ```
+
+
