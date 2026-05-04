@@ -1,0 +1,1851 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[PostgreSQL] 08. 트랜잭션과 락 (Transaction &amp; Lock) | 꿰보노트</title>
+<meta name="description" content="PostgreSQL의 트랜잭션, MVCC, 격리 수준, 락 메커니즘을 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[PostgreSQL] 08. 트랜잭션과 락 (Transaction &amp; Lock)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/postgresql/postgresql-08-transaction/">
+
+
+  <meta property="og:description" content="PostgreSQL의 트랜잭션, MVCC, 격리 수준, 락 메커니즘을 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/postgresql/postgresql-08-transaction/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#postgresql" itemprop="item"><span itemprop="name">Postgresql</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[PostgreSQL] 08. 트랜잭션과 락 (Transaction & Lock)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 104</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[PostgreSQL] 08. 트랜잭션과 락 (Transaction &amp; Lock)">
+    <meta itemprop="description" content="PostgreSQL의 트랜잭션, MVCC, 격리 수준, 락 메커니즘을 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/postgresql/postgresql-08-transaction/" class="u-url" itemprop="url">[PostgreSQL] 08. 트랜잭션과 락 (Transaction &amp; Lock)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#트랜잭션-특징">트랜잭션 특징</a><ul><li><a href="#postgresql-vs-mysql-vs-oracle-트랜잭션-비교">PostgreSQL vs MySQL vs Oracle 트랜잭션 비교</a></li><li><a href="#트랜잭션-명령어">트랜잭션 명령어</a><ul><li><a href="#ddl-트랜잭션-예시">DDL 트랜잭션 예시</a></li></ul></li><li><a href="#mvcc-multi-version-concurrency-control">MVCC (Multi-Version Concurrency Control)</a><ul><li><a href="#튜플-헤더-정보">튜플 헤더 정보</a></li></ul></li><li><a href="#격리-수준-isolation-level">격리 수준 (Isolation Level)</a></li><li><a href="#락-lock">락 (Lock)</a><ul><li><a href="#테이블-수준-락">테이블 수준 락</a></li><li><a href="#행-수준-락">행 수준 락</a></li><li><a href="#락-확인">락 확인</a></li></ul></li><li><a href="#데드락-deadlock">데드락 (Deadlock)</a><ul><li><a href="#예방-전략">예방 전략</a></li></ul></li><li><a href="#advisory-lock-어드바이저리-락-postgresql-전용">Advisory Lock (어드바이저리 락, PostgreSQL 전용)</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>PostgreSQL의 트랜잭션, MVCC, 격리 수준, 락 메커니즘을 정리합니다.</p>
+
+<h1 id="트랜잭션-특징">트랜잭션 특징</h1>
+
+<p>PostgreSQL은 MySQL과 동일하게 기본 AUTO COMMIT입니다.  <br />
+하지만 <code class="language-plaintext highlighter-rouge">BEGIN</code>으로 명시적 트랜잭션을 시작하면 <code class="language-plaintext highlighter-rouge">COMMIT</code> 또는 <code class="language-plaintext highlighter-rouge">ROLLBACK</code>이 필요합니다.</p>
+
+<h2 id="postgresql-vs-mysql-vs-oracle-트랜잭션-비교">PostgreSQL vs MySQL vs Oracle 트랜잭션 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>PostgreSQL</th>
+      <th>MySQL (InnoDB)</th>
+      <th>Oracle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>기본 모드</td>
+      <td>AUTO COMMIT</td>
+      <td>AUTO COMMIT</td>
+      <td>수동 COMMIT</td>
+    </tr>
+    <tr>
+      <td>DDL 트랜잭션</td>
+      <td>✅ 롤백 가능</td>
+      <td>❌ 암묵적 COMMIT</td>
+      <td>❌ 암묵적 COMMIT</td>
+    </tr>
+    <tr>
+      <td>MVCC</td>
+      <td>튜플 버전 관리</td>
+      <td>Undo 로그</td>
+      <td>Undo 세그먼트</td>
+    </tr>
+    <tr>
+      <td>기본 격리 수준</td>
+      <td>READ COMMITTED</td>
+      <td>REPEATABLE READ</td>
+      <td>READ COMMITTED</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>PostgreSQL의 가장 큰 장점 중 하나: DDL(CREATE TABLE, ALTER TABLE 등)도 트랜잭션으로 롤백할 수 있습니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="트랜잭션-명령어">트랜잭션 명령어</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 트랜잭션 시작</span>
+<span class="k">BEGIN</span><span class="p">;</span>
+<span class="c1">-- 또는</span>
+<span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+
+<span class="c1">-- 변경 확정</span>
+<span class="k">COMMIT</span><span class="p">;</span>
+
+<span class="c1">-- 변경 취소</span>
+<span class="k">ROLLBACK</span><span class="p">;</span>
+
+<span class="c1">-- 세이브포인트</span>
+<span class="n">SAVEPOINT</span> <span class="n">sp1</span><span class="p">;</span>
+<span class="k">ROLLBACK</span> <span class="k">TO</span> <span class="n">sp1</span><span class="p">;</span>
+<span class="n">RELEASE</span> <span class="n">SAVEPOINT</span> <span class="n">sp1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="ddl-트랜잭션-예시">DDL 트랜잭션 예시</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">BEGIN</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test_table</span> <span class="p">(</span><span class="n">id</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">name</span> <span class="nb">TEXT</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test_table</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'테스트'</span><span class="p">);</span>
+<span class="c1">-- 문제 발생 시 테이블 생성까지 롤백 가능</span>
+<span class="k">ROLLBACK</span><span class="p">;</span>
+<span class="c1">-- test_table이 생성되지 않음</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="mvcc-multi-version-concurrency-control">MVCC (Multi-Version Concurrency Control)</h2>
+
+<p>PostgreSQL은 각 행(튜플)에 버전 정보를 저장하여 읽기 일관성을 보장합니다.</p>
+
+<h3 id="튜플-헤더-정보">튜플 헤더 정보</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 숨겨진 시스템 컬럼 확인</span>
+<span class="k">SELECT</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ctid</span><span class="p">,</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">LIMIT</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>컬럼</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xmin</td>
+      <td>이 튜플을 생성한 트랜잭션 ID</td>
+    </tr>
+    <tr>
+      <td>xmax</td>
+      <td>이 튜플을 삭제/수정한 트랜잭션 ID (0이면 유효)</td>
+    </tr>
+    <tr>
+      <td>ctid</td>
+      <td>물리적 위치 (페이지, 오프셋)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>UPDATE 시 PostgreSQL은 기존 행을 삭제 표시하고 새 행을 삽입합니다.  <br />
+이로 인해 죽은 튜플(dead tuple)이 발생하며, VACUUM으로 정리해야 합니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="격리-수준-isolation-level">격리 수준 (Isolation Level)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>격리 수준</th>
+      <th style="text-align: center">Dirty Read</th>
+      <th style="text-align: center">Non-Repeatable Read</th>
+      <th style="text-align: center">Phantom Read</th>
+      <th style="text-align: center">Serialization Anomaly</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>READ UNCOMMITTED*</td>
+      <td style="text-align: center">❌ 방지</td>
+      <td style="text-align: center">⭕ 발생</td>
+      <td style="text-align: center">⭕ 발생</td>
+      <td style="text-align: center">⭕ 발생</td>
+    </tr>
+    <tr>
+      <td>READ COMMITTED (기본)</td>
+      <td style="text-align: center">❌ 방지</td>
+      <td style="text-align: center">⭕ 발생</td>
+      <td style="text-align: center">⭕ 발생</td>
+      <td style="text-align: center">⭕ 발생</td>
+    </tr>
+    <tr>
+      <td>REPEATABLE READ</td>
+      <td style="text-align: center">❌ 방지</td>
+      <td style="text-align: center">❌ 방지</td>
+      <td style="text-align: center">❌ 방지*</td>
+      <td style="text-align: center">⭕ 발생</td>
+    </tr>
+    <tr>
+      <td>SERIALIZABLE</td>
+      <td style="text-align: center">❌ 방지</td>
+      <td style="text-align: center">❌ 방지</td>
+      <td style="text-align: center">❌ 방지</td>
+      <td style="text-align: center">❌ 방지</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>*PostgreSQL의 READ UNCOMMITTED는 실제로 READ COMMITTED와 동일하게 동작합니다 (Dirty Read 불가).  <br />
+*REPEATABLE READ에서도 Phantom Read가 방지됩니다 (스냅샷 격리).</p>
+</blockquote>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 세션 격리 수준 변경</span>
+<span class="k">SET</span> <span class="n">TRANSACTION</span> <span class="k">ISOLATION</span> <span class="k">LEVEL</span> <span class="k">REPEATABLE</span> <span class="k">READ</span><span class="p">;</span>
+
+<span class="c1">-- 트랜잭션 시작 시 지정</span>
+<span class="k">BEGIN</span> <span class="n">TRANSACTION</span> <span class="k">ISOLATION</span> <span class="k">LEVEL</span> <span class="k">SERIALIZABLE</span><span class="p">;</span>
+
+<span class="c1">-- 현재 격리 수준 확인</span>
+<span class="k">SHOW</span> <span class="n">transaction_isolation</span><span class="p">;</span>
+
+<span class="c1">-- 기본 격리 수준 변경 (postgresql.conf)</span>
+<span class="c1">-- default_transaction_isolation = 'read committed'</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="락-lock">락 (Lock)</h2>
+
+<h3 id="테이블-수준-락">테이블 수준 락</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>락 모드</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ACCESS SHARE</td>
+      <td>SELECT 시 자동 획득</td>
+    </tr>
+    <tr>
+      <td>ROW SHARE</td>
+      <td>SELECT FOR UPDATE 시</td>
+    </tr>
+    <tr>
+      <td>ROW EXCLUSIVE</td>
+      <td>INSERT/UPDATE/DELETE 시</td>
+    </tr>
+    <tr>
+      <td>SHARE</td>
+      <td>CREATE INDEX (비동시) 시</td>
+    </tr>
+    <tr>
+      <td>EXCLUSIVE</td>
+      <td>일부 ALTER TABLE 시</td>
+    </tr>
+    <tr>
+      <td>ACCESS EXCLUSIVE</td>
+      <td>DROP TABLE, TRUNCATE 시</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="행-수준-락">행 수준 락</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- SELECT FOR UPDATE (배타 락)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">FOR</span> <span class="k">UPDATE</span><span class="p">;</span>
+
+<span class="c1">-- SELECT FOR SHARE (공유 락)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">FOR</span> <span class="k">SHARE</span><span class="p">;</span>
+
+<span class="c1">-- NOWAIT: 락 획득 실패 시 즉시 오류</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">FOR</span> <span class="k">UPDATE</span> <span class="n">NOWAIT</span><span class="p">;</span>
+
+<span class="c1">-- SKIP LOCKED: 잠긴 행 건너뛰기 (큐 패턴에 유용)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tasks</span> <span class="k">WHERE</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'pending'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span>
+<span class="k">LIMIT</span> <span class="mi">1</span>
+<span class="k">FOR</span> <span class="k">UPDATE</span> <span class="n">SKIP</span> <span class="n">LOCKED</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="락-확인">락 확인</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 락 상태</span>
+<span class="k">SELECT</span> <span class="n">pid</span><span class="p">,</span> <span class="n">relation</span><span class="p">::</span><span class="n">regclass</span><span class="p">,</span> <span class="k">mode</span><span class="p">,</span> <span class="k">granted</span>
+<span class="k">FROM</span> <span class="n">pg_locks</span>
+<span class="k">WHERE</span> <span class="n">relation</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">relation</span><span class="p">;</span>
+
+<span class="c1">-- 락 대기 확인</span>
+<span class="k">SELECT</span>
+    <span class="n">blocked</span><span class="p">.</span><span class="n">pid</span> <span class="k">AS</span> <span class="n">blocked_pid</span><span class="p">,</span>
+    <span class="n">blocked_activity</span><span class="p">.</span><span class="n">usename</span> <span class="k">AS</span> <span class="n">blocked_user</span><span class="p">,</span>
+    <span class="n">blocking</span><span class="p">.</span><span class="n">pid</span> <span class="k">AS</span> <span class="n">blocking_pid</span><span class="p">,</span>
+    <span class="n">blocking_activity</span><span class="p">.</span><span class="n">usename</span> <span class="k">AS</span> <span class="n">blocking_user</span><span class="p">,</span>
+    <span class="n">blocked_activity</span><span class="p">.</span><span class="n">query</span> <span class="k">AS</span> <span class="n">blocked_query</span>
+<span class="k">FROM</span> <span class="n">pg_catalog</span><span class="p">.</span><span class="n">pg_locks</span> <span class="n">blocked</span>
+<span class="k">JOIN</span> <span class="n">pg_catalog</span><span class="p">.</span><span class="n">pg_locks</span> <span class="n">blocking</span> <span class="k">ON</span> <span class="n">blocking</span><span class="p">.</span><span class="n">locktype</span> <span class="o">=</span> <span class="n">blocked</span><span class="p">.</span><span class="n">locktype</span>
+    <span class="k">AND</span> <span class="n">blocking</span><span class="p">.</span><span class="n">relation</span> <span class="o">=</span> <span class="n">blocked</span><span class="p">.</span><span class="n">relation</span>
+    <span class="k">AND</span> <span class="n">blocking</span><span class="p">.</span><span class="n">pid</span> <span class="o">!=</span> <span class="n">blocked</span><span class="p">.</span><span class="n">pid</span>
+<span class="k">JOIN</span> <span class="n">pg_stat_activity</span> <span class="n">blocked_activity</span> <span class="k">ON</span> <span class="n">blocked_activity</span><span class="p">.</span><span class="n">pid</span> <span class="o">=</span> <span class="n">blocked</span><span class="p">.</span><span class="n">pid</span>
+<span class="k">JOIN</span> <span class="n">pg_stat_activity</span> <span class="n">blocking_activity</span> <span class="k">ON</span> <span class="n">blocking_activity</span><span class="p">.</span><span class="n">pid</span> <span class="o">=</span> <span class="n">blocking</span><span class="p">.</span><span class="n">pid</span>
+<span class="k">WHERE</span> <span class="k">NOT</span> <span class="n">blocked</span><span class="p">.</span><span class="k">granted</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="데드락-deadlock">데드락 (Deadlock)</h2>
+
+<p>PostgreSQL은 데드락을 자동 감지하고 한쪽 트랜잭션을 중단합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: deadlock detected
+DETAIL: Process 1234 waits for ShareLock on transaction 5678; blocked by process 9012.
+</code></pre></div></div>
+
+<h3 id="예방-전략">예방 전략</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>전략</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>동일한 순서로 접근</td>
+      <td>테이블/행 접근 순서 통일</td>
+    </tr>
+    <tr>
+      <td>NOWAIT 사용</td>
+      <td>대기 없이 즉시 실패 처리</td>
+    </tr>
+    <tr>
+      <td>짧은 트랜잭션</td>
+      <td>락 보유 시간 최소화</td>
+    </tr>
+    <tr>
+      <td>lock_timeout 설정</td>
+      <td><code class="language-plaintext highlighter-rouge">SET lock_timeout = '5s'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 데드락 타임아웃 설정</span>
+<span class="k">SET</span> <span class="n">deadlock_timeout</span> <span class="o">=</span> <span class="s1">'1s'</span><span class="p">;</span>  <span class="c1">-- 기본 1초</span>
+
+<span class="c1">-- 락 타임아웃 설정</span>
+<span class="k">SET</span> <span class="n">lock_timeout</span> <span class="o">=</span> <span class="s1">'5s'</span><span class="p">;</span>
+
+<span class="c1">-- 데드락 로그 확인</span>
+<span class="c1">-- postgresql.conf: log_lock_waits = on</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="advisory-lock-어드바이저리-락-postgresql-전용">Advisory Lock (어드바이저리 락, PostgreSQL 전용)</h2>
+
+<p>애플리케이션 수준의 락으로, 테이블/행이 아닌 임의의 숫자 키에 대해 락을 걸 수 있습니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 세션 수준 락 (세션 종료 시 자동 해제)</span>
+<span class="k">SELECT</span> <span class="n">pg_advisory_lock</span><span class="p">(</span><span class="mi">12345</span><span class="p">);</span>
+<span class="c1">-- 작업 수행 ...</span>
+<span class="k">SELECT</span> <span class="n">pg_advisory_unlock</span><span class="p">(</span><span class="mi">12345</span><span class="p">);</span>
+
+<span class="c1">-- 트랜잭션 수준 락 (COMMIT/ROLLBACK 시 자동 해제)</span>
+<span class="k">SELECT</span> <span class="n">pg_advisory_xact_lock</span><span class="p">(</span><span class="mi">12345</span><span class="p">);</span>
+
+<span class="c1">-- 비대기 락 (실패 시 false 반환)</span>
+<span class="k">SELECT</span> <span class="n">pg_try_advisory_lock</span><span class="p">(</span><span class="mi">12345</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (postgresql &gt; lecture-postgresql)</span></p>
+<ul>
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-13-troubleshooting/">[PostgreSQL] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-12-tuning/">[PostgreSQL] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-11-backup-restore/">[PostgreSQL] 11. 백업과 복구 (Backup &amp; Recovery)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-10-user-privilege/">[PostgreSQL] 10. 사용자 관리와 권한 (Role &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-09-plpgsql/">[PostgreSQL] 09. PL/pgSQL, 뷰, 함수, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-08-transaction/">[PostgreSQL] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-07-index/">[PostgreSQL] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-06-function/">[PostgreSQL] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-05-subquery/">[PostgreSQL] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-04-join/">[PostgreSQL] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-03-crud/">[PostgreSQL] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-02-database-table/">[PostgreSQL] 02. 데이터베이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-01-intro/">[PostgreSQL] 01. PostgreSQL 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-postgresql" class="page__taxonomy-item p-category" rel="tag">lecture-postgresql</a><span class="sep">, </span>
+    
+      <a href="/tags/#postgres" class="page__taxonomy-item p-category" rel="tag">postgres</a><span class="sep">, </span>
+    
+      <a href="/tags/#postgresql" class="page__taxonomy-item p-category" rel="tag">postgresql</a><span class="sep">, </span>
+    
+      <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">postgresql강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#postgresql" class="page__taxonomy-item p-category" rel="tag">postgresql</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BPostgreSQL%5D+08.+%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC+%EB%9D%BD+%28Transaction+%26+Lock%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpostgresql%2Fpostgresql-08-transaction%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpostgresql%2Fpostgresql-08-transaction%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpostgresql%2Fpostgresql-08-transaction%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/postgresql/postgresql-07-index/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[PostgreSQL] 07. 인덱스 (Index)</a>
+    
+    
+      <a href="/postgresql/postgresql-09-plpgsql/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[PostgreSQL] 09. PL/pgSQL, 뷰, 함수, 트리거</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/postgresql/postgresql-13-troubleshooting/">[PostgreSQL] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#postgresql" class="page__taxonomy-item-category" rel="tag">postgresql</a>
+                    
+                    
+                    <a href="/tags/#lecture-postgresql" class="page__taxonomy-item-tag" rel="tag">lecture-postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql" class="page__taxonomy-item-tag" rel="tag">postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">postgresql강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgres" class="page__taxonomy-item-tag" rel="tag">postgres</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/postgresql/postgresql-12-tuning/">[PostgreSQL] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#postgresql" class="page__taxonomy-item-category" rel="tag">postgresql</a>
+                    
+                    
+                    <a href="/tags/#lecture-postgresql" class="page__taxonomy-item-tag" rel="tag">lecture-postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql" class="page__taxonomy-item-tag" rel="tag">postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">postgresql강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgres" class="page__taxonomy-item-tag" rel="tag">postgres</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/postgresql/postgresql-11-backup-restore/">[PostgreSQL] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#postgresql" class="page__taxonomy-item-category" rel="tag">postgresql</a>
+                    
+                    
+                    <a href="/tags/#lecture-postgresql" class="page__taxonomy-item-tag" rel="tag">lecture-postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql" class="page__taxonomy-item-tag" rel="tag">postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">postgresql강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgres" class="page__taxonomy-item-tag" rel="tag">postgres</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

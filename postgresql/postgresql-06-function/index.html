@@ -1,0 +1,1973 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[PostgreSQL] 06. 내장 함수 정리 | 꿰보노트</title>
+<meta name="description" content="PostgreSQL에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[PostgreSQL] 06. 내장 함수 정리">
+<meta property="og:url" content="https://kimjaehyun.co.kr/postgresql/postgresql-06-function/">
+
+
+  <meta property="og:description" content="PostgreSQL에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/postgresql/postgresql-06-function/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#postgresql" itemprop="item"><span itemprop="name">Postgresql</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[PostgreSQL] 06. 내장 함수 정리</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 104</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[PostgreSQL] 06. 내장 함수 정리">
+    <meta itemprop="description" content="PostgreSQL에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/postgresql/postgresql-06-function/" class="u-url" itemprop="url">[PostgreSQL] 06. 내장 함수 정리
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#문자열-함수">문자열 함수</a><ul><li><a href="#숫자-함수">숫자 함수</a></li><li><a href="#날짜시간-함수">날짜/시간 함수</a></li><li><a href="#null-처리-함수">NULL 처리 함수</a></li><li><a href="#조건-함수">조건 함수</a></li><li><a href="#타입-변환">타입 변환</a></li><li><a href="#윈도우-함수">윈도우 함수</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>PostgreSQL에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다.</p>
+
+<h1 id="문자열-함수">문자열 함수</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>함수</th>
+      <th>설명</th>
+      <th>예시</th>
+      <th>결과</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">\|\|</code></td>
+      <td>문자열 연결</td>
+      <td><code class="language-plaintext highlighter-rouge">'Hello' \|\| ' ' \|\| 'World'</code></td>
+      <td>Hello World</td>
+    </tr>
+    <tr>
+      <td>CONCAT</td>
+      <td>문자열 연결 (NULL 무시)</td>
+      <td><code class="language-plaintext highlighter-rouge">CONCAT('A', NULL, 'B')</code></td>
+      <td>AB</td>
+    </tr>
+    <tr>
+      <td>CONCAT_WS</td>
+      <td>구분자로 연결</td>
+      <td><code class="language-plaintext highlighter-rouge">CONCAT_WS('-', '2024', '01', '15')</code></td>
+      <td>2024-01-15</td>
+    </tr>
+    <tr>
+      <td>SUBSTRING</td>
+      <td>부분 문자열</td>
+      <td><code class="language-plaintext highlighter-rouge">SUBSTRING('Hello' FROM 1 FOR 3)</code></td>
+      <td>Hel</td>
+    </tr>
+    <tr>
+      <td>LEFT / RIGHT</td>
+      <td>왼쪽/오른쪽 n자</td>
+      <td><code class="language-plaintext highlighter-rouge">LEFT('Hello', 2)</code></td>
+      <td>He</td>
+    </tr>
+    <tr>
+      <td>LENGTH</td>
+      <td>문자 길이</td>
+      <td><code class="language-plaintext highlighter-rouge">LENGTH('가나다')</code></td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>OCTET_LENGTH</td>
+      <td>바이트 길이</td>
+      <td><code class="language-plaintext highlighter-rouge">OCTET_LENGTH('가나다')</code></td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>UPPER / LOWER</td>
+      <td>대/소문자</td>
+      <td><code class="language-plaintext highlighter-rouge">UPPER('hello')</code></td>
+      <td>HELLO</td>
+    </tr>
+    <tr>
+      <td>INITCAP</td>
+      <td>첫 글자 대문자</td>
+      <td><code class="language-plaintext highlighter-rouge">INITCAP('hello world')</code></td>
+      <td>Hello World</td>
+    </tr>
+    <tr>
+      <td>TRIM</td>
+      <td>공백/문자 제거</td>
+      <td><code class="language-plaintext highlighter-rouge">TRIM('  hi  ')</code></td>
+      <td>hi</td>
+    </tr>
+    <tr>
+      <td>LTRIM / RTRIM</td>
+      <td>좌/우 제거</td>
+      <td><code class="language-plaintext highlighter-rouge">LTRIM('xxhi', 'x')</code></td>
+      <td>hi</td>
+    </tr>
+    <tr>
+      <td>REPLACE</td>
+      <td>문자열 치환</td>
+      <td><code class="language-plaintext highlighter-rouge">REPLACE('abc', 'b', 'x')</code></td>
+      <td>axc</td>
+    </tr>
+    <tr>
+      <td>LPAD / RPAD</td>
+      <td>패딩</td>
+      <td><code class="language-plaintext highlighter-rouge">LPAD('5', 3, '0')</code></td>
+      <td>005</td>
+    </tr>
+    <tr>
+      <td>REVERSE</td>
+      <td>뒤집기</td>
+      <td><code class="language-plaintext highlighter-rouge">REVERSE('abc')</code></td>
+      <td>cba</td>
+    </tr>
+    <tr>
+      <td>POSITION</td>
+      <td>위치 찾기</td>
+      <td><code class="language-plaintext highlighter-rouge">POSITION('lo' IN 'Hello')</code></td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>SPLIT_PART</td>
+      <td>구분자로 분리</td>
+      <td><code class="language-plaintext highlighter-rouge">SPLIT_PART('a-b-c', '-', 2)</code></td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <td>REGEXP_REPLACE</td>
+      <td>정규식 치환</td>
+      <td><code class="language-plaintext highlighter-rouge">REGEXP_REPLACE('abc123', '[0-9]', '', 'g')</code></td>
+      <td>abc</td>
+    </tr>
+    <tr>
+      <td>TRANSLATE</td>
+      <td>문자 단위 치환</td>
+      <td><code class="language-plaintext highlighter-rouge">TRANSLATE('abc', 'abc', 'xyz')</code></td>
+      <td>xyz</td>
+    </tr>
+    <tr>
+      <td>FORMAT</td>
+      <td>포맷 문자열</td>
+      <td><code class="language-plaintext highlighter-rouge">FORMAT('Hello %s, age %s', '홍길동', 30)</code></td>
+      <td>Hello 홍길동, age 30</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 이메일에서 도메인 추출</span>
+<span class="k">SELECT</span> <span class="n">SPLIT_PART</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="s1">'@'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="k">domain</span> <span class="k">FROM</span> <span class="n">users</span><span class="p">;</span>
+
+<span class="c1">-- 이름 마스킹</span>
+<span class="k">SELECT</span> <span class="k">LEFT</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">||</span> <span class="s1">'**'</span> <span class="k">AS</span> <span class="n">masked_name</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 정규식 매칭</span>
+<span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">~</span> <span class="s1">'^[가-힣]+$'</span><span class="p">;</span>  <span class="c1">-- 한글만</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="숫자-함수">숫자 함수</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>함수</th>
+      <th>설명</th>
+      <th>예시</th>
+      <th>결과</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ROUND</td>
+      <td>반올림</td>
+      <td><code class="language-plaintext highlighter-rouge">ROUND(3.456, 2)</code></td>
+      <td>3.46</td>
+    </tr>
+    <tr>
+      <td>CEIL / CEILING</td>
+      <td>올림</td>
+      <td><code class="language-plaintext highlighter-rouge">CEIL(3.1)</code></td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>FLOOR</td>
+      <td>내림</td>
+      <td><code class="language-plaintext highlighter-rouge">FLOOR(3.9)</code></td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>TRUNC</td>
+      <td>절삭</td>
+      <td><code class="language-plaintext highlighter-rouge">TRUNC(3.456, 2)</code></td>
+      <td>3.45</td>
+    </tr>
+    <tr>
+      <td>ABS</td>
+      <td>절대값</td>
+      <td><code class="language-plaintext highlighter-rouge">ABS(-5)</code></td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>MOD</td>
+      <td>나머지</td>
+      <td><code class="language-plaintext highlighter-rouge">MOD(10, 3)</code></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>POWER</td>
+      <td>거듭제곱</td>
+      <td><code class="language-plaintext highlighter-rouge">POWER(2, 10)</code></td>
+      <td>1024</td>
+    </tr>
+    <tr>
+      <td>SQRT</td>
+      <td>제곱근</td>
+      <td><code class="language-plaintext highlighter-rouge">SQRT(16)</code></td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>RANDOM</td>
+      <td>난수 (0~1)</td>
+      <td><code class="language-plaintext highlighter-rouge">RANDOM()</code></td>
+      <td>0.7342…</td>
+    </tr>
+    <tr>
+      <td>GREATEST</td>
+      <td>최대값</td>
+      <td><code class="language-plaintext highlighter-rouge">GREATEST(1, 5, 3)</code></td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>LEAST</td>
+      <td>최소값</td>
+      <td><code class="language-plaintext highlighter-rouge">LEAST(1, 5, 3)</code></td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 랜덤 정렬</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">RANDOM</span><span class="p">()</span> <span class="k">LIMIT</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="c1">-- 급여를 만원 단위로 반올림</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">ROUND</span><span class="p">(</span><span class="n">salary</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="k">AS</span> <span class="n">rounded</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="날짜시간-함수">날짜/시간 함수</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>함수</th>
+      <th>설명</th>
+      <th>MySQL 대응</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NOW()</td>
+      <td>현재 날짜+시간 (트랜잭션 시작 시점)</td>
+      <td>NOW()</td>
+    </tr>
+    <tr>
+      <td>CURRENT_TIMESTAMP</td>
+      <td>NOW()와 동일</td>
+      <td>CURRENT_TIMESTAMP</td>
+    </tr>
+    <tr>
+      <td>CURRENT_DATE</td>
+      <td>현재 날짜</td>
+      <td>CURDATE()</td>
+    </tr>
+    <tr>
+      <td>CURRENT_TIME</td>
+      <td>현재 시간</td>
+      <td>CURTIME()</td>
+    </tr>
+    <tr>
+      <td>CLOCK_TIMESTAMP()</td>
+      <td>실제 현재 시각 (호출 시점)</td>
+      <td>없음</td>
+    </tr>
+    <tr>
+      <td>EXTRACT</td>
+      <td>연/월/일 추출</td>
+      <td>EXTRACT</td>
+    </tr>
+    <tr>
+      <td>DATE_TRUNC</td>
+      <td>날짜 절삭</td>
+      <td>없음</td>
+    </tr>
+    <tr>
+      <td>AGE</td>
+      <td>두 날짜 간 차이</td>
+      <td>TIMESTAMPDIFF</td>
+    </tr>
+    <tr>
+      <td>DATE_PART</td>
+      <td>날짜 부분 추출</td>
+      <td>YEAR(), MONTH()</td>
+    </tr>
+    <tr>
+      <td>TO_CHAR</td>
+      <td>날짜 포맷</td>
+      <td>DATE_FORMAT</td>
+    </tr>
+    <tr>
+      <td>TO_DATE</td>
+      <td>문자→날짜</td>
+      <td>STR_TO_DATE</td>
+    </tr>
+    <tr>
+      <td>TO_TIMESTAMP</td>
+      <td>문자→타임스탬프</td>
+      <td>STR_TO_DATE</td>
+    </tr>
+    <tr>
+      <td>INTERVAL</td>
+      <td>시간 간격</td>
+      <td>INTERVAL</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 날짜/시간</span>
+<span class="k">SELECT</span> <span class="n">NOW</span><span class="p">();</span>                    <span class="c1">-- 2026-05-04 14:30:00+09</span>
+<span class="k">SELECT</span> <span class="k">CURRENT_DATE</span><span class="p">;</span>             <span class="c1">-- 2026-05-04</span>
+<span class="k">SELECT</span> <span class="n">CLOCK_TIMESTAMP</span><span class="p">();</span>       <span class="c1">-- 실제 호출 시점 (반복 호출 시 값이 다름)</span>
+
+<span class="c1">-- 날짜 연산 (INTERVAL 사용)</span>
+<span class="k">SELECT</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">+</span> <span class="n">INTERVAL</span> <span class="s1">'7 days'</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'1 month'</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">+</span> <span class="n">INTERVAL</span> <span class="s1">'2 hours 30 minutes'</span><span class="p">;</span>
+
+<span class="c1">-- EXTRACT</span>
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="nb">YEAR</span> <span class="k">FROM</span> <span class="n">NOW</span><span class="p">());</span>    <span class="c1">-- 2026</span>
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span> <span class="k">FROM</span> <span class="n">NOW</span><span class="p">());</span>   <span class="c1">-- 5</span>
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="n">DOW</span> <span class="k">FROM</span> <span class="n">NOW</span><span class="p">());</span>     <span class="c1">-- 0(일)~6(토)</span>
+
+<span class="c1">-- DATE_TRUNC (날짜 절삭, PostgreSQL 전용)</span>
+<span class="k">SELECT</span> <span class="n">DATE_TRUNC</span><span class="p">(</span><span class="s1">'month'</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span>  <span class="c1">-- 2026-05-01 00:00:00</span>
+<span class="k">SELECT</span> <span class="n">DATE_TRUNC</span><span class="p">(</span><span class="s1">'year'</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span>   <span class="c1">-- 2026-01-01 00:00:00</span>
+<span class="k">SELECT</span> <span class="n">DATE_TRUNC</span><span class="p">(</span><span class="s1">'hour'</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span>   <span class="c1">-- 2026-05-04 14:00:00</span>
+
+<span class="c1">-- AGE (두 날짜 간 차이)</span>
+<span class="k">SELECT</span> <span class="n">AGE</span><span class="p">(</span><span class="n">NOW</span><span class="p">(),</span> <span class="s1">'2024-01-01'</span><span class="p">);</span>    <span class="c1">-- 2 years 4 mons 3 days</span>
+
+<span class="c1">-- TO_CHAR (날짜 포맷)</span>
+<span class="k">SELECT</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">NOW</span><span class="p">(),</span> <span class="s1">'YYYY-MM-DD HH24:MI:SS'</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">NOW</span><span class="p">(),</span> <span class="s1">'YYYY"년" MM"월" DD"일"'</span><span class="p">);</span>
+
+<span class="c1">-- TO_DATE / TO_TIMESTAMP</span>
+<span class="k">SELECT</span> <span class="n">TO_DATE</span><span class="p">(</span><span class="s1">'2026-05-04'</span><span class="p">,</span> <span class="s1">'YYYY-MM-DD'</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="n">TO_TIMESTAMP</span><span class="p">(</span><span class="s1">'2026-05-04 14:30:00'</span><span class="p">,</span> <span class="s1">'YYYY-MM-DD HH24:MI:SS'</span><span class="p">);</span>
+
+<span class="c1">-- 입사 후 근속 연수</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">hire_date</span><span class="p">,</span>
+    <span class="k">EXTRACT</span><span class="p">(</span><span class="nb">YEAR</span> <span class="k">FROM</span> <span class="n">AGE</span><span class="p">(</span><span class="n">NOW</span><span class="p">(),</span> <span class="n">hire_date</span><span class="p">))::</span><span class="nb">INTEGER</span> <span class="k">AS</span> <span class="err">근속연수</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="null-처리-함수">NULL 처리 함수</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>PostgreSQL</th>
+      <th>MySQL 대응</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>COALESCE(a, b, …)</td>
+      <td>COALESCE / IFNULL</td>
+      <td>첫 번째 NOT NULL 값</td>
+    </tr>
+    <tr>
+      <td>NULLIF(a, b)</td>
+      <td>NULLIF</td>
+      <td>a=b이면 NULL</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">COALESCE</span><span class="p">(</span><span class="n">dept</span><span class="p">,</span> <span class="s1">'미배정'</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="k">NULLIF</span><span class="p">(</span><span class="n">salary</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">-- 0이면 NULL 반환</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>PostgreSQL에는 MySQL의 <code class="language-plaintext highlighter-rouge">IFNULL</code>이나 Oracle의 <code class="language-plaintext highlighter-rouge">NVL</code>이 없습니다. <code class="language-plaintext highlighter-rouge">COALESCE</code>를 사용합니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="조건-함수">조건 함수</h2>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- CASE (표준 SQL)</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span> <span class="k">THEN</span> <span class="s1">'고연봉'</span> <span class="k">ELSE</span> <span class="s1">'일반'</span> <span class="k">END</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- PostgreSQL에는 MySQL의 IF() 함수가 없습니다. CASE를 사용합니다.</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="타입-변환">타입 변환</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- CAST (표준)</span>
+<span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">'123'</span> <span class="k">AS</span> <span class="nb">INTEGER</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">'2026-05-04'</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">);</span>
+
+<span class="c1">-- :: 연산자 (PostgreSQL 전용, 더 간결)</span>
+<span class="k">SELECT</span> <span class="s1">'123'</span><span class="p">::</span><span class="nb">INTEGER</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="s1">'2026-05-04'</span><span class="p">::</span><span class="nb">DATE</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="mi">3</span><span class="p">.</span><span class="mi">14</span><span class="p">::</span><span class="nb">TEXT</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">salary</span><span class="p">::</span><span class="nb">INTEGER</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="윈도우-함수">윈도우 함수</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ROW_NUMBER</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="err">순위</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- RANK / DENSE_RANK</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">RANK</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="n">rank_</span><span class="err">순위</span><span class="p">,</span>
+    <span class="n">DENSE_RANK</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="n">dense_</span><span class="err">순위</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 부서별 급여 순위</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">PARTITION</span> <span class="k">BY</span> <span class="n">dept_id</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="err">부서내순위</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- LAG / LEAD</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">LAG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span><span class="p">)</span> <span class="k">AS</span> <span class="err">이전급여</span><span class="p">,</span>
+    <span class="n">LEAD</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span><span class="p">)</span> <span class="k">AS</span> <span class="err">다음급여</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 누적 합계</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="k">SUM</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">hire_date</span><span class="p">)</span> <span class="k">AS</span> <span class="err">누적급여</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- FIRST_VALUE / LAST_VALUE</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">FIRST_VALUE</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">PARTITION</span> <span class="k">BY</span> <span class="n">dept_id</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="err">부서최고연봉자</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- NTILE</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">NTILE</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="err">분위</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (postgresql &gt; lecture-postgresql)</span></p>
+<ul>
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-13-troubleshooting/">[PostgreSQL] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-12-tuning/">[PostgreSQL] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-11-backup-restore/">[PostgreSQL] 11. 백업과 복구 (Backup &amp; Recovery)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-10-user-privilege/">[PostgreSQL] 10. 사용자 관리와 권한 (Role &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-09-plpgsql/">[PostgreSQL] 09. PL/pgSQL, 뷰, 함수, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-08-transaction/">[PostgreSQL] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-07-index/">[PostgreSQL] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-06-function/">[PostgreSQL] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-05-subquery/">[PostgreSQL] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-04-join/">[PostgreSQL] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-03-crud/">[PostgreSQL] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-02-database-table/">[PostgreSQL] 02. 데이터베이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/postgresql/postgresql-01-intro/">[PostgreSQL] 01. PostgreSQL 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-postgresql" class="page__taxonomy-item p-category" rel="tag">lecture-postgresql</a><span class="sep">, </span>
+    
+      <a href="/tags/#postgres" class="page__taxonomy-item p-category" rel="tag">postgres</a><span class="sep">, </span>
+    
+      <a href="/tags/#postgresql" class="page__taxonomy-item p-category" rel="tag">postgresql</a><span class="sep">, </span>
+    
+      <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">postgresql강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#postgresql" class="page__taxonomy-item p-category" rel="tag">postgresql</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BPostgreSQL%5D+06.+%EB%82%B4%EC%9E%A5+%ED%95%A8%EC%88%98+%EC%A0%95%EB%A6%AC%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpostgresql%2Fpostgresql-06-function%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpostgresql%2Fpostgresql-06-function%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpostgresql%2Fpostgresql-06-function%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/postgresql/postgresql-05-subquery/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[PostgreSQL] 05. 서브쿼리와 고급 SELECT</a>
+    
+    
+      <a href="/postgresql/postgresql-07-index/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[PostgreSQL] 07. 인덱스 (Index)</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/postgresql/postgresql-13-troubleshooting/">[PostgreSQL] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#postgresql" class="page__taxonomy-item-category" rel="tag">postgresql</a>
+                    
+                    
+                    <a href="/tags/#lecture-postgresql" class="page__taxonomy-item-tag" rel="tag">lecture-postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql" class="page__taxonomy-item-tag" rel="tag">postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">postgresql강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgres" class="page__taxonomy-item-tag" rel="tag">postgres</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/postgresql/postgresql-12-tuning/">[PostgreSQL] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#postgresql" class="page__taxonomy-item-category" rel="tag">postgresql</a>
+                    
+                    
+                    <a href="/tags/#lecture-postgresql" class="page__taxonomy-item-tag" rel="tag">lecture-postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql" class="page__taxonomy-item-tag" rel="tag">postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">postgresql강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgres" class="page__taxonomy-item-tag" rel="tag">postgres</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/postgresql/postgresql-11-backup-restore/">[PostgreSQL] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#postgresql" class="page__taxonomy-item-category" rel="tag">postgresql</a>
+                    
+                    
+                    <a href="/tags/#lecture-postgresql" class="page__taxonomy-item-tag" rel="tag">lecture-postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql" class="page__taxonomy-item-tag" rel="tag">postgresql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">postgresql강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgres" class="page__taxonomy-item-tag" rel="tag">postgres</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

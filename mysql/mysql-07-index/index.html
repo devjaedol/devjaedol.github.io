@@ -238,7 +238,7 @@
     
     <!--전체 글 수-->
       <li>
-          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+          <span class="nav__sub-title">전체 <span style="color:red"> 104</span>개</span> 
       </li>
 
 
@@ -254,6 +254,8 @@
                 
                     
                         <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
                     
                 
                     
@@ -313,6 +315,8 @@
               
                   
               
+                  
+              
           </ul>
           <ul>
             
@@ -344,6 +348,8 @@
             
                 
             
+                
+            
         </ul>           
           <ul>
               
@@ -353,6 +359,8 @@
               
                   
                       <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
                   
               
                   
@@ -406,6 +414,8 @@
               
                   
               
+                  
+              
           </ul>            
           <ul>
             
@@ -437,11 +447,15 @@
             
                 
             
+                
+            
           </ul>            
           <ul>
             
                 
                     <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
                 
             
                 
@@ -501,6 +515,8 @@
               
                   
               
+                  
+              
           </ul>
           <ul>
               
@@ -532,6 +548,8 @@
                       <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
                   
               
+                  
+              
           </ul>
           <ul>
               
@@ -561,9 +579,12 @@
               
                   
               
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
           </ul>
           
-
         <span class="nav__sub-title">주제별 모음</span>
             <ul>
                 
@@ -581,6 +602,8 @@
                 
                     
                         <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
                     
                 
                     
@@ -626,6 +649,8 @@
                 
                     
                 
+                    
+                
             </ul>
             <ul>
               
@@ -657,8 +682,12 @@
               
                   
               
+                  
+              
           </ul>
           <ul>
+            
+                
             
                 
             
@@ -729,7 +758,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#인덱스란">인덱스란?</a><ul><li><a href="#인덱스-유무에-따른-차이">인덱스 유무에 따른 차이</a></li></ul></li><li><a href="#인덱스-종류">인덱스 종류</a></li><li><a href="#인덱스-생성-및-관리">인덱스 생성 및 관리</a><ul><li><a href="#생성">생성</a></li><li><a href="#조회">조회</a></li><li><a href="#삭제">삭제</a></li></ul></li><li><a href="#explain으로-실행-계획-확인">EXPLAIN으로 실행 계획 확인</a><ul><li><a href="#explain-주요-컬럼">EXPLAIN 주요 컬럼</a></li><li><a href="#type-값-상세">type 값 상세</a></li></ul></li></ul></li><li><a href="#복합-인덱스와-최좌선-원칙">복합 인덱스와 최좌선 원칙</a></li><li><a href="#인덱스가-사용되지-않는-경우">인덱스가 사용되지 않는 경우</a></li><li><a href="#인덱스-설계-가이드라인">인덱스 설계 가이드라인</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#인덱스란">인덱스란?</a><ul><li><a href="#인덱스-유무에-따른-차이">인덱스 유무에 따른 차이</a></li><li><a href="#인덱스-종류">인덱스 종류</a></li><li><a href="#인덱스-생성-및-관리">인덱스 생성 및 관리</a><ul><li><a href="#생성">생성</a></li><li><a href="#조회">조회</a></li><li><a href="#삭제">삭제</a></li></ul></li><li><a href="#explain으로-실행-계획-확인">EXPLAIN으로 실행 계획 확인</a><ul><li><a href="#explain-주요-컬럼">EXPLAIN 주요 컬럼</a><ul><li><a href="#type-값-상세">type 값 상세</a></li></ul></li></ul></li><li><a href="#복합-인덱스와-최좌선-원칙">복합 인덱스와 최좌선 원칙</a></li><li><a href="#인덱스가-사용되지-않는-경우">인덱스가 사용되지 않는 경우</a></li><li><a href="#인덱스-설계-가이드라인">인덱스 설계 가이드라인</a></li></ul></li></ul>
 
             </nav>
           </aside>
@@ -740,7 +769,7 @@
 <p>인덱스는 테이블의 데이터를 빠르게 검색하기 위한 자료구조입니다.  <br />
 책의 목차(색인)와 같은 역할로, 전체 데이터를 스캔하지 않고 원하는 데이터를 빠르게 찾을 수 있습니다.</p>
 
-<h3 id="인덱스-유무에-따른-차이">인덱스 유무에 따른 차이</h3>
+<h2 id="인덱스-유무에-따른-차이">인덱스 유무에 따른 차이</h2>
 
 <table>
   <thead>
@@ -854,7 +883,7 @@
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">products</span> <span class="k">WHERE</span> <span class="n">category</span> <span class="o">=</span> <span class="s1">'전자제품'</span> <span class="k">AND</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">;</span>
 </code></pre></div></div>
 
-<h4 id="explain-주요-컬럼">EXPLAIN 주요 컬럼</h4>
+<h3 id="explain-주요-컬럼">EXPLAIN 주요 컬럼</h3>
 
 <table>
   <thead>
@@ -1051,6 +1080,32 @@
 
 <p><span class="nav__sub-title">관련된 글 (mysql &gt; lecture-mysql)</span></p>
 <ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 
@@ -1576,7 +1631,7 @@
     <article class="archive-item">
         <div>
             <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/postgresql/postgresql-13-troubleshooting/">[PostgreSQL] 13. 자주 발생하는 Troubleshooting</a>
             </span>
             <small> 
               <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
@@ -1584,18 +1639,22 @@
 <!--page__taxonomy.html에서 가져 옴-->
         
         <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+            <span itemprop="keywords"><a href="/categories/#postgresql" class="page__taxonomy-item-category" rel="tag">postgresql</a>
                     
                     
-                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                    <a href="/tags/#lecture-postgresql" class="page__taxonomy-item-tag" rel="tag">lecture-postgresql</a><span class="sep"> </span>
                 
                     
                     
-                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                    <a href="/tags/#postgresql" class="page__taxonomy-item-tag" rel="tag">postgresql</a><span class="sep"> </span>
                 
                     
                     
-                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                    <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">postgresql강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgres" class="page__taxonomy-item-tag" rel="tag">postgres</a><span class="sep"> </span>
                 
                     
                     
@@ -1617,7 +1676,7 @@
     <article class="archive-item">
         <div>
             <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/postgresql/postgresql-12-tuning/">[PostgreSQL] 12. 성능 튜닝 (Performance Tuning)</a>
             </span>
             <small> 
               <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
@@ -1625,18 +1684,22 @@
 <!--page__taxonomy.html에서 가져 옴-->
         
         <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+            <span itemprop="keywords"><a href="/categories/#postgresql" class="page__taxonomy-item-category" rel="tag">postgresql</a>
                     
                     
-                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                    <a href="/tags/#lecture-postgresql" class="page__taxonomy-item-tag" rel="tag">lecture-postgresql</a><span class="sep"> </span>
                 
                     
                     
-                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                    <a href="/tags/#postgresql" class="page__taxonomy-item-tag" rel="tag">postgresql</a><span class="sep"> </span>
                 
                     
                     
-                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                    <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">postgresql강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgres" class="page__taxonomy-item-tag" rel="tag">postgres</a><span class="sep"> </span>
                 
                     
                     
@@ -1658,7 +1721,7 @@
     <article class="archive-item">
         <div>
             <span>
-              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/postgresql/postgresql-11-backup-restore/">[PostgreSQL] 11. 백업과 복구 (Backup & Recovery)</a>
             </span>
             <small> 
               <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
@@ -1666,18 +1729,22 @@
 <!--page__taxonomy.html에서 가져 옴-->
         
         <span class="page__taxonomy">
-            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+            <span itemprop="keywords"><a href="/categories/#postgresql" class="page__taxonomy-item-category" rel="tag">postgresql</a>
                     
                     
-                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                    <a href="/tags/#lecture-postgresql" class="page__taxonomy-item-tag" rel="tag">lecture-postgresql</a><span class="sep"> </span>
                 
                     
                     
-                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                    <a href="/tags/#postgresql" class="page__taxonomy-item-tag" rel="tag">postgresql</a><span class="sep"> </span>
                 
                     
                     
-                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                    <a href="/tags/#postgresql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">postgresql강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#postgres" class="page__taxonomy-item-tag" rel="tag">postgres</a><span class="sep"> </span>
                 
                     
                     

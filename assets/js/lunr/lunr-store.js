@@ -539,6 +539,84 @@ var store = [{
         "url": "/oracle/oracle-13-troubleshooting/",
         "teaser": null
       },{
+        "title": "[PostgreSQL] 01. PostgreSQL 소개 및 설치",
+        "excerpt":"PostgreSQL의 기본 개념과 설치 방법을 알아봅니다. PostgreSQL이란? PostgreSQL은 오픈소스 객체-관계형 데이터베이스 관리 시스템(ORDBMS)입니다. 30년 이상의 역사를 가진 가장 진보된 오픈소스 RDBMS로, 표준 SQL 준수율이 높고 확장성이 뛰어납니다. PostgreSQL vs MySQL vs Oracle 비교 항목 PostgreSQL MySQL Oracle 라이선스 PostgreSQL License (MIT 유사) GPL + 상용 상용 가격 완전 무료 무료...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","초급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-01-intro/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 02. 데이터베이스와 테이블 관리",
+        "excerpt":"PostgreSQL의 데이터베이스, 스키마, 테이블 생성 및 관리 방법을 정리합니다. 데이터베이스 관리 데이터베이스 생성 -- 기본 생성 CREATE DATABASE mydb; -- 옵션 지정 CREATE DATABASE mydb OWNER = devuser ENCODING = 'UTF8' LC_COLLATE = 'ko_KR.UTF-8' LC_CTYPE = 'ko_KR.UTF-8' TEMPLATE = template0; -- 이미 존재하면 무시 (PostgreSQL 9.5+에서는 IF NOT EXISTS 미지원,...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","초급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-02-database-table/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)",
+        "excerpt":"PostgreSQL에서의 데이터 조작 기본인 CRUD 명령어를 정리합니다. 샘플 테이블 준비 CREATE TABLE employees ( id SERIAL PRIMARY KEY, name VARCHAR(50) NOT NULL, dept VARCHAR(30), salary NUMERIC(12,2) DEFAULT 0, hire_date DATE ); INSERT (데이터 삽입) 기본 삽입 -- 단일 행 삽입 INSERT INTO employees (name, dept, salary, hire_date) VALUES ('홍길동', '개발팀',...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","초급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-03-crud/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 04. JOIN (테이블 결합)",
+        "excerpt":"PostgreSQL에서 여러 테이블을 결합하여 데이터를 조회하는 JOIN을 정리합니다. 샘플 데이터 준비 CREATE TABLE departments ( id SERIAL PRIMARY KEY, name VARCHAR(30) NOT NULL ); CREATE TABLE employees ( id SERIAL PRIMARY KEY, name VARCHAR(50) NOT NULL, dept_id INTEGER REFERENCES departments(id), salary NUMERIC(12,2) ); INSERT INTO departments (name) VALUES ('개발팀'), ('기획팀'),...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","중급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-04-join/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 05. 서브쿼리와 고급 SELECT",
+        "excerpt":"PostgreSQL의 서브쿼리, CTE, UNION, 윈도우 함수 등 고급 SELECT 기법을 정리합니다. 서브쿼리 스칼라 서브쿼리 (SELECT 절) SELECT name, salary, (SELECT AVG(salary) FROM employees) AS 평균급여, salary - (SELECT AVG(salary) FROM employees) AS 차이 FROM employees; 중첩 서브쿼리 (WHERE 절) -- 단일 행 SELECT name, salary FROM employees WHERE salary =...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","중급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-05-subquery/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 06. 내장 함수 정리",
+        "excerpt":"PostgreSQL에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다. 문자열 함수 함수 설명 예시 결과 \\|\\| 문자열 연결 'Hello' \\|\\| ' ' \\|\\| 'World' Hello World CONCAT 문자열 연결 (NULL 무시) CONCAT('A', NULL, 'B') AB CONCAT_WS 구분자로 연결 CONCAT_WS('-', '2024', '01', '15') 2024-01-15 SUBSTRING 부분 문자열 SUBSTRING('Hello' FROM 1 FOR 3) Hel...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","중급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-06-function/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 07. 인덱스 (Index)",
+        "excerpt":"PostgreSQL 인덱스의 종류, 생성/관리 방법, 실행 계획 분석을 정리합니다. 인덱스 종류 PostgreSQL은 다양한 인덱스 타입을 지원합니다. 종류 설명 용도 B-Tree 기본 인덱스, 균형 트리 등치/범위 검색 (기본값) Hash 해시 기반 등치(=) 검색만 GiST 일반화된 검색 트리 기하학, 전문 검색, 범위 타입 SP-GiST 공간 분할 GiST 비균형 구조 (전화번호, IP 등)...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","중급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-07-index/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 08. 트랜잭션과 락 (Transaction & Lock)",
+        "excerpt":"PostgreSQL의 트랜잭션, MVCC, 격리 수준, 락 메커니즘을 정리합니다. 트랜잭션 특징 PostgreSQL은 MySQL과 동일하게 기본 AUTO COMMIT입니다. 하지만 BEGIN으로 명시적 트랜잭션을 시작하면 COMMIT 또는 ROLLBACK이 필요합니다. PostgreSQL vs MySQL vs Oracle 트랜잭션 비교 항목 PostgreSQL MySQL (InnoDB) Oracle 기본 모드 AUTO COMMIT AUTO COMMIT 수동 COMMIT DDL 트랜잭션 ✅ 롤백 가능...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","중급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-08-transaction/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 09. PL/pgSQL, 뷰, 함수, 트리거",
+        "excerpt":"PostgreSQL의 PL/pgSQL, 뷰, 함수, 프로시저, 트리거를 정리합니다. 뷰 (View) 일반 뷰 CREATE OR REPLACE VIEW v_emp_dept AS SELECT e.id, e.name, d.name AS dept_name, e.salary FROM employees e JOIN departments d ON e.dept_id = d.id; SELECT * FROM v_emp_dept WHERE dept_name = '개발팀'; -- 뷰 삭제 DROP VIEW v_emp_dept; DROP VIEW...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","중급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-09-plpgsql/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 10. 사용자 관리와 권한 (Role & Privilege)",
+        "excerpt":"PostgreSQL의 롤(Role) 기반 사용자 관리와 권한 설정을 정리합니다. 롤 (Role) 개념 PostgreSQL에서는 사용자(User)와 그룹(Group)을 구분하지 않고 모두 Role로 통합합니다. LOGIN 속성이 있으면 사용자, 없으면 그룹 역할을 합니다. 롤 생성 -- 로그인 가능한 롤 (= 사용자) CREATE ROLE devuser WITH LOGIN PASSWORD 'DevPass123!'; -- CREATE USER는 CREATE ROLE + LOGIN의 축약...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","중급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-10-user-privilege/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 11. 백업과 복구 (Backup & Recovery)",
+        "excerpt":"PostgreSQL의 백업 전략, 도구, WAL 아카이빙, 시점 복구를 정리합니다. 백업 종류 구분 논리적 백업 물리적 백업 방식 SQL/덤프로 내보내기 데이터 디렉토리 복사 도구 pg_dump, pg_dumpall pg_basebackup, 파일 복사 속도 느림 (대용량 시) 빠름 시점 복구 불가 가능 (WAL 아카이빙) 호환성 다른 버전 간 이식 가능 동일 메이저 버전 필요 선택적...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","고급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-11-backup-restore/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 12. 성능 튜닝 (Performance Tuning)",
+        "excerpt":"PostgreSQL의 성능 분석, 쿼리 최적화, VACUUM, 서버 튜닝 기법을 정리합니다. 성능 튜닝 3대 영역 영역 설명 효과 쿼리 최적화 SQL 문 자체를 개선 가장 큰 효과 (80%) VACUUM / 통계 죽은 튜플 정리, 통계 갱신 높은 효과 서버 설정 튜닝 postgresql.conf 파라미터 조정 보조적 효과 VACUUM (PostgreSQL 핵심 유지보수) PostgreSQL의...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","고급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-12-tuning/",
+        "teaser": null
+      },{
+        "title": "[PostgreSQL] 13. 자주 발생하는 Troubleshooting",
+        "excerpt":"PostgreSQL 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다. 접속 오류 FATAL: password authentication failed FATAL: password authentication failed for user \"devuser\" 원인 해결 방법 비밀번호 오류 비밀번호 재확인 pg_hba.conf 설정 인증 방식 확인 (peer → scram-sha-256) 롤 미존재 \\du로 롤 존재 여부 확인 -- 비밀번호 재설정 ALTER ROLE...","categories": ["postgresql"],
+        "tags": ["postgresql","postgres","postgresql강좌","고급","lecture-postgresql"],
+        "url": "/postgresql/postgresql-13-troubleshooting/",
+        "teaser": null
+      },{
         "title": "Python 가상환경 구축 (venv vs uv)",
         "excerpt":"Python 프로젝트를 진행할 때 가상환경은 필수다. 프로젝트마다 패키지 버전이 다를 수 있고, 시스템 Python에 직접 설치하면 충돌이 발생하기 쉽다. 이 글에서는 Python 기본 내장 모듈인 venv와 최근 주목받고 있는 uv를 비교하고, 각각의 가상환경 구축 방법을 Windows / Mac 기준으로 정리한다. 1. 가상환경이란? 가상환경(Virtual Environment)은 프로젝트별로 독립된 Python 실행 환경을 만들어주는...","categories": ["python"],
         "tags": ["python","venv","uv","virtualenv"],
