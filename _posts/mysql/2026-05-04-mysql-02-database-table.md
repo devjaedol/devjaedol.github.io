@@ -12,7 +12,7 @@ toc_sticky  : true
 
 # 데이터베이스 관리
 
-### 데이터베이스 생성
+## 데이터베이스 생성
 ```sql
 -- 기본 생성
 CREATE DATABASE mydb;

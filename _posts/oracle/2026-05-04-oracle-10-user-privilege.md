@@ -12,7 +12,7 @@ Oracle의 사용자 생성, 권한 부여, 롤(Role), 프로파일 관리를 정
 
 # 사용자 관리
 
-### 사용자 생성
+## 사용자 생성
 ```sql
 -- CDB 환경 (Oracle 12c+): PDB에 접속 후 생성
 ALTER SESSION SET CONTAINER = XEPDB1;

@@ -14,7 +14,7 @@ toc_sticky  : true
 트랜잭션(Transaction)은 하나의 논리적 작업 단위를 구성하는 SQL 명령어들의 집합입니다.    
 모두 성공하거나, 모두 실패해야 합니다 (All or Nothing).
 
-### 대표적인 예시: 계좌 이체
+## 대표적인 예시: 계좌 이체
 ```sql
 -- A 계좌에서 B 계좌로 100만원 이체
 START TRANSACTION;

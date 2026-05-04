@@ -86,7 +86,7 @@ SELECT * FROM employees ORDER BY RAND() LIMIT 3;
 | LAST_DAY | 해당 월 마지막 날 | `LAST_DAY('2026-02-01')` | 2026-02-28 |
 | DAYOFWEEK | 요일 (1=일, 7=토) | `DAYOFWEEK('2026-05-04')` | 2 (월) |
 
-#### DATE_FORMAT 주요 포맷 코드
+### DATE_FORMAT 주요 포맷 코드
 
 | 코드 | 설명 | 예시 |
 |------|------|------|

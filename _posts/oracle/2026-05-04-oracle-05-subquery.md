@@ -102,7 +102,7 @@ SELECT
 FROM employees;
 ```
 
-#### CASE vs DECODE
+### CASE vs DECODE
 
 | 항목 | CASE | DECODE |
 |------|------|--------|

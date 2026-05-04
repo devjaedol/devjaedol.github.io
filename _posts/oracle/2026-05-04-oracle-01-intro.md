@@ -15,7 +15,7 @@ Oracle Database의 기본 개념과 설치 방법을 알아봅니다.
 Oracle Database는 세계에서 가장 널리 사용되는 상용 관계형 데이터베이스 관리 시스템(RDBMS)입니다.    
 대규모 엔터프라이즈 환경에서 높은 안정성과 성능을 제공합니다.
 
-### Oracle vs MySQL 비교
+## Oracle vs MySQL 비교
 
 | 항목 | Oracle | MySQL |
 |:---:|:---:|:---:|

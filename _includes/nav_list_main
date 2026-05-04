@@ -95,7 +95,6 @@
               {% endfor %}
           </ul>
           
-
         <span class="nav__sub-title">주제별 모음</span>
             <ul>
                 {% for category in site.categories %}
