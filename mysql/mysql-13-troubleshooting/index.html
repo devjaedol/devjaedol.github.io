@@ -1,0 +1,2328 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[MySQL] 13. 자주 발생하는 Troubleshooting | 꿰보노트</title>
+<meta name="description" content="MySQL/MariaDB 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[MySQL] 13. 자주 발생하는 Troubleshooting">
+<meta property="og:url" content="https://kimjaehyun.co.kr/mysql/mysql-13-troubleshooting/">
+
+
+  <meta property="og:description" content="MySQL/MariaDB 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/mysql/mysql-13-troubleshooting/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#mysql" itemprop="item"><span itemprop="name">Mysql</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[MySQL] 13. 자주 발생하는 Troubleshooting</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[MySQL] 13. 자주 발생하는 Troubleshooting">
+    <meta itemprop="description" content="MySQL/MariaDB 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/mysql/mysql-13-troubleshooting/" class="u-url" itemprop="url">[MySQL] 13. 자주 발생하는 Troubleshooting
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#1-접속-오류-access-denied--cant-connect">1. 접속 오류 (Access Denied / Can’t Connect)</a><ul><li><a href="#1-1-access-denied-for-user">1-1. Access denied for user</a><ul><li><a href="#root-비밀번호-분실-시-복구">root 비밀번호 분실 시 복구</a></li></ul></li><li><a href="#1-2-cant-connect-to-mysql-server">1-2. Can’t connect to MySQL server</a></li></ul></li><li><a href="#2-too-many-connections">2. Too many connections</a><ul><li><a href="#즉시-대응">즉시 대응</a></li><li><a href="#근본-해결">근본 해결</a></li></ul></li><li><a href="#3-lock-wait-timeout-exceeded">3. Lock wait timeout exceeded</a><ul><li><a href="#원인-파악">원인 파악</a></li><li><a href="#해결-방법">해결 방법</a></li></ul></li><li><a href="#4-데드락-deadlock">4. 데드락 (Deadlock)</a><ul><li><a href="#원인-분석">원인 분석</a></li><li><a href="#해결-및-예방">해결 및 예방</a></li></ul></li><li><a href="#5-테이블-깨짐--크래시-복구">5. 테이블 깨짐 / 크래시 복구</a><ul><li><a href="#myisam-테이블-복구">MyISAM 테이블 복구</a></li><li><a href="#innodb-크래시-복구">InnoDB 크래시 복구</a></li></ul></li><li><a href="#6-한글-깨짐-character-set-문제">6. 한글 깨짐 (Character Set 문제)</a><ul><li><a href="#현재-설정-확인">현재 설정 확인</a></li><li><a href="#해결-방법-1">해결 방법</a><ul><li><a href="#서버-기본-설정-mycnf">서버 기본 설정 (my.cnf)</a></li><li><a href="#기존-데이터베이스테이블-변환">기존 데이터베이스/테이블 변환</a></li><li><a href="#utf8-vs-utf8mb4">utf8 vs utf8mb4</a></li></ul></li></ul></li><li><a href="#7-디스크-용량-부족">7. 디스크 용량 부족</a><ul><li><a href="#원인-파악-1">원인 파악</a></li><li><a href="#해결-방법-2">해결 방법</a></li></ul></li><li><a href="#8-쿼리-실행이-갑자기-느려짐">8. 쿼리 실행이 갑자기 느려짐</a><ul><li><a href="#점검-체크리스트">점검 체크리스트</a><ul><li><a href="#통계-정보-불일치로-인한-성능-저하">통계 정보 불일치로 인한 성능 저하</a></li></ul></li></ul></li><li><a href="#9-packet-too-large">9. Packet too large</a></li><li><a href="#10-duplicate-entry-중복-키-오류">10. Duplicate entry (중복 키 오류)</a><ul><li><a href="#상황별-해결">상황별 해결</a></li></ul></li><li><a href="#11-foreign-key-제약-오류">11. Foreign Key 제약 오류</a><ul><li><a href="#해결-방법-3">해결 방법</a></li></ul></li><li><a href="#12-mysql-서비스가-자동-종료됨-oom-killer">12. MySQL 서비스가 자동 종료됨 (OOM Killer)</a><ul><li><a href="#확인">확인</a></li><li><a href="#해결">해결</a></li></ul></li><li><a href="#13-복제replication-오류">13. 복제(Replication) 오류</a><ul><li><a href="#복제-상태-확인">복제 상태 확인</a></li><li><a href="#해결-방법-4">해결 방법</a></li></ul></li><li><a href="#트러블슈팅-필수-명령어-요약">트러블슈팅 필수 명령어 요약</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>MySQL/MariaDB 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다.</p>
+
+<hr />
+
+<h1 id="1-접속-오류-access-denied--cant-connect">1. 접속 오류 (Access Denied / Can’t Connect)</h1>
+
+<p>가장 빈번하게 발생하는 문제입니다.</p>
+
+<h3 id="1-1-access-denied-for-user">1-1. Access denied for user</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>원인</th>
+      <th>해결 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>비밀번호 오류</td>
+      <td>비밀번호 재확인, 특수문자는 따옴표로 감싸기</td>
+    </tr>
+    <tr>
+      <td>호스트 불일치</td>
+      <td><code class="language-plaintext highlighter-rouge">'user'@'localhost'</code>와 <code class="language-plaintext highlighter-rouge">'user'@'%'</code>는 별개 사용자</td>
+    </tr>
+    <tr>
+      <td>권한 미부여</td>
+      <td><code class="language-plaintext highlighter-rouge">GRANT</code> 후 <code class="language-plaintext highlighter-rouge">FLUSH PRIVILEGES</code> 실행</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 사용자 존재 여부 확인</span>
+<span class="k">SELECT</span> <span class="k">user</span><span class="p">,</span> <span class="k">host</span> <span class="k">FROM</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">WHERE</span> <span class="k">user</span> <span class="o">=</span> <span class="s1">'root'</span><span class="p">;</span>
+
+<span class="c1">-- 비밀번호 재설정 (접속 가능한 경우)</span>
+<span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'NewPassword123!'</span><span class="p">;</span>
+<span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="root-비밀번호-분실-시-복구">root 비밀번호 분실 시 복구</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. MySQL 서비스 중지</span>
+<span class="nb">sudo </span>systemctl stop mysql
+
+<span class="c"># 2. 인증 건너뛰기 모드로 시작</span>
+<span class="nb">sudo </span>mysqld_safe <span class="nt">--skip-grant-tables</span> &amp;
+
+<span class="c"># 3. 비밀번호 없이 접속</span>
+mysql <span class="nt">-u</span> root
+
+<span class="c"># 4. 비밀번호 변경</span>
+FLUSH PRIVILEGES<span class="p">;</span>
+ALTER USER <span class="s1">'root'</span>@<span class="s1">'localhost'</span> IDENTIFIED BY <span class="s1">'NewPassword123!'</span><span class="p">;</span>
+
+<span class="c"># 5. 서비스 재시작</span>
+<span class="nb">sudo </span>systemctl restart mysql
+</code></pre></div></div>
+
+<p>Windows의 경우:</p>
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">:: 1. 서비스 중지</span>
+<span class="nb">net</span> <span class="kd">stop</span> <span class="kd">mysql</span>
+
+<span class="c">:: 2. 인증 건너뛰기 모드로 시작</span>
+<span class="kd">mysqld</span> <span class="na">--skip-grant-tables --shared-memory
+
+</span><span class="c">:: 3. 새 CMD 창에서 접속 후 비밀번호 변경</span>
+<span class="kd">mysql</span> <span class="na">-u </span><span class="kd">root</span>
+<span class="kd">FLUSH</span> <span class="kd">PRIVILEGES</span><span class="o">;</span>
+<span class="kd">ALTER</span> <span class="kd">USER</span> <span class="s1">'root'</span>@<span class="s1">'localhost'</span> <span class="kd">IDENTIFIED</span> <span class="kd">BY</span> <span class="s1">'NewPassword123</span><span class="err">!</span><span class="s1">'</span><span class="o">;</span>
+
+<span class="c">:: 4. 서비스 재시작</span>
+<span class="nb">net</span> <span class="nb">start</span> <span class="kd">mysql</span>
+</code></pre></div></div>
+
+<h3 id="1-2-cant-connect-to-mysql-server">1-2. Can’t connect to MySQL server</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 2003 (HY000): Can't connect to MySQL server on 'localhost' (10061)
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>원인</th>
+      <th>확인 방법</th>
+      <th>해결</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>서비스 미실행</td>
+      <td><code class="language-plaintext highlighter-rouge">systemctl status mysql</code></td>
+      <td><code class="language-plaintext highlighter-rouge">systemctl start mysql</code></td>
+    </tr>
+    <tr>
+      <td>포트 충돌</td>
+      <td><code class="language-plaintext highlighter-rouge">netstat -tlnp \| grep 3306</code></td>
+      <td>포트 변경 또는 충돌 프로세스 종료</td>
+    </tr>
+    <tr>
+      <td>bind-address 설정</td>
+      <td><code class="language-plaintext highlighter-rouge">my.cnf</code>의 <code class="language-plaintext highlighter-rouge">bind-address</code> 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">0.0.0.0</code> 또는 특정 IP로 변경</td>
+    </tr>
+    <tr>
+      <td>방화벽 차단</td>
+      <td><code class="language-plaintext highlighter-rouge">iptables -L</code> 또는 <code class="language-plaintext highlighter-rouge">ufw status</code></td>
+      <td>3306 포트 허용</td>
+    </tr>
+    <tr>
+      <td>소켓 파일 누락</td>
+      <td>소켓 경로 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">--socket</code> 옵션으로 경로 지정</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># my.cnf - 원격 접속 허용
+</span><span class="nn">[mysqld]</span><span class="w">
+</span><span class="py">bind-address</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">0.0.0.0</span>
+<span class="py">port</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">3306</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 방화벽 허용 (Ubuntu)</span>
+<span class="nb">sudo </span>ufw allow 3306/tcp
+
+<span class="c"># 방화벽 허용 (CentOS)</span>
+<span class="nb">sudo </span>firewall-cmd <span class="nt">--permanent</span> <span class="nt">--add-port</span><span class="o">=</span>3306/tcp
+<span class="nb">sudo </span>firewall-cmd <span class="nt">--reload</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-too-many-connections">2. Too many connections</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 1040 (HY000): Too many connections
+</code></pre></div></div>
+
+<p>동시 접속 수가 <code class="language-plaintext highlighter-rouge">max_connections</code> 설정을 초과했을 때 발생합니다.</p>
+
+<h3 id="즉시-대응">즉시 대응</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 접속 수 확인</span>
+<span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">STATUS</span> <span class="k">LIKE</span> <span class="s1">'Threads_connected'</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">STATUS</span> <span class="k">LIKE</span> <span class="s1">'Max_used_connections'</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'max_connections'</span><span class="p">;</span>
+
+<span class="c1">-- 동적으로 증가 (재시작 없이)</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">max_connections</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+
+<span class="c1">-- 불필요한 연결 확인 및 종료</span>
+<span class="k">SHOW</span> <span class="n">PROCESSLIST</span><span class="p">;</span>
+<span class="n">KILL</span> <span class="err">프로세스</span><span class="n">ID</span><span class="p">;</span>
+
+<span class="c1">-- Sleep 상태의 오래된 연결 확인</span>
+<span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="k">user</span><span class="p">,</span> <span class="k">host</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="nb">time</span><span class="p">,</span> <span class="k">state</span>
+<span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">processlist</span>
+<span class="k">WHERE</span> <span class="n">command</span> <span class="o">=</span> <span class="s1">'Sleep'</span> <span class="k">AND</span> <span class="nb">time</span> <span class="o">&gt;</span> <span class="mi">300</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="nb">time</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="근본-해결">근본 해결</h3>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># my.cnf
+</span><span class="nn">[mysqld]</span><span class="w">
+</span><span class="py">max_connections</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">500</span>
+<span class="py">wait_timeout</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">300          # 비활성 연결 5분 후 자동 종료</span>
+<span class="py">interactive_timeout</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">300</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>점검 항목</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>커넥션 풀 설정</td>
+      <td>애플리케이션의 DB 커넥션 풀 크기 확인</td>
+    </tr>
+    <tr>
+      <td>커넥션 누수</td>
+      <td>close() 호출 누락 여부 확인</td>
+    </tr>
+    <tr>
+      <td>wait_timeout</td>
+      <td>유휴 연결 자동 종료 시간 조정</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="3-lock-wait-timeout-exceeded">3. Lock wait timeout exceeded</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
+</code></pre></div></div>
+
+<p>다른 트랜잭션이 보유한 락을 대기하다가 타임아웃이 발생한 경우입니다.</p>
+
+<h3 id="원인-파악">원인 파악</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 락 대기 상태 확인 (MySQL 8.0+)</span>
+<span class="k">SELECT</span> 
+    <span class="n">r</span><span class="p">.</span><span class="n">trx_id</span> <span class="k">AS</span> <span class="n">waiting_trx_id</span><span class="p">,</span>
+    <span class="n">r</span><span class="p">.</span><span class="n">trx_mysql_thread_id</span> <span class="k">AS</span> <span class="n">waiting_thread</span><span class="p">,</span>
+    <span class="n">r</span><span class="p">.</span><span class="n">trx_query</span> <span class="k">AS</span> <span class="n">waiting_query</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">.</span><span class="n">trx_id</span> <span class="k">AS</span> <span class="n">blocking_trx_id</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">.</span><span class="n">trx_mysql_thread_id</span> <span class="k">AS</span> <span class="n">blocking_thread</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">.</span><span class="n">trx_query</span> <span class="k">AS</span> <span class="n">blocking_query</span>
+<span class="k">FROM</span> <span class="n">performance_schema</span><span class="p">.</span><span class="n">data_lock_waits</span> <span class="n">w</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">trx_id</span> <span class="o">=</span> <span class="n">w</span><span class="p">.</span><span class="n">BLOCKING_ENGINE_TRANSACTION_ID</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span> <span class="n">r</span> <span class="k">ON</span> <span class="n">r</span><span class="p">.</span><span class="n">trx_id</span> <span class="o">=</span> <span class="n">w</span><span class="p">.</span><span class="n">REQUESTING_ENGINE_TRANSACTION_ID</span><span class="p">;</span>
+
+<span class="c1">-- MySQL 5.7</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_lock_waits</span><span class="p">;</span>
+
+<span class="c1">-- 장시간 실행 중인 트랜잭션 확인</span>
+<span class="k">SELECT</span> <span class="n">trx_id</span><span class="p">,</span> <span class="n">trx_state</span><span class="p">,</span> <span class="n">trx_started</span><span class="p">,</span> <span class="n">trx_mysql_thread_id</span><span class="p">,</span> <span class="n">trx_query</span>
+<span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">trx_started</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="해결-방법">해결 방법</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>방법</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>블로킹 트랜잭션 종료</td>
+      <td><code class="language-plaintext highlighter-rouge">KILL 블로킹_thread_id</code></td>
+    </tr>
+    <tr>
+      <td>타임아웃 증가</td>
+      <td><code class="language-plaintext highlighter-rouge">SET innodb_lock_wait_timeout = 120</code></td>
+    </tr>
+    <tr>
+      <td>트랜잭션 짧게 유지</td>
+      <td>불필요한 작업을 트랜잭션 밖으로 이동</td>
+    </tr>
+    <tr>
+      <td>인덱스 추가</td>
+      <td>인덱스 없으면 테이블 락으로 확대됨</td>
+    </tr>
+    <tr>
+      <td>접근 순서 통일</td>
+      <td>데드락 방지를 위해 테이블/행 접근 순서 통일</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 타임아웃 설정 변경</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_lock_wait_timeout</span> <span class="o">=</span> <span class="mi">120</span><span class="p">;</span>  <span class="c1">-- 기본 50초 → 120초</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-데드락-deadlock">4. 데드락 (Deadlock)</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction
+</code></pre></div></div>
+
+<p>두 트랜잭션이 서로의 락을 기다리며 교착 상태에 빠진 경우입니다.  <br />
+InnoDB는 자동으로 감지하고 한쪽을 롤백합니다.</p>
+
+<h3 id="원인-분석">원인 분석</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 가장 최근 데드락 정보 확인</span>
+<span class="k">SHOW</span> <span class="n">ENGINE</span> <span class="n">INNODB</span> <span class="n">STATUS</span><span class="p">;</span>
+<span class="c1">-- LATEST DETECTED DEADLOCK 섹션 확인</span>
+</code></pre></div></div>
+
+<h3 id="해결-및-예방">해결 및 예방</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ❌ 데드락 발생 패턴</span>
+<span class="c1">-- 트랜잭션 A: UPDATE accounts SET balance = balance - 100 WHERE id = 1;</span>
+<span class="c1">--             UPDATE accounts SET balance = balance + 100 WHERE id = 2;</span>
+<span class="c1">-- 트랜잭션 B: UPDATE accounts SET balance = balance - 50 WHERE id = 2;</span>
+<span class="c1">--             UPDATE accounts SET balance = balance + 50 WHERE id = 1;</span>
+
+<span class="c1">-- ✅ 동일한 순서로 접근 (id 오름차순)</span>
+<span class="c1">-- 트랜잭션 A: UPDATE ... WHERE id = 1; → UPDATE ... WHERE id = 2;</span>
+<span class="c1">-- 트랜잭션 B: UPDATE ... WHERE id = 1; → UPDATE ... WHERE id = 2;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>예방 전략</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>접근 순서 통일</td>
+      <td>항상 같은 순서로 테이블/행에 접근</td>
+    </tr>
+    <tr>
+      <td>트랜잭션 최소화</td>
+      <td>트랜잭션 범위를 최대한 짧게</td>
+    </tr>
+    <tr>
+      <td>적절한 인덱스</td>
+      <td>인덱스 없으면 불필요한 행까지 잠금</td>
+    </tr>
+    <tr>
+      <td>재시도 로직</td>
+      <td>애플리케이션에서 데드락 시 자동 재시도 구현</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 애플리케이션 재시도 로직 예시 (Python)
+</span><span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">MAX_RETRIES</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">MAX_RETRIES</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">"</span><span class="s">START TRANSACTION</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">"</span><span class="s">UPDATE accounts SET balance = balance - 100 WHERE id = 1</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">"</span><span class="s">UPDATE accounts SET balance = balance + 100 WHERE id = 2</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">"</span><span class="s">COMMIT</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="k">except</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">errors</span><span class="p">.</span><span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">errno</span> <span class="o">==</span> <span class="mi">1213</span> <span class="ow">and</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">MAX_RETRIES</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Deadlock
+</span>            <span class="n">cursor</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">"</span><span class="s">ROLLBACK</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>  <span class="c1"># 점진적 대기
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-테이블-깨짐--크래시-복구">5. 테이블 깨짐 / 크래시 복구</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 1194 (HY000): Table 'mytable' is marked as crashed and should be repaired
+ERROR 145 (HY000): Table './mydb/mytable' is marked as crashed and last (automatic?) repair failed
+</code></pre></div></div>
+
+<p>주로 MyISAM 테이블에서 발생합니다. InnoDB는 자동 복구 기능이 있어 상대적으로 드뭅니다.</p>
+
+<h3 id="myisam-테이블-복구">MyISAM 테이블 복구</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 테이블 상태 확인</span>
+<span class="k">CHECK</span> <span class="k">TABLE</span> <span class="n">mytable</span><span class="p">;</span>
+
+<span class="c1">-- 테이블 복구</span>
+<span class="n">REPAIR</span> <span class="k">TABLE</span> <span class="n">mytable</span><span class="p">;</span>
+
+<span class="c1">-- 빠른 복구</span>
+<span class="n">REPAIR</span> <span class="k">TABLE</span> <span class="n">mytable</span> <span class="n">QUICK</span><span class="p">;</span>
+
+<span class="c1">-- 확장 복구 (시간이 오래 걸림)</span>
+<span class="n">REPAIR</span> <span class="k">TABLE</span> <span class="n">mytable</span> <span class="n">EXTENDED</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 서버 중지 후 myisamchk로 복구</span>
+myisamchk <span class="nt">-r</span> /var/lib/mysql/mydb/mytable.MYI
+</code></pre></div></div>
+
+<h3 id="innodb-크래시-복구">InnoDB 크래시 복구</h3>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># my.cnf - 강제 복구 모드 (1~6, 높을수록 강력)
+</span><span class="nn">[mysqld]</span><span class="w">
+</span><span class="py">innodb_force_recovery</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">1</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. 복구 모드로 시작</span>
+<span class="c"># innodb_force_recovery = 1 설정 후 서비스 시작</span>
+
+<span class="c"># 2. 데이터 덤프</span>
+mysqldump <span class="nt">-u</span> root <span class="nt">-p</span> <span class="nt">--all-databases</span> <span class="o">&gt;</span> emergency_backup.sql
+
+<span class="c"># 3. 복구 모드 해제 후 재시작</span>
+<span class="c"># innodb_force_recovery 주석 처리 후 서비스 재시작</span>
+
+<span class="c"># 4. 필요 시 덤프로 복원</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>복구 레벨</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1 (SRV_FORCE_IGNORE_CORRUPT)</td>
+      <td>손상된 페이지 무시</td>
+    </tr>
+    <tr>
+      <td>2 (SRV_FORCE_NO_BACKGROUND)</td>
+      <td>백그라운드 스레드 중지</td>
+    </tr>
+    <tr>
+      <td>3 (SRV_FORCE_NO_TRX_UNDO)</td>
+      <td>트랜잭션 롤백 건너뜀</td>
+    </tr>
+    <tr>
+      <td>4 (SRV_FORCE_NO_IBUF_MERGE)</td>
+      <td>Insert Buffer 병합 건너뜀</td>
+    </tr>
+    <tr>
+      <td>5 (SRV_FORCE_NO_UNDO_LOG_SCAN)</td>
+      <td>Undo 로그 스캔 건너뜀</td>
+    </tr>
+    <tr>
+      <td>6 (SRV_FORCE_NO_LOG_REDO)</td>
+      <td>Redo 로그 적용 건너뜀</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>⚠️ 레벨 4 이상은 데이터 손실 가능성이 있습니다. 반드시 백업 후 진행하세요.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="6-한글-깨짐-character-set-문제">6. 한글 깨짐 (Character Set 문제)</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>데이터 조회 시 ???, ë¬¸ì, ÃÃÃ 등으로 표시
+</code></pre></div></div>
+
+<h3 id="현재-설정-확인">현재 설정 확인</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 서버 문자셋 확인</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'character_set%'</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'collation%'</span><span class="p">;</span>
+
+<span class="c1">-- 데이터베이스 문자셋 확인</span>
+<span class="k">SELECT</span> <span class="n">default_character_set_name</span><span class="p">,</span> <span class="n">default_collation_name</span>
+<span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">schemata</span>
+<span class="k">WHERE</span> <span class="k">schema_name</span> <span class="o">=</span> <span class="s1">'mydb'</span><span class="p">;</span>
+
+<span class="c1">-- 테이블/컬럼 문자셋 확인</span>
+<span class="k">SELECT</span> <span class="k">column_name</span><span class="p">,</span> <span class="k">character_set_name</span><span class="p">,</span> <span class="k">collation_name</span>
+<span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span>
+<span class="k">WHERE</span> <span class="n">table_schema</span> <span class="o">=</span> <span class="s1">'mydb'</span> <span class="k">AND</span> <span class="k">table_name</span> <span class="o">=</span> <span class="s1">'mytable'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="해결-방법-1">해결 방법</h3>
+
+<h4 id="서버-기본-설정-mycnf">서버 기본 설정 (my.cnf)</h4>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[mysqld]</span><span class="w">
+</span><span class="py">character-set-server</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">utf8mb4</span>
+<span class="py">collation-server</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">utf8mb4_unicode_ci</span>
+<span class="w">
+</span><span class="nn">[client]</span><span class="w">
+</span><span class="py">default-character-set</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">utf8mb4</span>
+<span class="w">
+</span><span class="nn">[mysql]</span><span class="w">
+</span><span class="py">default-character-set</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">utf8mb4</span>
+</code></pre></div></div>
+
+<h4 id="기존-데이터베이스테이블-변환">기존 데이터베이스/테이블 변환</h4>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 데이터베이스 문자셋 변경</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">mydb</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8mb4</span> <span class="k">COLLATE</span> <span class="n">utf8mb4_unicode_ci</span><span class="p">;</span>
+
+<span class="c1">-- 테이블 문자셋 변경</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">mytable</span> <span class="k">CONVERT</span> <span class="k">TO</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8mb4</span> <span class="k">COLLATE</span> <span class="n">utf8mb4_unicode_ci</span><span class="p">;</span>
+
+<span class="c1">-- 접속 시 문자셋 지정</span>
+<span class="k">SET</span> <span class="k">NAMES</span> <span class="n">utf8mb4</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="utf8-vs-utf8mb4">utf8 vs utf8mb4</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>utf8 (utf8mb3)</th>
+      <th>utf8mb4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>바이트</td>
+      <td>최대 3바이트</td>
+      <td>최대 4바이트</td>
+    </tr>
+    <tr>
+      <td>이모지 지원</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>권장 여부</td>
+      <td>비권장 (레거시)</td>
+      <td>권장</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>새 프로젝트는 반드시 <code class="language-plaintext highlighter-rouge">utf8mb4</code>를 사용하세요. <code class="language-plaintext highlighter-rouge">utf8</code>은 이모지(😀)를 저장할 수 없습니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="7-디스크-용량-부족">7. 디스크 용량 부족</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 1114 (HY000): The table 'mytable' is full
+ERROR 28: No space left on device
+</code></pre></div></div>
+
+<h3 id="원인-파악-1">원인 파악</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 데이터베이스별 용량 확인</span>
+<span class="k">SELECT</span> 
+    <span class="n">table_schema</span> <span class="k">AS</span> <span class="n">db_name</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">data_length</span> <span class="o">+</span> <span class="n">index_length</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_gb</span>
+<span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">table_schema</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">total_gb</span> <span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- 대용량 테이블 확인</span>
+<span class="k">SELECT</span> 
+    <span class="k">table_name</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">data_length</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">data_mb</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">index_length</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">index_mb</span><span class="p">,</span>
+    <span class="n">table_rows</span>
+<span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span>
+<span class="k">WHERE</span> <span class="n">table_schema</span> <span class="o">=</span> <span class="s1">'mydb'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="p">(</span><span class="n">data_length</span> <span class="o">+</span> <span class="n">index_length</span><span class="p">)</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="해결-방법-2">해결 방법</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>방법</th>
+      <th>명령어</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>바이너리 로그 정리</td>
+      <td><code class="language-plaintext highlighter-rouge">PURGE BINARY LOGS BEFORE '2026-04-01'</code></td>
+      <td>오래된 binlog 삭제</td>
+    </tr>
+    <tr>
+      <td>불필요한 데이터 삭제</td>
+      <td><code class="language-plaintext highlighter-rouge">DELETE</code> + <code class="language-plaintext highlighter-rouge">OPTIMIZE TABLE</code></td>
+      <td>오래된 로그/이력 데이터 정리</td>
+    </tr>
+    <tr>
+      <td>테이블 최적화</td>
+      <td><code class="language-plaintext highlighter-rouge">OPTIMIZE TABLE mytable</code></td>
+      <td>단편화 제거, 공간 회수</td>
+    </tr>
+    <tr>
+      <td>임시 파일 정리</td>
+      <td><code class="language-plaintext highlighter-rouge">tmpdir</code> 경로 확인</td>
+      <td>임시 파일 삭제</td>
+    </tr>
+    <tr>
+      <td>에러 로그 정리</td>
+      <td>로그 파일 로테이션</td>
+      <td>오래된 로그 삭제</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 바이너리 로그 자동 만료 설정</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">expire_logs_days</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="c1">-- MySQL 8.0+</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">binlog_expire_logs_seconds</span> <span class="o">=</span> <span class="mi">604800</span><span class="p">;</span>  <span class="c1">-- 7일</span>
+
+<span class="c1">-- 테이블 최적화 (DELETE 후 공간 회수)</span>
+<span class="n">OPTIMIZE</span> <span class="k">TABLE</span> <span class="n">large_table</span><span class="p">;</span>
+
+<span class="c1">-- General 로그 비활성화 (용량 절약)</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">general_log</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="8-쿼리-실행이-갑자기-느려짐">8. 쿼리 실행이 갑자기 느려짐</h2>
+
+<p>갑자기 쿼리 성능이 저하되는 경우의 점검 순서입니다.</p>
+
+<h3 id="점검-체크리스트">점검 체크리스트</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">순서</th>
+      <th>점검 항목</th>
+      <th>확인 명령어</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td>현재 실행 중인 쿼리 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">SHOW FULL PROCESSLIST</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td>락 대기 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">SELECT * FROM information_schema.innodb_trx</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td>서버 부하 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">SHOW GLOBAL STATUS LIKE 'Threads_running'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td>버퍼 풀 히트율</td>
+      <td><code class="language-plaintext highlighter-rouge">SHOW GLOBAL STATUS LIKE 'Innodb_buffer_pool%'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td>디스크 I/O</td>
+      <td>OS 레벨 <code class="language-plaintext highlighter-rouge">iostat</code>, <code class="language-plaintext highlighter-rouge">iotop</code> 확인</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td>테이블 통계 갱신</td>
+      <td><code class="language-plaintext highlighter-rouge">ANALYZE TABLE 테이블명</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td>실행 계획 변경 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">EXPLAIN</code> 재확인</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 활성 쿼리 확인</span>
+<span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="k">user</span><span class="p">,</span> <span class="k">host</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="nb">time</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">info</span>
+<span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">processlist</span>
+<span class="k">WHERE</span> <span class="n">command</span> <span class="o">!=</span> <span class="s1">'Sleep'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="nb">time</span> <span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- 테이블 통계 갱신 (실행 계획이 갑자기 바뀐 경우)</span>
+<span class="k">ANALYZE</span> <span class="k">TABLE</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 쿼리 캐시 상태 확인 (MySQL 5.7 이하)</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'query_cache%'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="통계-정보-불일치로-인한-성능-저하">통계 정보 불일치로 인한 성능 저하</h4>
+<p>대량 INSERT/DELETE 후 통계 정보가 실제 데이터와 맞지 않으면 옵티마이저가 잘못된 실행 계획을 선택합니다.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 해결: 통계 갱신</span>
+<span class="k">ANALYZE</span> <span class="k">TABLE</span> <span class="n">mytable</span><span class="p">;</span>
+
+<span class="c1">-- InnoDB 통계 자동 갱신 설정</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_stats_auto_recalc</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">-- 기본값 ON</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_stats_persistent</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="9-packet-too-large">9. Packet too large</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 1153 (08S01): Got a packet bigger than 'max_allowed_packet' bytes
+</code></pre></div></div>
+
+<p>대용량 데이터(BLOB, 대량 INSERT 등)를 전송할 때 발생합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 설정 확인</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'max_allowed_packet'</span><span class="p">;</span>
+
+<span class="c1">-- 동적 변경</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">max_allowed_packet</span> <span class="o">=</span> <span class="mi">256</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">;</span>  <span class="c1">-- 256MB</span>
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># my.cnf (영구 설정)
+</span><span class="nn">[mysqld]</span><span class="w">
+</span><span class="py">max_allowed_packet</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">256M</span>
+<span class="w">
+</span><span class="nn">[mysqldump]</span><span class="w">
+</span><span class="py">max_allowed_packet</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">256M</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="10-duplicate-entry-중복-키-오류">10. Duplicate entry (중복 키 오류)</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 1062 (23000): Duplicate entry 'value' for key 'PRIMARY'
+ERROR 1062 (23000): Duplicate entry 'user@email.com' for key 'uk_email'
+</code></pre></div></div>
+
+<h3 id="상황별-해결">상황별 해결</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 중복 무시하고 삽입</span>
+<span class="k">INSERT</span> <span class="k">IGNORE</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'test@test.com'</span><span class="p">,</span> <span class="s1">'홍길동'</span><span class="p">);</span>
+
+<span class="c1">-- 중복 시 업데이트</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">updated_at</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="s1">'test@test.com'</span><span class="p">,</span> <span class="s1">'홍길동'</span><span class="p">,</span> <span class="n">NOW</span><span class="p">())</span>
+<span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="n">name</span> <span class="o">=</span> <span class="k">VALUES</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="n">updated_at</span> <span class="o">=</span> <span class="n">NOW</span><span class="p">();</span>
+
+<span class="c1">-- AUTO_INCREMENT 값 확인 및 리셋</span>
+<span class="k">SELECT</span> <span class="n">AUTO_INCREMENT</span>
+<span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span>
+<span class="k">WHERE</span> <span class="n">table_schema</span> <span class="o">=</span> <span class="s1">'mydb'</span> <span class="k">AND</span> <span class="k">table_name</span> <span class="o">=</span> <span class="s1">'users'</span><span class="p">;</span>
+
+<span class="c1">-- AUTO_INCREMENT 리셋 (현재 최대값 + 1로)</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">users</span> <span class="n">AUTO_INCREMENT</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="11-foreign-key-제약-오류">11. Foreign Key 제약 오류</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails
+</code></pre></div></div>
+
+<h3 id="해결-방법-3">해결 방법</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 참조하는 자식 데이터 확인</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="err">삭제하려는</span><span class="n">_ID</span><span class="p">;</span>
+
+<span class="c1">-- 자식 데이터 먼저 삭제 후 부모 삭제</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- 대량 작업 시 일시적으로 FK 체크 비활성화</span>
+<span class="k">SET</span> <span class="n">FOREIGN_KEY_CHECKS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">-- 작업 수행 ...</span>
+<span class="k">TRUNCATE</span> <span class="k">TABLE</span> <span class="n">orders</span><span class="p">;</span>
+<span class="k">TRUNCATE</span> <span class="k">TABLE</span> <span class="n">users</span><span class="p">;</span>
+<span class="k">SET</span> <span class="n">FOREIGN_KEY_CHECKS</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>⚠️ <code class="language-plaintext highlighter-rouge">FOREIGN_KEY_CHECKS = 0</code>은 데이터 무결성을 보장하지 않으므로, 마이그레이션이나 초기 데이터 로딩 시에만 사용하세요.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="12-mysql-서비스가-자동-종료됨-oom-killer">12. MySQL 서비스가 자동 종료됨 (OOM Killer)</h2>
+
+<p>Linux 환경에서 메모리 부족 시 OS의 OOM Killer가 MySQL 프로세스를 강제 종료합니다.</p>
+
+<h3 id="확인">확인</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OOM Killer 로그 확인</span>
+dmesg | <span class="nb">grep</span> <span class="nt">-i</span> <span class="s2">"oom</span><span class="se">\|</span><span class="s2">killed"</span>
+<span class="nb">grep</span> <span class="nt">-i</span> <span class="s2">"oom"</span> /var/log/syslog
+
+<span class="c"># MySQL 에러 로그 확인</span>
+<span class="nb">tail</span> <span class="nt">-100</span> /var/log/mysql/error.log
+</code></pre></div></div>
+
+<h3 id="해결">해결</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>방법</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>버퍼 풀 축소</td>
+      <td><code class="language-plaintext highlighter-rouge">innodb_buffer_pool_size</code>를 전체 메모리의 50~60%로</td>
+    </tr>
+    <tr>
+      <td>커넥션 수 제한</td>
+      <td><code class="language-plaintext highlighter-rouge">max_connections</code> 축소</td>
+    </tr>
+    <tr>
+      <td>스왑 설정</td>
+      <td>스왑 공간 확보</td>
+    </tr>
+    <tr>
+      <td>OOM 점수 조정</td>
+      <td>MySQL 프로세스의 OOM 점수를 낮춤</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># MySQL 프로세스의 OOM 점수 낮추기 (종료 우선순위 낮춤)</span>
+<span class="nb">echo</span> <span class="nt">-1000</span> <span class="o">&gt;</span> /proc/<span class="si">$(</span>pidof mysqld<span class="si">)</span>/oom_score_adj
+</code></pre></div></div>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># my.cnf - 메모리 사용량 줄이기
+</span><span class="nn">[mysqld]</span><span class="w">
+</span><span class="py">innodb_buffer_pool_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">2G    # 서버 메모리에 맞게 조정</span>
+<span class="py">max_connections</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">200</span>
+<span class="py">tmp_table_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">64M</span>
+<span class="py">max_heap_table_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">64M</span>
+<span class="py">sort_buffer_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">2M</span>
+<span class="py">join_buffer_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">2M</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="13-복제replication-오류">13. 복제(Replication) 오류</h2>
+
+<p>Master-Slave 복제 환경에서 자주 발생하는 문제입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Last_SQL_Error: Could not execute Write_rows event ... Duplicate entry
+Last_SQL_Error: Could not execute Delete_rows event ... Can't find record
+</code></pre></div></div>
+
+<h3 id="복제-상태-확인">복제 상태 확인</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- Slave에서 실행</span>
+<span class="k">SHOW</span> <span class="n">SLAVE</span> <span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
+
+<span class="c1">-- 주요 확인 항목</span>
+<span class="c1">-- Slave_IO_Running: Yes</span>
+<span class="c1">-- Slave_SQL_Running: Yes</span>
+<span class="c1">-- Seconds_Behind_Master: 0 (지연 없음)</span>
+<span class="c1">-- Last_SQL_Error: (오류 메시지)</span>
+</code></pre></div></div>
+
+<h3 id="해결-방법-4">해결 방법</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 특정 오류 건너뛰기 (1건)</span>
+<span class="n">STOP</span> <span class="n">SLAVE</span><span class="p">;</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">sql_slave_skip_counter</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">START</span> <span class="n">SLAVE</span><span class="p">;</span>
+
+<span class="c1">-- 특정 에러 코드 무시 설정 (my.cnf)</span>
+<span class="c1">-- ⚠️ 데이터 불일치 가능성 있으므로 주의</span>
+<span class="c1">-- slave-skip-errors = 1062,1032</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>상황</th>
+      <th>해결</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>일시적 오류</td>
+      <td><code class="language-plaintext highlighter-rouge">sql_slave_skip_counter</code>로 건너뛰기</td>
+    </tr>
+    <tr>
+      <td>데이터 불일치</td>
+      <td><code class="language-plaintext highlighter-rouge">pt-table-checksum</code> + <code class="language-plaintext highlighter-rouge">pt-table-sync</code>로 동기화</td>
+    </tr>
+    <tr>
+      <td>심각한 불일치</td>
+      <td>Slave 재구축 (mysqldump로 다시 복제 설정)</td>
+    </tr>
+    <tr>
+      <td>지연 (Lag)</td>
+      <td>병렬 복제 설정 (<code class="language-plaintext highlighter-rouge">slave_parallel_workers</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="트러블슈팅-필수-명령어-요약">트러블슈팅 필수 명령어 요약</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 서버 상태 전체 확인</span>
+<span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">STATUS</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">VARIABLES</span><span class="p">;</span>
+
+<span class="c1">-- 현재 프로세스</span>
+<span class="k">SHOW</span> <span class="k">FULL</span> <span class="n">PROCESSLIST</span><span class="p">;</span>
+
+<span class="c1">-- InnoDB 상태 (락, 데드락, 버퍼 풀 등)</span>
+<span class="k">SHOW</span> <span class="n">ENGINE</span> <span class="n">INNODB</span> <span class="n">STATUS</span><span class="p">;</span>
+
+<span class="c1">-- 에러 로그 위치 확인</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'log_error'</span><span class="p">;</span>
+
+<span class="c1">-- 실행 중인 트랜잭션</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span><span class="p">;</span>
+
+<span class="c1">-- 테이블 상태 점검</span>
+<span class="k">CHECK</span> <span class="k">TABLE</span> <span class="n">mytable</span><span class="p">;</span>
+<span class="k">ANALYZE</span> <span class="k">TABLE</span> <span class="n">mytable</span><span class="p">;</span>
+<span class="n">OPTIMIZE</span> <span class="k">TABLE</span> <span class="n">mytable</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (mysql &gt; lecture-mysql)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-13-troubleshooting/">[MySQL] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-12-tuning/">[MySQL] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-11-backup-restore/">[MySQL] 11. 백업과 복구 (Backup &amp; Restore)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-10-user-privilege/">[MySQL] 10. 사용자 관리와 권한 (User &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-09-view-procedure/">[MySQL] 09. 뷰, 스토어드 프로시저, 함수, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-08-transaction/">[MySQL] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-07-index/">[MySQL] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-06-function/">[MySQL] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-05-subquery/">[MySQL] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-04-join/">[MySQL] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-03-crud/">[MySQL] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-02-database-table/">[MySQL] 02. 데이터베이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-01-intro/">[MySQL] 01. MySQL/MariaDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-mysql" class="page__taxonomy-item p-category" rel="tag">lecture-mysql</a><span class="sep">, </span>
+    
+      <a href="/tags/#mariadb" class="page__taxonomy-item p-category" rel="tag">mariadb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mysql" class="page__taxonomy-item p-category" rel="tag">mysql</a><span class="sep">, </span>
+    
+      <a href="/tags/#mysql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">mysql강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">고급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#mysql" class="page__taxonomy-item p-category" rel="tag">mysql</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BMySQL%5D+13.+%EC%9E%90%EC%A3%BC+%EB%B0%9C%EC%83%9D%ED%95%98%EB%8A%94+Troubleshooting%20https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-13-troubleshooting%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-13-troubleshooting%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-13-troubleshooting%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/mysql/mysql-12-tuning/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[MySQL] 12. 성능 튜닝 (Performance Tuning)</a>
+    
+    
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

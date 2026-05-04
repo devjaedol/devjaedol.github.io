@@ -1,0 +1,1784 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Oracle] 07. 인덱스 (Index) | 꿰보노트</title>
+<meta name="description" content="Oracle 인덱스의 종류, 생성/관리 방법, 실행 계획 분석을 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Oracle] 07. 인덱스 (Index)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/oracle/oracle-07-index/">
+
+
+  <meta property="og:description" content="Oracle 인덱스의 종류, 생성/관리 방법, 실행 계획 분석을 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/oracle/oracle-07-index/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#oracle" itemprop="item"><span itemprop="name">Oracle</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Oracle] 07. 인덱스 (Index)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Oracle] 07. 인덱스 (Index)">
+    <meta itemprop="description" content="Oracle 인덱스의 종류, 생성/관리 방법, 실행 계획 분석을 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/oracle/oracle-07-index/" class="u-url" itemprop="url">[Oracle] 07. 인덱스 (Index)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#인덱스-종류">인덱스 종류</a><ul><li><a href="#인덱스-생성-및-관리">인덱스 생성 및 관리</a><ul><li><a href="#생성">생성</a></li><li><a href="#조회">조회</a></li><li><a href="#관리">관리</a></li></ul></li><li><a href="#실행-계획-explain-plan">실행 계획 (EXPLAIN PLAN)</a><ul><li><a href="#실행-계획-확인-방법">실행 계획 확인 방법</a></li><li><a href="#실행-계획-주요-오퍼레이션">실행 계획 주요 오퍼레이션</a></li></ul></li><li><a href="#복합-인덱스와-최좌선-원칙">복합 인덱스와 최좌선 원칙</a></li><li><a href="#인덱스가-사용되지-않는-경우">인덱스가 사용되지 않는 경우</a></li><li><a href="#힌트-hint">힌트 (Hint)</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Oracle 인덱스의 종류, 생성/관리 방법, 실행 계획 분석을 정리합니다.</p>
+
+<h1 id="인덱스-종류">인덱스 종류</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>종류</th>
+      <th>설명</th>
+      <th>용도</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>B-Tree Index</td>
+      <td>기본 인덱스, 균형 트리 구조</td>
+      <td>일반적인 검색 (기본값)</td>
+    </tr>
+    <tr>
+      <td>Unique Index</td>
+      <td>중복 불가 인덱스</td>
+      <td>PK, UK 제약</td>
+    </tr>
+    <tr>
+      <td>Composite Index</td>
+      <td>복합 인덱스 (다중 컬럼)</td>
+      <td>다중 조건 검색</td>
+    </tr>
+    <tr>
+      <td>Bitmap Index</td>
+      <td>비트맵 기반 인덱스</td>
+      <td>카디널리티 낮은 컬럼 (성별, 상태)</td>
+    </tr>
+    <tr>
+      <td>Function-Based Index</td>
+      <td>함수 기반 인덱스</td>
+      <td>함수/연산 적용 컬럼 검색</td>
+    </tr>
+    <tr>
+      <td>Reverse Key Index</td>
+      <td>키 값을 역순 저장</td>
+      <td>시퀀스 기반 INSERT 경합 방지</td>
+    </tr>
+    <tr>
+      <td>Index-Organized Table (IOT)</td>
+      <td>테이블 자체가 인덱스</td>
+      <td>PK 기반 조회가 대부분인 경우</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="인덱스-생성-및-관리">인덱스 생성 및 관리</h2>
+
+<h3 id="생성">생성</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 기본 인덱스</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_emp_name</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="n">name</span><span class="p">);</span>
+
+<span class="c1">-- 유니크 인덱스</span>
+<span class="k">CREATE</span> <span class="k">UNIQUE</span> <span class="k">INDEX</span> <span class="n">uk_emp_email</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="n">email</span><span class="p">);</span>
+
+<span class="c1">-- 복합 인덱스</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_emp_dept_sal</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="n">dept_id</span><span class="p">,</span> <span class="n">salary</span><span class="p">);</span>
+
+<span class="c1">-- 비트맵 인덱스 (DW/OLAP 환경에서 사용)</span>
+<span class="k">CREATE</span> <span class="n">BITMAP</span> <span class="k">INDEX</span> <span class="n">bix_emp_dept</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="n">dept_id</span><span class="p">);</span>
+
+<span class="c1">-- 함수 기반 인덱스</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_emp_upper_name</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="k">UPPER</span><span class="p">(</span><span class="n">name</span><span class="p">));</span>
+
+<span class="c1">-- 역순 키 인덱스</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_emp_id_rev</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="n">REVERSE</span><span class="p">;</span>
+
+<span class="c1">-- 테이블스페이스 지정</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_emp_name</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="n">TABLESPACE</span> <span class="n">ts_index</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="조회">조회</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 사용자의 인덱스 목록</span>
+<span class="k">SELECT</span> <span class="n">index_name</span><span class="p">,</span> <span class="k">table_name</span><span class="p">,</span> <span class="n">uniqueness</span><span class="p">,</span> <span class="n">status</span>
+<span class="k">FROM</span> <span class="n">user_indexes</span>
+<span class="k">WHERE</span> <span class="k">table_name</span> <span class="o">=</span> <span class="s1">'EMPLOYEES'</span><span class="p">;</span>
+
+<span class="c1">-- 인덱스 컬럼 정보</span>
+<span class="k">SELECT</span> <span class="n">index_name</span><span class="p">,</span> <span class="k">column_name</span><span class="p">,</span> <span class="n">column_position</span>
+<span class="k">FROM</span> <span class="n">user_ind_columns</span>
+<span class="k">WHERE</span> <span class="k">table_name</span> <span class="o">=</span> <span class="s1">'EMPLOYEES'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">index_name</span><span class="p">,</span> <span class="n">column_position</span><span class="p">;</span>
+
+<span class="c1">-- 인덱스 크기 확인</span>
+<span class="k">SELECT</span> <span class="n">segment_name</span><span class="p">,</span> <span class="n">bytes</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span> <span class="k">AS</span> <span class="n">size_mb</span>
+<span class="k">FROM</span> <span class="n">user_segments</span>
+<span class="k">WHERE</span> <span class="n">segment_type</span> <span class="o">=</span> <span class="s1">'INDEX'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">bytes</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="관리">관리</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 인덱스 삭제</span>
+<span class="k">DROP</span> <span class="k">INDEX</span> <span class="n">idx_emp_name</span><span class="p">;</span>
+
+<span class="c1">-- 인덱스 재구축 (단편화 해소)</span>
+<span class="k">ALTER</span> <span class="k">INDEX</span> <span class="n">idx_emp_name</span> <span class="n">REBUILD</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">INDEX</span> <span class="n">idx_emp_name</span> <span class="n">REBUILD</span> <span class="n">ONLINE</span><span class="p">;</span>  <span class="c1">-- 온라인 재구축 (서비스 중단 없이)</span>
+
+<span class="c1">-- 인덱스 비활성화 / 활성화</span>
+<span class="k">ALTER</span> <span class="k">INDEX</span> <span class="n">idx_emp_name</span> <span class="n">UNUSABLE</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">INDEX</span> <span class="n">idx_emp_name</span> <span class="n">REBUILD</span><span class="p">;</span>  <span class="c1">-- 다시 활성화</span>
+
+<span class="c1">-- 인덱스 통계 갱신</span>
+<span class="k">ANALYZE</span> <span class="k">INDEX</span> <span class="n">idx_emp_name</span> <span class="n">COMPUTE</span> <span class="k">STATISTICS</span><span class="p">;</span>
+<span class="c1">-- 또는</span>
+<span class="k">EXEC</span> <span class="n">DBMS_STATS</span><span class="p">.</span><span class="n">GATHER_INDEX_STATS</span><span class="p">(</span><span class="s1">'DEVUSER'</span><span class="p">,</span> <span class="s1">'IDX_EMP_NAME'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="실행-계획-explain-plan">실행 계획 (EXPLAIN PLAN)</h2>
+
+<h3 id="실행-계획-확인-방법">실행 계획 확인 방법</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 방법 1: EXPLAIN PLAN</span>
+<span class="k">EXPLAIN</span> <span class="n">PLAN</span> <span class="k">FOR</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="mi">5000000</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">TABLE</span><span class="p">(</span><span class="n">DBMS_XPLAN</span><span class="p">.</span><span class="n">DISPLAY</span><span class="p">);</span>
+
+<span class="c1">-- 방법 2: AUTOTRACE (SQL*Plus)</span>
+<span class="k">SET</span> <span class="n">AUTOTRACE</span> <span class="k">ON</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">SET</span> <span class="n">AUTOTRACE</span> <span class="k">OFF</span>
+
+<span class="c1">-- 방법 3: 실제 실행 통계 포함</span>
+<span class="k">SELECT</span> <span class="cm">/*+ GATHER_PLAN_STATISTICS */</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">TABLE</span><span class="p">(</span><span class="n">DBMS_XPLAN</span><span class="p">.</span><span class="n">DISPLAY_CURSOR</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="s1">'ALLSTATS LAST'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="실행-계획-주요-오퍼레이션">실행 계획 주요 오퍼레이션</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>오퍼레이션</th>
+      <th>설명</th>
+      <th>성능</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TABLE ACCESS FULL</td>
+      <td>테이블 전체 스캔</td>
+      <td>나쁨 (대용량 시)</td>
+    </tr>
+    <tr>
+      <td>TABLE ACCESS BY INDEX ROWID</td>
+      <td>인덱스로 찾은 ROWID로 테이블 접근</td>
+      <td>좋음</td>
+    </tr>
+    <tr>
+      <td>INDEX UNIQUE SCAN</td>
+      <td>PK/UK 인덱스로 1건 조회</td>
+      <td>최고</td>
+    </tr>
+    <tr>
+      <td>INDEX RANGE SCAN</td>
+      <td>인덱스 범위 스캔</td>
+      <td>좋음</td>
+    </tr>
+    <tr>
+      <td>INDEX FULL SCAN</td>
+      <td>인덱스 전체 스캔</td>
+      <td>보통</td>
+    </tr>
+    <tr>
+      <td>INDEX FAST FULL SCAN</td>
+      <td>인덱스 전체를 멀티블록 읽기</td>
+      <td>보통</td>
+    </tr>
+    <tr>
+      <td>INDEX SKIP SCAN</td>
+      <td>복합 인덱스 선두 컬럼 건너뜀</td>
+      <td>보통</td>
+    </tr>
+    <tr>
+      <td>NESTED LOOPS</td>
+      <td>중첩 루프 조인</td>
+      <td>소량 데이터에 좋음</td>
+    </tr>
+    <tr>
+      <td>HASH JOIN</td>
+      <td>해시 조인</td>
+      <td>대량 데이터에 좋음</td>
+    </tr>
+    <tr>
+      <td>SORT MERGE JOIN</td>
+      <td>정렬 병합 조인</td>
+      <td>정렬된 데이터에 좋음</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="복합-인덱스와-최좌선-원칙">복합 인덱스와 최좌선 원칙</h2>
+
+<p><code class="language-plaintext highlighter-rouge">INDEX idx_abc (a, b, c)</code> 인덱스가 있을 때:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>WHERE 조건</th>
+      <th>인덱스 사용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WHERE a = 1</code></td>
+      <td>✅ 사용</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WHERE a = 1 AND b = 2</code></td>
+      <td>✅ 사용</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WHERE a = 1 AND b = 2 AND c = 3</code></td>
+      <td>✅ 전체 사용</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WHERE b = 2</code></td>
+      <td>⚠️ INDEX SKIP SCAN 가능</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WHERE b = 2 AND c = 3</code></td>
+      <td>⚠️ INDEX SKIP SCAN 가능</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WHERE a = 1 AND c = 3</code></td>
+      <td>⚠️ a만 사용</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Oracle은 INDEX SKIP SCAN을 지원하여 선두 컬럼이 없어도 인덱스를 사용할 수 있지만,  <br />
+선두 컬럼의 카디널리티가 낮을 때만 효과적입니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="인덱스가-사용되지-않는-경우">인덱스가 사용되지 않는 경우</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ❌ 컬럼에 함수 적용</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="k">UPPER</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>
+<span class="c1">-- ✅ 함수 기반 인덱스 생성</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_upper_name</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="k">UPPER</span><span class="p">(</span><span class="n">name</span><span class="p">));</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="k">UPPER</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>
+
+<span class="c1">-- ❌ 묵시적 타입 변환</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="s1">'1'</span><span class="p">;</span>  <span class="c1">-- id가 NUMBER인데 문자열 비교</span>
+<span class="c1">-- ✅ 올바른 타입</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- ❌ LIKE 앞쪽 와일드카드</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">LIKE</span> <span class="s1">'%길동'</span><span class="p">;</span>
+
+<span class="c1">-- ❌ NOT, != 조건</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- ❌ IS NULL (B-Tree 인덱스는 NULL 미저장)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="k">IS</span> <span class="k">NULL</span><span class="p">;</span>
+<span class="c1">-- ✅ 함수 기반 인덱스로 해결</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_dept_null</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="n">NVL</span><span class="p">(</span><span class="n">dept_id</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">NVL</span><span class="p">(</span><span class="n">dept_id</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="힌트-hint">힌트 (Hint)</h2>
+
+<p>Oracle은 옵티마이저에게 실행 계획을 제안하는 힌트를 지원합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 인덱스 사용 강제</span>
+<span class="k">SELECT</span> <span class="cm">/*+ INDEX(e idx_emp_dept_sal) */</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+<span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- Full Table Scan 강제</span>
+<span class="k">SELECT</span> <span class="cm">/*+ FULL(e) */</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+<span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- 조인 방식 지정</span>
+<span class="k">SELECT</span> <span class="cm">/*+ USE_NL(e d) */</span> <span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+<span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">departments</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="cm">/*+ USE_HASH(e d) */</span> <span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+<span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">departments</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+
+<span class="c1">-- 병렬 처리</span>
+<span class="k">SELECT</span> <span class="cm">/*+ PARALLEL(e, 4) */</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>힌트</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">INDEX(table index_name)</code></td>
+      <td>특정 인덱스 사용</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FULL(table)</code></td>
+      <td>Full Table Scan</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">USE_NL(t1 t2)</code></td>
+      <td>Nested Loop Join</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">USE_HASH(t1 t2)</code></td>
+      <td>Hash Join</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">LEADING(t1 t2)</code></td>
+      <td>조인 순서 지정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PARALLEL(table, n)</code></td>
+      <td>병렬 처리</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">NO_INDEX(table index)</code></td>
+      <td>특정 인덱스 사용 금지</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FIRST_ROWS(n)</code></td>
+      <td>처음 n건 빠르게 반환</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ALL_ROWS</code></td>
+      <td>전체 처리량 최적화 (기본)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>힌트는 옵티마이저가 잘못된 실행 계획을 선택할 때 임시 방편으로 사용합니다.  <br />
+근본적으로는 통계 갱신, 인덱스 재설계가 우선입니다.</p>
+</blockquote>
+
+<p><span class="nav__sub-title">관련된 글 (oracle &gt; lecture-oracle)</span></p>
+<ul>
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup &amp; Recovery)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-10-user-privilege/">[Oracle] 10. 사용자 관리와 권한 (User &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-09-plsql/">[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-08-transaction/">[Oracle] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-07-index/">[Oracle] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-06-function/">[Oracle] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-05-subquery/">[Oracle] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-04-join/">[Oracle] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-03-crud/">[Oracle] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-02-database-table/">[Oracle] 02. 테이블스페이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-01-intro/">[Oracle] 01. Oracle DB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-oracle" class="page__taxonomy-item p-category" rel="tag">lecture-oracle</a><span class="sep">, </span>
+    
+      <a href="/tags/#oracle" class="page__taxonomy-item p-category" rel="tag">oracle</a><span class="sep">, </span>
+    
+      <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">oracle강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#oracle" class="page__taxonomy-item p-category" rel="tag">oracle</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BOracle%5D+07.+%EC%9D%B8%EB%8D%B1%EC%8A%A4+%28Index%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-07-index%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-07-index%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-07-index%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/oracle/oracle-06-function/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Oracle] 06. 내장 함수 정리</a>
+    
+    
+      <a href="/oracle/oracle-08-transaction/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Oracle] 08. 트랜잭션과 락 (Transaction & Lock)</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

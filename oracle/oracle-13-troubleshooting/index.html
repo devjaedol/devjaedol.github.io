@@ -1,0 +1,1989 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Oracle] 13. 자주 발생하는 Troubleshooting | 꿰보노트</title>
+<meta name="description" content="Oracle 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Oracle] 13. 자주 발생하는 Troubleshooting">
+<meta property="og:url" content="https://kimjaehyun.co.kr/oracle/oracle-13-troubleshooting/">
+
+
+  <meta property="og:description" content="Oracle 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/oracle/oracle-13-troubleshooting/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#oracle" itemprop="item"><span itemprop="name">Oracle</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Oracle] 13. 자주 발생하는 Troubleshooting</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Oracle] 13. 자주 발생하는 Troubleshooting">
+    <meta itemprop="description" content="Oracle 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/oracle/oracle-13-troubleshooting/" class="u-url" itemprop="url">[Oracle] 13. 자주 발생하는 Troubleshooting
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#1-ora-12541-tnsno-listener--ora-12514-tnslistener-does-not-currently-know-of-service">1. ORA-12541: TNS:no listener / ORA-12514: TNS:listener does not currently know of service</a><ul><li><a href="#2-ora-00942-table-or-view-does-not-exist">2. ORA-00942: table or view does not exist</a></li><li><a href="#3-ora-01017-invalid-usernamepassword-logon-denied">3. ORA-01017: invalid username/password; logon denied</a></li><li><a href="#4-ora-01653--ora-01654-unable-to-extend-tableindex">4. ORA-01653 / ORA-01654: unable to extend table/index</a><ul><li><a href="#해결-방법">해결 방법</a></li></ul></li><li><a href="#5-ora-01555-snapshot-too-old">5. ORA-01555: snapshot too old</a></li><li><a href="#6-ora-04031-unable-to-allocate-shared-memory">6. ORA-04031: unable to allocate shared memory</a></li><li><a href="#7-ora-00060-deadlock-detected">7. ORA-00060: deadlock detected</a><ul><li><a href="#원인-분석">원인 분석</a></li><li><a href="#예방">예방</a></li></ul></li><li><a href="#8-ora-01000-maximum-open-cursors-exceeded">8. ORA-01000: maximum open cursors exceeded</a></li><li><a href="#9-ora-12899-value-too-large-for-column">9. ORA-12899: value too large for column</a></li><li><a href="#10-ora-28000-the-account-is-locked">10. ORA-28000: the account is locked</a></li><li><a href="#11-ora-01691-unable-to-extend-lob-segment">11. ORA-01691: unable to extend lob segment</a></li><li><a href="#12-성능-저하-갑자기-느려진-쿼리">12. 성능 저하: 갑자기 느려진 쿼리</a><ul><li><a href="#점검-체크리스트">점검 체크리스트</a></li></ul></li><li><a href="#13-ora-04068-existing-state-of-packages-has-been-discarded">13. ORA-04068: existing state of packages has been discarded</a></li><li><a href="#트러블슈팅-필수-명령어-요약">트러블슈팅 필수 명령어 요약</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Oracle 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다.</p>
+
+<hr />
+
+<h1 id="1-ora-12541-tnsno-listener--ora-12514-tnslistener-does-not-currently-know-of-service">1. ORA-12541: TNS:no listener / ORA-12514: TNS:listener does not currently know of service</h1>
+
+<p>가장 빈번한 접속 오류입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-12541: TNS:no listener
+ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>원인</th>
+      <th>해결 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>리스너 미실행</td>
+      <td><code class="language-plaintext highlighter-rouge">lsnrctl start</code></td>
+    </tr>
+    <tr>
+      <td>리스너에 서비스 미등록</td>
+      <td><code class="language-plaintext highlighter-rouge">ALTER SYSTEM REGISTER</code></td>
+    </tr>
+    <tr>
+      <td>tnsnames.ora 설정 오류</td>
+      <td>SERVICE_NAME / SID 확인</td>
+    </tr>
+    <tr>
+      <td>포트 불일치</td>
+      <td>listener.ora의 포트 확인 (기본 1521)</td>
+    </tr>
+    <tr>
+      <td>방화벽 차단</td>
+      <td>1521 포트 허용</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 리스너 상태 확인</span>
+lsnrctl status
+
+<span class="c"># 리스너 시작</span>
+lsnrctl start
+
+<span class="c"># 리스너에 서비스 강제 등록</span>
+sqlplus / as sysdba
+ALTER SYSTEM REGISTER<span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- tnsnames.ora 확인 ($ORACLE_HOME/network/admin/tnsnames.ora)
+XE =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVICE_NAME = XE)
+    )
+  )
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-ora-00942-table-or-view-does-not-exist">2. ORA-00942: table or view does not exist</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-00942: table or view does not exist
+</code></pre></div></div>
+
+<p>테이블이 존재하는데도 이 오류가 발생하는 경우가 많습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>원인</th>
+      <th>해결 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>다른 스키마의 테이블</td>
+      <td><code class="language-plaintext highlighter-rouge">스키마명.테이블명</code> 으로 접근</td>
+    </tr>
+    <tr>
+      <td>권한 부족</td>
+      <td><code class="language-plaintext highlighter-rouge">GRANT SELECT ON 스키마.테이블 TO 사용자</code></td>
+    </tr>
+    <tr>
+      <td>대소문자 문제</td>
+      <td>Oracle은 기본 대문자, 따옴표로 생성 시 대소문자 구분</td>
+    </tr>
+    <tr>
+      <td>시노님 미설정</td>
+      <td><code class="language-plaintext highlighter-rouge">CREATE SYNONYM</code> 생성</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 테이블 존재 확인</span>
+<span class="k">SELECT</span> <span class="k">owner</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">FROM</span> <span class="n">all_tables</span> <span class="k">WHERE</span> <span class="k">table_name</span> <span class="o">=</span> <span class="s1">'EMPLOYEES'</span><span class="p">;</span>
+
+<span class="c1">-- 다른 스키마 테이블 접근</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">hr</span><span class="p">.</span><span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 시노님 생성 (매번 스키마명 안 붙여도 됨)</span>
+<span class="k">CREATE</span> <span class="n">SYNONYM</span> <span class="n">employees</span> <span class="k">FOR</span> <span class="n">hr</span><span class="p">.</span><span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 대소문자 주의: 따옴표로 생성한 경우</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="nv">"myTable"</span> <span class="p">(</span><span class="n">id</span> <span class="n">NUMBER</span><span class="p">);</span>  <span class="c1">-- 소문자로 생성됨</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="nv">"myTable"</span><span class="p">;</span>             <span class="c1">-- 따옴표 필수</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">myTable</span><span class="p">;</span>               <span class="c1">-- ORA-00942 발생 (MYTABLE로 변환됨)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-ora-01017-invalid-usernamepassword-logon-denied">3. ORA-01017: invalid username/password; logon denied</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-01017: invalid username/password; logon denied
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>원인</th>
+      <th>해결 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>비밀번호 오류</td>
+      <td>비밀번호 재확인 (대소문자 구분)</td>
+    </tr>
+    <tr>
+      <td>계정 잠금</td>
+      <td><code class="language-plaintext highlighter-rouge">ALTER USER 사용자 ACCOUNT UNLOCK</code></td>
+    </tr>
+    <tr>
+      <td>비밀번호 만료</td>
+      <td><code class="language-plaintext highlighter-rouge">ALTER USER 사용자 IDENTIFIED BY 새비밀번호</code></td>
+    </tr>
+    <tr>
+      <td>OS 인증 문제</td>
+      <td><code class="language-plaintext highlighter-rouge">sqlplus / as sysdba</code> 시 OS 그룹 확인</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 계정 상태 확인</span>
+<span class="k">SELECT</span> <span class="n">username</span><span class="p">,</span> <span class="n">account_status</span><span class="p">,</span> <span class="n">lock_date</span><span class="p">,</span> <span class="n">expiry_date</span>
+<span class="k">FROM</span> <span class="n">dba_users</span> <span class="k">WHERE</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">'DEVUSER'</span><span class="p">;</span>
+
+<span class="c1">-- 계정 잠금 해제 + 비밀번호 변경</span>
+<span class="k">ALTER</span> <span class="k">USER</span> <span class="n">devuser</span> <span class="n">ACCOUNT</span> <span class="n">UNLOCK</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">USER</span> <span class="n">devuser</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="nv">"NewPass123!"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-ora-01653--ora-01654-unable-to-extend-tableindex">4. ORA-01653 / ORA-01654: unable to extend table/index</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-01653: unable to extend table DEVUSER.EMPLOYEES by 1024 in tablespace USERS
+</code></pre></div></div>
+
+<p>테이블스페이스의 공간이 부족할 때 발생합니다.</p>
+
+<h3 id="해결-방법">해결 방법</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 테이블스페이스 사용량 확인</span>
+<span class="k">SELECT</span> 
+    <span class="n">t</span><span class="p">.</span><span class="n">tablespace_name</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">total_mb</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_mb</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">total_mb</span> <span class="o">-</span> <span class="n">f</span><span class="p">.</span><span class="n">free_mb</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">used_mb</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">free_mb</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">free_mb</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">f</span><span class="p">.</span><span class="n">free_mb</span> <span class="o">/</span> <span class="n">t</span><span class="p">.</span><span class="n">total_mb</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">AS</span> <span class="n">used_pct</span>
+<span class="k">FROM</span> 
+    <span class="p">(</span><span class="k">SELECT</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span> <span class="k">AS</span> <span class="n">total_mb</span> <span class="k">FROM</span> <span class="n">dba_data_files</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">tablespace_name</span><span class="p">)</span> <span class="n">t</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span>
+    <span class="p">(</span><span class="k">SELECT</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span> <span class="k">AS</span> <span class="n">free_mb</span> <span class="k">FROM</span> <span class="n">dba_free_space</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">tablespace_name</span><span class="p">)</span> <span class="n">f</span>
+<span class="k">ON</span> <span class="n">t</span><span class="p">.</span><span class="n">tablespace_name</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">tablespace_name</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">used_pct</span> <span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- 방법 1: 데이터파일 자동 확장 활성화</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">DATAFILE</span> <span class="s1">'/opt/oracle/oradata/XE/users01.dbf'</span> <span class="n">AUTOEXTEND</span> <span class="k">ON</span> <span class="k">NEXT</span> <span class="mi">100</span><span class="n">M</span> <span class="n">MAXSIZE</span> <span class="mi">10</span><span class="k">G</span><span class="p">;</span>
+
+<span class="c1">-- 방법 2: 데이터파일 추가</span>
+<span class="k">ALTER</span> <span class="n">TABLESPACE</span> <span class="n">users</span> <span class="k">ADD</span> <span class="n">DATAFILE</span> <span class="s1">'/opt/oracle/oradata/XE/users02.dbf'</span> <span class="k">SIZE</span> <span class="mi">1</span><span class="k">G</span> <span class="n">AUTOEXTEND</span> <span class="k">ON</span><span class="p">;</span>
+
+<span class="c1">-- 방법 3: 데이터파일 크기 수동 확장</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">DATAFILE</span> <span class="s1">'/opt/oracle/oradata/XE/users01.dbf'</span> <span class="n">RESIZE</span> <span class="mi">5</span><span class="k">G</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-ora-01555-snapshot-too-old">5. ORA-01555: snapshot too old</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-01555: snapshot too old: rollback segment number ... with name "..." too small
+</code></pre></div></div>
+
+<p>장시간 실행되는 쿼리가 Undo 데이터를 읽으려 할 때, 이미 덮어씌워진 경우 발생합니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>원인</th>
+      <th>해결 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Undo Tablespace 부족</td>
+      <td>Undo 테이블스페이스 크기 증가</td>
+    </tr>
+    <tr>
+      <td>UNDO_RETENTION 짧음</td>
+      <td><code class="language-plaintext highlighter-rouge">ALTER SYSTEM SET undo_retention = 3600</code></td>
+    </tr>
+    <tr>
+      <td>쿼리 실행 시간이 너무 김</td>
+      <td>쿼리 최적화, 배치 분할</td>
+    </tr>
+    <tr>
+      <td>COMMIT이 너무 잦음</td>
+      <td>대량 처리 시 적절한 COMMIT 간격</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- Undo 설정 확인</span>
+<span class="k">SHOW</span> <span class="k">PARAMETER</span> <span class="n">undo</span><span class="p">;</span>
+
+<span class="c1">-- Undo 보존 시간 증가</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">undo_retention</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">;</span>  <span class="c1">-- 1시간</span>
+
+<span class="c1">-- Undo Tablespace 크기 확인</span>
+<span class="k">SELECT</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span> <span class="k">AS</span> <span class="n">size_mb</span>
+<span class="k">FROM</span> <span class="n">dba_data_files</span> <span class="k">WHERE</span> <span class="n">tablespace_name</span> <span class="k">LIKE</span> <span class="s1">'UNDO%'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">tablespace_name</span><span class="p">;</span>
+
+<span class="c1">-- Undo Tablespace 확장</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">DATAFILE</span> <span class="s1">'/opt/oracle/oradata/XE/undotbs01.dbf'</span> <span class="n">RESIZE</span> <span class="mi">5</span><span class="k">G</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-ora-04031-unable-to-allocate-shared-memory">6. ORA-04031: unable to allocate shared memory</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-04031: unable to allocate ... bytes of shared memory
+</code></pre></div></div>
+
+<p>Shared Pool 메모리가 부족할 때 발생합니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>원인</th>
+      <th>해결 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Shared Pool 크기 부족</td>
+      <td><code class="language-plaintext highlighter-rouge">ALTER SYSTEM SET shared_pool_size = 1G</code></td>
+    </tr>
+    <tr>
+      <td>리터럴 SQL 과다 사용</td>
+      <td>바인드 변수 사용으로 전환</td>
+    </tr>
+    <tr>
+      <td>하드 파싱 과다</td>
+      <td><code class="language-plaintext highlighter-rouge">CURSOR_SHARING = FORCE</code> (임시 방편)</td>
+    </tr>
+    <tr>
+      <td>메모리 단편화</td>
+      <td>Shared Pool 플러시 (비상 시)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- Shared Pool 사용량 확인</span>
+<span class="k">SELECT</span> <span class="n">pool</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bytes</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span> <span class="k">AS</span> <span class="n">mb</span>
+<span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="n">sgastat</span>
+<span class="k">WHERE</span> <span class="n">pool</span> <span class="o">=</span> <span class="s1">'shared pool'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">bytes</span> <span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- 비상 시 Shared Pool 플러시 (운영 중 주의)</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="n">FLUSH</span> <span class="n">SHARED_POOL</span><span class="p">;</span>
+
+<span class="c1">-- 바인드 변수 강제 (임시 방편, 부작용 가능)</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">cursor_sharing</span> <span class="o">=</span> <span class="k">FORCE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-ora-00060-deadlock-detected">7. ORA-00060: deadlock detected</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-00060: deadlock detected while waiting for resource
+</code></pre></div></div>
+
+<p>두 세션이 서로의 락을 기다리는 교착 상태입니다.</p>
+
+<h3 id="원인-분석">원인 분석</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Alert 로그에서 데드락 트레이스 파일 경로 확인</span>
+<span class="c"># $ORACLE_BASE/diag/rdbms/&lt;db&gt;/&lt;instance&gt;/trace/</span>
+
+<span class="c"># 트레이스 파일에 데드락 그래프가 기록됨</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 락 대기 확인</span>
+<span class="k">SELECT</span> 
+    <span class="n">s1</span><span class="p">.</span><span class="n">username</span> <span class="k">AS</span> <span class="n">blocker</span><span class="p">,</span> <span class="n">s1</span><span class="p">.</span><span class="n">sid</span> <span class="k">AS</span> <span class="n">blocker_sid</span><span class="p">,</span>
+    <span class="n">s2</span><span class="p">.</span><span class="n">username</span> <span class="k">AS</span> <span class="n">waiter</span><span class="p">,</span> <span class="n">s2</span><span class="p">.</span><span class="n">sid</span> <span class="k">AS</span> <span class="n">waiter_sid</span><span class="p">,</span>
+    <span class="n">s2</span><span class="p">.</span><span class="n">event</span>
+<span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="k">lock</span> <span class="n">l1</span>
+<span class="k">JOIN</span> <span class="n">v</span><span class="err">$</span><span class="k">session</span> <span class="n">s1</span> <span class="k">ON</span> <span class="n">l1</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s1</span><span class="p">.</span><span class="n">sid</span>
+<span class="k">JOIN</span> <span class="n">v</span><span class="err">$</span><span class="k">lock</span> <span class="n">l2</span> <span class="k">ON</span> <span class="n">l1</span><span class="p">.</span><span class="n">id1</span> <span class="o">=</span> <span class="n">l2</span><span class="p">.</span><span class="n">id1</span> <span class="k">AND</span> <span class="n">l1</span><span class="p">.</span><span class="n">id2</span> <span class="o">=</span> <span class="n">l2</span><span class="p">.</span><span class="n">id2</span>
+<span class="k">JOIN</span> <span class="n">v</span><span class="err">$</span><span class="k">session</span> <span class="n">s2</span> <span class="k">ON</span> <span class="n">l2</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s2</span><span class="p">.</span><span class="n">sid</span>
+<span class="k">WHERE</span> <span class="n">l1</span><span class="p">.</span><span class="n">block</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="n">l2</span><span class="p">.</span><span class="n">request</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="예방">예방</h3>
+<ul>
+  <li>테이블/행 접근 순서 통일</li>
+  <li><code class="language-plaintext highlighter-rouge">SELECT FOR UPDATE NOWAIT</code> 사용</li>
+  <li>트랜잭션을 짧게 유지</li>
+  <li>적절한 인덱스 사용</li>
+</ul>
+
+<hr />
+
+<h2 id="8-ora-01000-maximum-open-cursors-exceeded">8. ORA-01000: maximum open cursors exceeded</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-01000: maximum open cursors exceeded
+</code></pre></div></div>
+
+<p>열린 커서 수가 <code class="language-plaintext highlighter-rouge">OPEN_CURSORS</code> 설정을 초과했을 때 발생합니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>원인</th>
+      <th>해결 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>커서 닫기 누락</td>
+      <td>애플리케이션에서 커서/Statement close() 확인</td>
+    </tr>
+    <tr>
+      <td>OPEN_CURSORS 부족</td>
+      <td><code class="language-plaintext highlighter-rouge">ALTER SYSTEM SET open_cursors = 1000</code></td>
+    </tr>
+    <tr>
+      <td>커서 누수</td>
+      <td>코드 리뷰로 누수 지점 확인</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 설정 확인</span>
+<span class="k">SHOW</span> <span class="k">PARAMETER</span> <span class="n">open_cursors</span><span class="p">;</span>
+
+<span class="c1">-- 세션별 열린 커서 수 확인</span>
+<span class="k">SELECT</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">username</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">open_cursors</span>
+<span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="n">open_cursor</span> <span class="n">o</span>
+<span class="k">JOIN</span> <span class="n">v</span><span class="err">$</span><span class="k">session</span> <span class="n">s</span> <span class="k">ON</span> <span class="n">o</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span>
+<span class="k">WHERE</span> <span class="n">s</span><span class="p">.</span><span class="k">type</span> <span class="o">=</span> <span class="s1">'USER'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">username</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">open_cursors</span> <span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- 설정 변경</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">open_cursors</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="9-ora-12899-value-too-large-for-column">9. ORA-12899: value too large for column</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-12899: value too large for column "DEVUSER"."EMPLOYEES"."NAME" (actual: 60, maximum: 50)
+</code></pre></div></div>
+
+<p>컬럼 크기보다 큰 데이터를 삽입하려 할 때 발생합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 컬럼 크기 확인</span>
+<span class="k">SELECT</span> <span class="k">column_name</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">data_length</span><span class="p">,</span> <span class="k">char_length</span><span class="p">,</span> <span class="n">char_used</span>
+<span class="k">FROM</span> <span class="n">user_tab_columns</span>
+<span class="k">WHERE</span> <span class="k">table_name</span> <span class="o">=</span> <span class="s1">'EMPLOYEES'</span> <span class="k">AND</span> <span class="k">column_name</span> <span class="o">=</span> <span class="s1">'NAME'</span><span class="p">;</span>
+
+<span class="c1">-- 컬럼 크기 확장</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">employees</span> <span class="k">MODIFY</span> <span class="p">(</span><span class="n">name</span> <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+
+<span class="c1">-- BYTE vs CHAR 확인</span>
+<span class="c1">-- VARCHAR2(50 BYTE): 50바이트 (한글 약 16자)</span>
+<span class="c1">-- VARCHAR2(50 CHAR): 50문자 (한글 50자)</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">employees</span> <span class="k">MODIFY</span> <span class="p">(</span><span class="n">name</span> <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">50</span> <span class="nb">CHAR</span><span class="p">));</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>한글 환경에서는 <code class="language-plaintext highlighter-rouge">VARCHAR2(50 CHAR)</code> 형태로 CHAR 단위를 명시하는 것이 안전합니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="10-ora-28000-the-account-is-locked">10. ORA-28000: the account is locked</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-28000: the account is locked
+</code></pre></div></div>
+
+<p>비밀번호 입력 실패 횟수 초과 또는 수동 잠금 시 발생합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 계정 상태 확인</span>
+<span class="k">SELECT</span> <span class="n">username</span><span class="p">,</span> <span class="n">account_status</span><span class="p">,</span> <span class="n">lock_date</span>
+<span class="k">FROM</span> <span class="n">dba_users</span> <span class="k">WHERE</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">'DEVUSER'</span><span class="p">;</span>
+
+<span class="c1">-- 계정 잠금 해제</span>
+<span class="k">ALTER</span> <span class="k">USER</span> <span class="n">devuser</span> <span class="n">ACCOUNT</span> <span class="n">UNLOCK</span><span class="p">;</span>
+
+<span class="c1">-- 프로파일의 실패 허용 횟수 확인</span>
+<span class="k">SELECT</span> <span class="n">resource_name</span><span class="p">,</span> <span class="k">limit</span>
+<span class="k">FROM</span> <span class="n">dba_profiles</span>
+<span class="k">WHERE</span> <span class="n">profile</span> <span class="o">=</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">profile</span> <span class="k">FROM</span> <span class="n">dba_users</span> <span class="k">WHERE</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">'DEVUSER'</span><span class="p">)</span>
+  <span class="k">AND</span> <span class="n">resource_name</span> <span class="o">=</span> <span class="s1">'FAILED_LOGIN_ATTEMPTS'</span><span class="p">;</span>
+
+<span class="c1">-- 실패 허용 횟수 변경</span>
+<span class="k">ALTER</span> <span class="n">PROFILE</span> <span class="k">DEFAULT</span> <span class="k">LIMIT</span> <span class="n">FAILED_LOGIN_ATTEMPTS</span> <span class="n">UNLIMITED</span><span class="p">;</span>
+<span class="c1">-- 또는 적절한 값으로</span>
+<span class="k">ALTER</span> <span class="n">PROFILE</span> <span class="k">DEFAULT</span> <span class="k">LIMIT</span> <span class="n">FAILED_LOGIN_ATTEMPTS</span> <span class="mi">10</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="11-ora-01691-unable-to-extend-lob-segment">11. ORA-01691: unable to extend lob segment</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-01691: unable to extend lob segment DEVUSER.SYS_LOB... in tablespace USERS
+</code></pre></div></div>
+
+<p>LOB(CLOB, BLOB) 데이터가 저장되는 테이블스페이스 공간 부족입니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- LOB 세그먼트 크기 확인</span>
+<span class="k">SELECT</span> <span class="n">l</span><span class="p">.</span><span class="k">table_name</span><span class="p">,</span> <span class="n">l</span><span class="p">.</span><span class="k">column_name</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">segment_name</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">bytes</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">size_mb</span>
+<span class="k">FROM</span> <span class="n">user_lobs</span> <span class="n">l</span>
+<span class="k">JOIN</span> <span class="n">user_segments</span> <span class="n">s</span> <span class="k">ON</span> <span class="n">l</span><span class="p">.</span><span class="n">segment_name</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">segment_name</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">s</span><span class="p">.</span><span class="n">bytes</span> <span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- 테이블스페이스 확장 (ORA-01653과 동일한 방법)</span>
+<span class="k">ALTER</span> <span class="n">TABLESPACE</span> <span class="n">users</span> <span class="k">ADD</span> <span class="n">DATAFILE</span> <span class="s1">'/opt/oracle/oradata/XE/users03.dbf'</span> <span class="k">SIZE</span> <span class="mi">1</span><span class="k">G</span> <span class="n">AUTOEXTEND</span> <span class="k">ON</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="12-성능-저하-갑자기-느려진-쿼리">12. 성능 저하: 갑자기 느려진 쿼리</h2>
+
+<h3 id="점검-체크리스트">점검 체크리스트</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">순서</th>
+      <th>점검 항목</th>
+      <th>확인 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td>현재 활성 세션 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">SELECT * FROM v$session WHERE status = 'ACTIVE'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td>락 대기 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">v$lock</code>, <code class="language-plaintext highlighter-rouge">v$locked_object</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td>실행 계획 변경 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">EXPLAIN PLAN</code> 재확인</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td>통계 정보 갱신</td>
+      <td><code class="language-plaintext highlighter-rouge">DBMS_STATS.GATHER_TABLE_STATS</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td>Undo/Temp 사용량</td>
+      <td><code class="language-plaintext highlighter-rouge">v$undostat</code>, <code class="language-plaintext highlighter-rouge">v$tempseg_usage</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td>I/O 대기</td>
+      <td><code class="language-plaintext highlighter-rouge">v$session_wait</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td>AWR 리포트 비교</td>
+      <td>정상 시점 vs 현재 비교</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 대기 이벤트 확인</span>
+<span class="k">SELECT</span> <span class="n">event</span><span class="p">,</span> <span class="n">wait_class</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">sessions</span>
+<span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="k">session</span>
+<span class="k">WHERE</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'ACTIVE'</span> <span class="k">AND</span> <span class="k">type</span> <span class="o">=</span> <span class="s1">'USER'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">event</span><span class="p">,</span> <span class="n">wait_class</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">sessions</span> <span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- 통계 갱신 (실행 계획이 갑자기 바뀐 경우)</span>
+<span class="k">EXEC</span> <span class="n">DBMS_STATS</span><span class="p">.</span><span class="n">GATHER_TABLE_STATS</span><span class="p">(</span><span class="s1">'DEVUSER'</span><span class="p">,</span> <span class="s1">'EMPLOYEES'</span><span class="p">,</span> <span class="k">CASCADE</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">);</span>
+
+<span class="c1">-- SQL Plan Baseline으로 실행 계획 고정 (좋은 실행 계획을 알고 있을 때)</span>
+<span class="k">DECLARE</span>
+    <span class="n">v_plans</span> <span class="n">PLS_INTEGER</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="n">v_plans</span> <span class="p">:</span><span class="o">=</span> <span class="n">DBMS_SPM</span><span class="p">.</span><span class="n">LOAD_PLANS_FROM_CURSOR_CACHE</span><span class="p">(</span><span class="n">sql_id</span> <span class="o">=&gt;</span> <span class="s1">'abc123def456'</span><span class="p">);</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="13-ora-04068-existing-state-of-packages-has-been-discarded">13. ORA-04068: existing state of packages has been discarded</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORA-04068: existing state of packages has been discarded
+</code></pre></div></div>
+
+<p>패키지가 재컴파일되어 기존 세션의 패키지 상태가 무효화된 경우입니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 무효 객체 확인</span>
+<span class="k">SELECT</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">object_type</span><span class="p">,</span> <span class="n">status</span>
+<span class="k">FROM</span> <span class="n">user_objects</span>
+<span class="k">WHERE</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'INVALID'</span><span class="p">;</span>
+
+<span class="c1">-- 무효 객체 재컴파일</span>
+<span class="k">ALTER</span> <span class="n">PACKAGE</span> <span class="n">pkg_employee</span> <span class="n">COMPILE</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="n">PACKAGE</span> <span class="n">pkg_employee</span> <span class="n">COMPILE</span> <span class="n">BODY</span><span class="p">;</span>
+
+<span class="c1">-- 전체 무효 객체 재컴파일</span>
+<span class="o">@</span><span class="err">$</span><span class="n">ORACLE_HOME</span><span class="o">/</span><span class="n">rdbms</span><span class="o">/</span><span class="k">admin</span><span class="o">/</span><span class="n">utlrp</span><span class="p">.</span><span class="k">sql</span>
+
+<span class="c1">-- 또는 PL/SQL로</span>
+<span class="k">EXEC</span> <span class="n">DBMS_UTILITY</span><span class="p">.</span><span class="n">COMPILE_SCHEMA</span><span class="p">(</span><span class="s1">'DEVUSER'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="트러블슈팅-필수-명령어-요약">트러블슈팅 필수 명령어 요약</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 인스턴스 상태</span>
+<span class="k">SELECT</span> <span class="n">instance_name</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">database_status</span> <span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="n">instance</span><span class="p">;</span>
+
+<span class="c1">-- 현재 세션/프로세스</span>
+<span class="k">SELECT</span> <span class="n">sid</span><span class="p">,</span> <span class="nb">serial</span><span class="o">#</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">sql_id</span> <span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="k">session</span> <span class="k">WHERE</span> <span class="k">type</span> <span class="o">=</span> <span class="s1">'USER'</span><span class="p">;</span>
+
+<span class="c1">-- 락 확인</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="n">locked_object</span><span class="p">;</span>
+
+<span class="c1">-- Alert 로그 위치</span>
+<span class="k">SELECT</span> <span class="n">value</span> <span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="n">diag_info</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'Diag Trace'</span><span class="p">;</span>
+
+<span class="c1">-- 테이블스페이스 사용량</span>
+<span class="k">SELECT</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_mb</span>
+<span class="k">FROM</span> <span class="n">dba_data_files</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">tablespace_name</span><span class="p">;</span>
+
+<span class="c1">-- 무효 객체</span>
+<span class="k">SELECT</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">object_type</span> <span class="k">FROM</span> <span class="n">user_objects</span> <span class="k">WHERE</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'INVALID'</span><span class="p">;</span>
+
+<span class="c1">-- 세션 강제 종료</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="n">KILL</span> <span class="k">SESSION</span> <span class="s1">'sid,serial#'</span> <span class="k">IMMEDIATE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (oracle &gt; lecture-oracle)</span></p>
+<ul>
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup &amp; Recovery)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-10-user-privilege/">[Oracle] 10. 사용자 관리와 권한 (User &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-09-plsql/">[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-08-transaction/">[Oracle] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-07-index/">[Oracle] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-06-function/">[Oracle] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-05-subquery/">[Oracle] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-04-join/">[Oracle] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-03-crud/">[Oracle] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-02-database-table/">[Oracle] 02. 테이블스페이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-01-intro/">[Oracle] 01. Oracle DB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-oracle" class="page__taxonomy-item p-category" rel="tag">lecture-oracle</a><span class="sep">, </span>
+    
+      <a href="/tags/#oracle" class="page__taxonomy-item p-category" rel="tag">oracle</a><span class="sep">, </span>
+    
+      <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">oracle강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">고급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#oracle" class="page__taxonomy-item p-category" rel="tag">oracle</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BOracle%5D+13.+%EC%9E%90%EC%A3%BC+%EB%B0%9C%EC%83%9D%ED%95%98%EB%8A%94+Troubleshooting%20https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-13-troubleshooting%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-13-troubleshooting%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-13-troubleshooting%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/oracle/oracle-12-tuning/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+    
+    
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-10-user-privilege/">[Oracle] 10. 사용자 관리와 권한 (User & Privilege)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

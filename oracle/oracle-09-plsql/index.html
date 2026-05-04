@@ -1,0 +1,1836 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거 | 꿰보노트</title>
+<meta name="description" content="Oracle의 PL/SQL 기초, 뷰, 스토어드 프로시저, 함수, 패키지, 트리거를 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거">
+<meta property="og:url" content="https://kimjaehyun.co.kr/oracle/oracle-09-plsql/">
+
+
+  <meta property="og:description" content="Oracle의 PL/SQL 기초, 뷰, 스토어드 프로시저, 함수, 패키지, 트리거를 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/oracle/oracle-09-plsql/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#oracle" itemprop="item"><span itemprop="name">Oracle</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거">
+    <meta itemprop="description" content="Oracle의 PL/SQL 기초, 뷰, 스토어드 프로시저, 함수, 패키지, 트리거를 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/oracle/oracle-09-plsql/" class="u-url" itemprop="url">[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#plsql-기초">PL/SQL 기초</a><ul><li><a href="#기본-구조">기본 구조</a></li><li><a href="#변수와-타입">변수와 타입</a></li><li><a href="#조건문">조건문</a></li><li><a href="#반복문">반복문</a></li><li><a href="#커서-cursor">커서 (Cursor)</a></li></ul></li><li><a href="#뷰-view">뷰 (View)</a></li><li><a href="#스토어드-프로시저-stored-procedure">스토어드 프로시저 (Stored Procedure)</a><ul><li><a href="#out-파라미터">OUT 파라미터</a></li><li><a href="#예외-처리가-포함된-프로시저">예외 처리가 포함된 프로시저</a></li></ul></li><li><a href="#사용자-정의-함수-function">사용자 정의 함수 (Function)</a></li><li><a href="#패키지-package---oracle-전용">패키지 (Package) - Oracle 전용</a></li><li><a href="#트리거-trigger">트리거 (Trigger)</a><ul><li><a href="#트리거-타이밍">트리거 타이밍</a></li><li><a href="#트리거-관리">트리거 관리</a></li></ul></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Oracle의 PL/SQL 기초, 뷰, 스토어드 프로시저, 함수, 패키지, 트리거를 정리합니다.</p>
+
+<h1 id="plsql-기초">PL/SQL 기초</h1>
+
+<p>PL/SQL(Procedural Language/SQL)은 Oracle의 절차적 확장 언어입니다.  <br />
+SQL에 변수, 조건문, 반복문, 예외 처리 등 프로그래밍 기능을 추가합니다.</p>
+
+<h3 id="기본-구조">기본 구조</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DECLARE</span>
+    <span class="c1">-- 변수 선언부</span>
+    <span class="n">v_name</span> <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+    <span class="n">v_salary</span> <span class="n">NUMBER</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">BEGIN</span>
+    <span class="c1">-- 실행부</span>
+    <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="k">INTO</span> <span class="n">v_name</span><span class="p">,</span> <span class="n">v_salary</span>
+    <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    
+    <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'이름: '</span> <span class="o">||</span> <span class="n">v_name</span> <span class="o">||</span> <span class="s1">', 급여: '</span> <span class="o">||</span> <span class="n">v_salary</span><span class="p">);</span>
+<span class="n">EXCEPTION</span>
+    <span class="c1">-- 예외 처리부</span>
+    <span class="k">WHEN</span> <span class="n">NO_DATA_FOUND</span> <span class="k">THEN</span>
+        <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'데이터가 없습니다.'</span><span class="p">);</span>
+    <span class="k">WHEN</span> <span class="n">OTHERS</span> <span class="k">THEN</span>
+        <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'오류: '</span> <span class="o">||</span> <span class="n">SQLERRM</span><span class="p">);</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">DBMS_OUTPUT.PUT_LINE</code> 출력을 보려면 <code class="language-plaintext highlighter-rouge">SET SERVEROUTPUT ON</code>을 먼저 실행하세요.</p>
+</blockquote>
+
+<h3 id="변수와-타입">변수와 타입</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DECLARE</span>
+    <span class="n">v_id</span>        <span class="n">NUMBER</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">v_name</span>      <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="p">:</span><span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>       <span class="c1">-- 초기값 설정</span>
+    <span class="n">v_salary</span>    <span class="n">NUMBER</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">;</span>         <span class="c1">-- DEFAULT 사용</span>
+    <span class="n">v_hire_date</span> <span class="nb">DATE</span> <span class="p">:</span><span class="o">=</span> <span class="n">SYSDATE</span><span class="p">;</span>
+    <span class="n">v_is_active</span> <span class="nb">BOOLEAN</span> <span class="p">:</span><span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>                <span class="c1">-- PL/SQL에서만 사용 가능</span>
+    
+    <span class="c1">-- %TYPE: 테이블 컬럼과 동일한 타입</span>
+    <span class="n">v_emp_name</span>  <span class="n">employees</span><span class="p">.</span><span class="n">name</span><span class="o">%</span><span class="k">TYPE</span><span class="p">;</span>
+    
+    <span class="c1">-- %ROWTYPE: 테이블 행 전체 타입</span>
+    <span class="n">v_emp_row</span>   <span class="n">employees</span><span class="o">%</span><span class="n">ROWTYPE</span><span class="p">;</span>
+    
+    <span class="c1">-- 상수</span>
+    <span class="n">c_tax_rate</span>  <span class="n">CONSTANT</span> <span class="n">NUMBER</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">033</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">INTO</span> <span class="n">v_emp_row</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="n">v_emp_row</span><span class="p">.</span><span class="n">name</span> <span class="o">||</span> <span class="s1">': '</span> <span class="o">||</span> <span class="n">v_emp_row</span><span class="p">.</span><span class="n">salary</span><span class="p">);</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<h3 id="조건문">조건문</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DECLARE</span>
+    <span class="n">v_salary</span> <span class="n">NUMBER</span> <span class="p">:</span><span class="o">=</span> <span class="mi">5500000</span><span class="p">;</span>
+    <span class="n">v_grade</span>  <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="k">BEGIN</span>
+    <span class="c1">-- IF-ELSIF-ELSE</span>
+    <span class="n">IF</span> <span class="n">v_salary</span> <span class="o">&gt;=</span> <span class="mi">7000000</span> <span class="k">THEN</span>
+        <span class="n">v_grade</span> <span class="p">:</span><span class="o">=</span> <span class="s1">'S'</span><span class="p">;</span>
+    <span class="n">ELSIF</span> <span class="n">v_salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span> <span class="k">THEN</span>
+        <span class="n">v_grade</span> <span class="p">:</span><span class="o">=</span> <span class="s1">'A'</span><span class="p">;</span>
+    <span class="n">ELSIF</span> <span class="n">v_salary</span> <span class="o">&gt;=</span> <span class="mi">3000000</span> <span class="k">THEN</span>
+        <span class="n">v_grade</span> <span class="p">:</span><span class="o">=</span> <span class="s1">'B'</span><span class="p">;</span>
+    <span class="k">ELSE</span>
+        <span class="n">v_grade</span> <span class="p">:</span><span class="o">=</span> <span class="s1">'C'</span><span class="p">;</span>
+    <span class="k">END</span> <span class="n">IF</span><span class="p">;</span>
+    
+    <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'등급: '</span> <span class="o">||</span> <span class="n">v_grade</span><span class="p">);</span>
+    
+    <span class="c1">-- CASE</span>
+    <span class="n">v_grade</span> <span class="p">:</span><span class="o">=</span> <span class="k">CASE</span>
+        <span class="k">WHEN</span> <span class="n">v_salary</span> <span class="o">&gt;=</span> <span class="mi">7000000</span> <span class="k">THEN</span> <span class="s1">'S'</span>
+        <span class="k">WHEN</span> <span class="n">v_salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span> <span class="k">THEN</span> <span class="s1">'A'</span>
+        <span class="k">ELSE</span> <span class="s1">'B'</span>
+    <span class="k">END</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<h3 id="반복문">반복문</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DECLARE</span>
+    <span class="n">v_sum</span> <span class="n">NUMBER</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="c1">-- 기본 LOOP</span>
+    <span class="n">LOOP</span>
+        <span class="n">v_sum</span> <span class="p">:</span><span class="o">=</span> <span class="n">v_sum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">EXIT</span> <span class="k">WHEN</span> <span class="n">v_sum</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+    
+    <span class="c1">-- WHILE LOOP</span>
+    <span class="n">v_sum</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">WHILE</span> <span class="n">v_sum</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="n">LOOP</span>
+        <span class="n">v_sum</span> <span class="p">:</span><span class="o">=</span> <span class="n">v_sum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+    
+    <span class="c1">-- FOR LOOP</span>
+    <span class="n">v_sum</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">FOR</span> <span class="n">i</span> <span class="k">IN</span> <span class="mi">1</span><span class="p">..</span><span class="mi">10</span> <span class="n">LOOP</span>
+        <span class="n">v_sum</span> <span class="p">:</span><span class="o">=</span> <span class="n">v_sum</span> <span class="o">+</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+    <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'합계: '</span> <span class="o">||</span> <span class="n">v_sum</span><span class="p">);</span>  <span class="c1">-- 55</span>
+    
+    <span class="c1">-- 역순 FOR LOOP</span>
+    <span class="k">FOR</span> <span class="n">i</span> <span class="k">IN</span> <span class="n">REVERSE</span> <span class="mi">1</span><span class="p">..</span><span class="mi">10</span> <span class="n">LOOP</span>
+        <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<h3 id="커서-cursor">커서 (Cursor)</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DECLARE</span>
+    <span class="c1">-- 명시적 커서</span>
+    <span class="k">CURSOR</span> <span class="n">c_emp</span> <span class="k">IS</span>
+        <span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">v_emp</span> <span class="n">c_emp</span><span class="o">%</span><span class="n">ROWTYPE</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">OPEN</span> <span class="n">c_emp</span><span class="p">;</span>
+    <span class="n">LOOP</span>
+        <span class="k">FETCH</span> <span class="n">c_emp</span> <span class="k">INTO</span> <span class="n">v_emp</span><span class="p">;</span>
+        <span class="n">EXIT</span> <span class="k">WHEN</span> <span class="n">c_emp</span><span class="o">%</span><span class="n">NOTFOUND</span><span class="p">;</span>
+        <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="n">v_emp</span><span class="p">.</span><span class="n">name</span> <span class="o">||</span> <span class="s1">': '</span> <span class="o">||</span> <span class="n">v_emp</span><span class="p">.</span><span class="n">salary</span><span class="p">);</span>
+    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+    <span class="k">CLOSE</span> <span class="n">c_emp</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+
+<span class="c1">-- FOR LOOP 커서 (더 간결)</span>
+<span class="k">BEGIN</span>
+    <span class="k">FOR</span> <span class="n">rec</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">LOOP</span>
+        <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="n">rec</span><span class="p">.</span><span class="n">name</span> <span class="o">||</span> <span class="s1">': '</span> <span class="o">||</span> <span class="n">rec</span><span class="p">.</span><span class="n">salary</span><span class="p">);</span>
+    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="뷰-view">뷰 (View)</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 뷰 생성</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">VIEW</span> <span class="n">v_emp_dept</span> <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span> <span class="k">AS</span> <span class="n">dept_name</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">salary</span>
+<span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">departments</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+
+<span class="c1">-- 뷰 사용</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">v_emp_dept</span> <span class="k">WHERE</span> <span class="n">dept_name</span> <span class="o">=</span> <span class="s1">'개발팀'</span><span class="p">;</span>
+
+<span class="c1">-- 읽기 전용 뷰</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">VIEW</span> <span class="n">v_emp_public</span> <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="n">hire_date</span> <span class="k">FROM</span> <span class="n">employees</span>
+<span class="k">WITH</span> <span class="k">READ</span> <span class="k">ONLY</span><span class="p">;</span>
+
+<span class="c1">-- 뷰 삭제</span>
+<span class="k">DROP</span> <span class="k">VIEW</span> <span class="n">v_emp_dept</span><span class="p">;</span>
+
+<span class="c1">-- 뷰 목록</span>
+<span class="k">SELECT</span> <span class="n">view_name</span> <span class="k">FROM</span> <span class="n">user_views</span><span class="p">;</span>
+
+<span class="c1">-- 뷰 DDL 확인</span>
+<span class="k">SELECT</span> <span class="nb">text</span> <span class="k">FROM</span> <span class="n">user_views</span> <span class="k">WHERE</span> <span class="n">view_name</span> <span class="o">=</span> <span class="s1">'V_EMP_DEPT'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="스토어드-프로시저-stored-procedure">스토어드 프로시저 (Stored Procedure)</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 기본 프로시저</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">PROCEDURE</span> <span class="n">sp_get_emp_by_dept</span> <span class="p">(</span>
+    <span class="n">p_dept_id</span> <span class="k">IN</span> <span class="n">NUMBER</span>
+<span class="p">)</span>
+<span class="k">IS</span>
+    <span class="k">CURSOR</span> <span class="n">c_emp</span> <span class="k">IS</span>
+        <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="n">p_dept_id</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">FOR</span> <span class="n">rec</span> <span class="k">IN</span> <span class="n">c_emp</span> <span class="n">LOOP</span>
+        <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="n">rec</span><span class="p">.</span><span class="n">name</span> <span class="o">||</span> <span class="s1">': '</span> <span class="o">||</span> <span class="n">rec</span><span class="p">.</span><span class="n">salary</span><span class="p">);</span>
+    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+
+<span class="c1">-- 프로시저 호출</span>
+<span class="k">EXEC</span> <span class="n">sp_get_emp_by_dept</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="c1">-- 또는</span>
+<span class="k">BEGIN</span>
+    <span class="n">sp_get_emp_by_dept</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<h3 id="out-파라미터">OUT 파라미터</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">PROCEDURE</span> <span class="n">sp_get_dept_stats</span> <span class="p">(</span>
+    <span class="n">p_dept_id</span>    <span class="k">IN</span>  <span class="n">NUMBER</span><span class="p">,</span>
+    <span class="n">p_count</span>      <span class="k">OUT</span> <span class="n">NUMBER</span><span class="p">,</span>
+    <span class="n">p_avg_salary</span> <span class="k">OUT</span> <span class="n">NUMBER</span>
+<span class="p">)</span>
+<span class="k">IS</span>
+<span class="k">BEGIN</span>
+    <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span>
+    <span class="k">INTO</span> <span class="n">p_count</span><span class="p">,</span> <span class="n">p_avg_salary</span>
+    <span class="k">FROM</span> <span class="n">employees</span>
+    <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="n">p_dept_id</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+
+<span class="c1">-- 호출</span>
+<span class="k">DECLARE</span>
+    <span class="n">v_count</span> <span class="n">NUMBER</span><span class="p">;</span>
+    <span class="n">v_avg</span>   <span class="n">NUMBER</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="n">sp_get_dept_stats</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">v_count</span><span class="p">,</span> <span class="n">v_avg</span><span class="p">);</span>
+    <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'인원: '</span> <span class="o">||</span> <span class="n">v_count</span> <span class="o">||</span> <span class="s1">', 평균급여: '</span> <span class="o">||</span> <span class="n">v_avg</span><span class="p">);</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<h3 id="예외-처리가-포함된-프로시저">예외 처리가 포함된 프로시저</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">PROCEDURE</span> <span class="n">sp_update_salary</span> <span class="p">(</span>
+    <span class="n">p_emp_id</span>    <span class="k">IN</span> <span class="n">NUMBER</span><span class="p">,</span>
+    <span class="n">p_raise_pct</span> <span class="k">IN</span> <span class="n">NUMBER</span>
+<span class="p">)</span>
+<span class="k">IS</span>
+    <span class="n">v_current_salary</span> <span class="n">NUMBER</span><span class="p">;</span>
+    <span class="n">e_invalid_raise</span> <span class="n">EXCEPTION</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">SELECT</span> <span class="n">salary</span> <span class="k">INTO</span> <span class="n">v_current_salary</span>
+    <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_emp_id</span><span class="p">;</span>
+    
+    <span class="n">IF</span> <span class="n">p_raise_pct</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="k">THEN</span>
+        <span class="n">RAISE</span> <span class="n">e_invalid_raise</span><span class="p">;</span>
+    <span class="k">END</span> <span class="n">IF</span><span class="p">;</span>
+    
+    <span class="k">UPDATE</span> <span class="n">employees</span>
+    <span class="k">SET</span> <span class="n">salary</span> <span class="o">=</span> <span class="n">v_current_salary</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">p_raise_pct</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_emp_id</span><span class="p">;</span>
+    
+    <span class="k">COMMIT</span><span class="p">;</span>
+    <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'급여 변경 완료'</span><span class="p">);</span>
+    
+<span class="n">EXCEPTION</span>
+    <span class="k">WHEN</span> <span class="n">NO_DATA_FOUND</span> <span class="k">THEN</span>
+        <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'직원을 찾을 수 없습니다. ID: '</span> <span class="o">||</span> <span class="n">p_emp_id</span><span class="p">);</span>
+    <span class="k">WHEN</span> <span class="n">e_invalid_raise</span> <span class="k">THEN</span>
+        <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'인상률은 50%를 초과할 수 없습니다.'</span><span class="p">);</span>
+    <span class="k">WHEN</span> <span class="n">OTHERS</span> <span class="k">THEN</span>
+        <span class="k">ROLLBACK</span><span class="p">;</span>
+        <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">'오류 발생: '</span> <span class="o">||</span> <span class="n">SQLERRM</span><span class="p">);</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="사용자-정의-함수-function">사용자 정의 함수 (Function)</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">fn_salary_grade</span> <span class="p">(</span>
+    <span class="n">p_salary</span> <span class="n">NUMBER</span>
+<span class="p">)</span> <span class="k">RETURN</span> <span class="n">VARCHAR2</span>
+<span class="k">IS</span>
+    <span class="n">v_grade</span> <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="k">BEGIN</span>
+    <span class="n">v_grade</span> <span class="p">:</span><span class="o">=</span> <span class="k">CASE</span>
+        <span class="k">WHEN</span> <span class="n">p_salary</span> <span class="o">&gt;=</span> <span class="mi">7000000</span> <span class="k">THEN</span> <span class="s1">'S'</span>
+        <span class="k">WHEN</span> <span class="n">p_salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span> <span class="k">THEN</span> <span class="s1">'A'</span>
+        <span class="k">WHEN</span> <span class="n">p_salary</span> <span class="o">&gt;=</span> <span class="mi">3000000</span> <span class="k">THEN</span> <span class="s1">'B'</span>
+        <span class="k">ELSE</span> <span class="s1">'C'</span>
+    <span class="k">END</span><span class="p">;</span>
+    <span class="k">RETURN</span> <span class="n">v_grade</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+
+<span class="c1">-- SQL에서 사용</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span> <span class="n">fn_salary_grade</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="k">AS</span> <span class="err">등급</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="패키지-package---oracle-전용">패키지 (Package) - Oracle 전용</h2>
+
+<p>패키지는 관련된 프로시저, 함수, 변수, 커서 등을 하나로 묶는 Oracle 고유 기능입니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 패키지 명세 (인터페이스)</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="n">PACKAGE</span> <span class="n">pkg_employee</span>
+<span class="k">IS</span>
+    <span class="k">PROCEDURE</span> <span class="n">get_by_dept</span><span class="p">(</span><span class="n">p_dept_id</span> <span class="n">NUMBER</span><span class="p">);</span>
+    <span class="k">FUNCTION</span> <span class="n">get_grade</span><span class="p">(</span><span class="n">p_salary</span> <span class="n">NUMBER</span><span class="p">)</span> <span class="k">RETURN</span> <span class="n">VARCHAR2</span><span class="p">;</span>
+    <span class="k">PROCEDURE</span> <span class="n">update_salary</span><span class="p">(</span><span class="n">p_emp_id</span> <span class="n">NUMBER</span><span class="p">,</span> <span class="n">p_raise_pct</span> <span class="n">NUMBER</span><span class="p">);</span>
+<span class="k">END</span> <span class="n">pkg_employee</span><span class="p">;</span>
+<span class="o">/</span>
+
+<span class="c1">-- 패키지 본문 (구현)</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="n">PACKAGE</span> <span class="n">BODY</span> <span class="n">pkg_employee</span>
+<span class="k">IS</span>
+    <span class="k">PROCEDURE</span> <span class="n">get_by_dept</span><span class="p">(</span><span class="n">p_dept_id</span> <span class="n">NUMBER</span><span class="p">)</span>
+    <span class="k">IS</span>
+    <span class="k">BEGIN</span>
+        <span class="k">FOR</span> <span class="n">rec</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="n">p_dept_id</span><span class="p">)</span> <span class="n">LOOP</span>
+            <span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="n">rec</span><span class="p">.</span><span class="n">name</span> <span class="o">||</span> <span class="s1">': '</span> <span class="o">||</span> <span class="n">rec</span><span class="p">.</span><span class="n">salary</span><span class="p">);</span>
+        <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+    <span class="k">END</span><span class="p">;</span>
+    
+    <span class="k">FUNCTION</span> <span class="n">get_grade</span><span class="p">(</span><span class="n">p_salary</span> <span class="n">NUMBER</span><span class="p">)</span> <span class="k">RETURN</span> <span class="n">VARCHAR2</span>
+    <span class="k">IS</span>
+    <span class="k">BEGIN</span>
+        <span class="k">RETURN</span> <span class="k">CASE</span>
+            <span class="k">WHEN</span> <span class="n">p_salary</span> <span class="o">&gt;=</span> <span class="mi">7000000</span> <span class="k">THEN</span> <span class="s1">'S'</span>
+            <span class="k">WHEN</span> <span class="n">p_salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span> <span class="k">THEN</span> <span class="s1">'A'</span>
+            <span class="k">ELSE</span> <span class="s1">'B'</span>
+        <span class="k">END</span><span class="p">;</span>
+    <span class="k">END</span><span class="p">;</span>
+    
+    <span class="k">PROCEDURE</span> <span class="n">update_salary</span><span class="p">(</span><span class="n">p_emp_id</span> <span class="n">NUMBER</span><span class="p">,</span> <span class="n">p_raise_pct</span> <span class="n">NUMBER</span><span class="p">)</span>
+    <span class="k">IS</span>
+    <span class="k">BEGIN</span>
+        <span class="k">UPDATE</span> <span class="n">employees</span> <span class="k">SET</span> <span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">p_raise_pct</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_emp_id</span><span class="p">;</span>
+        <span class="k">COMMIT</span><span class="p">;</span>
+    <span class="k">END</span><span class="p">;</span>
+<span class="k">END</span> <span class="n">pkg_employee</span><span class="p">;</span>
+<span class="o">/</span>
+
+<span class="c1">-- 패키지 사용</span>
+<span class="k">EXEC</span> <span class="n">pkg_employee</span><span class="p">.</span><span class="n">get_by_dept</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="n">pkg_employee</span><span class="p">.</span><span class="n">get_grade</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="트리거-trigger">트리거 (Trigger)</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 급여 변경 이력 테이블</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">salary_log</span> <span class="p">(</span>
+    <span class="n">id</span>          <span class="n">NUMBER</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="k">IDENTITY</span><span class="p">,</span>
+    <span class="n">emp_id</span>      <span class="n">NUMBER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">old_salary</span>  <span class="n">NUMBER</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">new_salary</span>  <span class="n">NUMBER</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">changed_by</span>  <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+    <span class="n">changed_at</span>  <span class="nb">TIMESTAMP</span> <span class="k">DEFAULT</span> <span class="n">SYSTIMESTAMP</span>
+<span class="p">);</span>
+
+<span class="c1">-- 트리거 생성</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TRIGGER</span> <span class="n">trg_salary_change</span>
+<span class="k">AFTER</span> <span class="k">UPDATE</span> <span class="k">OF</span> <span class="n">salary</span> <span class="k">ON</span> <span class="n">employees</span>
+<span class="k">FOR</span> <span class="k">EACH</span> <span class="k">ROW</span>
+<span class="k">BEGIN</span>
+    <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">salary_log</span> <span class="p">(</span><span class="n">emp_id</span><span class="p">,</span> <span class="n">old_salary</span><span class="p">,</span> <span class="n">new_salary</span><span class="p">,</span> <span class="n">changed_by</span><span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(:</span><span class="k">OLD</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="p">:</span><span class="k">OLD</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="p">:</span><span class="k">NEW</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="k">USER</span><span class="p">);</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="o">/</span>
+</code></pre></div></div>
+
+<h3 id="트리거-타이밍">트리거 타이밍</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>타이밍</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BEFORE INSERT</td>
+      <td>INSERT 전 (데이터 검증, 기본값 설정)</td>
+    </tr>
+    <tr>
+      <td>AFTER INSERT</td>
+      <td>INSERT 후 (로그 기록)</td>
+    </tr>
+    <tr>
+      <td>BEFORE UPDATE</td>
+      <td>UPDATE 전 (변경 전 검증)</td>
+    </tr>
+    <tr>
+      <td>AFTER UPDATE</td>
+      <td>UPDATE 후 (변경 이력 기록)</td>
+    </tr>
+    <tr>
+      <td>BEFORE DELETE</td>
+      <td>DELETE 전 (삭제 전 검증)</td>
+    </tr>
+    <tr>
+      <td>AFTER DELETE</td>
+      <td>DELETE 후 (삭제 이력 기록)</td>
+    </tr>
+    <tr>
+      <td>INSTEAD OF</td>
+      <td>뷰에 대한 DML을 대체 실행</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="트리거-관리">트리거 관리</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 트리거 목록</span>
+<span class="k">SELECT</span> <span class="k">trigger_name</span><span class="p">,</span> <span class="n">trigger_type</span><span class="p">,</span> <span class="n">triggering_event</span><span class="p">,</span> <span class="n">status</span>
+<span class="k">FROM</span> <span class="n">user_triggers</span><span class="p">;</span>
+
+<span class="c1">-- 트리거 비활성화 / 활성화</span>
+<span class="k">ALTER</span> <span class="k">TRIGGER</span> <span class="n">trg_salary_change</span> <span class="n">DISABLE</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">TRIGGER</span> <span class="n">trg_salary_change</span> <span class="n">ENABLE</span><span class="p">;</span>
+
+<span class="c1">-- 테이블의 모든 트리거 비활성화</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">employees</span> <span class="n">DISABLE</span> <span class="k">ALL</span> <span class="n">TRIGGERS</span><span class="p">;</span>
+
+<span class="c1">-- 트리거 삭제</span>
+<span class="k">DROP</span> <span class="k">TRIGGER</span> <span class="n">trg_salary_change</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (oracle &gt; lecture-oracle)</span></p>
+<ul>
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup &amp; Recovery)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-10-user-privilege/">[Oracle] 10. 사용자 관리와 권한 (User &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-09-plsql/">[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-08-transaction/">[Oracle] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-07-index/">[Oracle] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-06-function/">[Oracle] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-05-subquery/">[Oracle] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-04-join/">[Oracle] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-03-crud/">[Oracle] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-02-database-table/">[Oracle] 02. 테이블스페이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-01-intro/">[Oracle] 01. Oracle DB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-oracle" class="page__taxonomy-item p-category" rel="tag">lecture-oracle</a><span class="sep">, </span>
+    
+      <a href="/tags/#oracle" class="page__taxonomy-item p-category" rel="tag">oracle</a><span class="sep">, </span>
+    
+      <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">oracle강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#oracle" class="page__taxonomy-item p-category" rel="tag">oracle</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BOracle%5D+09.+PL%2FSQL%2C+%EB%B7%B0%2C+%ED%94%84%EB%A1%9C%EC%8B%9C%EC%A0%80%2C+%ED%8A%B8%EB%A6%AC%EA%B1%B0%20https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-09-plsql%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-09-plsql%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-09-plsql%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/oracle/oracle-08-transaction/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Oracle] 08. 트랜잭션과 락 (Transaction & Lock)</a>
+    
+    
+      <a href="/oracle/oracle-10-user-privilege/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Oracle] 10. 사용자 관리와 권한 (User & Privilege)</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

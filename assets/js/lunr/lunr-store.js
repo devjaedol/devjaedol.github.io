@@ -376,4 +376,172 @@ var store = [{
         "tags": ["NPM","node package manager"],
         "url": "/nodejs/npm/",
         "teaser": null
+      },{
+        "title": "Docker 명령어 #1",
+        "excerpt":"Docker 명령어 정리 (자주 사용하는 순) docker run 컨테이너를 생성하고 실행하는 가장 기본적인 명령어. 이미지가 로컬에 없으면 자동으로 pull한 뒤 실행한다. # 기본 실행 docker run nginx # 백그라운드 실행 (-d), 포트 매핑 (-p), 이름 지정 (--name) docker run -d -p 8080:80 --name my-nginx nginx # 환경변수 설정 (-e), 볼륨...","categories": ["etc"],
+        "tags": ["docker"],
+        "url": "/etc/docker-01/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 01. MySQL/MariaDB 소개 및 설치",
+        "excerpt":"MySQL과 MariaDB의 기본 개념과 설치 방법을 알아봅니다. MySQL vs MariaDB 항목 MySQL MariaDB 개발사 Oracle MariaDB Foundation 라이선스 GPL + 상용 이중 라이선스 GPL (완전 오픈소스) 기반 독자 개발 MySQL 5.5에서 포크 스토리지 엔진 InnoDB 기본 InnoDB, Aria, ColumnStore 등 호환성 - MySQL과 높은 호환성 JSON 지원 네이티브 JSON 타입...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","초급","lecture-mysql"],
+        "url": "/mysql/mysql-01-intro/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 02. 데이터베이스와 테이블 관리",
+        "excerpt":"데이터베이스와 테이블의 생성, 수정, 삭제 등 DDL(Data Definition Language) 명령어를 정리합니다. 데이터베이스 관리 데이터베이스 생성 -- 기본 생성 CREATE DATABASE mydb; -- 문자셋 지정 (권장) CREATE DATABASE mydb DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci; -- 이미 존재하면 무시 CREATE DATABASE IF NOT EXISTS mydb; 데이터베이스 조회 -- 전체 데이터베이스...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","초급","lecture-mysql"],
+        "url": "/mysql/mysql-02-database-table/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)",
+        "excerpt":"데이터 조작의 기본인 CRUD(Create, Read, Update, Delete) 명령어를 정리합니다. 샘플 테이블 준비 CREATE TABLE employees ( id INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL, dept VARCHAR(30), salary DECIMAL(10,2) DEFAULT 0, hire_date DATE, PRIMARY KEY (id) ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; INSERT (데이터 삽입) 기본 삽입 -- 전체 컬럼 지정 INSERT...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","초급","lecture-mysql"],
+        "url": "/mysql/mysql-03-crud/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 04. JOIN (테이블 결합)",
+        "excerpt":"여러 테이블을 결합하여 데이터를 조회하는 JOIN의 종류와 사용법을 정리합니다. 샘플 데이터 준비 CREATE TABLE departments ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30) NOT NULL ); CREATE TABLE employees ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50) NOT NULL, dept_id INT, salary DECIMAL(10,2), FOREIGN KEY (dept_id) REFERENCES departments(id) ); INSERT...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","중급","lecture-mysql"],
+        "url": "/mysql/mysql-04-join/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 05. 서브쿼리와 고급 SELECT",
+        "excerpt":"서브쿼리(Subquery)와 다양한 고급 SELECT 기법을 정리합니다. 서브쿼리란? 쿼리 안에 포함된 또 다른 쿼리를 서브쿼리(Subquery)라고 합니다. 사용 위치에 따라 스칼라, 인라인 뷰, 중첩 서브쿼리로 구분합니다. 스칼라 서브쿼리 (SELECT 절) 단일 값을 반환하는 서브쿼리로, SELECT 절에서 사용합니다. SELECT name, salary, (SELECT AVG(salary) FROM employees) AS 평균급여, salary - (SELECT AVG(salary) FROM employees)...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","중급","lecture-mysql"],
+        "url": "/mysql/mysql-05-subquery/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 06. 내장 함수 정리",
+        "excerpt":"MySQL/MariaDB에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다. 문자열 함수 함수 설명 예시 결과 CONCAT 문자열 연결 CONCAT('Hello', ' ', 'World') Hello World CONCAT_WS 구분자로 연결 CONCAT_WS('-', '2024', '01', '15') 2024-01-15 SUBSTRING 부분 문자열 SUBSTRING('Hello', 1, 3) Hel LEFT / RIGHT 왼쪽/오른쪽 n자 LEFT('Hello', 2) He LENGTH 바이트 길이 LENGTH('가나다') 9...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","중급","lecture-mysql"],
+        "url": "/mysql/mysql-06-function/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 07. 인덱스 (Index)",
+        "excerpt":"인덱스의 개념, 종류, 생성/관리 방법과 효과적인 사용 전략을 정리합니다. 인덱스란? 인덱스는 테이블의 데이터를 빠르게 검색하기 위한 자료구조입니다. 책의 목차(색인)와 같은 역할로, 전체 데이터를 스캔하지 않고 원하는 데이터를 빠르게 찾을 수 있습니다. 인덱스 유무에 따른 차이 항목 인덱스 없음 (Full Table Scan) 인덱스 있음 (Index Scan) 검색 방식 테이블 전체를 순차...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","중급","lecture-mysql"],
+        "url": "/mysql/mysql-07-index/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 08. 트랜잭션과 락 (Transaction & Lock)",
+        "excerpt":"트랜잭션의 개념, ACID 속성, 격리 수준, 그리고 락(Lock) 메커니즘을 정리합니다. 트랜잭션이란? 트랜잭션(Transaction)은 하나의 논리적 작업 단위를 구성하는 SQL 명령어들의 집합입니다. 모두 성공하거나, 모두 실패해야 합니다 (All or Nothing). 대표적인 예시: 계좌 이체 -- A 계좌에서 B 계좌로 100만원 이체 START TRANSACTION; UPDATE accounts SET balance = balance - 1000000 WHERE...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","중급","lecture-mysql"],
+        "url": "/mysql/mysql-08-transaction/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 09. 뷰, 스토어드 프로시저, 함수, 트리거",
+        "excerpt":"뷰(View), 스토어드 프로시저(Stored Procedure), 사용자 정의 함수(Function), 트리거(Trigger)를 정리합니다. 뷰 (View) 뷰는 하나 이상의 테이블에서 데이터를 조회하는 가상 테이블입니다. 실제 데이터를 저장하지 않고, 쿼리 결과를 테이블처럼 사용할 수 있습니다. 뷰 생성 -- 기본 뷰 생성 CREATE VIEW v_employee_dept AS SELECT e.id, e.name, d.name AS dept_name, e.salary FROM employees e INNER...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","중급","lecture-mysql"],
+        "url": "/mysql/mysql-09-view-procedure/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 10. 사용자 관리와 권한 (User & Privilege)",
+        "excerpt":"MySQL/MariaDB의 사용자 생성, 권한 부여, 보안 설정을 정리합니다. 사용자 관리 사용자 생성 -- 기본 생성 (로컬 접속만 허용) CREATE USER 'devuser'@'localhost' IDENTIFIED BY 'password123!'; -- 특정 IP에서 접속 허용 CREATE USER 'devuser'@'192.168.1.100' IDENTIFIED BY 'password123!'; -- 모든 호스트에서 접속 허용 CREATE USER 'devuser'@'%' IDENTIFIED BY 'password123!'; -- 이미 존재하면 무시...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","중급","lecture-mysql"],
+        "url": "/mysql/mysql-10-user-privilege/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 11. 백업과 복구 (Backup & Restore)",
+        "excerpt":"MySQL/MariaDB의 백업 전략, 도구, 복구 방법을 정리합니다. 백업 종류 구분 논리적 백업 물리적 백업 방식 SQL 문으로 내보내기 데이터 파일 직접 복사 도구 mysqldump, mysqlpump xtrabackup, 파일 복사 속도 느림 (대용량에 부적합) 빠름 복구 속도 느림 (SQL 재실행) 빠름 (파일 복사) 호환성 다른 버전/서버 간 이식 가능 동일 버전/설정 필요...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","고급","lecture-mysql"],
+        "url": "/mysql/mysql-11-backup-restore/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 12. 성능 튜닝 (Performance Tuning)",
+        "excerpt":"MySQL/MariaDB의 성능 분석, 쿼리 최적화, 서버 튜닝 기법을 정리합니다. 성능 튜닝 3대 영역 영역 설명 효과 쿼리 최적화 SQL 문 자체를 개선 가장 큰 효과 (80%) 인덱스 최적화 적절한 인덱스 설계 높은 효과 서버 설정 튜닝 my.cnf 파라미터 조정 보조적 효과 슬로우 쿼리 로그 (Slow Query Log) 실행 시간이 긴...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","고급","lecture-mysql"],
+        "url": "/mysql/mysql-12-tuning/",
+        "teaser": null
+      },{
+        "title": "[MySQL] 13. 자주 발생하는 Troubleshooting",
+        "excerpt":"MySQL/MariaDB 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다. 1. 접속 오류 (Access Denied / Can’t Connect) 가장 빈번하게 발생하는 문제입니다. 1-1. Access denied for user ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES) 원인 해결 방법 비밀번호 오류 비밀번호 재확인, 특수문자는 따옴표로 감싸기 호스트 불일치...","categories": ["mysql"],
+        "tags": ["mysql","mariadb","mysql강좌","고급","lecture-mysql"],
+        "url": "/mysql/mysql-13-troubleshooting/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 01. Oracle DB 소개 및 설치",
+        "excerpt":"Oracle Database의 기본 개념과 설치 방법을 알아봅니다. Oracle Database란? Oracle Database는 세계에서 가장 널리 사용되는 상용 관계형 데이터베이스 관리 시스템(RDBMS)입니다. 대규모 엔터프라이즈 환경에서 높은 안정성과 성능을 제공합니다. Oracle vs MySQL 비교 항목 Oracle MySQL 개발사 Oracle Corporation Oracle Corporation (인수) 라이선스 상용 (Enterprise/Standard) GPL + 상용 이중 라이선스 가격 고가...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","초급","lecture-oracle"],
+        "url": "/oracle/oracle-01-intro/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 02. 테이블스페이스와 테이블 관리",
+        "excerpt":"Oracle의 테이블스페이스, 스키마, 테이블 생성 및 관리 방법을 정리합니다. 테이블스페이스 (Tablespace) 테이블스페이스는 Oracle에서 데이터를 물리적으로 저장하는 논리적 공간 단위입니다. MySQL의 CREATE DATABASE에 해당하는 개념이지만, 물리적 파일과 직접 연결됩니다. 테이블스페이스 생성 -- 기본 생성 CREATE TABLESPACE ts_myapp DATAFILE '/opt/oracle/oradata/XE/ts_myapp01.dbf' SIZE 500M AUTOEXTEND ON NEXT 100M MAXSIZE 5G; -- Windows 경로 CREATE...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","초급","lecture-oracle"],
+        "url": "/oracle/oracle-02-database-table/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)",
+        "excerpt":"Oracle에서의 데이터 조작 기본인 CRUD 명령어를 정리합니다. MySQL과의 차이점을 함께 설명합니다. 샘플 테이블 준비 CREATE TABLE employees ( id NUMBER(10) NOT NULL, name VARCHAR2(50) NOT NULL, dept VARCHAR2(30), salary NUMBER(12,2) DEFAULT 0, hire_date DATE, CONSTRAINT pk_emp PRIMARY KEY (id) ); CREATE SEQUENCE seq_emp START WITH 1 INCREMENT BY 1; INSERT...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","초급","lecture-oracle"],
+        "url": "/oracle/oracle-03-crud/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 04. JOIN (테이블 결합)",
+        "excerpt":"Oracle에서 여러 테이블을 결합하여 데이터를 조회하는 JOIN의 종류와 사용법을 정리합니다. Oracle 전용 구문과 ANSI 표준 구문을 함께 설명합니다. 샘플 데이터 준비 CREATE TABLE departments ( id NUMBER(10) PRIMARY KEY, name VARCHAR2(30) NOT NULL ); CREATE TABLE employees ( id NUMBER(10) PRIMARY KEY, name VARCHAR2(50) NOT NULL, dept_id NUMBER(10), salary NUMBER(12,2),...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","중급","lecture-oracle"],
+        "url": "/oracle/oracle-04-join/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 05. 서브쿼리와 고급 SELECT",
+        "excerpt":"Oracle에서의 서브쿼리, CASE, UNION, WITH(CTE), 계층형 쿼리를 정리합니다. 스칼라 서브쿼리 (SELECT 절) SELECT name, salary, (SELECT AVG(salary) FROM employees) AS 평균급여, salary - (SELECT AVG(salary) FROM employees) AS 차이 FROM employees; 중첩 서브쿼리 (WHERE 절) 단일 행 서브쿼리 SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","중급","lecture-oracle"],
+        "url": "/oracle/oracle-05-subquery/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 06. 내장 함수 정리",
+        "excerpt":"Oracle에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다. MySQL 대응 함수도 함께 표기합니다. 문자열 함수 Oracle 함수 MySQL 대응 설명 예시 결과 \\|\\| (연결 연산자) CONCAT 문자열 연결 'Hello' \\|\\| ' ' \\|\\| 'World' Hello World CONCAT CONCAT 2개 문자열 연결 CONCAT('A', 'B') AB SUBSTR SUBSTRING 부분 문자열 SUBSTR('Hello', 1, 3)...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","중급","lecture-oracle"],
+        "url": "/oracle/oracle-06-function/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 07. 인덱스 (Index)",
+        "excerpt":"Oracle 인덱스의 종류, 생성/관리 방법, 실행 계획 분석을 정리합니다. 인덱스 종류 종류 설명 용도 B-Tree Index 기본 인덱스, 균형 트리 구조 일반적인 검색 (기본값) Unique Index 중복 불가 인덱스 PK, UK 제약 Composite Index 복합 인덱스 (다중 컬럼) 다중 조건 검색 Bitmap Index 비트맵 기반 인덱스 카디널리티 낮은 컬럼 (성별,...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","중급","lecture-oracle"],
+        "url": "/oracle/oracle-07-index/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 08. 트랜잭션과 락 (Transaction & Lock)",
+        "excerpt":"Oracle의 트랜잭션 관리, MVCC, 격리 수준, 락 메커니즘을 정리합니다. Oracle 트랜잭션 특징 Oracle은 MySQL과 달리 기본적으로 AUTO COMMIT이 아닙니다. DML(INSERT, UPDATE, DELETE) 실행 후 반드시 COMMIT 또는 ROLLBACK을 해야 합니다. DDL(CREATE, ALTER, DROP)은 자동으로 COMMIT됩니다 (암묵적 커밋). Oracle vs MySQL 트랜잭션 차이 항목 Oracle MySQL (InnoDB) 기본 모드 수동 COMMIT...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","중급","lecture-oracle"],
+        "url": "/oracle/oracle-08-transaction/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거",
+        "excerpt":"Oracle의 PL/SQL 기초, 뷰, 스토어드 프로시저, 함수, 패키지, 트리거를 정리합니다. PL/SQL 기초 PL/SQL(Procedural Language/SQL)은 Oracle의 절차적 확장 언어입니다. SQL에 변수, 조건문, 반복문, 예외 처리 등 프로그래밍 기능을 추가합니다. 기본 구조 DECLARE -- 변수 선언부 v_name VARCHAR2(50); v_salary NUMBER(12,2); BEGIN -- 실행부 SELECT name, salary INTO v_name, v_salary FROM employees WHERE...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","중급","lecture-oracle"],
+        "url": "/oracle/oracle-09-plsql/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 10. 사용자 관리와 권한 (User & Privilege)",
+        "excerpt":"Oracle의 사용자 생성, 권한 부여, 롤(Role), 프로파일 관리를 정리합니다. 사용자 관리 사용자 생성 -- CDB 환경 (Oracle 12c+): PDB에 접속 후 생성 ALTER SESSION SET CONTAINER = XEPDB1; -- 사용자 생성 CREATE USER devuser IDENTIFIED BY \"DevPass123!\" DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp QUOTA UNLIMITED ON users; -- CDB 공통...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","중급","lecture-oracle"],
+        "url": "/oracle/oracle-10-user-privilege/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 11. 백업과 복구 (Backup & Recovery)",
+        "excerpt":"Oracle의 백업 전략, RMAN, Data Pump, Flashback 기능을 정리합니다. 백업 종류 구분 논리적 백업 물리적 백업 방식 데이터를 SQL/덤프로 내보내기 데이터파일 직접 복사 도구 Data Pump (expdp/impdp) RMAN, OS 복사 속도 상대적으로 느림 빠름 복구 논리적 복원 물리적 복원 + 미디어 복구 시점 복구 불가 가능 (아카이브 로그) 용도 마이그레이션,...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","고급","lecture-oracle"],
+        "url": "/oracle/oracle-11-backup-restore/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 12. 성능 튜닝 (Performance Tuning)",
+        "excerpt":"Oracle의 성능 분석, 쿼리 최적화, AWR/ASH, 서버 튜닝 기법을 정리합니다. 성능 튜닝 3대 영역 영역 설명 효과 SQL 튜닝 SQL 문 자체를 개선 가장 큰 효과 (80%) 인스턴스 튜닝 SGA/PGA 메모리, 파라미터 조정 중간 효과 I/O 튜닝 디스크 I/O, 테이블스페이스 배치 보조적 효과 실행 계획 분석 EXPLAIN PLAN EXPLAIN PLAN...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","고급","lecture-oracle"],
+        "url": "/oracle/oracle-12-tuning/",
+        "teaser": null
+      },{
+        "title": "[Oracle] 13. 자주 발생하는 Troubleshooting",
+        "excerpt":"Oracle 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다. 1. ORA-12541: TNS:no listener / ORA-12514: TNS:listener does not currently know of service 가장 빈번한 접속 오류입니다. ORA-12541: TNS:no listener ORA-12514: TNS:listener does not currently know of service requested in connect descriptor 원인 해결 방법 리스너 미실행 lsnrctl start 리스너에...","categories": ["oracle"],
+        "tags": ["oracle","oracle강좌","고급","lecture-oracle"],
+        "url": "/oracle/oracle-13-troubleshooting/",
+        "teaser": null
+      },{
+        "title": "Python 가상환경 구축 (venv vs uv)",
+        "excerpt":"Python 프로젝트를 진행할 때 가상환경은 필수다. 프로젝트마다 패키지 버전이 다를 수 있고, 시스템 Python에 직접 설치하면 충돌이 발생하기 쉽다. 이 글에서는 Python 기본 내장 모듈인 venv와 최근 주목받고 있는 uv를 비교하고, 각각의 가상환경 구축 방법을 Windows / Mac 기준으로 정리한다. 1. 가상환경이란? 가상환경(Virtual Environment)은 프로젝트별로 독립된 Python 실행 환경을 만들어주는...","categories": ["python"],
+        "tags": ["python","venv","uv","virtualenv"],
+        "url": "/python/python-venv/",
+        "teaser": null
       }]

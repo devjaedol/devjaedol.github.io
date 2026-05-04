@@ -1,0 +1,1639 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[MySQL] 05. 서브쿼리와 고급 SELECT | 꿰보노트</title>
+<meta name="description" content="서브쿼리(Subquery)와 다양한 고급 SELECT 기법을 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[MySQL] 05. 서브쿼리와 고급 SELECT">
+<meta property="og:url" content="https://kimjaehyun.co.kr/mysql/mysql-05-subquery/">
+
+
+  <meta property="og:description" content="서브쿼리(Subquery)와 다양한 고급 SELECT 기법을 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/mysql/mysql-05-subquery/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#mysql" itemprop="item"><span itemprop="name">Mysql</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[MySQL] 05. 서브쿼리와 고급 SELECT</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[MySQL] 05. 서브쿼리와 고급 SELECT">
+    <meta itemprop="description" content="서브쿼리(Subquery)와 다양한 고급 SELECT 기법을 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/mysql/mysql-05-subquery/" class="u-url" itemprop="url">[MySQL] 05. 서브쿼리와 고급 SELECT
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#서브쿼리란">서브쿼리란?</a><ul><li><a href="#스칼라-서브쿼리-select-절">스칼라 서브쿼리 (SELECT 절)</a></li><li><a href="#중첩-서브쿼리-where-절">중첩 서브쿼리 (WHERE 절)</a><ul><li><a href="#단일-행-서브쿼리">단일 행 서브쿼리</a></li><li><a href="#다중-행-서브쿼리-in-any-all">다중 행 서브쿼리 (IN, ANY, ALL)</a></li><li><a href="#exists--not-exists">EXISTS / NOT EXISTS</a></li></ul></li><li><a href="#인라인-뷰-from-절">인라인 뷰 (FROM 절)</a></li><li><a href="#case-표현식">CASE 표현식</a></li><li><a href="#union--union-all">UNION / UNION ALL</a></li><li><a href="#with-cte---common-table-expression">WITH (CTE - Common Table Expression)</a><ul><li><a href="#재귀-cte-계층-구조-조회">재귀 CTE (계층 구조 조회)</a></li></ul></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>서브쿼리(Subquery)와 다양한 고급 SELECT 기법을 정리합니다.</p>
+
+<h1 id="서브쿼리란">서브쿼리란?</h1>
+<p>쿼리 안에 포함된 또 다른 쿼리를 서브쿼리(Subquery)라고 합니다.  <br />
+사용 위치에 따라 스칼라, 인라인 뷰, 중첩 서브쿼리로 구분합니다.</p>
+
+<hr />
+
+<h2 id="스칼라-서브쿼리-select-절">스칼라 서브쿼리 (SELECT 절)</h2>
+<p>단일 값을 반환하는 서브쿼리로, SELECT 절에서 사용합니다.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">salary</span><span class="p">,</span>
+    <span class="p">(</span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">)</span> <span class="k">AS</span> <span class="err">평균급여</span><span class="p">,</span>
+    <span class="n">salary</span> <span class="o">-</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">)</span> <span class="k">AS</span> <span class="err">차이</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="중첩-서브쿼리-where-절">중첩 서브쿼리 (WHERE 절)</h2>
+
+<h3 id="단일-행-서브쿼리">단일 행 서브쿼리</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 가장 높은 급여를 받는 직원</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span>
+<span class="k">FROM</span> <span class="n">employees</span>
+<span class="k">WHERE</span> <span class="n">salary</span> <span class="o">=</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="다중-행-서브쿼리-in-any-all">다중 행 서브쿼리 (IN, ANY, ALL)</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 개발팀에 속한 직원 조회</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span>
+<span class="k">FROM</span> <span class="n">employees</span>
+<span class="k">WHERE</span> <span class="n">dept_id</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">id</span> <span class="k">FROM</span> <span class="n">departments</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'개발팀'</span><span class="p">);</span>
+
+<span class="c1">-- ANY: 서브쿼리 결과 중 하나라도 만족</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span>
+<span class="k">FROM</span> <span class="n">employees</span>
+<span class="k">WHERE</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="k">ANY</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">salary</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="c1">-- ALL: 서브쿼리 결과 모두 만족</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span>
+<span class="k">FROM</span> <span class="n">employees</span>
+<span class="k">WHERE</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="k">ALL</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">salary</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="exists--not-exists">EXISTS / NOT EXISTS</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 직원이 있는 부서만 조회</span>
+<span class="k">SELECT</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+<span class="k">FROM</span> <span class="n">departments</span> <span class="n">d</span>
+<span class="k">WHERE</span> <span class="k">EXISTS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="mi">1</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span>
+<span class="p">);</span>
+
+<span class="c1">-- 직원이 없는 부서 조회</span>
+<span class="k">SELECT</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+<span class="k">FROM</span> <span class="n">departments</span> <span class="n">d</span>
+<span class="k">WHERE</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="mi">1</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span> <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="인라인-뷰-from-절">인라인 뷰 (FROM 절)</h2>
+<p>FROM 절에 서브쿼리를 사용하여 임시 테이블처럼 활용합니다.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 부서별 평균 급여가 500만 이상인 부서</span>
+<span class="k">SELECT</span> <span class="n">dept_name</span><span class="p">,</span> <span class="n">avg_salary</span>
+<span class="k">FROM</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span> <span class="k">AS</span> <span class="n">dept_name</span><span class="p">,</span> <span class="k">AVG</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">salary</span><span class="p">)</span> <span class="k">AS</span> <span class="n">avg_salary</span>
+    <span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+    <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">departments</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span>
+    <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+<span class="p">)</span> <span class="k">AS</span> <span class="n">dept_avg</span>
+<span class="k">WHERE</span> <span class="n">avg_salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="case-표현식">CASE 표현식</h2>
+<p>조건에 따라 다른 값을 반환합니다.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">salary</span><span class="p">,</span>
+    <span class="k">CASE</span>
+        <span class="k">WHEN</span> <span class="n">salary</span> <span class="o">&gt;=</span> <span class="mi">6000000</span> <span class="k">THEN</span> <span class="s1">'고급'</span>
+        <span class="k">WHEN</span> <span class="n">salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span> <span class="k">THEN</span> <span class="s1">'중급'</span>
+        <span class="k">ELSE</span> <span class="s1">'초급'</span>
+    <span class="k">END</span> <span class="k">AS</span> <span class="err">등급</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 집계와 함께 사용 (피벗 형태)</span>
+<span class="k">SELECT</span> 
+    <span class="n">dept_id</span><span class="p">,</span>
+    <span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="mi">0</span> <span class="k">END</span><span class="p">)</span> <span class="k">AS</span> <span class="s1">'500만이상'</span><span class="p">,</span>
+    <span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">salary</span> <span class="o">&lt;</span> <span class="mi">5000000</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="mi">0</span> <span class="k">END</span><span class="p">)</span> <span class="k">AS</span> <span class="s1">'500만미만'</span>
+<span class="k">FROM</span> <span class="n">employees</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">dept_id</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="union--union-all">UNION / UNION ALL</h2>
+<p>여러 SELECT 결과를 합칩니다.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- UNION: 중복 제거</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="s1">'직원'</span> <span class="k">AS</span> <span class="err">구분</span> <span class="k">FROM</span> <span class="n">employees</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="s1">'부서'</span> <span class="k">AS</span> <span class="err">구분</span> <span class="k">FROM</span> <span class="n">departments</span><span class="p">;</span>
+
+<span class="c1">-- UNION ALL: 중복 허용 (더 빠름)</span>
+<span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">UNION</span> <span class="k">ALL</span>
+<span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>UNION 규칙:</p>
+<ul>
+  <li>각 SELECT의 컬럼 수가 동일해야 합니다</li>
+  <li>대응하는 컬럼의 데이터 타입이 호환되어야 합니다</li>
+  <li>ORDER BY는 마지막 SELECT에만 사용 가능합니다</li>
+</ul>
+
+<hr />
+
+<h2 id="with-cte---common-table-expression">WITH (CTE - Common Table Expression)</h2>
+<p>MySQL 8.0+ 에서 사용 가능한 CTE는 복잡한 쿼리를 가독성 있게 작성할 수 있습니다.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 기본 CTE</span>
+<span class="k">WITH</span> <span class="n">dept_salary</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span> <span class="k">AS</span> <span class="n">dept_name</span><span class="p">,</span> <span class="k">AVG</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">salary</span><span class="p">)</span> <span class="k">AS</span> <span class="n">avg_salary</span>
+    <span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+    <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">departments</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span>
+    <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+<span class="p">)</span>
+<span class="k">SELECT</span> <span class="n">dept_name</span><span class="p">,</span> <span class="n">avg_salary</span>
+<span class="k">FROM</span> <span class="n">dept_salary</span>
+<span class="k">WHERE</span> <span class="n">avg_salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span><span class="p">;</span>
+
+<span class="c1">-- 다중 CTE</span>
+<span class="k">WITH</span> 
+<span class="n">high_salary</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">salary</span> <span class="o">&gt;=</span> <span class="mi">5500000</span>
+<span class="p">),</span>
+<span class="n">dev_team</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">)</span>
+<span class="k">SELECT</span> <span class="n">h</span><span class="p">.</span><span class="n">name</span>
+<span class="k">FROM</span> <span class="n">high_salary</span> <span class="n">h</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">dev_team</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">h</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="재귀-cte-계층-구조-조회">재귀 CTE (계층 구조 조회)</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 조직도 계층 조회</span>
+<span class="k">WITH</span> <span class="k">RECURSIVE</span> <span class="n">org_tree</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="c1">-- 기본 케이스: 최상위 (manager_id IS NULL)</span>
+    <span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">manager_id</span><span class="p">,</span> <span class="mi">1</span> <span class="k">AS</span> <span class="n">depth</span>
+    <span class="k">FROM</span> <span class="n">staff</span>
+    <span class="k">WHERE</span> <span class="n">manager_id</span> <span class="k">IS</span> <span class="k">NULL</span>
+    
+    <span class="k">UNION</span> <span class="k">ALL</span>
+    
+    <span class="c1">-- 재귀 케이스</span>
+    <span class="k">SELECT</span> <span class="n">s</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">manager_id</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">FROM</span> <span class="n">staff</span> <span class="n">s</span>
+    <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">org_tree</span> <span class="n">t</span> <span class="k">ON</span> <span class="n">s</span><span class="p">.</span><span class="n">manager_id</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">id</span>
+<span class="p">)</span>
+<span class="k">SELECT</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">REPEAT</span><span class="p">(</span><span class="s1">'  '</span><span class="p">,</span> <span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span> <span class="k">AS</span> <span class="err">조직도</span><span class="p">,</span> <span class="n">depth</span> <span class="k">AS</span> <span class="err">레벨</span>
+<span class="k">FROM</span> <span class="n">org_tree</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">depth</span><span class="p">,</span> <span class="n">id</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+----------+------+
+| 조직도    | 레벨  |
++----------+------+
+| 김대표    |    1 |
+|   이부장  |    2 |
+|     박과장 |    3 |
+|       최사원|    4 |
++----------+------+
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (mysql &gt; lecture-mysql)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-13-troubleshooting/">[MySQL] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-12-tuning/">[MySQL] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-11-backup-restore/">[MySQL] 11. 백업과 복구 (Backup &amp; Restore)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-10-user-privilege/">[MySQL] 10. 사용자 관리와 권한 (User &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-09-view-procedure/">[MySQL] 09. 뷰, 스토어드 프로시저, 함수, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-08-transaction/">[MySQL] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-07-index/">[MySQL] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-06-function/">[MySQL] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-05-subquery/">[MySQL] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-04-join/">[MySQL] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-03-crud/">[MySQL] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-02-database-table/">[MySQL] 02. 데이터베이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-01-intro/">[MySQL] 01. MySQL/MariaDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-mysql" class="page__taxonomy-item p-category" rel="tag">lecture-mysql</a><span class="sep">, </span>
+    
+      <a href="/tags/#mariadb" class="page__taxonomy-item p-category" rel="tag">mariadb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mysql" class="page__taxonomy-item p-category" rel="tag">mysql</a><span class="sep">, </span>
+    
+      <a href="/tags/#mysql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">mysql강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#mysql" class="page__taxonomy-item p-category" rel="tag">mysql</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BMySQL%5D+05.+%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC%EC%99%80+%EA%B3%A0%EA%B8%89+SELECT%20https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-05-subquery%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-05-subquery%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-05-subquery%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/mysql/mysql-04-join/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[MySQL] 04. JOIN (테이블 결합)</a>
+    
+    
+      <a href="/mysql/mysql-06-function/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[MySQL] 06. 내장 함수 정리</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1556 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Python 가상환경 구축 (venv vs uv) | 꿰보노트</title>
+<meta name="description" content="Python 프로젝트를 진행할 때 가상환경은 필수다. 프로젝트마다 패키지 버전이 다를 수 있고, 시스템 Python에 직접 설치하면 충돌이 발생하기 쉽다. 이 글에서는 Python 기본 내장 모듈인 venv와 최근 주목받고 있는 uv를 비교하고, 각각의 가상환경 구축 방법을 Windows / Mac 기준으로 정리한다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="Python 가상환경 구축 (venv vs uv)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/python/python-venv/">
+
+
+  <meta property="og:description" content="Python 프로젝트를 진행할 때 가상환경은 필수다. 프로젝트마다 패키지 버전이 다를 수 있고, 시스템 Python에 직접 설치하면 충돌이 발생하기 쉽다. 이 글에서는 Python 기본 내장 모듈인 venv와 최근 주목받고 있는 uv를 비교하고, 각각의 가상환경 구축 방법을 Windows / Mac 기준으로 정리한다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/python/python-venv/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#python" itemprop="item"><span itemprop="name">Python</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Python 가상환경 구축 (venv vs uv)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Python 가상환경 구축 (venv vs uv)">
+    <meta itemprop="description" content="Python 프로젝트를 진행할 때 가상환경은 필수다. 프로젝트마다 패키지 버전이 다를 수 있고, 시스템 Python에 직접 설치하면 충돌이 발생하기 쉽다. 이 글에서는 Python 기본 내장 모듈인 venv와 최근 주목받고 있는 uv를 비교하고, 각각의 가상환경 구축 방법을 Windows / Mac 기준으로 정리한다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/python/python-venv/" class="u-url" itemprop="url">Python 가상환경 구축 (venv vs uv)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#1-가상환경이란">1. 가상환경이란?</a></li><li><a href="#2-venv-vs-uv-비교">2. venv vs uv 비교</a><ul><li><a href="#2-1-개요-비교">2-1. 개요 비교</a></li><li><a href="#2-2-장단점-비교">2-2. 장단점 비교</a></li><li><a href="#2-3-주요-명령어-비교">2-3. 주요 명령어 비교</a></li></ul></li><li><a href="#3-venv로-가상환경-구축하기-windows--mac">3. venv로 가상환경 구축하기 (Windows / Mac)</a><ul><li><a href="#3-1-사전-준비">3-1. 사전 준비</a></li><li><a href="#3-2-가상환경-생성--삭제-전체-절차">3-2. 가상환경 생성 ~ 삭제 전체 절차</a></li><li><a href="#3-3-powershell-실행-정책-오류-해결-windows">3-3. PowerShell 실행 정책 오류 해결 (Windows)</a></li><li><a href="#3-4-gitignore-설정">3-4. .gitignore 설정</a></li></ul></li><li><a href="#4-uv로-가상환경-구축하기-windows--mac">4. uv로 가상환경 구축하기 (Windows / Mac)</a><ul><li><a href="#4-1-uv-설치">4-1. uv 설치</a></li><li><a href="#4-2-가상환경-생성--삭제-전체-절차">4-2. 가상환경 생성 ~ 삭제 전체 절차</a></li><li><a href="#4-3-uv-프로젝트-관리-pyprojecttoml-기반">4-3. uv 프로젝트 관리 (pyproject.toml 기반)</a></li></ul></li><li><a href="#5-어떤-도구를-선택할까">5. 어떤 도구를 선택할까?</a></li><li><a href="#6-자주-쓰는-명령어-요약">6. 자주 쓰는 명령어 요약</a><ul><li><a href="#venv-명령어">venv 명령어</a></li><li><a href="#uv-명령어">uv 명령어</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Python 프로젝트를 진행할 때 가상환경은 필수다. 프로젝트마다 패키지 버전이 다를 수 있고, 시스템 Python에 직접 설치하면 충돌이 발생하기 쉽다. 이 글에서는 Python 기본 내장 모듈인 <code class="language-plaintext highlighter-rouge">venv</code>와 최근 주목받고 있는 <code class="language-plaintext highlighter-rouge">uv</code>를 비교하고, 각각의 가상환경 구축 방법을 Windows / Mac 기준으로 정리한다.</p>
+
+<hr />
+
+<h1 id="1-가상환경이란">1. 가상환경이란?</h1>
+
+<p>가상환경(Virtual Environment)은 프로젝트별로 독립된 Python 실행 환경을 만들어주는 기능이다.</p>
+
+<ul>
+  <li>프로젝트마다 서로 다른 패키지 버전을 사용할 수 있다</li>
+  <li>시스템 Python 환경을 오염시키지 않는다</li>
+  <li>팀원 간 동일한 개발 환경을 쉽게 공유할 수 있다</li>
+</ul>
+
+<hr />
+
+<h1 id="2-venv-vs-uv-비교">2. venv vs uv 비교</h1>
+
+<h2 id="2-1-개요-비교">2-1. 개요 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>venv</th>
+      <th>uv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>개발사</td>
+      <td>Python 공식 (CPython)</td>
+      <td>Astral (Ruff 개발사)</td>
+    </tr>
+    <tr>
+      <td>언어</td>
+      <td>Python</td>
+      <td>Rust</td>
+    </tr>
+    <tr>
+      <td>설치</td>
+      <td>Python 3.3+ 내장 (별도 설치 불필요)</td>
+      <td>별도 설치 필요 (<code class="language-plaintext highlighter-rouge">pip install uv</code> 또는 installer)</td>
+    </tr>
+    <tr>
+      <td>첫 릴리즈</td>
+      <td>Python 3.3 (2012)</td>
+      <td>2024년 2월</td>
+    </tr>
+    <tr>
+      <td>패키지 관리</td>
+      <td>pip을 별도로 사용</td>
+      <td>uv 자체에 pip 호환 기능 내장</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2-2-장단점-비교">2-2. 장단점 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>venv</th>
+      <th>uv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>장점</strong></td>
+      <td>Python 내장이라 별도 설치 불필요</td>
+      <td>가상환경 생성·패키지 설치 속도가 매우 빠름 (10~100배)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>공식 도구라 안정성이 높음</td>
+      <td>pip, pip-tools, virtualenv 기능을 하나로 통합</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>대부분의 Python 튜토리얼에서 기본으로 사용</td>
+      <td>lock 파일 기반의 재현 가능한 빌드 지원</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>추가 의존성 없이 바로 사용 가능</td>
+      <td>Rust 기반이라 대규모 프로젝트에서 성능 우수</td>
+    </tr>
+    <tr>
+      <td><strong>단점</strong></td>
+      <td>패키지 설치 속도가 상대적으로 느림</td>
+      <td>별도 설치가 필요함</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>lock 파일 미지원 (requirements.txt 수동 관리)</td>
+      <td>비교적 새로운 도구라 레퍼런스가 적음</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>가상환경 생성 속도가 느린 편</td>
+      <td>일부 엣지 케이스에서 pip과 동작이 다를 수 있음</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2-3-주요-명령어-비교">2-3. 주요 명령어 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>기능</th>
+      <th>venv + pip</th>
+      <th>uv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>가상환경 생성</td>
+      <td><code class="language-plaintext highlighter-rouge">python -m venv .venv</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv venv .venv</code></td>
+    </tr>
+    <tr>
+      <td>가상환경 활성화 (Windows)</td>
+      <td><code class="language-plaintext highlighter-rouge">.venv\Scripts\activate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">.venv\Scripts\activate</code></td>
+    </tr>
+    <tr>
+      <td>가상환경 활성화 (Mac/Linux)</td>
+      <td><code class="language-plaintext highlighter-rouge">source .venv/bin/activate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">source .venv/bin/activate</code></td>
+    </tr>
+    <tr>
+      <td>패키지 설치</td>
+      <td><code class="language-plaintext highlighter-rouge">pip install requests</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip install requests</code></td>
+    </tr>
+    <tr>
+      <td>requirements.txt로 설치</td>
+      <td><code class="language-plaintext highlighter-rouge">pip install -r requirements.txt</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip install -r requirements.txt</code></td>
+    </tr>
+    <tr>
+      <td>설치된 패키지 목록</td>
+      <td><code class="language-plaintext highlighter-rouge">pip list</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip list</code></td>
+    </tr>
+    <tr>
+      <td>패키지 제거</td>
+      <td><code class="language-plaintext highlighter-rouge">pip uninstall requests</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip uninstall requests</code></td>
+    </tr>
+    <tr>
+      <td>requirements.txt 생성</td>
+      <td><code class="language-plaintext highlighter-rouge">pip freeze &gt; requirements.txt</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip freeze &gt; requirements.txt</code></td>
+    </tr>
+    <tr>
+      <td>가상환경 비활성화</td>
+      <td><code class="language-plaintext highlighter-rouge">deactivate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">deactivate</code></td>
+    </tr>
+    <tr>
+      <td>가상환경 삭제</td>
+      <td>폴더 직접 삭제 (<code class="language-plaintext highlighter-rouge">rm -rf .venv</code>)</td>
+      <td>폴더 직접 삭제 (<code class="language-plaintext highlighter-rouge">rm -rf .venv</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="3-venv로-가상환경-구축하기-windows--mac">3. venv로 가상환경 구축하기 (Windows / Mac)</h1>
+
+<h2 id="3-1-사전-준비">3-1. 사전 준비</h2>
+
+<p>Python 3.3 이상이 설치되어 있어야 한다. 터미널에서 버전을 확인한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">--version</span>
+</code></pre></div></div>
+
+<h2 id="3-2-가상환경-생성--삭제-전체-절차">3-2. 가상환경 생성 ~ 삭제 전체 절차</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">단계</th>
+      <th>설명</th>
+      <th>Windows (CMD / PowerShell)</th>
+      <th>Mac / Linux (Terminal)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td>프로젝트 폴더 생성 및 이동</td>
+      <td><code class="language-plaintext highlighter-rouge">mkdir myproject &amp;&amp; cd myproject</code></td>
+      <td><code class="language-plaintext highlighter-rouge">mkdir myproject &amp;&amp; cd myproject</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td>가상환경 생성</td>
+      <td><code class="language-plaintext highlighter-rouge">python -m venv .venv</code></td>
+      <td><code class="language-plaintext highlighter-rouge">python3 -m venv .venv</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td>가상환경 활성화</td>
+      <td><code class="language-plaintext highlighter-rouge">.venv\Scripts\activate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">source .venv/bin/activate</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td>활성화 확인 (프롬프트 변경)</td>
+      <td><code class="language-plaintext highlighter-rouge">(.venv) C:\myproject&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">(.venv) user@mac:~/myproject$</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td>패키지 설치</td>
+      <td><code class="language-plaintext highlighter-rouge">pip install requests flask</code></td>
+      <td><code class="language-plaintext highlighter-rouge">pip install requests flask</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td>설치된 패키지 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">pip list</code></td>
+      <td><code class="language-plaintext highlighter-rouge">pip list</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td>requirements.txt 생성</td>
+      <td><code class="language-plaintext highlighter-rouge">pip freeze &gt; requirements.txt</code></td>
+      <td><code class="language-plaintext highlighter-rouge">pip freeze &gt; requirements.txt</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td>requirements.txt로 일괄 설치</td>
+      <td><code class="language-plaintext highlighter-rouge">pip install -r requirements.txt</code></td>
+      <td><code class="language-plaintext highlighter-rouge">pip install -r requirements.txt</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td>가상환경 비활성화</td>
+      <td><code class="language-plaintext highlighter-rouge">deactivate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">deactivate</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td>가상환경 삭제</td>
+      <td><code class="language-plaintext highlighter-rouge">rmdir /s /q .venv</code></td>
+      <td><code class="language-plaintext highlighter-rouge">rm -rf .venv</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="3-3-powershell-실행-정책-오류-해결-windows">3-3. PowerShell 실행 정책 오류 해결 (Windows)</h2>
+
+<p>Windows PowerShell에서 activate 실행 시 아래 오류가 발생할 수 있다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.venv\Scripts\Activate.ps1 : 이 시스템에서 스크립트를 실행할 수 없으므로 ...
+</code></pre></div></div>
+
+<p>해결 방법:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 현재 사용자에 대해 실행 정책 변경</span><span class="w">
+</span><span class="n">Set-ExecutionPolicy</span><span class="w"> </span><span class="nt">-ExecutionPolicy</span><span class="w"> </span><span class="nx">RemoteSigned</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">CurrentUser</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="3-4-gitignore-설정">3-4. .gitignore 설정</h2>
+
+<p>가상환경 폴더는 Git에 포함시키지 않는다. <code class="language-plaintext highlighter-rouge">.gitignore</code>에 아래 내용을 추가한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.venv/
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="4-uv로-가상환경-구축하기-windows--mac">4. uv로 가상환경 구축하기 (Windows / Mac)</h1>
+
+<h2 id="4-1-uv-설치">4-1. uv 설치</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>OS</th>
+      <th>설치 명령어</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Windows (PowerShell)</td>
+      <td><code class="language-plaintext highlighter-rouge">powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 \| iex"</code></td>
+    </tr>
+    <tr>
+      <td>Windows (pip)</td>
+      <td><code class="language-plaintext highlighter-rouge">pip install uv</code></td>
+    </tr>
+    <tr>
+      <td>Mac / Linux (curl)</td>
+      <td><code class="language-plaintext highlighter-rouge">curl -LsSf https://astral.sh/uv/install.sh \| sh</code></td>
+    </tr>
+    <tr>
+      <td>Mac (Homebrew)</td>
+      <td><code class="language-plaintext highlighter-rouge">brew install uv</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>설치 확인:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uv <span class="nt">--version</span>
+</code></pre></div></div>
+
+<h2 id="4-2-가상환경-생성--삭제-전체-절차">4-2. 가상환경 생성 ~ 삭제 전체 절차</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">단계</th>
+      <th>설명</th>
+      <th>Windows (CMD / PowerShell)</th>
+      <th>Mac / Linux (Terminal)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td>프로젝트 폴더 생성 및 이동</td>
+      <td><code class="language-plaintext highlighter-rouge">mkdir myproject &amp;&amp; cd myproject</code></td>
+      <td><code class="language-plaintext highlighter-rouge">mkdir myproject &amp;&amp; cd myproject</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td>가상환경 생성</td>
+      <td><code class="language-plaintext highlighter-rouge">uv venv .venv</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv venv .venv</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td>Python 버전 지정 생성 (선택)</td>
+      <td><code class="language-plaintext highlighter-rouge">uv venv .venv --python 3.12</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv venv .venv --python 3.12</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td>가상환경 활성화</td>
+      <td><code class="language-plaintext highlighter-rouge">.venv\Scripts\activate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">source .venv/bin/activate</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td>활성화 확인 (프롬프트 변경)</td>
+      <td><code class="language-plaintext highlighter-rouge">(.venv) C:\myproject&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">(.venv) user@mac:~/myproject$</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td>패키지 설치</td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip install requests flask</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip install requests flask</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td>설치된 패키지 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip list</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip list</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td>requirements.txt 생성</td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip freeze &gt; requirements.txt</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip freeze &gt; requirements.txt</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td>requirements.txt로 일괄 설치</td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip install -r requirements.txt</code></td>
+      <td><code class="language-plaintext highlighter-rouge">uv pip install -r requirements.txt</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td>가상환경 비활성화</td>
+      <td><code class="language-plaintext highlighter-rouge">deactivate</code></td>
+      <td><code class="language-plaintext highlighter-rouge">deactivate</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11</td>
+      <td>가상환경 삭제</td>
+      <td><code class="language-plaintext highlighter-rouge">rmdir /s /q .venv</code></td>
+      <td><code class="language-plaintext highlighter-rouge">rm -rf .venv</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="4-3-uv-프로젝트-관리-pyprojecttoml-기반">4-3. uv 프로젝트 관리 (pyproject.toml 기반)</h2>
+
+<p>uv는 <code class="language-plaintext highlighter-rouge">pyproject.toml</code> 기반의 프로젝트 관리도 지원한다. 이 방식을 사용하면 lock 파일로 더 안정적인 의존성 관리가 가능하다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 새 프로젝트 초기화</span>
+uv init myproject
+<span class="nb">cd </span>myproject
+
+<span class="c"># 패키지 추가 (pyproject.toml에 자동 기록)</span>
+uv add requests
+uv add flask
+
+<span class="c"># lock 파일 기반으로 동기화</span>
+uv <span class="nb">sync</span>
+
+<span class="c"># 패키지 제거</span>
+uv remove requests
+</code></pre></div></div>
+
+<p>이 방식은 <code class="language-plaintext highlighter-rouge">uv.lock</code> 파일이 자동 생성되어 팀원 간 동일한 환경을 보장한다.</p>
+
+<hr />
+
+<h1 id="5-어떤-도구를-선택할까">5. 어떤 도구를 선택할까?</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>상황</th>
+      <th>추천 도구</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Python을 처음 배우는 경우</td>
+      <td>venv (공식 도구, 튜토리얼 호환)</td>
+    </tr>
+    <tr>
+      <td>빠른 환경 구축이 필요한 경우</td>
+      <td>uv (생성·설치 속도 압도적)</td>
+    </tr>
+    <tr>
+      <td>팀 프로젝트에서 환경 통일이 중요한 경우</td>
+      <td>uv (lock 파일 지원)</td>
+    </tr>
+    <tr>
+      <td>별도 도구 설치 없이 바로 시작하고 싶은 경우</td>
+      <td>venv (Python 내장)</td>
+    </tr>
+    <tr>
+      <td>CI/CD 파이프라인 속도가 중요한 경우</td>
+      <td>uv (빌드 시간 단축)</td>
+    </tr>
+    <tr>
+      <td>레거시 프로젝트 유지보수</td>
+      <td>venv (호환성 안정적)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="6-자주-쓰는-명령어-요약">6. 자주 쓰는 명령어 요약</h1>
+
+<h2 id="venv-명령어">venv 명령어</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv .venv          <span class="c"># 가상환경 생성</span>
+<span class="nb">source</span> .venv/bin/activate      <span class="c"># 활성화 (Mac/Linux)</span>
+.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate         <span class="c"># 활성화 (Windows)</span>
+pip <span class="nb">install </span>패키지명            <span class="c"># 패키지 설치</span>
+pip freeze <span class="o">&gt;</span> requirements.txt  <span class="c"># 의존성 저장</span>
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt <span class="c"># 의존성 일괄 설치</span>
+deactivate                     <span class="c"># 비활성화</span>
+</code></pre></div></div>
+
+<h2 id="uv-명령어">uv 명령어</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uv venv .venv                  <span class="c"># 가상환경 생성</span>
+uv venv .venv <span class="nt">--python</span> 3.12   <span class="c"># 특정 Python 버전으로 생성</span>
+<span class="nb">source</span> .venv/bin/activate      <span class="c"># 활성화 (Mac/Linux)</span>
+.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate         <span class="c"># 활성화 (Windows)</span>
+uv pip <span class="nb">install </span>패키지명         <span class="c"># 패키지 설치</span>
+uv pip freeze <span class="o">&gt;</span> requirements.txt <span class="c"># 의존성 저장</span>
+uv pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt <span class="c"># 의존성 일괄 설치</span>
+uv add 패키지명                 <span class="c"># pyproject.toml에 추가</span>
+uv <span class="nb">sync</span>                        <span class="c"># lock 파일 기반 동기화</span>
+deactivate                     <span class="c"># 비활성화</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#python" class="page__taxonomy-item p-category" rel="tag">python</a><span class="sep">, </span>
+    
+      <a href="/tags/#uv" class="page__taxonomy-item p-category" rel="tag">uv</a><span class="sep">, </span>
+    
+      <a href="/tags/#venv" class="page__taxonomy-item p-category" rel="tag">venv</a><span class="sep">, </span>
+    
+      <a href="/tags/#virtualenv" class="page__taxonomy-item p-category" rel="tag">virtualenv</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#python" class="page__taxonomy-item p-category" rel="tag">python</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Python+%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD+%EA%B5%AC%EC%B6%95+%28venv+vs+uv%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython-venv%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython-venv%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fpython%2Fpython-venv%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/python/python_study_numpy_04_file/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Python][Numpy] file Input and output</a>
+    
+    
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-10-user-privilege/">[Oracle] 10. 사용자 관리와 권한 (User & Privilege)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

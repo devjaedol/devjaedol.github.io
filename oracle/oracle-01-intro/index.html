@@ -1,0 +1,1817 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Oracle] 01. Oracle DB 소개 및 설치 | 꿰보노트</title>
+<meta name="description" content="Oracle Database의 기본 개념과 설치 방법을 알아봅니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Oracle] 01. Oracle DB 소개 및 설치">
+<meta property="og:url" content="https://kimjaehyun.co.kr/oracle/oracle-01-intro/">
+
+
+  <meta property="og:description" content="Oracle Database의 기본 개념과 설치 방법을 알아봅니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/oracle/oracle-01-intro/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#oracle" itemprop="item"><span itemprop="name">Oracle</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Oracle] 01. Oracle DB 소개 및 설치</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Oracle] 01. Oracle DB 소개 및 설치">
+    <meta itemprop="description" content="Oracle Database의 기본 개념과 설치 방법을 알아봅니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/oracle/oracle-01-intro/" class="u-url" itemprop="url">[Oracle] 01. Oracle DB 소개 및 설치
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#oracle-database란">Oracle Database란?</a><ul><li><a href="#oracle-vs-mysql-비교">Oracle vs MySQL 비교</a></li></ul></li><li><a href="#oracle-에디션">Oracle 에디션</a></li><li><a href="#설치">설치</a><ul><li><a href="#windows">Windows</a><ul><li><a href="#oracle-xe-설치">Oracle XE 설치</a></li><li><a href="#설치-확인">설치 확인</a></li></ul></li><li><a href="#mac--linux">Mac / Linux</a><ul><li><a href="#docker를-이용한-설치-권장">Docker를 이용한 설치 (권장)</a></li><li><a href="#linux-rpm-설치">Linux (RPM 설치)</a></li></ul></li></ul></li><li><a href="#oracle-아키텍처-기본-개념">Oracle 아키텍처 기본 개념</a><ul><li><a href="#주요-용어">주요 용어</a></li><li><a href="#oracle-vs-mysql-용어-매핑">Oracle vs MySQL 용어 매핑</a></li></ul></li><li><a href="#접속-방법">접속 방법</a><ul><li><a href="#sqlplus-cli">SQL*Plus (CLI)</a></li><li><a href="#접속-문자열-tns">접속 문자열 (TNS)</a></li><li><a href="#gui-도구">GUI 도구</a></li></ul></li><li><a href="#서비스-관리">서비스 관리</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Oracle Database의 기본 개념과 설치 방법을 알아봅니다.</p>
+
+<h1 id="oracle-database란">Oracle Database란?</h1>
+
+<p>Oracle Database는 세계에서 가장 널리 사용되는 상용 관계형 데이터베이스 관리 시스템(RDBMS)입니다.  <br />
+대규모 엔터프라이즈 환경에서 높은 안정성과 성능을 제공합니다.</p>
+
+<h3 id="oracle-vs-mysql-비교">Oracle vs MySQL 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">항목</th>
+      <th style="text-align: center">Oracle</th>
+      <th style="text-align: center">MySQL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">개발사</td>
+      <td style="text-align: center">Oracle Corporation</td>
+      <td style="text-align: center">Oracle Corporation (인수)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">라이선스</td>
+      <td style="text-align: center">상용 (Enterprise/Standard)</td>
+      <td style="text-align: center">GPL + 상용 이중 라이선스</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">가격</td>
+      <td style="text-align: center">고가 (코어당 과금)</td>
+      <td style="text-align: center">무료 (Community)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">무료 버전</td>
+      <td style="text-align: center">XE (Express Edition)</td>
+      <td style="text-align: center">Community Edition</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">트랜잭션</td>
+      <td style="text-align: center">강력한 MVCC</td>
+      <td style="text-align: center">InnoDB 기반 MVCC</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">PL/SQL</td>
+      <td style="text-align: center">지원 (강력)</td>
+      <td style="text-align: center">미지원 (Stored Procedure만)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">RAC (클러스터)</td>
+      <td style="text-align: center">지원</td>
+      <td style="text-align: center">미지원</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">파티셔닝</td>
+      <td style="text-align: center">기본 지원</td>
+      <td style="text-align: center">Enterprise만 지원</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">시퀀스</td>
+      <td style="text-align: center">SEQUENCE 객체</td>
+      <td style="text-align: center">AUTO_INCREMENT</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="oracle-에디션">Oracle 에디션</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>에디션</th>
+      <th>특징</th>
+      <th>용도</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Enterprise Edition (EE)</td>
+      <td>모든 기능 포함, RAC/파티셔닝 등</td>
+      <td>대규모 운영 환경</td>
+    </tr>
+    <tr>
+      <td>Standard Edition (SE2)</td>
+      <td>기본 기능, 최대 2소켓</td>
+      <td>중소규모 환경</td>
+    </tr>
+    <tr>
+      <td>Express Edition (XE)</td>
+      <td>무료, 리소스 제한 (12GB 데이터, 2GB RAM)</td>
+      <td>학습, 개발, 소규모</td>
+    </tr>
+    <tr>
+      <td>Personal Edition</td>
+      <td>단일 사용자</td>
+      <td>개발/테스트</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>이 강좌에서는 무료로 사용 가능한 Oracle XE를 기준으로 설명합니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="설치">설치</h2>
+
+<h3 id="windows">Windows</h3>
+
+<h4 id="oracle-xe-설치">Oracle XE 설치</h4>
+<ol>
+  <li><a href="https://www.oracle.com/database/technologies/xe-downloads.html" target="_blank">Oracle XE 다운로드</a> 페이지에서 설치 파일 다운로드</li>
+  <li><code class="language-plaintext highlighter-rouge">OracleXE213_Win64.zip</code> 압축 해제 후 <code class="language-plaintext highlighter-rouge">setup.exe</code> 실행</li>
+  <li>설치 경로 지정 (기본: <code class="language-plaintext highlighter-rouge">C:\app\oracle</code>)</li>
+  <li>SYS/SYSTEM 관리자 비밀번호 설정</li>
+  <li>설치 완료 후 서비스 자동 등록</li>
+</ol>
+
+<h4 id="설치-확인">설치 확인</h4>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- SQL*Plus로 접속</span>
+<span class="n">sqlplus</span> <span class="n">sys</span><span class="o">/</span><span class="err">비밀번호</span> <span class="k">as</span> <span class="n">sysdba</span>
+
+<span class="c1">-- 버전 확인</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="k">version</span><span class="p">;</span>
+
+<span class="c1">-- 현재 인스턴스 확인</span>
+<span class="k">SELECT</span> <span class="n">instance_name</span><span class="p">,</span> <span class="n">status</span> <span class="k">FROM</span> <span class="n">v</span><span class="err">$</span><span class="n">instance</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="mac--linux">Mac / Linux</h3>
+
+<h4 id="docker를-이용한-설치-권장">Docker를 이용한 설치 (권장)</h4>
+<p>Oracle은 Mac을 공식 지원하지 않으므로 Docker를 사용합니다.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Oracle XE 21c 컨테이너 실행</span>
+docker run <span class="nt">-d</span> <span class="se">\</span>
+  <span class="nt">--name</span> oracle-xe <span class="se">\</span>
+  <span class="nt">-p</span> 1521:1521 <span class="se">\</span>
+  <span class="nt">-p</span> 5500:5500 <span class="se">\</span>
+  <span class="nt">-e</span> <span class="nv">ORACLE_PWD</span><span class="o">=</span>OraclePass123 <span class="se">\</span>
+  <span class="nt">-v</span> oracle-data:/opt/oracle/oradata <span class="se">\</span>
+  container-registry.oracle.com/database/express:21.3.0-xe
+
+<span class="c"># 컨테이너 접속</span>
+docker <span class="nb">exec</span> <span class="nt">-it</span> oracle-xe sqlplus sys/OraclePass123@localhost:1521/XE as sysdba
+</code></pre></div></div>
+
+<h4 id="linux-rpm-설치">Linux (RPM 설치)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Oracle XE RPM 설치 (Oracle Linux / CentOS)</span>
+<span class="nb">sudo </span>yum <span class="nb">install </span>oracle-database-preinstall-21c
+<span class="nb">sudo </span>yum localinstall oracle-database-xe-21c-1.0-1.ol8.x86_64.rpm
+
+<span class="c"># 초기 설정</span>
+<span class="nb">sudo</span> /etc/init.d/oracle-xe-21c configure
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="oracle-아키텍처-기본-개념">Oracle 아키텍처 기본 개념</h2>
+
+<h3 id="주요-용어">주요 용어</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Instance</td>
+      <td>메모리(SGA) + 백그라운드 프로세스</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td>물리적 파일 (데이터파일, 리두로그, 컨트롤파일)</td>
+    </tr>
+    <tr>
+      <td>SGA</td>
+      <td>System Global Area, 공유 메모리 영역</td>
+    </tr>
+    <tr>
+      <td>PGA</td>
+      <td>Program Global Area, 세션별 메모리</td>
+    </tr>
+    <tr>
+      <td>Tablespace</td>
+      <td>논리적 저장 공간 단위</td>
+    </tr>
+    <tr>
+      <td>Schema</td>
+      <td>사용자가 소유한 객체(테이블, 뷰 등)의 집합</td>
+    </tr>
+    <tr>
+      <td>SID</td>
+      <td>System Identifier, 인스턴스 식별자</td>
+    </tr>
+    <tr>
+      <td>Service Name</td>
+      <td>데이터베이스 서비스 이름</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="oracle-vs-mysql-용어-매핑">Oracle vs MySQL 용어 매핑</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Oracle</th>
+      <th>MySQL</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Schema (= User)</td>
+      <td>Database</td>
+      <td>논리적 데이터 그룹</td>
+    </tr>
+    <tr>
+      <td>Tablespace</td>
+      <td>없음 (파일 기반)</td>
+      <td>물리적 저장 공간</td>
+    </tr>
+    <tr>
+      <td>SEQUENCE</td>
+      <td>AUTO_INCREMENT</td>
+      <td>자동 증가 번호</td>
+    </tr>
+    <tr>
+      <td>ROWNUM / ROW_NUMBER</td>
+      <td>LIMIT</td>
+      <td>행 수 제한</td>
+    </tr>
+    <tr>
+      <td>NVL()</td>
+      <td>IFNULL()</td>
+      <td>NULL 대체</td>
+    </tr>
+    <tr>
+      <td>SYSDATE</td>
+      <td>NOW()</td>
+      <td>현재 날짜/시간</td>
+    </tr>
+    <tr>
+      <td>DUAL</td>
+      <td>불필요</td>
+      <td>더미 테이블</td>
+    </tr>
+    <tr>
+      <td>PL/SQL</td>
+      <td>Stored Procedure</td>
+      <td>절차적 SQL</td>
+    </tr>
+    <tr>
+      <td>SQL*Plus</td>
+      <td>mysql CLI</td>
+      <td>명령줄 도구</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="접속-방법">접속 방법</h2>
+
+<h3 id="sqlplus-cli">SQL*Plus (CLI)</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># SYS 관리자 접속</span>
+sqlplus sys/비밀번호 as sysdba
+
+<span class="c"># 일반 사용자 접속</span>
+sqlplus 사용자명/비밀번호@호스트:포트/서비스명
+sqlplus devuser/pass123@localhost:1521/XE
+
+<span class="c"># 원격 접속</span>
+sqlplus devuser/pass123@192.168.1.100:1521/ORCL
+</code></pre></div></div>
+
+<h3 id="접속-문자열-tns">접속 문자열 (TNS)</h3>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- tnsnames.ora 설정
+XE =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVICE_NAME = XE)
+    )
+  )
+</code></pre></div></div>
+
+<h3 id="gui-도구">GUI 도구</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>도구</th>
+      <th>특징</th>
+      <th>가격</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SQL Developer</td>
+      <td>Oracle 공식 도구, 무료</td>
+      <td>무료</td>
+    </tr>
+    <tr>
+      <td>DBeaver</td>
+      <td>다중 DB 지원, 범용</td>
+      <td>무료 (Community)</td>
+    </tr>
+    <tr>
+      <td>DataGrip</td>
+      <td>JetBrains, 강력한 자동완성</td>
+      <td>유료</td>
+    </tr>
+    <tr>
+      <td>Toad for Oracle</td>
+      <td>전통적인 Oracle 전용 도구</td>
+      <td>유료</td>
+    </tr>
+    <tr>
+      <td>Orange</td>
+      <td>국산 Oracle 전용 도구</td>
+      <td>유료</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="서비스-관리">서비스 관리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>기능</th>
+      <th>Windows</th>
+      <th>Linux</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>시작</td>
+      <td><code class="language-plaintext highlighter-rouge">net start OracleServiceXE</code></td>
+      <td><code class="language-plaintext highlighter-rouge">sudo systemctl start oracle-xe-21c</code></td>
+    </tr>
+    <tr>
+      <td>중지</td>
+      <td><code class="language-plaintext highlighter-rouge">net stop OracleServiceXE</code></td>
+      <td><code class="language-plaintext highlighter-rouge">sudo systemctl stop oracle-xe-21c</code></td>
+    </tr>
+    <tr>
+      <td>리스너 시작</td>
+      <td><code class="language-plaintext highlighter-rouge">lsnrctl start</code></td>
+      <td><code class="language-plaintext highlighter-rouge">lsnrctl start</code></td>
+    </tr>
+    <tr>
+      <td>리스너 중지</td>
+      <td><code class="language-plaintext highlighter-rouge">lsnrctl stop</code></td>
+      <td><code class="language-plaintext highlighter-rouge">lsnrctl stop</code></td>
+    </tr>
+    <tr>
+      <td>리스너 상태</td>
+      <td><code class="language-plaintext highlighter-rouge">lsnrctl status</code></td>
+      <td><code class="language-plaintext highlighter-rouge">lsnrctl status</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- SQL*Plus에서 DB 시작/종료</span>
+<span class="n">STARTUP</span><span class="p">;</span>
+<span class="n">SHUTDOWN</span> <span class="k">IMMEDIATE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (oracle &gt; lecture-oracle)</span></p>
+<ul>
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup &amp; Recovery)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-10-user-privilege/">[Oracle] 10. 사용자 관리와 권한 (User &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-09-plsql/">[Oracle] 09. PL/SQL, 뷰, 프로시저, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-08-transaction/">[Oracle] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-07-index/">[Oracle] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-06-function/">[Oracle] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-05-subquery/">[Oracle] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-04-join/">[Oracle] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-03-crud/">[Oracle] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-02-database-table/">[Oracle] 02. 테이블스페이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/oracle/oracle-01-intro/">[Oracle] 01. Oracle DB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-oracle" class="page__taxonomy-item p-category" rel="tag">lecture-oracle</a><span class="sep">, </span>
+    
+      <a href="/tags/#oracle" class="page__taxonomy-item p-category" rel="tag">oracle</a><span class="sep">, </span>
+    
+      <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">oracle강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#oracle" class="page__taxonomy-item p-category" rel="tag">oracle</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BOracle%5D+01.+Oracle+DB+%EC%86%8C%EA%B0%9C+%EB%B0%8F+%EC%84%A4%EC%B9%98%20https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-01-intro%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-01-intro%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Foracle%2Foracle-01-intro%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="#" class="pagination_prev_next--pager disabled">첫 번째 글입니다</a>
+    
+    
+      <a href="/oracle/oracle-02-database-table/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Oracle] 02. 테이블스페이스와 테이블 관리</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1889 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[MySQL] 06. 내장 함수 정리 | 꿰보노트</title>
+<meta name="description" content="MySQL/MariaDB에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[MySQL] 06. 내장 함수 정리">
+<meta property="og:url" content="https://kimjaehyun.co.kr/mysql/mysql-06-function/">
+
+
+  <meta property="og:description" content="MySQL/MariaDB에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/mysql/mysql-06-function/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#mysql" itemprop="item"><span itemprop="name">Mysql</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[MySQL] 06. 내장 함수 정리</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[MySQL] 06. 내장 함수 정리">
+    <meta itemprop="description" content="MySQL/MariaDB에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/mysql/mysql-06-function/" class="u-url" itemprop="url">[MySQL] 06. 내장 함수 정리
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#문자열-함수">문자열 함수</a><ul><li><a href="#숫자-함수">숫자 함수</a></li><li><a href="#날짜시간-함수">날짜/시간 함수</a><ul><li><a href="#date_format-주요-포맷-코드">DATE_FORMAT 주요 포맷 코드</a></li></ul></li></ul></li><li><a href="#조건-함수">조건 함수</a></li><li><a href="#변환-함수">변환 함수</a></li><li><a href="#윈도우-함수-mysql-80">윈도우 함수 (MySQL 8.0+)</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>MySQL/MariaDB에서 자주 사용하는 내장 함수를 카테고리별로 정리합니다.</p>
+
+<h1 id="문자열-함수">문자열 함수</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>함수</th>
+      <th>설명</th>
+      <th>예시</th>
+      <th>결과</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CONCAT</td>
+      <td>문자열 연결</td>
+      <td><code class="language-plaintext highlighter-rouge">CONCAT('Hello', ' ', 'World')</code></td>
+      <td>Hello World</td>
+    </tr>
+    <tr>
+      <td>CONCAT_WS</td>
+      <td>구분자로 연결</td>
+      <td><code class="language-plaintext highlighter-rouge">CONCAT_WS('-', '2024', '01', '15')</code></td>
+      <td>2024-01-15</td>
+    </tr>
+    <tr>
+      <td>SUBSTRING</td>
+      <td>부분 문자열</td>
+      <td><code class="language-plaintext highlighter-rouge">SUBSTRING('Hello', 1, 3)</code></td>
+      <td>Hel</td>
+    </tr>
+    <tr>
+      <td>LEFT / RIGHT</td>
+      <td>왼쪽/오른쪽 n자</td>
+      <td><code class="language-plaintext highlighter-rouge">LEFT('Hello', 2)</code></td>
+      <td>He</td>
+    </tr>
+    <tr>
+      <td>LENGTH</td>
+      <td>바이트 길이</td>
+      <td><code class="language-plaintext highlighter-rouge">LENGTH('가나다')</code></td>
+      <td>9 (UTF-8)</td>
+    </tr>
+    <tr>
+      <td>CHAR_LENGTH</td>
+      <td>문자 길이</td>
+      <td><code class="language-plaintext highlighter-rouge">CHAR_LENGTH('가나다')</code></td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>UPPER / LOWER</td>
+      <td>대/소문자 변환</td>
+      <td><code class="language-plaintext highlighter-rouge">UPPER('hello')</code></td>
+      <td>HELLO</td>
+    </tr>
+    <tr>
+      <td>TRIM</td>
+      <td>양쪽 공백 제거</td>
+      <td><code class="language-plaintext highlighter-rouge">TRIM('  hi  ')</code></td>
+      <td>hi</td>
+    </tr>
+    <tr>
+      <td>LTRIM / RTRIM</td>
+      <td>왼쪽/오른쪽 공백 제거</td>
+      <td><code class="language-plaintext highlighter-rouge">LTRIM('  hi')</code></td>
+      <td>hi</td>
+    </tr>
+    <tr>
+      <td>REPLACE</td>
+      <td>문자열 치환</td>
+      <td><code class="language-plaintext highlighter-rouge">REPLACE('abc', 'b', 'x')</code></td>
+      <td>axc</td>
+    </tr>
+    <tr>
+      <td>LPAD / RPAD</td>
+      <td>왼쪽/오른쪽 패딩</td>
+      <td><code class="language-plaintext highlighter-rouge">LPAD('5', 3, '0')</code></td>
+      <td>005</td>
+    </tr>
+    <tr>
+      <td>REVERSE</td>
+      <td>문자열 뒤집기</td>
+      <td><code class="language-plaintext highlighter-rouge">REVERSE('abc')</code></td>
+      <td>cba</td>
+    </tr>
+    <tr>
+      <td>INSTR</td>
+      <td>위치 찾기</td>
+      <td><code class="language-plaintext highlighter-rouge">INSTR('Hello', 'lo')</code></td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>FORMAT</td>
+      <td>숫자 포맷</td>
+      <td><code class="language-plaintext highlighter-rouge">FORMAT(1234567.89, 2)</code></td>
+      <td>1,234,567.89</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 실전 예시: 이메일에서 도메인 추출</span>
+<span class="k">SELECT</span> 
+    <span class="n">email</span><span class="p">,</span>
+    <span class="k">SUBSTRING</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="s1">'@'</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">AS</span> <span class="k">domain</span>
+<span class="k">FROM</span> <span class="n">users</span><span class="p">;</span>
+
+<span class="c1">-- 이름 마스킹</span>
+<span class="k">SELECT</span> <span class="n">CONCAT</span><span class="p">(</span><span class="k">LEFT</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">'**'</span><span class="p">)</span> <span class="k">AS</span> <span class="n">masked_name</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+<span class="c1">-- 홍** , 김** , 이**</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="숫자-함수">숫자 함수</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>함수</th>
+      <th>설명</th>
+      <th>예시</th>
+      <th>결과</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ROUND</td>
+      <td>반올림</td>
+      <td><code class="language-plaintext highlighter-rouge">ROUND(3.456, 2)</code></td>
+      <td>3.46</td>
+    </tr>
+    <tr>
+      <td>CEIL / CEILING</td>
+      <td>올림</td>
+      <td><code class="language-plaintext highlighter-rouge">CEIL(3.1)</code></td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>FLOOR</td>
+      <td>내림</td>
+      <td><code class="language-plaintext highlighter-rouge">FLOOR(3.9)</code></td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>TRUNCATE</td>
+      <td>절삭</td>
+      <td><code class="language-plaintext highlighter-rouge">TRUNCATE(3.456, 2)</code></td>
+      <td>3.45</td>
+    </tr>
+    <tr>
+      <td>ABS</td>
+      <td>절대값</td>
+      <td><code class="language-plaintext highlighter-rouge">ABS(-5)</code></td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>MOD</td>
+      <td>나머지</td>
+      <td><code class="language-plaintext highlighter-rouge">MOD(10, 3)</code></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>POWER</td>
+      <td>거듭제곱</td>
+      <td><code class="language-plaintext highlighter-rouge">POWER(2, 10)</code></td>
+      <td>1024</td>
+    </tr>
+    <tr>
+      <td>SQRT</td>
+      <td>제곱근</td>
+      <td><code class="language-plaintext highlighter-rouge">SQRT(16)</code></td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>RAND</td>
+      <td>난수 (0~1)</td>
+      <td><code class="language-plaintext highlighter-rouge">RAND()</code></td>
+      <td>0.7342…</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 실전 예시: 급여를 만원 단위로 반올림</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">ROUND</span><span class="p">(</span><span class="n">salary</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="k">AS</span> <span class="n">rounded_salary</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 랜덤 정렬 (무작위 추출)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">RAND</span><span class="p">()</span> <span class="k">LIMIT</span> <span class="mi">3</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="날짜시간-함수">날짜/시간 함수</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>함수</th>
+      <th>설명</th>
+      <th>예시</th>
+      <th>결과</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NOW()</td>
+      <td>현재 날짜+시간</td>
+      <td><code class="language-plaintext highlighter-rouge">NOW()</code></td>
+      <td>2026-05-04 14:30:00</td>
+    </tr>
+    <tr>
+      <td>CURDATE()</td>
+      <td>현재 날짜</td>
+      <td><code class="language-plaintext highlighter-rouge">CURDATE()</code></td>
+      <td>2026-05-04</td>
+    </tr>
+    <tr>
+      <td>CURTIME()</td>
+      <td>현재 시간</td>
+      <td><code class="language-plaintext highlighter-rouge">CURTIME()</code></td>
+      <td>14:30:00</td>
+    </tr>
+    <tr>
+      <td>DATE()</td>
+      <td>날짜 부분 추출</td>
+      <td><code class="language-plaintext highlighter-rouge">DATE(NOW())</code></td>
+      <td>2026-05-04</td>
+    </tr>
+    <tr>
+      <td>YEAR / MONTH / DAY</td>
+      <td>연/월/일 추출</td>
+      <td><code class="language-plaintext highlighter-rouge">YEAR(NOW())</code></td>
+      <td>2026</td>
+    </tr>
+    <tr>
+      <td>HOUR / MINUTE / SECOND</td>
+      <td>시/분/초 추출</td>
+      <td><code class="language-plaintext highlighter-rouge">HOUR(NOW())</code></td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>DATE_ADD</td>
+      <td>날짜 더하기</td>
+      <td><code class="language-plaintext highlighter-rouge">DATE_ADD(NOW(), INTERVAL 7 DAY)</code></td>
+      <td>+7일</td>
+    </tr>
+    <tr>
+      <td>DATE_SUB</td>
+      <td>날짜 빼기</td>
+      <td><code class="language-plaintext highlighter-rouge">DATE_SUB(NOW(), INTERVAL 1 MONTH)</code></td>
+      <td>-1개월</td>
+    </tr>
+    <tr>
+      <td>DATEDIFF</td>
+      <td>날짜 차이 (일)</td>
+      <td><code class="language-plaintext highlighter-rouge">DATEDIFF('2026-12-31', '2026-01-01')</code></td>
+      <td>364</td>
+    </tr>
+    <tr>
+      <td>TIMESTAMPDIFF</td>
+      <td>단위별 차이</td>
+      <td><code class="language-plaintext highlighter-rouge">TIMESTAMPDIFF(MONTH, '2024-01-01', '2026-05-04')</code></td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <td>DATE_FORMAT</td>
+      <td>날짜 포맷</td>
+      <td><code class="language-plaintext highlighter-rouge">DATE_FORMAT(NOW(), '%Y년 %m월 %d일')</code></td>
+      <td>2026년 05월 04일</td>
+    </tr>
+    <tr>
+      <td>STR_TO_DATE</td>
+      <td>문자→날짜 변환</td>
+      <td><code class="language-plaintext highlighter-rouge">STR_TO_DATE('2026-05-04', '%Y-%m-%d')</code></td>
+      <td>2026-05-04</td>
+    </tr>
+    <tr>
+      <td>LAST_DAY</td>
+      <td>해당 월 마지막 날</td>
+      <td><code class="language-plaintext highlighter-rouge">LAST_DAY('2026-02-01')</code></td>
+      <td>2026-02-28</td>
+    </tr>
+    <tr>
+      <td>DAYOFWEEK</td>
+      <td>요일 (1=일, 7=토)</td>
+      <td><code class="language-plaintext highlighter-rouge">DAYOFWEEK('2026-05-04')</code></td>
+      <td>2 (월)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="date_format-주요-포맷-코드">DATE_FORMAT 주요 포맷 코드</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>코드</th>
+      <th>설명</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>%Y</td>
+      <td>4자리 연도</td>
+      <td>2026</td>
+    </tr>
+    <tr>
+      <td>%y</td>
+      <td>2자리 연도</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <td>%m</td>
+      <td>월 (01~12)</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <td>%d</td>
+      <td>일 (01~31)</td>
+      <td>04</td>
+    </tr>
+    <tr>
+      <td>%H</td>
+      <td>시 (00~23)</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>%i</td>
+      <td>분 (00~59)</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>%s</td>
+      <td>초 (00~59)</td>
+      <td>00</td>
+    </tr>
+    <tr>
+      <td>%W</td>
+      <td>요일 이름</td>
+      <td>Monday</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 실전 예시: 입사 후 근속 연수 계산</span>
+<span class="k">SELECT</span> 
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">hire_date</span><span class="p">,</span>
+    <span class="n">TIMESTAMPDIFF</span><span class="p">(</span><span class="nb">YEAR</span><span class="p">,</span> <span class="n">hire_date</span><span class="p">,</span> <span class="n">CURDATE</span><span class="p">())</span> <span class="k">AS</span> <span class="err">근속연수</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 이번 달 입사자 조회</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span>
+<span class="k">WHERE</span> <span class="n">DATE_FORMAT</span><span class="p">(</span><span class="n">hire_date</span><span class="p">,</span> <span class="s1">'%Y-%m'</span><span class="p">)</span> <span class="o">=</span> <span class="n">DATE_FORMAT</span><span class="p">(</span><span class="n">NOW</span><span class="p">(),</span> <span class="s1">'%Y-%m'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="조건-함수">조건 함수</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- IF: 조건에 따라 값 반환</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">IF</span><span class="p">(</span><span class="n">salary</span> <span class="o">&gt;=</span> <span class="mi">5000000</span><span class="p">,</span> <span class="s1">'고연봉'</span><span class="p">,</span> <span class="s1">'일반'</span><span class="p">)</span> <span class="k">AS</span> <span class="err">구분</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- IFNULL: NULL이면 대체값 반환</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">IFNULL</span><span class="p">(</span><span class="n">dept_id</span><span class="p">,</span> <span class="s1">'미배정'</span><span class="p">)</span> <span class="k">AS</span> <span class="err">부서</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- NULLIF: 두 값이 같으면 NULL 반환</span>
+<span class="k">SELECT</span> <span class="k">NULLIF</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  <span class="c1">-- NULL</span>
+<span class="k">SELECT</span> <span class="k">NULLIF</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>  <span class="c1">-- 10</span>
+
+<span class="c1">-- COALESCE: 첫 번째 NOT NULL 값 반환</span>
+<span class="k">SELECT</span> <span class="n">COALESCE</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="s1">'기본값'</span><span class="p">,</span> <span class="s1">'abc'</span><span class="p">);</span>  <span class="c1">-- '기본값'</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="변환-함수">변환 함수</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 타입 변환</span>
+<span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">'123'</span> <span class="k">AS</span> <span class="nb">SIGNED</span><span class="p">);</span>          <span class="c1">-- 정수로 변환</span>
+<span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">'2026-05-04'</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">);</span>     <span class="c1">-- 날짜로 변환</span>
+<span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">14</span> <span class="k">AS</span> <span class="nb">CHAR</span><span class="p">);</span>            <span class="c1">-- 문자로 변환</span>
+
+<span class="k">SELECT</span> <span class="k">CONVERT</span><span class="p">(</span><span class="s1">'123'</span><span class="p">,</span> <span class="nb">SIGNED</span><span class="p">);</span>         <span class="c1">-- CAST와 동일</span>
+<span class="k">SELECT</span> <span class="k">CONVERT</span><span class="p">(</span><span class="s1">'abc'</span> <span class="k">USING</span> <span class="n">utf8mb4</span><span class="p">);</span>   <span class="c1">-- 문자셋 변환</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="윈도우-함수-mysql-80">윈도우 함수 (MySQL 8.0+)</h2>
+<p>집계 함수와 달리 행을 그룹으로 축소하지 않고, 각 행에 대해 계산 결과를 반환합니다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ROW_NUMBER: 순번 부여</span>
+<span class="k">SELECT</span> 
+    <span class="n">name</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="err">순위</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- RANK: 동일 값은 같은 순위 (다음 순위 건너뜀)</span>
+<span class="k">SELECT</span> 
+    <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">RANK</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="err">순위</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- DENSE_RANK: 동일 값은 같은 순위 (다음 순위 연속)</span>
+<span class="k">SELECT</span> 
+    <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">DENSE_RANK</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="err">순위</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 부서별 급여 순위</span>
+<span class="k">SELECT</span> 
+    <span class="n">name</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">PARTITION</span> <span class="k">BY</span> <span class="n">dept_id</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">DESC</span><span class="p">)</span> <span class="k">AS</span> <span class="err">부서내순위</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- LAG / LEAD: 이전/다음 행 값 참조</span>
+<span class="k">SELECT</span> 
+    <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="n">LAG</span><span class="p">(</span><span class="n">salary</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span><span class="p">)</span> <span class="k">AS</span> <span class="err">이전급여</span><span class="p">,</span>
+    <span class="n">LEAD</span><span class="p">(</span><span class="n">salary</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span><span class="p">)</span> <span class="k">AS</span> <span class="err">다음급여</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- SUM OVER: 누적 합계</span>
+<span class="k">SELECT</span> 
+    <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">,</span>
+    <span class="k">SUM</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">hire_date</span><span class="p">)</span> <span class="k">AS</span> <span class="err">누적급여</span>
+<span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (mysql &gt; lecture-mysql)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-13-troubleshooting/">[MySQL] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-12-tuning/">[MySQL] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-11-backup-restore/">[MySQL] 11. 백업과 복구 (Backup &amp; Restore)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-10-user-privilege/">[MySQL] 10. 사용자 관리와 권한 (User &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-09-view-procedure/">[MySQL] 09. 뷰, 스토어드 프로시저, 함수, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-08-transaction/">[MySQL] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-07-index/">[MySQL] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-06-function/">[MySQL] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-05-subquery/">[MySQL] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-04-join/">[MySQL] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-03-crud/">[MySQL] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-02-database-table/">[MySQL] 02. 데이터베이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-01-intro/">[MySQL] 01. MySQL/MariaDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-mysql" class="page__taxonomy-item p-category" rel="tag">lecture-mysql</a><span class="sep">, </span>
+    
+      <a href="/tags/#mariadb" class="page__taxonomy-item p-category" rel="tag">mariadb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mysql" class="page__taxonomy-item p-category" rel="tag">mysql</a><span class="sep">, </span>
+    
+      <a href="/tags/#mysql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">mysql강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#mysql" class="page__taxonomy-item p-category" rel="tag">mysql</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BMySQL%5D+06.+%EB%82%B4%EC%9E%A5+%ED%95%A8%EC%88%98+%EC%A0%95%EB%A6%AC%20https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-06-function%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-06-function%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-06-function%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/mysql/mysql-05-subquery/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[MySQL] 05. 서브쿼리와 고급 SELECT</a>
+    
+    
+      <a href="/mysql/mysql-07-index/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[MySQL] 07. 인덱스 (Index)</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

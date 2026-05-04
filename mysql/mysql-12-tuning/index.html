@@ -1,0 +1,1825 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[MySQL] 12. 성능 튜닝 (Performance Tuning) | 꿰보노트</title>
+<meta name="description" content="MySQL/MariaDB의 성능 분석, 쿼리 최적화, 서버 튜닝 기법을 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[MySQL] 12. 성능 튜닝 (Performance Tuning)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/mysql/mysql-12-tuning/">
+
+
+  <meta property="og:description" content="MySQL/MariaDB의 성능 분석, 쿼리 최적화, 서버 튜닝 기법을 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/mysql/mysql-12-tuning/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#mysql" itemprop="item"><span itemprop="name">Mysql</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[MySQL] 12. 성능 튜닝 (Performance Tuning)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 91</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+
+
+
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[MySQL] 12. 성능 튜닝 (Performance Tuning)">
+    <meta itemprop="description" content="MySQL/MariaDB의 성능 분석, 쿼리 최적화, 서버 튜닝 기법을 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/mysql/mysql-12-tuning/" class="u-url" itemprop="url">[MySQL] 12. 성능 튜닝 (Performance Tuning)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#성능-튜닝-3대-영역">성능 튜닝 3대 영역</a><ul><li><a href="#슬로우-쿼리-로그-slow-query-log">슬로우 쿼리 로그 (Slow Query Log)</a><ul><li><a href="#설정">설정</a></li><li><a href="#슬로우-쿼리-분석-도구">슬로우 쿼리 분석 도구</a></li></ul></li><li><a href="#explain-심화-분석">EXPLAIN 심화 분석</a><ul><li><a href="#explain-analyze-mysql-8018">EXPLAIN ANALYZE (MySQL 8.0.18+)</a></li><li><a href="#실행-계획-개선-패턴">실행 계획 개선 패턴</a><ul><li><a href="#패턴-1-full-table-scan--index-scan">패턴 1: Full Table Scan → Index Scan</a></li><li><a href="#패턴-2-filesort-제거">패턴 2: filesort 제거</a></li><li><a href="#패턴-3-using-temporary-제거">패턴 3: Using temporary 제거</a></li></ul></li></ul></li><li><a href="#쿼리-최적화-기법">쿼리 최적화 기법</a><ul><li><a href="#1-select-최적화">1. SELECT 최적화</a></li><li><a href="#2-where-절-최적화">2. WHERE 절 최적화</a></li><li><a href="#3-join-최적화">3. JOIN 최적화</a></li><li><a href="#4-limit-활용">4. LIMIT 활용</a></li><li><a href="#5-대량-데이터-처리">5. 대량 데이터 처리</a></li></ul></li><li><a href="#서버-설정-튜닝-mycnf">서버 설정 튜닝 (my.cnf)</a><ul><li><a href="#innodb-핵심-파라미터">InnoDB 핵심 파라미터</a></li><li><a href="#연결-및-쿼리-설정">연결 및 쿼리 설정</a></li><li><a href="#현재-설정-확인-및-동적-변경">현재 설정 확인 및 동적 변경</a></li></ul></li><li><a href="#모니터링-쿼리">모니터링 쿼리</a><ul><li><a href="#현재-프로세스-확인">현재 프로세스 확인</a></li><li><a href="#버퍼-풀-히트율">버퍼 풀 히트율</a></li><li><a href="#테이블인덱스-크기-확인">테이블/인덱스 크기 확인</a></li><li><a href="#사용되지-않는-인덱스-확인-mysql-80">사용되지 않는 인덱스 확인 (MySQL 8.0+)</a></li></ul></li><li><a href="#튜닝-체크리스트">튜닝 체크리스트</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>MySQL/MariaDB의 성능 분석, 쿼리 최적화, 서버 튜닝 기법을 정리합니다.</p>
+
+<h1 id="성능-튜닝-3대-영역">성능 튜닝 3대 영역</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>영역</th>
+      <th>설명</th>
+      <th>효과</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>쿼리 최적화</td>
+      <td>SQL 문 자체를 개선</td>
+      <td>가장 큰 효과 (80%)</td>
+    </tr>
+    <tr>
+      <td>인덱스 최적화</td>
+      <td>적절한 인덱스 설계</td>
+      <td>높은 효과</td>
+    </tr>
+    <tr>
+      <td>서버 설정 튜닝</td>
+      <td>my.cnf 파라미터 조정</td>
+      <td>보조적 효과</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="슬로우-쿼리-로그-slow-query-log">슬로우 쿼리 로그 (Slow Query Log)</h2>
+
+<p>실행 시간이 긴 쿼리를 자동으로 기록합니다.</p>
+
+<h3 id="설정">설정</h3>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># my.cnf (my.ini)
+</span><span class="nn">[mysqld]</span><span class="w">
+</span><span class="py">slow_query_log</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">1</span>
+<span class="py">slow_query_log_file</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">/var/log/mysql/slow-query.log</span>
+<span class="py">long_query_time</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">1          # 1초 이상 걸리는 쿼리 기록</span>
+<span class="py">log_queries_not_using_indexes</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">1  # 인덱스 미사용 쿼리도 기록</span>
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 동적 설정 (재시작 없이)</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">slow_query_log</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">long_query_time</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">log_queries_not_using_indexes</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- 현재 설정 확인</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'slow_query%'</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'long_query_time'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="슬로우-쿼리-분석-도구">슬로우 쿼리 분석 도구</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># mysqldumpslow: 슬로우 쿼리 요약</span>
+mysqldumpslow <span class="nt">-s</span> t <span class="nt">-t</span> 10 /var/log/mysql/slow-query.log
+<span class="c"># -s t: 실행 시간 순 정렬</span>
+<span class="c"># -t 10: 상위 10개</span>
+
+<span class="c"># pt-query-digest (Percona Toolkit): 더 상세한 분석</span>
+pt-query-digest /var/log/mysql/slow-query.log
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="explain-심화-분석">EXPLAIN 심화 분석</h2>
+
+<h3 id="explain-analyze-mysql-8018">EXPLAIN ANALYZE (MySQL 8.0.18+)</h3>
+<p>실제 실행 시간과 행 수를 포함한 상세 분석을 제공합니다.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">EXPLAIN</span> <span class="k">ANALYZE</span>
+<span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span> <span class="k">AS</span> <span class="n">dept_name</span>
+<span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">departments</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span>
+<span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">salary</span> <span class="o">&gt;</span> <span class="mi">5000000</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="실행-계획-개선-패턴">실행 계획 개선 패턴</h3>
+
+<h4 id="패턴-1-full-table-scan--index-scan">패턴 1: Full Table Scan → Index Scan</h4>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ❌ type: ALL (Full Table Scan)</span>
+<span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">customer_name</span> <span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>
+
+<span class="c1">-- ✅ 인덱스 추가 후 type: ref</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_customer_name</span> <span class="k">ON</span> <span class="n">orders</span> <span class="p">(</span><span class="n">customer_name</span><span class="p">);</span>
+<span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">customer_name</span> <span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="패턴-2-filesort-제거">패턴 2: filesort 제거</h4>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ❌ Extra: Using filesort</span>
+<span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'pending'</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span><span class="p">;</span>
+
+<span class="c1">-- ✅ 복합 인덱스로 filesort 제거</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_status_created</span> <span class="k">ON</span> <span class="n">orders</span> <span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">created_at</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="패턴-3-using-temporary-제거">패턴 3: Using temporary 제거</h4>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ❌ Extra: Using temporary</span>
+<span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="n">dept_id</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">dept_id</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- ✅ 인덱스 활용</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_dept</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="n">dept_id</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="쿼리-최적화-기법">쿼리 최적화 기법</h2>
+
+<h3 id="1-select-최적화">1. SELECT 최적화</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ❌ 불필요한 전체 컬럼 조회</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- ✅ 필요한 컬럼만 조회</span>
+<span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">dept_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">-- ❌ 서브쿼리 (비효율적인 경우)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span>
+<span class="k">WHERE</span> <span class="n">dept_id</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">id</span> <span class="k">FROM</span> <span class="n">departments</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'개발팀'</span><span class="p">);</span>
+
+<span class="c1">-- ✅ JOIN으로 변환</span>
+<span class="k">SELECT</span> <span class="n">e</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">departments</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span>
+<span class="k">WHERE</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'개발팀'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="2-where-절-최적화">2. WHERE 절 최적화</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ❌ 컬럼에 함수 적용 (인덱스 무효화)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="nb">DATE</span><span class="p">(</span><span class="n">created_at</span><span class="p">)</span> <span class="o">=</span> <span class="s1">'2026-05-04'</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">amount</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">&gt;</span> <span class="mi">5000</span><span class="p">;</span>
+
+<span class="c1">-- ✅ 값 쪽에 연산 적용</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">created_at</span> <span class="o">&gt;=</span> <span class="s1">'2026-05-04'</span> <span class="k">AND</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="s1">'2026-05-05'</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'홍길동'</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="mi">4900</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="3-join-최적화">3. JOIN 최적화</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 작은 테이블을 드라이빙 테이블로 (옵티마이저가 자동 판단하지만 힌트 가능)</span>
+<span class="k">SELECT</span> <span class="cm">/*+ JOIN_ORDER(d, e) */</span> <span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span>
+<span class="k">FROM</span> <span class="n">employees</span> <span class="n">e</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">departments</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">dept_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+
+<span class="c1">-- JOIN 컬럼에 인덱스 필수</span>
+<span class="c1">-- employees.dept_id에 인덱스가 없으면 Nested Loop 시 매번 Full Scan</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">idx_dept_id</span> <span class="k">ON</span> <span class="n">employees</span> <span class="p">(</span><span class="n">dept_id</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="4-limit-활용">4. LIMIT 활용</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ❌ 전체 조회 후 애플리케이션에서 제한</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">logs</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span> <span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- ✅ DB 레벨에서 제한</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">logs</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span> <span class="k">DESC</span> <span class="k">LIMIT</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="c1">-- EXISTS로 존재 여부만 확인</span>
+<span class="c1">-- ❌</span>
+<span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">-- 전체 카운트</span>
+
+<span class="c1">-- ✅</span>
+<span class="k">SELECT</span> <span class="k">EXISTS</span><span class="p">(</span><span class="k">SELECT</span> <span class="mi">1</span> <span class="k">FROM</span> <span class="n">orders</span> <span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1">-- 1건만 확인</span>
+</code></pre></div></div>
+
+<h3 id="5-대량-데이터-처리">5. 대량 데이터 처리</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ❌ 한 번에 대량 UPDATE</span>
+<span class="k">UPDATE</span> <span class="n">orders</span> <span class="k">SET</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'archived'</span> <span class="k">WHERE</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="s1">'2025-01-01'</span><span class="p">;</span>
+
+<span class="c1">-- ✅ 배치 처리</span>
+<span class="c1">-- 1000건씩 나누어 처리 (락 경합 감소)</span>
+<span class="k">UPDATE</span> <span class="n">orders</span> <span class="k">SET</span> <span class="n">status</span> <span class="o">=</span> <span class="s1">'archived'</span>
+<span class="k">WHERE</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="s1">'2025-01-01'</span> <span class="k">AND</span> <span class="n">status</span> <span class="o">!=</span> <span class="s1">'archived'</span>
+<span class="k">LIMIT</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="c1">-- 영향받은 행이 0이 될 때까지 반복</span>
+
+<span class="c1">-- ❌ 한 번에 대량 INSERT</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">target</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">source</span><span class="p">;</span>  <span class="c1">-- 수백만 건</span>
+
+<span class="c1">-- ✅ 배치 INSERT</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">target</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">source</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="k">BETWEEN</span> <span class="mi">1</span> <span class="k">AND</span> <span class="mi">10000</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">target</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">source</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="k">BETWEEN</span> <span class="mi">10001</span> <span class="k">AND</span> <span class="mi">20000</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="서버-설정-튜닝-mycnf">서버 설정 튜닝 (my.cnf)</h2>
+
+<h3 id="innodb-핵심-파라미터">InnoDB 핵심 파라미터</h3>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[mysqld]</span><span class="w">
+</span><span class="c"># === 메모리 설정 ===
+# InnoDB 버퍼 풀: 전체 메모리의 60~80% (가장 중요한 설정)
+</span><span class="py">innodb_buffer_pool_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">4G</span>
+<span class="w">
+</span><span class="c"># 버퍼 풀 인스턴스 (버퍼 풀 1GB당 1개 권장)
+</span><span class="py">innodb_buffer_pool_instances</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">4</span>
+<span class="w">
+</span><span class="c"># === 로그 설정 ===
+# Redo 로그 크기 (쓰기 성능에 영향)
+</span><span class="py">innodb_log_file_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">1G</span>
+<span class="w">
+</span><span class="c"># 로그 버퍼 크기
+</span><span class="py">innodb_log_buffer_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">64M</span>
+<span class="w">
+</span><span class="c"># === I/O 설정 ===
+# I/O 스레드 수
+</span><span class="py">innodb_read_io_threads</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">8</span>
+<span class="py">innodb_write_io_threads</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">8</span>
+<span class="w">
+</span><span class="c"># I/O 용량 (SSD: 2000~5000, HDD: 200~400)
+</span><span class="py">innodb_io_capacity</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">2000</span>
+<span class="py">innodb_io_capacity_max</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">4000</span>
+<span class="w">
+</span><span class="c"># === 동시성 설정 ===
+# 동시 스레드 수 (0 = 무제한)
+</span><span class="py">innodb_thread_concurrency</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">0</span>
+<span class="w">
+</span><span class="c"># === 플러시 설정 ===
+# 트랜잭션 커밋 시 로그 플러시 (1: 안전, 2: 성능)
+</span><span class="py">innodb_flush_log_at_trx_commit</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">1</span>
+<span class="w">
+</span><span class="c"># 플러시 방식 (Linux에서 O_DIRECT 권장)
+</span><span class="py">innodb_flush_method</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">O_DIRECT</span>
+</code></pre></div></div>
+
+<h3 id="연결-및-쿼리-설정">연결 및 쿼리 설정</h3>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[mysqld]</span><span class="w">
+</span><span class="c"># 최대 동시 접속 수
+</span><span class="py">max_connections</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">500</span>
+<span class="w">
+</span><span class="c"># 쿼리 타임아웃 (초)
+</span><span class="py">wait_timeout</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">600</span>
+<span class="py">interactive_timeout</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">600</span>
+<span class="w">
+</span><span class="c"># 임시 테이블 크기
+</span><span class="py">tmp_table_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">256M</span>
+<span class="py">max_heap_table_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">256M</span>
+<span class="w">
+</span><span class="c"># 정렬 버퍼
+</span><span class="py">sort_buffer_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">4M</span>
+<span class="py">join_buffer_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">4M</span>
+<span class="w">
+</span><span class="c"># 테이블 캐시
+</span><span class="py">table_open_cache</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">4000</span>
+</code></pre></div></div>
+
+<h3 id="현재-설정-확인-및-동적-변경">현재 설정 확인 및 동적 변경</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 값 확인</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'innodb_buffer_pool_size'</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'max_connections'</span><span class="p">;</span>
+
+<span class="c1">-- 동적 변경 (재시작 없이)</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">max_connections</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+<span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_buffer_pool_size</span> <span class="o">=</span> <span class="mi">4294967296</span><span class="p">;</span>  <span class="c1">-- 4GB</span>
+
+<span class="c1">-- 상태 모니터링</span>
+<span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">STATUS</span> <span class="k">LIKE</span> <span class="s1">'Threads_connected'</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">STATUS</span> <span class="k">LIKE</span> <span class="s1">'Innodb_buffer_pool%'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="모니터링-쿼리">모니터링 쿼리</h2>
+
+<h3 id="현재-프로세스-확인">현재 프로세스 확인</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 실행 중인 쿼리</span>
+<span class="k">SHOW</span> <span class="n">PROCESSLIST</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="k">FULL</span> <span class="n">PROCESSLIST</span><span class="p">;</span>
+
+<span class="c1">-- 특정 쿼리 강제 종료</span>
+<span class="n">KILL</span> <span class="err">프로세스</span><span class="n">ID</span><span class="p">;</span>
+<span class="n">KILL</span> <span class="n">QUERY</span> <span class="err">프로세스</span><span class="n">ID</span><span class="p">;</span>  <span class="c1">-- 쿼리만 종료 (연결 유지)</span>
+</code></pre></div></div>
+
+<h3 id="버퍼-풀-히트율">버퍼 풀 히트율</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span>
+        <span class="p">(</span><span class="k">SELECT</span> <span class="n">VARIABLE_VALUE</span> <span class="k">FROM</span> <span class="n">performance_schema</span><span class="p">.</span><span class="n">global_status</span> <span class="k">WHERE</span> <span class="n">VARIABLE_NAME</span> <span class="o">=</span> <span class="s1">'Innodb_buffer_pool_reads'</span><span class="p">)</span> <span class="o">/</span>
+        <span class="p">(</span><span class="k">SELECT</span> <span class="n">VARIABLE_VALUE</span> <span class="k">FROM</span> <span class="n">performance_schema</span><span class="p">.</span><span class="n">global_status</span> <span class="k">WHERE</span> <span class="n">VARIABLE_NAME</span> <span class="o">=</span> <span class="s1">'Innodb_buffer_pool_read_requests'</span><span class="p">)</span>
+    <span class="p">))</span> <span class="o">*</span> <span class="mi">100</span> <span class="k">AS</span> <span class="n">buffer_pool_hit_rate</span><span class="p">;</span>
+<span class="c1">-- 99% 이상이 정상, 95% 미만이면 버퍼 풀 증가 필요</span>
+</code></pre></div></div>
+
+<h3 id="테이블인덱스-크기-확인">테이블/인덱스 크기 확인</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 테이블별 크기</span>
+<span class="k">SELECT</span> 
+    <span class="k">table_name</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">data_length</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">data_mb</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">index_length</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">index_mb</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">((</span><span class="n">data_length</span> <span class="o">+</span> <span class="n">index_length</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_mb</span><span class="p">,</span>
+    <span class="n">table_rows</span>
+<span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span>
+<span class="k">WHERE</span> <span class="n">table_schema</span> <span class="o">=</span> <span class="s1">'mydb'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">total_mb</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="사용되지-않는-인덱스-확인-mysql-80">사용되지 않는 인덱스 확인 (MySQL 8.0+)</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+    <span class="n">object_schema</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">index_name</span>
+<span class="k">FROM</span> <span class="n">performance_schema</span><span class="p">.</span><span class="n">table_io_waits_summary_by_index_usage</span>
+<span class="k">WHERE</span> <span class="n">index_name</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+  <span class="k">AND</span> <span class="n">count_star</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">AND</span> <span class="n">object_schema</span> <span class="o">=</span> <span class="s1">'mydb'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">object_name</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="튜닝-체크리스트">튜닝 체크리스트</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>단계</th>
+      <th>점검 항목</th>
+      <th>확인 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>슬로우 쿼리 로그 활성화</td>
+      <td><code class="language-plaintext highlighter-rouge">SHOW VARIABLES LIKE 'slow_query%'</code></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>상위 슬로우 쿼리 분석</td>
+      <td><code class="language-plaintext highlighter-rouge">mysqldumpslow</code> 또는 <code class="language-plaintext highlighter-rouge">pt-query-digest</code></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>EXPLAIN으로 실행 계획 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">EXPLAIN SELECT ...</code></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>인덱스 누락 확인</td>
+      <td>type이 ALL인 쿼리</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>불필요한 인덱스 제거</td>
+      <td><code class="language-plaintext highlighter-rouge">performance_schema</code> 조회</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>버퍼 풀 히트율 확인</td>
+      <td>99% 이상 유지</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>커넥션 수 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">max_connections</code> 대비 사용량</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>디스크 I/O 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">innodb_io_capacity</code> 조정</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>테이블 크기 확인</td>
+      <td>대용량 테이블 파티셔닝 검토</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>정기적인 ANALYZE TABLE</td>
+      <td>통계 정보 갱신</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 테이블 통계 갱신</span>
+<span class="k">ANALYZE</span> <span class="k">TABLE</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="c1">-- 테이블 최적화 (단편화 제거)</span>
+<span class="n">OPTIMIZE</span> <span class="k">TABLE</span> <span class="n">employees</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (mysql &gt; lecture-mysql)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-13-troubleshooting/">[MySQL] 13. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-12-tuning/">[MySQL] 12. 성능 튜닝 (Performance Tuning)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-11-backup-restore/">[MySQL] 11. 백업과 복구 (Backup &amp; Restore)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-10-user-privilege/">[MySQL] 10. 사용자 관리와 권한 (User &amp; Privilege)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-09-view-procedure/">[MySQL] 09. 뷰, 스토어드 프로시저, 함수, 트리거</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-08-transaction/">[MySQL] 08. 트랜잭션과 락 (Transaction &amp; Lock)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-07-index/">[MySQL] 07. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-06-function/">[MySQL] 06. 내장 함수 정리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-05-subquery/">[MySQL] 05. 서브쿼리와 고급 SELECT</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-04-join/">[MySQL] 04. JOIN (테이블 결합)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-03-crud/">[MySQL] 03. CRUD 기본 (INSERT, SELECT, UPDATE, DELETE)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-02-database-table/">[MySQL] 02. 데이터베이스와 테이블 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mysql/mysql-01-intro/">[MySQL] 01. MySQL/MariaDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-mysql" class="page__taxonomy-item p-category" rel="tag">lecture-mysql</a><span class="sep">, </span>
+    
+      <a href="/tags/#mariadb" class="page__taxonomy-item p-category" rel="tag">mariadb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mysql" class="page__taxonomy-item p-category" rel="tag">mysql</a><span class="sep">, </span>
+    
+      <a href="/tags/#mysql%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">mysql강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">고급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#mysql" class="page__taxonomy-item p-category" rel="tag">mysql</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-04T00:00:00+00:00">2026-05-04</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BMySQL%5D+12.+%EC%84%B1%EB%8A%A5+%ED%8A%9C%EB%8B%9D+%28Performance+Tuning%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-12-tuning%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-12-tuning%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fmysql%2Fmysql-12-tuning%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/mysql/mysql-11-backup-restore/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[MySQL] 11. 백업과 복구 (Backup & Restore)</a>
+    
+    
+      <a href="/mysql/mysql-13-troubleshooting/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[MySQL] 13. 자주 발생하는 Troubleshooting</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/python/python-venv/">Python 가상환경 구축 (venv vs uv)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#python" class="page__taxonomy-item-category" rel="tag">python</a>
+                    
+                    
+                    <a href="/tags/#python" class="page__taxonomy-item-tag" rel="tag">python</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#uv" class="page__taxonomy-item-tag" rel="tag">uv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#venv" class="page__taxonomy-item-tag" rel="tag">venv</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#virtualenv" class="page__taxonomy-item-tag" rel="tag">virtualenv</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-13-troubleshooting/">[Oracle] 13. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-12-tuning/">[Oracle] 12. 성능 튜닝 (Performance Tuning)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/oracle/oracle-11-backup-restore/">[Oracle] 11. 백업과 복구 (Backup & Recovery)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.04
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#oracle" class="page__taxonomy-item-category" rel="tag">oracle</a>
+                    
+                    
+                    <a href="/tags/#lecture-oracle" class="page__taxonomy-item-tag" rel="tag">lecture-oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle" class="page__taxonomy-item-tag" rel="tag">oracle</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#oracle%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">oracle강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
