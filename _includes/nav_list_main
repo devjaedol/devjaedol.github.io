@@ -72,14 +72,29 @@
             {% endfor %}
           </ul>            
 
+        <span class="nav__sub-title">Database</span>
           <ul>
               {% for category in site.categories %}
-                  {% if category[0] == "db" %}
-                      <li><a href="/categories/db" class="">Database ({{category[1].size}})</a> <i class="fas fa-database"></i></li>
+                  {% if category[0] == "mysql" %}
+                      <li><a href="/categories/mysql" class="">Mysql ({{category[1].size}})</a> <i class="fas fa-database"></i></li>
                   {% endif %}
               {% endfor %}
           </ul>
-
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "oracle" %}
+                      <li><a href="/categories/oracle" class="">Oracle ({{category[1].size}})</a> <i class="fas fa-database"></i></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "postgresql" %}
+                      <li><a href="/categories/postgresql" class="">Postgresql ({{category[1].size}})</a> <i class="fas fa-database"></i></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          
 
         <span class="nav__sub-title">주제별 모음</span>
             <ul>
