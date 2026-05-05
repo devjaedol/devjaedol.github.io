@@ -64,6 +64,11 @@ jobs:
       - name: Run ls -al source
         run: ls -al ./source
 
+      - name: Clean master branch (keep .git)
+        run: |
+          cd ${{ github.workspace }}/master
+          find . -maxdepth 1 ! -name '.' ! -name '.git' -exec rm -rf {} +
+
       - name: Copying _site content to master branch repo
         run: cp -R ${{ github.workspace }}/source/_site/* ${{ github.workspace }}/master
 
