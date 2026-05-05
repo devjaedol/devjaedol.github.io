@@ -1,0 +1,729 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>mongodb강좌 | 꿰보노트</title>
+<meta name="description" content="프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배">
+
+
+  <meta name="author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="mongodb강좌">
+<meta property="og:url" content="https://kimjaehyun.co.kr/tags/mongodb%EA%B0%95%EC%A2%8C/">
+
+
+  <meta property="og:description" content="프로그래밍과 소프트웨어 정보 및 클라우드 개발에 대한 정보를 공유하는 블로그 입니다. 꿰보노트 / 꿰보Note / 꿰어야 보배">
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/tags/mongodb%EA%B0%95%EC%A2%8C/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--archive-taxonomy">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/tags" itemprop="item"><span itemprop="name">Tags</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">mongodb강좌</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+
+
+
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title">mongodb강좌</h1>
+    
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-10-troubleshooting/">[MongoDB] 10. 자주 발생하는 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-09-performance/">[MongoDB] 09. 성능 튜닝과 모니터링</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-08-backup-restore/">[MongoDB] 08. 백업과 복구</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-07-security-user/">[MongoDB] 07. 보안과 사용자 관리</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-06-replication-sharding/">[MongoDB] 06. Replica Set과 Sharding (고가용성/확장)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-05-schema-design/">[MongoDB] 05. 스키마 설계 (Embedding vs Referencing)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-04-index/">[MongoDB] 04. 인덱스 (Index)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-03-aggregation/">[MongoDB] 03. Aggregation Pipeline (집계)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-02-crud/">[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+      
+
+
+
+<div class="list__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/mongodb/mongodb-01-intro/">[MongoDB] 01. MongoDB 소개 및 설치</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#mongodb" class="page__taxonomy-item-category" rel="tag">mongodb</a>
+                    
+                    
+                    <a href="/tags/#lecture-mongodb" class="page__taxonomy-item-tag" rel="tag">lecture-mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb" class="page__taxonomy-item-tag" rel="tag">mongodb</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">mongodb강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">초급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+    
+  </div>
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

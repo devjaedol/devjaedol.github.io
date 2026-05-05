@@ -1,0 +1,2055 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Redis] 07. 영속성 (RDB, AOF) | 꿰보노트</title>
+<meta name="description" content="Redis의 데이터 영속성 메커니즘인 RDB 스냅샷과 AOF 로그를 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Redis] 07. 영속성 (RDB, AOF)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/redis/redis-07-persistence/">
+
+
+  <meta property="og:description" content="Redis의 데이터 영속성 메커니즘인 RDB 스냅샷과 AOF 로그를 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-05T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/redis/redis-07-persistence/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#redis" itemprop="item"><span itemprop="name">Redis</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Redis] 07. 영속성 (RDB, AOF)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 131</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Redis] 07. 영속성 (RDB, AOF)">
+    <meta itemprop="description" content="Redis의 데이터 영속성 메커니즘인 RDB 스냅샷과 AOF 로그를 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-05T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/redis/redis-07-persistence/" class="u-url" itemprop="url">[Redis] 07. 영속성 (RDB, AOF)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#영속성이-필요한-이유">영속성이 필요한 이유</a><ul><li><a href="#rdb-vs-aof-비교">RDB vs AOF 비교</a></li><li><a href="#rdb-redis-database">RDB (Redis Database)</a><ul><li><a href="#동작-방식">동작 방식</a></li><li><a href="#설정-redisconf">설정 (redis.conf)</a></li><li><a href="#수동-저장">수동 저장</a></li><li><a href="#rdb-장단점">RDB 장단점</a></li></ul></li><li><a href="#aof-append-only-file">AOF (Append Only File)</a><ul><li><a href="#동작-방식-1">동작 방식</a></li><li><a href="#설정-redisconf-1">설정 (redis.conf)</a></li><li><a href="#fsync-정책-비교">fsync 정책 비교</a></li><li><a href="#aof-재작성-rewrite">AOF 재작성 (Rewrite)</a></li><li><a href="#aof-장단점">AOF 장단점</a></li></ul></li><li><a href="#권장-설정-운영-환경">권장 설정 (운영 환경)</a><ul><li><a href="#rdb--aof-동시-사용-권장">RDB + AOF 동시 사용 (권장)</a></li><li><a href="#용도별-권장-설정">용도별 권장 설정</a></li></ul></li><li><a href="#백업-및-복구">백업 및 복구</a><ul><li><a href="#백업">백업</a></li><li><a href="#복구">복구</a></li><li><a href="#aof-파일-손상-복구">AOF 파일 손상 복구</a></li></ul></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Redis의 데이터 영속성 메커니즘인 RDB 스냅샷과 AOF 로그를 정리합니다.</p>
+
+<h1 id="영속성이-필요한-이유">영속성이 필요한 이유</h1>
+
+<p>Redis는 인메모리 데이터베이스이므로, 서버가 재시작되면 모든 데이터가 사라집니다.  <br />
+영속성(Persistence) 설정을 통해 디스크에 데이터를 저장하고 복구할 수 있습니다.</p>
+
+<h2 id="rdb-vs-aof-비교">RDB vs AOF 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>RDB (스냅샷)</th>
+      <th>AOF (Append Only File)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>방식</td>
+      <td>특정 시점의 메모리 전체를 덤프</td>
+      <td>모든 쓰기 명령을 로그로 기록</td>
+    </tr>
+    <tr>
+      <td>파일</td>
+      <td>dump.rdb</td>
+      <td>appendonly.aof</td>
+    </tr>
+    <tr>
+      <td>크기</td>
+      <td>작음 (바이너리 압축)</td>
+      <td>큼 (명령어 텍스트)</td>
+    </tr>
+    <tr>
+      <td>복구 속도</td>
+      <td>빠름</td>
+      <td>느림 (명령 재실행)</td>
+    </tr>
+    <tr>
+      <td>데이터 손실</td>
+      <td>마지막 스냅샷 이후 데이터 유실 가능</td>
+      <td>최소 (fsync 정책에 따라)</td>
+    </tr>
+    <tr>
+      <td>성능 영향</td>
+      <td>fork 시 순간 부하</td>
+      <td>지속적 I/O (적은 부하)</td>
+    </tr>
+    <tr>
+      <td>용도</td>
+      <td>백업, 재해 복구</td>
+      <td>데이터 안전성 우선</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="rdb-redis-database">RDB (Redis Database)</h2>
+
+<h3 id="동작-방식">동작 방식</h3>
+<ol>
+  <li>Redis가 자식 프로세스를 fork</li>
+  <li>자식 프로세스가 메모리 데이터를 dump.rdb 파일로 저장</li>
+  <li>저장 완료 후 기존 파일을 교체</li>
+</ol>
+
+<h3 id="설정-redisconf">설정 (redis.conf)</h3>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 자동 저장 조건 (초 변경수)
+</span><span class="na">save</span><span class="w"> </span><span class="na">900</span><span class="w"> </span><span class="na">1</span><span class="w">      </span><span class="c"># 900초(15분) 동안 1개 이상 변경 시
+</span><span class="na">save</span><span class="w"> </span><span class="na">300</span><span class="w"> </span><span class="na">10</span><span class="w">     </span><span class="c"># 300초(5분) 동안 10개 이상 변경 시
+</span><span class="na">save</span><span class="w"> </span><span class="na">60</span><span class="w"> </span><span class="na">10000</span><span class="w">   </span><span class="c"># 60초(1분) 동안 10000개 이상 변경 시
+</span><span class="w">
+</span><span class="c"># RDB 비활성화
+</span><span class="na">save</span><span class="w"> </span><span class="na">""</span><span class="w">
+
+</span><span class="c"># RDB 파일명
+</span><span class="na">dbfilename</span><span class="w"> </span><span class="na">dump.rdb</span><span class="w">
+
+</span><span class="c"># 저장 디렉토리
+</span><span class="na">dir</span><span class="w"> </span><span class="na">/var/lib/redis</span><span class="w">
+
+</span><span class="c"># 압축 사용
+</span><span class="na">rdbcompression</span><span class="w"> </span><span class="na">yes</span><span class="w">
+
+</span><span class="c"># 체크섬 검증
+</span><span class="na">rdbchecksum</span><span class="w"> </span><span class="na">yes</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="수동-저장">수동 저장</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 동기 저장 (블로킹, 운영 환경 비권장)</span>
+SAVE
+
+<span class="c"># 비동기 저장 (백그라운드, 권장)</span>
+BGSAVE
+
+<span class="c"># 마지막 저장 시간 확인</span>
+LASTSAVE
+</code></pre></div></div>
+
+<h3 id="rdb-장단점">RDB 장단점</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>장점</th>
+      <th>단점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>단일 파일로 백업 간편</td>
+      <td>스냅샷 사이 데이터 유실 가능</td>
+    </tr>
+    <tr>
+      <td>복구 속도 빠름</td>
+      <td>fork 시 메모리 2배 필요할 수 있음</td>
+    </tr>
+    <tr>
+      <td>파일 크기 작음</td>
+      <td>대용량 데이터 시 fork 시간 증가</td>
+    </tr>
+    <tr>
+      <td>원격 백업 용이</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="aof-append-only-file">AOF (Append Only File)</h2>
+
+<h3 id="동작-방식-1">동작 방식</h3>
+<ol>
+  <li>모든 쓰기 명령을 AOF 파일에 추가(append)</li>
+  <li>서버 재시작 시 AOF 파일의 명령을 순서대로 재실행하여 복구</li>
+</ol>
+
+<h3 id="설정-redisconf-1">설정 (redis.conf)</h3>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># AOF 활성화
+</span><span class="na">appendonly</span><span class="w"> </span><span class="na">yes</span><span class="w">
+
+</span><span class="c"># AOF 파일명
+</span><span class="na">appendfilename</span><span class="w"> </span><span class="na">"appendonly.aof"</span><span class="w">
+
+</span><span class="c"># fsync 정책
+</span><span class="na">appendfsync</span><span class="w"> </span><span class="na">always</span><span class="w">      </span><span class="c"># 매 명령마다 (가장 안전, 가장 느림)
+</span><span class="na">appendfsync</span><span class="w"> </span><span class="na">everysec</span><span class="w">    </span><span class="c"># 1초마다 (권장, 최대 1초 유실)
+</span><span class="na">appendfsync</span><span class="w"> </span><span class="na">no</span><span class="w">          </span><span class="c"># OS에 위임 (가장 빠름, 유실 가능)
+</span><span class="w">
+</span><span class="c"># AOF 재작성 조건
+</span><span class="na">auto-aof-rewrite-percentage</span><span class="w"> </span><span class="na">100</span><span class="w">   </span><span class="c"># 이전 대비 100% 증가 시
+</span><span class="na">auto-aof-rewrite-min-size</span><span class="w"> </span><span class="na">64mb</span><span class="w">    </span><span class="c"># 최소 64MB 이상일 때
+</span></code></pre></div></div>
+
+<h3 id="fsync-정책-비교">fsync 정책 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>정책</th>
+      <th>데이터 안전성</th>
+      <th>성능</th>
+      <th>최대 유실</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>always</td>
+      <td>최고</td>
+      <td>느림</td>
+      <td>0 (유실 없음)</td>
+    </tr>
+    <tr>
+      <td>everysec</td>
+      <td>높음</td>
+      <td>좋음 (권장)</td>
+      <td>최대 1초</td>
+    </tr>
+    <tr>
+      <td>no</td>
+      <td>낮음</td>
+      <td>최고</td>
+      <td>OS 버퍼 크기만큼</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="aof-재작성-rewrite">AOF 재작성 (Rewrite)</h3>
+
+<p>AOF 파일이 커지면 자동으로 재작성하여 크기를 줄입니다.  <br />
+예: <code class="language-plaintext highlighter-rouge">INCR counter</code>가 1000번 기록된 것을 <code class="language-plaintext highlighter-rouge">SET counter 1000</code> 하나로 압축</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 수동 재작성</span>
+BGREWRITEAOF
+
+<span class="c"># AOF 상태 확인</span>
+INFO persistence
+</code></pre></div></div>
+
+<h3 id="aof-장단점">AOF 장단점</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>장점</th>
+      <th>단점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터 유실 최소화</td>
+      <td>파일 크기가 RDB보다 큼</td>
+    </tr>
+    <tr>
+      <td>사람이 읽을 수 있는 형식</td>
+      <td>복구 속도가 RDB보다 느림</td>
+    </tr>
+    <tr>
+      <td>재작성으로 크기 관리</td>
+      <td>지속적 디스크 I/O</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="권장-설정-운영-환경">권장 설정 (운영 환경)</h2>
+
+<h3 id="rdb--aof-동시-사용-권장">RDB + AOF 동시 사용 (권장)</h3>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># redis.conf
+</span><span class="na">save</span><span class="w"> </span><span class="na">900</span><span class="w"> </span><span class="na">1</span><span class="w">
+</span><span class="na">save</span><span class="w"> </span><span class="na">300</span><span class="w"> </span><span class="na">10</span><span class="w">
+</span><span class="na">save</span><span class="w"> </span><span class="na">60</span><span class="w"> </span><span class="na">10000</span><span class="w">
+
+</span><span class="na">appendonly</span><span class="w"> </span><span class="na">yes</span><span class="w">
+</span><span class="na">appendfsync</span><span class="w"> </span><span class="na">everysec</span><span class="w">
+</span><span class="na">auto-aof-rewrite-percentage</span><span class="w"> </span><span class="na">100</span><span class="w">
+</span><span class="na">auto-aof-rewrite-min-size</span><span class="w"> </span><span class="na">64mb</span><span class="w">
+
+</span><span class="c"># AOF 우선 로드 (둘 다 있을 때)
+</span><span class="na">aof-use-rdb-preamble</span><span class="w"> </span><span class="na">yes</span><span class="w">    </span><span class="c"># AOF 앞부분을 RDB 형식으로 (Redis 4.0+, 빠른 복구)
+</span></code></pre></div></div>
+
+<h3 id="용도별-권장-설정">용도별 권장 설정</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>용도</th>
+      <th>설정</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>순수 캐시 (유실 허용)</td>
+      <td>RDB만 또는 영속성 비활성화</td>
+    </tr>
+    <tr>
+      <td>세션 스토어</td>
+      <td>AOF (everysec)</td>
+    </tr>
+    <tr>
+      <td>메인 데이터 스토어</td>
+      <td>RDB + AOF</td>
+    </tr>
+    <tr>
+      <td>메시지 큐</td>
+      <td>AOF (everysec) + Stream</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="백업-및-복구">백업 및 복구</h2>
+
+<h3 id="백업">백업</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># RDB 파일 복사 (BGSAVE 후)</span>
+BGSAVE
+<span class="nb">cp</span> /var/lib/redis/dump.rdb /backup/redis/dump_<span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>.rdb
+
+<span class="c"># AOF 파일 복사</span>
+<span class="nb">cp</span> /var/lib/redis/appendonly.aof /backup/redis/
+</code></pre></div></div>
+
+<h3 id="복구">복구</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. Redis 중지</span>
+<span class="nb">sudo </span>systemctl stop redis
+
+<span class="c"># 2. 백업 파일을 데이터 디렉토리에 복사</span>
+<span class="nb">cp</span> /backup/redis/dump.rdb /var/lib/redis/dump.rdb
+<span class="c"># 또는</span>
+<span class="nb">cp</span> /backup/redis/appendonly.aof /var/lib/redis/appendonly.aof
+
+<span class="c"># 3. Redis 시작 (AOF가 있으면 AOF 우선 로드)</span>
+<span class="nb">sudo </span>systemctl start redis
+</code></pre></div></div>
+
+<h3 id="aof-파일-손상-복구">AOF 파일 손상 복구</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># AOF 파일 검증</span>
+redis-check-aof <span class="nt">--fix</span> appendonly.aof
+
+<span class="c"># RDB 파일 검증</span>
+redis-check-rdb dump.rdb
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (redis &gt; lecture-redis)</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-07-persistence/">[Redis] 07. 영속성 (RDB, AOF)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-06-pubsub-transaction/">[Redis] 06. Pub/Sub, 트랜잭션, Lua 스크립팅</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-05-advanced-types/">[Redis] 05. 고급 자료구조 (Stream, HyperLogLog, Bitmap, Geo)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-04-hash-sortedset/">[Redis] 04. Hash와 Sorted Set</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-03-list-set/">[Redis] 03. List와 Set</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-02-string-number/">[Redis] 02. String과 숫자 (기본 자료구조)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-01-intro/">[Redis] 01. Redis 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-redis" class="page__taxonomy-item p-category" rel="tag">lecture-redis</a><span class="sep">, </span>
+    
+      <a href="/tags/#nosql" class="page__taxonomy-item p-category" rel="tag">nosql</a><span class="sep">, </span>
+    
+      <a href="/tags/#redis" class="page__taxonomy-item p-category" rel="tag">redis</a><span class="sep">, </span>
+    
+      <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">redis강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#redis" class="page__taxonomy-item p-category" rel="tag">redis</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-05T00:00:00+00:00">2026-05-05</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BRedis%5D+07.+%EC%98%81%EC%86%8D%EC%84%B1+%28RDB%2C+AOF%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Fredis%2Fredis-07-persistence%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fredis%2Fredis-07-persistence%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fredis%2Fredis-07-persistence%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/redis/redis-06-pubsub-transaction/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Redis] 06. Pub/Sub, 트랜잭션, Lua 스크립팅</a>
+    
+    
+      <a href="/redis/redis-08-replication-ha/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

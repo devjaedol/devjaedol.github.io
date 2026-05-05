@@ -1,0 +1,2003 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[InfluxDB] 02. 데이터 모델 (Measurement, Tag, Field) | 꿰보노트</title>
+<meta name="description" content="InfluxDB의 핵심 데이터 모델인 Measurement, Tag, Field, Timestamp를 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[InfluxDB] 02. 데이터 모델 (Measurement, Tag, Field)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/influxdb/influxdb-02-data-model/">
+
+
+  <meta property="og:description" content="InfluxDB의 핵심 데이터 모델인 Measurement, Tag, Field, Timestamp를 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-05T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/influxdb/influxdb-02-data-model/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#influxdb" itemprop="item"><span itemprop="name">Influxdb</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[InfluxDB] 02. 데이터 모델 (Measurement, Tag, Field)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 131</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[InfluxDB] 02. 데이터 모델 (Measurement, Tag, Field)">
+    <meta itemprop="description" content="InfluxDB의 핵심 데이터 모델인 Measurement, Tag, Field, Timestamp를 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-05T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/influxdb/influxdb-02-data-model/" class="u-url" itemprop="url">[InfluxDB] 02. 데이터 모델 (Measurement, Tag, Field)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#데이터-모델-개요">데이터 모델 개요</a><ul><li><a href="#rdbms--influxdb-용어-매핑">RDBMS ↔ InfluxDB 용어 매핑</a></li><li><a href="#line-protocol-데이터-쓰기-형식">Line Protocol (데이터 쓰기 형식)</a><ul><li><a href="#예시">예시</a></li><li><a href="#구성-요소-상세">구성 요소 상세</a></li></ul></li><li><a href="#tag-vs-field-핵심-구분">Tag vs Field (핵심 구분)</a><ul><li><a href="#tag로-적합한-것-">Tag로 적합한 것 ✅</a></li><li><a href="#field로-적합한-것-">Field로 적합한 것 ✅</a></li><li><a href="#tag로-부적합한-것--높은-카디널리티">Tag로 부적합한 것 ❌ (높은 카디널리티)</a></li></ul></li><li><a href="#series-시리즈">Series (시리즈)</a><ul><li><a href="#시리즈-카디널리티-계산">시리즈 카디널리티 계산</a></li></ul></li><li><a href="#bucket-버킷">Bucket (버킷)</a><ul><li><a href="#보존-기간-retention">보존 기간 (Retention)</a></li></ul></li><li><a href="#데이터-쓰기">데이터 쓰기</a><ul><li><a href="#influx-cli">influx CLI</a></li><li><a href="#여러-포인트-한번에-쓰기">여러 포인트 한번에 쓰기</a></li><li><a href="#파일에서-쓰기">파일에서 쓰기</a></li></ul></li><li><a href="#데이터-모델-설계-예시">데이터 모델 설계 예시</a><ul><li><a href="#서버-모니터링">서버 모니터링</a></li><li><a href="#iot-센서">IoT 센서</a></li><li><a href="#웹-애플리케이션-메트릭">웹 애플리케이션 메트릭</a></li></ul></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>InfluxDB의 핵심 데이터 모델인 Measurement, Tag, Field, Timestamp를 정리합니다.</p>
+
+<h1 id="데이터-모델-개요">데이터 모델 개요</h1>
+
+<p>InfluxDB의 데이터 모델은 RDBMS와 완전히 다릅니다.  <br />
+시계열 데이터에 최적화된 구조로, 모든 데이터 포인트는 반드시 타임스탬프를 가집니다.</p>
+
+<h2 id="rdbms--influxdb-용어-매핑">RDBMS ↔ InfluxDB 용어 매핑</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>RDBMS</th>
+      <th>InfluxDB</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Database</td>
+      <td>Bucket</td>
+      <td>데이터 저장 공간 (보존 정책 포함)</td>
+    </tr>
+    <tr>
+      <td>Table</td>
+      <td>Measurement</td>
+      <td>데이터 그룹 (테이블과 유사)</td>
+    </tr>
+    <tr>
+      <td>인덱스 컬럼</td>
+      <td>Tag</td>
+      <td>메타데이터 (자동 인덱싱)</td>
+    </tr>
+    <tr>
+      <td>일반 컬럼</td>
+      <td>Field</td>
+      <td>실제 측정값 (인덱싱 안됨)</td>
+    </tr>
+    <tr>
+      <td>Primary Key</td>
+      <td>Timestamp</td>
+      <td>시간 (자동, 필수)</td>
+    </tr>
+    <tr>
+      <td>Row</td>
+      <td>Point</td>
+      <td>하나의 데이터 포인트</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="line-protocol-데이터-쓰기-형식">Line Protocol (데이터 쓰기 형식)</h2>
+
+<p>InfluxDB에 데이터를 쓸 때 사용하는 텍스트 형식입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;measurement&gt;,&lt;tag_key&gt;=&lt;tag_value&gt;,... &lt;field_key&gt;=&lt;field_value&gt;,... &lt;timestamp&gt;
+</code></pre></div></div>
+
+<h3 id="예시">예시</h3>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cpu,host=server01,region=kr-central usage_user=45.2,usage_system=12.1 1714900000000000000
+cpu,host=server02,region=kr-central usage_user=32.8,usage_system=8.5 1714900000000000000
+temperature,sensor=s1,location=factory1 value=23.5 1714900000000000000
+</code></pre></div></div>
+
+<h3 id="구성-요소-상세">구성 요소 상세</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구성 요소</th>
+      <th style="text-align: center">필수</th>
+      <th>설명</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Measurement</td>
+      <td style="text-align: center">✅</td>
+      <td>데이터 그룹명</td>
+      <td><code class="language-plaintext highlighter-rouge">cpu</code>, <code class="language-plaintext highlighter-rouge">temperature</code>, <code class="language-plaintext highlighter-rouge">http_requests</code></td>
+    </tr>
+    <tr>
+      <td>Tag (key=value)</td>
+      <td style="text-align: center">❌</td>
+      <td>메타데이터, 자동 인덱싱</td>
+      <td><code class="language-plaintext highlighter-rouge">host=server01</code>, <code class="language-plaintext highlighter-rouge">region=kr</code></td>
+    </tr>
+    <tr>
+      <td>Field (key=value)</td>
+      <td style="text-align: center">✅</td>
+      <td>실제 측정값, 인덱싱 안됨</td>
+      <td><code class="language-plaintext highlighter-rouge">usage=45.2</code>, <code class="language-plaintext highlighter-rouge">count=100</code></td>
+    </tr>
+    <tr>
+      <td>Timestamp</td>
+      <td style="text-align: center">❌</td>
+      <td>나노초 Unix 타임스탬프 (생략 시 현재 시간)</td>
+      <td><code class="language-plaintext highlighter-rouge">1714900000000000000</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="tag-vs-field-핵심-구분">Tag vs Field (핵심 구분)</h2>
+
+<p>이 구분을 잘못하면 성능에 큰 영향을 미칩니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>Tag</th>
+      <th>Field</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>인덱싱</td>
+      <td>✅ 자동 인덱싱</td>
+      <td>❌ 인덱싱 안됨</td>
+    </tr>
+    <tr>
+      <td>데이터 타입</td>
+      <td>문자열만</td>
+      <td>정수, 실수, 문자열, 불리언</td>
+    </tr>
+    <tr>
+      <td>WHERE 조건</td>
+      <td>빠름 (인덱스 사용)</td>
+      <td>느림 (전체 스캔)</td>
+    </tr>
+    <tr>
+      <td>GROUP BY</td>
+      <td>가능</td>
+      <td>불가</td>
+    </tr>
+    <tr>
+      <td>카디널리티</td>
+      <td>낮아야 좋음</td>
+      <td>제한 없음</td>
+    </tr>
+    <tr>
+      <td>용도</td>
+      <td>분류, 필터링 기준</td>
+      <td>실제 측정값</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="tag로-적합한-것-">Tag로 적합한 것 ✅</h3>
+<ul>
+  <li>호스트명 (<code class="language-plaintext highlighter-rouge">host=server01</code>)</li>
+  <li>리전 (<code class="language-plaintext highlighter-rouge">region=kr-central</code>)</li>
+  <li>센서 ID (<code class="language-plaintext highlighter-rouge">sensor=s1</code>)</li>
+  <li>환경 (<code class="language-plaintext highlighter-rouge">env=production</code>)</li>
+  <li>서비스명 (<code class="language-plaintext highlighter-rouge">service=api-gateway</code>)</li>
+</ul>
+
+<h3 id="field로-적합한-것-">Field로 적합한 것 ✅</h3>
+<ul>
+  <li>CPU 사용률 (<code class="language-plaintext highlighter-rouge">usage=45.2</code>)</li>
+  <li>온도 (<code class="language-plaintext highlighter-rouge">temperature=23.5</code>)</li>
+  <li>응답 시간 (<code class="language-plaintext highlighter-rouge">response_time=120</code>)</li>
+  <li>요청 수 (<code class="language-plaintext highlighter-rouge">count=1500</code>)</li>
+  <li>에러 수 (<code class="language-plaintext highlighter-rouge">errors=3</code>)</li>
+</ul>
+
+<h3 id="tag로-부적합한-것--높은-카디널리티">Tag로 부적합한 것 ❌ (높은 카디널리티)</h3>
+<ul>
+  <li>사용자 ID (수백만 종류)</li>
+  <li>요청 URL (무한 종류)</li>
+  <li>타임스탬프 문자열</li>
+  <li>UUID</li>
+</ul>
+
+<blockquote>
+  <p>카디널리티(고유 값 수)가 높은 데이터를 Tag로 설정하면 인덱스가 비대해져 메모리 부족과 성능 저하가 발생합니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="series-시리즈">Series (시리즈)</h2>
+
+<p>Series는 동일한 Measurement + Tag 조합을 가진 데이터 포인트의 집합입니다.  <br />
+InfluxDB 성능의 핵심 지표는 <strong>시리즈 카디널리티</strong>(총 시리즈 수)입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 아래는 3개의 서로 다른 시리즈
+cpu,host=server01,region=kr    → Series 1
+cpu,host=server02,region=kr    → Series 2
+cpu,host=server01,region=us    → Series 3
+</code></pre></div></div>
+
+<h3 id="시리즈-카디널리티-계산">시리즈 카디널리티 계산</h3>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>시리즈 수 = Measurement 수 × Tag 조합 수
+
+예: cpu measurement, host 100대, region 3개
+시리즈 수 = 1 × 100 × 3 = 300 시리즈 (양호)
+
+예: http_requests, user_id 100만명, endpoint 50개
+시리즈 수 = 1 × 1,000,000 × 50 = 5천만 시리즈 (위험!)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="bucket-버킷">Bucket (버킷)</h2>
+
+<p>InfluxDB 2.x에서 Bucket은 데이터 저장 공간 + 보존 정책을 합친 개념입니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 버킷 생성 (30일 보존)</span>
+influx bucket create <span class="se">\</span>
+  <span class="nt">--name</span> monitoring <span class="se">\</span>
+  <span class="nt">--org</span> myorg <span class="se">\</span>
+  <span class="nt">--retention</span> 30d
+
+<span class="c"># 버킷 목록</span>
+influx bucket list
+
+<span class="c"># 버킷 삭제</span>
+influx bucket delete <span class="nt">--name</span> monitoring
+</code></pre></div></div>
+
+<h3 id="보존-기간-retention">보존 기간 (Retention)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>설정</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td>무기한 보존</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">24h</code></td>
+      <td>24시간</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">7d</code></td>
+      <td>7일</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">30d</code></td>
+      <td>30일</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">365d</code></td>
+      <td>1년</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 보존 기간 변경</span>
+influx bucket update <span class="nt">--name</span> monitoring <span class="nt">--retention</span> 90d
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="데이터-쓰기">데이터 쓰기</h2>
+
+<h3 id="influx-cli">influx CLI</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>influx write <span class="se">\</span>
+  <span class="nt">--bucket</span> mybucket <span class="se">\</span>
+  <span class="nt">--org</span> myorg <span class="se">\</span>
+  <span class="nt">--precision</span> s <span class="se">\</span>
+  <span class="s2">"cpu,host=server01 usage_user=45.2,usage_system=12.1 1714900000"</span>
+</code></pre></div></div>
+
+<h3 id="여러-포인트-한번에-쓰기">여러 포인트 한번에 쓰기</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>influx write <span class="nt">--bucket</span> mybucket <span class="nt">--org</span> myorg <span class="nt">--precision</span> ns <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+cpu,host=server01 usage_user=45.2,usage_system=12.1 1714900000000000000
+cpu,host=server02 usage_user=32.8,usage_system=8.5 1714900000000000000
+memory,host=server01 used_percent=72.5,available=8589934592 1714900000000000000
+</span><span class="no">EOF
+</span></code></pre></div></div>
+
+<h3 id="파일에서-쓰기">파일에서 쓰기</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># data.lp (Line Protocol 파일)</span>
+influx write <span class="nt">--bucket</span> mybucket <span class="nt">--org</span> myorg <span class="nt">--file</span> data.lp
+
+<span class="c"># CSV 파일</span>
+influx write <span class="nt">--bucket</span> mybucket <span class="nt">--org</span> myorg <span class="se">\</span>
+  <span class="nt">--file</span> data.csv <span class="se">\</span>
+  <span class="nt">--header</span> <span class="s2">"#constant measurement,cpu"</span> <span class="se">\</span>
+  <span class="nt">--header</span> <span class="s2">"#datatype tag,double,double,dateTime:RFC3339"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="데이터-모델-설계-예시">데이터 모델 설계 예시</h2>
+
+<h3 id="서버-모니터링">서버 모니터링</h3>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Measurement: cpu
+cpu,host=web01,region=kr,env=prod usage_user=45.2,usage_system=12.1,usage_idle=42.7
+
+# Measurement: memory
+memory,host=web01,region=kr,env=prod used_percent=72.5,available=8589934592
+
+# Measurement: disk
+disk,host=web01,path=/,device=sda1 used_percent=65.3,free=107374182400
+</code></pre></div></div>
+
+<h3 id="iot-센서">IoT 센서</h3>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Measurement: temperature
+temperature,sensor_id=s001,location=factory1,floor=1F value=23.5,humidity=45.2
+
+# Measurement: vibration
+vibration,machine_id=m001,line=A frequency=120.5,amplitude=0.03
+</code></pre></div></div>
+
+<h3 id="웹-애플리케이션-메트릭">웹 애플리케이션 메트릭</h3>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Measurement: http_requests
+http_requests,method=GET,endpoint=/api/users,status=200 count=1,response_time=45
+
+# Measurement: errors
+errors,service=api,level=error count=1,message="timeout"
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (influxdb &gt; lecture-influxdb)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-06-admin-troubleshooting/">[InfluxDB] 06. 운영 관리와 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-05-task-alert/">[InfluxDB] 05. Task, 다운샘플링, 알림</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-04-telegraf/">[InfluxDB] 04. Telegraf (데이터 수집 에이전트)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-03-flux-query/">[InfluxDB] 03. Flux 쿼리 언어</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-02-data-model/">[InfluxDB] 02. 데이터 모델 (Measurement, Tag, Field)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-01-intro/">[InfluxDB] 01. InfluxDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#influxdb" class="page__taxonomy-item p-category" rel="tag">influxdb</a><span class="sep">, </span>
+    
+      <a href="/tags/#influxdb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">influxdb강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-influxdb" class="page__taxonomy-item p-category" rel="tag">lecture-influxdb</a><span class="sep">, </span>
+    
+      <a href="/tags/#timeseries" class="page__taxonomy-item p-category" rel="tag">timeseries</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#influxdb" class="page__taxonomy-item p-category" rel="tag">influxdb</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-05T00:00:00+00:00">2026-05-05</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BInfluxDB%5D+02.+%EB%8D%B0%EC%9D%B4%ED%84%B0+%EB%AA%A8%EB%8D%B8+%28Measurement%2C+Tag%2C+Field%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Finfluxdb%2Finfluxdb-02-data-model%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Finfluxdb%2Finfluxdb-02-data-model%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Finfluxdb%2Finfluxdb-02-data-model%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/influxdb/influxdb-01-intro/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[InfluxDB] 01. InfluxDB 소개 및 설치</a>
+    
+    
+      <a href="/influxdb/influxdb-03-flux-query/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[InfluxDB] 03. Flux 쿼리 언어</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

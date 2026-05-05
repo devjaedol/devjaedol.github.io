@@ -1,0 +1,2017 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[MongoDB] 07. 보안과 사용자 관리 | 꿰보노트</title>
+<meta name="description" content="MongoDB의 인증, 권한 관리, 보안 설정을 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[MongoDB] 07. 보안과 사용자 관리">
+<meta property="og:url" content="https://kimjaehyun.co.kr/mongodb/mongodb-07-security-user/">
+
+
+  <meta property="og:description" content="MongoDB의 인증, 권한 관리, 보안 설정을 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-05T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/mongodb/mongodb-07-security-user/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#mongodb" itemprop="item"><span itemprop="name">Mongodb</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[MongoDB] 07. 보안과 사용자 관리</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 131</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[MongoDB] 07. 보안과 사용자 관리">
+    <meta itemprop="description" content="MongoDB의 인증, 권한 관리, 보안 설정을 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-05T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/mongodb/mongodb-07-security-user/" class="u-url" itemprop="url">[MongoDB] 07. 보안과 사용자 관리
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#인증-활성화">인증 활성화</a><ul><li><a href="#초기-관리자-생성">초기 관리자 생성</a></li><li><a href="#인증-활성화-mongodconf">인증 활성화 (mongod.conf)</a></li><li><a href="#인증-접속">인증 접속</a></li><li><a href="#사용자-관리">사용자 관리</a><ul><li><a href="#사용자-생성">사용자 생성</a></li><li><a href="#사용자-조회수정삭제">사용자 조회/수정/삭제</a></li></ul></li><li><a href="#내장-역할-built-in-roles">내장 역할 (Built-in Roles)</a><ul><li><a href="#데이터베이스-수준">데이터베이스 수준</a></li><li><a href="#클러스터-수준">클러스터 수준</a></li><li><a href="#모든-데이터베이스">모든 데이터베이스</a></li><li><a href="#슈퍼유저">슈퍼유저</a></li></ul></li><li><a href="#사용자-정의-역할">사용자 정의 역할</a></li><li><a href="#네트워크-보안">네트워크 보안</a><ul><li><a href="#mongodconf-설정">mongod.conf 설정</a></li><li><a href="#방화벽-설정">방화벽 설정</a></li></ul></li><li><a href="#보안-체크리스트">보안 체크리스트</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>MongoDB의 인증, 권한 관리, 보안 설정을 정리합니다.</p>
+
+<h1 id="인증-활성화">인증 활성화</h1>
+
+<p>MongoDB는 기본적으로 인증이 비활성화되어 있습니다. 운영 환경에서는 반드시 활성화해야 합니다.</p>
+
+<h2 id="초기-관리자-생성">초기 관리자 생성</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// admin 데이터베이스에서 관리자 생성</span>
+<span class="nx">use</span> <span class="nx">admin</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">createUser</span><span class="p">({</span>
+    <span class="na">user</span><span class="p">:</span> <span class="dl">"</span><span class="s2">admin</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">pwd</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AdminPass123!</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">roles</span><span class="p">:</span> <span class="p">[{</span> <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">userAdminAnyDatabase</span><span class="dl">"</span><span class="p">,</span> <span class="na">db</span><span class="p">:</span> <span class="dl">"</span><span class="s2">admin</span><span class="dl">"</span> <span class="p">},</span> <span class="dl">"</span><span class="s2">readWriteAnyDatabase</span><span class="dl">"</span><span class="p">]</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h2 id="인증-활성화-mongodconf">인증 활성화 (mongod.conf)</h2>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">security</span><span class="pi">:</span>
+  <span class="na">authorization</span><span class="pi">:</span> <span class="s">enabled</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 서비스 재시작</span>
+<span class="nb">sudo </span>systemctl restart mongod
+</code></pre></div></div>
+
+<h2 id="인증-접속">인증 접속</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongosh <span class="nt">-u</span> admin <span class="nt">-p</span> AdminPass123! <span class="nt">--authenticationDatabase</span> admin
+<span class="c"># 또는</span>
+mongosh <span class="s2">"mongodb://admin:AdminPass123!@localhost:27017/admin"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="사용자-관리">사용자 관리</h2>
+
+<h3 id="사용자-생성">사용자 생성</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">use</span> <span class="nx">mydb</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">createUser</span><span class="p">({</span>
+    <span class="na">user</span><span class="p">:</span> <span class="dl">"</span><span class="s2">devuser</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">pwd</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DevPass123!</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">roles</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">readWrite</span><span class="dl">"</span><span class="p">,</span> <span class="na">db</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mydb</span><span class="dl">"</span> <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1">// 여러 DB 권한</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">createUser</span><span class="p">({</span>
+    <span class="na">user</span><span class="p">:</span> <span class="dl">"</span><span class="s2">appuser</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">pwd</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AppPass123!</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">roles</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">readWrite</span><span class="dl">"</span><span class="p">,</span> <span class="na">db</span><span class="p">:</span> <span class="dl">"</span><span class="s2">production</span><span class="dl">"</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">read</span><span class="dl">"</span><span class="p">,</span> <span class="na">db</span><span class="p">:</span> <span class="dl">"</span><span class="s2">analytics</span><span class="dl">"</span> <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="사용자-조회수정삭제">사용자 조회/수정/삭제</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 사용자 목록</span>
+<span class="nx">use</span> <span class="nx">admin</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">getUsers</span><span class="p">()</span>
+
+<span class="c1">// 특정 사용자 정보</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">getUser</span><span class="p">(</span><span class="dl">"</span><span class="s2">devuser</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="c1">// 비밀번호 변경</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">changeUserPassword</span><span class="p">(</span><span class="dl">"</span><span class="s2">devuser</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">NewPass456!</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="c1">// 역할 추가</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">grantRolesToUser</span><span class="p">(</span><span class="dl">"</span><span class="s2">devuser</span><span class="dl">"</span><span class="p">,</span> <span class="p">[{</span> <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dbAdmin</span><span class="dl">"</span><span class="p">,</span> <span class="na">db</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mydb</span><span class="dl">"</span> <span class="p">}])</span>
+
+<span class="c1">// 역할 제거</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">revokeRolesFromUser</span><span class="p">(</span><span class="dl">"</span><span class="s2">devuser</span><span class="dl">"</span><span class="p">,</span> <span class="p">[{</span> <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dbAdmin</span><span class="dl">"</span><span class="p">,</span> <span class="na">db</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mydb</span><span class="dl">"</span> <span class="p">}])</span>
+
+<span class="c1">// 사용자 삭제</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">dropUser</span><span class="p">(</span><span class="dl">"</span><span class="s2">devuser</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="내장-역할-built-in-roles">내장 역할 (Built-in Roles)</h2>
+
+<h3 id="데이터베이스-수준">데이터베이스 수준</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>역할</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>read</td>
+      <td>읽기 전용</td>
+    </tr>
+    <tr>
+      <td>readWrite</td>
+      <td>읽기 + 쓰기</td>
+    </tr>
+    <tr>
+      <td>dbAdmin</td>
+      <td>인덱스, 통계, 컬렉션 관리</td>
+    </tr>
+    <tr>
+      <td>dbOwner</td>
+      <td>readWrite + dbAdmin + userAdmin</td>
+    </tr>
+    <tr>
+      <td>userAdmin</td>
+      <td>사용자/역할 관리</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="클러스터-수준">클러스터 수준</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>역할</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>clusterAdmin</td>
+      <td>클러스터 관리</td>
+    </tr>
+    <tr>
+      <td>clusterManager</td>
+      <td>클러스터 모니터링/관리</td>
+    </tr>
+    <tr>
+      <td>clusterMonitor</td>
+      <td>클러스터 모니터링 (읽기 전용)</td>
+    </tr>
+    <tr>
+      <td>hostManager</td>
+      <td>서버 관리</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="모든-데이터베이스">모든 데이터베이스</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>역할</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>readAnyDatabase</td>
+      <td>모든 DB 읽기</td>
+    </tr>
+    <tr>
+      <td>readWriteAnyDatabase</td>
+      <td>모든 DB 읽기/쓰기</td>
+    </tr>
+    <tr>
+      <td>userAdminAnyDatabase</td>
+      <td>모든 DB 사용자 관리</td>
+    </tr>
+    <tr>
+      <td>dbAdminAnyDatabase</td>
+      <td>모든 DB 관리</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="슈퍼유저">슈퍼유저</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>역할</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>모든 권한 (최고 관리자)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="사용자-정의-역할">사용자 정의 역할</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">use</span> <span class="nx">admin</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">createRole</span><span class="p">({</span>
+    <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">appReadOnly</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">privileges</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="na">resource</span><span class="p">:</span> <span class="p">{</span> <span class="na">db</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mydb</span><span class="dl">"</span><span class="p">,</span> <span class="na">collection</span><span class="p">:</span> <span class="dl">""</span> <span class="p">},</span>  <span class="c1">// 모든 컬렉션</span>
+            <span class="na">actions</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">find</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">listCollections</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">listIndexes</span><span class="dl">"</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="na">roles</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">})</span>
+
+<span class="c1">// 사용자에게 커스텀 역할 부여</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">createUser</span><span class="p">({</span>
+    <span class="na">user</span><span class="p">:</span> <span class="dl">"</span><span class="s2">reporter</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">pwd</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ReportPass!</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">roles</span><span class="p">:</span> <span class="p">[{</span> <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">appReadOnly</span><span class="dl">"</span><span class="p">,</span> <span class="na">db</span><span class="p">:</span> <span class="dl">"</span><span class="s2">admin</span><span class="dl">"</span> <span class="p">}]</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="네트워크-보안">네트워크 보안</h2>
+
+<h3 id="mongodconf-설정">mongod.conf 설정</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 바인드 주소 제한</span>
+<span class="na">net</span><span class="pi">:</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="m">27017</span>
+  <span class="na">bindIp</span><span class="pi">:</span> <span class="s">127.0.0.1,192.168.1.100</span>    <span class="c1"># 특정 IP만 허용</span>
+  <span class="c1"># bindIp: 0.0.0.0                   # 모든 인터페이스 (주의)</span>
+
+<span class="c1"># TLS/SSL 활성화</span>
+<span class="na">net</span><span class="pi">:</span>
+  <span class="na">tls</span><span class="pi">:</span>
+    <span class="na">mode</span><span class="pi">:</span> <span class="s">requireTLS</span>
+    <span class="na">certificateKeyFile</span><span class="pi">:</span> <span class="s">/etc/ssl/mongodb.pem</span>
+    <span class="na">CAFile</span><span class="pi">:</span> <span class="s">/etc/ssl/ca.pem</span>
+</code></pre></div></div>
+
+<h3 id="방화벽-설정">방화벽 설정</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ubuntu (ufw)</span>
+<span class="nb">sudo </span>ufw allow from 192.168.1.0/24 to any port 27017
+
+<span class="c"># CentOS (firewalld)</span>
+<span class="nb">sudo </span>firewall-cmd <span class="nt">--permanent</span> <span class="nt">--add-rich-rule</span><span class="o">=</span><span class="s1">'rule family="ipv4" source address="192.168.1.0/24" port port="27017" protocol="tcp" accept'</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="보안-체크리스트">보안 체크리스트</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>인증 활성화</td>
+      <td><code class="language-plaintext highlighter-rouge">authorization: enabled</code></td>
+    </tr>
+    <tr>
+      <td>강력한 비밀번호</td>
+      <td>복잡도 높은 비밀번호 사용</td>
+    </tr>
+    <tr>
+      <td>최소 권한 원칙</td>
+      <td>필요한 권한만 부여</td>
+    </tr>
+    <tr>
+      <td>네트워크 제한</td>
+      <td><code class="language-plaintext highlighter-rouge">bindIp</code>로 접근 IP 제한</td>
+    </tr>
+    <tr>
+      <td>TLS/SSL</td>
+      <td>전송 암호화</td>
+    </tr>
+    <tr>
+      <td>감사 로그</td>
+      <td>Enterprise에서 감사 로그 활성화</td>
+    </tr>
+    <tr>
+      <td>포트 변경</td>
+      <td>기본 27017 대신 다른 포트 사용</td>
+    </tr>
+    <tr>
+      <td>최신 버전 유지</td>
+      <td>보안 패치 적용</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><span class="nav__sub-title">관련된 글 (mongodb &gt; lecture-mongodb)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-10-troubleshooting/">[MongoDB] 10. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-09-performance/">[MongoDB] 09. 성능 튜닝과 모니터링</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-08-backup-restore/">[MongoDB] 08. 백업과 복구</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-07-security-user/">[MongoDB] 07. 보안과 사용자 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-06-replication-sharding/">[MongoDB] 06. Replica Set과 Sharding (고가용성/확장)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-05-schema-design/">[MongoDB] 05. 스키마 설계 (Embedding vs Referencing)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-04-index/">[MongoDB] 04. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-03-aggregation/">[MongoDB] 03. Aggregation Pipeline (집계)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-02-crud/">[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-01-intro/">[MongoDB] 01. MongoDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-mongodb" class="page__taxonomy-item p-category" rel="tag">lecture-mongodb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mongodb" class="page__taxonomy-item p-category" rel="tag">mongodb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">mongodb강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#nosql" class="page__taxonomy-item p-category" rel="tag">nosql</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#mongodb" class="page__taxonomy-item p-category" rel="tag">mongodb</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-05T00:00:00+00:00">2026-05-05</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BMongoDB%5D+07.+%EB%B3%B4%EC%95%88%EA%B3%BC+%EC%82%AC%EC%9A%A9%EC%9E%90+%EA%B4%80%EB%A6%AC%20https%3A%2F%2Fkimjaehyun.co.kr%2Fmongodb%2Fmongodb-07-security-user%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fmongodb%2Fmongodb-07-security-user%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fmongodb%2Fmongodb-07-security-user%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/mongodb/mongodb-06-replication-sharding/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[MongoDB] 06. Replica Set과 Sharding (고가용성/확장)</a>
+    
+    
+      <a href="/mongodb/mongodb-08-backup-restore/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[MongoDB] 08. 백업과 복구</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

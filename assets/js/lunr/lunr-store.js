@@ -622,4 +622,166 @@ var store = [{
         "tags": ["python","venv","uv","virtualenv"],
         "url": "/python/python-venv/",
         "teaser": null
+      },{
+        "title": "[InfluxDB] 01. InfluxDB 소개 및 설치",
+        "excerpt":"InfluxDB의 기본 개념, 장단점, 적합한 사용 사례, 설치 방법을 알아봅니다. InfluxDB란? InfluxDB는 시계열(Time Series) 데이터에 특화된 오픈소스 데이터베이스입니다. 시간 순서로 기록되는 대량의 데이터를 빠르게 쓰고, 시간 범위 기반으로 효율적으로 조회할 수 있도록 설계되었습니다. 시계열 데이터란? 시계열 데이터는 시간에 따라 연속적으로 기록되는 데이터입니다. 예시 설명 서버 모니터링 CPU 사용률, 메모리, 디스크...","categories": ["influxdb"],
+        "tags": ["influxdb","timeseries","influxdb강좌","초급","lecture-influxdb"],
+        "url": "/influxdb/influxdb-01-intro/",
+        "teaser": null
+      },{
+        "title": "[InfluxDB] 02. 데이터 모델 (Measurement, Tag, Field)",
+        "excerpt":"InfluxDB의 핵심 데이터 모델인 Measurement, Tag, Field, Timestamp를 정리합니다. 데이터 모델 개요 InfluxDB의 데이터 모델은 RDBMS와 완전히 다릅니다. 시계열 데이터에 최적화된 구조로, 모든 데이터 포인트는 반드시 타임스탬프를 가집니다. RDBMS ↔ InfluxDB 용어 매핑 RDBMS InfluxDB 설명 Database Bucket 데이터 저장 공간 (보존 정책 포함) Table Measurement 데이터 그룹 (테이블과 유사)...","categories": ["influxdb"],
+        "tags": ["influxdb","timeseries","influxdb강좌","초급","lecture-influxdb"],
+        "url": "/influxdb/influxdb-02-data-model/",
+        "teaser": null
+      },{
+        "title": "[InfluxDB] 03. Flux 쿼리 언어",
+        "excerpt":"InfluxDB 2.x의 쿼리 언어인 Flux의 기본 문법과 주요 함수를 정리합니다. Flux란? Flux는 InfluxDB 2.x에서 사용하는 함수형 데이터 스크립팅 언어입니다. 파이프(|&gt;) 연산자로 데이터를 단계별로 변환하는 파이프라인 방식입니다. 데이터 소스 |&gt; 필터 |&gt; 변환 |&gt; 집계 |&gt; 출력 기본 쿼리 구조 필수 3요소 from(bucket: \"mybucket\") // 1. 데이터 소스 |&gt; range(start: -1h)...","categories": ["influxdb"],
+        "tags": ["influxdb","timeseries","influxdb강좌","초급","lecture-influxdb"],
+        "url": "/influxdb/influxdb-03-flux-query/",
+        "teaser": null
+      },{
+        "title": "[InfluxDB] 04. Telegraf (데이터 수집 에이전트)",
+        "excerpt":"InfluxDB의 공식 데이터 수집 에이전트인 Telegraf의 설정과 활용을 정리합니다. Telegraf란? Telegraf는 InfluxData에서 개발한 플러그인 기반 메트릭 수집 에이전트입니다. 200개 이상의 입력/출력 플러그인을 지원하며, 시스템 메트릭, 애플리케이션 메트릭, 로그 등을 수집하여 InfluxDB에 전송합니다. 아키텍처 [Input Plugins] → [Processor Plugins] → [Aggregator Plugins] → [Output Plugins] (데이터 수집) (데이터 변환) (데이터 집계)...","categories": ["influxdb"],
+        "tags": ["influxdb","timeseries","telegraf","influxdb강좌","중급","lecture-influxdb"],
+        "url": "/influxdb/influxdb-04-telegraf/",
+        "teaser": null
+      },{
+        "title": "[InfluxDB] 05. Task, 다운샘플링, 알림",
+        "excerpt":"InfluxDB의 Task(예약 작업), 다운샘플링, 알림(Alert) 설정을 정리합니다. Task (예약 작업) Task는 Flux 스크립트를 주기적으로 실행하는 예약 작업입니다. 다운샘플링, 데이터 변환, 알림 등에 활용됩니다. Task 생성 웹 UI에서 생성 InfluxDB 웹 UI → Tasks → Create Task Flux 스크립트로 생성 option task = { name: \"downsample_cpu_hourly\", every: 1h, offset: 5m //...","categories": ["influxdb"],
+        "tags": ["influxdb","timeseries","influxdb강좌","중급","lecture-influxdb"],
+        "url": "/influxdb/influxdb-05-task-alert/",
+        "teaser": null
+      },{
+        "title": "[InfluxDB] 06. 운영 관리와 Troubleshooting",
+        "excerpt":"InfluxDB의 운영 관리, 백업/복구, 성능 튜닝, 자주 발생하는 문제 해결을 정리합니다. 보안 및 인증 토큰 관리 # 토큰 목록 influx auth list # 읽기 전용 토큰 생성 influx auth create \\ --org myorg \\ --read-bucket mybucket \\ --description \"Grafana read-only\" # 읽기/쓰기 토큰 생성 influx auth create \\ --org myorg...","categories": ["influxdb"],
+        "tags": ["influxdb","timeseries","influxdb강좌","고급","lecture-influxdb"],
+        "url": "/influxdb/influxdb-06-admin-troubleshooting/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 01. MongoDB 소개 및 설치",
+        "excerpt":"MongoDB의 기본 개념, 특징, 설치 방법을 알아봅니다. MongoDB란? MongoDB는 문서(Document) 지향 NoSQL 데이터베이스입니다. JSON과 유사한 BSON(Binary JSON) 형식으로 데이터를 저장하며, 유연한 스키마와 수평 확장을 제공합니다. RDBMS vs MongoDB 비교 항목 RDBMS (MySQL 등) MongoDB 데이터 모델 테이블/행/열 (관계형) 컬렉션/문서 (문서형) 스키마 고정 스키마 필수 유연한 스키마 (Schemaless) 데이터 형식 행(Row)...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","초급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-01-intro/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)",
+        "excerpt":"MongoDB에서의 문서 CRUD(Create, Read, Update, Delete) 명령어를 정리합니다. 데이터베이스와 컬렉션 데이터베이스 관리 // 데이터베이스 목록 show dbs // 데이터베이스 전환 (없으면 첫 문서 삽입 시 자동 생성) use mydb // 현재 데이터베이스 확인 db // 데이터베이스 삭제 db.dropDatabase() 컬렉션 관리 // 컬렉션 목록 show collections // 컬렉션 생성 (명시적, 보통...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","초급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-02-crud/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 03. Aggregation Pipeline (집계)",
+        "excerpt":"MongoDB의 Aggregation Pipeline을 이용한 데이터 집계와 변환을 정리합니다. Aggregation Pipeline이란? Aggregation Pipeline은 문서를 여러 단계(Stage)를 거쳐 변환하고 집계하는 프레임워크입니다. RDBMS의 GROUP BY, HAVING, JOIN, 서브쿼리 등을 대체합니다. 컬렉션 → [Stage 1] → [Stage 2] → [Stage 3] → ... → 결과 주요 Stage Stage 설명 SQL 대응 $match 조건 필터링...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","중급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-03-aggregation/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 04. 인덱스 (Index)",
+        "excerpt":"MongoDB 인덱스의 종류, 생성/관리 방법, 실행 계획 분석을 정리합니다. 인덱스 종류 종류 설명 용도 Single Field 단일 필드 인덱스 기본 검색 Compound 복합 인덱스 (다중 필드) 다중 조건 검색 Multikey 배열 필드 인덱스 배열 요소 검색 Text 전문 검색 인덱스 텍스트 검색 2dsphere 지리공간 인덱스 위치 기반 검색 Hashed 해시...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","중급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-04-index/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 05. 스키마 설계 (Embedding vs Referencing)",
+        "excerpt":"MongoDB의 스키마 설계 패턴, Embedding과 Referencing의 선택 기준을 정리합니다. 스키마 설계의 핵심 MongoDB는 스키마가 유연하지만, 좋은 설계가 성능을 결정합니다. 핵심 원칙: “함께 조회되는 데이터는 함께 저장한다” Embedding vs Referencing 방식 설명 RDBMS 대응 Embedding (내장) 관련 데이터를 하나의 문서에 포함 JOIN 없이 비정규화 Referencing (참조) 다른 컬렉션의 _id를 참조 외래키...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","중급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-05-schema-design/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 06. Replica Set과 Sharding (고가용성/확장)",
+        "excerpt":"MongoDB의 Replica Set(복제)과 Sharding(수평 확장)을 정리합니다. Replica Set (복제) Replica Set은 동일한 데이터를 여러 노드에 복제하여 고가용성과 읽기 분산을 제공합니다. 구조 Primary (읽기/쓰기) ──→ Secondary 1 (읽기) └──→ Secondary 2 (읽기) └──→ Arbiter (투표만, 데이터 없음, 선택적) 핵심 개념 구성 요소 설명 Primary 모든 쓰기를 처리하는 유일한 노드 Secondary Primary의...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","고급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-06-replication-sharding/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 07. 보안과 사용자 관리",
+        "excerpt":"MongoDB의 인증, 권한 관리, 보안 설정을 정리합니다. 인증 활성화 MongoDB는 기본적으로 인증이 비활성화되어 있습니다. 운영 환경에서는 반드시 활성화해야 합니다. 초기 관리자 생성 // admin 데이터베이스에서 관리자 생성 use admin db.createUser({ user: \"admin\", pwd: \"AdminPass123!\", roles: [{ role: \"userAdminAnyDatabase\", db: \"admin\" }, \"readWriteAnyDatabase\"] }) 인증 활성화 (mongod.conf) security: authorization: enabled #...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","중급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-07-security-user/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 08. 백업과 복구",
+        "excerpt":"MongoDB의 백업 전략, 도구, 복구 방법을 정리합니다. 백업 도구 비교 도구 방식 용도 mongodump / mongorestore 논리적 백업 (BSON 덤프) 소규모, 부분 백업 파일 시스템 스냅샷 물리적 백업 대규모, 빠른 복구 MongoDB Atlas Backup 클라우드 자동 백업 Atlas 사용 시 Ops Manager / Cloud Manager 엔터프라이즈 백업 대규모 운영 mongodump...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","고급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-08-backup-restore/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 09. 성능 튜닝과 모니터링",
+        "excerpt":"MongoDB의 성능 분석, 쿼리 최적화, 서버 튜닝, 모니터링을 정리합니다. 쿼리 성능 분석 explain() // 실행 계획 확인 db.users.find({ dept: \"개발팀\", salary: { $gte: 5000000 } }).explain(\"executionStats\") 핵심 지표 지표 의미 목표 totalDocsExamined 검사한 문서 수 nReturned에 가까울수록 좋음 totalKeysExamined 검사한 인덱스 키 수 nReturned에 가까울수록 좋음 executionTimeMillis 실행 시간 작을수록...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","고급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-09-performance/",
+        "teaser": null
+      },{
+        "title": "[MongoDB] 10. 자주 발생하는 Troubleshooting",
+        "excerpt":"MongoDB 운영 중 자주 발생하는 문제와 해결 방법을 빈도순으로 정리합니다. 접속 오류 Authentication failed MongoServerError: Authentication failed 원인 해결 비밀번호 오류 비밀번호 재확인 authenticationDatabase 미지정 --authenticationDatabase admin 추가 사용자 미존재 db.getUsers()로 확인 # 올바른 접속 mongosh -u admin -p AdminPass123! --authenticationDatabase admin Connection refused 원인 해결 서비스 미실행 sudo systemctl...","categories": ["mongodb"],
+        "tags": ["mongodb","nosql","mongodb강좌","고급","lecture-mongodb"],
+        "url": "/mongodb/mongodb-10-troubleshooting/",
+        "teaser": null
+      },{
+        "title": "[Redis] 01. Redis 소개 및 설치",
+        "excerpt":"Redis의 기본 개념, 특징, 설치 방법을 알아봅니다. Redis란? Redis(Remote Dictionary Server)는 오픈소스 인메모리 데이터 구조 스토어입니다. 키-값(Key-Value) 기반이지만, 다양한 데이터 구조를 지원하여 캐시, 메시지 브로커, 세션 스토어 등 폭넓게 활용됩니다. RDBMS vs Redis 비교 항목 RDBMS (MySQL 등) Redis 저장 방식 디스크 기반 인메모리 (RAM) 데이터 모델 테이블/행/열 (관계형) Key-Value...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","초급","lecture-redis"],
+        "url": "/redis/redis-01-intro/",
+        "teaser": null
+      },{
+        "title": "[Redis] 02. String과 숫자 (기본 자료구조)",
+        "excerpt":"Redis의 가장 기본 자료구조인 String 타입과 숫자 연산을 정리합니다. String 타입 String은 Redis의 가장 단순하고 기본적인 자료구조입니다. 텍스트, 숫자, 바이너리 데이터(이미지, 직렬화된 객체 등) 모두 저장 가능하며, 최대 512MB까지 저장할 수 있습니다. 기본 명령어 SET / GET # 값 설정 SET name \"홍길동\" # 값 조회 GET name # \"홍길동\"...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","초급","lecture-redis"],
+        "url": "/redis/redis-02-string-number/",
+        "teaser": null
+      },{
+        "title": "[Redis] 03. List와 Set",
+        "excerpt":"Redis의 List(순서 있는 컬렉션)와 Set(중복 없는 컬렉션) 자료구조를 정리합니다. List List는 순서가 있는 문자열 컬렉션입니다. 양쪽 끝에서 삽입/삭제가 O(1)로 빠릅니다. 큐(Queue), 스택(Stack), 최근 항목 목록 등에 활용됩니다. 기본 명령어 삽입 # 왼쪽(앞)에 삽입 LPUSH queue \"task1\" LPUSH queue \"task2\" \"task3\" # queue: [task3, task2, task1] # 오른쪽(뒤)에 삽입 RPUSH queue...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","초급","lecture-redis"],
+        "url": "/redis/redis-03-list-set/",
+        "teaser": null
+      },{
+        "title": "[Redis] 04. Hash와 Sorted Set",
+        "excerpt":"Redis의 Hash(필드-값 쌍)와 Sorted Set(점수 기반 정렬 컬렉션) 자료구조를 정리합니다. Hash Hash는 하나의 키 안에 여러 필드-값 쌍을 저장하는 자료구조입니다. 객체(Object)를 표현하기에 적합하며, RDBMS의 한 행(row)과 유사합니다. 기본 명령어 설정/조회 # 단일 필드 설정 HSET user:1 name \"홍길동\" HSET user:1 age 30 HSET user:1 email \"hong@test.com\" # 여러 필드 한번에...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","초급","lecture-redis"],
+        "url": "/redis/redis-04-hash-sortedset/",
+        "teaser": null
+      },{
+        "title": "[Redis] 05. 고급 자료구조 (Stream, HyperLogLog, Bitmap, Geo)",
+        "excerpt":"Redis의 고급 자료구조인 Stream, HyperLogLog, Bitmap, Geospatial을 정리합니다. Stream Stream은 Redis 5.0에서 도입된 로그형 자료구조입니다. Kafka와 유사한 메시지 스트리밍을 지원하며, Consumer Group으로 분산 처리가 가능합니다. 기본 명령어 # 메시지 추가 (* = 자동 ID 생성) XADD mystream * name \"홍길동\" action \"login\" # \"1714900000000-0\" (타임스탬프-시퀀스) XADD mystream * name \"김철수\"...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","중급","lecture-redis"],
+        "url": "/redis/redis-05-advanced-types/",
+        "teaser": null
+      },{
+        "title": "[Redis] 06. Pub/Sub, 트랜잭션, Lua 스크립팅",
+        "excerpt":"Redis의 Pub/Sub 메시징, 트랜잭션(MULTI/EXEC), Lua 스크립팅을 정리합니다. Pub/Sub (발행/구독) Pub/Sub은 메시지를 채널에 발행하면, 해당 채널을 구독 중인 모든 클라이언트가 메시지를 수신하는 패턴입니다. 기본 사용법 # 구독자 (터미널 1) SUBSCRIBE chat:room:1 # 메시지 대기 상태... # 발행자 (터미널 2) PUBLISH chat:room:1 \"안녕하세요!\" # (integer) 1 (수신한 구독자 수) # 구독자에게 표시:...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","중급","lecture-redis"],
+        "url": "/redis/redis-06-pubsub-transaction/",
+        "teaser": null
+      },{
+        "title": "[Redis] 07. 영속성 (RDB, AOF)",
+        "excerpt":"Redis의 데이터 영속성 메커니즘인 RDB 스냅샷과 AOF 로그를 정리합니다. 영속성이 필요한 이유 Redis는 인메모리 데이터베이스이므로, 서버가 재시작되면 모든 데이터가 사라집니다. 영속성(Persistence) 설정을 통해 디스크에 데이터를 저장하고 복구할 수 있습니다. RDB vs AOF 비교 항목 RDB (스냅샷) AOF (Append Only File) 방식 특정 시점의 메모리 전체를 덤프 모든 쓰기 명령을 로그로...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","중급","lecture-redis"],
+        "url": "/redis/redis-07-persistence/",
+        "teaser": null
+      },{
+        "title": "[Redis] 08. 복제, Sentinel, Cluster (고가용성)",
+        "excerpt":"Redis의 복제(Replication), Sentinel(자동 페일오버), Cluster(수평 확장)를 정리합니다. 복제 (Replication) Master-Replica 구조로 데이터를 복제하여 읽기 분산과 고가용성을 제공합니다. 구조 Master (읽기/쓰기) ──→ Replica 1 (읽기 전용) └──→ Replica 2 (읽기 전용) 설정 Replica 측 설정 (redis.conf) # Master 지정 replicaof 192.168.1.100 6379 # Master 비밀번호 (있는 경우) masterauth \"MasterPass123!\" # Replica...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","고급","lecture-redis"],
+        "url": "/redis/redis-08-replication-ha/",
+        "teaser": null
+      },{
+        "title": "[Redis] 09. 메모리 관리와 설정",
+        "excerpt":"Redis의 메모리 관리, Eviction 정책, 주요 설정을 정리합니다. 메모리 관리 Redis는 모든 데이터를 RAM에 저장하므로 메모리 관리가 핵심입니다. 메모리 사용량 확인 INFO memory # 주요 항목 # used_memory: Redis가 할당한 메모리 (바이트) # used_memory_human: 사람이 읽기 쉬운 형태 # used_memory_rss: OS가 보고하는 실제 메모리 (단편화 포함) # used_memory_peak: 최대 사용...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","고급","lecture-redis"],
+        "url": "/redis/redis-09-memory-config/",
+        "teaser": null
+      },{
+        "title": "[Redis] 10. 실전 설계 패턴",
+        "excerpt":"Redis를 활용한 실전 설계 패턴과 애플리케이션 연동 방법을 정리합니다. 캐시 패턴 Cache-Aside (Lazy Loading) 가장 일반적인 캐시 패턴입니다. 캐시에 없으면 DB에서 조회 후 캐시에 저장합니다. 1. 캐시 조회 → HIT → 반환 2. 캐시 조회 → MISS → DB 조회 → 캐시 저장 → 반환 def get_user(user_id): # 1. 캐시...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","고급","lecture-redis"],
+        "url": "/redis/redis-10-patterns/",
+        "teaser": null
+      },{
+        "title": "[Redis] 11. 모니터링과 Troubleshooting",
+        "excerpt":"Redis의 모니터링 방법과 자주 발생하는 문제의 해결 방법을 정리합니다. 모니터링 INFO 명령어 INFO # 전체 정보 INFO server # 서버 정보 INFO clients # 클라이언트 정보 INFO memory # 메모리 정보 INFO stats # 통계 INFO replication # 복제 상태 INFO keyspace # DB별 키 수 INFO commandstats # 명령어별...","categories": ["redis"],
+        "tags": ["redis","nosql","redis강좌","고급","lecture-redis"],
+        "url": "/redis/redis-11-monitoring-troubleshooting/",
+        "teaser": null
       }]

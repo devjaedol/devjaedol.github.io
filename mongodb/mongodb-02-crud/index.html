@@ -1,0 +1,2120 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제) | 꿰보노트</title>
+<meta name="description" content="MongoDB에서의 문서 CRUD(Create, Read, Update, Delete) 명령어를 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/mongodb/mongodb-02-crud/">
+
+
+  <meta property="og:description" content="MongoDB에서의 문서 CRUD(Create, Read, Update, Delete) 명령어를 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-05T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/mongodb/mongodb-02-crud/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#mongodb" itemprop="item"><span itemprop="name">Mongodb</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 131</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)">
+    <meta itemprop="description" content="MongoDB에서의 문서 CRUD(Create, Read, Update, Delete) 명령어를 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-05T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/mongodb/mongodb-02-crud/" class="u-url" itemprop="url">[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#데이터베이스와-컬렉션">데이터베이스와 컬렉션</a><ul><li><a href="#데이터베이스-관리">데이터베이스 관리</a></li><li><a href="#컬렉션-관리">컬렉션 관리</a></li><li><a href="#insert-문서-삽입">INSERT (문서 삽입)</a><ul><li><a href="#단일-문서-삽입">단일 문서 삽입</a></li><li><a href="#다중-문서-삽입">다중 문서 삽입</a></li><li><a href="#_id-직접-지정">_id 직접 지정</a></li></ul></li><li><a href="#find-문서-조회">FIND (문서 조회)</a><ul><li><a href="#기본-조회">기본 조회</a></li><li><a href="#비교-연산자">비교 연산자</a></li><li><a href="#논리-연산자">논리 연산자</a></li><li><a href="#필드타입-연산자">필드/타입 연산자</a></li><li><a href="#배열-쿼리">배열 쿼리</a></li><li><a href="#중첩-문서-쿼리">중첩 문서 쿼리</a></li><li><a href="#프로젝션-반환-필드-선택">프로젝션 (반환 필드 선택)</a></li><li><a href="#정렬-제한-건너뛰기">정렬, 제한, 건너뛰기</a></li></ul></li><li><a href="#update-문서-수정">UPDATE (문서 수정)</a><ul><li><a href="#수정-연산자">수정 연산자</a></li><li><a href="#단일-문서-수정">단일 문서 수정</a></li><li><a href="#다중-문서-수정">다중 문서 수정</a></li><li><a href="#upsert-없으면-삽입-있으면-수정">Upsert (없으면 삽입, 있으면 수정)</a></li><li><a href="#replaceone-문서-전체-교체">replaceOne (문서 전체 교체)</a></li></ul></li><li><a href="#delete-문서-삭제">DELETE (문서 삭제)</a></li><li><a href="#findoneandupdate--findoneanddelete">findOneAndUpdate / findOneAndDelete</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>MongoDB에서의 문서 CRUD(Create, Read, Update, Delete) 명령어를 정리합니다.</p>
+
+<h1 id="데이터베이스와-컬렉션">데이터베이스와 컬렉션</h1>
+
+<h2 id="데이터베이스-관리">데이터베이스 관리</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 데이터베이스 목록</span>
+<span class="nx">show</span> <span class="nx">dbs</span>
+
+<span class="c1">// 데이터베이스 전환 (없으면 첫 문서 삽입 시 자동 생성)</span>
+<span class="nx">use</span> <span class="nx">mydb</span>
+
+<span class="c1">// 현재 데이터베이스 확인</span>
+<span class="nx">db</span>
+
+<span class="c1">// 데이터베이스 삭제</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">dropDatabase</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="컬렉션-관리">컬렉션 관리</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 컬렉션 목록</span>
+<span class="nx">show</span> <span class="nx">collections</span>
+
+<span class="c1">// 컬렉션 생성 (명시적, 보통 자동 생성)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">createCollection</span><span class="p">(</span><span class="dl">"</span><span class="s2">users</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="c1">// 옵션과 함께 생성</span>
+<span class="nx">db</span><span class="p">.</span><span class="nf">createCollection</span><span class="p">(</span><span class="dl">"</span><span class="s2">logs</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">capped</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>       <span class="c1">// 고정 크기 컬렉션</span>
+    <span class="na">size</span><span class="p">:</span> <span class="mi">104857600</span><span class="p">,</span>    <span class="c1">// 100MB</span>
+    <span class="na">max</span><span class="p">:</span> <span class="mi">100000</span>         <span class="c1">// 최대 문서 수</span>
+<span class="p">})</span>
+
+<span class="c1">// 컬렉션 삭제</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">drop</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="insert-문서-삽입">INSERT (문서 삽입)</h2>
+
+<h3 id="단일-문서-삽입">단일 문서 삽입</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">insertOne</span><span class="p">({</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="na">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">hong@test.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">salary</span><span class="p">:</span> <span class="mi">5000000</span><span class="p">,</span>
+    <span class="na">hire_date</span><span class="p">:</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">(</span><span class="dl">"</span><span class="s2">2024-01-15</span><span class="dl">"</span><span class="p">),</span>
+    <span class="na">skills</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">JavaScript</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Python</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MongoDB</span><span class="dl">"</span><span class="p">],</span>
+    <span class="na">address</span><span class="p">:</span> <span class="p">{</span> <span class="na">city</span><span class="p">:</span> <span class="dl">"</span><span class="s2">서울</span><span class="dl">"</span><span class="p">,</span> <span class="na">district</span><span class="p">:</span> <span class="dl">"</span><span class="s2">강남구</span><span class="dl">"</span> <span class="p">}</span>
+<span class="p">})</span>
+<span class="c1">// { acknowledged: true, insertedId: ObjectId("...") }</span>
+</code></pre></div></div>
+
+<h3 id="다중-문서-삽입">다중 문서 삽입</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">insertMany</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김철수</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">기획팀</span><span class="dl">"</span><span class="p">,</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">4500000</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">이영희</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span><span class="p">,</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">5500000</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">박민수</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">디자인팀</span><span class="dl">"</span><span class="p">,</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">4800000</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">최지은</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span><span class="p">,</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">6000000</span> <span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="_id-직접-지정">_id 직접 지정</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">insertOne</span><span class="p">({</span>
+    <span class="na">_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">user_001</span><span class="dl">"</span><span class="p">,</span>    <span class="c1">// 직접 지정 가능 (중복 불가)</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">관리자</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">admin</span><span class="dl">"</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="find-문서-조회">FIND (문서 조회)</h2>
+
+<h3 id="기본-조회">기본 조회</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 전체 조회</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">()</span>
+
+<span class="c1">// 보기 좋게 출력</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">().</span><span class="nf">pretty</span><span class="p">()</span>
+
+<span class="c1">// 조건 조회</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span> <span class="p">})</span>
+
+<span class="c1">// 단일 문서 조회 (첫 번째 매칭)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">findOne</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="비교-연산자">비교 연산자</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>연산자</th>
+      <th>설명</th>
+      <th>SQL 대응</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$eq</code></td>
+      <td>같음</td>
+      <td><code class="language-plaintext highlighter-rouge">=</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$ne</code></td>
+      <td>같지 않음</td>
+      <td><code class="language-plaintext highlighter-rouge">!=</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$gt</code></td>
+      <td>초과</td>
+      <td><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$gte</code></td>
+      <td>이상</td>
+      <td><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$lt</code></td>
+      <td>미만</td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$lte</code></td>
+      <td>이하</td>
+      <td><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$in</code></td>
+      <td>목록 포함</td>
+      <td><code class="language-plaintext highlighter-rouge">IN</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$nin</code></td>
+      <td>목록 미포함</td>
+      <td><code class="language-plaintext highlighter-rouge">NOT IN</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gte</span><span class="p">:</span> <span class="mi">5000000</span> <span class="p">}</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">age</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gt</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="na">$lt</span><span class="p">:</span> <span class="mi">35</span> <span class="p">}</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">dept</span><span class="p">:</span> <span class="p">{</span> <span class="na">$in</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">기획팀</span><span class="dl">"</span><span class="p">]</span> <span class="p">}</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">dept</span><span class="p">:</span> <span class="p">{</span> <span class="na">$ne</span><span class="p">:</span> <span class="dl">"</span><span class="s2">디자인팀</span><span class="dl">"</span> <span class="p">}</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="논리-연산자">논리 연산자</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// AND (기본)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span><span class="p">,</span> <span class="na">salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gte</span><span class="p">:</span> <span class="mi">5000000</span> <span class="p">}</span> <span class="p">})</span>
+
+<span class="c1">// $and (명시적)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">$and</span><span class="p">:</span> <span class="p">[{</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span> <span class="p">},</span> <span class="p">{</span> <span class="na">salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gte</span><span class="p">:</span> <span class="mi">5000000</span> <span class="p">}</span> <span class="p">}]</span> <span class="p">})</span>
+
+<span class="c1">// $or</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">$or</span><span class="p">:</span> <span class="p">[{</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span> <span class="p">},</span> <span class="p">{</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">기획팀</span><span class="dl">"</span> <span class="p">}]</span> <span class="p">})</span>
+
+<span class="c1">// $not</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">age</span><span class="p">:</span> <span class="p">{</span> <span class="na">$not</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gte</span><span class="p">:</span> <span class="mi">30</span> <span class="p">}</span> <span class="p">}</span> <span class="p">})</span>
+
+<span class="c1">// $nor (모두 아닌)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">$nor</span><span class="p">:</span> <span class="p">[{</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span> <span class="p">},</span> <span class="p">{</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">기획팀</span><span class="dl">"</span> <span class="p">}]</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="필드타입-연산자">필드/타입 연산자</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 필드 존재 여부</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span> <span class="p">{</span> <span class="na">$exists</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">phone</span><span class="p">:</span> <span class="p">{</span> <span class="na">$exists</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}</span> <span class="p">})</span>
+
+<span class="c1">// 타입 확인</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">age</span><span class="p">:</span> <span class="p">{</span> <span class="na">$type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">number</span><span class="dl">"</span> <span class="p">}</span> <span class="p">})</span>
+
+<span class="c1">// 정규식</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="p">{</span> <span class="na">$regex</span><span class="p">:</span> <span class="sr">/^홍/</span> <span class="p">}</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span> <span class="p">{</span> <span class="na">$regex</span><span class="p">:</span> <span class="sr">/test</span><span class="se">\.</span><span class="sr">com$/</span><span class="p">,</span> <span class="na">$options</span><span class="p">:</span> <span class="dl">"</span><span class="s2">i</span><span class="dl">"</span> <span class="p">}</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="배열-쿼리">배열 쿼리</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 배열에 특정 값 포함</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">skills</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Python</span><span class="dl">"</span> <span class="p">})</span>
+
+<span class="c1">// 배열 크기</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">skills</span><span class="p">:</span> <span class="p">{</span> <span class="na">$size</span><span class="p">:</span> <span class="mi">3</span> <span class="p">}</span> <span class="p">})</span>
+
+<span class="c1">// $all: 모든 값 포함</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">skills</span><span class="p">:</span> <span class="p">{</span> <span class="na">$all</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">JavaScript</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Python</span><span class="dl">"</span><span class="p">]</span> <span class="p">}</span> <span class="p">})</span>
+
+<span class="c1">// $elemMatch: 배열 요소 조건</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">orders</span><span class="p">:</span> <span class="p">{</span> <span class="na">$elemMatch</span><span class="p">:</span> <span class="p">{</span> <span class="na">price</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gt</span><span class="p">:</span> <span class="mi">100000</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="중첩-문서-쿼리">중첩 문서 쿼리</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 점 표기법 (Dot Notation)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="dl">"</span><span class="s2">address.city</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">서울</span><span class="dl">"</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="dl">"</span><span class="s2">orders.0.product</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">노트북</span><span class="dl">"</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="프로젝션-반환-필드-선택">프로젝션 (반환 필드 선택)</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 특정 필드만 반환 (1: 포함, 0: 제외)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({},</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">_id</span><span class="p">:</span> <span class="mi">0</span> <span class="p">})</span>
+
+<span class="c1">// 특정 필드 제외</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">({},</span> <span class="p">{</span> <span class="na">password</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">__v</span><span class="p">:</span> <span class="mi">0</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="정렬-제한-건너뛰기">정렬, 제한, 건너뛰기</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 정렬 (1: 오름차순, -1: 내림차순)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">().</span><span class="nf">sort</span><span class="p">({</span> <span class="na">salary</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">().</span><span class="nf">sort</span><span class="p">({</span> <span class="na">dept</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">salary</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="p">})</span>
+
+<span class="c1">// 제한</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">().</span><span class="nf">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1">// 건너뛰기 (페이징)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">find</span><span class="p">().</span><span class="nf">skip</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nf">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1">// 개수</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">countDocuments</span><span class="p">({</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">estimatedDocumentCount</span><span class="p">()</span>   <span class="c1">// 빠른 추정치</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="update-문서-수정">UPDATE (문서 수정)</h2>
+
+<h3 id="수정-연산자">수정 연산자</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>연산자</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$set</code></td>
+      <td>필드 값 설정 (없으면 추가)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$unset</code></td>
+      <td>필드 삭제</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$inc</code></td>
+      <td>숫자 증감</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$mul</code></td>
+      <td>숫자 곱하기</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$rename</code></td>
+      <td>필드 이름 변경</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$min</code> / <code class="language-plaintext highlighter-rouge">$max</code></td>
+      <td>최소/최대값으로 갱신</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$push</code></td>
+      <td>배열에 요소 추가</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$pull</code></td>
+      <td>배열에서 요소 제거</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$addToSet</code></td>
+      <td>배열에 중복 없이 추가</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$pop</code></td>
+      <td>배열 첫/마지막 요소 제거</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$currentDate</code></td>
+      <td>현재 날짜로 설정</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="단일-문서-수정">단일 문서 수정</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// $set: 필드 값 변경</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">updateOne</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$set</span><span class="p">:</span> <span class="p">{</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">5500000</span><span class="p">,</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">인사팀</span><span class="dl">"</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1">// $inc: 숫자 증감</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">updateOne</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$inc</span><span class="p">:</span> <span class="p">{</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">500000</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1">// $unset: 필드 삭제</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">updateOne</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$unset</span><span class="p">:</span> <span class="p">{</span> <span class="na">phone</span><span class="p">:</span> <span class="dl">""</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1">// $push: 배열에 추가</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">updateOne</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$push</span><span class="p">:</span> <span class="p">{</span> <span class="na">skills</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Redis</span><span class="dl">"</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1">// $addToSet: 중복 없이 배열에 추가</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">updateOne</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$addToSet</span><span class="p">:</span> <span class="p">{</span> <span class="na">skills</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Python</span><span class="dl">"</span> <span class="p">}</span> <span class="p">}</span>  <span class="c1">// 이미 있으면 무시</span>
+<span class="p">)</span>
+
+<span class="c1">// $pull: 배열에서 제거</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">updateOne</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$pull</span><span class="p">:</span> <span class="p">{</span> <span class="na">skills</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Python</span><span class="dl">"</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="다중-문서-수정">다중 문서 수정</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 조건에 맞는 모든 문서 수정</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">updateMany</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$inc</span><span class="p">:</span> <span class="p">{</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">500000</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="upsert-없으면-삽입-있으면-수정">Upsert (없으면 삽입, 있으면 수정)</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">updateOne</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">new@test.com</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$set</span><span class="p">:</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">신규유저</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">20</span> <span class="p">}</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">upsert</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="replaceone-문서-전체-교체">replaceOne (문서 전체 교체)</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">replaceOne</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CTO</span><span class="dl">"</span><span class="p">,</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">8000000</span> <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="delete-문서-삭제">DELETE (문서 삭제)</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 단일 문서 삭제</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">deleteOne</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">})</span>
+
+<span class="c1">// 다중 문서 삭제</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">deleteMany</span><span class="p">({</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">기획팀</span><span class="dl">"</span> <span class="p">})</span>
+
+<span class="c1">// 전체 삭제</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">deleteMany</span><span class="p">({})</span>
+
+<span class="c1">// 컬렉션 자체 삭제 (더 빠름)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">drop</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="findoneandupdate--findoneanddelete">findOneAndUpdate / findOneAndDelete</h2>
+
+<p>수정/삭제와 동시에 해당 문서를 반환합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 수정 후 새 문서 반환</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">findOneAndUpdate</span><span class="p">(</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$inc</span><span class="p">:</span> <span class="p">{</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">100000</span> <span class="p">}</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">returnDocument</span><span class="p">:</span> <span class="dl">"</span><span class="s2">after</span><span class="dl">"</span> <span class="p">}</span>   <span class="c1">// "before" 또는 "after"</span>
+<span class="p">)</span>
+
+<span class="c1">// 삭제하면서 삭제된 문서 반환</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">findOneAndDelete</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">홍길동</span><span class="dl">"</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (mongodb &gt; lecture-mongodb)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-10-troubleshooting/">[MongoDB] 10. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-09-performance/">[MongoDB] 09. 성능 튜닝과 모니터링</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-08-backup-restore/">[MongoDB] 08. 백업과 복구</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-07-security-user/">[MongoDB] 07. 보안과 사용자 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-06-replication-sharding/">[MongoDB] 06. Replica Set과 Sharding (고가용성/확장)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-05-schema-design/">[MongoDB] 05. 스키마 설계 (Embedding vs Referencing)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-04-index/">[MongoDB] 04. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-03-aggregation/">[MongoDB] 03. Aggregation Pipeline (집계)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-02-crud/">[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-01-intro/">[MongoDB] 01. MongoDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-mongodb" class="page__taxonomy-item p-category" rel="tag">lecture-mongodb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mongodb" class="page__taxonomy-item p-category" rel="tag">mongodb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">mongodb강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#nosql" class="page__taxonomy-item p-category" rel="tag">nosql</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#mongodb" class="page__taxonomy-item p-category" rel="tag">mongodb</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-05T00:00:00+00:00">2026-05-05</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BMongoDB%5D+02.+CRUD+%EA%B8%B0%EB%B3%B8+%28%EB%AC%B8%EC%84%9C+%EC%82%BD%EC%9E%85%2C+%EC%A1%B0%ED%9A%8C%2C+%EC%88%98%EC%A0%95%2C+%EC%82%AD%EC%A0%9C%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Fmongodb%2Fmongodb-02-crud%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fmongodb%2Fmongodb-02-crud%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fmongodb%2Fmongodb-02-crud%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/mongodb/mongodb-01-intro/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[MongoDB] 01. MongoDB 소개 및 설치</a>
+    
+    
+      <a href="/mongodb/mongodb-03-aggregation/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[MongoDB] 03. Aggregation Pipeline (집계)</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

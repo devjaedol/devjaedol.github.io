@@ -1,0 +1,2061 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[MongoDB] 03. Aggregation Pipeline (집계) | 꿰보노트</title>
+<meta name="description" content="MongoDB의 Aggregation Pipeline을 이용한 데이터 집계와 변환을 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[MongoDB] 03. Aggregation Pipeline (집계)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/mongodb/mongodb-03-aggregation/">
+
+
+  <meta property="og:description" content="MongoDB의 Aggregation Pipeline을 이용한 데이터 집계와 변환을 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-05T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/mongodb/mongodb-03-aggregation/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#mongodb" itemprop="item"><span itemprop="name">Mongodb</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[MongoDB] 03. Aggregation Pipeline (집계)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 131</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[MongoDB] 03. Aggregation Pipeline (집계)">
+    <meta itemprop="description" content="MongoDB의 Aggregation Pipeline을 이용한 데이터 집계와 변환을 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-05T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/mongodb/mongodb-03-aggregation/" class="u-url" itemprop="url">[MongoDB] 03. Aggregation Pipeline (집계)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#aggregation-pipeline이란">Aggregation Pipeline이란?</a><ul><li><a href="#주요-stage">주요 Stage</a></li><li><a href="#match-필터링">$match (필터링)</a></li><li><a href="#group-그룹핑">$group (그룹핑)</a><ul><li><a href="#집계-연산자">집계 연산자</a></li></ul></li><li><a href="#project-필드-선택변환">$project (필드 선택/변환)</a></li><li><a href="#sort--limit--skip">$sort / $limit / $skip</a></li><li><a href="#unwind-배열-펼치기">$unwind (배열 펼치기)</a></li><li><a href="#lookup-join">$lookup (JOIN)</a><ul><li><a href="#pipeline-lookup-복잡한-조인-mongodb-36">Pipeline $lookup (복잡한 조인, MongoDB 3.6+)</a></li></ul></li><li><a href="#addfields--set">$addFields / $set</a></li><li><a href="#bucket-범위별-그룹핑">$bucket (범위별 그룹핑)</a></li><li><a href="#facet-다중-파이프라인">$facet (다중 파이프라인)</a></li><li><a href="#실전-예시-sql--aggregation-변환">실전 예시: SQL → Aggregation 변환</a><ul><li><a href="#sql">SQL</a></li><li><a href="#mongodb-aggregation">MongoDB Aggregation</a></li></ul></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>MongoDB의 Aggregation Pipeline을 이용한 데이터 집계와 변환을 정리합니다.</p>
+
+<h1 id="aggregation-pipeline이란">Aggregation Pipeline이란?</h1>
+
+<p>Aggregation Pipeline은 문서를 여러 단계(Stage)를 거쳐 변환하고 집계하는 프레임워크입니다.  <br />
+RDBMS의 GROUP BY, HAVING, JOIN, 서브쿼리 등을 대체합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>컬렉션 → [Stage 1] → [Stage 2] → [Stage 3] → ... → 결과
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="주요-stage">주요 Stage</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stage</th>
+      <th>설명</th>
+      <th>SQL 대응</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$match</code></td>
+      <td>조건 필터링</td>
+      <td>WHERE</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$group</code></td>
+      <td>그룹핑 및 집계</td>
+      <td>GROUP BY</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$project</code></td>
+      <td>필드 선택/변환</td>
+      <td>SELECT</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$sort</code></td>
+      <td>정렬</td>
+      <td>ORDER BY</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$limit</code></td>
+      <td>결과 수 제한</td>
+      <td>LIMIT</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$skip</code></td>
+      <td>건너뛰기</td>
+      <td>OFFSET</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$unwind</code></td>
+      <td>배열 펼치기</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$lookup</code></td>
+      <td>다른 컬렉션 조인</td>
+      <td>JOIN</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$addFields</code></td>
+      <td>필드 추가</td>
+      <td>SELECT AS</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$count</code></td>
+      <td>문서 수 카운트</td>
+      <td>COUNT</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$out</code></td>
+      <td>결과를 컬렉션에 저장</td>
+      <td>INSERT INTO … SELECT</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$merge</code></td>
+      <td>결과를 기존 컬렉션에 병합</td>
+      <td>MERGE</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$bucket</code></td>
+      <td>범위별 그룹핑</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$facet</code></td>
+      <td>다중 파이프라인 병렬 실행</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="match-필터링">$match (필터링)</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// WHERE dept = '개발팀' AND salary &gt;= 5000000</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$match</span><span class="p">:</span> <span class="p">{</span> <span class="na">dept</span><span class="p">:</span> <span class="dl">"</span><span class="s2">개발팀</span><span class="dl">"</span><span class="p">,</span> <span class="na">salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gte</span><span class="p">:</span> <span class="mi">5000000</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<h2 id="group-그룹핑">$group (그룹핑)</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 부서별 인원수, 평균급여</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$group</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$dept</span><span class="dl">"</span><span class="p">,</span>                    <span class="c1">// 그룹핑 기준</span>
+        <span class="na">count</span><span class="p">:</span> <span class="p">{</span> <span class="na">$sum</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span>              <span class="c1">// COUNT</span>
+        <span class="na">avg_salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$avg</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$salary</span><span class="dl">"</span> <span class="p">},</span> <span class="c1">// AVG</span>
+        <span class="na">max_salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$max</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$salary</span><span class="dl">"</span> <span class="p">},</span> <span class="c1">// MAX</span>
+        <span class="na">min_salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$min</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$salary</span><span class="dl">"</span> <span class="p">},</span> <span class="c1">// MIN</span>
+        <span class="na">total_salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$sum</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$salary</span><span class="dl">"</span> <span class="p">}</span> <span class="c1">// SUM</span>
+    <span class="p">}}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="집계-연산자">집계 연산자</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>연산자</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$sum</code></td>
+      <td>합계 (1이면 카운트)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$avg</code></td>
+      <td>평균</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$min</code> / <code class="language-plaintext highlighter-rouge">$max</code></td>
+      <td>최소/최대</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$first</code> / <code class="language-plaintext highlighter-rouge">$last</code></td>
+      <td>첫 번째/마지막 값</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$push</code></td>
+      <td>배열로 수집</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$addToSet</code></td>
+      <td>중복 없이 배열로 수집</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$count</code></td>
+      <td>문서 수</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="project-필드-선택변환">$project (필드 선택/변환)</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$project</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">_id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="na">name</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="na">dept</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="na">annual_salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$multiply</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">$salary</span><span class="dl">"</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span> <span class="p">},</span>
+        <span class="na">name_dept</span><span class="p">:</span> <span class="p">{</span> <span class="na">$concat</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">$name</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2"> (</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">$dept</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">]</span> <span class="p">}</span>
+    <span class="p">}}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<h2 id="sort--limit--skip">$sort / $limit / $skip</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 급여 높은 순 상위 5명</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$sort</span><span class="p">:</span> <span class="p">{</span> <span class="na">salary</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="p">}</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$limit</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
+<span class="p">])</span>
+
+<span class="c1">// 페이징 (2페이지, 페이지당 10건)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$sort</span><span class="p">:</span> <span class="p">{</span> <span class="na">_id</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$skip</span><span class="p">:</span> <span class="mi">10</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$limit</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="unwind-배열-펼치기">$unwind (배열 펼치기)</h2>
+
+<p>배열 필드를 개별 문서로 분리합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 원본: { name: "홍길동", skills: ["JS", "Python", "MongoDB"] }</span>
+<span class="c1">// 결과: 3개 문서로 분리</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$unwind</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$skills</span><span class="dl">"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$group</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$skills</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">count</span><span class="p">:</span> <span class="p">{</span> <span class="na">$sum</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span>
+    <span class="p">}},</span>
+    <span class="p">{</span> <span class="na">$sort</span><span class="p">:</span> <span class="p">{</span> <span class="na">count</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">])</span>
+<span class="c1">// 스킬별 보유 인원 수</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="lookup-join">$lookup (JOIN)</h2>
+
+<p>다른 컬렉션과 조인합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// users 컬렉션의 dept_id로 departments 컬렉션 조인</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$lookup</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">from</span><span class="p">:</span> <span class="dl">"</span><span class="s2">departments</span><span class="dl">"</span><span class="p">,</span>        <span class="c1">// 조인할 컬렉션</span>
+        <span class="na">localField</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dept_id</span><span class="dl">"</span><span class="p">,</span>      <span class="c1">// 현재 컬렉션 필드</span>
+        <span class="na">foreignField</span><span class="p">:</span> <span class="dl">"</span><span class="s2">_id</span><span class="dl">"</span><span class="p">,</span>        <span class="c1">// 대상 컬렉션 필드</span>
+        <span class="na">as</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dept_info</span><span class="dl">"</span>             <span class="c1">// 결과 배열 필드명</span>
+    <span class="p">}},</span>
+    <span class="p">{</span> <span class="na">$unwind</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$dept_info</span><span class="dl">"</span> <span class="p">},</span>      <span class="c1">// 배열을 단일 문서로</span>
+    <span class="p">{</span> <span class="na">$project</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="na">salary</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="na">dept_name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$dept_info.name</span><span class="dl">"</span>
+    <span class="p">}}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="pipeline-lookup-복잡한-조인-mongodb-36">Pipeline $lookup (복잡한 조인, MongoDB 3.6+)</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$lookup</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">from</span><span class="p">:</span> <span class="dl">"</span><span class="s2">products</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">let</span><span class="p">:</span> <span class="p">{</span> <span class="na">product_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$product_id</span><span class="dl">"</span> <span class="p">},</span>
+        <span class="na">pipeline</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span> <span class="na">$match</span><span class="p">:</span> <span class="p">{</span> <span class="na">$expr</span><span class="p">:</span> <span class="p">{</span> <span class="na">$eq</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">$_id</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">$$product_id</span><span class="dl">"</span><span class="p">]</span> <span class="p">}</span> <span class="p">}</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="na">$project</span><span class="p">:</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="na">as</span><span class="p">:</span> <span class="dl">"</span><span class="s2">product</span><span class="dl">"</span>
+    <span class="p">}}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="addfields--set">$addFields / $set</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 기존 필드 유지하면서 새 필드 추가</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$addFields</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">annual_salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$multiply</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">$salary</span><span class="dl">"</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span> <span class="p">},</span>
+        <span class="na">is_senior</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gte</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">$age</span><span class="dl">"</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span> <span class="p">}</span>
+    <span class="p">}}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="bucket-범위별-그룹핑">$bucket (범위별 그룹핑)</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 급여 구간별 인원 수</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$bucket</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">groupBy</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$salary</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">boundaries</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3000000</span><span class="p">,</span> <span class="mi">5000000</span><span class="p">,</span> <span class="mi">7000000</span><span class="p">,</span> <span class="mi">10000000</span><span class="p">],</span>
+        <span class="na">default</span><span class="p">:</span> <span class="dl">"</span><span class="s2">기타</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">count</span><span class="p">:</span> <span class="p">{</span> <span class="na">$sum</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span>
+            <span class="na">names</span><span class="p">:</span> <span class="p">{</span> <span class="na">$push</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$name</span><span class="dl">"</span> <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="facet-다중-파이프라인">$facet (다중 파이프라인)</h2>
+
+<p>하나의 입력으로 여러 파이프라인을 동시에 실행합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$facet</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">부서별통계</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span> <span class="na">$group</span><span class="p">:</span> <span class="p">{</span> <span class="na">_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$dept</span><span class="dl">"</span><span class="p">,</span> <span class="na">count</span><span class="p">:</span> <span class="p">{</span> <span class="na">$sum</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="dl">"</span><span class="s2">급여상위3</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span> <span class="na">$sort</span><span class="p">:</span> <span class="p">{</span> <span class="na">salary</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="p">}</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="na">$limit</span><span class="p">:</span> <span class="mi">3</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="na">$project</span><span class="p">:</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">salary</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="dl">"</span><span class="s2">전체통계</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span> <span class="na">$group</span><span class="p">:</span> <span class="p">{</span> <span class="na">_id</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> <span class="na">total</span><span class="p">:</span> <span class="p">{</span> <span class="na">$sum</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span> <span class="na">avg_salary</span><span class="p">:</span> <span class="p">{</span> <span class="na">$avg</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$salary</span><span class="dl">"</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="실전-예시-sql--aggregation-변환">실전 예시: SQL → Aggregation 변환</h2>
+
+<h3 id="sql">SQL</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">dept</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="k">count</span><span class="p">,</span> <span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="k">as</span> <span class="n">avg_sal</span>
+<span class="k">FROM</span> <span class="n">users</span>
+<span class="k">WHERE</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">25</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">dept</span>
+<span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">avg_sal</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="mongodb-aggregation">MongoDB Aggregation</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">$match</span><span class="p">:</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gte</span><span class="p">:</span> <span class="mi">25</span> <span class="p">}</span> <span class="p">}</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$group</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$dept</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">count</span><span class="p">:</span> <span class="p">{</span> <span class="na">$sum</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span>
+        <span class="na">avg_sal</span><span class="p">:</span> <span class="p">{</span> <span class="na">$avg</span><span class="p">:</span> <span class="dl">"</span><span class="s2">$salary</span><span class="dl">"</span> <span class="p">}</span>
+    <span class="p">}},</span>
+    <span class="p">{</span> <span class="na">$match</span><span class="p">:</span> <span class="p">{</span> <span class="na">count</span><span class="p">:</span> <span class="p">{</span> <span class="na">$gte</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">}</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">$sort</span><span class="p">:</span> <span class="p">{</span> <span class="na">avg_sal</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (mongodb &gt; lecture-mongodb)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-10-troubleshooting/">[MongoDB] 10. 자주 발생하는 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-09-performance/">[MongoDB] 09. 성능 튜닝과 모니터링</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-08-backup-restore/">[MongoDB] 08. 백업과 복구</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-07-security-user/">[MongoDB] 07. 보안과 사용자 관리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-06-replication-sharding/">[MongoDB] 06. Replica Set과 Sharding (고가용성/확장)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-05-schema-design/">[MongoDB] 05. 스키마 설계 (Embedding vs Referencing)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-04-index/">[MongoDB] 04. 인덱스 (Index)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-03-aggregation/">[MongoDB] 03. Aggregation Pipeline (집계)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-02-crud/">[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/mongodb/mongodb-01-intro/">[MongoDB] 01. MongoDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-mongodb" class="page__taxonomy-item p-category" rel="tag">lecture-mongodb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mongodb" class="page__taxonomy-item p-category" rel="tag">mongodb</a><span class="sep">, </span>
+    
+      <a href="/tags/#mongodb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">mongodb강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#nosql" class="page__taxonomy-item p-category" rel="tag">nosql</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#mongodb" class="page__taxonomy-item p-category" rel="tag">mongodb</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-05T00:00:00+00:00">2026-05-05</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BMongoDB%5D+03.+Aggregation+Pipeline+%28%EC%A7%91%EA%B3%84%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Fmongodb%2Fmongodb-03-aggregation%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fmongodb%2Fmongodb-03-aggregation%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fmongodb%2Fmongodb-03-aggregation%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/mongodb/mongodb-02-crud/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[MongoDB] 02. CRUD 기본 (문서 삽입, 조회, 수정, 삭제)</a>
+    
+    
+      <a href="/mongodb/mongodb-04-index/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[MongoDB] 04. 인덱스 (Index)</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

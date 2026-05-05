@@ -1,0 +1,1959 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[InfluxDB] 04. Telegraf (데이터 수집 에이전트) | 꿰보노트</title>
+<meta name="description" content="InfluxDB의 공식 데이터 수집 에이전트인 Telegraf의 설정과 활용을 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[InfluxDB] 04. Telegraf (데이터 수집 에이전트)">
+<meta property="og:url" content="https://kimjaehyun.co.kr/influxdb/influxdb-04-telegraf/">
+
+
+  <meta property="og:description" content="InfluxDB의 공식 데이터 수집 에이전트인 Telegraf의 설정과 활용을 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-05T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/influxdb/influxdb-04-telegraf/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#influxdb" itemprop="item"><span itemprop="name">Influxdb</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[InfluxDB] 04. Telegraf (데이터 수집 에이전트)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 131</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[InfluxDB] 04. Telegraf (데이터 수집 에이전트)">
+    <meta itemprop="description" content="InfluxDB의 공식 데이터 수집 에이전트인 Telegraf의 설정과 활용을 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-05T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/influxdb/influxdb-04-telegraf/" class="u-url" itemprop="url">[InfluxDB] 04. Telegraf (데이터 수집 에이전트)
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#telegraf란">Telegraf란?</a><ul><li><a href="#아키텍처">아키텍처</a></li><li><a href="#설치">설치</a><ul><li><a href="#linux">Linux</a></li><li><a href="#mac">Mac</a></li><li><a href="#docker">Docker</a></li></ul></li><li><a href="#설정-파일-telegrafconf">설정 파일 (telegraf.conf)</a><ul><li><a href="#기본-구조">기본 구조</a></li></ul></li><li><a href="#주요-input-플러그인">주요 Input 플러그인</a><ul><li><a href="#시스템-메트릭">시스템 메트릭</a></li><li><a href="#애플리케이션서비스">애플리케이션/서비스</a></li><li><a href="#기타">기타</a></li></ul></li><li><a href="#설정-예시">설정 예시</a><ul><li><a href="#mysql-모니터링">MySQL 모니터링</a></li><li><a href="#docker-모니터링">Docker 모니터링</a></li><li><a href="#http-엔드포인트-체크">HTTP 엔드포인트 체크</a></li><li><a href="#커스텀-스크립트">커스텀 스크립트</a></li></ul></li><li><a href="#실행-및-관리">실행 및 관리</a></li><li><a href="#telegraf--grafana--influxdb-연동-구성">Telegraf + Grafana + InfluxDB 연동 구성</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>InfluxDB의 공식 데이터 수집 에이전트인 Telegraf의 설정과 활용을 정리합니다.</p>
+
+<h1 id="telegraf란">Telegraf란?</h1>
+
+<p>Telegraf는 InfluxData에서 개발한 플러그인 기반 메트릭 수집 에이전트입니다.  <br />
+200개 이상의 입력/출력 플러그인을 지원하며, 시스템 메트릭, 애플리케이션 메트릭, 로그 등을 수집하여 InfluxDB에 전송합니다.</p>
+
+<h2 id="아키텍처">아키텍처</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Input Plugins] → [Processor Plugins] → [Aggregator Plugins] → [Output Plugins]
+  (데이터 수집)      (데이터 변환)          (데이터 집계)          (데이터 전송)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="설치">설치</h2>
+
+<h3 id="linux">Linux</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>telegraf
+<span class="c"># 또는</span>
+wget https://dl.influxdata.com/telegraf/releases/telegraf_1.x.x_amd64.deb
+<span class="nb">sudo </span>dpkg <span class="nt">-i</span> telegraf_1.x.x_amd64.deb
+</code></pre></div></div>
+
+<h3 id="mac">Mac</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>telegraf
+</code></pre></div></div>
+
+<h3 id="docker">Docker</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">--name</span> telegraf <span class="se">\</span>
+  <span class="nt">-v</span> /path/to/telegraf.conf:/etc/telegraf/telegraf.conf:ro <span class="se">\</span>
+  telegraf
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="설정-파일-telegrafconf">설정 파일 (telegraf.conf)</h2>
+
+<h3 id="기본-구조">기본 구조</h3>
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 글로벌 설정</span>
+<span class="k">[</span><span class="n">agent</span><span class="k">]</span>
+  <span class="n">interval</span> <span class="o">=</span><span class="w"> </span><span class="s">"10s"</span>              <span class="c"># 수집 간격</span>
+  <span class="n">round_interval</span> <span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+  <span class="n">flush_interval</span> <span class="o">=</span><span class="w"> </span><span class="s">"10s"</span>        <span class="c"># 전송 간격</span>
+  <span class="n">flush_jitter</span> <span class="o">=</span><span class="w"> </span><span class="s">"0s"</span>
+
+<span class="c"># 출력: InfluxDB 2.x</span>
+<span class="k">[[</span><span class="n">outputs</span><span class="k">.</span><span class="n">influxdb_v2</span><span class="k">]]</span>
+  <span class="n">urls</span> <span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"http://localhost:8086"</span><span class="p">]</span>
+  <span class="n">token</span> <span class="o">=</span><span class="w"> </span><span class="s">"my-super-secret-token"</span>
+  <span class="n">organization</span> <span class="o">=</span><span class="w"> </span><span class="s">"myorg"</span>
+  <span class="n">bucket</span> <span class="o">=</span><span class="w"> </span><span class="s">"mybucket"</span>
+
+<span class="c"># 입력: CPU</span>
+<span class="k">[[</span><span class="n">inputs</span><span class="k">.</span><span class="n">cpu</span><span class="k">]]</span>
+  <span class="n">percpu</span> <span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+  <span class="n">totalcpu</span> <span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+  <span class="n">collect_cpu_time</span> <span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+
+<span class="c"># 입력: 메모리</span>
+<span class="k">[[</span><span class="n">inputs</span><span class="k">.</span><span class="n">mem</span><span class="k">]]</span>
+
+<span class="c"># 입력: 디스크</span>
+<span class="k">[[</span><span class="n">inputs</span><span class="k">.</span><span class="n">disk</span><span class="k">]]</span>
+  <span class="n">ignore_fs</span> <span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"tmpfs"</span><span class="p">,</span> <span class="s">"devtmpfs"</span><span class="p">]</span>
+
+<span class="c"># 입력: 네트워크</span>
+<span class="k">[[</span><span class="n">inputs</span><span class="k">.</span><span class="n">net</span><span class="k">]]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="주요-input-플러그인">주요 Input 플러그인</h2>
+
+<h3 id="시스템-메트릭">시스템 메트릭</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>플러그인</th>
+      <th>수집 항목</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.cpu</code></td>
+      <td>CPU 사용률</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.mem</code></td>
+      <td>메모리 사용량</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.disk</code></td>
+      <td>디스크 사용량</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.diskio</code></td>
+      <td>디스크 I/O</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.net</code></td>
+      <td>네트워크 트래픽</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.system</code></td>
+      <td>부하, 가동 시간</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.processes</code></td>
+      <td>프로세스 수</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="애플리케이션서비스">애플리케이션/서비스</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>플러그인</th>
+      <th>대상</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.nginx</code></td>
+      <td>Nginx 상태</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.apache</code></td>
+      <td>Apache 상태</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.mysql</code></td>
+      <td>MySQL 메트릭</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.postgresql</code></td>
+      <td>PostgreSQL 메트릭</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.redis</code></td>
+      <td>Redis 메트릭</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.mongodb</code></td>
+      <td>MongoDB 메트릭</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.docker</code></td>
+      <td>Docker 컨테이너</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.kubernetes</code></td>
+      <td>Kubernetes 메트릭</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="기타">기타</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>플러그인</th>
+      <th>용도</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.http_response</code></td>
+      <td>HTTP 엔드포인트 모니터링</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.ping</code></td>
+      <td>네트워크 연결 확인</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.snmp</code></td>
+      <td>SNMP 장비 모니터링</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.mqtt_consumer</code></td>
+      <td>MQTT 메시지 수집</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.tail</code></td>
+      <td>로그 파일 추적</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">inputs.exec</code></td>
+      <td>커스텀 스크립트 실행</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="설정-예시">설정 예시</h2>
+
+<h3 id="mysql-모니터링">MySQL 모니터링</h3>
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">[[</span><span class="n">inputs</span><span class="k">.</span><span class="n">mysql</span><span class="k">]]</span>
+  <span class="n">servers</span> <span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"user:password@tcp(localhost:3306)/"</span><span class="p">]</span>
+  <span class="n">gather_table_schema</span> <span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+  <span class="n">gather_process_list</span> <span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+  <span class="n">gather_slave_status</span> <span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div></div>
+
+<h3 id="docker-모니터링">Docker 모니터링</h3>
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">[[</span><span class="n">inputs</span><span class="k">.</span><span class="n">docker</span><span class="k">]]</span>
+  <span class="n">endpoint</span> <span class="o">=</span><span class="w"> </span><span class="s">"unix:///var/run/docker.sock"</span>
+  <span class="n">container_names</span> <span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+  <span class="n">timeout</span> <span class="o">=</span><span class="w"> </span><span class="s">"5s"</span>
+  <span class="n">perdevice</span> <span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+  <span class="n">total</span> <span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div></div>
+
+<h3 id="http-엔드포인트-체크">HTTP 엔드포인트 체크</h3>
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">[[</span><span class="n">inputs</span><span class="k">.</span><span class="n">http_response</span><span class="k">]]</span>
+  <span class="n">urls</span> <span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"https://myapp.com/health"</span><span class="p">,</span> <span class="s">"https://api.myapp.com/status"</span><span class="p">]</span>
+  <span class="n">response_timeout</span> <span class="o">=</span><span class="w"> </span><span class="s">"5s"</span>
+  <span class="n">method</span> <span class="o">=</span><span class="w"> </span><span class="s">"GET"</span>
+  <span class="n">follow_redirects</span> <span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div></div>
+
+<h3 id="커스텀-스크립트">커스텀 스크립트</h3>
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">[[</span><span class="n">inputs</span><span class="k">.</span><span class="n">exec</span><span class="k">]]</span>
+  <span class="n">commands</span> <span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">"/opt/scripts/custom_metric.sh"</span><span class="p">]</span>
+  <span class="n">timeout</span> <span class="o">=</span><span class="w"> </span><span class="s">"5s"</span>
+  <span class="n">data_format</span> <span class="o">=</span><span class="w"> </span><span class="s">"influx"</span>    <span class="c"># Line Protocol 형식 출력</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="실행-및-관리">실행 및 관리</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 설정 파일 테스트</span>
+telegraf <span class="nt">--config</span> telegraf.conf <span class="nt">--test</span>
+
+<span class="c"># 포그라운드 실행</span>
+telegraf <span class="nt">--config</span> telegraf.conf
+
+<span class="c"># 서비스 시작</span>
+<span class="nb">sudo </span>systemctl start telegraf
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>telegraf
+
+<span class="c"># 로그 확인</span>
+<span class="nb">sudo </span>journalctl <span class="nt">-u</span> telegraf <span class="nt">-f</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="telegraf--grafana--influxdb-연동-구성">Telegraf + Grafana + InfluxDB 연동 구성</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[서버/앱] → [Telegraf] → [InfluxDB] → [Grafana 대시보드]
+</code></pre></div></div>
+
+<p>이 구성은 서버 모니터링의 가장 일반적인 오픈소스 스택입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>단계</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Telegraf</td>
+      <td>10초마다 시스템 메트릭 수집 → InfluxDB 전송</td>
+    </tr>
+    <tr>
+      <td>InfluxDB</td>
+      <td>시계열 데이터 저장, 30일 보존</td>
+    </tr>
+    <tr>
+      <td>Grafana</td>
+      <td>InfluxDB를 데이터 소스로 대시보드 시각화</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><span class="nav__sub-title">관련된 글 (influxdb &gt; lecture-influxdb)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-06-admin-troubleshooting/">[InfluxDB] 06. 운영 관리와 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-05-task-alert/">[InfluxDB] 05. Task, 다운샘플링, 알림</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-04-telegraf/">[InfluxDB] 04. Telegraf (데이터 수집 에이전트)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-03-flux-query/">[InfluxDB] 03. Flux 쿼리 언어</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-02-data-model/">[InfluxDB] 02. 데이터 모델 (Measurement, Tag, Field)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-01-intro/">[InfluxDB] 01. InfluxDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#influxdb" class="page__taxonomy-item p-category" rel="tag">influxdb</a><span class="sep">, </span>
+    
+      <a href="/tags/#influxdb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">influxdb강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-influxdb" class="page__taxonomy-item p-category" rel="tag">lecture-influxdb</a><span class="sep">, </span>
+    
+      <a href="/tags/#telegraf" class="page__taxonomy-item p-category" rel="tag">telegraf</a><span class="sep">, </span>
+    
+      <a href="/tags/#timeseries" class="page__taxonomy-item p-category" rel="tag">timeseries</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#influxdb" class="page__taxonomy-item p-category" rel="tag">influxdb</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-05T00:00:00+00:00">2026-05-05</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BInfluxDB%5D+04.+Telegraf+%28%EB%8D%B0%EC%9D%B4%ED%84%B0+%EC%88%98%EC%A7%91+%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8%29%20https%3A%2F%2Fkimjaehyun.co.kr%2Finfluxdb%2Finfluxdb-04-telegraf%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Finfluxdb%2Finfluxdb-04-telegraf%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Finfluxdb%2Finfluxdb-04-telegraf%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/influxdb/influxdb-03-flux-query/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[InfluxDB] 03. Flux 쿼리 언어</a>
+    
+    
+      <a href="/influxdb/influxdb-05-task-alert/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[InfluxDB] 05. Task, 다운샘플링, 알림</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,2088 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[InfluxDB] 06. 운영 관리와 Troubleshooting | 꿰보노트</title>
+<meta name="description" content="InfluxDB의 운영 관리, 백업/복구, 성능 튜닝, 자주 발생하는 문제 해결을 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[InfluxDB] 06. 운영 관리와 Troubleshooting">
+<meta property="og:url" content="https://kimjaehyun.co.kr/influxdb/influxdb-06-admin-troubleshooting/">
+
+
+  <meta property="og:description" content="InfluxDB의 운영 관리, 백업/복구, 성능 튜닝, 자주 발생하는 문제 해결을 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-05T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/influxdb/influxdb-06-admin-troubleshooting/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#influxdb" itemprop="item"><span itemprop="name">Influxdb</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[InfluxDB] 06. 운영 관리와 Troubleshooting</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 131</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[InfluxDB] 06. 운영 관리와 Troubleshooting">
+    <meta itemprop="description" content="InfluxDB의 운영 관리, 백업/복구, 성능 튜닝, 자주 발생하는 문제 해결을 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-05T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/influxdb/influxdb-06-admin-troubleshooting/" class="u-url" itemprop="url">[InfluxDB] 06. 운영 관리와 Troubleshooting
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#보안-및-인증">보안 및 인증</a><ul><li><a href="#토큰-관리">토큰 관리</a></li><li><a href="#사용자-관리">사용자 관리</a></li><li><a href="#백업과-복구">백업과 복구</a><ul><li><a href="#백업">백업</a></li><li><a href="#복구">복구</a></li></ul></li><li><a href="#성능-튜닝">성능 튜닝</a><ul><li><a href="#시리즈-카디널리티-관리">시리즈 카디널리티 관리</a></li><li><a href="#카디널리티-줄이기">카디널리티 줄이기</a></li><li><a href="#스토리지-설정-configtoml">스토리지 설정 (config.toml)</a></li><li><a href="#쿼리-최적화">쿼리 최적화</a></li></ul></li><li><a href="#모니터링">모니터링</a><ul><li><a href="#내부-메트릭-확인">내부 메트릭 확인</a></li><li><a href="#디스크-사용량-확인">디스크 사용량 확인</a></li></ul></li><li><a href="#자주-발생하는-문제">자주 발생하는 문제</a><ul><li><a href="#1-높은-시리즈-카디널리티로-인한-성능-저하">1. 높은 시리즈 카디널리티로 인한 성능 저하</a></li><li><a href="#2-디스크-용량-부족">2. 디스크 용량 부족</a></li><li><a href="#3-쓰기-실패-write-timeout">3. 쓰기 실패 (Write Timeout)</a></li><li><a href="#4-쿼리-타임아웃">4. 쿼리 타임아웃</a></li><li><a href="#5-telegraf-데이터-미수신">5. Telegraf 데이터 미수신</a></li></ul></li><li><a href="#운영-체크리스트">운영 체크리스트</a></li><li><a href="#db-선택-가이드-최종-비교">DB 선택 가이드 (최종 비교)</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>InfluxDB의 운영 관리, 백업/복구, 성능 튜닝, 자주 발생하는 문제 해결을 정리합니다.</p>
+
+<h1 id="보안-및-인증">보안 및 인증</h1>
+
+<h2 id="토큰-관리">토큰 관리</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 토큰 목록</span>
+influx auth list
+
+<span class="c"># 읽기 전용 토큰 생성</span>
+influx auth create <span class="se">\</span>
+  <span class="nt">--org</span> myorg <span class="se">\</span>
+  <span class="nt">--read-bucket</span> mybucket <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Grafana read-only"</span>
+
+<span class="c"># 읽기/쓰기 토큰 생성</span>
+influx auth create <span class="se">\</span>
+  <span class="nt">--org</span> myorg <span class="se">\</span>
+  <span class="nt">--read-bucket</span> mybucket <span class="se">\</span>
+  <span class="nt">--write-bucket</span> mybucket <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Telegraf write"</span>
+
+<span class="c"># 토큰 비활성화</span>
+influx auth inactive <span class="nt">--id</span> &lt;token-id&gt;
+
+<span class="c"># 토큰 삭제</span>
+influx auth delete <span class="nt">--id</span> &lt;token-id&gt;
+</code></pre></div></div>
+
+<h2 id="사용자-관리">사용자 관리</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 사용자 생성</span>
+influx user create <span class="nt">--name</span> devuser <span class="nt">--org</span> myorg
+
+<span class="c"># 비밀번호 설정</span>
+influx user password <span class="nt">--name</span> devuser
+
+<span class="c"># 사용자 목록</span>
+influx user list
+
+<span class="c"># 사용자 삭제</span>
+influx user delete <span class="nt">--name</span> devuser
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="백업과-복구">백업과 복구</h2>
+
+<h3 id="백업">백업</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 전체 백업</span>
+influx backup /backup/influxdb/full_<span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>
+
+<span class="c"># 특정 버킷만</span>
+influx backup /backup/influxdb/mybucket <span class="nt">--bucket</span> mybucket
+
+<span class="c"># 압축 백업</span>
+influx backup /backup/influxdb/backup_<span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span> <span class="nt">--compression</span> <span class="nb">gzip</span>
+</code></pre></div></div>
+
+<h3 id="복구">복구</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 전체 복구</span>
+influx restore /backup/influxdb/full_20260505
+
+<span class="c"># 특정 버킷 복구</span>
+influx restore /backup/influxdb/mybucket <span class="nt">--bucket</span> mybucket
+
+<span class="c"># 다른 이름으로 복구</span>
+influx restore /backup/influxdb/mybucket <span class="nt">--bucket</span> mybucket <span class="nt">--new-bucket</span> mybucket_restored
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="성능-튜닝">성능 튜닝</h2>
+
+<h3 id="시리즈-카디널리티-관리">시리즈 카디널리티 관리</h3>
+
+<p>시리즈 카디널리티는 InfluxDB 성능의 가장 중요한 지표입니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 시리즈 카디널리티 확인</span>
+influx query <span class="s1">'import "influxdata/influxdb"
+influxdb.cardinality(bucket: "mybucket", start: -30d)'</span>
+</code></pre></div></div>
+
+<pre><code class="language-flux">// 측정별 시리즈 수 확인
+import "influxdata/influxdb"
+
+influxdb.cardinality(bucket: "mybucket", start: -30d)
+  |&gt; group(columns: ["_measurement"])
+  |&gt; count()
+</code></pre>
+
+<h3 id="카디널리티-줄이기">카디널리티 줄이기</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>방법</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>높은 카디널리티 Tag 제거</td>
+      <td>user_id, request_id 등을 Field로 변경</td>
+    </tr>
+    <tr>
+      <td>Tag 값 정규화</td>
+      <td>URL 경로를 패턴으로 그룹핑</td>
+    </tr>
+    <tr>
+      <td>불필요한 Tag 제거</td>
+      <td>사용하지 않는 Tag 삭제</td>
+    </tr>
+    <tr>
+      <td>버킷 분리</td>
+      <td>용도별 버킷 분리</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="스토리지-설정-configtoml">스토리지 설정 (config.toml)</h3>
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">[</span><span class="n">storage</span><span class="k">]</span>
+  <span class="c"># TSM 엔진 캐시 크기</span>
+  <span class="n">cache-max-memory-size</span> <span class="o">=</span><span class="w"> </span><span class="s">"1g"</span>
+  
+  <span class="c"># 캐시 스냅샷 크기</span>
+  <span class="n">cache-snapshot-memory-size</span> <span class="o">=</span><span class="w"> </span><span class="s">"25m"</span>
+  
+  <span class="c"># 컴팩션 처리량</span>
+  <span class="n">compact-throughput</span> <span class="o">=</span><span class="w"> </span><span class="s">"48m"</span>
+  <span class="n">compact-throughput-burst</span> <span class="o">=</span><span class="w"> </span><span class="s">"48m"</span>
+</code></pre></div></div>
+
+<h3 id="쿼리-최적화">쿼리 최적화</h3>
+
+<pre><code class="language-flux">// ❌ 넓은 시간 범위 + 필터 없음
+from(bucket: "mybucket")
+  |&gt; range(start: -30d)
+
+// ✅ 좁은 시간 범위 + 구체적 필터
+from(bucket: "mybucket")
+  |&gt; range(start: -1h)
+  |&gt; filter(fn: (r) =&gt; r._measurement == "cpu" and r.host == "server01")
+  |&gt; filter(fn: (r) =&gt; r._field == "usage_user")
+
+// ❌ 불필요한 데이터 로드 후 제거
+from(bucket: "mybucket")
+  |&gt; range(start: -1h)
+  |&gt; last()
+
+// ✅ pushdown 최적화 (filter를 먼저)
+from(bucket: "mybucket")
+  |&gt; range(start: -1h)
+  |&gt; filter(fn: (r) =&gt; r._measurement == "cpu")
+  |&gt; last()
+</code></pre>
+
+<hr />
+
+<h2 id="모니터링">모니터링</h2>
+
+<h3 id="내부-메트릭-확인">내부 메트릭 확인</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /metrics 엔드포인트 (Prometheus 형식)</span>
+curl http://localhost:8086/metrics
+
+<span class="c"># 주요 지표</span>
+<span class="c"># influxdb_organizations_total</span>
+<span class="c"># influxdb_buckets_total</span>
+<span class="c"># influxdb_series_total (시리즈 카디널리티)</span>
+<span class="c"># go_memstats_alloc_bytes (메모리 사용량)</span>
+<span class="c"># http_api_requests_total (API 요청 수)</span>
+</code></pre></div></div>
+
+<h3 id="디스크-사용량-확인">디스크 사용량 확인</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 데이터 디렉토리 크기</span>
+<span class="nb">du</span> <span class="nt">-sh</span> /var/lib/influxdb2/engine/
+
+<span class="c"># 버킷별 크기</span>
+<span class="nb">du</span> <span class="nt">-sh</span> /var/lib/influxdb2/engine/data/<span class="k">*</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="자주-발생하는-문제">자주 발생하는 문제</h2>
+
+<h3 id="1-높은-시리즈-카디널리티로-인한-성능-저하">1. 높은 시리즈 카디널리티로 인한 성능 저하</h3>
+
+<p>증상: 메모리 사용량 급증, 쿼리 느려짐, OOM</p>
+
+<pre><code class="language-flux">// 카디널리티 확인
+import "influxdata/influxdb"
+influxdb.cardinality(bucket: "mybucket", start: -7d)
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>해결</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>높은 카디널리티 Tag → Field 변경</td>
+      <td>스키마 재설계</td>
+    </tr>
+    <tr>
+      <td>불필요한 시리즈 삭제</td>
+      <td><code class="language-plaintext highlighter-rouge">influx delete</code></td>
+    </tr>
+    <tr>
+      <td>버킷 보존 기간 단축</td>
+      <td>오래된 데이터 자동 삭제</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="2-디스크-용량-부족">2. 디스크 용량 부족</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 데이터 삭제 (시간 범위)</span>
+influx delete <span class="se">\</span>
+  <span class="nt">--bucket</span> mybucket <span class="se">\</span>
+  <span class="nt">--start</span> 2025-01-01T00:00:00Z <span class="se">\</span>
+  <span class="nt">--stop</span> 2025-06-01T00:00:00Z
+
+<span class="c"># 특정 measurement 삭제</span>
+influx delete <span class="se">\</span>
+  <span class="nt">--bucket</span> mybucket <span class="se">\</span>
+  <span class="nt">--start</span> 1970-01-01T00:00:00Z <span class="se">\</span>
+  <span class="nt">--stop</span> <span class="si">$(</span><span class="nb">date</span> <span class="nt">-u</span> +<span class="s2">"%Y-%m-%dT%H:%M:%SZ"</span><span class="si">)</span> <span class="se">\</span>
+  <span class="nt">--predicate</span> <span class="s1">'_measurement="old_metric"'</span>
+</code></pre></div></div>
+
+<h3 id="3-쓰기-실패-write-timeout">3. 쓰기 실패 (Write Timeout)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>원인</th>
+      <th>해결</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>배치 크기 과대</td>
+      <td>배치 크기 줄이기 (5000 포인트 이하)</td>
+    </tr>
+    <tr>
+      <td>디스크 I/O 병목</td>
+      <td>SSD 사용, I/O 스케줄러 확인</td>
+    </tr>
+    <tr>
+      <td>카디널리티 폭발</td>
+      <td>Tag 설계 검토</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="4-쿼리-타임아웃">4. 쿼리 타임아웃</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 쿼리 타임아웃 설정 (config.toml)</span>
+<span class="c"># query-timeout = "30s"</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>해결</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>시간 범위 축소</td>
+      <td>조회 기간 줄이기</td>
+    </tr>
+    <tr>
+      <td>다운샘플링 활용</td>
+      <td>장기 조회는 요약 버킷 사용</td>
+    </tr>
+    <tr>
+      <td>필터 추가</td>
+      <td>measurement, tag 필터 구체화</td>
+    </tr>
+    <tr>
+      <td>aggregateWindow 사용</td>
+      <td>원본 대신 집계 데이터 조회</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="5-telegraf-데이터-미수신">5. Telegraf 데이터 미수신</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>확인 항목</th>
+      <th>방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Telegraf 실행 상태</td>
+      <td><code class="language-plaintext highlighter-rouge">systemctl status telegraf</code></td>
+    </tr>
+    <tr>
+      <td>설정 파일 오류</td>
+      <td><code class="language-plaintext highlighter-rouge">telegraf --config telegraf.conf --test</code></td>
+    </tr>
+    <tr>
+      <td>토큰 권한</td>
+      <td>쓰기 권한 있는 토큰인지 확인</td>
+    </tr>
+    <tr>
+      <td>네트워크</td>
+      <td>InfluxDB 포트 접근 가능 여부</td>
+    </tr>
+    <tr>
+      <td>로그 확인</td>
+      <td><code class="language-plaintext highlighter-rouge">journalctl -u telegraf -f</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="운영-체크리스트">운영 체크리스트</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>확인 방법</th>
+      <th>권장</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>시리즈 카디널리티</td>
+      <td><code class="language-plaintext highlighter-rouge">influxdb.cardinality()</code></td>
+      <td>100만 이하 (OSS)</td>
+    </tr>
+    <tr>
+      <td>디스크 사용량</td>
+      <td><code class="language-plaintext highlighter-rouge">du -sh</code></td>
+      <td>여유 공간 20% 이상</td>
+    </tr>
+    <tr>
+      <td>메모리 사용량</td>
+      <td><code class="language-plaintext highlighter-rouge">/metrics</code></td>
+      <td>물리 메모리의 80% 이하</td>
+    </tr>
+    <tr>
+      <td>보존 정책</td>
+      <td>버킷 설정 확인</td>
+      <td>용도에 맞게 설정</td>
+    </tr>
+    <tr>
+      <td>다운샘플링</td>
+      <td>Task 실행 상태</td>
+      <td>장기 데이터 요약</td>
+    </tr>
+    <tr>
+      <td>백업</td>
+      <td>정기 백업 스크립트</td>
+      <td>일 1회 이상</td>
+    </tr>
+    <tr>
+      <td>토큰 관리</td>
+      <td>최소 권한 원칙</td>
+      <td>읽기/쓰기 분리</td>
+    </tr>
+    <tr>
+      <td>Telegraf 상태</td>
+      <td>로그 확인</td>
+      <td>에러 없는지 확인</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="db-선택-가이드-최종-비교">DB 선택 가이드 (최종 비교)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>요구사항</th>
+      <th>추천 DB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>시계열 메트릭 (모니터링, IoT)</td>
+      <td>InfluxDB</td>
+    </tr>
+    <tr>
+      <td>범용 관계형 데이터</td>
+      <td>PostgreSQL, MySQL</td>
+    </tr>
+    <tr>
+      <td>문서형 유연한 스키마</td>
+      <td>MongoDB</td>
+    </tr>
+    <tr>
+      <td>캐시, 세션, 실시간</td>
+      <td>Redis</td>
+    </tr>
+    <tr>
+      <td>로그 검색, 전문 검색</td>
+      <td>Elasticsearch</td>
+    </tr>
+    <tr>
+      <td>대규모 분석 (OLAP)</td>
+      <td>ClickHouse, TimescaleDB</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><span class="nav__sub-title">관련된 글 (influxdb &gt; lecture-influxdb)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-06-admin-troubleshooting/">[InfluxDB] 06. 운영 관리와 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-05-task-alert/">[InfluxDB] 05. Task, 다운샘플링, 알림</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-04-telegraf/">[InfluxDB] 04. Telegraf (데이터 수집 에이전트)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-03-flux-query/">[InfluxDB] 03. Flux 쿼리 언어</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-02-data-model/">[InfluxDB] 02. 데이터 모델 (Measurement, Tag, Field)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/influxdb/influxdb-01-intro/">[InfluxDB] 01. InfluxDB 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#influxdb" class="page__taxonomy-item p-category" rel="tag">influxdb</a><span class="sep">, </span>
+    
+      <a href="/tags/#influxdb%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">influxdb강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-influxdb" class="page__taxonomy-item p-category" rel="tag">lecture-influxdb</a><span class="sep">, </span>
+    
+      <a href="/tags/#timeseries" class="page__taxonomy-item p-category" rel="tag">timeseries</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">고급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#influxdb" class="page__taxonomy-item p-category" rel="tag">influxdb</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-05T00:00:00+00:00">2026-05-05</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BInfluxDB%5D+06.+%EC%9A%B4%EC%98%81+%EA%B4%80%EB%A6%AC%EC%99%80+Troubleshooting%20https%3A%2F%2Fkimjaehyun.co.kr%2Finfluxdb%2Finfluxdb-06-admin-troubleshooting%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Finfluxdb%2Finfluxdb-06-admin-troubleshooting%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Finfluxdb%2Finfluxdb-06-admin-troubleshooting%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/influxdb/influxdb-05-task-alert/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[InfluxDB] 05. Task, 다운샘플링, 알림</a>
+    
+    
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

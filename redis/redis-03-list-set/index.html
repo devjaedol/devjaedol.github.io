@@ -1,0 +1,1968 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Redis] 03. List와 Set | 꿰보노트</title>
+<meta name="description" content="Redis의 List(순서 있는 컬렉션)와 Set(중복 없는 컬렉션) 자료구조를 정리합니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Redis] 03. List와 Set">
+<meta property="og:url" content="https://kimjaehyun.co.kr/redis/redis-03-list-set/">
+
+
+  <meta property="og:description" content="Redis의 List(순서 있는 컬렉션)와 Set(중복 없는 컬렉션) 자료구조를 정리합니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-05T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/redis/redis-03-list-set/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#redis" itemprop="item"><span itemprop="name">Redis</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Redis] 03. List와 Set</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 131</span>개</span> 
+      </li>
+
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Redis] 03. List와 Set">
+    <meta itemprop="description" content="Redis의 List(순서 있는 컬렉션)와 Set(중복 없는 컬렉션) 자료구조를 정리합니다.">
+    <meta itemprop="datePublished" content="2026-05-05T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/redis/redis-03-list-set/" class="u-url" itemprop="url">[Redis] 03. List와 Set
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#list">List</a><ul><li><a href="#기본-명령어">기본 명령어</a><ul><li><a href="#삽입">삽입</a><ul><li><a href="#조회">조회</a></li><li><a href="#삭제추출">삭제/추출</a></li><li><a href="#블로킹-명령어-메시지-큐">블로킹 명령어 (메시지 큐)</a></li></ul></li><li><a href="#list-활용-패턴">List 활용 패턴</a><ul><li><a href="#메시지-큐-producer-consumer">메시지 큐 (Producer-Consumer)</a></li><li><a href="#최근-활동-로그-최대-100개-유지">최근 활동 로그 (최대 100개 유지)</a></li><li><a href="#타임라인-sns-피드">타임라인 (SNS 피드)</a></li></ul></li></ul></li><li><a href="#set">Set</a><ul><li><a href="#기본-명령어-1">기본 명령어</a><ul><li><a href="#추가삭제">추가/삭제</a></li><li><a href="#조회-1">조회</a></li><li><a href="#집합-연산">집합 연산</a></li></ul></li><li><a href="#set-활용-패턴">Set 활용 패턴</a><ul><li><a href="#태그-시스템">태그 시스템</a></li><li><a href="#좋아요--팔로우">좋아요 / 팔로우</a></li><li><a href="#온라인-사용자-추적">온라인 사용자 추적</a></li><li><a href="#중복-방지-방문자-ip-등">중복 방지 (방문자, IP 등)</a></li></ul></li></ul></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Redis의 List(순서 있는 컬렉션)와 Set(중복 없는 컬렉션) 자료구조를 정리합니다.</p>
+
+<h1 id="list">List</h1>
+
+<p>List는 순서가 있는 문자열 컬렉션입니다. 양쪽 끝에서 삽입/삭제가 O(1)로 빠릅니다.  <br />
+큐(Queue), 스택(Stack), 최근 항목 목록 등에 활용됩니다.</p>
+
+<h2 id="기본-명령어">기본 명령어</h2>
+
+<h3 id="삽입">삽입</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 왼쪽(앞)에 삽입</span>
+LPUSH queue <span class="s2">"task1"</span>
+LPUSH queue <span class="s2">"task2"</span> <span class="s2">"task3"</span>
+<span class="c"># queue: [task3, task2, task1]</span>
+
+<span class="c"># 오른쪽(뒤)에 삽입</span>
+RPUSH queue <span class="s2">"task4"</span>
+<span class="c"># queue: [task3, task2, task1, task4]</span>
+
+<span class="c"># 리스트가 존재할 때만 삽입</span>
+LPUSHX queue <span class="s2">"task5"</span>    <span class="c"># 존재하면 삽입</span>
+LPUSHX nolist <span class="s2">"task5"</span>   <span class="c"># 존재하지 않으면 무시</span>
+</code></pre></div></div>
+
+<h4 id="조회">조회</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 범위 조회 (0부터 시작, -1은 마지막)</span>
+LRANGE queue 0 <span class="nt">-1</span>       <span class="c"># 전체</span>
+LRANGE queue 0 2        <span class="c"># 처음 3개</span>
+
+<span class="c"># 인덱스로 조회</span>
+LINDEX queue 0          <span class="c"># 첫 번째</span>
+LINDEX queue <span class="nt">-1</span>         <span class="c"># 마지막</span>
+
+<span class="c"># 길이</span>
+LLEN queue
+</code></pre></div></div>
+
+<h4 id="삭제추출">삭제/추출</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 왼쪽에서 꺼내기 (큐: FIFO)</span>
+LPOP queue
+<span class="c"># "task3"</span>
+
+<span class="c"># 오른쪽에서 꺼내기 (스택: LIFO)</span>
+RPOP queue
+<span class="c"># "task4"</span>
+
+<span class="c"># 여러 개 꺼내기 (Redis 6.2+)</span>
+LPOP queue 2
+
+<span class="c"># 특정 값 삭제 (count: 0=전체, 양수=앞에서, 음수=뒤에서)</span>
+LREM queue 0 <span class="s2">"task2"</span>    <span class="c"># "task2" 모두 삭제</span>
+LREM queue 1 <span class="s2">"task2"</span>    <span class="c"># 앞에서 1개만 삭제</span>
+
+<span class="c"># 범위만 남기고 삭제 (트리밍)</span>
+LTRIM queue 0 99        <span class="c"># 최근 100개만 유지</span>
+</code></pre></div></div>
+
+<h4 id="블로킹-명령어-메시지-큐">블로킹 명령어 (메시지 큐)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 블로킹 왼쪽 POP (타임아웃 초)</span>
+BLPOP queue 30
+<span class="c"># 데이터가 올 때까지 최대 30초 대기</span>
+
+<span class="c"># 블로킹 오른쪽 POP</span>
+BRPOP queue 30
+
+<span class="c"># 한 리스트에서 빼서 다른 리스트에 넣기</span>
+LMOVE <span class="nb">source </span>destination LEFT RIGHT
+BLMOVE <span class="nb">source </span>destination LEFT RIGHT 30
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="list-활용-패턴">List 활용 패턴</h3>
+
+<h4 id="메시지-큐-producer-consumer">메시지 큐 (Producer-Consumer)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Producer: 작업 추가</span>
+RPUSH job_queue <span class="s1">'{"type":"email","to":"user@test.com"}'</span>
+RPUSH job_queue <span class="s1">'{"type":"sms","to":"010-1234-5678"}'</span>
+
+<span class="c"># Consumer: 작업 처리 (블로킹)</span>
+BLPOP job_queue 0
+<span class="c"># 무한 대기하다가 작업이 오면 처리</span>
+</code></pre></div></div>
+
+<h4 id="최근-활동-로그-최대-100개-유지">최근 활동 로그 (최대 100개 유지)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LPUSH recent:user:123 <span class="s1">'{"action":"login","time":"2026-05-05T10:00:00"}'</span>
+LTRIM recent:user:123 0 99
+LRANGE recent:user:123 0 9    <span class="c"># 최근 10개 조회</span>
+</code></pre></div></div>
+
+<h4 id="타임라인-sns-피드">타임라인 (SNS 피드)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 새 게시글을 팔로워들의 타임라인에 추가</span>
+LPUSH timeline:user:456 <span class="s2">"post:789"</span>
+LTRIM timeline:user:456 0 199    <span class="c"># 최근 200개 유지</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="set">Set</h2>
+
+<p>Set은 순서가 없고 중복을 허용하지 않는 문자열 컬렉션입니다.  <br />
+멤버 존재 여부 확인이 O(1)로 빠르며, 집합 연산(교집합, 합집합, 차집합)을 지원합니다.</p>
+
+<h3 id="기본-명령어-1">기본 명령어</h3>
+
+<h4 id="추가삭제">추가/삭제</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 멤버 추가</span>
+SADD tags:post:1 <span class="s2">"redis"</span> <span class="s2">"nosql"</span> <span class="s2">"database"</span>
+SADD tags:post:1 <span class="s2">"redis"</span>    <span class="c"># 이미 존재하면 무시 (0 반환)</span>
+
+<span class="c"># 멤버 삭제</span>
+SREM tags:post:1 <span class="s2">"nosql"</span>
+
+<span class="c"># 랜덤 멤버 꺼내기 (삭제됨)</span>
+SPOP tags:post:1
+
+<span class="c"># 랜덤 멤버 조회 (삭제 안됨)</span>
+SRANDMEMBER tags:post:1 2    <span class="c"># 2개 랜덤 조회</span>
+</code></pre></div></div>
+
+<h4 id="조회-1">조회</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 전체 멤버 조회</span>
+SMEMBERS tags:post:1
+
+<span class="c"># 멤버 존재 여부</span>
+SISMEMBER tags:post:1 <span class="s2">"redis"</span>
+<span class="c"># 1 (존재) 또는 0 (미존재)</span>
+
+<span class="c"># 여러 멤버 존재 여부 (Redis 6.2+)</span>
+SMISMEMBER tags:post:1 <span class="s2">"redis"</span> <span class="s2">"java"</span> <span class="s2">"nosql"</span>
+<span class="c"># 1) 1  2) 0  3) 1</span>
+
+<span class="c"># 멤버 수</span>
+SCARD tags:post:1
+</code></pre></div></div>
+
+<h4 id="집합-연산">집합 연산</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SADD <span class="nb">set</span>:a <span class="s2">"1"</span> <span class="s2">"2"</span> <span class="s2">"3"</span> <span class="s2">"4"</span>
+SADD <span class="nb">set</span>:b <span class="s2">"3"</span> <span class="s2">"4"</span> <span class="s2">"5"</span> <span class="s2">"6"</span>
+
+<span class="c"># 교집합</span>
+SINTER <span class="nb">set</span>:a <span class="nb">set</span>:b
+<span class="c"># "3", "4"</span>
+
+<span class="c"># 합집합</span>
+SUNION <span class="nb">set</span>:a <span class="nb">set</span>:b
+<span class="c"># "1", "2", "3", "4", "5", "6"</span>
+
+<span class="c"># 차집합 (A - B)</span>
+SDIFF <span class="nb">set</span>:a <span class="nb">set</span>:b
+<span class="c"># "1", "2"</span>
+
+<span class="c"># 결과를 새 키에 저장</span>
+SINTERSTORE result <span class="nb">set</span>:a <span class="nb">set</span>:b
+SUNIONSTORE result <span class="nb">set</span>:a <span class="nb">set</span>:b
+SDIFFSTORE result <span class="nb">set</span>:a <span class="nb">set</span>:b
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="set-활용-패턴">Set 활용 패턴</h3>
+
+<h4 id="태그-시스템">태그 시스템</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 게시글에 태그 추가</span>
+SADD tags:post:1 <span class="s2">"redis"</span> <span class="s2">"nosql"</span> <span class="s2">"tutorial"</span>
+SADD tags:post:2 <span class="s2">"redis"</span> <span class="s2">"cache"</span> <span class="s2">"performance"</span>
+
+<span class="c"># 특정 태그의 게시글 목록</span>
+SADD tag:redis <span class="s2">"post:1"</span> <span class="s2">"post:2"</span>
+SADD tag:nosql <span class="s2">"post:1"</span>
+
+<span class="c"># "redis" AND "nosql" 태그를 모두 가진 게시글</span>
+SINTER tag:redis tag:nosql
+<span class="c"># "post:1"</span>
+</code></pre></div></div>
+
+<h4 id="좋아요--팔로우">좋아요 / 팔로우</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 게시글 좋아요</span>
+SADD likes:post:123 <span class="s2">"user:1"</span> <span class="s2">"user:2"</span> <span class="s2">"user:3"</span>
+
+<span class="c"># 좋아요 취소</span>
+SREM likes:post:123 <span class="s2">"user:2"</span>
+
+<span class="c"># 좋아요 수</span>
+SCARD likes:post:123
+
+<span class="c"># 내가 좋아요 했는지 확인</span>
+SISMEMBER likes:post:123 <span class="s2">"user:1"</span>
+</code></pre></div></div>
+
+<h4 id="온라인-사용자-추적">온라인 사용자 추적</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 로그인 시</span>
+SADD online_users <span class="s2">"user:123"</span>
+
+<span class="c"># 로그아웃 시</span>
+SREM online_users <span class="s2">"user:123"</span>
+
+<span class="c"># 현재 온라인 수</span>
+SCARD online_users
+
+<span class="c"># 특정 사용자 온라인 여부</span>
+SISMEMBER online_users <span class="s2">"user:123"</span>
+</code></pre></div></div>
+
+<h4 id="중복-방지-방문자-ip-등">중복 방지 (방문자, IP 등)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 오늘 방문한 IP 기록</span>
+SADD visitors:2026-05-05 <span class="s2">"192.168.1.1"</span> <span class="s2">"192.168.1.2"</span> <span class="s2">"192.168.1.1"</span>
+
+<span class="c"># 고유 방문자 수</span>
+SCARD visitors:2026-05-05
+<span class="c"># 2 (중복 자동 제거)</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (redis &gt; lecture-redis)</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-07-persistence/">[Redis] 07. 영속성 (RDB, AOF)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-06-pubsub-transaction/">[Redis] 06. Pub/Sub, 트랜잭션, Lua 스크립팅</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-05-advanced-types/">[Redis] 05. 고급 자료구조 (Stream, HyperLogLog, Bitmap, Geo)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-04-hash-sortedset/">[Redis] 04. Hash와 Sorted Set</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-03-list-set/">[Redis] 03. List와 Set</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-02-string-number/">[Redis] 02. String과 숫자 (기본 자료구조)</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/redis/redis-01-intro/">[Redis] 01. Redis 소개 및 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#lecture-redis" class="page__taxonomy-item p-category" rel="tag">lecture-redis</a><span class="sep">, </span>
+    
+      <a href="/tags/#nosql" class="page__taxonomy-item p-category" rel="tag">nosql</a><span class="sep">, </span>
+    
+      <a href="/tags/#redis" class="page__taxonomy-item p-category" rel="tag">redis</a><span class="sep">, </span>
+    
+      <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item p-category" rel="tag">redis강좌</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#redis" class="page__taxonomy-item p-category" rel="tag">redis</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-05T00:00:00+00:00">2026-05-05</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BRedis%5D+03.+List%EC%99%80+Set%20https%3A%2F%2Fkimjaehyun.co.kr%2Fredis%2Fredis-03-list-set%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fredis%2Fredis-03-list-set%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fredis%2Fredis-03-list-set%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/redis/redis-02-string-number/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Redis] 02. String과 숫자 (기본 자료구조)</a>
+    
+    
+      <a href="/redis/redis-04-hash-sortedset/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Redis] 04. Hash와 Sorted Set</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-11-monitoring-troubleshooting/">[Redis] 11. 모니터링과 Troubleshooting</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-10-patterns/">[Redis] 10. 실전 설계 패턴</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-09-memory-config/">[Redis] 09. 메모리 관리와 설정</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/redis/redis-08-replication-ha/">[Redis] 08. 복제, Sentinel, Cluster (고가용성)</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.05
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#redis" class="page__taxonomy-item-category" rel="tag">redis</a>
+                    
+                    
+                    <a href="/tags/#lecture-redis" class="page__taxonomy-item-tag" rel="tag">lecture-redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#nosql" class="page__taxonomy-item-tag" rel="tag">nosql</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis" class="page__taxonomy-item-tag" rel="tag">redis</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#redis%EA%B0%95%EC%A2%8C" class="page__taxonomy-item-tag" rel="tag">redis강좌</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EA%B3%A0%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">고급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
