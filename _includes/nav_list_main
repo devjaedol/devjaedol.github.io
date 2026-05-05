@@ -11,7 +11,6 @@
           <span class="nav__sub-title">전체 <span style="color:red"> {{sum}}</span>개</span> 
       </li>
 
-
       <li>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
         <span class="nav__sub-title">일상다반사</span>
@@ -25,8 +24,6 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-
-
 
         <span class="nav__sub-title">프로그래밍</span>
           <ul>

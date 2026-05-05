@@ -67,10 +67,13 @@ jobs:
       - name: Clean master branch (keep .git)
         run: |
           cd ${{ github.workspace }}/master
-          find . -maxdepth 1 ! -name '.' ! -name '.git' -exec rm -rf {} +
+          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' -exec rm -rf {} +
 
       - name: Copying _site content to master branch repo
-        run: cp -R ${{ github.workspace }}/source/_site/* ${{ github.workspace }}/master
+        run: |
+          cp -R ${{ github.workspace }}/source/_site/* ${{ github.workspace }}/master/
+          cp -R ${{ github.workspace }}/source/_site/.* ${{ github.workspace }}/master/ 2>/dev/null || true
+          touch ${{ github.workspace }}/master/.nojekyll
 
       - name: Run PWD
         run: pwd
@@ -80,7 +83,7 @@ jobs:
         run: ls -al ./source
       
       - name: Run ls -al master/nodejs
-        run: ls -al ./master/nodejs
+        run: ls -al ./master/nodejs || echo "nodejs directory not found"
 
       - name: Commit files
         run: |
