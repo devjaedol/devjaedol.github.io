@@ -26,8 +26,6 @@
                 {% endfor %}
             </ul>
 
-
-
         <span class="nav__sub-title">프로그래밍</span>
           <ul>
               {% for category in site.categories %}
