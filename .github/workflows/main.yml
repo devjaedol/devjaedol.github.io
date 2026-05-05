@@ -67,12 +67,20 @@ jobs:
       - name: Clean master branch (keep .git)
         run: |
           cd ${{ github.workspace }}/master
+          shopt -s dotglob
           find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' -exec rm -rf {} +
+          shopt -u dotglob
+
+      - name: Verify _site was built
+        run: |
+          echo "=== _site contents ==="
+          ls -la ${{ github.workspace }}/source/_site/
+          echo "=== _site/assets check ==="
+          ls -la ${{ github.workspace }}/source/_site/assets/ || echo "No assets folder!"
 
       - name: Copying _site content to master branch repo
         run: |
-          cp -R ${{ github.workspace }}/source/_site/* ${{ github.workspace }}/master/
-          cp -R ${{ github.workspace }}/source/_site/.* ${{ github.workspace }}/master/ 2>/dev/null || true
+          cp -a ${{ github.workspace }}/source/_site/. ${{ github.workspace }}/master/
           touch ${{ github.workspace }}/master/.nojekyll
 
       - name: Run PWD
