@@ -94,6 +94,28 @@
                   {% endif %}
               {% endfor %}
           </ul>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "redis" %}
+                      <li><a href="/categories/redis" class="">Redis ({{category[1].size}})</a> <i class="fas fa-database"></i></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "mongodb" %}
+                      <li><a href="/categories/mongodb" class="">MongoDB ({{category[1].size}})</a> <i class="fas fa-database"></i></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "influxdb" %}
+                      <li><a href="/categories/influxdb" class="">InfluxDB ({{category[1].size}})</a> <i class="fas fa-database"></i></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          
           
         <span class="nav__sub-title">주제별 모음</span>
             <ul>
@@ -128,9 +150,6 @@
           <ul>           
               <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
           </ul>
-
-
-
       </li>
   </ul>
 </nav>
