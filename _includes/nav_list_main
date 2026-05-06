@@ -55,6 +55,20 @@
               {% endfor %}
           </ul>            
           <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "kotlin" %}
+                      <li><a href="/categories/kotlin" class="">Kotlin ({{category[1].size}})</a> <i class="fab fa-kotlin"></i></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>                    
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "flutter" %}
+                      <li><a href="/categories/flutter" class="">Flutter ({{category[1].size}})</a> <i class="fab fa-dart"></i></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>                    
+          <ul>
             {% for category in site.categories %}
                 {% if category[0] == "cloud" %}
                     <li><a href="/categories/cloud" class="">Cloud ({{category[1].size}})</a> <i class="fas fa-cloud"></i></li>
