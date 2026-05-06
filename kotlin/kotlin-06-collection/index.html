@@ -1,0 +1,2295 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Kotlin] 06. 컬렉션 - List, Map, Set | 꿰보노트</title>
+<meta name="description" content="Kotlin의 컬렉션 타입과 다양한 함수형 연산을 배웁니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Kotlin] 06. 컬렉션 - List, Map, Set">
+<meta property="og:url" content="https://kimjaehyun.co.kr/kotlin/kotlin-06-collection/">
+
+
+  <meta property="og:description" content="Kotlin의 컬렉션 타입과 다양한 함수형 연산을 배웁니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-06T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/kotlin/kotlin-06-collection/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#kotlin" itemprop="item"><span itemprop="name">Kotlin</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Kotlin] 06. 컬렉션 - List, Map, Set</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 167</span>개</span> 
+      </li>
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/kotlin" class="">Kotlin (18)</a> <i class="fab fa-kotlin"></i></li>
+                  
+              
+          </ul>                    
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/flutter" class="">Flutter (18)</a> <i class="fab fa-dart"></i></li>
+                  
+              
+                  
+              
+          </ul>                    
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Kotlin] 06. 컬렉션 - List, Map, Set">
+    <meta itemprop="description" content="Kotlin의 컬렉션 타입과 다양한 함수형 연산을 배웁니다.">
+    <meta itemprop="datePublished" content="2026-05-06T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/kotlin/kotlin-06-collection/" class="u-url" itemprop="url">[Kotlin] 06. 컬렉션 - List, Map, Set
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#컬렉션-종류">컬렉션 종류</a></li><li><a href="#list">List</a><ul><li><a href="#읽기-전용-list">읽기 전용 List</a></li><li><a href="#변경-가능-mutablelist">변경 가능 MutableList</a></li></ul></li><li><a href="#map">Map</a><ul><li><a href="#읽기-전용-map">읽기 전용 Map</a></li><li><a href="#변경-가능-mutablemap">변경 가능 MutableMap</a></li></ul></li><li><a href="#set">Set</a></li><li><a href="#컬렉션-함수형-연산">컬렉션 함수형 연산</a><ul><li><a href="#filter--map">filter / map</a></li><li><a href="#기타-유용한-함수">기타 유용한 함수</a></li><li><a href="#reduce--fold">reduce / fold</a></li><li><a href="#flatmap--flatten">flatMap / flatten</a></li></ul></li><li><a href="#실습-예제">실습 예제</a><ul><li><a href="#학생-성적-처리">학생 성적 처리</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Kotlin의 컬렉션 타입과 다양한 함수형 연산을 배웁니다.</p>
+
+<h1 id="컬렉션-종류">컬렉션 종류</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">타입</th>
+      <th style="text-align: center">읽기 전용</th>
+      <th style="text-align: center">변경 가능</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">List</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">listOf()</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">mutableListOf()</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Set</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">setOf()</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">mutableSetOf()</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Map</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">mapOf()</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">mutableMapOf()</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="list">List</h1>
+
+<h2 id="읽기-전용-list">읽기 전용 List</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">fruits</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span><span class="s">"사과"</span><span class="p">,</span> <span class="s">"바나나"</span><span class="p">,</span> <span class="s">"포도"</span><span class="p">,</span> <span class="s">"딸기"</span><span class="p">)</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>          <span class="c1">// 사과</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">fruits</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>        <span class="c1">// 4</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">fruits</span><span class="p">.</span><span class="nf">first</span><span class="p">())</span>     <span class="c1">// 사과</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">fruits</span><span class="p">.</span><span class="nf">last</span><span class="p">())</span>      <span class="c1">// 딸기</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">fruits</span><span class="p">.</span><span class="nf">contains</span><span class="p">(</span><span class="s">"포도"</span><span class="p">))</span>  <span class="c1">// true</span>
+    <span class="nf">println</span><span class="p">(</span><span class="s">"바나나"</span> <span class="k">in</span> <span class="n">fruits</span><span class="p">)</span>       <span class="c1">// true</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">fruits</span><span class="p">.</span><span class="nf">indexOf</span><span class="p">(</span><span class="s">"포도"</span><span class="p">))</span>   <span class="c1">// 2</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="변경-가능-mutablelist">변경 가능 MutableList</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">numbers</span> <span class="p">=</span> <span class="nf">mutableListOf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">numbers</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>           <span class="c1">// 끝에 추가</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>        <span class="c1">// 인덱스 0에 추가</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="nf">addAll</span><span class="p">(</span><span class="nf">listOf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>  <span class="c1">// 여러 개 추가</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>        <span class="c1">// 값으로 삭제</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="nf">removeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>      <span class="c1">// 인덱스로 삭제</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>  <span class="c1">// [1, 2, 4, 5, 6]</span>
+
+    <span class="n">numbers</span><span class="p">.</span><span class="nf">sort</span><span class="p">()</span>           <span class="c1">// 정렬</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="nf">reverse</span><span class="p">()</span>        <span class="c1">// 역순</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="nf">shuffle</span><span class="p">()</span>        <span class="c1">// 섞기</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="nf">clear</span><span class="p">()</span>          <span class="c1">// 전체 삭제</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="map">Map</h1>
+
+<h2 id="읽기-전용-map">읽기 전용 Map</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">scores</span> <span class="p">=</span> <span class="nf">mapOf</span><span class="p">(</span>
+        <span class="s">"국어"</span> <span class="n">to</span> <span class="mi">90</span><span class="p">,</span>
+        <span class="s">"영어"</span> <span class="n">to</span> <span class="mi">85</span><span class="p">,</span>
+        <span class="s">"수학"</span> <span class="n">to</span> <span class="mi">95</span>
+    <span class="p">)</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s">"국어"</span><span class="p">])</span>       <span class="c1">// 90</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">scores</span><span class="p">.</span><span class="nf">getOrDefault</span><span class="p">(</span><span class="s">"과학"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>  <span class="c1">// 0</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">scores</span><span class="p">.</span><span class="n">keys</span><span class="p">)</span>         <span class="c1">// [국어, 영어, 수학]</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">scores</span><span class="p">.</span><span class="n">values</span><span class="p">)</span>       <span class="c1">// [90, 85, 95]</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">scores</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>         <span class="c1">// 3</span>
+    <span class="nf">println</span><span class="p">(</span><span class="s">"영어"</span> <span class="k">in</span> <span class="n">scores</span><span class="p">)</span>    <span class="c1">// true</span>
+
+    <span class="c1">// 순회</span>
+    <span class="k">for</span> <span class="p">((</span><span class="n">subject</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span> <span class="k">in</span> <span class="n">scores</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"$subject: ${score}점"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="변경-가능-mutablemap">변경 가능 MutableMap</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">userMap</span> <span class="p">=</span> <span class="n">mutableMapOf</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">,</span> <span class="nc">Int</span><span class="p">&gt;()</span>
+
+    <span class="n">userMap</span><span class="p">[</span><span class="s">"홍길동"</span><span class="p">]</span> <span class="p">=</span> <span class="mi">25</span>       <span class="c1">// 추가</span>
+    <span class="n">userMap</span><span class="p">[</span><span class="s">"김철수"</span><span class="p">]</span> <span class="p">=</span> <span class="mi">30</span>
+    <span class="n">userMap</span><span class="p">[</span><span class="s">"이영희"</span><span class="p">]</span> <span class="p">=</span> <span class="mi">28</span>
+
+    <span class="n">userMap</span><span class="p">[</span><span class="s">"홍길동"</span><span class="p">]</span> <span class="p">=</span> <span class="mi">26</span>       <span class="c1">// 수정</span>
+    <span class="n">userMap</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="s">"김철수"</span><span class="p">)</span>     <span class="c1">// 삭제</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="n">userMap</span><span class="p">)</span>  <span class="c1">// {홍길동=26, 이영희=28}</span>
+
+    <span class="c1">// putIfAbsent: 없을 때만 추가</span>
+    <span class="n">userMap</span><span class="p">.</span><span class="nf">putIfAbsent</span><span class="p">(</span><span class="s">"홍길동"</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>  <span class="c1">// 이미 있으므로 무시</span>
+    <span class="n">userMap</span><span class="p">.</span><span class="nf">putIfAbsent</span><span class="p">(</span><span class="s">"박민수"</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>  <span class="c1">// 추가됨</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="set">Set</h1>
+
+<p>중복을 허용하지 않는 컬렉션:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">colors</span> <span class="p">=</span> <span class="nf">setOf</span><span class="p">(</span><span class="s">"빨강"</span><span class="p">,</span> <span class="s">"파랑"</span><span class="p">,</span> <span class="s">"초록"</span><span class="p">,</span> <span class="s">"빨강"</span><span class="p">)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>       <span class="c1">// [빨강, 파랑, 초록] (중복 제거)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">colors</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>  <span class="c1">// 3</span>
+
+    <span class="kd">val</span> <span class="py">mutableSet</span> <span class="p">=</span> <span class="nf">mutableSetOf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">mutableSet</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>     <span class="c1">// 추가</span>
+    <span class="n">mutableSet</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>     <span class="c1">// 이미 있으므로 무시</span>
+    <span class="n">mutableSet</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">// 삭제</span>
+
+    <span class="c1">// 집합 연산</span>
+    <span class="kd">val</span> <span class="py">setA</span> <span class="p">=</span> <span class="nf">setOf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">setB</span> <span class="p">=</span> <span class="nf">setOf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="n">setA</span> <span class="n">union</span> <span class="n">setB</span><span class="p">)</span>     <span class="c1">// [1, 2, 3, 4, 5, 6] (합집합)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">setA</span> <span class="n">intersect</span> <span class="n">setB</span><span class="p">)</span> <span class="c1">// [3, 4] (교집합)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">setA</span> <span class="n">subtract</span> <span class="n">setB</span><span class="p">)</span>  <span class="c1">// [1, 2] (차집합)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="컬렉션-함수형-연산">컬렉션 함수형 연산</h1>
+
+<h2 id="filter--map">filter / map</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">numbers</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1">// filter: 조건에 맞는 요소만</span>
+    <span class="kd">val</span> <span class="py">evens</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">.</span><span class="nf">filter</span> <span class="p">{</span> <span class="n">it</span> <span class="p">%</span> <span class="mi">2</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">evens</span><span class="p">)</span>  <span class="c1">// [2, 4, 6, 8, 10]</span>
+
+    <span class="c1">// map: 변환</span>
+    <span class="kd">val</span> <span class="py">doubled</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="n">it</span> <span class="p">*</span> <span class="mi">2</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">doubled</span><span class="p">)</span>  <span class="c1">// [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]</span>
+
+    <span class="c1">// 체이닝</span>
+    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">numbers</span>
+        <span class="p">.</span><span class="nf">filter</span> <span class="p">{</span> <span class="n">it</span> <span class="p">%</span> <span class="mi">2</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">}</span>
+        <span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="n">it</span> <span class="p">*</span> <span class="n">it</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1">// [4, 16, 36, 64, 100]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="기타-유용한-함수">기타 유용한 함수</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">numbers</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+    <span class="c1">// 정렬</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">sorted</span><span class="p">())</span>          <span class="c1">// [1, 2, 3, 5, 7, 8, 9]</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">sortedDescending</span><span class="p">())</span> <span class="c1">// [9, 8, 7, 5, 3, 2, 1]</span>
+
+    <span class="c1">// 집계</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">sum</span><span class="p">())</span>     <span class="c1">// 35</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">average</span><span class="p">())</span> <span class="c1">// 5.0</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">max</span><span class="p">())</span>     <span class="c1">// 9</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">min</span><span class="p">())</span>     <span class="c1">// 1</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">count</span><span class="p">())</span>   <span class="c1">// 7</span>
+
+    <span class="c1">// 조건 확인</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">any</span> <span class="p">{</span> <span class="n">it</span> <span class="p">&gt;</span> <span class="mi">5</span> <span class="p">})</span>    <span class="c1">// true (하나라도)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">all</span> <span class="p">{</span> <span class="n">it</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">})</span>    <span class="c1">// true (모두)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">none</span> <span class="p">{</span> <span class="n">it</span> <span class="p">&gt;</span> <span class="mi">10</span> <span class="p">})</span>  <span class="c1">// true (하나도 없음)</span>
+
+    <span class="c1">// 찾기</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">first</span> <span class="p">{</span> <span class="n">it</span> <span class="p">&gt;</span> <span class="mi">5</span> <span class="p">})</span>       <span class="c1">// 8</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">firstOrNull</span> <span class="p">{</span> <span class="n">it</span> <span class="p">&gt;</span> <span class="mi">10</span> <span class="p">})</span> <span class="c1">// null</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="nf">find</span> <span class="p">{</span> <span class="n">it</span> <span class="p">&gt;</span> <span class="mi">5</span> <span class="p">})</span>        <span class="c1">// 8</span>
+
+    <span class="c1">// 그룹핑</span>
+    <span class="kd">val</span> <span class="py">words</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span><span class="s">"apple"</span><span class="p">,</span> <span class="s">"banana"</span><span class="p">,</span> <span class="s">"avocado"</span><span class="p">,</span> <span class="s">"blueberry"</span><span class="p">,</span> <span class="s">"cherry"</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">grouped</span> <span class="p">=</span> <span class="n">words</span><span class="p">.</span><span class="nf">groupBy</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="nf">first</span><span class="p">()</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">grouped</span><span class="p">)</span>
+    <span class="c1">// {a=[apple, avocado], b=[banana, blueberry], c=[cherry]}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reduce--fold">reduce / fold</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">numbers</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="c1">// reduce: 누적 계산 (초기값 = 첫 번째 요소)</span>
+    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">.</span><span class="nf">reduce</span> <span class="p">{</span> <span class="n">acc</span><span class="p">,</span> <span class="n">n</span> <span class="p">-&gt;</span> <span class="n">acc</span> <span class="p">+</span> <span class="n">n</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span>  <span class="c1">// 15</span>
+
+    <span class="c1">// fold: 누적 계산 (초기값 지정)</span>
+    <span class="kd">val</span> <span class="py">sumFrom100</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">.</span><span class="nf">fold</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="p">{</span> <span class="n">acc</span><span class="p">,</span> <span class="n">n</span> <span class="p">-&gt;</span> <span class="n">acc</span> <span class="p">+</span> <span class="n">n</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">sumFrom100</span><span class="p">)</span>  <span class="c1">// 115</span>
+
+    <span class="c1">// 문자열 결합</span>
+    <span class="kd">val</span> <span class="py">joined</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">.</span><span class="nf">fold</span><span class="p">(</span><span class="s">""</span><span class="p">)</span> <span class="p">{</span> <span class="n">acc</span><span class="p">,</span> <span class="n">n</span> <span class="p">-&gt;</span> <span class="s">"$acc[$n]"</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">joined</span><span class="p">)</span>  <span class="c1">// [1][2][3][4][5]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="flatmap--flatten">flatMap / flatten</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">nested</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span>
+        <span class="nf">listOf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="nf">listOf</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+        <span class="nf">listOf</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1">// flatten: 중첩 리스트 펼치기</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">nested</span><span class="p">.</span><span class="nf">flatten</span><span class="p">())</span>  <span class="c1">// [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+
+    <span class="c1">// flatMap: 변환 + 펼치기</span>
+    <span class="kd">val</span> <span class="py">words</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">,</span> <span class="s">"World"</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">chars</span> <span class="p">=</span> <span class="n">words</span><span class="p">.</span><span class="nf">flatMap</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="nf">toList</span><span class="p">()</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span>  <span class="c1">// [H, e, l, l, o, W, o, r, l, d]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="실습-예제">실습 예제</h1>
+
+<h2 id="학생-성적-처리">학생 성적 처리</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">Student</span><span class="p">(</span><span class="kd">val</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span> <span class="kd">val</span> <span class="py">score</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span>
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">students</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span>
+        <span class="nc">Student</span><span class="p">(</span><span class="s">"홍길동"</span><span class="p">,</span> <span class="mi">85</span><span class="p">),</span>
+        <span class="nc">Student</span><span class="p">(</span><span class="s">"김철수"</span><span class="p">,</span> <span class="mi">92</span><span class="p">),</span>
+        <span class="nc">Student</span><span class="p">(</span><span class="s">"이영희"</span><span class="p">,</span> <span class="mi">78</span><span class="p">),</span>
+        <span class="nc">Student</span><span class="p">(</span><span class="s">"박민수"</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
+        <span class="nc">Student</span><span class="p">(</span><span class="s">"정수진"</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1">// 평균</span>
+    <span class="kd">val</span> <span class="py">avg</span> <span class="p">=</span> <span class="n">students</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">score</span> <span class="p">}.</span><span class="nf">average</span><span class="p">()</span>
+    <span class="nf">println</span><span class="p">(</span><span class="s">"평균: ${"</span><span class="p">%</span><span class="mf">.1f</span><span class="s">".format(avg)}"</span><span class="p">)</span>
+
+    <span class="c1">// 90점 이상</span>
+    <span class="kd">val</span> <span class="py">topStudents</span> <span class="p">=</span> <span class="n">students</span><span class="p">.</span><span class="nf">filter</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">score</span> <span class="p">&gt;=</span> <span class="mi">90</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="s">"우수: ${topStudents.map { it.name }}"</span><span class="p">)</span>
+
+    <span class="c1">// 점수순 정렬</span>
+    <span class="kd">val</span> <span class="py">sorted</span> <span class="p">=</span> <span class="n">students</span><span class="p">.</span><span class="nf">sortedByDescending</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">score</span> <span class="p">}</span>
+    <span class="n">sorted</span><span class="p">.</span><span class="nf">forEachIndexed</span> <span class="p">{</span> <span class="n">index</span><span class="p">,</span> <span class="n">student</span> <span class="p">-&gt;</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"${index + 1}등: ${student.name} (${student.score}점)"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 합격/불합격 분류</span>
+    <span class="kd">val</span> <span class="p">(</span><span class="py">passed</span><span class="p">,</span> <span class="py">failed</span><span class="p">)</span> <span class="p">=</span> <span class="n">students</span><span class="p">.</span><span class="nf">partition</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">score</span> <span class="p">&gt;=</span> <span class="mi">80</span> <span class="p">}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="s">"합격: ${passed.size}명, 불합격: ${failed.size}명"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (kotlin &gt; lecture-kotlin)</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-18-build-deploy/">[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-17-practical-tips/">[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-16-testing/">[Kotlin] 16. 테스트 - JUnit, 단위 테스트</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-15-spring-boot/">[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-14-local-storage/">[Kotlin] 14. 로컬 저장소 - Room, DataStore</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-13-network-retrofit/">[Kotlin] 13. 네트워크 통신 - Retrofit</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-12-state-viewmodel/">[Kotlin] 12. 상태관리 - ViewModel, State</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-11-navigation/">[Kotlin] 11. 화면 이동 - Navigation</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-10-compose-layout/">[Kotlin] 10. Compose 레이아웃과 리스트</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-09-android-basic/">[Kotlin] 09. Android 개발 기초 - 프로젝트 생성</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-08-coroutine/">[Kotlin] 08. 코루틴 - 비동기 프로그래밍</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-07-null-exception/">[Kotlin] 07. Null 안전성과 예외 처리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-06-collection/">[Kotlin] 06. 컬렉션 - List, Map, Set</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-05-class-oop/">[Kotlin] 05. 클래스와 객체지향 프로그래밍</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-04-function/">[Kotlin] 04. 함수 - 선언, 매개변수, 람다</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-03-control-flow/">[Kotlin] 03. 제어문 - 조건문, 반복문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-02-variable-type/">[Kotlin] 02. 변수와 데이터 타입</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-01-intro-install/">[Kotlin] 01. Kotlin 소개 및 개발환경 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#kotlin" class="page__taxonomy-item p-category" rel="tag">kotlin</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-kotlin" class="page__taxonomy-item p-category" rel="tag">lecture-kotlin</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#kotlin" class="page__taxonomy-item p-category" rel="tag">kotlin</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-06T00:00:00+00:00">2026-05-06</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BKotlin%5D+06.+%EC%BB%AC%EB%A0%89%EC%85%98+-+List%2C+Map%2C+Set%20https%3A%2F%2Fkimjaehyun.co.kr%2Fkotlin%2Fkotlin-06-collection%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fkotlin%2Fkotlin-06-collection%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fkotlin%2Fkotlin-06-collection%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/kotlin/kotlin-05-class-oop/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Kotlin] 05. 클래스와 객체지향 프로그래밍</a>
+    
+    
+      <a href="/kotlin/kotlin-07-null-exception/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Kotlin] 07. Null 안전성과 예외 처리</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-18-build-deploy/">[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#android" class="page__taxonomy-item-tag" rel="tag">android</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-17-practical-tips/">[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-16-testing/">[Kotlin] 16. 테스트 - JUnit, 단위 테스트</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%85%8C%EC%8A%A4%ED%8A%B8" class="page__taxonomy-item-tag" rel="tag">테스트</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-15-spring-boot/">[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#spring" class="page__taxonomy-item-tag" rel="tag">spring</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%84%9C%EB%B2%84" class="page__taxonomy-item-tag" rel="tag">서버</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

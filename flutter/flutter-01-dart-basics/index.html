@@ -1,0 +1,2318 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Flutter] 01. Dart 언어 기초 - 변수, 타입, 연산자 | 꿰보노트</title>
+<meta name="description" content="Flutter 개발의 기본이 되는 Dart 언어의 변수, 타입, 연산자를 배웁니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Flutter] 01. Dart 언어 기초 - 변수, 타입, 연산자">
+<meta property="og:url" content="https://kimjaehyun.co.kr/flutter/flutter-01-dart-basics/">
+
+
+  <meta property="og:description" content="Flutter 개발의 기본이 되는 Dart 언어의 변수, 타입, 연산자를 배웁니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-06T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/flutter/flutter-01-dart-basics/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#flutter" itemprop="item"><span itemprop="name">Flutter</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Flutter] 01. Dart 언어 기초 - 변수, 타입, 연산자</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 167</span>개</span> 
+      </li>
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/kotlin" class="">Kotlin (18)</a> <i class="fab fa-kotlin"></i></li>
+                  
+              
+          </ul>                    
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/flutter" class="">Flutter (18)</a> <i class="fab fa-dart"></i></li>
+                  
+              
+                  
+              
+          </ul>                    
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Flutter] 01. Dart 언어 기초 - 변수, 타입, 연산자">
+    <meta itemprop="description" content="Flutter 개발의 기본이 되는 Dart 언어의 변수, 타입, 연산자를 배웁니다.">
+    <meta itemprop="datePublished" content="2026-05-06T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/flutter/flutter-01-dart-basics/" class="u-url" itemprop="url">[Flutter] 01. Dart 언어 기초 - 변수, 타입, 연산자
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#dart-언어란">Dart 언어란?</a><ul><li><a href="#dart-특징">Dart 특징</a></li><li><a href="#dart-설치-및-실행">Dart 설치 및 실행</a><ul><li><a href="#dartpad-온라인">DartPad (온라인)</a></li><li><a href="#로컬-설치">로컬 설치</a></li><li><a href="#첫-번째-프로그램">첫 번째 프로그램</a></li></ul></li><li><a href="#변수-선언">변수 선언</a><ul><li><a href="#var-final-const">var, final, const</a></li><li><a href="#명시적-타입-선언">명시적 타입 선언</a></li><li><a href="#var-vs-final-vs-const-비교">var vs final vs const 비교</a></li></ul></li><li><a href="#기본-데이터-타입">기본 데이터 타입</a></li><li><a href="#null-safety">Null Safety</a></li><li><a href="#연산자">연산자</a><ul><li><a href="#산술-연산자">산술 연산자</a></li><li><a href="#비교--논리-연산자">비교 / 논리 연산자</a></li><li><a href="#할당-연산자">할당 연산자</a></li></ul></li><li><a href="#타입-변환">타입 변환</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Flutter 개발의 기본이 되는 Dart 언어의 변수, 타입, 연산자를 배웁니다.</p>
+
+<h1 id="dart-언어란">Dart 언어란?</h1>
+
+<p>Dart는 Google이 개발한 프로그래밍 언어로, Flutter의 공식 언어입니다.<br />
+JavaScript와 Java의 장점을 결합한 현대적인 언어입니다.</p>
+
+<h2 id="dart-특징">Dart 특징</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">특징</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">타입 안전</td>
+      <td style="text-align: center">컴파일 타임에 타입 오류 검출</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">null safety</td>
+      <td style="text-align: center">null 참조 오류 방지</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">AOT 컴파일</td>
+      <td style="text-align: center">네이티브 코드로 빠른 실행</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">JIT 컴파일</td>
+      <td style="text-align: center">개발 중 Hot Reload 지원</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">객체지향</td>
+      <td style="text-align: center">클래스 기반 OOP</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">비동기 지원</td>
+      <td style="text-align: center">async/await 내장</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="dart-설치-및-실행">Dart 설치 및 실행</h2>
+
+<h3 id="dartpad-온라인">DartPad (온라인)</h3>
+<p>설치 없이 바로 실행 가능: <a href="https://dartpad.dev" target="_blank">https://dartpad.dev</a></p>
+
+<h3 id="로컬-설치">로컬 설치</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Windows (Chocolatey)</span>
+choco <span class="nb">install </span>dart-sdk
+
+<span class="c"># Mac (Homebrew)</span>
+brew tap dart-lang/dart
+brew <span class="nb">install </span>dart
+
+<span class="c"># 버전 확인</span>
+dart <span class="nt">--version</span>
+</code></pre></div></div>
+
+<h3 id="첫-번째-프로그램">첫 번째 프로그램</h3>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">print</span><span class="p">(</span><span class="s">'Hello, Dart!'</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 실행</span>
+dart run hello.dart
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="변수-선언">변수 선언</h2>
+
+<h3 id="var-final-const">var, final, const</h3>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// var: 타입 추론, 값 변경 가능</span>
+  <span class="kd">var</span> <span class="n">name</span> <span class="o">=</span> <span class="s">'홍길동'</span><span class="p">;</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">'김철수'</span><span class="p">;</span> <span class="c1">// OK</span>
+
+  <span class="c1">// final: 런타임에 한 번만 할당</span>
+  <span class="kd">final</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+  <span class="c1">// age = 30; // 에러! 변경 불가</span>
+
+  <span class="c1">// const: 컴파일 타임 상수</span>
+  <span class="kd">const</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span><span class="p">;</span>
+  <span class="c1">// const now = DateTime.now(); // 에러! 컴파일 타임에 결정 불가</span>
+  <span class="kd">final</span> <span class="n">now</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="na">now</span><span class="p">();</span> <span class="c1">// OK</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="명시적-타입-선언">명시적 타입 선언</h3>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">String</span> <span class="n">city</span> <span class="o">=</span> <span class="s">'서울'</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">price</span> <span class="o">=</span> <span class="mf">99.9</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">isActive</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="c1">// late: 나중에 초기화</span>
+  <span class="kd">late</span> <span class="kt">String</span> <span class="n">description</span><span class="p">;</span>
+  <span class="n">description</span> <span class="o">=</span> <span class="s">'나중에 할당'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="var-vs-final-vs-const-비교">var vs final vs const 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">키워드</th>
+      <th style="text-align: center">재할당</th>
+      <th style="text-align: center">결정 시점</th>
+      <th style="text-align: center">용도</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">var</td>
+      <td style="text-align: center">가능</td>
+      <td style="text-align: center">런타임</td>
+      <td style="text-align: center">일반 변수</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">final</td>
+      <td style="text-align: center">불가</td>
+      <td style="text-align: center">런타임</td>
+      <td style="text-align: center">한 번만 할당</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">const</td>
+      <td style="text-align: center">불가</td>
+      <td style="text-align: center">컴파일 타임</td>
+      <td style="text-align: center">절대 변하지 않는 값</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="기본-데이터-타입">기본 데이터 타입</h2>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 숫자</span>
+  <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">height</span> <span class="o">=</span> <span class="mf">175.5</span><span class="p">;</span>
+  <span class="kt">num</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">95</span><span class="p">;</span> <span class="c1">// int 또는 double</span>
+
+  <span class="c1">// 문자열</span>
+  <span class="kt">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">'Dart'</span><span class="p">;</span>
+  <span class="kt">String</span> <span class="n">greeting</span> <span class="o">=</span> <span class="s">"Hello, </span><span class="si">$name</span><span class="s">!"</span><span class="p">;</span> <span class="c1">// 문자열 보간</span>
+  <span class="kt">String</span> <span class="n">info</span> <span class="o">=</span> <span class="s">'나이: </span><span class="si">${age + 1}</span><span class="s">세'</span><span class="p">;</span> <span class="c1">// 표현식</span>
+
+  <span class="c1">// 불리언</span>
+  <span class="kt">bool</span> <span class="n">isFlutter</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="c1">// 리스트 (배열)</span>
+  <span class="kt">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s">'사과'</span><span class="p">,</span> <span class="s">'바나나'</span><span class="p">,</span> <span class="s">'포도'</span><span class="p">];</span>
+
+  <span class="c1">// 맵 (딕셔너리)</span>
+  <span class="kt">Map</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'국어'</span><span class="o">:</span> <span class="mi">90</span><span class="p">,</span>
+    <span class="s">'영어'</span><span class="o">:</span> <span class="mi">85</span><span class="p">,</span>
+    <span class="s">'수학'</span><span class="o">:</span> <span class="mi">95</span><span class="p">,</span>
+  <span class="p">};</span>
+
+  <span class="c1">// Set (중복 없는 집합)</span>
+  <span class="kt">Set</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">&gt;</span> <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s">'빨강'</span><span class="p">,</span> <span class="s">'파랑'</span><span class="p">,</span> <span class="s">'초록'</span><span class="p">};</span>
+
+  <span class="n">print</span><span class="p">(</span><span class="n">greeting</span><span class="p">);</span>       <span class="c1">// Hello, Dart!</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>     <span class="c1">// 1</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s">'국어'</span><span class="p">]);</span> <span class="c1">// 90</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="null-safety">Null Safety</h2>
+
+<p>Dart는 기본적으로 null을 허용하지 않습니다.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 기본: null 불가</span>
+  <span class="kt">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">'홍길동'</span><span class="p">;</span>
+  <span class="c1">// name = null; // 에러!</span>
+
+  <span class="c1">// nullable: ? 붙이면 null 허용</span>
+  <span class="kt">String</span><span class="o">?</span> <span class="n">nickname</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="n">nickname</span> <span class="o">=</span> <span class="s">'길동이'</span><span class="p">;</span>
+
+  <span class="c1">// null 체크</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">nickname</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">nickname</span><span class="o">.</span><span class="na">length</span><span class="p">);</span> <span class="c1">// 안전하게 접근</span>
+  <span class="p">}</span>
+
+  <span class="c1">// ?? : null이면 기본값 사용</span>
+  <span class="kt">String</span> <span class="n">displayName</span> <span class="o">=</span> <span class="n">nickname</span> <span class="o">??</span> <span class="s">'이름없음'</span><span class="p">;</span>
+
+  <span class="c1">// ?. : null이면 호출 안 함</span>
+  <span class="kt">int</span><span class="o">?</span> <span class="n">length</span> <span class="o">=</span> <span class="n">nickname</span><span class="o">?.</span><span class="na">length</span><span class="p">;</span>
+
+  <span class="c1">// ! : null 아님을 확신 (주의해서 사용)</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">nickname</span><span class="o">!.</span><span class="na">length</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="연산자">연산자</h2>
+
+<h3 id="산술-연산자">산술 연산자</h3>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+  <span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>  <span class="c1">// 13 (덧셈)</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">);</span>  <span class="c1">// 7  (뺄셈)</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">);</span>  <span class="c1">// 30 (곱셈)</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">);</span>  <span class="c1">// 3.333... (나눗셈, double 반환)</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="o">~/</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// 3  (정수 나눗셈)</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">);</span>  <span class="c1">// 1  (나머지)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="비교--논리-연산자">비교 / 논리 연산자</h3>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 비교</span>
+  <span class="n">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">5</span><span class="p">);</span>  <span class="c1">// true</span>
+  <span class="n">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">);</span>  <span class="c1">// true</span>
+  <span class="n">print</span><span class="p">(</span><span class="mi">5</span> <span class="p">&gt;</span> <span class="mi">3</span><span class="p">);</span>   <span class="c1">// true</span>
+  <span class="n">print</span><span class="p">(</span><span class="mi">5</span> <span class="p">&gt;</span><span class="o">=</span> <span class="mi">5</span><span class="p">);</span>  <span class="c1">// true</span>
+
+  <span class="c1">// 논리</span>
+  <span class="n">print</span><span class="p">(</span><span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">// false (AND)</span>
+  <span class="n">print</span><span class="p">(</span><span class="kc">true</span> <span class="o">||</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">// true  (OR)</span>
+  <span class="n">print</span><span class="p">(</span><span class="o">!</span><span class="kc">true</span><span class="p">);</span>         <span class="c1">// false (NOT)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="할당-연산자">할당 연산자</h3>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">x</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c1">// x = x + 5 → 15</span>
+  <span class="n">x</span> <span class="o">-=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// x = x - 3 → 12</span>
+  <span class="n">x</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// x = x * 2 → 24</span>
+
+  <span class="c1">// ??= : null일 때만 할당</span>
+  <span class="kt">String</span><span class="o">?</span> <span class="n">name</span><span class="p">;</span>
+  <span class="n">name</span> <span class="o">??=</span> <span class="s">'기본값'</span><span class="p">;</span> <span class="c1">// name이 null이므로 '기본값' 할당</span>
+  <span class="n">name</span> <span class="o">??=</span> <span class="s">'새값'</span><span class="p">;</span>   <span class="c1">// name이 null이 아니므로 무시</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">name</span><span class="p">);</span> <span class="c1">// 기본값</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="타입-변환">타입 변환</h2>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 문자열 → 숫자</span>
+  <span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="kt">int</span><span class="o">.</span><span class="na">parse</span><span class="p">(</span><span class="s">'42'</span><span class="p">);</span>
+  <span class="kt">double</span> <span class="n">num2</span> <span class="o">=</span> <span class="kt">double</span><span class="o">.</span><span class="na">parse</span><span class="p">(</span><span class="s">'3.14'</span><span class="p">);</span>
+
+  <span class="c1">// 숫자 → 문자열</span>
+  <span class="kt">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="mi">42</span><span class="o">.</span><span class="na">toString</span><span class="p">();</span>
+  <span class="kt">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="mf">3.14</span><span class="o">.</span><span class="na">toStringAsFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// '3.1'</span>
+
+  <span class="c1">// int ↔ double</span>
+  <span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">10</span><span class="o">.</span><span class="na">toDouble</span><span class="p">();</span> <span class="c1">// 10.0</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mf">3.14</span><span class="o">.</span><span class="na">toInt</span><span class="p">();</span>     <span class="c1">// 3 (소수점 버림)</span>
+
+  <span class="n">print</span><span class="p">(</span><span class="s">'</span><span class="si">$num1</span><span class="s">, </span><span class="si">$num2</span><span class="s">, </span><span class="si">$str1</span><span class="s">, </span><span class="si">$str2</span><span class="s">'</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (flutter &gt; lecture-flutter)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-18-build-deploy/">[Flutter] 18. 빌드와 배포 - APK, App Store</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-17-todo-app/">[Flutter] 17. 실전 프로젝트 - Todo 앱 만들기</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-16-package-plugin/">[Flutter] 16. 패키지 활용 - 유용한 패키지 소개</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-15-design-theme/">[Flutter] 15. 디자인 - 테마, 스타일, 반응형</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-14-local-storage/">[Flutter] 14. 로컬 저장소 - SharedPreferences, SQLite</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-13-http-api/">[Flutter] 13. HTTP 통신 - REST API 연동</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-12-state-management/">[Flutter] 12. 상태관리 - setState, Provider</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-11-form-input/">[Flutter] 11. 사용자 입력 - Form, TextField, 버튼</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-10-navigation/">[Flutter] 10. 화면 이동 - Navigation, Route</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-09-list-scroll/">[Flutter] 09. 리스트와 스크롤 - ListView, GridView</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-08-layout/">[Flutter] 08. 레이아웃 - Row, Column, Stack</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-07-widget-basic/">[Flutter] 07. 위젯 기초 - StatelessWidget, StatefulWidget</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-06-intro-install/">[Flutter] 06. Flutter 소개 및 개발환경 설치</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-05-dart-async/">[Flutter] 05. Dart 비동기 - Future, async/await, Stream</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-04-dart-class/">[Flutter] 04. Dart 클래스 - OOP 기초</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-03-dart-function/">[Flutter] 03. Dart 함수 - 선언, 매개변수, 람다</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-02-dart-control-flow/">[Flutter] 02. Dart 제어문 - 조건문, 반복문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-01-dart-basics/">[Flutter] 01. Dart 언어 기초 - 변수, 타입, 연산자</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#dart" class="page__taxonomy-item p-category" rel="tag">dart</a><span class="sep">, </span>
+    
+      <a href="/tags/#flutter" class="page__taxonomy-item p-category" rel="tag">flutter</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-flutter" class="page__taxonomy-item p-category" rel="tag">lecture-flutter</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#flutter" class="page__taxonomy-item p-category" rel="tag">flutter</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-06T00:00:00+00:00">2026-05-06</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BFlutter%5D+01.+Dart+%EC%96%B8%EC%96%B4+%EA%B8%B0%EC%B4%88+-+%EB%B3%80%EC%88%98%2C+%ED%83%80%EC%9E%85%2C+%EC%97%B0%EC%82%B0%EC%9E%90%20https%3A%2F%2Fkimjaehyun.co.kr%2Fflutter%2Fflutter-01-dart-basics%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fflutter%2Fflutter-01-dart-basics%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fflutter%2Fflutter-01-dart-basics%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="#" class="pagination_prev_next--pager disabled">첫 번째 글입니다</a>
+    
+    
+      <a href="/flutter/flutter-02-dart-control-flow/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Flutter] 02. Dart 제어문 - 조건문, 반복문</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-18-build-deploy/">[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#android" class="page__taxonomy-item-tag" rel="tag">android</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-17-practical-tips/">[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-16-testing/">[Kotlin] 16. 테스트 - JUnit, 단위 테스트</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%85%8C%EC%8A%A4%ED%8A%B8" class="page__taxonomy-item-tag" rel="tag">테스트</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-15-spring-boot/">[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#spring" class="page__taxonomy-item-tag" rel="tag">spring</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%84%9C%EB%B2%84" class="page__taxonomy-item-tag" rel="tag">서버</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

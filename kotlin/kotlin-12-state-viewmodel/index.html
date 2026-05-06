@@ -1,0 +1,2285 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Kotlin] 12. 상태관리 - ViewModel, State | 꿰보노트</title>
+<meta name="description" content="Android 앱에서 데이터를 효율적으로 관리하는 ViewModel과 상태 관리를 배웁니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Kotlin] 12. 상태관리 - ViewModel, State">
+<meta property="og:url" content="https://kimjaehyun.co.kr/kotlin/kotlin-12-state-viewmodel/">
+
+
+  <meta property="og:description" content="Android 앱에서 데이터를 효율적으로 관리하는 ViewModel과 상태 관리를 배웁니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-06T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/kotlin/kotlin-12-state-viewmodel/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#kotlin" itemprop="item"><span itemprop="name">Kotlin</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Kotlin] 12. 상태관리 - ViewModel, State</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 167</span>개</span> 
+      </li>
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/kotlin" class="">Kotlin (18)</a> <i class="fab fa-kotlin"></i></li>
+                  
+              
+          </ul>                    
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/flutter" class="">Flutter (18)</a> <i class="fab fa-dart"></i></li>
+                  
+              
+                  
+              
+          </ul>                    
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Kotlin] 12. 상태관리 - ViewModel, State">
+    <meta itemprop="description" content="Android 앱에서 데이터를 효율적으로 관리하는 ViewModel과 상태 관리를 배웁니다.">
+    <meta itemprop="datePublished" content="2026-05-06T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/kotlin/kotlin-12-state-viewmodel/" class="u-url" itemprop="url">[Kotlin] 12. 상태관리 - ViewModel, State
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#viewmodel이란">ViewModel이란?</a><ul><li><a href="#의존성">의존성</a></li></ul></li><li><a href="#viewmodel-기본">ViewModel 기본</a><ul><li><a href="#카운터-예제">카운터 예제</a></li><li><a href="#composable에서-사용">Composable에서 사용</a></li></ul></li><li><a href="#todo-앱-viewmodel">Todo 앱 ViewModel</a><ul><li><a href="#모델">모델</a></li><li><a href="#viewmodel">ViewModel</a></li><li><a href="#ui">UI</a></li></ul></li><li><a href="#ui-state-패턴">UI State 패턴</a><ul><li><a href="#sealed-class로-상태-표현">sealed class로 상태 표현</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Android 앱에서 데이터를 효율적으로 관리하는 ViewModel과 상태 관리를 배웁니다.</p>
+
+<h1 id="viewmodel이란">ViewModel이란?</h1>
+
+<p>화면 회전 등 구성 변경에도 데이터를 유지하는 컴포넌트입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">항목</th>
+      <th style="text-align: center">remember</th>
+      <th style="text-align: center">ViewModel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">생존 범위</td>
+      <td style="text-align: center">Composable</td>
+      <td style="text-align: center">Activity/Fragment</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">화면 회전</td>
+      <td style="text-align: center">데이터 소실</td>
+      <td style="text-align: center">데이터 유지</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">용도</td>
+      <td style="text-align: center">UI 상태</td>
+      <td style="text-align: center">비즈니스 로직 + 데이터</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="의존성">의존성</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// build.gradle.kts</span>
+<span class="nf">dependencies</span> <span class="p">{</span>
+    <span class="nf">implementation</span><span class="p">(</span><span class="s">"androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="viewmodel-기본">ViewModel 기본</h1>
+
+<h2 id="카운터-예제">카운터 예제</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">androidx.lifecycle.ViewModel</span>
+<span class="k">import</span> <span class="nn">kotlinx.coroutines.flow.MutableStateFlow</span>
+<span class="k">import</span> <span class="nn">kotlinx.coroutines.flow.StateFlow</span>
+<span class="k">import</span> <span class="nn">kotlinx.coroutines.flow.asStateFlow</span>
+
+<span class="kd">class</span> <span class="nc">CounterViewModel</span> <span class="p">:</span> <span class="nc">ViewModel</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">_count</span> <span class="p">=</span> <span class="nc">MutableStateFlow</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">count</span><span class="p">:</span> <span class="nc">StateFlow</span><span class="p">&lt;</span><span class="nc">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">_count</span><span class="p">.</span><span class="nf">asStateFlow</span><span class="p">()</span>
+
+    <span class="k">fun</span> <span class="nf">increment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_count</span><span class="p">.</span><span class="n">value</span><span class="p">++</span>
+    <span class="p">}</span>
+
+    <span class="k">fun</span> <span class="nf">decrement</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_count</span><span class="p">.</span><span class="n">value--</span>
+    <span class="p">}</span>
+
+    <span class="k">fun</span> <span class="nf">reset</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">_count</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="mi">0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="composable에서-사용">Composable에서 사용</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">androidx.lifecycle.viewmodel.compose.viewModel</span>
+<span class="k">import</span> <span class="nn">androidx.compose.runtime.collectAsState</span>
+
+<span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">CounterScreen</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span> <span class="nc">CounterViewModel</span> <span class="p">=</span> <span class="nf">viewModel</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">count</span> <span class="k">by</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">count</span><span class="p">.</span><span class="nf">collectAsState</span><span class="p">()</span>
+
+    <span class="nc">Column</span><span class="p">(</span>
+        <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="nf">fillMaxSize</span><span class="p">(),</span>
+        <span class="n">horizontalAlignment</span> <span class="p">=</span> <span class="nc">Alignment</span><span class="p">.</span><span class="nc">CenterHorizontally</span><span class="p">,</span>
+        <span class="n">verticalArrangement</span> <span class="p">=</span> <span class="nc">Arrangement</span><span class="p">.</span><span class="nc">Center</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nc">Text</span><span class="p">(</span><span class="s">"$count"</span><span class="p">,</span> <span class="n">fontSize</span> <span class="p">=</span> <span class="mi">48</span><span class="p">.</span><span class="n">sp</span><span class="p">)</span>
+        <span class="nc">Spacer</span><span class="p">(</span><span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="nf">height</span><span class="p">(</span><span class="mi">16</span><span class="p">.</span><span class="n">dp</span><span class="p">))</span>
+        <span class="nc">Row</span><span class="p">(</span><span class="n">horizontalArrangement</span> <span class="p">=</span> <span class="nc">Arrangement</span><span class="p">.</span><span class="nf">spacedBy</span><span class="p">(</span><span class="mi">8</span><span class="p">.</span><span class="n">dp</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nc">Button</span><span class="p">(</span><span class="n">onClick</span> <span class="p">=</span> <span class="p">{</span> <span class="n">viewModel</span><span class="p">.</span><span class="nf">decrement</span><span class="p">()</span> <span class="p">})</span> <span class="p">{</span> <span class="nc">Text</span><span class="p">(</span><span class="s">"-"</span><span class="p">)</span> <span class="p">}</span>
+            <span class="nc">Button</span><span class="p">(</span><span class="n">onClick</span> <span class="p">=</span> <span class="p">{</span> <span class="n">viewModel</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span> <span class="p">})</span> <span class="p">{</span> <span class="nc">Text</span><span class="p">(</span><span class="s">"초기화"</span><span class="p">)</span> <span class="p">}</span>
+            <span class="nc">Button</span><span class="p">(</span><span class="n">onClick</span> <span class="p">=</span> <span class="p">{</span> <span class="n">viewModel</span><span class="p">.</span><span class="nf">increment</span><span class="p">()</span> <span class="p">})</span> <span class="p">{</span> <span class="nc">Text</span><span class="p">(</span><span class="s">"+"</span><span class="p">)</span> <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="todo-앱-viewmodel">Todo 앱 ViewModel</h1>
+
+<h2 id="모델">모델</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">Todo</span><span class="p">(</span>
+    <span class="kd">val</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Int</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">title</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">isDone</span><span class="p">:</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="k">false</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="viewmodel">ViewModel</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">TodoViewModel</span> <span class="p">:</span> <span class="nc">ViewModel</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">_todos</span> <span class="p">=</span> <span class="nc">MutableStateFlow</span><span class="p">&lt;</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">Todo</span><span class="p">&gt;&gt;(</span><span class="nf">emptyList</span><span class="p">())</span>
+    <span class="kd">val</span> <span class="py">todos</span><span class="p">:</span> <span class="nc">StateFlow</span><span class="p">&lt;</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">Todo</span><span class="p">&gt;&gt;</span> <span class="p">=</span> <span class="n">_todos</span><span class="p">.</span><span class="nf">asStateFlow</span><span class="p">()</span>
+
+    <span class="k">private</span> <span class="kd">var</span> <span class="py">nextId</span> <span class="p">=</span> <span class="mi">1</span>
+
+    <span class="kd">val</span> <span class="py">doneCount</span><span class="p">:</span> <span class="nc">Int</span> <span class="k">get</span><span class="p">()</span> <span class="p">=</span> <span class="n">_todos</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="nf">count</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">isDone</span> <span class="p">}</span>
+    <span class="kd">val</span> <span class="py">totalCount</span><span class="p">:</span> <span class="nc">Int</span> <span class="k">get</span><span class="p">()</span> <span class="p">=</span> <span class="n">_todos</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">size</span>
+
+    <span class="k">fun</span> <span class="nf">addTodo</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">title</span><span class="p">.</span><span class="nf">isBlank</span><span class="p">())</span> <span class="k">return</span>
+        <span class="kd">val</span> <span class="py">newTodo</span> <span class="p">=</span> <span class="nc">Todo</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="n">nextId</span><span class="p">++,</span> <span class="n">title</span> <span class="p">=</span> <span class="n">title</span><span class="p">.</span><span class="nf">trim</span><span class="p">())</span>
+        <span class="n">_todos</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">_todos</span><span class="p">.</span><span class="n">value</span> <span class="p">+</span> <span class="n">newTodo</span>
+    <span class="p">}</span>
+
+    <span class="k">fun</span> <span class="nf">toggleTodo</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_todos</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">_todos</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="n">todo</span> <span class="p">-&gt;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">id</span> <span class="p">==</span> <span class="n">id</span><span class="p">)</span> <span class="n">todo</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="n">isDone</span> <span class="p">=</span> <span class="p">!</span><span class="n">todo</span><span class="p">.</span><span class="n">isDone</span><span class="p">)</span> <span class="k">else</span> <span class="n">todo</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">fun</span> <span class="nf">deleteTodo</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_todos</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">_todos</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="nf">filter</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">id</span> <span class="p">!=</span> <span class="n">id</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="ui">UI</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">TodoScreen</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span> <span class="nc">TodoViewModel</span> <span class="p">=</span> <span class="nf">viewModel</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">todos</span> <span class="k">by</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">todos</span><span class="p">.</span><span class="nf">collectAsState</span><span class="p">()</span>
+    <span class="kd">var</span> <span class="py">inputText</span> <span class="k">by</span> <span class="nf">remember</span> <span class="p">{</span> <span class="nf">mutableStateOf</span><span class="p">(</span><span class="s">""</span><span class="p">)</span> <span class="p">}</span>
+
+    <span class="nc">Scaffold</span><span class="p">(</span>
+        <span class="n">topBar</span> <span class="p">=</span> <span class="p">{</span>
+            <span class="nc">TopAppBar</span><span class="p">(</span>
+                <span class="n">title</span> <span class="p">=</span> <span class="p">{</span> <span class="nc">Text</span><span class="p">(</span><span class="s">"할일 (${viewModel.doneCount}/${viewModel.totalCount})"</span><span class="p">)</span> <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">)</span> <span class="p">{</span> <span class="n">padding</span> <span class="p">-&gt;</span>
+        <span class="nc">Column</span><span class="p">(</span><span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="nf">padding</span><span class="p">(</span><span class="n">padding</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// 입력 영역</span>
+            <span class="nc">Row</span><span class="p">(</span>
+                <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span>
+                    <span class="p">.</span><span class="nf">fillMaxWidth</span><span class="p">()</span>
+                    <span class="p">.</span><span class="nf">padding</span><span class="p">(</span><span class="mi">16</span><span class="p">.</span><span class="n">dp</span><span class="p">),</span>
+                <span class="n">verticalAlignment</span> <span class="p">=</span> <span class="nc">Alignment</span><span class="p">.</span><span class="nc">CenterVertically</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="nc">OutlinedTextField</span><span class="p">(</span>
+                    <span class="n">value</span> <span class="p">=</span> <span class="n">inputText</span><span class="p">,</span>
+                    <span class="n">onValueChange</span> <span class="p">=</span> <span class="p">{</span> <span class="n">inputText</span> <span class="p">=</span> <span class="n">it</span> <span class="p">},</span>
+                    <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="nf">weight</span><span class="p">(</span><span class="mf">1f</span><span class="p">),</span>
+                    <span class="n">placeholder</span> <span class="p">=</span> <span class="p">{</span> <span class="nc">Text</span><span class="p">(</span><span class="s">"할일 입력"</span><span class="p">)</span> <span class="p">},</span>
+                    <span class="n">singleLine</span> <span class="p">=</span> <span class="k">true</span>
+                <span class="p">)</span>
+                <span class="nc">Spacer</span><span class="p">(</span><span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="nf">width</span><span class="p">(</span><span class="mi">8</span><span class="p">.</span><span class="n">dp</span><span class="p">))</span>
+                <span class="nc">Button</span><span class="p">(</span><span class="n">onClick</span> <span class="p">=</span> <span class="p">{</span>
+                    <span class="n">viewModel</span><span class="p">.</span><span class="nf">addTodo</span><span class="p">(</span><span class="n">inputText</span><span class="p">)</span>
+                    <span class="n">inputText</span> <span class="p">=</span> <span class="s">""</span>
+                <span class="p">})</span> <span class="p">{</span>
+                    <span class="nc">Text</span><span class="p">(</span><span class="s">"추가"</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 목록</span>
+            <span class="nc">LazyColumn</span> <span class="p">{</span>
+                <span class="nf">items</span><span class="p">(</span><span class="n">todos</span><span class="p">,</span> <span class="n">key</span> <span class="p">=</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">id</span> <span class="p">})</span> <span class="p">{</span> <span class="n">todo</span> <span class="p">-&gt;</span>
+                    <span class="nc">TodoItem</span><span class="p">(</span>
+                        <span class="n">todo</span> <span class="p">=</span> <span class="n">todo</span><span class="p">,</span>
+                        <span class="n">onToggle</span> <span class="p">=</span> <span class="p">{</span> <span class="n">viewModel</span><span class="p">.</span><span class="nf">toggleTodo</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="p">},</span>
+                        <span class="n">onDelete</span> <span class="p">=</span> <span class="p">{</span> <span class="n">viewModel</span><span class="p">.</span><span class="nf">deleteTodo</span><span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="p">}</span>
+                    <span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">TodoItem</span><span class="p">(</span><span class="n">todo</span><span class="p">:</span> <span class="nc">Todo</span><span class="p">,</span> <span class="n">onToggle</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nc">Unit</span><span class="p">,</span> <span class="n">onDelete</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nc">Unit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nc">Card</span><span class="p">(</span>
+        <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span>
+            <span class="p">.</span><span class="nf">fillMaxWidth</span><span class="p">()</span>
+            <span class="p">.</span><span class="nf">padding</span><span class="p">(</span><span class="n">horizontal</span> <span class="p">=</span> <span class="mi">16</span><span class="p">.</span><span class="n">dp</span><span class="p">,</span> <span class="n">vertical</span> <span class="p">=</span> <span class="mi">4</span><span class="p">.</span><span class="n">dp</span><span class="p">)</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nc">Row</span><span class="p">(</span>
+            <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="nf">padding</span><span class="p">(</span><span class="mi">8</span><span class="p">.</span><span class="n">dp</span><span class="p">),</span>
+            <span class="n">verticalAlignment</span> <span class="p">=</span> <span class="nc">Alignment</span><span class="p">.</span><span class="nc">CenterVertically</span>
+        <span class="p">)</span> <span class="p">{</span>
+            <span class="nc">Checkbox</span><span class="p">(</span><span class="n">checked</span> <span class="p">=</span> <span class="n">todo</span><span class="p">.</span><span class="n">isDone</span><span class="p">,</span> <span class="n">onCheckedChange</span> <span class="p">=</span> <span class="p">{</span> <span class="nf">onToggle</span><span class="p">()</span> <span class="p">})</span>
+            <span class="nc">Text</span><span class="p">(</span>
+                <span class="n">text</span> <span class="p">=</span> <span class="n">todo</span><span class="p">.</span><span class="n">title</span><span class="p">,</span>
+                <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="nf">weight</span><span class="p">(</span><span class="mf">1f</span><span class="p">),</span>
+                <span class="n">style</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">todo</span><span class="p">.</span><span class="n">isDone</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nc">TextStyle</span><span class="p">(</span><span class="n">textDecoration</span> <span class="p">=</span> <span class="nc">TextDecoration</span><span class="p">.</span><span class="nc">LineThrough</span><span class="p">,</span> <span class="n">color</span> <span class="p">=</span> <span class="nc">Color</span><span class="p">.</span><span class="nc">Gray</span><span class="p">)</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="nc">TextStyle</span><span class="p">()</span>
+            <span class="p">)</span>
+            <span class="nc">IconButton</span><span class="p">(</span><span class="n">onClick</span> <span class="p">=</span> <span class="n">onDelete</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nc">Icon</span><span class="p">(</span><span class="nc">Icons</span><span class="p">.</span><span class="nc">Default</span><span class="p">.</span><span class="nc">Delete</span><span class="p">,</span> <span class="s">"삭제"</span><span class="p">,</span> <span class="n">tint</span> <span class="p">=</span> <span class="nc">Color</span><span class="p">.</span><span class="nc">Red</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="ui-state-패턴">UI State 패턴</h1>
+
+<h2 id="sealed-class로-상태-표현">sealed class로 상태 표현</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sealed</span> <span class="kd">class</span> <span class="nc">UiState</span><span class="p">&lt;</span><span class="k">out</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="kd">object</span> <span class="nc">Loading</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">&lt;</span><span class="nc">Nothing</span><span class="p">&gt;()</span>
+    <span class="kd">data class</span> <span class="nc">Success</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;(</span><span class="kd">val</span> <span class="py">data</span><span class="p">:</span> <span class="nc">T</span><span class="p">)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;()</span>
+    <span class="kd">data class</span> <span class="nc">Error</span><span class="p">(</span><span class="kd">val</span> <span class="py">message</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">&lt;</span><span class="nc">Nothing</span><span class="p">&gt;()</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">UserViewModel</span> <span class="p">:</span> <span class="nc">ViewModel</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">_uiState</span> <span class="p">=</span> <span class="nc">MutableStateFlow</span><span class="p">&lt;</span><span class="nc">UiState</span><span class="p">&lt;</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;&gt;&gt;(</span><span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">uiState</span><span class="p">:</span> <span class="nc">StateFlow</span><span class="p">&lt;</span><span class="nc">UiState</span><span class="p">&lt;</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;&gt;&gt;</span> <span class="p">=</span> <span class="n">_uiState</span><span class="p">.</span><span class="nf">asStateFlow</span><span class="p">()</span>
+
+    <span class="nf">init</span> <span class="p">{</span>
+        <span class="nf">loadUsers</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">fun</span> <span class="nf">loadUsers</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">viewModelScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+            <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="kd">val</span> <span class="py">users</span> <span class="p">=</span> <span class="n">repository</span><span class="p">.</span><span class="nf">getUsers</span><span class="p">()</span>
+                <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="nc">Exception</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">message</span> <span class="o">?:</span> <span class="s">"알 수 없는 오류"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">UserScreen</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span> <span class="nc">UserViewModel</span> <span class="p">=</span> <span class="nf">viewModel</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">uiState</span> <span class="k">by</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">uiState</span><span class="p">.</span><span class="nf">collectAsState</span><span class="p">()</span>
+
+    <span class="k">when</span> <span class="p">(</span><span class="kd">val</span> <span class="py">state</span> <span class="p">=</span> <span class="n">uiState</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span> <span class="p">-&gt;</span> <span class="p">{</span>
+            <span class="nc">Box</span><span class="p">(</span><span class="nc">Modifier</span><span class="p">.</span><span class="nf">fillMaxSize</span><span class="p">(),</span> <span class="n">contentAlignment</span> <span class="p">=</span> <span class="nc">Alignment</span><span class="p">.</span><span class="nc">Center</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nc">CircularProgressIndicator</span><span class="p">()</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span> <span class="p">-&gt;</span> <span class="p">{</span>
+            <span class="nc">LazyColumn</span> <span class="p">{</span>
+                <span class="nf">items</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span> <span class="n">user</span> <span class="p">-&gt;</span>
+                    <span class="nc">Text</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span> <span class="p">-&gt;</span> <span class="p">{</span>
+            <span class="nc">Box</span><span class="p">(</span><span class="nc">Modifier</span><span class="p">.</span><span class="nf">fillMaxSize</span><span class="p">(),</span> <span class="n">contentAlignment</span> <span class="p">=</span> <span class="nc">Alignment</span><span class="p">.</span><span class="nc">Center</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nc">Text</span><span class="p">(</span><span class="s">"에러: ${state.message}"</span><span class="p">,</span> <span class="n">color</span> <span class="p">=</span> <span class="nc">Color</span><span class="p">.</span><span class="nc">Red</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (kotlin &gt; lecture-kotlin)</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-18-build-deploy/">[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-17-practical-tips/">[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-16-testing/">[Kotlin] 16. 테스트 - JUnit, 단위 테스트</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-15-spring-boot/">[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-14-local-storage/">[Kotlin] 14. 로컬 저장소 - Room, DataStore</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-13-network-retrofit/">[Kotlin] 13. 네트워크 통신 - Retrofit</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-12-state-viewmodel/">[Kotlin] 12. 상태관리 - ViewModel, State</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-11-navigation/">[Kotlin] 11. 화면 이동 - Navigation</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-10-compose-layout/">[Kotlin] 10. Compose 레이아웃과 리스트</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-09-android-basic/">[Kotlin] 09. Android 개발 기초 - 프로젝트 생성</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-08-coroutine/">[Kotlin] 08. 코루틴 - 비동기 프로그래밍</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-07-null-exception/">[Kotlin] 07. Null 안전성과 예외 처리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-06-collection/">[Kotlin] 06. 컬렉션 - List, Map, Set</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-05-class-oop/">[Kotlin] 05. 클래스와 객체지향 프로그래밍</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-04-function/">[Kotlin] 04. 함수 - 선언, 매개변수, 람다</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-03-control-flow/">[Kotlin] 03. 제어문 - 조건문, 반복문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-02-variable-type/">[Kotlin] 02. 변수와 데이터 타입</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-01-intro-install/">[Kotlin] 01. Kotlin 소개 및 개발환경 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#android" class="page__taxonomy-item p-category" rel="tag">android</a><span class="sep">, </span>
+    
+      <a href="/tags/#compose" class="page__taxonomy-item p-category" rel="tag">compose</a><span class="sep">, </span>
+    
+      <a href="/tags/#kotlin" class="page__taxonomy-item p-category" rel="tag">kotlin</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-kotlin" class="page__taxonomy-item p-category" rel="tag">lecture-kotlin</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#kotlin" class="page__taxonomy-item p-category" rel="tag">kotlin</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-06T00:00:00+00:00">2026-05-06</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BKotlin%5D+12.+%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC+-+ViewModel%2C+State%20https%3A%2F%2Fkimjaehyun.co.kr%2Fkotlin%2Fkotlin-12-state-viewmodel%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fkotlin%2Fkotlin-12-state-viewmodel%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fkotlin%2Fkotlin-12-state-viewmodel%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/kotlin/kotlin-11-navigation/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Kotlin] 11. 화면 이동 - Navigation</a>
+    
+    
+      <a href="/kotlin/kotlin-13-network-retrofit/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Kotlin] 13. 네트워크 통신 - Retrofit</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-18-build-deploy/">[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#android" class="page__taxonomy-item-tag" rel="tag">android</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-17-practical-tips/">[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-16-testing/">[Kotlin] 16. 테스트 - JUnit, 단위 테스트</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%85%8C%EC%8A%A4%ED%8A%B8" class="page__taxonomy-item-tag" rel="tag">테스트</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-15-spring-boot/">[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#spring" class="page__taxonomy-item-tag" rel="tag">spring</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%84%9C%EB%B2%84" class="page__taxonomy-item-tag" rel="tag">서버</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

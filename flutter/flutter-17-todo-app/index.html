@@ -1,0 +1,2393 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Flutter] 17. 실전 프로젝트 - Todo 앱 만들기 | 꿰보노트</title>
+<meta name="description" content="지금까지 배운 내용을 종합하여 완성도 있는 Todo 앱을 만듭니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Flutter] 17. 실전 프로젝트 - Todo 앱 만들기">
+<meta property="og:url" content="https://kimjaehyun.co.kr/flutter/flutter-17-todo-app/">
+
+
+  <meta property="og:description" content="지금까지 배운 내용을 종합하여 완성도 있는 Todo 앱을 만듭니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-06T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/flutter/flutter-17-todo-app/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#flutter" itemprop="item"><span itemprop="name">Flutter</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Flutter] 17. 실전 프로젝트 - Todo 앱 만들기</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 167</span>개</span> 
+      </li>
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/kotlin" class="">Kotlin (18)</a> <i class="fab fa-kotlin"></i></li>
+                  
+              
+          </ul>                    
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/flutter" class="">Flutter (18)</a> <i class="fab fa-dart"></i></li>
+                  
+              
+                  
+              
+          </ul>                    
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Flutter] 17. 실전 프로젝트 - Todo 앱 만들기">
+    <meta itemprop="description" content="지금까지 배운 내용을 종합하여 완성도 있는 Todo 앱을 만듭니다.">
+    <meta itemprop="datePublished" content="2026-05-06T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/flutter/flutter-17-todo-app/" class="u-url" itemprop="url">[Flutter] 17. 실전 프로젝트 - Todo 앱 만들기
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#프로젝트-구조">프로젝트 구조</a></li><li><a href="#1-모델-정의">1. 모델 정의</a></li><li><a href="#2-메인-앱">2. 메인 앱</a></li><li><a href="#3-todo-아이템-위젯">3. Todo 아이템 위젯</a></li><li><a href="#4-목록-화면">4. 목록 화면</a></li><li><a href="#5-추가-화면">5. 추가 화면</a></li><li><a href="#완성된-앱-기능-요약">완성된 앱 기능 요약</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>지금까지 배운 내용을 종합하여 완성도 있는 Todo 앱을 만듭니다.</p>
+
+<h1 id="프로젝트-구조">프로젝트 구조</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lib/
+├── main.dart           # 앱 진입점
+├── models/
+│   └── todo.dart       # Todo 모델
+├── screens/
+│   ├── todo_list_screen.dart  # 목록 화면
+│   └── todo_add_screen.dart   # 추가 화면
+└── widgets/
+    └── todo_item.dart  # Todo 아이템 위젯
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="1-모델-정의">1. 모델 정의</h1>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// lib/models/todo.dart</span>
+<span class="kd">class</span> <span class="nc">Todo</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">id</span><span class="p">;</span>
+  <span class="kt">String</span> <span class="n">title</span><span class="p">;</span>
+  <span class="kt">String</span><span class="o">?</span> <span class="n">description</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">isDone</span><span class="p">;</span>
+  <span class="n">DateTime</span> <span class="n">createdAt</span><span class="p">;</span>
+
+  <span class="n">Todo</span><span class="p">({</span>
+    <span class="kd">required</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span><span class="p">,</span>
+    <span class="kd">required</span> <span class="k">this</span><span class="o">.</span><span class="na">title</span><span class="p">,</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">description</span><span class="p">,</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">isDone</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="kd">required</span> <span class="k">this</span><span class="o">.</span><span class="na">createdAt</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="2-메인-앱">2. 메인 앱</h1>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// lib/main.dart</span>
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'screens/todo_list_screen.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">runApp</span><span class="p">(</span><span class="kd">const</span> <span class="n">MyApp</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">MyApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="n">MyApp</span><span class="p">({</span><span class="k">super</span><span class="o">.</span><span class="na">key</span><span class="p">});</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="p">(</span>
+      <span class="nl">title:</span> <span class="s">'Todo App'</span><span class="p">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="p">(</span>
+        <span class="nl">colorScheme:</span> <span class="n">ColorScheme</span><span class="o">.</span><span class="na">fromSeed</span><span class="p">(</span><span class="nl">seedColor:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">indigo</span><span class="p">),</span>
+        <span class="nl">useMaterial3:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="p">),</span>
+      <span class="nl">home:</span> <span class="kd">const</span> <span class="n">TodoListScreen</span><span class="p">(),</span>
+      <span class="nl">debugShowCheckedModeBanner:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="3-todo-아이템-위젯">3. Todo 아이템 위젯</h1>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// lib/widgets/todo_item.dart</span>
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'../models/todo.dart'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">TodoItem</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="n">Todo</span> <span class="n">todo</span><span class="p">;</span>
+  <span class="kd">final</span> <span class="n">VoidCallback</span> <span class="n">onToggle</span><span class="p">;</span>
+  <span class="kd">final</span> <span class="n">VoidCallback</span> <span class="n">onDelete</span><span class="p">;</span>
+
+  <span class="kd">const</span> <span class="n">TodoItem</span><span class="p">({</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">key</span><span class="p">,</span>
+    <span class="kd">required</span> <span class="k">this</span><span class="o">.</span><span class="na">todo</span><span class="p">,</span>
+    <span class="kd">required</span> <span class="k">this</span><span class="o">.</span><span class="na">onToggle</span><span class="p">,</span>
+    <span class="kd">required</span> <span class="k">this</span><span class="o">.</span><span class="na">onDelete</span><span class="p">,</span>
+  <span class="p">});</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Card</span><span class="p">(</span>
+      <span class="nl">margin:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">symmetric</span><span class="p">(</span><span class="nl">horizontal:</span> <span class="mi">12</span><span class="p">,</span> <span class="nl">vertical:</span> <span class="mi">4</span><span class="p">),</span>
+      <span class="nl">child:</span> <span class="n">ListTile</span><span class="p">(</span>
+        <span class="c1">// 체크박스</span>
+        <span class="nl">leading:</span> <span class="n">Checkbox</span><span class="p">(</span>
+          <span class="nl">value:</span> <span class="n">todo</span><span class="o">.</span><span class="na">isDone</span><span class="p">,</span>
+          <span class="nl">onChanged:</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">onToggle</span><span class="p">(),</span>
+          <span class="nl">shape:</span> <span class="kd">const</span> <span class="n">CircleBorder</span><span class="p">(),</span>
+        <span class="p">),</span>
+        <span class="c1">// 제목</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="p">(</span>
+          <span class="n">todo</span><span class="o">.</span><span class="na">title</span><span class="p">,</span>
+          <span class="nl">style:</span> <span class="n">TextStyle</span><span class="p">(</span>
+            <span class="nl">decoration:</span> <span class="n">todo</span><span class="o">.</span><span class="na">isDone</span> <span class="o">?</span> <span class="n">TextDecoration</span><span class="o">.</span><span class="na">lineThrough</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nl">color:</span> <span class="n">todo</span><span class="o">.</span><span class="na">isDone</span> <span class="o">?</span> <span class="n">Colors</span><span class="o">.</span><span class="na">grey</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+          <span class="p">),</span>
+        <span class="p">),</span>
+        <span class="c1">// 설명</span>
+        <span class="nl">subtitle:</span> <span class="n">todo</span><span class="o">.</span><span class="na">description</span> <span class="o">!=</span> <span class="kc">null</span>
+            <span class="o">?</span> <span class="n">Text</span><span class="p">(</span>
+                <span class="n">todo</span><span class="o">.</span><span class="na">description</span><span class="o">!</span><span class="p">,</span>
+                <span class="nl">maxLines:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nl">overflow:</span> <span class="n">TextOverflow</span><span class="o">.</span><span class="na">ellipsis</span><span class="p">,</span>
+                <span class="nl">style:</span> <span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">grey</span><span class="p">[</span><span class="mi">600</span><span class="p">]),</span>
+              <span class="p">)</span>
+            <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="c1">// 삭제 버튼</span>
+        <span class="nl">trailing:</span> <span class="n">IconButton</span><span class="p">(</span>
+          <span class="nl">icon:</span> <span class="kd">const</span> <span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">delete_outline</span><span class="p">,</span> <span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">red</span><span class="p">),</span>
+          <span class="nl">onPressed:</span> <span class="n">onDelete</span><span class="p">,</span>
+        <span class="p">),</span>
+      <span class="p">),</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="4-목록-화면">4. 목록 화면</h1>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// lib/screens/todo_list_screen.dart</span>
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'../models/todo.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'../widgets/todo_item.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'todo_add_screen.dart'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">TodoListScreen</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="n">TodoListScreen</span><span class="p">({</span><span class="k">super</span><span class="o">.</span><span class="na">key</span><span class="p">});</span>
+
+  <span class="nd">@override</span>
+  <span class="n">State</span><span class="p">&lt;</span><span class="n">TodoListScreen</span><span class="p">&gt;</span> <span class="n">createState</span><span class="p">()</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">_TodoListScreenState</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">_TodoListScreenState</span> <span class="kd">extends</span> <span class="n">State</span><span class="p">&lt;</span><span class="n">TodoListScreen</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="kt">List</span><span class="p">&lt;</span><span class="n">Todo</span><span class="p">&gt;</span> <span class="n">_todos</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="c1">// 완료/미완료 개수</span>
+  <span class="kt">int</span> <span class="kd">get</span> <span class="n">_doneCount</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">_todos</span><span class="o">.</span><span class="na">where</span><span class="p">((</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="na">isDone</span><span class="p">)</span><span class="o">.</span><span class="na">length</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="kd">get</span> <span class="n">_totalCount</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">_todos</span><span class="o">.</span><span class="na">length</span><span class="p">;</span>
+
+  <span class="c1">// 완료 토글</span>
+  <span class="kt">void</span> <span class="n">_toggleTodo</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
+      <span class="n">_todos</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="na">isDone</span> <span class="o">=</span> <span class="o">!</span><span class="n">_todos</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="na">isDone</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 삭제</span>
+  <span class="kt">void</span> <span class="n">_deleteTodo</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">final</span> <span class="n">deleted</span> <span class="o">=</span> <span class="n">_todos</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+    <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
+      <span class="n">_todos</span><span class="o">.</span><span class="na">removeAt</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="c1">// 되돌리기 스낵바</span>
+    <span class="n">ScaffoldMessenger</span><span class="o">.</span><span class="na">of</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="na">showSnackBar</span><span class="p">(</span>
+      <span class="n">SnackBar</span><span class="p">(</span>
+        <span class="nl">content:</span> <span class="n">Text</span><span class="p">(</span><span class="s">'"</span><span class="si">${deleted.title}</span><span class="s">" 삭제됨'</span><span class="p">),</span>
+        <span class="nl">action:</span> <span class="n">SnackBarAction</span><span class="p">(</span>
+          <span class="nl">label:</span> <span class="s">'되돌리기'</span><span class="p">,</span>
+          <span class="nl">onPressed:</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
+              <span class="n">_todos</span><span class="o">.</span><span class="na">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">deleted</span><span class="p">);</span>
+            <span class="p">});</span>
+          <span class="p">},</span>
+        <span class="p">),</span>
+      <span class="p">),</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 추가 화면으로 이동</span>
+  <span class="n">Future</span><span class="p">&lt;</span><span class="kt">void</span><span class="p">&gt;</span> <span class="n">_navigateToAdd</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="kd">final</span> <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Navigator</span><span class="o">.</span><span class="na">push</span><span class="p">&lt;</span><span class="n">Todo</span><span class="p">&gt;(</span>
+      <span class="n">context</span><span class="p">,</span>
+      <span class="n">MaterialPageRoute</span><span class="p">(</span><span class="nl">builder:</span> <span class="p">(</span><span class="n">context</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="kd">const</span> <span class="n">TodoAddScreen</span><span class="p">()),</span>
+    <span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
+        <span class="n">_todos</span><span class="o">.</span><span class="na">add</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="p">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="p">(</span>
+        <span class="nl">title:</span> <span class="kd">const</span> <span class="n">Text</span><span class="p">(</span><span class="s">'할일 목록'</span><span class="p">),</span>
+        <span class="nl">actions:</span> <span class="p">[</span>
+          <span class="n">Center</span><span class="p">(</span>
+            <span class="nl">child:</span> <span class="n">Padding</span><span class="p">(</span>
+              <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">only</span><span class="p">(</span><span class="nl">right:</span> <span class="mi">16</span><span class="p">),</span>
+              <span class="nl">child:</span> <span class="n">Text</span><span class="p">(</span>
+                <span class="s">'</span><span class="si">$_doneCount</span><span class="s"> / </span><span class="si">$_totalCount</span><span class="s">'</span><span class="p">,</span>
+                <span class="nl">style:</span> <span class="kd">const</span> <span class="n">TextStyle</span><span class="p">(</span><span class="nl">fontSize:</span> <span class="mi">16</span><span class="p">),</span>
+              <span class="p">),</span>
+            <span class="p">),</span>
+          <span class="p">),</span>
+        <span class="p">],</span>
+      <span class="p">),</span>
+      <span class="nl">body:</span> <span class="n">_todos</span><span class="o">.</span><span class="na">isEmpty</span>
+          <span class="o">?</span> <span class="kd">const</span> <span class="n">Center</span><span class="p">(</span>
+              <span class="nl">child:</span> <span class="n">Column</span><span class="p">(</span>
+                <span class="nl">mainAxisAlignment:</span> <span class="n">MainAxisAlignment</span><span class="o">.</span><span class="na">center</span><span class="p">,</span>
+                <span class="nl">children:</span> <span class="p">[</span>
+                  <span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">checklist</span><span class="p">,</span> <span class="nl">size:</span> <span class="mi">64</span><span class="p">,</span> <span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">grey</span><span class="p">),</span>
+                  <span class="n">SizedBox</span><span class="p">(</span><span class="nl">height:</span> <span class="mi">16</span><span class="p">),</span>
+                  <span class="n">Text</span><span class="p">(</span><span class="s">'할일이 없습니다'</span><span class="p">,</span> <span class="nl">style:</span> <span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">grey</span><span class="p">)),</span>
+                  <span class="n">Text</span><span class="p">(</span><span class="s">'+ 버튼을 눌러 추가하세요'</span><span class="p">,</span> <span class="nl">style:</span> <span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">grey</span><span class="p">)),</span>
+                <span class="p">],</span>
+              <span class="p">),</span>
+            <span class="p">)</span>
+          <span class="o">:</span> <span class="n">ListView</span><span class="o">.</span><span class="na">builder</span><span class="p">(</span>
+              <span class="nl">itemCount:</span> <span class="n">_todos</span><span class="o">.</span><span class="na">length</span><span class="p">,</span>
+              <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">only</span><span class="p">(</span><span class="nl">top:</span> <span class="mi">8</span><span class="p">,</span> <span class="nl">bottom:</span> <span class="mi">80</span><span class="p">),</span>
+              <span class="nl">itemBuilder:</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">TodoItem</span><span class="p">(</span>
+                  <span class="nl">todo:</span> <span class="n">_todos</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+                  <span class="nl">onToggle:</span> <span class="p">()</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">_toggleTodo</span><span class="p">(</span><span class="n">index</span><span class="p">),</span>
+                  <span class="nl">onDelete:</span> <span class="p">()</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">_deleteTodo</span><span class="p">(</span><span class="n">index</span><span class="p">),</span>
+                <span class="p">);</span>
+              <span class="p">},</span>
+            <span class="p">),</span>
+      <span class="nl">floatingActionButton:</span> <span class="n">FloatingActionButton</span><span class="p">(</span>
+        <span class="nl">onPressed:</span> <span class="n">_navigateToAdd</span><span class="p">,</span>
+        <span class="nl">child:</span> <span class="kd">const</span> <span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">add</span><span class="p">),</span>
+      <span class="p">),</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="5-추가-화면">5. 추가 화면</h1>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// lib/screens/todo_add_screen.dart</span>
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'../models/todo.dart'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">TodoAddScreen</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="n">TodoAddScreen</span><span class="p">({</span><span class="k">super</span><span class="o">.</span><span class="na">key</span><span class="p">});</span>
+
+  <span class="nd">@override</span>
+  <span class="n">State</span><span class="p">&lt;</span><span class="n">TodoAddScreen</span><span class="p">&gt;</span> <span class="n">createState</span><span class="p">()</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">_TodoAddScreenState</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">_TodoAddScreenState</span> <span class="kd">extends</span> <span class="n">State</span><span class="p">&lt;</span><span class="n">TodoAddScreen</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="n">_formKey</span> <span class="o">=</span> <span class="n">GlobalKey</span><span class="p">&lt;</span><span class="n">FormState</span><span class="p">&gt;();</span>
+  <span class="kd">final</span> <span class="n">_titleController</span> <span class="o">=</span> <span class="n">TextEditingController</span><span class="p">();</span>
+  <span class="kd">final</span> <span class="n">_descController</span> <span class="o">=</span> <span class="n">TextEditingController</span><span class="p">();</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">dispose</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">_titleController</span><span class="o">.</span><span class="na">dispose</span><span class="p">();</span>
+    <span class="n">_descController</span><span class="o">.</span><span class="na">dispose</span><span class="p">();</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">dispose</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">_submit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_formKey</span><span class="o">.</span><span class="na">currentState</span><span class="o">!.</span><span class="na">validate</span><span class="p">())</span> <span class="p">{</span>
+      <span class="kd">final</span> <span class="n">todo</span> <span class="o">=</span> <span class="n">Todo</span><span class="p">(</span>
+        <span class="nl">id:</span> <span class="n">DateTime</span><span class="o">.</span><span class="na">now</span><span class="p">()</span><span class="o">.</span><span class="na">millisecondsSinceEpoch</span><span class="o">.</span><span class="na">toString</span><span class="p">(),</span>
+        <span class="nl">title:</span> <span class="n">_titleController</span><span class="o">.</span><span class="na">text</span><span class="o">.</span><span class="na">trim</span><span class="p">(),</span>
+        <span class="nl">description:</span> <span class="n">_descController</span><span class="o">.</span><span class="na">text</span><span class="o">.</span><span class="na">trim</span><span class="p">()</span><span class="o">.</span><span class="na">isEmpty</span>
+            <span class="o">?</span> <span class="kc">null</span>
+            <span class="o">:</span> <span class="n">_descController</span><span class="o">.</span><span class="na">text</span><span class="o">.</span><span class="na">trim</span><span class="p">(),</span>
+        <span class="nl">createdAt:</span> <span class="n">DateTime</span><span class="o">.</span><span class="na">now</span><span class="p">(),</span>
+      <span class="p">);</span>
+      <span class="n">Navigator</span><span class="o">.</span><span class="na">pop</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">todo</span><span class="p">);</span> <span class="c1">// 결과 반환</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="p">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="p">(</span>
+        <span class="nl">title:</span> <span class="kd">const</span> <span class="n">Text</span><span class="p">(</span><span class="s">'할일 추가'</span><span class="p">),</span>
+        <span class="nl">actions:</span> <span class="p">[</span>
+          <span class="n">TextButton</span><span class="p">(</span>
+            <span class="nl">onPressed:</span> <span class="n">_submit</span><span class="p">,</span>
+            <span class="nl">child:</span> <span class="kd">const</span> <span class="n">Text</span><span class="p">(</span><span class="s">'저장'</span><span class="p">),</span>
+          <span class="p">),</span>
+        <span class="p">],</span>
+      <span class="p">),</span>
+      <span class="nl">body:</span> <span class="n">Padding</span><span class="p">(</span>
+        <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+        <span class="nl">child:</span> <span class="n">Form</span><span class="p">(</span>
+          <span class="nl">key:</span> <span class="n">_formKey</span><span class="p">,</span>
+          <span class="nl">child:</span> <span class="n">Column</span><span class="p">(</span>
+            <span class="nl">children:</span> <span class="p">[</span>
+              <span class="n">TextFormField</span><span class="p">(</span>
+                <span class="nl">controller:</span> <span class="n">_titleController</span><span class="p">,</span>
+                <span class="nl">autofocus:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nl">decoration:</span> <span class="kd">const</span> <span class="n">InputDecoration</span><span class="p">(</span>
+                  <span class="nl">labelText:</span> <span class="s">'할일 제목'</span><span class="p">,</span>
+                  <span class="nl">hintText:</span> <span class="s">'무엇을 해야 하나요?'</span><span class="p">,</span>
+                  <span class="nl">border:</span> <span class="n">OutlineInputBorder</span><span class="p">(),</span>
+                <span class="p">),</span>
+                <span class="nl">validator:</span> <span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">value</span><span class="o">.</span><span class="na">trim</span><span class="p">()</span><span class="o">.</span><span class="na">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="s">'제목을 입력하세요'</span><span class="p">;</span>
+                  <span class="p">}</span>
+                  <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+                <span class="p">},</span>
+              <span class="p">),</span>
+              <span class="kd">const</span> <span class="n">SizedBox</span><span class="p">(</span><span class="nl">height:</span> <span class="mi">16</span><span class="p">),</span>
+              <span class="n">TextFormField</span><span class="p">(</span>
+                <span class="nl">controller:</span> <span class="n">_descController</span><span class="p">,</span>
+                <span class="nl">maxLines:</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="nl">decoration:</span> <span class="kd">const</span> <span class="n">InputDecoration</span><span class="p">(</span>
+                  <span class="nl">labelText:</span> <span class="s">'설명 (선택)'</span><span class="p">,</span>
+                  <span class="nl">hintText:</span> <span class="s">'상세 내용을 입력하세요'</span><span class="p">,</span>
+                  <span class="nl">border:</span> <span class="n">OutlineInputBorder</span><span class="p">(),</span>
+                  <span class="nl">alignLabelWithHint:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="p">),</span>
+              <span class="p">),</span>
+              <span class="kd">const</span> <span class="n">SizedBox</span><span class="p">(</span><span class="nl">height:</span> <span class="mi">24</span><span class="p">),</span>
+              <span class="n">SizedBox</span><span class="p">(</span>
+                <span class="nl">width:</span> <span class="kt">double</span><span class="o">.</span><span class="na">infinity</span><span class="p">,</span>
+                <span class="nl">height:</span> <span class="mi">48</span><span class="p">,</span>
+                <span class="nl">child:</span> <span class="n">ElevatedButton</span><span class="p">(</span>
+                  <span class="nl">onPressed:</span> <span class="n">_submit</span><span class="p">,</span>
+                  <span class="nl">child:</span> <span class="kd">const</span> <span class="n">Text</span><span class="p">(</span><span class="s">'추가하기'</span><span class="p">),</span>
+                <span class="p">),</span>
+              <span class="p">),</span>
+            <span class="p">],</span>
+          <span class="p">),</span>
+        <span class="p">),</span>
+      <span class="p">),</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="완성된-앱-기능-요약">완성된 앱 기능 요약</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>기능</th>
+      <th>구현 내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>할일 추가</td>
+      <td>Form 유효성 검사 + Navigator 결과 반환</td>
+    </tr>
+    <tr>
+      <td>할일 완료</td>
+      <td>Checkbox + setState</td>
+    </tr>
+    <tr>
+      <td>할일 삭제</td>
+      <td>삭제 + SnackBar 되돌리기</td>
+    </tr>
+    <tr>
+      <td>빈 상태</td>
+      <td>할일 없을 때 안내 메시지</td>
+    </tr>
+    <tr>
+      <td>진행률</td>
+      <td>AppBar에 완료/전체 표시</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>이 프로젝트에 Provider 상태관리, SQLite 저장, 카테고리 분류 등을 추가하면 실제 앱 수준으로 발전시킬 수 있습니다.</p>
+</blockquote>
+
+<p><span class="nav__sub-title">관련된 글 (flutter &gt; lecture-flutter)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-18-build-deploy/">[Flutter] 18. 빌드와 배포 - APK, App Store</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-17-todo-app/">[Flutter] 17. 실전 프로젝트 - Todo 앱 만들기</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-16-package-plugin/">[Flutter] 16. 패키지 활용 - 유용한 패키지 소개</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-15-design-theme/">[Flutter] 15. 디자인 - 테마, 스타일, 반응형</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-14-local-storage/">[Flutter] 14. 로컬 저장소 - SharedPreferences, SQLite</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-13-http-api/">[Flutter] 13. HTTP 통신 - REST API 연동</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-12-state-management/">[Flutter] 12. 상태관리 - setState, Provider</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-11-form-input/">[Flutter] 11. 사용자 입력 - Form, TextField, 버튼</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-10-navigation/">[Flutter] 10. 화면 이동 - Navigation, Route</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-09-list-scroll/">[Flutter] 09. 리스트와 스크롤 - ListView, GridView</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-08-layout/">[Flutter] 08. 레이아웃 - Row, Column, Stack</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-07-widget-basic/">[Flutter] 07. 위젯 기초 - StatelessWidget, StatefulWidget</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-06-intro-install/">[Flutter] 06. Flutter 소개 및 개발환경 설치</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-05-dart-async/">[Flutter] 05. Dart 비동기 - Future, async/await, Stream</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-04-dart-class/">[Flutter] 04. Dart 클래스 - OOP 기초</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-03-dart-function/">[Flutter] 03. Dart 함수 - 선언, 매개변수, 람다</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-02-dart-control-flow/">[Flutter] 02. Dart 제어문 - 조건문, 반복문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-01-dart-basics/">[Flutter] 01. Dart 언어 기초 - 변수, 타입, 연산자</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#dart" class="page__taxonomy-item p-category" rel="tag">dart</a><span class="sep">, </span>
+    
+      <a href="/tags/#flutter" class="page__taxonomy-item p-category" rel="tag">flutter</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-flutter" class="page__taxonomy-item p-category" rel="tag">lecture-flutter</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#flutter" class="page__taxonomy-item p-category" rel="tag">flutter</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-06T00:00:00+00:00">2026-05-06</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BFlutter%5D+17.+%EC%8B%A4%EC%A0%84+%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8+-+Todo+%EC%95%B1+%EB%A7%8C%EB%93%A4%EA%B8%B0%20https%3A%2F%2Fkimjaehyun.co.kr%2Fflutter%2Fflutter-17-todo-app%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fflutter%2Fflutter-17-todo-app%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fflutter%2Fflutter-17-todo-app%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/flutter/flutter-16-package-plugin/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Flutter] 16. 패키지 활용 - 유용한 패키지 소개</a>
+    
+    
+      <a href="/flutter/flutter-18-build-deploy/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Flutter] 18. 빌드와 배포 - APK, App Store</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-18-build-deploy/">[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#android" class="page__taxonomy-item-tag" rel="tag">android</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-17-practical-tips/">[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-16-testing/">[Kotlin] 16. 테스트 - JUnit, 단위 테스트</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%85%8C%EC%8A%A4%ED%8A%B8" class="page__taxonomy-item-tag" rel="tag">테스트</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-15-spring-boot/">[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#spring" class="page__taxonomy-item-tag" rel="tag">spring</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%84%9C%EB%B2%84" class="page__taxonomy-item-tag" rel="tag">서버</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

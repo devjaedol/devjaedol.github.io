@@ -784,4 +784,220 @@ var store = [{
         "tags": ["redis","nosql","redis강좌","고급","lecture-redis"],
         "url": "/redis/redis-11-monitoring-troubleshooting/",
         "teaser": null
+      },{
+        "title": "[Flutter] 01. Dart 언어 기초 - 변수, 타입, 연산자",
+        "excerpt":"Flutter 개발의 기본이 되는 Dart 언어의 변수, 타입, 연산자를 배웁니다. Dart 언어란? Dart는 Google이 개발한 프로그래밍 언어로, Flutter의 공식 언어입니다. JavaScript와 Java의 장점을 결합한 현대적인 언어입니다. Dart 특징 특징 설명 타입 안전 컴파일 타임에 타입 오류 검출 null safety null 참조 오류 방지 AOT 컴파일 네이티브 코드로 빠른 실행 JIT...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-01-dart-basics/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 02. Dart 제어문 - 조건문, 반복문",
+        "excerpt":"Dart의 조건문과 반복문을 배워 프로그램 흐름을 제어합니다. 조건문 if / else if / else void main() { int score = 85; if (score &gt;= 90) { print('A등급'); } else if (score &gt;= 80) { print('B등급'); } else if (score &gt;= 70) { print('C등급'); } else { print('F등급'); } // 출력:...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-02-dart-control-flow/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 03. Dart 함수 - 선언, 매개변수, 람다",
+        "excerpt":"Dart의 함수 선언 방법과 다양한 매개변수 활용법을 배웁니다. 함수 기본 함수 선언 // 기본 형태 반환타입 함수명(매개변수) { // 본문 return 값; } // 예시 int add(int a, int b) { return a + b; } void sayHello(String name) { print('안녕하세요, $name님!'); } void main() { int result = add(3,...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-03-dart-function/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 04. Dart 클래스 - OOP 기초",
+        "excerpt":"Dart의 클래스와 객체지향 프로그래밍(OOP) 기초를 배웁니다. Flutter 위젯은 모두 클래스이므로 반드시 이해해야 합니다. 클래스 기본 클래스 선언과 인스턴스 생성 class Person { // 속성 (필드) String name; int age; // 생성자 Person(this.name, this.age); // 메서드 void introduce() { print('안녕하세요, $name입니다. $age세입니다.'); } } void main() { var person = Person('홍길동',...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-04-dart-class/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 05. Dart 비동기 - Future, async/await, Stream",
+        "excerpt":"Flutter에서 네트워크 통신, 파일 읽기 등에 필수적인 비동기 프로그래밍을 배웁니다. 비동기 프로그래밍이란? 시간이 걸리는 작업(API 호출, 파일 읽기 등)을 기다리는 동안 다른 작업을 수행하는 방식입니다. 동기 비동기 순서대로 실행 동시에 실행 가능 앞 작업 끝나야 다음 실행 기다리지 않고 다음 실행 UI 멈춤 발생 UI 멈춤 없음 Future Future 기본...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-05-dart-async/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 06. Flutter 소개 및 개발환경 설치",
+        "excerpt":"Flutter의 개념을 이해하고 개발환경을 설치합니다. Flutter란? Google이 개발한 오픈소스 UI 프레임워크로, 하나의 코드로 여러 플랫폼 앱을 만들 수 있습니다. 지원 플랫폼 플랫폼 지원 Android ✅ iOS ✅ Web ✅ Windows ✅ macOS ✅ Linux ✅ Flutter vs 다른 프레임워크 항목 Flutter React Native 네이티브 언어 Dart JavaScript Kotlin/Swift 렌더링 자체...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-06-intro-install/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 07. 위젯 기초 - StatelessWidget, StatefulWidget",
+        "excerpt":"Flutter의 핵심 개념인 위젯(Widget)의 기본 구조와 종류를 배웁니다. 위젯이란? Flutter에서 화면에 보이는 모든 것은 위젯입니다. 버튼, 텍스트, 이미지, 레이아웃 등 모든 UI 요소가 위젯으로 구성됩니다. 위젯 트리 구조 MaterialApp └── Scaffold ├── AppBar │ └── Text('제목') └── Body └── Column ├── Text('안녕하세요') ├── Image(...) └── ElevatedButton(...) StatelessWidget 상태가 변하지 않는...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-07-widget-basic/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 08. 레이아웃 - Row, Column, Stack",
+        "excerpt":"Flutter에서 위젯을 배치하는 레이아웃 위젯을 배웁니다. 레이아웃 기본 개념 Flutter는 CSS가 아닌 위젯 조합으로 레이아웃을 구성합니다. 레이아웃 위젯 방향 설명 Row 가로 (→) 자식을 수평 배치 Column 세로 (↓) 자식을 수직 배치 Stack 겹침 자식을 겹쳐서 배치 Column (세로 배치) Column( mainAxisAlignment: MainAxisAlignment.center, // 세로 정렬 crossAxisAlignment: CrossAxisAlignment.start, // 가로...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-08-layout/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 09. 리스트와 스크롤 - ListView, GridView",
+        "excerpt":"스크롤 가능한 리스트와 그리드를 만드는 방법을 배웁니다. ListView 기본 ListView 적은 수의 아이템에 적합합니다. ListView( children: const [ ListTile( leading: Icon(Icons.email), title: Text('이메일'), subtitle: Text('user@example.com'), trailing: Icon(Icons.arrow_forward_ios), ), ListTile( leading: Icon(Icons.phone), title: Text('전화번호'), subtitle: Text('010-1234-5678'), ), ListTile( leading: Icon(Icons.location_on), title: Text('주소'), subtitle: Text('서울시 강남구'), ), ], ) ListView.builder (대량 데이터)...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-09-list-scroll/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 10. 화면 이동 - Navigation, Route",
+        "excerpt":"Flutter에서 화면 간 이동(Navigation)하는 방법을 배웁니다. Navigation 기본 Flutter는 스택(Stack) 구조로 화면을 관리합니다. push: 새 화면을 스택 위에 추가 pop: 현재 화면을 스택에서 제거 (뒤로 가기) Navigator.push / pop 기본 화면 이동 import 'package:flutter/material.dart'; // 첫 번째 화면 class FirstPage extends StatelessWidget { const FirstPage({super.key}); @override Widget build(BuildContext context) {...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-10-navigation/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 11. 사용자 입력 - Form, TextField, 버튼",
+        "excerpt":"사용자 입력을 받고 처리하는 Form과 다양한 입력 위젯을 배웁니다. TextField 기본 TextField class InputExample extends StatefulWidget { const InputExample({super.key}); @override State&lt;InputExample&gt; createState() =&gt; _InputExampleState(); } class _InputExampleState extends State&lt;InputExample&gt; { final TextEditingController _controller = TextEditingController(); @override void dispose() { _controller.dispose(); // 메모리 해제 필수! super.dispose(); } @override Widget build(BuildContext context)...","categories": ["flutter"],
+        "tags": ["flutter","dart","초급","lecture-flutter"],
+        "url": "/flutter/flutter-11-form-input/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 12. 상태관리 - setState, Provider",
+        "excerpt":"Flutter 앱에서 데이터(상태)를 효율적으로 관리하는 방법을 배웁니다. 상태관리란? 앱의 데이터(상태)가 변경될 때 UI를 자동으로 업데이트하는 방법입니다. 방법 난이도 적합한 규모 setState 쉬움 단일 위젯 Provider 보통 중소규모 앱 Riverpod 보통 중대규모 앱 Bloc 어려움 대규모 앱 setState (기본) 단일 위젯 내에서 상태를 관리합니다. class ShoppingCart extends StatefulWidget { const ShoppingCart({super.key});...","categories": ["flutter"],
+        "tags": ["flutter","dart","중급","lecture-flutter"],
+        "url": "/flutter/flutter-12-state-management/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 13. HTTP 통신 - REST API 연동",
+        "excerpt":"Flutter에서 서버와 HTTP 통신하여 데이터를 주고받는 방법을 배웁니다. http 패키지 설치 # pubspec.yaml dependencies: http: ^1.1.0 flutter pub get GET 요청 (데이터 조회) import 'dart:convert'; import 'package:http/http.dart' as http; // 사용자 목록 가져오기 Future&lt;List&lt;Map&lt;String, dynamic&gt;&gt;&gt; fetchUsers() async { final response = await http.get( Uri.parse('https://jsonplaceholder.typicode.com/users'), ); if (response.statusCode == 200) {...","categories": ["flutter"],
+        "tags": ["flutter","dart","중급","lecture-flutter"],
+        "url": "/flutter/flutter-13-http-api/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 14. 로컬 저장소 - SharedPreferences, SQLite",
+        "excerpt":"앱 내부에 데이터를 저장하는 방법을 배웁니다. 저장 방식 비교 방식 용도 데이터 형태 SharedPreferences 간단한 설정값 key-value SQLite (sqflite) 구조화된 대량 데이터 테이블 Hive 빠른 NoSQL 저장 객체 파일 저장 텍스트, JSON 파일 파일 SharedPreferences 간단한 설정값(로그인 상태, 테마 설정 등)을 저장합니다. 설치 # pubspec.yaml dependencies: shared_preferences: ^2.2.0 사용법 import...","categories": ["flutter"],
+        "tags": ["flutter","dart","중급","lecture-flutter"],
+        "url": "/flutter/flutter-14-local-storage/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 15. 디자인 - 테마, 스타일, 반응형",
+        "excerpt":"앱의 전체 디자인을 통일하는 테마 설정과 반응형 레이아웃을 배웁니다. ThemeData (앱 전체 테마) 테마 설정 import 'package:flutter/material.dart'; void main() { runApp(const MyApp()); } class MyApp extends StatelessWidget { const MyApp({super.key}); @override Widget build(BuildContext context) { return MaterialApp( title: 'My App', theme: ThemeData( // 색상 스킴 colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue), // AppBar...","categories": ["flutter"],
+        "tags": ["flutter","dart","중급","lecture-flutter"],
+        "url": "/flutter/flutter-15-design-theme/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 16. 패키지 활용 - 유용한 패키지 소개",
+        "excerpt":"Flutter 개발에 자주 사용되는 패키지를 소개하고 활용법을 배웁니다. 패키지 관리 패키지 추가 방법 # CLI로 추가 flutter pub add 패키지명 # pubspec.yaml에 직접 추가 후 flutter pub get 패키지 검색 pub.dev 에서 패키지를 검색할 수 있습니다. 자주 사용하는 패키지 패키지 용도 provider 상태관리 http / dio HTTP 통신 shared_preferences 간단한...","categories": ["flutter"],
+        "tags": ["flutter","dart","중급","lecture-flutter"],
+        "url": "/flutter/flutter-16-package-plugin/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 17. 실전 프로젝트 - Todo 앱 만들기",
+        "excerpt":"지금까지 배운 내용을 종합하여 완성도 있는 Todo 앱을 만듭니다. 프로젝트 구조 lib/ ├── main.dart # 앱 진입점 ├── models/ │ └── todo.dart # Todo 모델 ├── screens/ │ ├── todo_list_screen.dart # 목록 화면 │ └── todo_add_screen.dart # 추가 화면 └── widgets/ └── todo_item.dart # Todo 아이템 위젯 1. 모델 정의...","categories": ["flutter"],
+        "tags": ["flutter","dart","중급","lecture-flutter"],
+        "url": "/flutter/flutter-17-todo-app/",
+        "teaser": null
+      },{
+        "title": "[Flutter] 18. 빌드와 배포 - APK, App Store",
+        "excerpt":"Flutter 앱을 빌드하고 스토어에 배포하는 과정을 배웁니다. 빌드 전 준비 앱 아이콘 설정 # pubspec.yaml dependencies: flutter_launcher_icons: ^0.13.0 flutter_launcher_icons: android: true ios: true image_path: \"assets/icon/app_icon.png\" # 1024x1024 권장 flutter pub run flutter_launcher_icons 스플래시 화면 # pubspec.yaml dependencies: flutter_native_splash: ^2.3.0 flutter_native_splash: color: \"#ffffff\" image: assets/splash.png android: true ios: true flutter pub...","categories": ["flutter"],
+        "tags": ["flutter","dart","중급","lecture-flutter"],
+        "url": "/flutter/flutter-18-build-deploy/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 01. Kotlin 소개 및 개발환경 설치",
+        "excerpt":"Kotlin의 개념을 이해하고 개발환경을 설치합니다. Kotlin이란? JetBrains가 개발한 현대적인 프로그래밍 언어로, 2017년 Google이 Android 공식 언어로 채택했습니다. Java와 100% 호환되면서 더 간결하고 안전한 코드를 작성할 수 있습니다. Kotlin 특징 특징 설명 Java 호환 JVM 위에서 실행, Java 라이브러리 사용 가능 Null Safety 컴파일 타임에 NullPointerException 방지 간결한 문법 Java 대비...","categories": ["kotlin"],
+        "tags": ["kotlin","초급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-01-intro-install/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 02. 변수와 데이터 타입",
+        "excerpt":"Kotlin의 변수 선언 방법과 기본 데이터 타입을 배웁니다. 변수 선언 val vs var fun main() { // val: 읽기 전용 (재할당 불가, Java의 final) val name = \"홍길동\" // name = \"김철수\" // 에러! 재할당 불가 // var: 변경 가능 var age = 25 age = 26 // OK println(\"$name,...","categories": ["kotlin"],
+        "tags": ["kotlin","초급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-02-variable-type/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 03. 제어문 - 조건문, 반복문",
+        "excerpt":"Kotlin의 조건문과 반복문으로 프로그램 흐름을 제어합니다. 조건문 if / else Kotlin에서 if는 표현식(expression)입니다. 값을 반환할 수 있습니다. fun main() { val score = 85 // 기본 if-else if (score &gt;= 90) { println(\"A등급\") } else if (score &gt;= 80) { println(\"B등급\") } else if (score &gt;= 70) { println(\"C등급\") }...","categories": ["kotlin"],
+        "tags": ["kotlin","초급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-03-control-flow/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 04. 함수 - 선언, 매개변수, 람다",
+        "excerpt":"Kotlin의 함수 선언과 다양한 활용법을 배웁니다. 함수 기본 함수 선언 // 기본 형태 fun 함수명(매개변수: 타입): 반환타입 { return 값 } fun add(a: Int, b: Int): Int { return a + b } fun greet(name: String): String { return \"안녕하세요, ${name}님!\" } // 반환값 없음 (Unit = Java의 void) fun...","categories": ["kotlin"],
+        "tags": ["kotlin","초급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-04-function/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 05. 클래스와 객체지향 프로그래밍",
+        "excerpt":"Kotlin의 클래스, 상속, 인터페이스 등 OOP 핵심 개념을 배웁니다. 클래스 기본 클래스 선언 // 기본 클래스 class Person(val name: String, var age: Int) { fun introduce() { println(\"안녕하세요, ${name}입니다. ${age}세입니다.\") } } fun main() { val person = Person(\"홍길동\", 25) // new 키워드 불필요 person.introduce() person.age = 26 // var이므로...","categories": ["kotlin"],
+        "tags": ["kotlin","초급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-05-class-oop/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 06. 컬렉션 - List, Map, Set",
+        "excerpt":"Kotlin의 컬렉션 타입과 다양한 함수형 연산을 배웁니다. 컬렉션 종류 타입 읽기 전용 변경 가능 List listOf() mutableListOf() Set setOf() mutableSetOf() Map mapOf() mutableMapOf() List 읽기 전용 List fun main() { val fruits = listOf(\"사과\", \"바나나\", \"포도\", \"딸기\") println(fruits[0]) // 사과 println(fruits.size) // 4 println(fruits.first()) // 사과 println(fruits.last()) // 딸기 println(fruits.contains(\"포도\"))...","categories": ["kotlin"],
+        "tags": ["kotlin","초급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-06-collection/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 07. Null 안전성과 예외 처리",
+        "excerpt":"Kotlin의 Null Safety 시스템과 예외 처리 방법을 배웁니다. Null Safety 심화 nullable 타입 연산자 정리 연산자 이름 설명 ? nullable 선언 null 허용 타입 ?. 안전 호출 null이면 null 반환 ?: 엘비스 null이면 기본값 !! non-null 단언 null이면 예외 발생 as? 안전 캐스팅 실패 시 null 안전 호출 체이닝 data...","categories": ["kotlin"],
+        "tags": ["kotlin","초급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-07-null-exception/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 08. 코루틴 - 비동기 프로그래밍",
+        "excerpt":"Kotlin의 코루틴(Coroutine)으로 비동기 프로그래밍을 배웁니다. 코루틴이란? 코루틴은 경량 스레드로, 비동기 코드를 동기 코드처럼 작성할 수 있게 해줍니다. 항목 스레드 코루틴 비용 무거움 (MB 단위 메모리) 가벼움 (KB 단위) 전환 OS 레벨 컨텍스트 스위칭 사용자 레벨 수량 수천 개 한계 수십만 개 가능 취소 복잡 간단 (구조화된 동시성) 설정 Gradle 의존성...","categories": ["kotlin"],
+        "tags": ["kotlin","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-08-coroutine/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 09. Android 개발 기초 - 프로젝트 생성",
+        "excerpt":"Kotlin으로 Android 앱 개발을 시작합니다. 프로젝트 생성과 기본 구조를 배웁니다. Android 개발환경 필요 도구 도구 용도 Android Studio 공식 IDE JDK 17+ Java 런타임 Android SDK Android API Emulator / 실기기 테스트 Android Studio 설치 Android Studio 다운로드 설치 후 SDK Manager에서 최신 SDK 설치 AVD Manager에서 에뮬레이터 생성 프로젝트...","categories": ["kotlin"],
+        "tags": ["kotlin","android","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-09-android-basic/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 10. Compose 레이아웃과 리스트",
+        "excerpt":"Jetpack Compose에서 레이아웃을 구성하고 리스트를 만드는 방법을 배웁니다. LazyColumn (스크롤 리스트) ListView 대체. 화면에 보이는 아이템만 렌더링합니다. 기본 LazyColumn import androidx.compose.foundation.lazy.LazyColumn import androidx.compose.foundation.lazy.items @Composable fun SimpleList() { val items = (1..50).map { \"아이템 $it\" } LazyColumn( modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp) ) { items(items) { item...","categories": ["kotlin"],
+        "tags": ["kotlin","android","compose","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-10-compose-layout/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 11. 화면 이동 - Navigation",
+        "excerpt":"Jetpack Compose에서 화면 간 이동(Navigation)을 구현합니다. Navigation 설정 의존성 추가 // build.gradle.kts (app) dependencies { implementation(\"androidx.navigation:navigation-compose:2.7.0\") } 기본 Navigation NavHost 설정 import androidx.navigation.compose.NavHost import androidx.navigation.compose.composable import androidx.navigation.compose.rememberNavController @Composable fun MyApp() { val navController = rememberNavController() NavHost( navController = navController, startDestination = \"home\" // 시작 화면 ) { composable(\"home\") { HomeScreen(navController)...","categories": ["kotlin"],
+        "tags": ["kotlin","android","compose","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-11-navigation/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 12. 상태관리 - ViewModel, State",
+        "excerpt":"Android 앱에서 데이터를 효율적으로 관리하는 ViewModel과 상태 관리를 배웁니다. ViewModel이란? 화면 회전 등 구성 변경에도 데이터를 유지하는 컴포넌트입니다. 항목 remember ViewModel 생존 범위 Composable Activity/Fragment 화면 회전 데이터 소실 데이터 유지 용도 UI 상태 비즈니스 로직 + 데이터 의존성 // build.gradle.kts dependencies { implementation(\"androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0\") } ViewModel 기본 카운터 예제 import...","categories": ["kotlin"],
+        "tags": ["kotlin","android","compose","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-12-state-viewmodel/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 13. 네트워크 통신 - Retrofit",
+        "excerpt":"Retrofit을 사용하여 REST API와 통신하는 방법을 배웁니다. Retrofit이란? Android에서 가장 많이 사용되는 HTTP 클라이언트 라이브러리입니다. 의존성 추가 // build.gradle.kts (app) dependencies { implementation(\"com.squareup.retrofit2:retrofit:2.9.0\") implementation(\"com.squareup.retrofit2:converter-gson:2.9.0\") implementation(\"com.squareup.okhttp3:logging-interceptor:4.11.0\") } 인터넷 권한 &lt;!-- AndroidManifest.xml --&gt; &lt;uses-permission android:name=\"android.permission.INTERNET\" /&gt; 기본 사용법 1. 데이터 모델 data class Post( val id: Int, val userId: Int, val title:...","categories": ["kotlin"],
+        "tags": ["kotlin","android","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-13-network-retrofit/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 14. 로컬 저장소 - Room, DataStore",
+        "excerpt":"Android에서 데이터를 로컬에 저장하는 Room DB와 DataStore를 배웁니다. 저장 방식 비교 방식 용도 특징 DataStore 설정값, 간단한 데이터 key-value, 비동기 Room 구조화된 데이터 SQLite 래퍼, ORM SharedPreferences 레거시 설정값 동기, 비권장 DataStore (설정 저장) SharedPreferences의 현대적 대체입니다. 의존성 // build.gradle.kts dependencies { implementation(\"androidx.datastore:datastore-preferences:1.0.0\") } 사용법 import android.content.Context import androidx.datastore.preferences.core.* import...","categories": ["kotlin"],
+        "tags": ["kotlin","android","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-14-local-storage/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin",
+        "excerpt":"Kotlin으로 Spring Boot 서버를 개발하는 방법을 배웁니다. Spring Boot + Kotlin 프로젝트 생성 Spring Initializr 에서 생성: Language: Kotlin Build: Gradle - Kotlin Dependencies: Spring Web, Spring Data JPA, H2 Database build.gradle.kts plugins { kotlin(\"jvm\") version \"1.9.0\" kotlin(\"plugin.spring\") version \"1.9.0\" kotlin(\"plugin.jpa\") version \"1.9.0\" id(\"org.springframework.boot\") version \"3.2.0\" id(\"io.spring.dependency-management\") version \"1.1.0\" }...","categories": ["kotlin"],
+        "tags": ["kotlin","spring","서버","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-15-spring-boot/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 16. 테스트 - JUnit, 단위 테스트",
+        "excerpt":"Kotlin에서 단위 테스트를 작성하고 실행하는 방법을 배웁니다. 테스트 기본 의존성 // build.gradle.kts dependencies { testImplementation(kotlin(\"test\")) testImplementation(\"org.junit.jupiter:junit-jupiter:5.10.0\") } tasks.test { useJUnitPlatform() } JUnit 5 기본 첫 번째 테스트 import org.junit.jupiter.api.Test import org.junit.jupiter.api.Assertions.* class CalculatorTest { @Test fun `덧셈 테스트`() { val result = Calculator.add(2, 3) assertEquals(5, result) } @Test fun `뺄셈...","categories": ["kotlin"],
+        "tags": ["kotlin","테스트","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-16-testing/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구",
+        "excerpt":"실무에서 자주 사용하는 Kotlin 패턴과 관용구(idiom)를 정리합니다. 자주 쓰는 패턴 문자열 처리 fun main() { val text = \" Hello, Kotlin World! \" // 공백 제거 + 분리 val words = text.trim().split(\" \") println(words) // [Hello,, Kotlin, World!] // 빈 문자열 체크 val name = \"\" println(name.isEmpty()) // true println(name.isBlank())...","categories": ["kotlin"],
+        "tags": ["kotlin","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-17-practical-tips/",
+        "teaser": null
+      },{
+        "title": "[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR",
+        "excerpt":"Kotlin 프로젝트를 빌드하고 배포하는 방법을 배웁니다. Gradle 기본 build.gradle.kts 구조 plugins { kotlin(\"jvm\") version \"1.9.0\" application } group = \"com.example\" version = \"1.0.0\" repositories { mavenCentral() } dependencies { implementation(\"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3\") testImplementation(kotlin(\"test\")) } application { mainClass.set(\"com.example.MainKt\") } tasks.test { useJUnitPlatform() } // Fat JAR (의존성 포함) tasks.jar { manifest { attributes[\"Main-Class\"]...","categories": ["kotlin"],
+        "tags": ["kotlin","android","중급","lecture-kotlin"],
+        "url": "/kotlin/kotlin-18-build-deploy/",
+        "teaser": null
       }]

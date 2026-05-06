@@ -1,0 +1,2313 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Kotlin] 02. 변수와 데이터 타입 | 꿰보노트</title>
+<meta name="description" content="Kotlin의 변수 선언 방법과 기본 데이터 타입을 배웁니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Kotlin] 02. 변수와 데이터 타입">
+<meta property="og:url" content="https://kimjaehyun.co.kr/kotlin/kotlin-02-variable-type/">
+
+
+  <meta property="og:description" content="Kotlin의 변수 선언 방법과 기본 데이터 타입을 배웁니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-06T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/kotlin/kotlin-02-variable-type/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#kotlin" itemprop="item"><span itemprop="name">Kotlin</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Kotlin] 02. 변수와 데이터 타입</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 167</span>개</span> 
+      </li>
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/kotlin" class="">Kotlin (18)</a> <i class="fab fa-kotlin"></i></li>
+                  
+              
+          </ul>                    
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/flutter" class="">Flutter (18)</a> <i class="fab fa-dart"></i></li>
+                  
+              
+                  
+              
+          </ul>                    
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Kotlin] 02. 변수와 데이터 타입">
+    <meta itemprop="description" content="Kotlin의 변수 선언 방법과 기본 데이터 타입을 배웁니다.">
+    <meta itemprop="datePublished" content="2026-05-06T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/kotlin/kotlin-02-variable-type/" class="u-url" itemprop="url">[Kotlin] 02. 변수와 데이터 타입
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#변수-선언">변수 선언</a><ul><li><a href="#val-vs-var">val vs var</a></li><li><a href="#타입-추론-vs-명시적-선언">타입 추론 vs 명시적 선언</a></li></ul></li><li><a href="#기본-데이터-타입">기본 데이터 타입</a></li><li><a href="#문자열">문자열</a><ul><li><a href="#문자열-템플릿">문자열 템플릿</a></li><li><a href="#여러-줄-문자열">여러 줄 문자열</a></li><li><a href="#문자열-주요-메서드">문자열 주요 메서드</a></li></ul></li><li><a href="#null-safety">Null Safety</a><ul><li><a href="#기본-null-불가">기본: null 불가</a></li><li><a href="#nullable-타입-">nullable 타입 (?)</a></li><li><a href="#안전한-null-처리-패턴">안전한 null 처리 패턴</a></li></ul></li><li><a href="#타입-변환">타입 변환</a></li><li><a href="#배열과-컬렉션-미리보기">배열과 컬렉션 미리보기</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Kotlin의 변수 선언 방법과 기본 데이터 타입을 배웁니다.</p>
+
+<h1 id="변수-선언">변수 선언</h1>
+
+<h2 id="val-vs-var">val vs var</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// val: 읽기 전용 (재할당 불가, Java의 final)</span>
+    <span class="kd">val</span> <span class="py">name</span> <span class="p">=</span> <span class="s">"홍길동"</span>
+    <span class="c1">// name = "김철수"  // 에러! 재할당 불가</span>
+
+    <span class="c1">// var: 변경 가능</span>
+    <span class="kd">var</span> <span class="py">age</span> <span class="p">=</span> <span class="mi">25</span>
+    <span class="n">age</span> <span class="p">=</span> <span class="mi">26</span>  <span class="c1">// OK</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="s">"$name, $age세"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>가능하면 <code class="language-plaintext highlighter-rouge">val</code>을 사용하고, 변경이 필요할 때만 <code class="language-plaintext highlighter-rouge">var</code>을 사용합니다.</p>
+</blockquote>
+
+<h2 id="타입-추론-vs-명시적-선언">타입 추론 vs 명시적 선언</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 타입 추론 (컴파일러가 자동 판단)</span>
+    <span class="kd">val</span> <span class="py">city</span> <span class="p">=</span> <span class="s">"서울"</span>          <span class="c1">// String</span>
+    <span class="kd">val</span> <span class="py">count</span> <span class="p">=</span> <span class="mi">10</span>             <span class="c1">// Int</span>
+    <span class="kd">val</span> <span class="py">price</span> <span class="p">=</span> <span class="mf">99.9</span>           <span class="c1">// Double</span>
+    <span class="kd">val</span> <span class="py">isActive</span> <span class="p">=</span> <span class="k">true</span>        <span class="c1">// Boolean</span>
+
+    <span class="c1">// 명시적 타입 선언</span>
+    <span class="kd">val</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span> <span class="p">=</span> <span class="s">"Kotlin"</span>
+    <span class="kd">val</span> <span class="py">number</span><span class="p">:</span> <span class="nc">Int</span> <span class="p">=</span> <span class="mi">42</span>
+    <span class="kd">val</span> <span class="py">rate</span><span class="p">:</span> <span class="nc">Double</span> <span class="p">=</span> <span class="mf">3.14</span>
+
+    <span class="c1">// 선언과 초기화 분리 (타입 필수)</span>
+    <span class="kd">val</span> <span class="py">result</span><span class="p">:</span> <span class="nc">String</span>
+    <span class="n">result</span> <span class="p">=</span> <span class="s">"나중에 할당"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="기본-데이터-타입">기본 데이터 타입</h1>
+
+<p>Kotlin에서는 모든 것이 객체입니다 (원시 타입 없음).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">타입</th>
+      <th style="text-align: center">크기</th>
+      <th style="text-align: center">범위</th>
+      <th style="text-align: center">예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Byte</td>
+      <td style="text-align: center">8bit</td>
+      <td style="text-align: center">-128 ~ 127</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">val b: Byte = 1</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Short</td>
+      <td style="text-align: center">16bit</td>
+      <td style="text-align: center">-32768 ~ 32767</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">val s: Short = 100</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Int</td>
+      <td style="text-align: center">32bit</td>
+      <td style="text-align: center">-2^31 ~ 2^31-1</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">val i = 42</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Long</td>
+      <td style="text-align: center">64bit</td>
+      <td style="text-align: center">-2^63 ~ 2^63-1</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">val l = 100L</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Float</td>
+      <td style="text-align: center">32bit</td>
+      <td style="text-align: center">소수점 6~7자리</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">val f = 3.14f</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Double</td>
+      <td style="text-align: center">64bit</td>
+      <td style="text-align: center">소수점 15~16자리</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">val d = 3.14</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Boolean</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">true / false</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">val b = true</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Char</td>
+      <td style="text-align: center">16bit</td>
+      <td style="text-align: center">단일 문자</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">val c = 'A'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">String</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">문자열</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">val s = "Hello"</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">intNum</span> <span class="p">=</span> <span class="mi">100</span>          <span class="c1">// Int</span>
+    <span class="kd">val</span> <span class="py">longNum</span> <span class="p">=</span> <span class="mi">100L</span>        <span class="c1">// Long (L 접미사)</span>
+    <span class="kd">val</span> <span class="py">floatNum</span> <span class="p">=</span> <span class="mf">3.14f</span>      <span class="c1">// Float (f 접미사)</span>
+    <span class="kd">val</span> <span class="py">doubleNum</span> <span class="p">=</span> <span class="mf">3.14</span>      <span class="c1">// Double</span>
+
+    <span class="c1">// 큰 숫자 가독성 (언더스코어)</span>
+    <span class="kd">val</span> <span class="py">million</span> <span class="p">=</span> <span class="mi">1_000_000</span>
+    <span class="kd">val</span> <span class="py">hexColor</span> <span class="p">=</span> <span class="mh">0xFF0000</span>
+    <span class="kd">val</span> <span class="py">binary</span> <span class="p">=</span> <span class="mb">0b1010</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="n">million</span><span class="p">)</span>  <span class="c1">// 1000000</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="문자열">문자열</h1>
+
+<h2 id="문자열-템플릿">문자열 템플릿</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">name</span> <span class="p">=</span> <span class="s">"Kotlin"</span>
+    <span class="kd">val</span> <span class="py">version</span> <span class="p">=</span> <span class="mf">1.9</span>
+
+    <span class="c1">// $ 변수명</span>
+    <span class="nf">println</span><span class="p">(</span><span class="s">"언어: $name"</span><span class="p">)</span>
+
+    <span class="c1">// ${표현식}</span>
+    <span class="nf">println</span><span class="p">(</span><span class="s">"버전: ${version + 0.1}"</span><span class="p">)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="s">"길이: ${name.length}자"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="여러-줄-문자열">여러 줄 문자열</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">text</span> <span class="p">=</span> <span class="s">"""
+        |첫 번째 줄
+        |두 번째 줄
+        |세 번째 줄
+    """</span><span class="p">.</span><span class="nf">trimMargin</span><span class="p">()</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="문자열-주요-메서드">문자열 주요 메서드</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">str</span> <span class="p">=</span> <span class="s">"Hello, Kotlin!"</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>           <span class="c1">// 14</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="nf">uppercase</span><span class="p">())</span>      <span class="c1">// HELLO, KOTLIN!</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="nf">lowercase</span><span class="p">())</span>      <span class="c1">// hello, kotlin!</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="nf">contains</span><span class="p">(</span><span class="s">"Kotlin"</span><span class="p">))</span> <span class="c1">// true</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="s">"Kotlin"</span><span class="p">,</span> <span class="s">"World"</span><span class="p">))</span> <span class="c1">// Hello, World!</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="nf">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1">// Hello</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s">", "</span><span class="p">))</span>      <span class="c1">// [Hello, Kotlin!]</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="nf">trim</span><span class="p">())</span>           <span class="c1">// 앞뒤 공백 제거</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="nf">startsWith</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">))</span> <span class="c1">// true</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="nf">isEmpty</span><span class="p">())</span>        <span class="c1">// false</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="null-safety">Null Safety</h1>
+
+<p>Kotlin의 가장 큰 장점 중 하나입니다.</p>
+
+<h2 id="기본-null-불가">기본: null 불가</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span> <span class="p">=</span> <span class="s">"홍길동"</span>
+    <span class="c1">// name = null  // 컴파일 에러!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="nullable-타입-">nullable 타입 (?)</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="py">nickname</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="s">"길동이"</span>
+    <span class="n">nickname</span> <span class="p">=</span> <span class="k">null</span>  <span class="c1">// OK</span>
+
+    <span class="c1">// 안전 호출 연산자 (?.)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">nickname</span><span class="o">?.</span><span class="n">length</span><span class="p">)</span>  <span class="c1">// null (에러 없음)</span>
+
+    <span class="c1">// 엘비스 연산자 (?:) - null이면 기본값</span>
+    <span class="kd">val</span> <span class="py">displayName</span> <span class="p">=</span> <span class="n">nickname</span> <span class="o">?:</span> <span class="s">"이름없음"</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">displayName</span><span class="p">)</span>  <span class="c1">// 이름없음</span>
+
+    <span class="c1">// non-null 단언 (!!) - null이면 예외 발생 (주의!)</span>
+    <span class="c1">// println(nickname!!.length)  // NullPointerException!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="안전한-null-처리-패턴">안전한 null 처리 패턴</h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">text</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="s">"Hello"</span>
+
+    <span class="c1">// 방법 1: if 체크</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">text</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">println</span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>  <span class="c1">// 스마트 캐스트: String으로 자동 변환</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 방법 2: let (null이 아닐 때만 실행)</span>
+    <span class="n">text</span><span class="o">?.</span><span class="nf">let</span> <span class="p">{</span>
+        <span class="nf">println</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
+        <span class="nf">println</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="nf">uppercase</span><span class="p">())</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 방법 3: 엘비스 연산자로 기본값</span>
+    <span class="kd">val</span> <span class="py">length</span> <span class="p">=</span> <span class="n">text</span><span class="o">?.</span><span class="n">length</span> <span class="o">?:</span> <span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="타입-변환">타입 변환</h1>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 숫자 변환</span>
+    <span class="kd">val</span> <span class="py">intNum</span> <span class="p">=</span> <span class="mi">42</span>
+    <span class="kd">val</span> <span class="py">longNum</span> <span class="p">=</span> <span class="n">intNum</span><span class="p">.</span><span class="nf">toLong</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">doubleNum</span> <span class="p">=</span> <span class="n">intNum</span><span class="p">.</span><span class="nf">toDouble</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">floatNum</span> <span class="p">=</span> <span class="n">intNum</span><span class="p">.</span><span class="nf">toFloat</span><span class="p">()</span>
+
+    <span class="c1">// 문자열 → 숫자</span>
+    <span class="kd">val</span> <span class="py">str</span> <span class="p">=</span> <span class="s">"123"</span>
+    <span class="kd">val</span> <span class="py">num</span> <span class="p">=</span> <span class="n">str</span><span class="p">.</span><span class="nf">toInt</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">numOrNull</span> <span class="p">=</span> <span class="s">"abc"</span><span class="p">.</span><span class="nf">toIntOrNull</span><span class="p">()</span>  <span class="c1">// null (안전한 변환)</span>
+
+    <span class="c1">// 숫자 → 문자열</span>
+    <span class="kd">val</span> <span class="py">numStr</span> <span class="p">=</span> <span class="mi">42</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span>
+
+    <span class="c1">// 타입 체크</span>
+    <span class="kd">val</span> <span class="py">value</span><span class="p">:</span> <span class="nc">Any</span> <span class="p">=</span> <span class="s">"Hello"</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="k">is</span> <span class="nc">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">println</span><span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>  <span class="c1">// 스마트 캐스트</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 안전한 캐스팅</span>
+    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">value</span> <span class="k">as</span><span class="p">?</span> <span class="nc">Int</span>  <span class="c1">// null (실패 시 null)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numOrNull</span><span class="p">)</span>  <span class="c1">// null</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="배열과-컬렉션-미리보기">배열과 컬렉션 미리보기</h1>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 배열</span>
+    <span class="kd">val</span> <span class="py">numbers</span> <span class="p">=</span> <span class="nf">arrayOf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1">// 1</span>
+
+    <span class="c1">// 리스트 (읽기 전용)</span>
+    <span class="kd">val</span> <span class="py">fruits</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span><span class="s">"사과"</span><span class="p">,</span> <span class="s">"바나나"</span><span class="p">,</span> <span class="s">"포도"</span><span class="p">)</span>
+
+    <span class="c1">// 리스트 (변경 가능)</span>
+    <span class="kd">val</span> <span class="py">mutableList</span> <span class="p">=</span> <span class="nf">mutableListOf</span><span class="p">(</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">)</span>
+    <span class="n">mutableList</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="s">"D"</span><span class="p">)</span>
+
+    <span class="c1">// 맵</span>
+    <span class="kd">val</span> <span class="py">scores</span> <span class="p">=</span> <span class="nf">mapOf</span><span class="p">(</span><span class="s">"국어"</span> <span class="n">to</span> <span class="mi">90</span><span class="p">,</span> <span class="s">"영어"</span> <span class="n">to</span> <span class="mi">85</span><span class="p">)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s">"국어"</span><span class="p">])</span>  <span class="c1">// 90</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><span class="nav__sub-title">관련된 글 (kotlin &gt; lecture-kotlin)</span></p>
+<ul>
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-18-build-deploy/">[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-17-practical-tips/">[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-16-testing/">[Kotlin] 16. 테스트 - JUnit, 단위 테스트</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-15-spring-boot/">[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-14-local-storage/">[Kotlin] 14. 로컬 저장소 - Room, DataStore</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-13-network-retrofit/">[Kotlin] 13. 네트워크 통신 - Retrofit</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-12-state-viewmodel/">[Kotlin] 12. 상태관리 - ViewModel, State</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-11-navigation/">[Kotlin] 11. 화면 이동 - Navigation</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-10-compose-layout/">[Kotlin] 10. Compose 레이아웃과 리스트</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-09-android-basic/">[Kotlin] 09. Android 개발 기초 - 프로젝트 생성</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-08-coroutine/">[Kotlin] 08. 코루틴 - 비동기 프로그래밍</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-07-null-exception/">[Kotlin] 07. Null 안전성과 예외 처리</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-06-collection/">[Kotlin] 06. 컬렉션 - List, Map, Set</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-05-class-oop/">[Kotlin] 05. 클래스와 객체지향 프로그래밍</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-04-function/">[Kotlin] 04. 함수 - 선언, 매개변수, 람다</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-03-control-flow/">[Kotlin] 03. 제어문 - 조건문, 반복문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-02-variable-type/">[Kotlin] 02. 변수와 데이터 타입</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+              
+                <li><a href="/kotlin/kotlin-01-intro-install/">[Kotlin] 01. Kotlin 소개 및 개발환경 설치</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#kotlin" class="page__taxonomy-item p-category" rel="tag">kotlin</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-kotlin" class="page__taxonomy-item p-category" rel="tag">lecture-kotlin</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#kotlin" class="page__taxonomy-item p-category" rel="tag">kotlin</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-06T00:00:00+00:00">2026-05-06</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BKotlin%5D+02.+%EB%B3%80%EC%88%98%EC%99%80+%EB%8D%B0%EC%9D%B4%ED%84%B0+%ED%83%80%EC%9E%85%20https%3A%2F%2Fkimjaehyun.co.kr%2Fkotlin%2Fkotlin-02-variable-type%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fkotlin%2Fkotlin-02-variable-type%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fkotlin%2Fkotlin-02-variable-type%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/kotlin/kotlin-01-intro-install/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Kotlin] 01. Kotlin 소개 및 개발환경 설치</a>
+    
+    
+      <a href="/kotlin/kotlin-03-control-flow/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Kotlin] 03. 제어문 - 조건문, 반복문</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-18-build-deploy/">[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#android" class="page__taxonomy-item-tag" rel="tag">android</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-17-practical-tips/">[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-16-testing/">[Kotlin] 16. 테스트 - JUnit, 단위 테스트</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%85%8C%EC%8A%A4%ED%8A%B8" class="page__taxonomy-item-tag" rel="tag">테스트</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-15-spring-boot/">[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#spring" class="page__taxonomy-item-tag" rel="tag">spring</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%84%9C%EB%B2%84" class="page__taxonomy-item-tag" rel="tag">서버</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,2277 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Flutter] 05. Dart 비동기 - Future, async/await, Stream | 꿰보노트</title>
+<meta name="description" content="Flutter에서 네트워크 통신, 파일 읽기 등에 필수적인 비동기 프로그래밍을 배웁니다.">
+
+
+  <meta name="author" content="devjaedol">
+  
+  <meta property="article:author" content="devjaedol">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="꿰보노트">
+<meta property="og:title" content="[Flutter] 05. Dart 비동기 - Future, async/await, Stream">
+<meta property="og:url" content="https://kimjaehyun.co.kr/flutter/flutter-05-dart-async/">
+
+
+  <meta property="og:description" content="Flutter에서 네트워크 통신, 파일 읽기 등에 필수적인 비동기 프로그래밍을 배웁니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2026-05-06T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimjaehyun.co.kr/flutter/flutter-05-dart-async/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "devjaedol",
+      "url": "https://kimjaehyun.co.kr/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="ff50137aab68f90fac8b11026cd9cc8bde8963b2">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="꿰보노트 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+<!--google Ad-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9873325986561213"
+     crossorigin="anonymous"></script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" defer
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+     
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<link rel="icon" type="image/png" href="/assets/images/jaedol_favicon.ico">
+
+    <style> 
+      
+    </style>    
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          꿰보노트
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/search/">Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">카테고리 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#flutter" itemprop="item"><span itemprop="name">Flutter</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Flutter] 05. Dart 비동기 - Future, async/await, Stream</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  <!--
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items">
+    
+  </ul>
+</nav>
+
+    
+  
+  -->
+  
+    
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">카테고리 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      
+    
+    <!--전체 글 수-->
+      <li>
+          <span class="nav__sub-title">전체 <span style="color:red"> 167</span>개</span> 
+      </li>
+
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+        <span class="nav__sub-title">일상다반사</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/blog" class="">Blog (1)</a> <i class="fab fa-blogger"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">프로그래밍</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/python" class="">Python (24)</a> <i class="fab fa-python"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/java" class="">Java (17)</a> <i class="fab fa-java"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>           
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/javascript" class="">Javascript (4)</a> <i class="fab fa-js-square"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/nodejs" class="">nodejs (3)</a> <i class="fab fa-node"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>            
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/kotlin" class="">Kotlin (18)</a> <i class="fab fa-kotlin"></i></li>
+                  
+              
+          </ul>                    
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/flutter" class="">Flutter (18)</a> <i class="fab fa-dart"></i></li>
+                  
+              
+                  
+              
+          </ul>                    
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/categories/cloud" class="">Cloud (4)</a> <i class="fas fa-cloud"></i></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+          <ul>
+            
+                
+                    <li><a href="/categories/etc" class="">Etc (6)</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>            
+
+        <span class="nav__sub-title">Database</span>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mysql" class="">Mysql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/oracle" class="">Oracle (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/postgresql" class="">Postgresql (13)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/redis" class="">Redis (11)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/mongodb" class="">MongoDB (10)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/influxdb" class="">InfluxDB (6)</a> <i class="fas fa-database"></i></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          
+          
+        <span class="nav__sub-title">주제별 모음</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/algorithm" class="">알고리즘(11)</a> <i class="fas fa-function"></i></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/codingtest" class="">Coding Test (7)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+                      <li><a href="/categories/baekjoon" class="">백준 (6)</a></li>
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+                  
+              
+          </ul>
+          <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+          </ul>
+          
+          <ul>           
+              <li><a href="/lecture/python" class="">Python Study</a> <i class="fas fa-graduation-cap"></i></li>
+          </ul>
+      </li>
+  </ul>
+</nav>
+  
+
+  </div>
+
+
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Flutter] 05. Dart 비동기 - Future, async/await, Stream">
+    <meta itemprop="description" content="Flutter에서 네트워크 통신, 파일 읽기 등에 필수적인 비동기 프로그래밍을 배웁니다.">
+    <meta itemprop="datePublished" content="2026-05-06T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://kimjaehyun.co.kr/flutter/flutter-05-dart-async/" class="u-url" itemprop="url">[Flutter] 05. Dart 비동기 - Future, async/await, Stream
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#비동기-프로그래밍이란">비동기 프로그래밍이란?</a></li><li><a href="#future">Future</a><ul><li><a href="#future-기본">Future 기본</a></li><li><a href="#async--await">async / await</a></li><li><a href="#에러-처리">에러 처리</a></li><li><a href="#병렬-실행-futurewait">병렬 실행 (Future.wait)</a></li></ul></li><li><a href="#stream">Stream</a><ul><li><a href="#stream-기본">Stream 기본</a></li><li><a href="#streamcontroller">StreamController</a></li><li><a href="#stream-변환">Stream 변환</a></li></ul></li><li><a href="#실습-예제">실습 예제</a><ul><li><a href="#api-호출-시뮬레이션">API 호출 시뮬레이션</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Flutter에서 네트워크 통신, 파일 읽기 등에 필수적인 비동기 프로그래밍을 배웁니다.</p>
+
+<h1 id="비동기-프로그래밍이란">비동기 프로그래밍이란?</h1>
+
+<p>시간이 걸리는 작업(API 호출, 파일 읽기 등)을 기다리는 동안 다른 작업을 수행하는 방식입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">동기</th>
+      <th style="text-align: center">비동기</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">순서대로 실행</td>
+      <td style="text-align: center">동시에 실행 가능</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">앞 작업 끝나야 다음 실행</td>
+      <td style="text-align: center">기다리지 않고 다음 실행</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">UI 멈춤 발생</td>
+      <td style="text-align: center">UI 멈춤 없음</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="future">Future</h1>
+
+<h2 id="future-기본">Future 기본</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Future</code>는 미래에 완료될 값을 나타냅니다.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Future를 반환하는 함수</span>
+<span class="n">Future</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">&gt;</span> <span class="n">fetchData</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 2초 후에 데이터 반환 (네트워크 요청 시뮬레이션)</span>
+  <span class="k">return</span> <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="p">(</span>
+    <span class="n">Duration</span><span class="p">(</span><span class="nl">seconds:</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">()</span> <span class="o">=</span><span class="p">&gt;</span> <span class="s">'서버에서 받은 데이터'</span><span class="p">,</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">print</span><span class="p">(</span><span class="s">'요청 시작'</span><span class="p">);</span>
+  <span class="n">fetchData</span><span class="p">()</span><span class="o">.</span><span class="na">then</span><span class="p">((</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">'받은 데이터: </span><span class="si">$data</span><span class="s">'</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="n">print</span><span class="p">(</span><span class="s">'다른 작업 수행'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// 출력 순서:</span>
+<span class="c1">// 요청 시작</span>
+<span class="c1">// 다른 작업 수행</span>
+<span class="c1">// 받은 데이터: 서버에서 받은 데이터 (2초 후)</span>
+</code></pre></div></div>
+
+<h2 id="async--await">async / await</h2>
+
+<p><code class="language-plaintext highlighter-rouge">then</code> 대신 더 읽기 쉬운 방식:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Future</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">&gt;</span> <span class="n">fetchUser</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="p">(</span><span class="n">Duration</span><span class="p">(</span><span class="nl">seconds:</span> <span class="mi">1</span><span class="p">));</span>
+  <span class="k">return</span> <span class="s">'홍길동'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">Future</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">fetchAge</span><span class="p">(</span><span class="kt">String</span> <span class="n">name</span><span class="p">)</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="p">(</span><span class="n">Duration</span><span class="p">(</span><span class="nl">seconds:</span> <span class="mi">1</span><span class="p">));</span>
+  <span class="k">return</span> <span class="mi">25</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// async 함수는 반드시 Future를 반환</span>
+<span class="n">Future</span><span class="p">&lt;</span><span class="kt">void</span><span class="p">&gt;</span> <span class="n">main</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="n">print</span><span class="p">(</span><span class="s">'시작'</span><span class="p">);</span>
+
+  <span class="c1">// await: Future가 완료될 때까지 대기</span>
+  <span class="kt">String</span> <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetchUser</span><span class="p">();</span>
+  <span class="n">print</span><span class="p">(</span><span class="s">'사용자: </span><span class="si">$user</span><span class="s">'</span><span class="p">);</span>
+
+  <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetchAge</span><span class="p">(</span><span class="n">user</span><span class="p">);</span>
+  <span class="n">print</span><span class="p">(</span><span class="s">'나이: </span><span class="si">$age</span><span class="s">'</span><span class="p">);</span>
+
+  <span class="n">print</span><span class="p">(</span><span class="s">'완료'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// 출력:</span>
+<span class="c1">// 시작</span>
+<span class="c1">// 사용자: 홍길동 (1초 후)</span>
+<span class="c1">// 나이: 25 (2초 후)</span>
+<span class="c1">// 완료</span>
+</code></pre></div></div>
+
+<h2 id="에러-처리">에러 처리</h2>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Future</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">&gt;</span> <span class="n">fetchData</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="p">(</span><span class="n">Duration</span><span class="p">(</span><span class="nl">seconds:</span> <span class="mi">1</span><span class="p">));</span>
+  <span class="k">throw</span> <span class="n">Exception</span><span class="p">(</span><span class="s">'네트워크 오류 발생!'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">Future</span><span class="p">&lt;</span><span class="kt">void</span><span class="p">&gt;</span> <span class="n">main</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="c1">// try-catch로 에러 처리</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kt">String</span> <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetchData</span><span class="p">();</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">'에러: </span><span class="si">$e</span><span class="s">'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">'항상 실행됨'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="병렬-실행-futurewait">병렬 실행 (Future.wait)</h2>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Future</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">&gt;</span> <span class="n">fetchName</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="p">(</span><span class="n">Duration</span><span class="p">(</span><span class="nl">seconds:</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="k">return</span> <span class="s">'홍길동'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">Future</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">fetchScore</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="p">(</span><span class="n">Duration</span><span class="p">(</span><span class="nl">seconds:</span> <span class="mi">3</span><span class="p">));</span>
+  <span class="k">return</span> <span class="mi">95</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">Future</span><span class="p">&lt;</span><span class="kt">void</span><span class="p">&gt;</span> <span class="n">main</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="c1">// 순차 실행: 5초 소요</span>
+  <span class="c1">// var name = await fetchName();</span>
+  <span class="c1">// var score = await fetchScore();</span>
+
+  <span class="c1">// 병렬 실행: 3초 소요 (더 빠름!)</span>
+  <span class="kd">var</span> <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Future</span><span class="o">.</span><span class="na">wait</span><span class="p">([</span><span class="n">fetchName</span><span class="p">(),</span> <span class="n">fetchScore</span><span class="p">()]);</span>
+  <span class="n">print</span><span class="p">(</span><span class="s">'이름: </span><span class="si">${results[0]}</span><span class="s">, 점수: </span><span class="si">${results[1]}</span><span class="s">'</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="stream">Stream</h1>
+
+<h2 id="stream-기본">Stream 기본</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Future</code>는 단일 값, <code class="language-plaintext highlighter-rouge">Stream</code>은 연속된 값을 전달합니다.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Stream 생성</span>
+<span class="n">Stream</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">countStream</span><span class="p">(</span><span class="kt">int</span> <span class="n">max</span><span class="p">)</span> <span class="kd">async</span><span class="o">*</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span><span class="o">=</span> <span class="n">max</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="p">(</span><span class="n">Duration</span><span class="p">(</span><span class="nl">seconds:</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="k">yield</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// 값을 하나씩 전달</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Future</span><span class="p">&lt;</span><span class="kt">void</span><span class="p">&gt;</span> <span class="n">main</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="c1">// await for로 Stream 수신</span>
+  <span class="k">await</span> <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">value</span> <span class="k">in</span> <span class="n">countStream</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">'받은 값: </span><span class="si">$value</span><span class="s">'</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">print</span><span class="p">(</span><span class="s">'스트림 완료'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// 1초 간격으로 1, 2, 3, 4, 5 출력</span>
+</code></pre></div></div>
+
+<h2 id="streamcontroller">StreamController</h2>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:async'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// StreamController 생성</span>
+  <span class="kd">final</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">StreamController</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">&gt;();</span>
+
+  <span class="c1">// 리스너 등록</span>
+  <span class="n">controller</span><span class="o">.</span><span class="na">stream</span><span class="o">.</span><span class="na">listen</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s">'수신: </span><span class="si">$data</span><span class="s">'</span><span class="p">),</span>
+    <span class="nl">onError:</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s">'에러: </span><span class="si">$error</span><span class="s">'</span><span class="p">),</span>
+    <span class="nl">onDone:</span> <span class="p">()</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s">'스트림 종료'</span><span class="p">),</span>
+  <span class="p">);</span>
+
+  <span class="c1">// 데이터 전송</span>
+  <span class="n">controller</span><span class="o">.</span><span class="na">sink</span><span class="o">.</span><span class="na">add</span><span class="p">(</span><span class="s">'첫 번째 메시지'</span><span class="p">);</span>
+  <span class="n">controller</span><span class="o">.</span><span class="na">sink</span><span class="o">.</span><span class="na">add</span><span class="p">(</span><span class="s">'두 번째 메시지'</span><span class="p">);</span>
+  <span class="n">controller</span><span class="o">.</span><span class="na">sink</span><span class="o">.</span><span class="na">add</span><span class="p">(</span><span class="s">'세 번째 메시지'</span><span class="p">);</span>
+
+  <span class="c1">// 스트림 종료</span>
+  <span class="n">controller</span><span class="o">.</span><span class="na">close</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="stream-변환">Stream 변환</h2>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:async'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Stream</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">fromIterable</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span>
+
+  <span class="c1">// where: 필터링</span>
+  <span class="c1">// map: 변환</span>
+  <span class="n">numbers</span>
+      <span class="o">.</span><span class="na">where</span><span class="p">((</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="o">.</span><span class="na">map</span><span class="p">((</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+      <span class="o">.</span><span class="na">listen</span><span class="p">((</span><span class="n">data</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">print</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+  <span class="c1">// 20, 40, 60, 80, 100</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="실습-예제">실습 예제</h1>
+
+<h2 id="api-호출-시뮬레이션">API 호출 시뮬레이션</h2>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 가상 API 서비스</span>
+<span class="kd">class</span> <span class="nc">ApiService</span> <span class="p">{</span>
+  <span class="n">Future</span><span class="p">&lt;</span><span class="kt">Map</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="kd">dynamic</span><span class="p">&gt;&gt;</span> <span class="n">getUser</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="p">(</span><span class="n">Duration</span><span class="p">(</span><span class="nl">seconds:</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">'id'</span><span class="o">:</span> <span class="n">id</span><span class="p">,</span> <span class="s">'name'</span><span class="o">:</span> <span class="s">'사용자</span><span class="si">$id</span><span class="s">'</span><span class="p">,</span> <span class="s">'email'</span><span class="o">:</span> <span class="s">'user</span><span class="si">$id</span><span class="s">@test.com'</span><span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="n">Future</span><span class="p">&lt;</span><span class="kt">List</span><span class="p">&lt;</span><span class="kt">String</span><span class="p">&gt;&gt;</span> <span class="n">getPosts</span><span class="p">(</span><span class="kt">int</span> <span class="n">userId</span><span class="p">)</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="p">(</span><span class="n">Duration</span><span class="p">(</span><span class="nl">seconds:</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s">'게시글1'</span><span class="p">,</span> <span class="s">'게시글2'</span><span class="p">,</span> <span class="s">'게시글3'</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Future</span><span class="p">&lt;</span><span class="kt">void</span><span class="p">&gt;</span> <span class="n">main</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="n">api</span> <span class="o">=</span> <span class="n">ApiService</span><span class="p">();</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// 사용자 정보 가져오기</span>
+    <span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">api</span><span class="o">.</span><span class="na">getUser</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">'사용자: </span><span class="si">${user['name']}</span><span class="s">'</span><span class="p">);</span>
+
+    <span class="c1">// 해당 사용자의 게시글 가져오기</span>
+    <span class="kd">var</span> <span class="n">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="n">api</span><span class="o">.</span><span class="na">getPosts</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s">'id'</span><span class="p">]);</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">'게시글 수: </span><span class="si">${posts.length}</span><span class="s">'</span><span class="p">);</span>
+    <span class="n">posts</span><span class="o">.</span><span class="na">forEach</span><span class="p">((</span><span class="n">post</span><span class="p">)</span> <span class="o">=</span><span class="p">&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s">'  - </span><span class="si">$post</span><span class="s">'</span><span class="p">));</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">'오류 발생: </span><span class="si">$e</span><span class="s">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Flutter에서는 <code class="language-plaintext highlighter-rouge">http</code> 패키지로 실제 API를 호출하며, 동일한 async/await 패턴을 사용합니다.</p>
+</blockquote>
+
+<p><span class="nav__sub-title">관련된 글 (flutter &gt; lecture-flutter)</span></p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-18-build-deploy/">[Flutter] 18. 빌드와 배포 - APK, App Store</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-17-todo-app/">[Flutter] 17. 실전 프로젝트 - Todo 앱 만들기</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-16-package-plugin/">[Flutter] 16. 패키지 활용 - 유용한 패키지 소개</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-15-design-theme/">[Flutter] 15. 디자인 - 테마, 스타일, 반응형</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-14-local-storage/">[Flutter] 14. 로컬 저장소 - SharedPreferences, SQLite</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-13-http-api/">[Flutter] 13. HTTP 통신 - REST API 연동</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-12-state-management/">[Flutter] 12. 상태관리 - setState, Provider</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-11-form-input/">[Flutter] 11. 사용자 입력 - Form, TextField, 버튼</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-10-navigation/">[Flutter] 10. 화면 이동 - Navigation, Route</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-09-list-scroll/">[Flutter] 09. 리스트와 스크롤 - ListView, GridView</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-08-layout/">[Flutter] 08. 레이아웃 - Row, Column, Stack</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-07-widget-basic/">[Flutter] 07. 위젯 기초 - StatelessWidget, StatefulWidget</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-06-intro-install/">[Flutter] 06. Flutter 소개 및 개발환경 설치</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-05-dart-async/">[Flutter] 05. Dart 비동기 - Future, async/await, Stream</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-04-dart-class/">[Flutter] 04. Dart 클래스 - OOP 기초</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-03-dart-function/">[Flutter] 03. Dart 함수 - 선언, 매개변수, 람다</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-02-dart-control-flow/">[Flutter] 02. Dart 제어문 - 조건문, 반복문</a></li>
+             
+        
+      
+
+    
+        
+             
+        
+             
+        
+             
+        
+              
+                <li><a href="/flutter/flutter-01-dart-basics/">[Flutter] 01. Dart 언어 기초 - 변수, 타입, 연산자</a></li>
+             
+        
+      
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#dart" class="page__taxonomy-item p-category" rel="tag">dart</a><span class="sep">, </span>
+    
+      <a href="/tags/#flutter" class="page__taxonomy-item p-category" rel="tag">flutter</a><span class="sep">, </span>
+    
+      <a href="/tags/#lecture-flutter" class="page__taxonomy-item p-category" rel="tag">lecture-flutter</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%B4%88%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">초급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#flutter" class="page__taxonomy-item p-category" rel="tag">flutter</a>
+    
+    </span>
+  </p>
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2026-05-06T00:00:00+00:00">2026-05-06</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BFlutter%5D+05.+Dart+%EB%B9%84%EB%8F%99%EA%B8%B0+-+Future%2C+async%2Fawait%2C+Stream%20https%3A%2F%2Fkimjaehyun.co.kr%2Fflutter%2Fflutter-05-dart-async%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimjaehyun.co.kr%2Fflutter%2Fflutter-05-dart-async%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimjaehyun.co.kr%2Fflutter%2Fflutter-05-dart-async%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/flutter/flutter-04-dart-class/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>[Flutter] 04. Dart 클래스 - OOP 기초</a>
+    
+    
+      <a href="/flutter/flutter-06-intro-install/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>[Flutter] 06. Flutter 소개 및 개발환경 설치</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-18-build-deploy/">[Kotlin] 18. 빌드와 배포 - Gradle, APK, JAR</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#android" class="page__taxonomy-item-tag" rel="tag">android</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-17-practical-tips/">[Kotlin] 17. 실전 팁 - 자주 쓰는 패턴과 관용구</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-16-testing/">[Kotlin] 16. 테스트 - JUnit, 단위 테스트</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%ED%85%8C%EC%8A%A4%ED%8A%B8" class="page__taxonomy-item-tag" rel="tag">테스트</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" p="arch1" style="margin-bottom:10px">
+    <article class="archive-item">
+        <div>
+            <span>
+              <i class="fas fa-arrow-alt-circle-right"></i> <a href="/kotlin/kotlin-15-spring-boot/">[Kotlin] 15. 서버 개발 - Spring Boot with Kotlin</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i> 2026.05.06
+              <!--Archive page 용-: (post -> page)-->
+<!--page__taxonomy.html에서 가져 옴-->
+        
+        <span class="page__taxonomy">
+            <span itemprop="keywords"><a href="/categories/#kotlin" class="page__taxonomy-item-category" rel="tag">kotlin</a>
+                    
+                    
+                    <a href="/tags/#kotlin" class="page__taxonomy-item-tag" rel="tag">kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#lecture-kotlin" class="page__taxonomy-item-tag" rel="tag">lecture-kotlin</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#spring" class="page__taxonomy-item-tag" rel="tag">spring</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%84%9C%EB%B2%84" class="page__taxonomy-item-tag" rel="tag">서버</a><span class="sep"> </span>
+                
+                    
+                    
+                    <a href="/tags/#%EC%A4%91%EA%B8%89" class="page__taxonomy-item-tag" rel="tag">중급</a>
+                
+            </span>
+        </span>
+            </small>
+        </div>
+      </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="https://hits.sh/kimjaehyun.co.kr/"><img alt="Hits" src="https://hits.sh/kimjaehyun.co.kr.svg?view=today-total&color=1188cc"/></a>
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 devjaedol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMD399R64"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DHMD399R64', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
